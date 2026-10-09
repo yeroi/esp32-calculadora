@@ -26,6 +26,9 @@ from scicalc import pantalla as P, teclas as K
 
 STAGE_W, STAGE_H = 480, 360
 MAX_CLONES = 300                    # el mismo límite que Scratch
+# Teclado en pantalla para "preguntar y esperar" (hasta que haya tecla ALPHA)
+KB_ROWS = [list("1234567890"), list("qwertyuiop"), list("asdfghjkl/"), list("zxcvbnm.-_"),
+           [" ", ":", "=", "+", "*", "?", "!", ",", "<-", "OK"]]
 WORK_MS = 25                        # tiempo de CPU por fotograma (75 % de 33 ms, como Scratch)
 WARP_LIMIT = 200000                 # pasos máximos de un bloque "sin refrescar"
 
@@ -330,6 +333,7 @@ class Project:
         self.picker = None                       # selector de partidas (en "preguntar")
         self.toast = None                        # [texto, hasta (ms)]
         self.frame = 0
+        self.kb = [1, 0]                         # tecla elegida en el teclado en pantalla
         self.uses_mouse = self._uses_mouse()
         self.unsupported = set()
         self.S = {}
@@ -1128,8 +1132,6 @@ class Project:
             if sp.say_text and sp.visible:
                 self.draw_bubble(sp)
         self.draw_monitors()
-        if self.uses_mouse:
-            self.draw_cursor()
         if self.asking:
             self.draw_picker() if self.picker else self.draw_ask()
         if self.toast:
@@ -1137,6 +1139,8 @@ class Project:
             P.texto(self.toast[0], int(self.ox) + 9, int(self.oy) + 7, 0x80FF80)
         if self.menu:
             self.draw_menu()
+        if self.uses_mouse:
+            self.draw_cursor()                        # el puntero, siempre encima de todo
         if clip:
             P.recorte()
 
@@ -1226,15 +1230,39 @@ class Project:
         self.toast = [t, self.now + 2500]
         self.dirty_all = True
 
-    def draw_picker(self):
+    def picker_box(self):
         x, y, w = int(self.ox) + 20, int(self.oy) + 20, int(self.sw) - 40
-        h = 30 + 12 * len(self.picker)
+        return x, y, w, 30 + 13 * len(self.picker)
+
+    def mouse_screen(self):
+        sx, sy = self.to_screen(self.mouse[0], self.mouse[1])
+        return int(sx), int(sy)
+
+    def picker_hit(self):
+        """Índice de la partida bajo el ratón, o None."""
+        if not self.uses_mouse or not self.picker:
+            return None
+        x, y, w, h = self.picker_box()
+        mx, my = self.mouse_screen()
+        for i in range(len(self.picker)):
+            ry = y + 16 + i * 13
+            if x <= mx <= x + w and ry <= my < ry + 13:
+                return i
+        return None
+
+    def draw_picker(self):
+        x, y, w, h = self.picker_box()
         P.rect(x, y, w, h, 0xFFFFFF)
         P.marco(x, y, w, h, 0x855CD6)
         P.texto("Elige una partida guardada:", x + 6, y + 4, 0x202020)
+        hover = getattr(self, "_hover", None)
         for i, n in enumerate(self.picker):
-            P.texto("%d  ->  partida %d" % (i + 1, n), x + 10, y + 18 + i * 12, 0x855CD6)
-        P.texto("DEL: escribir un número en vez de cargar", x + 6, y + h - 10, 0x888888)
+            ry = y + 16 + i * 13
+            if i == hover:
+                P.rect(x + 3, ry, w - 6, 13, 0x855CD6)
+            P.texto("%d  ->  partida %d" % (i + 1, n), x + 10, ry + 2,
+                    0xFFFFFF if i == hover else 0x855CD6)
+        P.texto("número o clic (5) · DEL: escribir a mano", x + 6, y + h - 11, 0x888888)
 
     # ---- menú propio (SHIFT+EXE o la tecla de pausa del juego) ----------------------
     def menu_items(self):
@@ -1247,6 +1275,7 @@ class Project:
                       "pantalla"))
         items.append(("Rendimiento: " + ("rápido" if self.fast else "normal"), "rendimiento"))
         items.append(("Ver controles", "controles"))
+        items.append(("Salir del juego", "salir"))
         return items
 
     def menu_key(self, k):
@@ -1286,6 +1315,8 @@ class Project:
             self.fast = not self.fast
         elif action == "controles":
             self.menu = [sel, "controles"]
+        elif action == "salir":
+            raise SystemExit
         self.dirty_all = True
 
     def inject(self, sk):
@@ -1325,13 +1356,86 @@ class Project:
                 P.rect(x + 3, yy - 2, w - 6, 13, 0x28A8FA)
             P.texto("%d  %s" % (i + 1, label), x + 8, yy, 0xFFFFFF)
 
+    def kb_hit(self):
+        """Tecla del teclado en pantalla bajo el ratón, o None."""
+        if not self.uses_mouse or not self.asking:
+            return None
+        x, y, cw, ch = self.kb_layout()
+        mx, my = self.mouse_screen()
+        r = (my - (y + 27)) // ch
+        c = (mx - (x + 5)) // cw
+        if 0 <= r < len(KB_ROWS) and 0 <= c < len(KB_ROWS[r]):
+            return [r, c]
+        return None
+
+    def kb_layout(self):
+        cw, ch = 17, 12
+        w = cw * 10 + 12
+        h = 32 + ch * len(KB_ROWS) + 12
+        x = int(self.ox + (self.sw - w) / 2)
+        y = int(self.oy + self.sh) - h - 2
+        return x, y, cw, ch
+
+    def ask_key(self, k, shift):
+        """Teclas mientras el juego pregunta: teclado en pantalla."""
+        q = self.asking
+        if k == "5" and not shift and self.uses_mouse:
+            hit = self.kb_hit()                        # clic del ratón sobre una tecla
+            if hit is None:
+                return
+            self.kb = hit
+            k = "EXE"
+        if k in ("8", "2", "4", "6") and self.uses_mouse:
+            return                                     # esas mueven el ratón
+        r, c = self.kb
+        if shift and k == "EXE":
+            q[2] = True                                # SHIFT+EXE: aceptar
+        elif k in ("UP", "DOWN"):
+            r = (r + (1 if k == "DOWN" else -1)) % len(KB_ROWS)
+            c = min(c, len(KB_ROWS[r]) - 1)
+        elif k in ("LEFT", "RIGHT"):
+            c = (c + (1 if k == "RIGHT" else -1)) % len(KB_ROWS[r])
+        elif k == "EXE":
+            cell = KB_ROWS[r][c]
+            if cell == "OK":
+                q[2] = True
+            elif cell == "<-":
+                q[1] = q[1][:-1]
+            elif len(q[1]) < 60:
+                q[1] += cell
+        elif k == "DEL":
+            if q[1]:
+                q[1] = q[1][:-1]
+            else:
+                q[2] = True                            # DEL con el texto vacío: cancelar
+        elif k.isdigit() and len(q[1]) < 60:
+            q[1] += k                                  # los números se escriben directamente
+        elif k == "." and len(q[1]) < 60:
+            q[1] += "."
+        elif k == "SUB" and len(q[1]) < 60:
+            q[1] += "-"
+        self.kb = [r, c]
+        self.dirty_all = True
+
     def draw_ask(self):
         q, a, _ = self.asking
-        y = P.ALTO - 34
-        P.rect(int(self.ox) + 4, y, int(self.sw) - 8, 30, 0xFFFFFF)
-        P.marco(int(self.ox) + 4, y, int(self.sw) - 8, 30, 0x855CD6)
-        P.texto(q[:44], int(self.ox) + 8, y + 3, 0x202020)
-        P.texto("> " + a + "_   (EXE)", int(self.ox) + 8, y + 16, 0x855CD6)
+        x, y, cw, ch = self.kb_layout()
+        w = cw * 10 + 12
+        h = 32 + ch * len(KB_ROWS) + 12
+        P.rect(x, y, w, h, 0xFFFFFF)
+        P.marco(x, y, w, h, 0x855CD6)
+        P.texto(q[:24], x + 5, y + 3, 0x202020)
+        P.texto((a[-22:] if len(a) > 22 else a) + "_", x + 5, y + 15, 0x855CD6)
+        r0, c0 = self.kb
+        for r, row in enumerate(KB_ROWS):
+            for c, cell in enumerate(row):
+                cx, cy = x + 6 + c * cw, y + 29 + r * ch
+                sel = (r == r0 and c == c0)
+                if sel:
+                    P.rect(cx - 1, cy - 2, cw - 1, ch, 0x855CD6)
+                label = "_" if cell == " " else cell
+                P.texto(label[:2], cx + (4 if len(label) == 1 else 1), cy, 0xFFFFFF if sel else 0x303030)
+        P.texto("EXE tecla · SHIFT+EXE ok · DEL sale", x + 4, y + h - 10, 0x888888)
 
     def render(self):
         # Zonas que cambian: rectángulo anterior y nuevo de cada objeto cambiado
@@ -1382,7 +1486,7 @@ class Project:
     def mouse_keys(self):
         return {"8", "4", "6", "2", "5"} if self.uses_mouse else set()
 
-    def move_mouse(self, events):
+    def move_mouse(self, events, click=True):
         keys = self.held
         dx = (1 if "6" in keys else 0) - (1 if "4" in keys else 0)
         dy = (1 if "8" in keys else 0) - (1 if "2" in keys else 0)
@@ -1395,7 +1499,7 @@ class Project:
         else:
             self.mouse_t = 0
         self.mouse_down = "5" in keys
-        if any(k == "5" and not sh for k, sh in events):
+        if click and any(k == "5" and not sh for k, sh in events):
             self.click()
 
     def click(self):
@@ -1424,9 +1528,26 @@ class Project:
                 self.menu = [0, None]
                 self.dirty_all = True
                 return
+        for k, shift in events:
+            if shift:
+                self.taps["S:" + k] = self.frame + 3   # SHIFT+tecla: pulsación de 3 fotogramas
+            else:
+                self.held.add(k)               # un toque cuenta como pulsada este fotograma
+        if self.uses_mouse:
+            self.move_mouse(events, click=not self.asking)
         # Selector de partidas (al cargar)
         if self.picker:
+            hit = self.picker_hit()
+            if hit != getattr(self, "_hover", None):
+                self._hover = hit                      # resaltar la partida bajo el ratón
+                self.dirty_all = True
             for k, shift in events:
+                if k == "5" and not shift and self.uses_mouse and hit is not None:
+                    self.asking[1] = self.load_save(self.picker[hit])
+                    self.asking[2] = True
+                    return
+                if k in self.mouse_keys():
+                    continue                           # 8 4 6 2 5 son del ratón
                 if k.isdigit() and 1 <= int(k) <= len(self.picker):
                     self.asking[1] = self.load_save(self.picker[int(k) - 1])
                     self.asking[2] = True
@@ -1447,26 +1568,8 @@ class Project:
                 not any(k == self.sprint for k, _ in events):
             self.sprint = None
         for k, shift in events:
-            if shift:
-                self.taps["S:" + k] = self.frame + 3   # SHIFT+tecla: pulsación de 3 fotogramas
-            else:
-                self.held.add(k)               # un toque cuenta como pulsada este fotograma
-        if self.uses_mouse and not self.asking:
-            self.move_mouse(events)
-        for k, shift in events:
             if self.asking:
-                q = self.asking
-                if k.isdigit() and len(q[1]) < 20:
-                    q[1] += k
-                elif k == "." and "." not in q[1]:
-                    q[1] += "."
-                elif k == "SUB" and not q[1]:
-                    q[1] = "-"
-                elif k == "DEL":
-                    q[1] = q[1][:-1]
-                elif k == "EXE":
-                    q[2] = True
-                self.dirty_all = True
+                self.ask_key(k, shift)
                 continue
             name = ("S:" + k) if shift else k
             if not shift and k in self.mouse_keys():
@@ -1488,8 +1591,8 @@ class Project:
         if self.toast and self.now > self.toast[1]:
             self.toast = None
             self.dirty_all = True
-        if self.menu:                                 # juego en pausa mientras está el menú
-            self.render()
+        if self.menu or (self.asking and not self.asking[2]):
+            self.render()                             # juego en pausa (menú o pregunta)
             P.mostrar()
             return
         start = K.ms()
