@@ -12,3 +12,11 @@ Ejecutar: Python > juegos > clonaria > clonaria.py
   AC         salir
 
 En el simulador también: flechas del PC, Retroceso = DEL, Enter = EXE.
+
+MULTIJUGADOR
+Al empezar: 1 = un jugador, 2 = multijugador. Necesita Wi-Fi (Ajustes >
+Wi-Fi) y elegir en Ajustes > Multijugador:
+  - Servidor dedicado: en un PC ejecuta  python pc/scicalc_servidor.py
+    y pon su IP en /red.json ("servidor").
+  - Anfitrión: esta calculadora hace de servidor; los demás ponen su IP.
+Todos comparten el mismo mundo y ven los bloques que cambian los demás.

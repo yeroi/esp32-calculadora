@@ -603,9 +603,41 @@ import threading as _th, queue as _qu, time as _time
 _answers, _klock = _qu.Queue(), _th.Lock()
 _held, _events = set(), []
 
+# Estado de la red (lo actualiza el hilo que lee stdin)
+_net = {"estado": "desconectado", "id": None, "jugadores": {}, "vars": {}, "anfitrion": None,
+        "error": "", "cola": []}
+
+def _net_msg(m):
+    with _klock:
+        t = m.get("t")
+        if t == "estado":
+            _net["estado"] = m.get("e", "desconectado")
+            _net["error"] = m.get("msg", "")
+        elif t == "bienvenido":
+            _net.update(estado="conectado", id=m.get("id"), anfitrion=m.get("anfitrion"),
+                        jugadores={int(k): v for k, v in m.get("jugadores", {}).items()},
+                        vars=dict(m.get("vars", {})))
+        elif t == "entra":
+            _net["jugadores"][m.get("id")] = m.get("nombre", "?")
+        elif t == "sale":
+            _net["jugadores"].pop(m.get("id"), None)
+            _net["anfitrion"] = m.get("anfitrion", _net["anfitrion"])
+        elif t == "var":
+            _net["vars"][m.get("n")] = m.get("v")
+        elif t == "error":
+            _net["error"] = m.get("msg", "")
+        _net["cola"].append(m)
+        del _net["cola"][:-500]
+
 def _stdin_reader():
     for raw in _stdin:
         line = raw.strip()
+        if line.startswith("n "):                  # mensajes de red (los trae el núcleo)
+            try:
+                _net_msg(json.loads(line[2:]))
+            except ValueError:
+                pass
+            continue
         if line.startswith("k "):
             try:
                 d = json.loads(line[2:])
@@ -773,8 +805,57 @@ _tecl.pulsadas, _tecl.eventos = _pulsadas, _eventos
 _tecl.pulsada = lambda n: n in _pulsadas()
 _tecl.ms = lambda: int(_time.time() * 1000)       # como time.ticks_ms() del ESP32
 
+# --- scicalc.red: multijugador (Wi-Fi a un servidor, o esta calculadora de anfitrión)
+#  El script NO abre sockets: se lo pide al núcleo, que lleva la conexión.
+_red = types.ModuleType("scicalc.red")
+
+def _net_out(obj):
+    sys.stdout.write("\x07" + json.dumps(obj) + "\n")
+    sys.stdout.flush()
+
+def _red_conectar(sala, nombre=None):
+    with _klock:
+        _net.update(estado="conectando", id=None, jugadores={}, vars={}, error="")
+        _net["cola"] = []
+    _net_out({"op": "conectar", "sala": str(sala), "nombre": nombre})
+
+def _red_esperar(seg=6):
+    # Espera a que la conexión termine (conectado o error). Mantiene vivo el watchdog.
+    fin = _time.time() + seg
+    while _time.time() < fin:
+        if _net["estado"] in ("conectado", "error", "desconectado"):
+            break
+        sys.stdout.write("\x06[]\n")                 # fotograma vacío: sigo vivo
+        sys.stdout.flush()
+        _time.sleep(0.1)
+    if _net["estado"] == "conectando":
+        _net["estado"], _net["error"] = "error", "sin respuesta del servidor"
+    return _net["estado"] == "conectado"
+
+def _red_recibir():
+    with _klock:
+        cola = _net["cola"]
+        _net["cola"] = []
+    return cola
+
+def _red_var(n, v):
+    with _klock:
+        _net["vars"][str(n)] = v
+    _net_out({"op": "var", "n": str(n), "v": v})
+
+_red.conectar, _red.esperar, _red.recibir = _red_conectar, _red_esperar, _red_recibir
+_red.enviar = lambda d: _net_out({"op": "todos", "d": d})
+_red.var = _red_var
+_red.estado = lambda: _net["estado"]
+_red.error = lambda: _net["error"]
+_red.mi_id = lambda: _net["id"]
+_red.anfitrion = lambda: _net["anfitrion"]
+_red.jugadores = lambda: dict(_net["jugadores"])
+_red.vars = lambda: dict(_net["vars"])
+_red.desconectar = lambda: _net_out({"op": "desconectar"})
+
 _scicalc = types.ModuleType("scicalc")
-_scicalc.pantalla, _scicalc.teclas = _pant, _tecl
+_scicalc.pantalla, _scicalc.teclas, _scicalc.red = _pant, _tecl, _red
 _sys.modules["scicalc"] = _scicalc
 
 def _sandboxed(g):
@@ -865,6 +946,250 @@ PERM_TEXT = {
 }
 
 
+# --- Servidor multijugador (copia de pc/scicalc_servidor.py) -------------------
+PUERTO = 8267
+MAX_LINEA = 64 * 1024        # bytes por mensaje
+MAX_VARS = 20000             # variables por sala
+MAX_JUGADORES = 16           # por sala
+
+
+class Servidor:
+    def __init__(self, host="0.0.0.0", puerto=PUERTO, log=print):
+        self.host, self.puerto, self.log = host, puerto, log
+        self.salas = {}                      # nombre -> {"clientes": {id: cli}, "vars": {}}
+        self.lock = threading.Lock()
+        self.next_id = 1
+        self.sock = None
+
+    # ---- arranque -----------------------------------------------------------------
+    def iniciar(self):
+        """Abre el puerto y atiende en segundo plano. Lanza OSError si está ocupado."""
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        s.bind((self.host, self.puerto))
+        s.listen(16)
+        self.sock = s
+        threading.Thread(target=self._aceptar, daemon=True).start()
+        self.log(f"Servidor SciCalc escuchando en el puerto {self.puerto}")
+
+    def parar(self):
+        try:
+            self.sock.close()
+        except Exception:
+            pass
+
+    def _aceptar(self):
+        while True:
+            try:
+                conn, addr = self.sock.accept()
+            except OSError:
+                return
+            conn.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
+            threading.Thread(target=self._cliente, args=(conn, addr), daemon=True).start()
+
+    # ---- un cliente -----------------------------------------------------------------
+    def _enviar(self, cli, obj):
+        data = (json.dumps(obj, ensure_ascii=False, separators=(",", ":")) + "\n").encode("utf-8")
+        try:
+            with cli["wlock"]:
+                cli["conn"].sendall(data)
+        except OSError:
+            pass
+
+    def _difundir(self, sala, obj, menos=None):
+        for cid, cli in list(sala["clientes"].items()):
+            if cid != menos:
+                self._enviar(cli, obj)
+
+    def _cliente(self, conn, addr):
+        cli = {"conn": conn, "wlock": threading.Lock(), "id": None, "sala": None, "nombre": "?"}
+        buf = b""
+        try:
+            while True:
+                chunk = conn.recv(4096)
+                if not chunk:
+                    break
+                buf += chunk
+                if len(buf) > MAX_LINEA and b"\n" not in buf:
+                    break                                # mensaje demasiado largo
+                while b"\n" in buf:
+                    line, buf = buf.split(b"\n", 1)
+                    try:
+                        msg = json.loads(line.decode("utf-8"))
+                    except (ValueError, UnicodeDecodeError):
+                        continue
+                    if isinstance(msg, dict):
+                        self._mensaje(cli, msg, addr)
+        except OSError:
+            pass
+        finally:
+            self._salir(cli)
+            try:
+                conn.close()
+            except OSError:
+                pass
+
+    def _mensaje(self, cli, msg, addr):
+        t = msg.get("t")
+        with self.lock:
+            if t == "hola" and cli["id"] is None:
+                nombre_sala = str(msg.get("sala", "general"))[:32]
+                sala = self.salas.setdefault(nombre_sala, {"clientes": {}, "vars": {}})
+                if len(sala["clientes"]) >= MAX_JUGADORES:
+                    self._enviar(cli, {"t": "error", "msg": "sala llena"})
+                    return
+                cli["id"] = self.next_id
+                self.next_id += 1
+                cli["sala"] = nombre_sala
+                cli["nombre"] = str(msg.get("nombre", "Jugador"))[:16]
+                sala["clientes"][cli["id"]] = cli
+                jugadores = {str(i): c["nombre"] for i, c in sala["clientes"].items()}
+                self._enviar(cli, {"t": "bienvenido", "id": cli["id"], "jugadores": jugadores,
+                                   "vars": sala["vars"], "anfitrion": min(sala["clientes"])})
+                self._difundir(sala, {"t": "entra", "id": cli["id"], "nombre": cli["nombre"]},
+                               menos=cli["id"])
+                self.log(f"[{nombre_sala}] entra {cli['nombre']} (id {cli['id']}, {addr[0]})")
+                return
+            if cli["id"] is None:
+                return
+            sala = self.salas.get(cli["sala"])
+            if sala is None:
+                return
+            if t == "todos":
+                self._difundir(sala, {"t": "de", "id": cli["id"], "d": msg.get("d")}, menos=cli["id"])
+            elif t == "var":
+                n = str(msg.get("n", ""))[:64]
+                if n in sala["vars"] or len(sala["vars"]) < MAX_VARS:
+                    sala["vars"][n] = msg.get("v")
+                    self._difundir(sala, {"t": "var", "id": cli["id"], "n": n, "v": msg.get("v")},
+                                   menos=cli["id"])
+
+    def _salir(self, cli):
+        with self.lock:
+            sala = self.salas.get(cli["sala"])
+            if sala is None or cli["id"] not in sala["clientes"]:
+                return
+            del sala["clientes"][cli["id"]]
+            self.log(f"[{cli['sala']}] sale {cli['nombre']} (id {cli['id']})")
+            if sala["clientes"]:
+                self._difundir(sala, {"t": "sale", "id": cli["id"],
+                                      "anfitrion": min(sala["clientes"])})
+            else:
+                del self.salas[cli["sala"]]          # sala vacía: se olvida
+
+
+def ip_local():
+    """IP de este equipo en la red local (la que tienen que poner los demás)."""
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("10.255.255.255", 1))
+        ip = s.getsockname()[0]
+        s.close()
+        return ip
+    except OSError:
+        return "127.0.0.1"
+
+
+
+# =============================================================================
+#  Multijugador: configuración, cliente y servidor (anfitrión)
+# -----------------------------------------------------------------------------
+#  sd/red.json:  {"modo": "servidor" | "anfitrion", "servidor": "IP", "puerto": 8267,
+#                 "nombre": "Jugador"}
+#   servidor  -> se conecta a un servidor dedicado (pc/scicalc_servidor.py)
+#   anfitrion -> esta calculadora hace de servidor; los demás ponen su IP
+#  En el ESP32 real esto mismo irá por Wi-Fi (WiFiClient), por USB a través de
+#  SciCalc Link en el PC, o por Bluetooth SPP entre dos calculadoras.
+# =============================================================================
+NET_STATE = {"wifi": False, "exam": False}
+RED_DEFAULT = {"modo": "servidor", "servidor": "127.0.0.1", "puerto": 8267, "nombre": "Jugador"}
+
+
+def read_red_config():
+    cfg = dict(RED_DEFAULT)
+    try:
+        cfg.update(json.loads((SD_DIR / "red.json").read_text(encoding="utf-8")))
+    except (OSError, ValueError):
+        pass
+    cfg["puerto"] = int(cfg.get("puerto", 8267))
+    return cfg
+
+
+def write_red_config(cfg):
+    (SD_DIR / "red.json").write_text(json.dumps(cfg, ensure_ascii=False, indent=1), encoding="utf-8")
+
+
+class NetClient:
+    """Conexión TCP del núcleo con el servidor. Lo que llega se le pasa al script."""
+
+    def __init__(self, host, port, sala, nombre, write, status):
+        self.write, self.status = write, status
+        self.sock, self.closed = None, False
+        self.hello = {"t": "hola", "sala": sala, "nombre": nombre}
+        self.addr = (host, port)
+        threading.Thread(target=self._run, daemon=True).start()
+
+    def _run(self):
+        try:
+            self.sock = socket.create_connection(self.addr, timeout=4)
+            self.sock.settimeout(None)
+            self.sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
+        except OSError as e:
+            self.status("error", f"no se puede conectar a {self.addr[0]}:{self.addr[1]} ({e})")
+            return
+        self.send(self.hello)
+        buf = b""
+        try:
+            while not self.closed:
+                chunk = self.sock.recv(4096)
+                if not chunk:
+                    break
+                buf += chunk
+                while b"\n" in buf:
+                    line, buf = buf.split(b"\n", 1)
+                    if line.strip():
+                        self.write("n " + line.decode("utf-8", "replace"))
+        except OSError:
+            pass
+        if not self.closed:
+            self.status("desconectado", "se perdió la conexión")
+
+    def send(self, obj):
+        if self.sock and not self.closed:
+            try:
+                self.sock.sendall((json.dumps(obj, separators=(",", ":")) + "\n").encode("utf-8"))
+            except OSError:
+                pass
+
+    def close(self):
+        self.closed = True
+        try:
+            self.sock.close()
+        except Exception:
+            pass
+
+
+_HOST = {"srv": None}
+
+
+def start_host_server(port):
+    """Arranca (una vez) el servidor dentro del simulador. Devuelve un error o ''."""
+    if _HOST["srv"] is not None:
+        return ""
+    srv = Servidor(puerto=port, log=lambda *a: None)
+    try:
+        srv.iniciar()
+    except OSError as e:
+        # ¿ya hay un servidor en este equipo (otro simulador anfitrión)? Lo usamos.
+        try:
+            socket.create_connection(("127.0.0.1", port), timeout=1).close()
+            return ""
+        except OSError:
+            return f"no se puede abrir el puerto {port} ({e})"
+    _HOST["srv"] = srv
+    return ""
+
+
 class ScriptRunner:
     """Ejecuta un .py en un proceso aparte = aislado del 'núcleo' de la calculadora.
     En el ESP32 real esto será una tarea FreeRTOS con heap propio de MicroPython.
@@ -884,6 +1209,8 @@ class ScriptRunner:
         self.sprites, self._scaled = {}, {}
         self.alive = time.time()          # último signo de vida (para el watchdog)
         self.held_sent = None
+        self.wlock = threading.Lock()     # stdin lo escriben la UI y el hilo de red
+        self.net = None                   # NetClient del multijugador
         kw = {}
         if os.name == "nt":
             kw["creationflags"] = getattr(subprocess, "CREATE_NO_WINDOW", 0)
@@ -909,9 +1236,18 @@ class ScriptRunner:
             while True:
                 line = self.q.get_nowait()
                 if line is None:
+                    if self.net:
+                        self.net.close()
+                        self.net = None
                     self.proc.wait()
                     self.state = "error" if self.proc.returncode else "ok"
                     return
+                if line.startswith("\x07"):           # petición de red de scicalc.red
+                    try:
+                        self._net_op(json.loads(line[1:]))
+                    except ValueError:
+                        pass
+                    continue
                 if line.startswith("\x06"):           # fotograma de scicalc.pantalla
                     self.alive = time.time()
                     try:
@@ -956,12 +1292,50 @@ class ScriptRunner:
             pass
 
     # ---- gráficos y teclado (scicalc) ------------------------------------------
-    def _send(self, obj):
+    def _write(self, text):
         try:
-            self.proc.stdin.write(("k " + json.dumps(obj) + "\n").encode())
-            self.proc.stdin.flush()
+            with self.wlock:
+                self.proc.stdin.write((text + "\n").encode())
+                self.proc.stdin.flush()
         except Exception:
             pass
+
+    def _send(self, obj):
+        self._write("k " + json.dumps(obj))
+
+    # ---- red (multijugador) --------------------------------------------------------
+    def _net_status(self, e, msg=""):
+        self._write("n " + json.dumps({"t": "estado", "e": e, "msg": msg}))
+
+    def _net_op(self, req):
+        op = req.get("op")
+        if op == "conectar":
+            if self.net:
+                self.net.close()
+            if NET_STATE["exam"]:
+                self._net_status("error", "modo examen: sin red")
+                return
+            if not NET_STATE["wifi"]:
+                self._net_status("error", "sin Wi-Fi (conéctate en Ajustes)")
+                return
+            cfg = read_red_config()
+            nombre = req.get("nombre") or cfg["nombre"]
+            host, port = cfg["servidor"], cfg["puerto"]
+            if cfg["modo"] == "anfitrion":           # esta calculadora hace de servidor
+                err = start_host_server(port)
+                if err:
+                    self._net_status("error", err)
+                    return
+                host = "127.0.0.1"
+            self.net = NetClient(host, port, req.get("sala", "general"), nombre, self._write,
+                                 self._net_status)
+        elif self.net and op in ("todos", "var"):
+            m = {"t": op}
+            m.update({k: v for k, v in req.items() if k != "op"})
+            self.net.send(m)
+        elif op == "desconectar" and self.net:
+            self.net.close()
+            self.net = None
 
     def send_key(self, key, shift):
         self._send({"ev": key, "shift": shift})
@@ -1048,6 +1422,9 @@ class ScriptRunner:
             self.proc.kill()
         except Exception:
             pass
+        if self.net:
+            self.net.close()
+            self.net = None
         self.state = state
 
     def stop(self):
@@ -2389,6 +2766,8 @@ class SettingsApp(App):
                 dict(label="Bluetooth", value="Visible" if sim.bt_on else "Apagado", action="page:bt",
                      color=OK if sim.bt_on else None),
                 dict(label="USB", value="Serie · SciCalc Link", action="page:usb"),
+                dict(label="Multijugador", value="Anfitrión" if read_red_config()["modo"] == "anfitrion"
+                     else "Servidor", action="page:red"),
                 dict(label="Modo examen", value="ACTIVADO" if sim.exam else "Desactivado",
                      action="toggle:exam", color=WARN if sim.exam else None),
                 dict(label="Paquetes Python", value=f"{len(read_manifest())} instalados", action="page:pkgs"),
@@ -2418,6 +2797,14 @@ class SettingsApp(App):
             return [dict(label="Modo USB", value="Serie (SciCalc Link)", action=None, color=OK),
                     dict(label="Velocidad", value="115200 baudios", action=None),
                     dict(label="Disco USB (MSC)", value="requiere ESP32-S3", action="info:msc")]
+        if self.page == "red":
+            cfg = read_red_config()
+            anf = cfg["modo"] == "anfitrion"
+            return [dict(label="Modo", value="Anfitrión (esta calculadora)" if anf else "Servidor dedicado",
+                         action="toggle:redmodo", color=OK if anf else None),
+                    dict(label="Servidor", value="-" if anf else cfg["servidor"], action=None),
+                    dict(label="Puerto", value=str(cfg["puerto"]), action=None),
+                    dict(label="Tu nombre", value=cfg["nombre"], action=None)]
         if self.page == "pkgs":
             return [dict(label=n, value=f"{i.get('version', '?')} · {i.get('source', '?')}", action="pkg:" + n)
                     for n, i in sorted(read_manifest().items())]
@@ -2440,6 +2827,16 @@ class SettingsApp(App):
             return ["Conecta el cable USB-C y elige el puerto COM",
                     "en SciCalc Link (USB). Mismo protocolo que",
                     "Bluetooth y Wi-Fi."]
+        if self.page == "red":
+            cfg = read_red_config()
+            l = ["Servidor, puerto y nombre: edita /red.json", "(o desde el PC con SciCalc Link)."]
+            if cfg["modo"] == "anfitrion":
+                l += [f"Los demás ponen como servidor tu IP,", f"puerto {cfg['puerto']} (simulador: 127.0.0.1)."]
+            else:
+                l += ["Servidor dedicado en el PC:", "  python pc/scicalc_servidor.py"]
+            if not sim.wifi_net:
+                l += ["", "Necesita Wi-Fi conectado."]
+            return l
         if self.page == "pkgs" and not read_manifest():
             return ["No hay paquetes instalados.", "", "Instálalos desde el PC con SciCalc Link:",
                     "se guardan en /lib de la MicroSD."]
@@ -2473,7 +2870,8 @@ class SettingsApp(App):
     def do(self, action):
         sim = self.sim
         kind, _, arg = action.partition(":")
-        titles = {"wifi": "Wi-Fi", "bt": "Bluetooth", "usb": "USB", "pkgs": "Paquetes", "about": "Acerca de"}
+        titles = {"wifi": "Wi-Fi", "bt": "Bluetooth", "usb": "USB", "pkgs": "Paquetes", "about": "Acerca de",
+                  "red": "Multijugador"}
         if kind == "page":
             self.page = arg
             sim.set_title("Ajustes › " + titles[arg])
@@ -2484,6 +2882,10 @@ class SettingsApp(App):
                         lambda a: a in "ya" and sim.set_exam(True))
             else:
                 sim.ask("Modo examen", ["¿Salir del modo examen?"], lambda a: a in "ya" and sim.set_exam(False))
+        elif kind == "toggle" and arg == "redmodo":
+            cfg = read_red_config()
+            cfg["modo"] = "servidor" if cfg["modo"] == "anfitrion" else "anfitrion"
+            write_red_config(cfg)
         elif kind == "toggle":
             if sim.exam:
                 sim.ask("Modo examen", ["No disponible durante", "el modo examen."], None, info=True)
@@ -2706,6 +3108,7 @@ class Simulator:
             self.ask(title, lines, cb)
             self.modals[-1]["box"] = box
         self.modals = [m for m in self.modals if not m.get("box", {}).get("expired")]
+        NET_STATE["wifi"], NET_STATE["exam"] = bool(self.wifi_net), self.exam
         # el servidor de enlace vive mientras haya Wi-Fi conectado
         want = bool(self.wifi_net) and not self.exam
         if want and not self.link.sock and not self.link.error:

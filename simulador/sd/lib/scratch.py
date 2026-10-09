@@ -21,8 +21,13 @@
 # =============================================================================
 import json
 import math
+import os
 import random
 from scicalc import pantalla as P, teclas as K
+try:
+    from scicalc import red                  # multijugador (variables ☁)
+except ImportError:
+    red = None
 
 STAGE_W, STAGE_H = 480, 360
 MAX_CLONES = 300                    # el mismo límite que Scratch
@@ -305,6 +310,16 @@ class Project:
             for lid, v in d["listas"].items():
                 self.names[lid] = v[0]
         self.stage = [s for s in self.sprites if s.stage][0]
+        # Variables en la nube (☁): se comparten con los demás jugadores del
+        # mismo proyecto a través de scicalc.red (servidor SciCalc, no el de Scratch)
+        self.cloud = {vid: n for vid, n in self.names.items()
+                      if vid in self.stage.vars and str(n).startswith("\u2601")}
+        self.cloud_ids = {n: vid for vid, n in self.cloud.items()}
+        self.online = False
+        # sala = carpeta del proyecto (todos los que juegan al mismo juego)
+        full = path if path.startswith("/") else os.getcwd().rstrip("/") + "/" + path
+        parts = [x for x in full.replace("\\", "/").split("/") if x]
+        self.room = "scratch:" + (parts[-2] if len(parts) > 1 else parts[-1])[:24]
         order = sorted([(d["capa"], i) for i, d in enumerate(data["objetos"]) if not d["escenario"]])
         self.layers = [self.sprites[i] for _, i in order]      # de atrás adelante
         self.by_name = {s.name: s for s in self.sprites}
@@ -379,10 +394,42 @@ class Project:
         return self.stage.vars.get(vid, 0)
 
     def var_set(self, sp, vid, value):
-        if vid in sp.vars:
+        if vid in sp.vars and sp is not self.stage:
             sp.vars[vid] = value
         else:
+            if self.online and vid in self.cloud and self.stage.vars.get(vid) != value:
+                red.var(self.cloud[vid], value)
             self.stage.vars[vid] = value
+
+    # ---- variables en la nube (multijugador) --------------------------------------
+    def cloud_connect(self):
+        if not self.cloud or red is None:
+            return
+        P.limpiar(0)
+        P.texto("Conectando variables \u2601 ...", 80, 100, 0xFFFFFF)
+        P.mostrar()
+        red.conectar(self.room)
+        if not red.esperar():
+            self.toast = ["Sin multijugador: " + red.error()[:34], K.ms() + 4000]
+            return
+        self.online = True
+        self.cloud_apply(red.vars())
+
+    def cloud_apply(self, vs):
+        for n, v in vs.items():
+            vid = self.cloud_ids.get(n)
+            if vid is not None:
+                self.stage.vars[vid] = v
+
+    def cloud_poll(self):
+        if not self.online:
+            return
+        for m in red.recibir():
+            if m.get("t") == "var":
+                self.cloud_apply({m.get("n"): m.get("v")})
+            elif m.get("t") == "estado" and m.get("e") != "conectado":
+                self.online = False
+                self.toast = ["Multijugador desconectado", self.now + 4000]
 
     def lst(self, sp, lid):
         if lid in sp.lists:
@@ -1585,6 +1632,7 @@ class Project:
         # tiempo (WORK_MS). Así los bucles de cálculo puro van a toda velocidad.
         self.now = K.ms()
         self.input()
+        self.cloud_poll()
         if self.pending and self.now >= self.pending[1]:
             self.inject(self.pending[0])
             self.pending = None
@@ -1622,6 +1670,7 @@ def ejecutar(ruta):
     P.texto("Cargando proyecto de Scratch...", 70, 100, 0xFFFFFF)
     P.mostrar()
     proj = Project(ruta)
+    proj.cloud_connect()
     P.limpiar(0)
     proj.start_hats("event_whenflagclicked")
     try:

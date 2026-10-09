@@ -35,6 +35,7 @@ Novedades de la v0.4 (especificación para el firmware):
   2. Si no está, prueba **PyPI**, solo ruedas de Python puro (`py3-none-any`), sin usar el pip del PC.
   3. Rechaza el código nativo (numpy, pandas…) y lo que pase de 1 MB.
 - **v0.5 — juegos**: módulo `scicalc` (`pantalla` + `teclas`) para que los scripts dibujen y lean teclas ([docs/API_scicalc.md](docs/API_scicalc.md)), y **Clonaria** convertido a MicroPython en `sd/juegos/clonaria/`. El watchdog no corta un juego mientras siga mostrando fotogramas; AC lo cierra.
+- **v0.6 — multijugador**: módulo `scicalc.red`, Ajustes › Multijugador, Clonaria en red y variables ☁ de Scratch (ver *Multijugador*).
 - `sys` del sandbox como el de MicroPython: `modules`, `implementation`, `exit`, `print_exception`.
 
 > En el ESP32 **no existe pip**. El comando `pip` de la calculadora es un instalador propio que hará lo mismo por Wi-Fi: `mip` (micropython-lib) y, como alternativa, descargar la rueda de PyPI y descomprimirla (el ESP32 trae `inflate` en la ROM). Aun así, casi nada de PyPI funciona en MicroPython porque usa módulos de CPython.
@@ -76,6 +77,33 @@ Ejemplo incluido: `pc/ejemplos/AtrapaManzanas.sb3`, ya convertido en `simulador/
 
 La colisión usa cajas rectangulares (no el contorno exacto). En el ESP32 sin PSRAM solo caben proyectos pequeños (`proyecto.json` de pocas decenas de KB); con un ESP32-S3 con PSRAM, mucho más.
 
+## Multijugador
+
+Las calculadoras juegan juntas a través de un **servidor SciCalc** (protocolo propio: un JSON por línea sobre TCP, puerto 8267; no usa los servidores de Scratch ni de nadie).
+
+```bash
+python pc/scicalc_servidor.py          # servidor dedicado en un PC (o en internet)
+```
+
+En la calculadora, **Ajustes › Multijugador**:
+
+- **Servidor dedicado**: todos se conectan a la IP del PC que ejecuta `scicalc_servidor.py` (se pone en `/red.json`: `servidor`, `puerto`, `nombre`).
+- **Anfitrión**: esta calculadora hace de servidor y los demás ponen su IP. En el simulador, el primero que entra lo abre y los demás simuladores del mismo PC se conectan solos.
+
+Necesita Wi-Fi conectado y está bloqueado en modo examen.
+
+- **Clonaria**: al empezar, `1` un jugador / `2` multijugador. Todos comparten el mismo mundo (semilla del anfitrión), ven los bloques que pican o ponen los demás —también los cambiados antes de entrar— y a los otros jugadores con su nombre encima.
+- **Scratch**: las variables en la nube (☁) se sincronizan entre todos los que juegan al mismo proyecto.
+- **Tus juegos**: módulo `scicalc.red` ([docs/API_scicalc.md](docs/API_scicalc.md)).
+
+Medios de conexión en el ESP32 (firmware, pendiente; mismo protocolo en todos):
+
+| Medio | Cómo | Notas |
+|---|---|---|
+| Wi-Fi | `WiFiClient` al servidor o a la calculadora anfitriona | el único disponible en el simulador |
+| USB al PC | la calculadora habla por el puerto serie y SciCalc Link en el PC lo reenvía al servidor | el PC hace de puente a internet |
+| Bluetooth entre calculadoras | Bluetooth clásico SPP: una hace de anfitriona | el ESP32-WROOM-32 tiene BT clásico; **el ESP32-S3 solo tiene BLE**, ahí habría que usar BLE (más lento) |
+
 ## Estructura
 
 ```
@@ -99,7 +127,8 @@ firmware/
     diagram.json libraries.txt wokwi.toml   simulación en Wokwi
 simulador/              scicalc_sim.py (referencia) + carpeta sd/ de ejemplo
 pc/                     scicalc_link.py (programa del PC), sb3_a_scicalc.py
-                        (convertidor de Scratch) y ejemplos/
+                        (convertidor de Scratch), scicalc_servidor.py
+                        (servidor multijugador) y ejemplos/
 ```
 
 ## Compilar y probar
