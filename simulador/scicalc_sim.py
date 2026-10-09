@@ -24,6 +24,8 @@
    * Las líneas largas de la consola se parten en varias filas.
    * Módulo "scicalc" (pantalla + teclas) para juegos: ver docs/API_scicalc.md.
      Ejemplo: sd/juegos/clonaria/clonaria.py.
+   * Proyectos de Scratch: intérprete /lib/scratch.py (prepáralos con
+     pc/sb3_a_scicalc.py). Ejemplo: sd/scratch/atrapamanzanas.
 
  Requisitos:   pip install pygame-ce   (funciona en Python 3.14)
  Ejecutar:     python scicalc_sim.py
@@ -2146,7 +2148,7 @@ class DiagApp(App):
 # =============================================================================
 #  Paquetes instalados en /lib  (manifiesto  /lib/paquetes.json)
 # =============================================================================
-FW_VERSION = "0.5"
+FW_VERSION = "0.6"
 LIB_DIR = SD_DIR / "lib"
 MANIFEST = LIB_DIR / "paquetes.json"
 

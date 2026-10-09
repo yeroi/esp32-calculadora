@@ -1,0 +1,7 @@
+AtrapaManzanas (Scratch)
+
+Teclas:
+  left arrow   -> ◄
+  right arrow  -> ►
+  space        -> EXE
+  AC           -> salir

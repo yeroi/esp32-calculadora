@@ -24,7 +24,8 @@ a dibujar se queda en pantalla, así que **redibuja solo lo que cambia**.
 | `linea(x0, y0, x1, y1, c)` | línea |
 | `texto(t, x, y, c=BLANCO, fondo=None, tam=1)` | texto (fuente 6×8 en el ESP32) |
 | `sprite(ruta)` | carga un PNG (relativo a la carpeta del script); devuelve un objeto con `ancho` y `alto` |
-| `dibujar(spr, x, y, escala=1, espejo=False)` | dibuja el sprite (con transparencia) |
+| `dibujar(spr, x, y, escala=1, espejo=False, angulo=0, centro=None)` | dibuja el sprite (con transparencia). `escala` admite decimales; `angulo` en grados, sentido horario. Sin `centro`, (x, y) es la esquina y gira sobre el centro; con `centro=(cx, cy)` ese píxel del sprite cae en (x, y) y es el punto de giro |
+| `recorte(x, y, w, h)` / `recorte()` | limita el dibujo a un rectángulo (redibujado por zonas) / quita el límite |
 | `mostrar()` | envía el fotograma, limita a 30 fps y **mantiene vivo el watchdog** |
 
 ## teclas
@@ -48,3 +49,7 @@ Un juego que muestra fotogramas sigue vivo; AC lo cierra siempre.
 
 Conversión de Clonaria (MIT) a MicroPython: mundo de 128×64 bloques en dos
 `bytearray` (16 KB), física propia en lugar de Box2D y redibujado parcial.
+
+## Ejemplo: proyectos de Scratch (`/lib/scratch.py`)
+
+Intérprete de Scratch 3 escrito sobre esta API. Ver "Scratch" en el README.

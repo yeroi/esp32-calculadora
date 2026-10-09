@@ -19,7 +19,7 @@ El simulador de escritorio [`simulador/scicalc_sim.py`](simulador/scicalc_sim.py
 | – | Consola con ALPHA + editor de código + `pip` por Wi-Fi · Ajustes reales (WiFi.h, BT SPP, NVS) · LinkService · buzzer · batería | pendiente (ya especificado en el simulador v0.4) |
 | 9–10 | Hardware real (TFT_eSPI + DMA, MCP23017) · PCB | pendiente |
 
-## Simulador (v0.5)
+## Simulador (v0.6)
 
 ```bash
 pip install pygame-ce
@@ -38,6 +38,30 @@ Novedades de la v0.4 (especificación para el firmware):
 - `sys` del sandbox como el de MicroPython: `modules`, `implementation`, `exit`, `print_exception`.
 
 > En el ESP32 **no existe pip**. El comando `pip` de la calculadora es un instalador propio que hará lo mismo por Wi-Fi: `mip` (micropython-lib) y, como alternativa, descargar la rueda de PyPI y descomprimirla (el ESP32 trae `inflate` en la ROM). Aun así, casi nada de PyPI funciona en MicroPython porque usa módulos de CPython.
+
+## Proyectos de Scratch
+
+La calculadora ejecuta proyectos de Scratch 3 con un intérprete propio (`/lib/scratch.py`). El `.sb3` se prepara antes en el PC:
+
+```bash
+pip install pygame-ce
+python pc/sb3_a_scicalc.py MiJuego.sb3 simulador/sd     # o la ruta de la MicroSD
+```
+
+Crea `sd/scratch/mijuego/` con los disfraces ya escalados (el escenario de 480×360 se ve a 288×216), un `proyecto.json` simplificado y un lanzador `mijuego.py`. En la calculadora: **Python › scratch › mijuego › mijuego.py**. El convertidor dice qué tecla de la calculadora corresponde a cada tecla de Scratch (flechas → flechas, espacio → EXE; las letras a teclas libres, también en `LEEME.txt`). AC sale.
+
+Ejemplo incluido: `pc/ejemplos/AtrapaManzanas.sb3`, ya convertido en `simulador/sd/scratch/atrapamanzanas/`.
+
+| Soportado | No soportado (por ahora) |
+|---|---|
+| Eventos: bandera, teclas, mensajes (y esperar), clones, cambio de fondo | Sonido (los bloques no hacen nada) |
+| Movimiento completo, rebotar, estilo de giro | Lápiz |
+| Disfraces, fondos, tamaño, mostrar/ocultar, decir/pensar, capas, efecto fantasma | Ratón y "al hacer clic en este objeto" |
+| Control: esperar, repetir, por siempre, si/si no, hasta, mientras, detener, clones | "Tocando color" y efectos de color |
+| Sensores: tecla, tocando objeto/borde, temporizador, distancia, "de", preguntar (solo números) | Escribir letras en "preguntar" (llegará con ALPHA) |
+| Operadores, variables (con marcadores), listas, bloques propios (también sin refrescar) | |
+
+La colisión usa cajas rectangulares (no el contorno exacto). En el ESP32 sin PSRAM solo caben proyectos pequeños (`proyecto.json` de pocas decenas de KB); con un ESP32-S3 con PSRAM, mucho más.
 
 ## Estructura
 
@@ -61,7 +85,8 @@ firmware/
     PackageManifest.*   lectura de /lib/paquetes.json
     diagram.json libraries.txt wokwi.toml   simulación en Wokwi
 simulador/              scicalc_sim.py (referencia) + carpeta sd/ de ejemplo
-pc/                     scicalc_link.py (programa del PC)
+pc/                     scicalc_link.py (programa del PC), sb3_a_scicalc.py
+                        (convertidor de Scratch) y ejemplos/
 ```
 
 ## Compilar y probar
