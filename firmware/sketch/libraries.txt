@@ -1,0 +1,8 @@
+# Librerías para Wokwi (web). En PlatformIO se usan las de platformio.ini.
+Adafruit GFX Library
+Adafruit BusIO
+Adafruit ILI9341
+TJpg_Decoder
+PNGdec
+AnimatedGIF
+ArduinoJson

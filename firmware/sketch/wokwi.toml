@@ -1,0 +1,7 @@
+# Wokwi para VS Code: simula el binario que compila PlatformIO.
+#   1) pio run            (desde la carpeta firmware/)
+#   2) F1 > "Wokwi: Start Simulator"  con esta carpeta abierta
+[wokwi]
+version = 1
+firmware = '../.pio/build/esp32dev/firmware.bin'
+elf = '../.pio/build/esp32dev/firmware.elf'
