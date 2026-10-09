@@ -1,0 +1,103 @@
+{
+  "_comentario": "Perfil de controles para Paper Minecraft (griffpatch). Se aplica a los .sb3 cuyo nombre empiece por 'coincide'.",
+  "coincide": "paper_minecraft",
+  "teclas": {
+    "e": [
+      "9"
+    ],
+    "f": [
+      "7"
+    ],
+    "1": [
+      "S:1"
+    ],
+    "2": [
+      "S:2"
+    ],
+    "3": [
+      "S:3"
+    ],
+    "4": [
+      "S:4"
+    ],
+    "5": [
+      "S:5"
+    ],
+    "6": [
+      "S:6"
+    ],
+    "7": [
+      "S:7"
+    ],
+    "8": [
+      "S:8"
+    ],
+    "9": [
+      "S:9"
+    ],
+    "q": [
+      "DEL"
+    ],
+    "p": [
+      "LP"
+    ],
+    "o": [
+      "RP"
+    ]
+  },
+  "menu": [
+    "p"
+  ],
+  "guardar": "o",
+  "tras_guardar": "o",
+  "correr": {
+    "tecla": "",
+    "doble_toque": true
+  },
+  "multijugador": {
+    "_comentario": "Mundo compartido: listas que se envían al unirse, lista sincronizada bloque a bloque, posición del jugador (variables del escenario, en casillas), cámara y tamaño de casilla, y objetos que forman al jugador (se dibujan para los demás).",
+    "mundo": [
+      "_Level",
+      "_Light"
+    ],
+    "bloques": "_Level",
+    "x": "_x",
+    "y": "_y",
+    "camara": [
+      "_ScrX",
+      "_ScrY"
+    ],
+    "casilla": 40,
+    "partes": [
+      "Steve Legs2",
+      "Steve",
+      "Steve Arm",
+      "Steves Head"
+    ],
+    "nueva_partida": [
+      {
+        "si": "Stage Sprite:Spl1b-New Game",
+        "clic": [
+          -114,
+          25
+        ]
+      },
+      {
+        "si": "Menu1:Done",
+        "clic": [
+          0,
+          -135
+        ]
+      }
+    ]
+  },
+  "parches": [
+    {
+      "lista": "_BLOCK_DATA",
+      "indice": 5969,
+      "era": "S1",
+      "valor": "S",
+      "motivo": "la hierba con nieve suelta tierra también sin pala (como en Minecraft)"
+    }
+  ]
+}

@@ -15,10 +15,22 @@
 #    DEL        picar bloque       EXE        poner bloque
 #    ( )        elegir bloque      + −        zoom
 #    ▼          bajar de una plataforma       AC  salir
+#
+#  Multijugador (scicalc.red): todos en la sala "clonaria" comparten el mundo.
+#    * El anfitrión elige la semilla y la publica como variable "semilla":
+#      todos generan el MISMO mundo sin tener que enviarlo (8 KB por la red).
+#    * Cada bloque cambiado es una variable "b:x,y" = tipo. El servidor las
+#      guarda, así quien entra tarde recibe todos los cambios hechos.
+#    * Las posiciones van como mensajes sueltos (~10 por segundo).
 # =============================================================================
 import math
 import random
+import sys
 from scicalc import pantalla as P, teclas as K
+try:
+    from scicalc import red              # multijugador (si la calculadora lo tiene)
+except ImportError:
+    red = None
 
 # ---- Mundo -----------------------------------------------------------------
 W, H = 128, 64                      # en bloques (y hacia ARRIBA, como el original)
@@ -46,6 +58,11 @@ WALK_ACC, MAX_RUN, FRICTION = 60.0, 6.0, 40.0
 JUMP_V, JUMP_HOLD, JUMP_TIME = 11.0, 32.0, 0.25
 DT = 1 / 30
 REACH = 4                           # alcance del cursor, en bloques
+
+# ---- Multijugador ---------------------------------------------------------------
+ONLINE = [False]                    # lista para poder cambiarlo desde funciones
+SALA = "clonaria"
+POS_FRAMES = 3                      # enviar la posición cada 3 fotogramas (10 Hz)
 
 
 def idx(x, y):
@@ -199,6 +216,11 @@ class Game:
         self.cdx, self.cdy = 2, -1               # cursor relativo al jugador
         self.drawn = None                        # lo último dibujado (para borrar)
         self.dirty = []                          # bloques cambiados
+        self.others = {}                         # id -> [x, y, facing, ground, nombre]
+        self.others_drawn = []                   # zonas (x0, y0, x1, y1) que tapan
+        self.others_changed = False
+        self.sent = None                         # última posición enviada
+        self.frame = 0
         self.set_zoom(2)
 
     # ---- vista -----------------------------------------------------------------
@@ -245,6 +267,11 @@ class Game:
             if i == self.sel:
                 P.marco(x - 2, 0, 20, 20, 0xFFC828)
         P.texto("zoom x%d" % self.zoom, 268, 6, 0x878E9E)
+        if ONLINE[0]:
+            if red.estado() == "conectado":
+                P.texto("%d jug." % len(red.jugadores()), 214, 6, 0x50DC78, 0x1E222C)
+            else:
+                P.texto("sin red", 214, 6, 0xFF5050, 0x1E222C)
 
     def target(self):
         return int(self.x + PW / 2) + self.cdx, int(self.y) + 1 + self.cdy
@@ -264,16 +291,35 @@ class Game:
             self.draw_hud()
         tx, ty = self.target()
         state = (self.x, self.y, self.facing, self.ground, tx, ty)
-        if state == self.drawn and not self.dirty:
+        if state == self.drawn and not self.dirty and not self.others_changed:
             return
+        P.recorte(0, VIEW_Y, P.ANCHO, VIEW_H)      # nada del mundo encima del HUD
         # 1) restaurar lo que tapaban el jugador y el cursor, y los bloques cambiados
         if self.drawn:
             ox, oy, _, _, otx, oty = self.drawn
             self.draw_area(int(ox) - 1, int(oy), int(ox + PW) + 1, int(oy + PH) + 1)
             self.draw_tile(otx, oty)
+        for area in self.others_drawn:
+            self.draw_area(*area)
         for bx, by in self.dirty:
             self.draw_tile(bx, by)
         self.dirty = []
+        # 1b) los otros jugadores, con su nombre encima
+        self.others_drawn = []
+        for ox, oy, ofc, ogr, nombre in self.others.values():
+            if not (self.cam_x - 3 <= ox <= self.cam_x + self.vw + 1 and
+                    self.cam_top - self.vh - 4 <= oy <= self.cam_top + 1):
+                continue                          # fuera de la vista
+            px, py = self.to_screen(ox - (2 - PW) / 2, oy + 3)
+            P.dibujar(self.spr_player if ogr else self.spr_jump, px, py, self.zoom, ofc < 0)
+            w = len(nombre) * 6
+            lx = px + t - w // 2
+            P.texto(nombre, lx, py - 10, 0xFFFFFF, 0x1E222C)
+            # zona a restaurar: el sprite y la etiqueta (en bloques)
+            half = w // (2 * t) + 2
+            self.others_drawn.append((int(ox) - half, int(oy), int(ox + PW) + half,
+                                      int(oy + PH) + 1 + (10 + t - 1) // t))
+        self.others_changed = False
         # 2) jugador (sprite 16x24 = 2x3 bloques, centrado en la caja)
         px, py = self.to_screen(self.x - (2 - PW) / 2, self.y + 3)
         P.dibujar(self.spr_player if self.ground else self.spr_jump, px, py, self.zoom,
@@ -281,16 +327,24 @@ class Game:
         # 3) cursor
         cx, cy = self.to_screen(tx, ty + 1)
         P.marco(cx, cy, t, t, 0xFF5050)
+        P.recorte()
         self.drawn = state
 
     # ---- bloques ---------------------------------------------------------------
+    def set_block(self, x, y, b):
+        # Cambia un bloque y, en multijugador, se lo cuenta a los demás
+        fg[idx(x, y)] = b
+        self.dirty.append((x, y))
+        if ONLINE[0]:
+            red.var("b:%d,%d" % (x, y), b)
+
     def settle(self, x, y):
         # arena y grava caen si no tienen nada debajo
         while y < H and get(x, y) in FALLS:
             yy = y
             while yy > 0 and get(x, yy - 1) == AIR:
-                fg[idx(x, yy - 1)], fg[idx(x, yy)] = fg[idx(x, yy)], AIR
-                self.dirty += [(x, yy), (x, yy - 1)]
+                self.set_block(x, yy - 1, get(x, yy))
+                self.set_block(x, yy, AIR)
                 yy -= 1
             y += 1
 
@@ -300,8 +354,7 @@ class Game:
     def dig(self):
         tx, ty = self.target()
         if 0 <= tx < W and 0 < ty < H and get(tx, ty):
-            fg[idx(tx, ty)] = AIR
-            self.dirty.append((tx, ty))
+            self.set_block(tx, ty, AIR)
             self.settle(tx, ty + 1)
 
     def place(self):
@@ -309,8 +362,7 @@ class Game:
         b = HOTBAR[self.sel]
         if 0 <= tx < W and 0 <= ty < H and get(tx, ty) == AIR and \
                 not (b in SOLID and self.overlaps_player(tx, ty)):
-            fg[idx(tx, ty)] = b
-            self.dirty.append((tx, ty))
+            self.set_block(tx, ty, b)
             self.settle(tx, ty)
 
     # ---- física ------------------------------------------------------------------
@@ -419,14 +471,100 @@ class Game:
         left = "LEFT" in held or (tap and self.walk_dir < 0)
         right = "RIGHT" in held or (tap and self.walk_dir > 0)
         self.physics(left, right, "UP" in held, jump_pressed)
+        if ONLINE[0]:
+            self.network()
         self.render()
         P.mostrar()
 
+    # ---- red -----------------------------------------------------------------------
+    def network(self):
+        for m in red.recibir():
+            t = m.get("t")
+            if t == "var":                        # otro jugador cambió un bloque
+                n = m.get("n", "")
+                if n.startswith("b:"):
+                    x, y = n[2:].split(",")
+                    x, y = int(x), int(y)
+                    if 0 <= x < W and 0 <= y < H:
+                        fg[idx(x, y)] = int(m.get("v") or 0)
+                        self.dirty.append((x, y))
+            elif t == "de":                       # posición de otro jugador
+                d = m.get("d") or {}
+                if "x" in d:
+                    nombre = red.jugadores().get(m.get("id"), "?")
+                    self.others[m.get("id")] = [float(d["x"]), float(d["y"]), d.get("f", 1),
+                                                d.get("g", True), nombre]
+                    self.others_changed = True
+            elif t == "entra":
+                self.sent = None                  # que el nuevo nos vea ya
+                self.draw_hud()
+            elif t in ("sale", "estado"):
+                self.others.pop(m.get("id"), None)
+                if t == "estado":
+                    self.others = {}
+                self.others_changed = True
+                self.draw_hud()
+        self.frame += 1
+        pos = (round(self.x, 2), round(self.y, 2), self.facing, self.ground)
+        if self.frame % POS_FRAMES == 0 and pos != self.sent:
+            red.enviar({"x": pos[0], "y": pos[1], "f": pos[2], "g": pos[3]})
+            self.sent = pos
+
+
+def mensaje(lineas, color=0xFFFFFF):
+    P.limpiar(0)
+    P.texto("CLONARIA", 112, 50, 0xFFFFFF, None, 2)
+    for i, l in enumerate(lineas):
+        P.texto(l, 160 - len(l) * 3, 100 + i * 14, color)
+    P.mostrar()
+
+
+def elegir_modo():
+    mensaje(["1  Un jugador", "2  Multijugador"])
+    while True:
+        for key, _ in K.eventos():
+            if key in ("1", "2"):
+                return key == "2"
+        P.mostrar()
+
+
+def conectar():
+    """Entra en la sala y devuelve la semilla del mundo compartido (o None)."""
+    mensaje(["Conectando..."])
+    red.conectar(SALA)
+    if not red.esperar():
+        mensaje(["No se pudo conectar:", red.error()[:50], "", "EXE: jugar solo"], 0xFF8080)
+        while not any(k == "EXE" for k, _ in K.eventos()):
+            P.mostrar()
+        return None
+    ONLINE[0] = True
+    v = red.vars()
+    if "semilla" not in v and red.anfitrion() == red.mi_id():
+        red.var("semilla", K.ms() & 0x7FFFFFFF)     # soy el anfitrión: yo elijo el mundo
+    mensaje(["Esperando al anfitrión..."])
+    fin = K.ms() + 8000
+    while "semilla" not in red.vars() and K.ms() < fin:
+        P.mostrar()
+    v = red.vars()
+    if "semilla" not in v:                            # el anfitrión no responde: la pongo yo
+        red.var("semilla", K.ms() & 0x7FFFFFFF)
+        v = red.vars()
+    return v["semilla"]
+
 
 def main():
+    online = red is not None and ("--red" in sys.argv or elegir_modo())
+    seed = conectar() if online else None
     P.limpiar(0)
     P.texto("CLONARIA", 112, 80, 0xFFFFFF, None, 2)
-    generate(K.ms())
+    generate(K.ms() if seed is None else seed)
+    if ONLINE[0]:                                     # cambios que otros ya hicieron
+        for n, v in red.vars().items():
+            if n.startswith("b:"):
+                x, y = n[2:].split(",")
+                x, y = int(x), int(y)
+                if 0 <= x < W and 0 <= y < H:
+                    fg[idx(x, y)] = int(v or 0)
     game = Game()
     while True:                               # AC (sistema) cierra el juego
         game.step()

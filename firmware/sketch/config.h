@@ -14,6 +14,26 @@
 #include <Arduino.h>
 #include <freertos/FreeRTOS.h>
 
+// ---------------- MODO PC (sin pantalla, teclado ni SD físicos) --------------
+// SCICALC_REMOTE = 1: TODO el sistema corre en el ESP32, pero la pantalla, el
+// teclado, la MicroSD y el sonido están en el PC. El programa
+// pc/scicalc_pantalla.py se conecta por el cable USB, dibuja lo que manda el
+// ESP32, le envía las teclas y le sirve la carpeta simulador/sd como si fuera
+// la MicroSD. Para el hardware real (TFT + teclado + SD) pon 0.
+#ifndef SCICALC_REMOTE
+#define SCICALC_REMOTE 1
+#endif
+// SD remota: 1 = la "MicroSD" es una carpeta del PC; 0 = MicroSD física
+// (útil si ya tienes el lector de SD cableado pero no la pantalla).
+#ifndef SCICALC_REMOTE_SD
+#define SCICALC_REMOTE_SD SCICALC_REMOTE
+#endif
+// Velocidad del USB-serie con el PC. 921600 va bien con CP2102 y CH340.
+// Si ves la pantalla con fallos, baja a 460800 (y pon lo mismo en el PC).
+constexpr uint32_t REMOTE_BAUD = 921600;
+// Tiempo que el arranque espera a que el programa del PC se conecte
+constexpr uint32_t REMOTE_WAIT_MS = 4000;
+
 // ---------------- Bus SPI compartido (VSPI): pantalla + MicroSD --------------
 constexpr int PIN_SPI_SCK  = 18;
 constexpr int PIN_SPI_MOSI = 23;
@@ -52,7 +72,7 @@ constexpr int PIN_BATTERY   = 34;            // ADC1, divisor 100k + 100k
 constexpr int PIN_BUZZER    = 2;             // LEDC (definitivo en el mapa final)
 
 // ---------------- Sistema ----------------------------------------------------
-#define FW_VERSION_STR "0.3"
+#define FW_VERSION_STR "0.5"
 constexpr const char* FW_NAME    = "ESP32 SciCalc";
 constexpr const char* FW_VERSION = FW_VERSION_STR;
 

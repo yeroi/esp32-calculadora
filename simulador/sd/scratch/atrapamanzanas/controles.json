@@ -1,0 +1,19 @@
+{
+ "teclas": {
+  "space": [
+   "EXE"
+  ],
+  "left arrow": [
+   "LEFT"
+  ],
+  "right arrow": [
+   "RIGHT"
+  ]
+ },
+ "menu": [],
+ "guardar": null,
+ "tras_guardar": null,
+ "correr": null,
+ "pantalla": "estirar",
+ "rendimiento": "normal"
+}

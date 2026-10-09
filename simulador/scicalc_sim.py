@@ -24,6 +24,8 @@
    * Las líneas largas de la consola se parten en varias filas.
    * Módulo "scicalc" (pantalla + teclas) para juegos: ver docs/API_scicalc.md.
      Ejemplo: sd/juegos/clonaria/clonaria.py.
+   * Proyectos de Scratch: intérprete /lib/scratch.py (prepáralos con
+     pc/sb3_a_scicalc.py). Ejemplo: sd/scratch/atrapamanzanas.
 
  Requisitos:   pip install pygame-ce   (funciona en Python 3.14)
  Ejecutar:     python scicalc_sim.py
@@ -426,16 +428,18 @@ class MenuApp(App):
             self.sim.launch(self.items[self.sel][2])
 
     def draw(self, s):
+        step = min(66, (SCR_H - HEADER_H - 40) // len(self.items))   # que quepan todos
+        hh = step - 8
         for i, (label, hint, _) in enumerate(self.items):
-            y = HEADER_H + 10 + i * 66
+            y = HEADER_H + 10 + i * step
             sel = i == self.sel
             bg = ACCENT if sel else PANEL
-            pygame.draw.rect(s, bg, (20, y, SCR_W - 40, 58), border_radius=12)
+            pygame.draw.rect(s, bg, (20, y, SCR_W - 40, hh), border_radius=12)
             badge = BG if sel else ACCENT
-            pygame.draw.rect(s, badge, (32, y + 10, 38, 38), border_radius=8)
-            draw_text(s, str(i + 1), font(24, True), TEXT, (32, y + 14), "center", 38)
-            draw_text(s, label, font(26, True), TEXT, (86, y + 13))
-            draw_text(s, hint, font(16), TEXT if sel else MUTED, (20, y + 20), "right", SCR_W - 60)
+            pygame.draw.rect(s, badge, (32, y + (hh - 36) // 2, 36, 36), border_radius=8)
+            draw_text(s, str(i + 1), font(24, True), TEXT, (32, y + (hh - 36) // 2 + 4), "center", 36)
+            draw_text(s, label, font(26, True), TEXT, (84, y + hh // 2 - 15))
+            draw_text(s, hint, font(16), TEXT if sel else MUTED, (20, y + hh // 2 - 8), "right", SCR_W - 60)
         self.footer(s, f"↑↓ mover    EXE abrir    1-{len(self.items)} acceso directo")
 
 
@@ -601,9 +605,44 @@ import threading as _th, queue as _qu, time as _time
 _answers, _klock = _qu.Queue(), _th.Lock()
 _held, _events = set(), []
 
+# Estado de la red (lo actualiza el hilo que lee stdin)
+_net = {"estado": "desconectado", "id": None, "jugadores": {}, "vars": {}, "anfitrion": None,
+        "error": "", "cola": [], "resp": {}}
+
+def _net_msg(m):
+    with _klock:
+        t = m.get("t")
+        if t == "resp":                            # respuesta del núcleo a red.pedir()
+            _net["resp"][m.get("id")] = m.get("r")
+            return
+        if t == "estado":
+            _net["estado"] = m.get("e", "desconectado")
+            _net["error"] = m.get("msg", "")
+        elif t == "bienvenido":
+            _net.update(estado="conectado", id=m.get("id"), anfitrion=m.get("anfitrion"),
+                        jugadores={int(k): v for k, v in m.get("jugadores", {}).items()},
+                        vars=dict(m.get("vars", {})))
+        elif t == "entra":
+            _net["jugadores"][m.get("id")] = m.get("nombre", "?")
+        elif t == "sale":
+            _net["jugadores"].pop(m.get("id"), None)
+            _net["anfitrion"] = m.get("anfitrion", _net["anfitrion"])
+        elif t == "var":
+            _net["vars"][m.get("n")] = m.get("v")
+        elif t == "error":
+            _net["error"] = m.get("msg", "")
+        _net["cola"].append(m)
+        del _net["cola"][:-500]
+
 def _stdin_reader():
     for raw in _stdin:
         line = raw.strip()
+        if line.startswith("n "):                  # mensajes de red (los trae el núcleo)
+            try:
+                _net_msg(json.loads(line[2:]))
+            except ValueError:
+                pass
+            continue
         if line.startswith("k "):
             try:
                 d = json.loads(line[2:])
@@ -739,7 +778,9 @@ def _dibujar(s, x, y, escala=1, espejo=False, angulo=0, centro=None):
     # ese punto cae en (x, y) y el giro es alrededor de él. angulo en grados,
     # en el sentido de las agujas del reloj.
     c = None if centro is None else [float(centro[0]), float(centro[1])]
-    _ops.append(("spr", s.id, float(x), float(y), float(escala), bool(espejo), float(angulo), c))
+    # escala: un número, o (ancho, alto) para estirar distinto en cada eje
+    e = [float(escala[0]), float(escala[1])] if isinstance(escala, (tuple, list)) else float(escala)
+    _ops.append(("spr", s.id, float(x), float(y), e, bool(espejo), float(angulo), c))
 
 def _recorte(x=None, y=None, w=None, h=None):
     # Limita el dibujo a un rectángulo (redibujado parcial). Sin argumentos: quita el límite
@@ -769,8 +810,106 @@ _tecl.pulsadas, _tecl.eventos = _pulsadas, _eventos
 _tecl.pulsada = lambda n: n in _pulsadas()
 _tecl.ms = lambda: int(_time.time() * 1000)       # como time.ticks_ms() del ESP32
 
+# --- scicalc.red: multijugador (Wi-Fi a un servidor, o esta calculadora de anfitrión)
+#  El script NO abre sockets: se lo pide al núcleo, que lleva la conexión.
+_red = types.ModuleType("scicalc.red")
+
+def _net_out(obj):
+    sys.stdout.write("\x07" + json.dumps(obj) + "\n")
+    sys.stdout.flush()
+
+def _red_conectar(sala, nombre=None, host=None, puerto=None, hostear=False):
+    # Sin host: el servidor de Ajustes > Multijugador. hostear=True: esta calculadora
+    # hace de servidor (los demás la encuentran con red.buscar()).
+    with _klock:
+        _net.update(estado="conectando", id=None, jugadores={}, vars={}, error="")
+        _net["cola"] = []
+    _net_out({"op": "conectar", "sala": str(sala), "nombre": nombre, "host": host,
+              "puerto": puerto, "hostear": bool(hostear)})
+
+_pid = [0]
+def _red_pedir(op, **datos):
+    # Pide algo al núcleo (buscar partidas, una web...). Devuelve un número de petición;
+    # la respuesta llega con red.respuesta(numero).
+    _pid[0] += 1
+    d = dict(datos)
+    d.update(op=op, id=_pid[0])
+    _net_out(d)
+    return _pid[0]
+
+def _red_respuesta(pid):
+    with _klock:
+        return _net["resp"].pop(pid, None)
+
+def _red_llamar(op, seg=8, **datos):
+    # Igual que pedir + esperar la respuesta (mantiene vivo el watchdog)
+    pid = _red_pedir(op, **datos)
+    fin = _time.time() + seg
+    while _time.time() < fin:
+        with _klock:
+            if pid in _net["resp"]:
+                return _net["resp"].pop(pid)
+        sys.stdout.write("\x06[]\n")
+        sys.stdout.flush()
+        _time.sleep(0.05)
+    return {"error": "sin respuesta"}
+
+def _red_esperar(seg=6):
+    # Espera a que la conexión termine (conectado o error). Mantiene vivo el watchdog.
+    fin = _time.time() + seg
+    while _time.time() < fin:
+        if _net["estado"] in ("conectado", "error", "desconectado"):
+            break
+        sys.stdout.write("\x06[]\n")                 # fotograma vacío: sigo vivo
+        sys.stdout.flush()
+        _time.sleep(0.1)
+    if _net["estado"] == "conectando":
+        _net["estado"], _net["error"] = "error", "sin respuesta del servidor"
+    return _net["estado"] == "conectado"
+
+def _red_recibir():
+    with _klock:
+        cola = _net["cola"]
+        _net["cola"] = []
+    return cola
+
+def _red_var(n, v):
+    with _klock:
+        _net["vars"][str(n)] = v
+    _net_out({"op": "var", "n": str(n), "v": v})
+
+_red.conectar, _red.esperar, _red.recibir = _red_conectar, _red_esperar, _red_recibir
+_red.enviar = lambda d: _net_out({"op": "todos", "d": d})
+_red.var = _red_var
+
+def _red_vaciar():
+    # Borra las variables de la sala (al abrir un mundo nuevo en ella)
+    with _klock:
+        _net["vars"] = {}
+    _net_out({"op": "vaciar"})
+_red.vaciar = _red_vaciar
+_red.estado = lambda: _net["estado"]
+_red.error = lambda: _net["error"]
+_red.mi_id = lambda: _net["id"]
+_red.anfitrion = lambda: _net["anfitrion"]
+_red.jugadores = lambda: dict(_net["jugadores"])
+_red.vars = lambda: dict(_net["vars"])
+_red.desconectar = lambda: _net_out({"op": "desconectar"})
+_red.pedir, _red.respuesta, _red.llamar = _red_pedir, _red_respuesta, _red_llamar
+_red.buscar = lambda seg=3: _red_llamar("buscar", seg)                  # partidas en la red local
+_red.salas = lambda host, puerto=8267: _red_llamar("salas", 5, host=host, puerto=puerto)
+_red.servidores = lambda: _red_llamar("servidores", 3)                  # añadidos por IP
+_red.guardar_servidor = lambda host, puerto=8267, nombre=None: _red_llamar(
+    "guardar_servidor", 3, host=host, puerto=puerto, nombre=nombre)
+_red.quitar_servidor = lambda i: _red_llamar("quitar_servidor", 3, i=i)
+_red.config = lambda: _red_llamar("config", 3)                          # nombre, servidor...
+_red.poner_nombre = lambda n: _red_llamar("poner_nombre", 3, nombre=n)
+# Web (el núcleo descarga; el script recibe el texto): pedir() para no bloquear
+_red.web = lambda url: _red_pedir("web", url=str(url))
+_red.descargar = lambda url, nombre: _red_pedir("descargar", url=str(url), nombre=str(nombre))
+
 _scicalc = types.ModuleType("scicalc")
-_scicalc.pantalla, _scicalc.teclas = _pant, _tecl
+_scicalc.pantalla, _scicalc.teclas, _scicalc.red = _pant, _tecl, _red
 _sys.modules["scicalc"] = _scicalc
 
 def _sandboxed(g):
@@ -832,6 +971,10 @@ except BaseException as ex:
     if deep:
         pkg = deep[0].split("/")[0].replace(".py", "")
         sys.stdout.write("\x01  falló dentro de /lib/%s, línea %d\n" % deep)
+    if deep and pkg == "scratch":
+        sys.stdout.write("\x03Es un fallo del intérprete de Scratch de la calculadora, "
+                         "no del juego.\n")
+    elif deep and isinstance(ex, (ImportError, AttributeError)):
         sys.stdout.write("\x03El paquete '%s' usa partes del Python de PC que no existen "
                          "en MicroPython: no funciona en la calculadora.\n" % pkg)
         sys.stdout.write("\x03Desinstálalo con:  pip uninstall %s\n" % pkg)
@@ -857,6 +1000,482 @@ PERM_TEXT = {
 }
 
 
+# --- Servidor multijugador (copia de pc/scicalc_servidor.py) -------------------
+PUERTO = 8267
+PUERTO_BUSCAR = 8268         # UDP: búsqueda de servidores en la red local
+MAX_LINEA = 64 * 1024        # bytes por mensaje
+MAX_VARS = 60000             # variables por sala (un mundo de Paper Minecraft usa ~25 600)
+MAX_JUGADORES = 16           # por sala
+
+
+class Servidor:
+    def __init__(self, host="0.0.0.0", puerto=PUERTO, log=print, nombre="Servidor SciCalc",
+                 carpeta=None):
+        self.host, self.puerto, self.log = host, puerto, log
+        self.nombre = nombre
+        self.carpeta = carpeta               # dónde se guardan los mundos (None: no se guardan)
+        self.salas = {}                      # nombre -> {"clientes": {id: cli}, "vars": {}}
+        self.lock = threading.Lock()
+        self.next_id = 1
+        self.sock = None
+        self.udp = None
+        self.cambios = False                 # hay algo sin guardar
+
+    # ---- arranque -----------------------------------------------------------------
+    def iniciar(self):
+        """Abre el puerto y atiende en segundo plano. Lanza OSError si está ocupado."""
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        s.bind((self.host, self.puerto))
+        s.listen(16)
+        self.sock = s
+        self._cargar()
+        threading.Thread(target=self._aceptar, daemon=True).start()
+        try:                                 # búsqueda en la red local (si el puerto está libre)
+            u = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            u.bind(("", PUERTO_BUSCAR))
+            self.udp = u
+            threading.Thread(target=self._buscar, daemon=True).start()
+        except OSError:
+            pass
+        if self.carpeta:
+            threading.Thread(target=self._autoguardar, daemon=True).start()
+        self.log(f"Servidor SciCalc escuchando en el puerto {self.puerto}")
+
+    def parar(self):
+        self.guardar()
+        for s in (self.sock, self.udp):
+            try:
+                s.close()
+            except Exception:
+                pass
+
+    # ---- mundos guardados en disco ---------------------------------------------------
+    def _archivo(self, sala):
+        seguro = "".join(c if c.isalnum() or c in "-_" else "_" for c in sala)
+        return os.path.join(self.carpeta, seguro + ".json")
+
+    def _cargar(self):
+        if not self.carpeta or not os.path.isdir(self.carpeta):
+            return
+        for n in os.listdir(self.carpeta):
+            if n.endswith(".json"):
+                try:
+                    with open(os.path.join(self.carpeta, n), encoding="utf-8") as f:
+                        d = json.load(f)
+                    self.salas[d["sala"]] = {"clientes": {}, "vars": d["vars"]}
+                    self.log(f"Mundo cargado: {d['sala']} ({len(d['vars'])} variables)")
+                except (OSError, ValueError, KeyError):
+                    pass
+
+    def guardar(self):
+        if not self.carpeta or not self.cambios:
+            return
+        with self.lock:
+            copia = {n: dict(s["vars"]) for n, s in self.salas.items() if s["vars"]}
+            self.cambios = False
+        os.makedirs(self.carpeta, exist_ok=True)
+        for n, v in copia.items():
+            tmp = self._archivo(n) + ".tmp"
+            with open(tmp, "w", encoding="utf-8") as f:
+                json.dump({"sala": n, "vars": v}, f, separators=(",", ":"))
+            os.replace(tmp, self._archivo(n))
+
+    def _autoguardar(self):
+        while self.sock:
+            time.sleep(30)
+            try:
+                self.guardar()
+            except OSError as e:
+                self.log(f"No se pudo guardar: {e}")
+
+    # ---- búsqueda en la red local --------------------------------------------------
+    def info(self):
+        with self.lock:
+            salas = [{"sala": n, "jugadores": [c["nombre"] for c in s["clientes"].values()],
+                      "mundo": "mundo" in s["vars"] or "semilla" in s["vars"]}
+                     for n, s in self.salas.items()]
+        return {"t": "salas", "nombre": self.nombre, "puerto": self.puerto, "salas": salas}
+
+    def _buscar(self):
+        while True:
+            try:
+                data, addr = self.udp.recvfrom(512)
+            except OSError:
+                return
+            if data.startswith(b"SCICALC?"):
+                try:
+                    self.udp.sendto(json.dumps(self.info()).encode("utf-8")[:8000], addr)
+                except OSError:
+                    pass
+
+    def _aceptar(self):
+        while True:
+            try:
+                conn, addr = self.sock.accept()
+            except OSError:
+                return
+            conn.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
+            threading.Thread(target=self._cliente, args=(conn, addr), daemon=True).start()
+
+    # ---- un cliente -----------------------------------------------------------------
+    def _enviar(self, cli, obj):
+        data = (json.dumps(obj, ensure_ascii=False, separators=(",", ":")) + "\n").encode("utf-8")
+        try:
+            with cli["wlock"]:
+                cli["conn"].sendall(data)
+        except OSError:
+            pass
+
+    def _difundir(self, sala, obj, menos=None):
+        for cid, cli in list(sala["clientes"].items()):
+            if cid != menos:
+                self._enviar(cli, obj)
+
+    def _cliente(self, conn, addr):
+        cli = {"conn": conn, "wlock": threading.Lock(), "id": None, "sala": None, "nombre": "?"}
+        buf = b""
+        try:
+            while True:
+                chunk = conn.recv(4096)
+                if not chunk:
+                    break
+                buf += chunk
+                if len(buf) > MAX_LINEA and b"\n" not in buf:
+                    break                                # mensaje demasiado largo
+                while b"\n" in buf:
+                    line, buf = buf.split(b"\n", 1)
+                    try:
+                        msg = json.loads(line.decode("utf-8"))
+                    except (ValueError, UnicodeDecodeError):
+                        continue
+                    if isinstance(msg, dict):
+                        self._mensaje(cli, msg, addr)
+        except OSError:
+            pass
+        finally:
+            self._salir(cli)
+            try:
+                conn.close()
+            except OSError:
+                pass
+
+    def _mensaje(self, cli, msg, addr):
+        t = msg.get("t")
+        if t == "salas":                             # consulta sin entrar en ninguna sala
+            self._enviar(cli, self.info())
+            return
+        with self.lock:
+            if t == "hola" and cli["id"] is None:
+                nombre_sala = str(msg.get("sala", "general"))[:32]
+                sala = self.salas.setdefault(nombre_sala, {"clientes": {}, "vars": {}})
+                if len(sala["clientes"]) >= MAX_JUGADORES:
+                    self._enviar(cli, {"t": "error", "msg": "sala llena"})
+                    return
+                cli["id"] = self.next_id
+                self.next_id += 1
+                cli["sala"] = nombre_sala
+                cli["nombre"] = str(msg.get("nombre", "Jugador"))[:16]
+                sala["clientes"][cli["id"]] = cli
+                jugadores = {str(i): c["nombre"] for i, c in sala["clientes"].items()}
+                self._enviar(cli, {"t": "bienvenido", "id": cli["id"], "jugadores": jugadores,
+                                   "vars": sala["vars"], "anfitrion": min(sala["clientes"])})
+                self._difundir(sala, {"t": "entra", "id": cli["id"], "nombre": cli["nombre"]},
+                               menos=cli["id"])
+                self.log(f"[{nombre_sala}] entra {cli['nombre']} (id {cli['id']}, {addr[0]})")
+                return
+            if cli["id"] is None:
+                return
+            sala = self.salas.get(cli["sala"])
+            if sala is None:
+                return
+            if t == "todos":
+                self._difundir(sala, {"t": "de", "id": cli["id"], "d": msg.get("d")}, menos=cli["id"])
+            elif t == "vaciar":                      # alguien abre un mundo nuevo en la sala
+                sala["vars"] = {}
+                self.cambios = True
+            elif t == "var":
+                n = str(msg.get("n", ""))[:64]
+                if n in sala["vars"] or len(sala["vars"]) < MAX_VARS:
+                    sala["vars"][n] = msg.get("v")
+                    self.cambios = True
+                    self._difundir(sala, {"t": "var", "id": cli["id"], "n": n, "v": msg.get("v")},
+                                   menos=cli["id"])
+
+    def _salir(self, cli):
+        with self.lock:
+            sala = self.salas.get(cli["sala"])
+            if sala is None or cli["id"] not in sala["clientes"]:
+                return
+            del sala["clientes"][cli["id"]]
+            self.log(f"[{cli['sala']}] sale {cli['nombre']} (id {cli['id']})")
+            if sala["clientes"]:
+                self._difundir(sala, {"t": "sale", "id": cli["id"],
+                                      "anfitrion": min(sala["clientes"])})
+            elif not sala["vars"]:
+                del self.salas[cli["sala"]]          # sala vacía y sin mundo: se olvida
+            # con mundo, la sala se queda: quien entre después sigue jugando en él
+
+
+def ip_local():
+    """IP de este equipo en la red local (la que tienen que poner los demás)."""
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("10.255.255.255", 1))
+        ip = s.getsockname()[0]
+        s.close()
+        return ip
+    except OSError:
+        return "127.0.0.1"
+
+
+
+# =============================================================================
+#  Multijugador: configuración, cliente y servidor (anfitrión)
+# -----------------------------------------------------------------------------
+#  sd/red.json:  {"modo": "servidor" | "anfitrion", "servidor": "IP", "puerto": 8267,
+#                 "nombre": "Jugador"}
+#   servidor  -> se conecta a un servidor dedicado (pc/scicalc_servidor.py)
+#   anfitrion -> esta calculadora hace de servidor; los demás ponen su IP
+#  En el ESP32 real esto mismo irá por Wi-Fi (WiFiClient), por USB a través de
+#  SciCalc Link en el PC, o por Bluetooth SPP entre dos calculadoras.
+# =============================================================================
+NET_STATE = {"wifi": False, "exam": False}
+RED_DEFAULT = {"modo": "servidor", "servidor": "127.0.0.1", "puerto": 8267, "nombre": "Jugador",
+               "servidores": []}    # servidores añadidos a mano: [{"nombre", "ip", "puerto"}]
+
+
+def read_red_config():
+    cfg = dict(RED_DEFAULT)
+    try:
+        cfg.update(json.loads((SD_DIR / "red.json").read_text(encoding="utf-8")))
+    except (OSError, ValueError):
+        pass
+    cfg["puerto"] = int(cfg.get("puerto", 8267))
+    cfg["servidores"] = [dict(x) for x in cfg.get("servidores", []) if isinstance(x, dict)]
+    return cfg
+
+
+# ---- Configuración IP del Wi-Fi (en el ESP32: WiFi.config(ip, puerta, máscara, dns1, dns2),
+#      guardada en NVS; aquí en sd/wifi_ip.json) --------------------------------------
+IP_DEFAULT = {"modo": "dhcp", "ip": "192.168.1.57", "mascara": "255.255.255.0",
+              "puerta": "192.168.1.1", "dns1": "8.8.8.8", "dns2": "1.1.1.1"}
+IP_CAMPOS = ("ip", "mascara", "puerta", "dns1", "dns2")
+
+
+def read_ip_config():
+    cfg = dict(IP_DEFAULT)
+    try:
+        cfg.update(json.loads((SD_DIR / "wifi_ip.json").read_text(encoding="utf-8")))
+    except (OSError, ValueError):
+        pass
+    return cfg
+
+
+def write_ip_config(cfg):
+    (SD_DIR / "wifi_ip.json").write_text(json.dumps(cfg, indent=1), encoding="utf-8")
+
+
+def ip_valida(t):
+    p = t.split(".")
+    return len(p) == 4 and all(x.isdigit() and 0 <= int(x) <= 255 for x in p)
+
+
+def dns_consulta(nombre, servidor, espera=2.0):
+    """Pregunta la IP de 'nombre' a un servidor DNS concreto (UDP 53, registro A).
+    Así se prueba el DNS elegido en Ajustes, como haría el ESP32 (lwIP)."""
+    import random as _r
+    qid = _r.randint(0, 65535)
+    q = qid.to_bytes(2, "big") + b"\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00"
+    for parte in nombre.strip(".").split("."):
+        q += bytes([len(parte)]) + parte.encode("ascii")
+    q += b"\x00\x00\x01\x00\x01"
+    with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as u:
+        u.settimeout(espera)
+        u.sendto(q, (servidor, 53))
+        r, _ = u.recvfrom(1024)
+    if r[:2] != q[:2]:
+        raise OSError("respuesta DNS no válida")
+    if r[3] & 15 == 3:
+        raise OSError("el DNS dice que no existe")
+    if r[3] & 15:
+        raise OSError("el DNS falló (código %d)" % (r[3] & 15))
+    n = int.from_bytes(r[6:8], "big")              # número de respuestas
+    i = len(q)
+    for _ in range(n):
+        if r[i] & 0xC0 == 0xC0:                    # nombre comprimido
+            i += 2
+        else:
+            while r[i]:
+                i += r[i] + 1
+            i += 1
+        tipo, largo = int.from_bytes(r[i:i + 2], "big"), int.from_bytes(r[i + 8:i + 10], "big")
+        i += 10
+        if tipo == 1 and largo == 4:
+            return ".".join(str(b) for b in r[i:i + 4])
+        i += largo
+    raise OSError("sin dirección para " + nombre)
+
+
+def write_red_config(cfg):
+    (SD_DIR / "red.json").write_text(json.dumps(cfg, ensure_ascii=False, indent=1), encoding="utf-8")
+
+
+class NetClient:
+    """Conexión TCP del núcleo con el servidor. Lo que llega se le pasa al script."""
+
+    def __init__(self, host, port, sala, nombre, write, status):
+        self.write, self.status = write, status
+        self.sock, self.closed = None, False
+        self.hello = {"t": "hola", "sala": sala, "nombre": nombre}
+        self.addr = (host, port)
+        threading.Thread(target=self._run, daemon=True).start()
+
+    def _run(self):
+        try:
+            self.sock = socket.create_connection(self.addr, timeout=4)
+            self.sock.settimeout(None)
+            self.sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
+        except OSError as e:
+            self.status("error", f"no se puede conectar a {self.addr[0]}:{self.addr[1]} ({e})")
+            return
+        self.send(self.hello)
+        buf = b""
+        try:
+            while not self.closed:
+                chunk = self.sock.recv(4096)
+                if not chunk:
+                    break
+                buf += chunk
+                while b"\n" in buf:
+                    line, buf = buf.split(b"\n", 1)
+                    if line.strip():
+                        self.write("n " + line.decode("utf-8", "replace"))
+        except OSError:
+            pass
+        if not self.closed:
+            self.status("desconectado", "se perdió la conexión")
+
+    def send(self, obj):
+        if self.sock and not self.closed:
+            try:
+                self.sock.sendall((json.dumps(obj, separators=(",", ":")) + "\n").encode("utf-8"))
+            except OSError:
+                pass
+
+    def close(self):
+        self.closed = True
+        try:
+            self.sock.close()
+        except Exception:
+            pass
+
+
+_HOST = {"srv": None}
+
+
+def start_host_server(port):
+    """Arranca (una vez) el servidor dentro del simulador. Devuelve un error o ''."""
+    if _HOST["srv"] is not None:
+        return ""
+    nombre = "Calculadora de %s" % read_red_config()["nombre"]
+    srv = Servidor(puerto=port, log=lambda *a: None, nombre=nombre)
+    try:
+        srv.iniciar()
+    except OSError as e:
+        # ¿ya hay un servidor en este equipo (otro simulador anfitrión)? Lo usamos.
+        try:
+            socket.create_connection(("127.0.0.1", port), timeout=1).close()
+            return ""
+        except OSError:
+            return f"no se puede abrir el puerto {port} ({e})"
+    _HOST["srv"] = srv
+    return ""
+
+
+def buscar_partidas(espera=0.8):
+    """Busca servidores SciCalc en la red local (UDP 8268). Devuelve [(ip, info)]."""
+    out, vistos = [], set()
+    try:
+        u = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        u.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+        u.settimeout(0.2)
+        for dest in ("<broadcast>", "127.0.0.1"):
+            try:
+                u.sendto(b"SCICALC?", (dest, PUERTO_BUSCAR))
+            except OSError:
+                pass
+        fin = time.time() + espera
+        while time.time() < fin:
+            try:
+                data, addr = u.recvfrom(9000)
+            except socket.timeout:
+                continue
+            try:
+                info = json.loads(data.decode("utf-8"))
+            except ValueError:
+                continue
+            ip = addr[0]
+            if ip.startswith("127.") or ip == ip_local():
+                ip = "127.0.0.1"
+            clave = (ip, info.get("puerto"))
+            if clave not in vistos:
+                vistos.add(clave)
+                out.append((ip, info))
+        u.close()
+    except OSError:
+        pass
+    return out
+
+
+def consultar_salas(ip, puerto, espera=3):
+    """Pregunta a un servidor qué salas tiene. Devuelve su info o lanza OSError."""
+    with socket.create_connection((ip, puerto), timeout=espera) as c:
+        c.sendall(b'{"t":"salas"}\n')
+        buf = b""
+        while b"\n" not in buf:
+            chunk = c.recv(9000)
+            if not chunk:
+                raise OSError("el servidor cerró la conexión")
+            buf += chunk
+    return json.loads(buf.split(b"\n", 1)[0].decode("utf-8"))
+
+
+def juego_de_sala(sala):
+    """Ruta del juego de una sala ("clonaria", "scratch:carpeta") y su nombre, o None."""
+    if sala == "clonaria":
+        p = SD_DIR / "juegos" / "clonaria" / "clonaria.py"
+        return (p, "Clonaria") if p.exists() else (None, "Clonaria")
+    if sala.startswith("scratch:"):
+        carpeta = sala[8:]
+        p = SD_DIR / "scratch" / carpeta / (carpeta + ".py")
+        nombre = carpeta.replace("_", " ")
+        try:
+            nombre = (p.parent / "LEEME.txt").read_text(encoding="utf-8").splitlines()[0]
+            nombre = nombre.replace(" (Scratch)", "")
+        except (OSError, IndexError):
+            pass
+        return (p if p.exists() else None), nombre
+    return None, sala
+
+
+def juegos_multijugador():
+    """Juegos de la SD que tienen multijugador: [(ruta, nombre)]."""
+    out = []
+    p, n = juego_de_sala("clonaria")
+    if p:
+        out.append((p, n))
+    for d in sorted((SD_DIR / "scratch").glob("*/controles.json")):
+        try:
+            if json.loads(d.read_text(encoding="utf-8")).get("multijugador"):
+                p, n = juego_de_sala("scratch:" + d.parent.name)
+                if p:
+                    out.append((p, n))
+        except (OSError, ValueError):
+            pass
+    return out
+
+
 class ScriptRunner:
     """Ejecuta un .py en un proceso aparte = aislado del 'núcleo' de la calculadora.
     En el ESP32 real esto será una tarea FreeRTOS con heap propio de MicroPython.
@@ -876,6 +1495,8 @@ class ScriptRunner:
         self.sprites, self._scaled = {}, {}
         self.alive = time.time()          # último signo de vida (para el watchdog)
         self.held_sent = None
+        self.wlock = threading.Lock()     # stdin lo escriben la UI y el hilo de red
+        self.net = None                   # NetClient del multijugador
         kw = {}
         if os.name == "nt":
             kw["creationflags"] = getattr(subprocess, "CREATE_NO_WINDOW", 0)
@@ -901,9 +1522,18 @@ class ScriptRunner:
             while True:
                 line = self.q.get_nowait()
                 if line is None:
+                    if self.net:
+                        self.net.close()
+                        self.net = None
                     self.proc.wait()
                     self.state = "error" if self.proc.returncode else "ok"
                     return
+                if line.startswith("\x07"):           # petición de red de scicalc.red
+                    try:
+                        self._net_op(json.loads(line[1:]))
+                    except ValueError:
+                        pass
+                    continue
                 if line.startswith("\x06"):           # fotograma de scicalc.pantalla
                     self.alive = time.time()
                     try:
@@ -948,12 +1578,127 @@ class ScriptRunner:
             pass
 
     # ---- gráficos y teclado (scicalc) ------------------------------------------
-    def _send(self, obj):
+    def _write(self, text):
         try:
-            self.proc.stdin.write(("k " + json.dumps(obj) + "\n").encode())
-            self.proc.stdin.flush()
+            with self.wlock:
+                self.proc.stdin.write((text + "\n").encode())
+                self.proc.stdin.flush()
         except Exception:
             pass
+
+    def _send(self, obj):
+        self._write("k " + json.dumps(obj))
+
+    # ---- red (multijugador) --------------------------------------------------------
+    def _net_status(self, e, msg=""):
+        self._write("n " + json.dumps({"t": "estado", "e": e, "msg": msg}))
+
+    def _net_op(self, req):
+        op = req.get("op")
+        if op == "conectar":
+            if self.net:
+                self.net.close()
+            if NET_STATE["exam"]:
+                self._net_status("error", "modo examen: sin red")
+                return
+            if not NET_STATE["wifi"]:
+                self._net_status("error", "sin Wi-Fi (conéctate en Ajustes)")
+                return
+            cfg = read_red_config()
+            nombre = req.get("nombre") or cfg["nombre"]
+            host, port = cfg["servidor"], cfg["puerto"]
+            hostear = cfg["modo"] == "anfitrion"
+            if req.get("host") or req.get("hostear"):  # el juego eligió servidor (o hostear)
+                host = req.get("host") or "127.0.0.1"
+                port = int(req.get("puerto") or cfg["puerto"])
+                hostear = bool(req.get("hostear"))
+            if hostear:                              # esta calculadora hace de servidor
+                err = start_host_server(port)
+                if err:
+                    self._net_status("error", err)
+                    return
+                host = "127.0.0.1"
+            self.net = NetClient(host, port, req.get("sala", "general"), nombre, self._write,
+                                 self._net_status)
+        elif self.net and op in ("todos", "var", "vaciar"):
+            m = {"t": op}
+            m.update({k: v for k, v in req.items() if k != "op"})
+            self.net.send(m)
+        elif op == "desconectar" and self.net:
+            self.net.close()
+            self.net = None
+        elif "id" in req:                        # petición con respuesta (red.pedir)
+            threading.Thread(target=self._peticion, args=(req,), daemon=True).start()
+
+    def _peticion(self, req):
+        """Peticiones de red.pedir()/llamar(): se atienden en otro hilo."""
+        op, r = req.get("op"), None
+        try:
+            r = self._atender(op, req)
+        except Exception as e:                   # sin red, servidor caído...
+            r = {"error": str(e)[:80]}
+        self._write("n " + json.dumps({"t": "resp", "id": req["id"], "r": r}))
+
+    def _atender(self, op, req):
+        cfg = read_red_config()
+        if op == "config":
+            return {k: cfg[k] for k in ("nombre", "servidor", "puerto", "modo")}
+        if op == "poner_nombre":
+            cfg["nombre"] = str(req.get("nombre") or cfg["nombre"]).strip()[:15] or cfg["nombre"]
+            write_red_config(cfg)
+            return cfg["nombre"]
+        if op == "servidores":
+            return cfg["servidores"]
+        if op == "guardar_servidor":
+            cfg["servidores"].append({"nombre": req.get("nombre") or req["host"], "ip": req["host"],
+                                      "puerto": int(req.get("puerto") or 8267)})
+            write_red_config(cfg)
+            return cfg["servidores"]
+        if op == "quitar_servidor":
+            i = int(req.get("i", -1))
+            if 0 <= i < len(cfg["servidores"]):
+                del cfg["servidores"][i]
+                write_red_config(cfg)
+            return cfg["servidores"]
+        # lo que sigue sale a la red
+        if NET_STATE["exam"]:
+            return {"error": "modo examen: sin red"}
+        if not NET_STATE["wifi"]:
+            return {"error": "sin Wi-Fi (conéctate en Ajustes)"}
+        if op == "buscar":
+            return [{"ip": ip, "puerto": i.get("puerto", 8267), "nombre": i.get("nombre", ip),
+                     "salas": i.get("salas", [])} for ip, i in buscar_partidas()]
+        if op == "salas":
+            return consultar_salas(req["host"], int(req.get("puerto") or 8267))
+        if op == "web":
+            final, tipo, datos, largo = web_descargar(req["url"], WEB_MAX)
+            if not tipo.startswith(WEB_ES_PAGINA):          # no es una página: se descarga
+                nombre = _urlparse.unquote(_urlparse.urlparse(final).path.rsplit("/", 1)[-1])
+                return {"descarga": True, "url": final, "largo": largo or len(datos),
+                        "nombre": nombre or "descarga"}
+            cod = "utf-8"
+            if "charset=" in tipo:
+                cod = tipo.split("charset=")[-1].split(";")[0].strip() or "utf-8"
+            try:
+                texto = datos[:WEB_MAX].decode(cod, "replace")
+            except LookupError:
+                texto = datos[:WEB_MAX].decode("utf-8", "replace")
+            return {"url": final, "tipo": tipo.split(";")[0], "texto": texto}
+        if op == "descargar":
+            _, _, datos, _ = web_descargar(req["url"], WEB_DESCARGA_MAX)
+            if len(datos) > WEB_DESCARGA_MAX:
+                return {"error": "demasiado grande para la calculadora"}
+            d = SD_DIR / "descargas"
+            d.mkdir(exist_ok=True)
+            seguro = "".join(c for c in str(req.get("nombre", "")) if c.isalnum() or c in "._-")
+            seguro = seguro or "descarga"
+            destino, n = d / seguro, 1
+            while destino.exists():
+                stem, ext = os.path.splitext(seguro)
+                destino, n = d / f"{stem}({n}){ext}", n + 1
+            destino.write_bytes(datos)
+            return {"ok": True, "ruta": "/descargas/" + destino.name, "bytes": len(datos)}
+        return {"error": "petición desconocida: %s" % op}
 
     def send_key(self, key, shift):
         self._send({"ev": key, "shift": shift})
@@ -964,13 +1709,14 @@ class ScriptRunner:
             self._send({"held": sorted(held)})
 
     def _sprite_img(self, sid, scale, flip, angle):
-        k = (sid, round(scale, 3), flip, round(angle, 1))
+        ex, ey = scale
+        k = (sid, round(ex, 3), round(ey, 3), flip, round(angle, 1))
         if k not in self._scaled:
             if len(self._scaled) > 400:
                 self._scaled.clear()
             base = self.sprites[sid]
-            w = max(1, round(base.get_width() * scale * 2))
-            h = max(1, round(base.get_height() * scale * 2))
+            w = max(1, round(base.get_width() * ex * 2))
+            h = max(1, round(base.get_height() * ey * 2))
             img = pygame.transform.scale(base, (w, h))
             if flip:
                 img = pygame.transform.flip(img, True, False)
@@ -984,16 +1730,17 @@ class ScriptRunner:
         angle = op[6] if len(op) > 6 else 0.0
         centro = op[7] if len(op) > 7 else None
         base = self.sprites[sid]
-        bw, bh = base.get_width() * scale * 2, base.get_height() * scale * 2
+        ex, ey = (scale, scale) if not isinstance(scale, list) else scale
+        bw, bh = base.get_width() * ex * 2, base.get_height() * ey * 2
         if centro is None:
             px, py = bw / 2, bh / 2
             tx, ty = x * 2 + px, y * 2 + py
         else:
-            px, py = centro[0] * scale * 2, centro[1] * scale * 2
+            px, py = centro[0] * ex * 2, centro[1] * ey * 2
             tx, ty = x * 2, y * 2
         if flip:
             px = bw - px
-        img = self._sprite_img(sid, scale, flip, angle)
+        img = self._sprite_img(sid, (ex, ey), flip, angle)
         # vector centro-de-imagen -> pivote, girado en sentido horario
         vx, vy = px - bw / 2, py - bh / 2
         a = math.radians(angle)
@@ -1027,7 +1774,8 @@ class ScriptRunner:
                 if os.path.commonpath([path, sd]) == sd:     # solo imágenes de la SD
                     self.sprites[op[1]] = pygame.image.load(path)
             elif kind == "spr" and op[1] in self.sprites:
-                if op[4] > 0:
+                e = op[4]
+                if (min(e) if isinstance(e, list) else e) > 0:
                     self._blit_sprite(c, op)
             elif kind == "clip":
                 c.set_clip(None if len(op) == 1 else pygame.Rect(op[1] * 2, op[2] * 2, op[3] * 2, op[4] * 2))
@@ -1037,6 +1785,9 @@ class ScriptRunner:
             self.proc.kill()
         except Exception:
             pass
+        if self.net:
+            self.net.close()
+            self.net = None
         self.state = state
 
     def stop(self):
@@ -1221,7 +1972,7 @@ class PythonApp(App):
                 if self.back_to:
                     self.sim.launch(self.back_to)
             elif key == "EXE":
-                self.start(self.script)
+                self.start(self.script, self.args)
             elif key == "UP":
                 rows = len(wrap_console(self.runner.lines, console_cols()))
                 self.scroll_off = min(self.scroll_off + 1, max(0, rows - 15))
@@ -1246,14 +1997,15 @@ class PythonApp(App):
         if f:
             self.start(f)
 
-    def start(self, path):
+    def start(self, path, args=()):
+        self.args = tuple(args)
         if self.sim.exam:
             self.sim.ask("Modo examen", ["Python está bloqueado durante", "el modo examen.", "",
                                          "Desactívalo en Ajustes."], None, info=True)
             return
         self.script = path
         self.scroll_off = 0
-        self.runner = ScriptRunner(path)
+        self.runner = ScriptRunner(path, args=self.args)
         self.sim.set_title("► " + path.name)
 
     def update(self, dt):
@@ -2146,7 +2898,7 @@ class DiagApp(App):
 # =============================================================================
 #  Paquetes instalados en /lib  (manifiesto  /lib/paquetes.json)
 # =============================================================================
-FW_VERSION = "0.5"
+FW_VERSION = "0.6"
 LIB_DIR = SD_DIR / "lib"
 MANIFEST = LIB_DIR / "paquetes.json"
 
@@ -2356,6 +3108,77 @@ class LinkServer:
 
 
 # =============================================================================
+#  Escribir texto con el teclado numérico, como en un móvil Nokia (T9 "multitap")
+# -----------------------------------------------------------------------------
+#  2 = a b c 2, 3 = d e f 3 ... 9 = w x y z 9, 0 = espacio 0, 1 = . , - _ ! ? 1
+#  Pulsar varias veces la misma tecla cambia la letra; otra tecla, ► o esperar
+#  un segundo la deja puesta. SHIFT+tecla: mayúscula. DEL borra, EXE acepta,
+#  AC cancela. modo "num": solo números; "ip": números y el punto.
+# =============================================================================
+class T9:
+    TECLAS = {"1": ".,-_!?1", "2": "abc2", "3": "def3", "4": "ghi4", "5": "jkl5", "6": "mno6",
+              "7": "pqrs7", "8": "tuv8", "9": "wxyz9", "0": " 0"}
+    TECLAS_URL = {"1": "./:-_?=&1", "0": " 0"}       # direcciones web
+    ESPERA = 1.0
+
+    def __init__(self, texto, modo="t9", maximo=16):
+        self.texto, self.modo, self.maximo = str(texto), modo, maximo
+        self.ultima, self.t, self.i = None, 0.0, 0
+
+    def tecla(self, k, shift):
+        """Devuelve 'ok', 'cancelar' o None (sigue escribiendo)."""
+        ahora = time.time()
+        if k == "EXE":
+            return "ok"
+        if k == "AC":
+            return "cancelar"
+        if k == "DEL":
+            self.texto, self.ultima = self.texto[:-1], None
+            return None
+        if k == "RIGHT":
+            self.ultima = None
+            return None
+        if self.modo in ("num", "ip"):
+            if (k.isdigit() or (k == "." and self.modo == "ip")) and len(self.texto) < self.maximo:
+                self.texto += k
+            return None
+        if k == "." and len(self.texto) < self.maximo:    # la tecla del punto escribe "."
+            self.texto += "."
+            self.ultima = None
+            return None
+        if k not in self.TECLAS:
+            return None
+        letras = self.TECLAS[k] if self.modo == "t9" else self.TECLAS_URL.get(k, self.TECLAS[k])
+        if k == self.ultima and ahora - self.t < self.ESPERA and self.texto:
+            self.i = (self.i + 1) % len(letras)       # misma tecla: siguiente letra
+            self.texto = self.texto[:-1]
+        elif len(self.texto) >= self.maximo:
+            return None
+        else:
+            self.i = 0
+        c = letras[self.i]
+        if shift or (not self.texto and self.modo == "t9"):   # SHIFT o primera letra: mayúscula
+            c = c.upper()
+        self.texto += c
+        self.ultima, self.t = k, ahora
+        return None
+
+    def mostrar(self):
+        pendiente = self.ultima and time.time() - self.t < self.ESPERA
+        return self.texto + ("" if pendiente else "_")
+
+    AYUDA_T9 = ["2abc 3def 4ghi 5jkl 6mno 7pqrs 8tuv 9wxyz 0=espacio",
+                "Repite la tecla: otra letra · SHIFT: MAYÚS · EXE/AC"]
+    AYUDA_NUM = ["Escribe con los números (y . en la IP).", "DEL borra · EXE guardar · AC cancelar"]
+
+    AYUDA_URL = ["2abc … 9wxyz · 1 = . / : - _ ? = &",
+                 "Sin punto = buscar en internet · EXE ir · AC"]
+
+    def ayuda(self):
+        return {"t9": self.AYUDA_T9, "url": self.AYUDA_URL}.get(self.modo, self.AYUDA_NUM)
+
+
+# =============================================================================
 #  Ajustes: Wi-Fi, Bluetooth, USB, modo examen, paquetes
 # =============================================================================
 class SettingsApp(App):
@@ -2364,6 +3187,11 @@ class SettingsApp(App):
     def __init__(self, sim):
         super().__init__(sim)
         self.page, self.sel, self.connecting = "main", {}, None
+        self.edit = None                  # (campo, T9) mientras se escribe un valor
+        self.dns_res = None               # resultado de "Probar DNS"
+
+    def ip_actual(self, c):
+        return c["ip"] if c["modo"] == "estatica" else ip_local()
 
     def on_enter(self):
         self.page = "main"
@@ -2378,6 +3206,8 @@ class SettingsApp(App):
                 dict(label="Bluetooth", value="Visible" if sim.bt_on else "Apagado", action="page:bt",
                      color=OK if sim.bt_on else None),
                 dict(label="USB", value="Serie · SciCalc Link", action="page:usb"),
+                dict(label="Multijugador", value="Anfitrión" if read_red_config()["modo"] == "anfitrion"
+                     else "Servidor", action="page:red"),
                 dict(label="Modo examen", value="ACTIVADO" if sim.exam else "Desactivado",
                      action="toggle:exam", color=WARN if sim.exam else None),
                 dict(label="Paquetes Python", value=f"{len(read_manifest())} instalados", action="page:pkgs"),
@@ -2386,6 +3216,10 @@ class SettingsApp(App):
         if self.page == "wifi":
             r = [dict(label="Wi-Fi", value="Encendido" if sim.wifi_on else "Apagado", action="toggle:wifi",
                       color=OK if sim.wifi_on else None)]
+            if sim.wifi_net:
+                c = read_ip_config()
+                r.append(dict(label="Detalles de la red", value=self.ip_actual(c) +
+                              (" (estática)" if c["modo"] == "estatica" else ""), action="page:ipcfg"))
             if sim.wifi_on:
                 for ssid, rssi, sec in sim.networks:
                     if self.connecting and self.connecting[0] == ssid:
@@ -2407,6 +3241,36 @@ class SettingsApp(App):
             return [dict(label="Modo USB", value="Serie (SciCalc Link)", action=None, color=OK),
                     dict(label="Velocidad", value="115200 baudios", action=None),
                     dict(label="Disco USB (MSC)", value="requiere ESP32-S3", action="info:msc")]
+        if self.page == "ipcfg":
+            c = read_ip_config()
+            est = c["modo"] == "estatica"
+            ed = lambda campo, v: self.edit[1].mostrar() if self.edit and self.edit[0] == campo else v
+            rssi = dict((n, r_) for n, r_, _ in sim.networks).get(sim.wifi_net, -60)
+            auto = {"ip": self.ip_actual(c), "mascara": "255.255.255.0",
+                    "puerta": self.ip_actual(c).rsplit(".", 1)[0] + ".1"}
+            r = [dict(label="Red", value=sim.wifi_net or "-", action=None),
+                 dict(label="Configurar IP", value="Estática (manual)" if est else "Automática (DHCP)",
+                      action="toggle:ipmodo", color=WARN if est else OK)]
+            for campo, nombre in (("ip", "Tu IP local"), ("mascara", "Máscara de subred"),
+                                  ("puerta", "Puerta de enlace")):
+                r.append(dict(label=nombre, value=ed(campo, c[campo] if est else auto[campo]),
+                              action="edit:" + campo if est else None))
+            r += [dict(label="DNS 1", value=ed("dns1", c["dns1"]), action="edit:dns1"),
+                  dict(label="DNS 2", value=ed("dns2", c["dns2"]), action="edit:dns2"),
+                  dict(label="Probar DNS", value=self.dns_res or "example.com", action="dnstest:"),
+                  dict(label="MAC", value="24:6F:28:7F:3A:C1", action=None),
+                  dict(label="Señal", value=f"{rssi} dBm", action=None, signal=rssi)]
+            return r
+        if self.page == "red":
+            cfg = read_red_config()
+            anf = cfg["modo"] == "anfitrion"
+            ed = lambda campo, v: self.edit[1].mostrar() if self.edit and self.edit[0] == campo else v
+            return [dict(label="Modo", value="Anfitrión (esta calculadora)" if anf else "Servidor dedicado",
+                         action="toggle:redmodo", color=OK if anf else None),
+                    dict(label="Servidor", value="-" if anf else ed("servidor", cfg["servidor"]),
+                         action=None if anf else "edit:servidor"),
+                    dict(label="Puerto", value=ed("puerto", str(cfg["puerto"])), action="edit:puerto"),
+                    dict(label="Tu nombre", value=ed("nombre", cfg["nombre"]), action="edit:nombre")]
         if self.page == "pkgs":
             return [dict(label=n, value=f"{i.get('version', '?')} · {i.get('source', '?')}", action="pkg:" + n)
                     for n, i in sorted(read_manifest().items())]
@@ -2418,7 +3282,7 @@ class SettingsApp(App):
             if sim.wifi_net:
                 st = f"SciCalc Link escuchando en 127.0.0.1:{LINK_PORT}" if sim.link.sock else \
                      f"SciCalc Link: {sim.link.error or 'iniciando…'}"
-                return ["IP 192.168.1.57  (simulado)", st]
+                return [f"IP {self.ip_actual(read_ip_config())}", st]
             return ["Elige una red y pulsa EXE."]
         if self.page == "bt":
             return ["En el PC: Bluetooth > Agregar dispositivo >",
@@ -2429,6 +3293,22 @@ class SettingsApp(App):
             return ["Conecta el cable USB-C y elige el puerto COM",
                     "en SciCalc Link (USB). Mismo protocolo que",
                     "Bluetooth y Wi-Fi."]
+        if self.page in ("red", "ipcfg") and self.edit:
+            return self.edit[1].ayuda()
+        if self.page == "ipcfg":
+            return ["EXE en DNS para cambiarlo. En estática también",
+                    "IP, máscara y puerta. (Simulador: usa la red del PC;",
+                    "la IP automática es la real del PC.)"]
+        if self.page == "red":
+            cfg = read_red_config()
+            l = ["EXE sobre Servidor, Puerto o Tu nombre", "para cambiarlos (como en un Nokia)."]
+            if cfg["modo"] == "anfitrion":
+                l += [f"Los demás ponen como servidor tu IP,", f"puerto {cfg['puerto']} (simulador: 127.0.0.1)."]
+            else:
+                l += ["Servidor dedicado en el PC:", "  python pc/scicalc_servidor.py"]
+            if not sim.wifi_net:
+                l += ["", "Necesita Wi-Fi conectado."]
+            return l
         if self.page == "pkgs" and not read_manifest():
             return ["No hay paquetes instalados.", "", "Instálalos desde el PC con SciCalc Link:",
                     "se guardan en /lib de la MicroSD."]
@@ -2442,6 +3322,34 @@ class SettingsApp(App):
 
     # ---- teclas ------------------------------------------------------------
     def on_key(self, key, shift):
+        if self.edit and self.edit[0] in IP_CAMPOS:     # escribiendo una IP
+            campo, t9 = self.edit
+            r = t9.tecla(key, shift)
+            if r == "ok":
+                if ip_valida(t9.texto):
+                    c = read_ip_config()
+                    c[campo] = t9.texto
+                    write_ip_config(c)
+                else:
+                    self.sim.ask("IP no válida", [f"«{t9.texto}» no es una IP.", "",
+                                                  "Formato: 4 números de 0 a 255", "separados por puntos."],
+                                 None, info=True)
+            if r:
+                self.edit = None
+            return
+        if self.edit:                             # escribiendo un valor (T9)
+            campo, t9 = self.edit
+            r = t9.tecla(key, shift)
+            if r == "ok":
+                cfg = read_red_config()
+                v = t9.texto.strip()
+                if campo == "puerto":
+                    v = int(v) if v.isdigit() and 0 < int(v) < 65536 else cfg["puerto"]
+                cfg[campo] = v or cfg[campo]
+                write_red_config(cfg)
+            if r:
+                self.edit = None
+            return
         rows = self.rows()
         sel = self.sel.get(self.page, 0)
         if rows:
@@ -2451,18 +3359,23 @@ class SettingsApp(App):
         elif key == "DOWN" and rows:
             sel = (sel + 1) % len(rows)
         elif key in ("LEFT", "AC", "DEL"):
-            if self.page != "main":
+            if self.page == "ipcfg":                  # Red -> vuelve a Wi-Fi
+                self.do("page:wifi")
+            elif self.page != "main":
                 self.page = "main"
                 self.sim.set_title(self.title)
             return
         elif key in ("EXE", "RIGHT") and rows and rows[sel].get("action"):
+            self.sel[self.page] = sel             # antes de cambiar de página
             self.do(rows[sel]["action"])
+            return
         self.sel[self.page] = sel
 
     def do(self, action):
         sim = self.sim
         kind, _, arg = action.partition(":")
-        titles = {"wifi": "Wi-Fi", "bt": "Bluetooth", "usb": "USB", "pkgs": "Paquetes", "about": "Acerca de"}
+        titles = {"wifi": "Wi-Fi", "bt": "Bluetooth", "usb": "USB", "pkgs": "Paquetes", "about": "Acerca de", "ipcfg": "Red",
+                  "red": "Multijugador"}
         if kind == "page":
             self.page = arg
             sim.set_title("Ajustes › " + titles[arg])
@@ -2473,6 +3386,34 @@ class SettingsApp(App):
                         lambda a: a in "ya" and sim.set_exam(True))
             else:
                 sim.ask("Modo examen", ["¿Salir del modo examen?"], lambda a: a in "ya" and sim.set_exam(False))
+        elif kind == "edit" and arg in IP_CAMPOS:
+            self.edit = (arg, T9(read_ip_config()[arg], "ip", 15))
+        elif kind == "toggle" and arg == "ipmodo":
+            c = read_ip_config()
+            if c["modo"] == "dhcp":                    # al pasar a manual, parte de los valores actuales
+                c.update(modo="estatica", ip=self.ip_actual(c))
+                c["puerta"] = c["ip"].rsplit(".", 1)[0] + ".1"
+            else:
+                c["modo"] = "dhcp"
+            write_ip_config(c)
+        elif kind == "dnstest":
+            self.dns_res = "preguntando…"
+            servidor = read_ip_config()["dns1"]
+
+            def run():
+                try:
+                    self.dns_res = f"{dns_consulta('example.com', servidor)} ({servidor})"
+                except (OSError, IndexError) as e:
+                    self.dns_res = f"falla: {e}"[:34]
+            threading.Thread(target=run, daemon=True).start()
+        elif kind == "edit":
+            cfg = read_red_config()
+            modo = {"servidor": "ip", "puerto": "num"}.get(arg, "t9")
+            self.edit = (arg, T9(cfg[arg], modo, 15 if arg != "puerto" else 5))
+        elif kind == "toggle" and arg == "redmodo":
+            cfg = read_red_config()
+            cfg["modo"] = "servidor" if cfg["modo"] == "anfitrion" else "anfitrion"
+            write_red_config(cfg)
         elif kind == "toggle":
             if sim.exam:
                 sim.ask("Modo examen", ["No disponible durante", "el modo examen."], None, info=True)
@@ -2543,6 +3484,33 @@ class SettingsApp(App):
             yy += 21
         self.footer(s, "↑↓ mover   EXE elegir   ◄/AC volver" if self.page != "main"
                     else "↑↓ mover   EXE elegir   MENU salir")
+
+
+# =============================================================================
+#  Web para los scripts: red.web(url) y red.descargar(url, nombre)
+# -----------------------------------------------------------------------------
+#  El núcleo descarga (en el ESP32: HTTPClient + WiFiClientSecure, TLS con
+#  mbedTLS) y le pasa el texto al script; la app sd/apps/navegador.py lo
+#  convierte en páginas de texto. Páginas hasta 300 KB (en el ESP32 sin PSRAM,
+#  bastante menos); lo que no es una página se guarda en /descargas.
+# =============================================================================
+import urllib.request as _urlreq
+import urllib.parse as _urlparse
+
+WEB_MAX = 300 * 1024                 # tamaño máximo de una página
+WEB_DESCARGA_MAX = 16 * 1024 * 1024  # tamaño máximo de una descarga
+WEB_AGENTE = "SciCalc/0.6 (ESP32; navegador de texto)"
+WEB_ES_PAGINA = ("text/html", "text/plain", "application/xhtml")
+
+
+def web_descargar(url, maximo):
+    """Devuelve (url final, tipo, bytes, tamaño anunciado). Lanza OSError."""
+    req = _urlreq.Request(url, headers={"User-Agent": WEB_AGENTE, "Accept-Language": "es,en"})
+    with _urlreq.urlopen(req, timeout=15) as r:
+        tipo = r.headers.get("Content-Type", "")
+        largo = int(r.headers.get("Content-Length") or 0)
+        datos = r.read(maximo + 1)
+        return r.geturl(), tipo, datos, largo
 
 
 # =============================================================================
@@ -2695,6 +3663,7 @@ class Simulator:
             self.ask(title, lines, cb)
             self.modals[-1]["box"] = box
         self.modals = [m for m in self.modals if not m.get("box", {}).get("expired")]
+        NET_STATE["wifi"], NET_STATE["exam"] = bool(self.wifi_net), self.exam
         # el servidor de enlace vive mientras haya Wi-Fi conectado
         want = bool(self.wifi_net) and not self.exam
         if want and not self.link.sock and not self.link.error:
