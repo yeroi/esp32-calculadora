@@ -9,3 +9,5 @@ __pycache__/
 # Juegos de Scratch convertidos por cada usuario (no son nuestros); solo el ejemplo va en el repo
 simulador/sd/scratch/*/
 !simulador/sd/scratch/atrapamanzanas/
+# Configuración de red de cada usuario (Ajustes › Multijugador)
+simulador/sd/red.json
