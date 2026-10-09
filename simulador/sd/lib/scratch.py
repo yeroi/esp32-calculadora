@@ -35,7 +35,8 @@ MAX_CLONES = 300                    # el mismo límite que Scratch
 KB_ROWS = [list("1234567890"), list("qwertyuiop"), list("asdfghjkl/"), list("zxcvbnm.-_"),
            [" ", ":", "=", "+", "*", "?", "!", ",", "<-", "OK"]]
 WORK_MS = 25                        # tiempo de CPU por fotograma (75 % de 33 ms, como Scratch)
-WARP_LIMIT = 200000                 # pasos máximos de un bloque "sin refrescar"
+WARP_MS = 500                       # un bloque "sin refrescar" cede el turno cada 0,5 s (como
+                                    # Scratch): se dibuja y el watchdog sabe que sigue vivo
 
 
 # ---- Conversión de valores (reglas de Scratch) --------------------------------
@@ -516,8 +517,11 @@ class Project:
         return None
 
     def loop_yield(self, ctx):
-        # Dentro de un bloque "sin refrescar" no se cede el turno
-        return not ctx.warp
+        # Dentro de un bloque "sin refrescar" no se cede el turno, salvo cada WARP_MS
+        if not ctx.warp:
+            return True
+        ctx.warp_n += 1
+        return ctx.warp_n & 63 == 0 and K.ms() - ctx.warp_t > WARP_MS
 
     # =============================================================================
     #  Bloques
@@ -1150,13 +1154,13 @@ class Project:
                 try:
                     if warp or ctx.warp:
                         ctx.warp += 1
+                        if ctx.warp == 1:
+                            ctx.warp_t, ctx.warp_n = K.ms(), 0
                         try:
-                            gen = self.run(ctx, body)
-                            steps = 0
-                            for _ in gen:                 # sin ceder el turno
-                                steps += 1
-                                if steps > WARP_LIMIT:
-                                    break
+                            for _ in self.run(ctx, body):   # sin ceder el turno...
+                                if K.ms() - ctx.warp_t > WARP_MS:
+                                    yield                   # ...salvo cada 0,5 s
+                                    ctx.warp_t = K.ms()
                         finally:
                             ctx.warp -= 1
                     else:

@@ -63,6 +63,10 @@ PlaceholderApp consoleApp(apps, "Consola", "Consola tipo cmd",
 SettingsApp    settingsApp(apps);
 DiagApp        diagApp(apps);
 
+#if SCICALC_REMOTE
+static void sendState();          // declarada aquí: algunas versiones del preprocesador de
+#endif                            // Arduino colocan mal el prototipo que generan solas
+
 void setup() {
 #if SCICALC_REMOTE
   remoteLink.begin(REMOTE_BAUD);              // abre el Serial a REMOTE_BAUD
