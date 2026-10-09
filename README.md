@@ -85,7 +85,17 @@ Las calculadoras juegan juntas a través de un **servidor SciCalc** (protocolo p
 python pc/scicalc_servidor.py          # servidor dedicado en un PC (o en internet)
 ```
 
-En la calculadora, **Ajustes › Multijugador**:
+La forma fácil es la app **Multijugador** del menú principal:
+
+- **Buscar partidas**: encuentra sola las partidas abiertas en tu red (Wi-Fi) — servidores dedicados y calculadoras que hostean — y entras con EXE: se abre el juego y te mete en el mundo.
+- **+ Añadir servidor**: escribe la IP (y `:puerto` si no es el 8267) de un servidor de internet; luego eliges partida o abres una nueva allí.
+- **Hostear un mundo**: tu calculadora hace de servidor; eliges el juego (Clonaria, Paper Minecraft…) y los demás te encuentran en *Buscar partidas*.
+- **Tu nombre**: se escribe como en un Nokia (2 = abc, 3 = def… repite la tecla para otra letra; SHIFT = mayúscula).
+- **Bluetooth**: solo en el ESP32 real.
+
+El servidor dedicado guarda los mundos en `pc/mundos_servidor/`: aunque se vaya todo el mundo o se apague, al volver la partida sigue ahí. `python pc/scicalc_servidor.py --nombre "Casa de Yerai"` le pone nombre.
+
+También en **Ajustes › Multijugador**:
 
 - **Servidor dedicado**: todos se conectan a la IP del PC que ejecuta `scicalc_servidor.py` (se pone en `/red.json`: `servidor`, `puerto`, `nombre`).
 - **Anfitrión**: esta calculadora hace de servidor y los demás ponen su IP. En el simulador, el primero que entra lo abre y los demás simuladores del mismo PC se conectan solos.
@@ -94,7 +104,7 @@ Necesita Wi-Fi conectado y está bloqueado en modo examen.
 
 - **Clonaria**: al empezar, `1` un jugador / `2` multijugador. Todos comparten el mismo mundo (semilla del anfitrión), ven los bloques que pican o ponen los demás —también los cambiados antes de entrar— y a los otros jugadores con su nombre encima.
 - **Scratch**: las variables en la nube (☁) se sincronizan entre todos los que juegan al mismo proyecto.
-- **Paper Minecraft** (y otros juegos de Scratch con un perfil): menú SciCalc (SHIFT+EXE o «(») › **Multijugador: conectar**. El primero que se conecta abre la partida y sube su mundo; los demás lo reciben y aparecen a su lado. Los bloques que pica o pone cada uno se ven en todas las pantallas y cada jugador ve a los demás con su nombre. No se comparten criaturas, objetos tirados ni inventario. Se configura en la sección `multijugador` del perfil (`pc/perfiles/paper_minecraft.json`, ver `/lib/scratch_red.py`).
+- **Paper Minecraft** (y otros juegos de Scratch con un perfil): desde la app Multijugador, o en la partida con el menú SciCalc (SHIFT+EXE o «(») › **Multijugador: conectar**. El primero que se conecta abre la partida y sube su mundo; los demás lo reciben y aparecen a su lado. Los bloques que pica o pone cada uno se ven en todas las pantallas y cada jugador ve a los demás con su nombre. No se comparten criaturas, objetos tirados ni inventario. Se configura en la sección `multijugador` del perfil (`pc/perfiles/paper_minecraft.json`, ver `/lib/scratch_red.py`).
 - **Tus juegos**: módulo `scicalc.red` ([docs/API_scicalc.md](docs/API_scicalc.md)).
 
 Medios de conexión en el ESP32 (firmware, pendiente; mismo protocolo en todos):
@@ -104,6 +114,11 @@ Medios de conexión en el ESP32 (firmware, pendiente; mismo protocolo en todos):
 | Wi-Fi | `WiFiClient` al servidor o a la calculadora anfitriona | el único disponible en el simulador |
 | USB al PC | la calculadora habla por el puerto serie y SciCalc Link en el PC lo reenvía al servidor | el PC hace de puente a internet |
 | Bluetooth entre calculadoras | Bluetooth clásico SPP: una hace de anfitriona | el ESP32-WROOM-32 tiene BT clásico; **el ESP32-S3 solo tiene BLE**, ahí habría que usar BLE (más lento) |
+
+## Navegador y red
+
+- **Navegador** (menú principal): páginas web en modo texto, como los móviles de antes (el ESP32 no puede con JavaScript ni CSS). SHIFT+EXE escribe la dirección con T9 (sin punto = busca en internet), ◄ ► eligen enlace, EXE lo abre, **+** descarga lo enlazado, DEL vuelve atrás. Lo que no es una página (zip, py, png…) se ofrece para descargar a `/descargas` de la MicroSD.
+- **Ajustes › Wi-Fi › Detalles de la red**: tu IP local, máscara de subred, puerta de enlace, DNS 1 y 2, MAC y señal. IP automática (DHCP) o estática; los DNS se pueden cambiar siempre y *Probar DNS* pregunta directamente al DNS elegido. En el ESP32: `WiFi.config(ip, puerta, máscara, dns1, dns2)` guardado en NVS.
 
 ## Estructura
 

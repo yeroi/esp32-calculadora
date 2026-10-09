@@ -10,6 +10,9 @@
 #      "camara":  ["_ScrX", "_ScrY"]     desplazamiento de la cámara (si lo hay)
 #      "casilla": 40                     unidades de Scratch por casilla
 #      "partes":  ["Steve Legs2", ...]   objetos que forman al jugador
+#      "nueva_partida": {"espera": 3000, "mensajes": [["world options", 0], ...]}
+#                     mensajes del propio juego que empiezan un mundo (para entrar
+#                     solo al unirse desde la app Multijugador)
 #
 #  Cómo funciona (todo con scicalc.red, en la sala del juego):
 #    * El primero que se conecta ABRE la partida: sube las listas del mundo
@@ -58,6 +61,10 @@ class Multijugador:
         self.rects = {}          # id -> rectángulo de pantalla donde se dibujó
         self.frame = 0
         self.enviado = None
+        self.nueva = cfg.get("nueva_partida") or {}
+        self.modo_auto = None    # "unirse" / "hostear": abierto desde la app Multijugador
+        self.pasos = []          # [ms, mensaje] pendientes para empezar un mundo
+        self.largo, self.largo_t = -1, 0
 
     def disponible(self):
         return (red is not None and self.vx is not None and self.vy is not None
@@ -86,6 +93,34 @@ class Multijugador:
     def aviso(self, texto):
         self.p.toast = [texto[:48], K.ms() + 3500]
         self.p.dirty_all = True
+
+    def en_mundo(self):
+        """¿Está el jugador dentro de un mundo (no en el título ni generándolo)?"""
+        lst = self.p.stage.lists.get(self.bloques)
+        n = len(lst) if lst is not None else 0
+        ahora = K.ms()
+        if n != self.largo:                        # la lista aún cambia de tamaño: generando
+            self.largo, self.largo_t = n, ahora
+        quieto = ahora - self.largo_t > 1500
+        return n > 0 and quieto and any(sp.visible for sp in self.partes)
+
+    def auto(self, modo):
+        """Abierto desde la app Multijugador: entrar solo en la partida."""
+        self.modo_auto = modo
+        if modo == "unirse":                       # empezar un mundo cualquiera (se sustituye)
+            t0 = K.ms() + int(self.nueva.get("espera", 3000))
+            self.pasos = [[t0 + int(ms), msg] for msg, ms in self.nueva.get("mensajes", [])]
+
+    def paso_auto(self):
+        ahora = K.ms()
+        while self.pasos and ahora >= self.pasos[0][0]:
+            self.p.start_hats("event_whenbroadcastreceived", self.pasos.pop(0)[1])
+        if self.en_mundo():
+            self.modo_auto = None
+            self.conectar()
+        elif self.p.toast is None or ahora > self.p.toast[1] - 500:
+            self.aviso("Multijugador: empieza o carga una partida" if self.modo_auto == "hostear"
+                       else "Entrando en la partida...")
 
     # ---- conectar / salir --------------------------------------------------------
     def conectar(self):
@@ -199,6 +234,9 @@ class Multijugador:
         return bool(msgs)
 
     def paso(self):
+        if self.modo_auto and not self.on:
+            self.paso_auto()
+            return
         if not self.on:
             return
         self.leer()
@@ -206,7 +244,8 @@ class Multijugador:
             return
         # mi posición y la pose de cada parte (relativa al jugador)
         self.frame += 1
-        if self.frame % POS_CADA == 0:
+        visible = any(sp.visible for sp in self.partes)
+        if self.frame % POS_CADA == 0 and visible:
             x, y = self.num(self.vx), self.num(self.vy)
             bx, by = self.base(x, y)
             partes = [[sp.costume, round(sp.x - bx, 1), round(sp.y - by, 1), round(sp.dir), sp.visible]
@@ -268,8 +307,8 @@ class Multijugador:
         return str(red.jugadores().get(pid, "?"))[:12]
 
     def dibujar(self):
-        if not self.listo:
-            return
+        if not self.listo or not any(sp.visible for sp in self.partes):
+            return                                # en menús del juego: no se dibuja a nadie
         for pid in list(self.otros):
             poses = self.poses(pid)
             for sp, c, x, y, dr in poses:

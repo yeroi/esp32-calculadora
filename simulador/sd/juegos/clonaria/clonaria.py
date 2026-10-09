@@ -25,6 +25,7 @@
 # =============================================================================
 import math
 import random
+import sys
 from scicalc import pantalla as P, teclas as K, red
 
 # ---- Mundo -----------------------------------------------------------------
@@ -548,7 +549,9 @@ def conectar():
 
 
 def main():
-    seed = conectar() if elegir_modo() else None
+    # Abierto desde la app Multijugador ("--red unirse/hostear"): directo a la partida
+    online = "--red" in sys.argv or elegir_modo()
+    seed = conectar() if online else None
     P.limpiar(0)
     P.texto("CLONARIA", 112, 80, 0xFFFFFF, None, 2)
     generate(K.ms() if seed is None else seed)

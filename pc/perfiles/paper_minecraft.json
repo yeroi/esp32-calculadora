@@ -73,6 +73,28 @@
       "Steve",
       "Steve Arm",
       "Steves Head"
-    ]
-  }
+    ],
+    "nueva_partida": {
+      "espera": 3000,
+      "mensajes": [
+        [
+          "world options",
+          0
+        ],
+        [
+          "start clicked",
+          1000
+        ]
+      ]
+    }
+  },
+  "parches": [
+    {
+      "lista": "_BLOCK_DATA",
+      "indice": 5969,
+      "era": "S1",
+      "valor": "S",
+      "motivo": "la hierba con nieve suelta tierra también sin pala (como en Minecraft)"
+    }
+  ]
 }

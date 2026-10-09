@@ -1381,6 +1381,8 @@ class Project:
             self.menu = None
             if self.multi.on:
                 self.multi.salir()
+            elif not self.multi.en_mundo():
+                self.multi.aviso("Primero empieza o carga una partida")
             else:
                 self.multi.conectar()
         elif action == "pantalla":
@@ -1700,6 +1702,10 @@ def ejecutar(ruta):
     P.mostrar()
     proj = Project(ruta)
     proj.cloud_connect()
+    import sys
+    if proj.multi and "--red" in sys.argv:          # abierto desde la app Multijugador
+        i = sys.argv.index("--red")
+        proj.multi.auto(sys.argv[i + 1] if i + 1 < len(sys.argv) else "unirse")
     P.limpiar(0)
     proj.start_hats("event_whenflagclicked")
     try:

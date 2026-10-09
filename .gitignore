@@ -11,3 +11,6 @@ simulador/sd/scratch/*/
 !simulador/sd/scratch/atrapamanzanas/
 # Configuración de red de cada usuario (Ajustes › Multijugador)
 simulador/sd/red.json
+pc/mundos_servidor/
+simulador/sd/descargas/
+simulador/sd/wifi_ip.json

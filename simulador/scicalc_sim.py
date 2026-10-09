@@ -428,16 +428,18 @@ class MenuApp(App):
             self.sim.launch(self.items[self.sel][2])
 
     def draw(self, s):
+        step = min(66, (SCR_H - HEADER_H - 40) // len(self.items))   # que quepan todos
+        hh = step - 8
         for i, (label, hint, _) in enumerate(self.items):
-            y = HEADER_H + 10 + i * 66
+            y = HEADER_H + 10 + i * step
             sel = i == self.sel
             bg = ACCENT if sel else PANEL
-            pygame.draw.rect(s, bg, (20, y, SCR_W - 40, 58), border_radius=12)
+            pygame.draw.rect(s, bg, (20, y, SCR_W - 40, hh), border_radius=12)
             badge = BG if sel else ACCENT
-            pygame.draw.rect(s, badge, (32, y + 10, 38, 38), border_radius=8)
-            draw_text(s, str(i + 1), font(24, True), TEXT, (32, y + 14), "center", 38)
-            draw_text(s, label, font(26, True), TEXT, (86, y + 13))
-            draw_text(s, hint, font(16), TEXT if sel else MUTED, (20, y + 20), "right", SCR_W - 60)
+            pygame.draw.rect(s, badge, (32, y + (hh - 36) // 2, 36, 36), border_radius=8)
+            draw_text(s, str(i + 1), font(24, True), TEXT, (32, y + (hh - 36) // 2 + 4), "center", 36)
+            draw_text(s, label, font(26, True), TEXT, (84, y + hh // 2 - 15))
+            draw_text(s, hint, font(16), TEXT if sel else MUTED, (20, y + hh // 2 - 8), "right", SCR_W - 60)
         self.footer(s, f"↑↓ mover    EXE abrir    1-{len(self.items)} acceso directo")
 
 
@@ -948,18 +950,24 @@ PERM_TEXT = {
 
 # --- Servidor multijugador (copia de pc/scicalc_servidor.py) -------------------
 PUERTO = 8267
+PUERTO_BUSCAR = 8268         # UDP: búsqueda de servidores en la red local
 MAX_LINEA = 64 * 1024        # bytes por mensaje
-MAX_VARS = 20000             # variables por sala
+MAX_VARS = 60000             # variables por sala (un mundo de Paper Minecraft usa ~25 600)
 MAX_JUGADORES = 16           # por sala
 
 
 class Servidor:
-    def __init__(self, host="0.0.0.0", puerto=PUERTO, log=print):
+    def __init__(self, host="0.0.0.0", puerto=PUERTO, log=print, nombre="Servidor SciCalc",
+                 carpeta=None):
         self.host, self.puerto, self.log = host, puerto, log
+        self.nombre = nombre
+        self.carpeta = carpeta               # dónde se guardan los mundos (None: no se guardan)
         self.salas = {}                      # nombre -> {"clientes": {id: cli}, "vars": {}}
         self.lock = threading.Lock()
         self.next_id = 1
         self.sock = None
+        self.udp = None
+        self.cambios = False                 # hay algo sin guardar
 
     # ---- arranque -----------------------------------------------------------------
     def iniciar(self):
@@ -969,14 +977,85 @@ class Servidor:
         s.bind((self.host, self.puerto))
         s.listen(16)
         self.sock = s
+        self._cargar()
         threading.Thread(target=self._aceptar, daemon=True).start()
+        try:                                 # búsqueda en la red local (si el puerto está libre)
+            u = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            u.bind(("", PUERTO_BUSCAR))
+            self.udp = u
+            threading.Thread(target=self._buscar, daemon=True).start()
+        except OSError:
+            pass
+        if self.carpeta:
+            threading.Thread(target=self._autoguardar, daemon=True).start()
         self.log(f"Servidor SciCalc escuchando en el puerto {self.puerto}")
 
     def parar(self):
-        try:
-            self.sock.close()
-        except Exception:
-            pass
+        self.guardar()
+        for s in (self.sock, self.udp):
+            try:
+                s.close()
+            except Exception:
+                pass
+
+    # ---- mundos guardados en disco ---------------------------------------------------
+    def _archivo(self, sala):
+        seguro = "".join(c if c.isalnum() or c in "-_" else "_" for c in sala)
+        return os.path.join(self.carpeta, seguro + ".json")
+
+    def _cargar(self):
+        if not self.carpeta or not os.path.isdir(self.carpeta):
+            return
+        for n in os.listdir(self.carpeta):
+            if n.endswith(".json"):
+                try:
+                    with open(os.path.join(self.carpeta, n), encoding="utf-8") as f:
+                        d = json.load(f)
+                    self.salas[d["sala"]] = {"clientes": {}, "vars": d["vars"]}
+                    self.log(f"Mundo cargado: {d['sala']} ({len(d['vars'])} variables)")
+                except (OSError, ValueError, KeyError):
+                    pass
+
+    def guardar(self):
+        if not self.carpeta or not self.cambios:
+            return
+        with self.lock:
+            copia = {n: dict(s["vars"]) for n, s in self.salas.items() if s["vars"]}
+            self.cambios = False
+        os.makedirs(self.carpeta, exist_ok=True)
+        for n, v in copia.items():
+            tmp = self._archivo(n) + ".tmp"
+            with open(tmp, "w", encoding="utf-8") as f:
+                json.dump({"sala": n, "vars": v}, f, separators=(",", ":"))
+            os.replace(tmp, self._archivo(n))
+
+    def _autoguardar(self):
+        while self.sock:
+            time.sleep(30)
+            try:
+                self.guardar()
+            except OSError as e:
+                self.log(f"No se pudo guardar: {e}")
+
+    # ---- búsqueda en la red local --------------------------------------------------
+    def info(self):
+        with self.lock:
+            salas = [{"sala": n, "jugadores": [c["nombre"] for c in s["clientes"].values()],
+                      "mundo": "mundo" in s["vars"] or "semilla" in s["vars"]}
+                     for n, s in self.salas.items()]
+        return {"t": "salas", "nombre": self.nombre, "puerto": self.puerto, "salas": salas}
+
+    def _buscar(self):
+        while True:
+            try:
+                data, addr = self.udp.recvfrom(512)
+            except OSError:
+                return
+            if data.startswith(b"SCICALC?"):
+                try:
+                    self.udp.sendto(json.dumps(self.info()).encode("utf-8")[:8000], addr)
+                except OSError:
+                    pass
 
     def _aceptar(self):
         while True:
@@ -1031,6 +1110,9 @@ class Servidor:
 
     def _mensaje(self, cli, msg, addr):
         t = msg.get("t")
+        if t == "salas":                             # consulta sin entrar en ninguna sala
+            self._enviar(cli, self.info())
+            return
         with self.lock:
             if t == "hola" and cli["id"] is None:
                 nombre_sala = str(msg.get("sala", "general"))[:32]
@@ -1061,6 +1143,7 @@ class Servidor:
                 n = str(msg.get("n", ""))[:64]
                 if n in sala["vars"] or len(sala["vars"]) < MAX_VARS:
                     sala["vars"][n] = msg.get("v")
+                    self.cambios = True
                     self._difundir(sala, {"t": "var", "id": cli["id"], "n": n, "v": msg.get("v")},
                                    menos=cli["id"])
 
@@ -1074,8 +1157,9 @@ class Servidor:
             if sala["clientes"]:
                 self._difundir(sala, {"t": "sale", "id": cli["id"],
                                       "anfitrion": min(sala["clientes"])})
-            else:
-                del self.salas[cli["sala"]]          # sala vacía: se olvida
+            elif not sala["vars"]:
+                del self.salas[cli["sala"]]          # sala vacía y sin mundo: se olvida
+            # con mundo, la sala se queda: quien entre después sigue jugando en él
 
 
 def ip_local():
@@ -1101,8 +1185,10 @@ def ip_local():
 #  En el ESP32 real esto mismo irá por Wi-Fi (WiFiClient), por USB a través de
 #  SciCalc Link en el PC, o por Bluetooth SPP entre dos calculadoras.
 # =============================================================================
-NET_STATE = {"wifi": False, "exam": False}
-RED_DEFAULT = {"modo": "servidor", "servidor": "127.0.0.1", "puerto": 8267, "nombre": "Jugador"}
+NET_STATE = {"wifi": False, "exam": False,
+             "destino": None}       # {"host", "puerto", "hostear"}: lo elige la app Multijugador
+RED_DEFAULT = {"modo": "servidor", "servidor": "127.0.0.1", "puerto": 8267, "nombre": "Jugador",
+               "servidores": []}    # servidores añadidos a mano: [{"nombre", "ip", "puerto"}]
 
 
 def read_red_config():
@@ -1112,7 +1198,69 @@ def read_red_config():
     except (OSError, ValueError):
         pass
     cfg["puerto"] = int(cfg.get("puerto", 8267))
+    cfg["servidores"] = [dict(x) for x in cfg.get("servidores", []) if isinstance(x, dict)]
     return cfg
+
+
+# ---- Configuración IP del Wi-Fi (en el ESP32: WiFi.config(ip, puerta, máscara, dns1, dns2),
+#      guardada en NVS; aquí en sd/wifi_ip.json) --------------------------------------
+IP_DEFAULT = {"modo": "dhcp", "ip": "192.168.1.57", "mascara": "255.255.255.0",
+              "puerta": "192.168.1.1", "dns1": "8.8.8.8", "dns2": "1.1.1.1"}
+IP_CAMPOS = ("ip", "mascara", "puerta", "dns1", "dns2")
+
+
+def read_ip_config():
+    cfg = dict(IP_DEFAULT)
+    try:
+        cfg.update(json.loads((SD_DIR / "wifi_ip.json").read_text(encoding="utf-8")))
+    except (OSError, ValueError):
+        pass
+    return cfg
+
+
+def write_ip_config(cfg):
+    (SD_DIR / "wifi_ip.json").write_text(json.dumps(cfg, indent=1), encoding="utf-8")
+
+
+def ip_valida(t):
+    p = t.split(".")
+    return len(p) == 4 and all(x.isdigit() and 0 <= int(x) <= 255 for x in p)
+
+
+def dns_consulta(nombre, servidor, espera=2.0):
+    """Pregunta la IP de 'nombre' a un servidor DNS concreto (UDP 53, registro A).
+    Así se prueba el DNS elegido en Ajustes, como haría el ESP32 (lwIP)."""
+    import random as _r
+    qid = _r.randint(0, 65535)
+    q = qid.to_bytes(2, "big") + b"\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00"
+    for parte in nombre.strip(".").split("."):
+        q += bytes([len(parte)]) + parte.encode("ascii")
+    q += b"\x00\x00\x01\x00\x01"
+    with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as u:
+        u.settimeout(espera)
+        u.sendto(q, (servidor, 53))
+        r, _ = u.recvfrom(1024)
+    if r[:2] != q[:2]:
+        raise OSError("respuesta DNS no válida")
+    if r[3] & 15 == 3:
+        raise OSError("el DNS dice que no existe")
+    if r[3] & 15:
+        raise OSError("el DNS falló (código %d)" % (r[3] & 15))
+    n = int.from_bytes(r[6:8], "big")              # número de respuestas
+    i = len(q)
+    for _ in range(n):
+        if r[i] & 0xC0 == 0xC0:                    # nombre comprimido
+            i += 2
+        else:
+            while r[i]:
+                i += r[i] + 1
+            i += 1
+        tipo, largo = int.from_bytes(r[i:i + 2], "big"), int.from_bytes(r[i + 8:i + 10], "big")
+        i += 10
+        if tipo == 1 and largo == 4:
+            return ".".join(str(b) for b in r[i:i + 4])
+        i += largo
+    raise OSError("sin dirección para " + nombre)
 
 
 def write_red_config(cfg):
@@ -1176,7 +1324,8 @@ def start_host_server(port):
     """Arranca (una vez) el servidor dentro del simulador. Devuelve un error o ''."""
     if _HOST["srv"] is not None:
         return ""
-    srv = Servidor(puerto=port, log=lambda *a: None)
+    nombre = "Calculadora de %s" % read_red_config()["nombre"]
+    srv = Servidor(puerto=port, log=lambda *a: None, nombre=nombre)
     try:
         srv.iniciar()
     except OSError as e:
@@ -1188,6 +1337,89 @@ def start_host_server(port):
             return f"no se puede abrir el puerto {port} ({e})"
     _HOST["srv"] = srv
     return ""
+
+
+def buscar_partidas(espera=0.8):
+    """Busca servidores SciCalc en la red local (UDP 8268). Devuelve [(ip, info)]."""
+    out, vistos = [], set()
+    try:
+        u = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        u.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+        u.settimeout(0.2)
+        for dest in ("<broadcast>", "127.0.0.1"):
+            try:
+                u.sendto(b"SCICALC?", (dest, PUERTO_BUSCAR))
+            except OSError:
+                pass
+        fin = time.time() + espera
+        while time.time() < fin:
+            try:
+                data, addr = u.recvfrom(9000)
+            except socket.timeout:
+                continue
+            try:
+                info = json.loads(data.decode("utf-8"))
+            except ValueError:
+                continue
+            ip = addr[0]
+            if ip.startswith("127.") or ip == ip_local():
+                ip = "127.0.0.1"
+            clave = (ip, info.get("puerto"))
+            if clave not in vistos:
+                vistos.add(clave)
+                out.append((ip, info))
+        u.close()
+    except OSError:
+        pass
+    return out
+
+
+def consultar_salas(ip, puerto, espera=3):
+    """Pregunta a un servidor qué salas tiene. Devuelve su info o lanza OSError."""
+    with socket.create_connection((ip, puerto), timeout=espera) as c:
+        c.sendall(b'{"t":"salas"}\n')
+        buf = b""
+        while b"\n" not in buf:
+            chunk = c.recv(9000)
+            if not chunk:
+                raise OSError("el servidor cerró la conexión")
+            buf += chunk
+    return json.loads(buf.split(b"\n", 1)[0].decode("utf-8"))
+
+
+def juego_de_sala(sala):
+    """Ruta del juego de una sala ("clonaria", "scratch:carpeta") y su nombre, o None."""
+    if sala == "clonaria":
+        p = SD_DIR / "juegos" / "clonaria" / "clonaria.py"
+        return (p, "Clonaria") if p.exists() else (None, "Clonaria")
+    if sala.startswith("scratch:"):
+        carpeta = sala[8:]
+        p = SD_DIR / "scratch" / carpeta / (carpeta + ".py")
+        nombre = carpeta.replace("_", " ")
+        try:
+            nombre = (p.parent / "LEEME.txt").read_text(encoding="utf-8").splitlines()[0]
+            nombre = nombre.replace(" (Scratch)", "")
+        except (OSError, IndexError):
+            pass
+        return (p if p.exists() else None), nombre
+    return None, sala
+
+
+def juegos_multijugador():
+    """Juegos de la SD que tienen multijugador: [(ruta, nombre)]."""
+    out = []
+    p, n = juego_de_sala("clonaria")
+    if p:
+        out.append((p, n))
+    for d in sorted((SD_DIR / "scratch").glob("*/controles.json")):
+        try:
+            if json.loads(d.read_text(encoding="utf-8")).get("multijugador"):
+                p, n = juego_de_sala("scratch:" + d.parent.name)
+                if p:
+                    out.append((p, n))
+        except (OSError, ValueError):
+            pass
+    return out
 
 
 class ScriptRunner:
@@ -1321,7 +1553,11 @@ class ScriptRunner:
             cfg = read_red_config()
             nombre = req.get("nombre") or cfg["nombre"]
             host, port = cfg["servidor"], cfg["puerto"]
-            if cfg["modo"] == "anfitrion":           # esta calculadora hace de servidor
+            hostear = cfg["modo"] == "anfitrion"
+            dest = NET_STATE.get("destino")
+            if dest:                                 # elegido en la app Multijugador
+                host, port, hostear = dest["host"], dest["puerto"], dest.get("hostear", False)
+            if hostear:                              # esta calculadora hace de servidor
                 err = start_host_server(port)
                 if err:
                     self._net_status("error", err)
@@ -1609,7 +1845,7 @@ class PythonApp(App):
                 if self.back_to:
                     self.sim.launch(self.back_to)
             elif key == "EXE":
-                self.start(self.script)
+                self.start(self.script, self.args, keep_dest=True)
             elif key == "UP":
                 rows = len(wrap_console(self.runner.lines, console_cols()))
                 self.scroll_off = min(self.scroll_off + 1, max(0, rows - 15))
@@ -1634,14 +1870,17 @@ class PythonApp(App):
         if f:
             self.start(f)
 
-    def start(self, path):
+    def start(self, path, args=(), keep_dest=False):
+        if not keep_dest:
+            NET_STATE["destino"] = None          # solo lo pone la app Multijugador
+        self.args = tuple(args)
         if self.sim.exam:
             self.sim.ask("Modo examen", ["Python está bloqueado durante", "el modo examen.", "",
                                          "Desactívalo en Ajustes."], None, info=True)
             return
         self.script = path
         self.scroll_off = 0
-        self.runner = ScriptRunner(path)
+        self.runner = ScriptRunner(path, args=self.args)
         self.sim.set_title("► " + path.name)
 
     def update(self, dt):
@@ -2744,6 +2983,77 @@ class LinkServer:
 
 
 # =============================================================================
+#  Escribir texto con el teclado numérico, como en un móvil Nokia (T9 "multitap")
+# -----------------------------------------------------------------------------
+#  2 = a b c 2, 3 = d e f 3 ... 9 = w x y z 9, 0 = espacio 0, 1 = . , - _ ! ? 1
+#  Pulsar varias veces la misma tecla cambia la letra; otra tecla, ► o esperar
+#  un segundo la deja puesta. SHIFT+tecla: mayúscula. DEL borra, EXE acepta,
+#  AC cancela. modo "num": solo números; "ip": números y el punto.
+# =============================================================================
+class T9:
+    TECLAS = {"1": ".,-_!?1", "2": "abc2", "3": "def3", "4": "ghi4", "5": "jkl5", "6": "mno6",
+              "7": "pqrs7", "8": "tuv8", "9": "wxyz9", "0": " 0"}
+    TECLAS_URL = {"1": "./:-_?=&1", "0": " 0"}       # direcciones web
+    ESPERA = 1.0
+
+    def __init__(self, texto, modo="t9", maximo=16):
+        self.texto, self.modo, self.maximo = str(texto), modo, maximo
+        self.ultima, self.t, self.i = None, 0.0, 0
+
+    def tecla(self, k, shift):
+        """Devuelve 'ok', 'cancelar' o None (sigue escribiendo)."""
+        ahora = time.time()
+        if k == "EXE":
+            return "ok"
+        if k == "AC":
+            return "cancelar"
+        if k == "DEL":
+            self.texto, self.ultima = self.texto[:-1], None
+            return None
+        if k == "RIGHT":
+            self.ultima = None
+            return None
+        if self.modo in ("num", "ip"):
+            if (k.isdigit() or (k == "." and self.modo == "ip")) and len(self.texto) < self.maximo:
+                self.texto += k
+            return None
+        if k == "." and len(self.texto) < self.maximo:    # la tecla del punto escribe "."
+            self.texto += "."
+            self.ultima = None
+            return None
+        if k not in self.TECLAS:
+            return None
+        letras = self.TECLAS[k] if self.modo == "t9" else self.TECLAS_URL.get(k, self.TECLAS[k])
+        if k == self.ultima and ahora - self.t < self.ESPERA and self.texto:
+            self.i = (self.i + 1) % len(letras)       # misma tecla: siguiente letra
+            self.texto = self.texto[:-1]
+        elif len(self.texto) >= self.maximo:
+            return None
+        else:
+            self.i = 0
+        c = letras[self.i]
+        if shift or (not self.texto and self.modo == "t9"):   # SHIFT o primera letra: mayúscula
+            c = c.upper()
+        self.texto += c
+        self.ultima, self.t = k, ahora
+        return None
+
+    def mostrar(self):
+        pendiente = self.ultima and time.time() - self.t < self.ESPERA
+        return self.texto + ("" if pendiente else "_")
+
+    AYUDA_T9 = ["2abc 3def 4ghi 5jkl 6mno 7pqrs 8tuv 9wxyz 0=espacio",
+                "Repite la tecla: otra letra · SHIFT: MAYÚS · EXE/AC"]
+    AYUDA_NUM = ["Escribe con los números (y . en la IP).", "DEL borra · EXE guardar · AC cancelar"]
+
+    AYUDA_URL = ["2abc … 9wxyz · 1 = . / : - _ ? = &",
+                 "Sin punto = buscar en internet · EXE ir · AC"]
+
+    def ayuda(self):
+        return {"t9": self.AYUDA_T9, "url": self.AYUDA_URL}.get(self.modo, self.AYUDA_NUM)
+
+
+# =============================================================================
 #  Ajustes: Wi-Fi, Bluetooth, USB, modo examen, paquetes
 # =============================================================================
 class SettingsApp(App):
@@ -2752,6 +3062,11 @@ class SettingsApp(App):
     def __init__(self, sim):
         super().__init__(sim)
         self.page, self.sel, self.connecting = "main", {}, None
+        self.edit = None                  # (campo, T9) mientras se escribe un valor
+        self.dns_res = None               # resultado de "Probar DNS"
+
+    def ip_actual(self, c):
+        return c["ip"] if c["modo"] == "estatica" else ip_local()
 
     def on_enter(self):
         self.page = "main"
@@ -2776,6 +3091,10 @@ class SettingsApp(App):
         if self.page == "wifi":
             r = [dict(label="Wi-Fi", value="Encendido" if sim.wifi_on else "Apagado", action="toggle:wifi",
                       color=OK if sim.wifi_on else None)]
+            if sim.wifi_net:
+                c = read_ip_config()
+                r.append(dict(label="Detalles de la red", value=self.ip_actual(c) +
+                              (" (estática)" if c["modo"] == "estatica" else ""), action="page:ipcfg"))
             if sim.wifi_on:
                 for ssid, rssi, sec in sim.networks:
                     if self.connecting and self.connecting[0] == ssid:
@@ -2797,14 +3116,36 @@ class SettingsApp(App):
             return [dict(label="Modo USB", value="Serie (SciCalc Link)", action=None, color=OK),
                     dict(label="Velocidad", value="115200 baudios", action=None),
                     dict(label="Disco USB (MSC)", value="requiere ESP32-S3", action="info:msc")]
+        if self.page == "ipcfg":
+            c = read_ip_config()
+            est = c["modo"] == "estatica"
+            ed = lambda campo, v: self.edit[1].mostrar() if self.edit and self.edit[0] == campo else v
+            rssi = dict((n, r_) for n, r_, _ in sim.networks).get(sim.wifi_net, -60)
+            auto = {"ip": self.ip_actual(c), "mascara": "255.255.255.0",
+                    "puerta": self.ip_actual(c).rsplit(".", 1)[0] + ".1"}
+            r = [dict(label="Red", value=sim.wifi_net or "-", action=None),
+                 dict(label="Configurar IP", value="Estática (manual)" if est else "Automática (DHCP)",
+                      action="toggle:ipmodo", color=WARN if est else OK)]
+            for campo, nombre in (("ip", "Tu IP local"), ("mascara", "Máscara de subred"),
+                                  ("puerta", "Puerta de enlace")):
+                r.append(dict(label=nombre, value=ed(campo, c[campo] if est else auto[campo]),
+                              action="edit:" + campo if est else None))
+            r += [dict(label="DNS 1", value=ed("dns1", c["dns1"]), action="edit:dns1"),
+                  dict(label="DNS 2", value=ed("dns2", c["dns2"]), action="edit:dns2"),
+                  dict(label="Probar DNS", value=self.dns_res or "example.com", action="dnstest:"),
+                  dict(label="MAC", value="24:6F:28:7F:3A:C1", action=None),
+                  dict(label="Señal", value=f"{rssi} dBm", action=None, signal=rssi)]
+            return r
         if self.page == "red":
             cfg = read_red_config()
             anf = cfg["modo"] == "anfitrion"
+            ed = lambda campo, v: self.edit[1].mostrar() if self.edit and self.edit[0] == campo else v
             return [dict(label="Modo", value="Anfitrión (esta calculadora)" if anf else "Servidor dedicado",
                          action="toggle:redmodo", color=OK if anf else None),
-                    dict(label="Servidor", value="-" if anf else cfg["servidor"], action=None),
-                    dict(label="Puerto", value=str(cfg["puerto"]), action=None),
-                    dict(label="Tu nombre", value=cfg["nombre"], action=None)]
+                    dict(label="Servidor", value="-" if anf else ed("servidor", cfg["servidor"]),
+                         action=None if anf else "edit:servidor"),
+                    dict(label="Puerto", value=ed("puerto", str(cfg["puerto"])), action="edit:puerto"),
+                    dict(label="Tu nombre", value=ed("nombre", cfg["nombre"]), action="edit:nombre")]
         if self.page == "pkgs":
             return [dict(label=n, value=f"{i.get('version', '?')} · {i.get('source', '?')}", action="pkg:" + n)
                     for n, i in sorted(read_manifest().items())]
@@ -2816,7 +3157,7 @@ class SettingsApp(App):
             if sim.wifi_net:
                 st = f"SciCalc Link escuchando en 127.0.0.1:{LINK_PORT}" if sim.link.sock else \
                      f"SciCalc Link: {sim.link.error or 'iniciando…'}"
-                return ["IP 192.168.1.57  (simulado)", st]
+                return [f"IP {self.ip_actual(read_ip_config())}", st]
             return ["Elige una red y pulsa EXE."]
         if self.page == "bt":
             return ["En el PC: Bluetooth > Agregar dispositivo >",
@@ -2827,9 +3168,15 @@ class SettingsApp(App):
             return ["Conecta el cable USB-C y elige el puerto COM",
                     "en SciCalc Link (USB). Mismo protocolo que",
                     "Bluetooth y Wi-Fi."]
+        if self.page in ("red", "ipcfg") and self.edit:
+            return self.edit[1].ayuda()
+        if self.page == "ipcfg":
+            return ["EXE en DNS para cambiarlo. En estática también",
+                    "IP, máscara y puerta. (Simulador: usa la red del PC;",
+                    "la IP automática es la real del PC.)"]
         if self.page == "red":
             cfg = read_red_config()
-            l = ["Servidor, puerto y nombre: edita /red.json", "(o desde el PC con SciCalc Link)."]
+            l = ["EXE sobre Servidor, Puerto o Tu nombre", "para cambiarlos (como en un Nokia)."]
             if cfg["modo"] == "anfitrion":
                 l += [f"Los demás ponen como servidor tu IP,", f"puerto {cfg['puerto']} (simulador: 127.0.0.1)."]
             else:
@@ -2850,6 +3197,34 @@ class SettingsApp(App):
 
     # ---- teclas ------------------------------------------------------------
     def on_key(self, key, shift):
+        if self.edit and self.edit[0] in IP_CAMPOS:     # escribiendo una IP
+            campo, t9 = self.edit
+            r = t9.tecla(key, shift)
+            if r == "ok":
+                if ip_valida(t9.texto):
+                    c = read_ip_config()
+                    c[campo] = t9.texto
+                    write_ip_config(c)
+                else:
+                    self.sim.ask("IP no válida", [f"«{t9.texto}» no es una IP.", "",
+                                                  "Formato: 4 números de 0 a 255", "separados por puntos."],
+                                 None, info=True)
+            if r:
+                self.edit = None
+            return
+        if self.edit:                             # escribiendo un valor (T9)
+            campo, t9 = self.edit
+            r = t9.tecla(key, shift)
+            if r == "ok":
+                cfg = read_red_config()
+                v = t9.texto.strip()
+                if campo == "puerto":
+                    v = int(v) if v.isdigit() and 0 < int(v) < 65536 else cfg["puerto"]
+                cfg[campo] = v or cfg[campo]
+                write_red_config(cfg)
+            if r:
+                self.edit = None
+            return
         rows = self.rows()
         sel = self.sel.get(self.page, 0)
         if rows:
@@ -2859,7 +3234,9 @@ class SettingsApp(App):
         elif key == "DOWN" and rows:
             sel = (sel + 1) % len(rows)
         elif key in ("LEFT", "AC", "DEL"):
-            if self.page != "main":
+            if self.page == "ipcfg":                  # Red -> vuelve a Wi-Fi
+                self.do("page:wifi")
+            elif self.page != "main":
                 self.page = "main"
                 self.sim.set_title(self.title)
             return
@@ -2872,7 +3249,7 @@ class SettingsApp(App):
     def do(self, action):
         sim = self.sim
         kind, _, arg = action.partition(":")
-        titles = {"wifi": "Wi-Fi", "bt": "Bluetooth", "usb": "USB", "pkgs": "Paquetes", "about": "Acerca de",
+        titles = {"wifi": "Wi-Fi", "bt": "Bluetooth", "usb": "USB", "pkgs": "Paquetes", "about": "Acerca de", "ipcfg": "Red",
                   "red": "Multijugador"}
         if kind == "page":
             self.page = arg
@@ -2884,6 +3261,30 @@ class SettingsApp(App):
                         lambda a: a in "ya" and sim.set_exam(True))
             else:
                 sim.ask("Modo examen", ["¿Salir del modo examen?"], lambda a: a in "ya" and sim.set_exam(False))
+        elif kind == "edit" and arg in IP_CAMPOS:
+            self.edit = (arg, T9(read_ip_config()[arg], "ip", 15))
+        elif kind == "toggle" and arg == "ipmodo":
+            c = read_ip_config()
+            if c["modo"] == "dhcp":                    # al pasar a manual, parte de los valores actuales
+                c.update(modo="estatica", ip=self.ip_actual(c))
+                c["puerta"] = c["ip"].rsplit(".", 1)[0] + ".1"
+            else:
+                c["modo"] = "dhcp"
+            write_ip_config(c)
+        elif kind == "dnstest":
+            self.dns_res = "preguntando…"
+            servidor = read_ip_config()["dns1"]
+
+            def run():
+                try:
+                    self.dns_res = f"{dns_consulta('example.com', servidor)} ({servidor})"
+                except (OSError, IndexError) as e:
+                    self.dns_res = f"falla: {e}"[:34]
+            threading.Thread(target=run, daemon=True).start()
+        elif kind == "edit":
+            cfg = read_red_config()
+            modo = {"servidor": "ip", "puerto": "num"}.get(arg, "t9")
+            self.edit = (arg, T9(cfg[arg], modo, 15 if arg != "puerto" else 5))
         elif kind == "toggle" and arg == "redmodo":
             cfg = read_red_config()
             cfg["modo"] = "servidor" if cfg["modo"] == "anfitrion" else "anfitrion"
@@ -2961,6 +3362,562 @@ class SettingsApp(App):
 
 
 # =============================================================================
+#  Navegador: páginas web en modo texto (como los móviles de antes) y descargas
+# -----------------------------------------------------------------------------
+#  El ESP32 no puede ejecutar JavaScript ni dibujar CSS: se descarga el HTML
+#  (HTTPClient + WiFiClientSecure, con TLS de mbedTLS), se queda con el texto,
+#  los títulos y los enlaces, y se muestra con ajuste de línea. Las páginas se
+#  limitan a 300 KB (en el ESP32 sin PSRAM, bastante menos: se lee por trozos).
+#  Lo que no es una página (zip, py, png, pdf...) se ofrece para DESCARGAR a
+#  /descargas en la MicroSD.
+#  Teclas: ▲▼ desplazar · ◄► elegir enlace · EXE abrir · + descargar enlace
+#          SHIFT+EXE escribir dirección · DEL atrás · AC salir
+# =============================================================================
+from html.parser import HTMLParser as _HTMLParser
+import urllib.request as _urlreq
+import urllib.parse as _urlparse
+
+WEB_MAX = 300 * 1024                 # tamaño máximo de una página
+WEB_DESCARGA_MAX = 16 * 1024 * 1024  # tamaño máximo de una descarga
+WEB_AGENTE = "SciCalc/0.6 (ESP32; navegador de texto)"
+WEB_INICIO = [("Buscar en internet", "buscar:"), ("Wikipedia (es)", "https://es.m.wikipedia.org"),
+              ("MicroPython", "https://micropython.org"),
+              ("Paquetes micropython-lib", "https://github.com/micropython/micropython-lib"),
+              ("Este proyecto (GitHub)", "https://github.com/yeroi/esp32-calculadora")]
+WEB_ES_PAGINA = ("text/html", "text/plain", "application/xhtml")
+
+
+class _Texto(_HTMLParser):
+    """HTML -> párrafos de (palabra, nº de enlace o None) + lista de enlaces."""
+    BLOQUES = {"p", "div", "br", "li", "tr", "h1", "h2", "h3", "h4", "h5", "h6", "section",
+               "article", "header", "footer", "ul", "ol", "table", "pre", "blockquote", "hr", "dt", "dd"}
+    FUERA = {"script", "style", "noscript", "svg", "head", "template", "iframe"}
+
+    def __init__(self, base):
+        super().__init__(convert_charrefs=True)
+        self.base, self.parrafos, self.enlaces = base, [[]], []
+        self.titulo, self.en_titulo, self.fuera, self.enlace = "", False, 0, None
+        self.cabecera = False
+
+    def nuevo(self):
+        if self.parrafos[-1]:
+            self.parrafos.append([])
+
+    def handle_starttag(self, tag, attrs):
+        a = dict(attrs)
+        if tag in self.FUERA:
+            self.fuera += 1
+        elif tag == "title":
+            self.en_titulo = True
+        elif tag in self.BLOQUES:
+            self.nuevo()
+            if tag in ("h1", "h2", "h3"):
+                self.cabecera = True
+            if tag == "li":
+                self.parrafos[-1].append(("•", None, False))
+        elif tag == "a" and a.get("href") and not a["href"].startswith(("javascript:", "#")):
+            self.enlaces.append(_urlparse.urljoin(self.base, a["href"]))
+            self.enlace = len(self.enlaces) - 1
+        elif tag == "img" and a.get("alt"):
+            self.parrafos[-1].append(("[" + a["alt"][:30] + "]", self.enlace, False))
+
+    def handle_endtag(self, tag):
+        if tag in self.FUERA:
+            self.fuera = max(0, self.fuera - 1)
+        elif tag == "title":
+            self.en_titulo = False
+        elif tag == "a":
+            self.enlace = None
+        elif tag in self.BLOQUES:
+            self.nuevo()
+            self.cabecera = False
+
+    def handle_data(self, data):
+        if self.en_titulo:
+            self.titulo += data
+            return
+        if self.fuera:
+            return
+        for w in data.split():
+            self.parrafos[-1].append((w, self.enlace, self.cabecera))
+
+
+def web_descargar(url, maximo):
+    """Devuelve (url final, tipo, bytes, tamaño anunciado). Lanza OSError."""
+    req = _urlreq.Request(url, headers={"User-Agent": WEB_AGENTE, "Accept-Language": "es,en"})
+    with _urlreq.urlopen(req, timeout=15) as r:
+        tipo = r.headers.get("Content-Type", "")
+        largo = int(r.headers.get("Content-Length") or 0)
+        datos = r.read(maximo + 1)
+        return r.geturl(), tipo, datos, largo
+
+
+def web_resolver(texto):
+    """Lo escrito en la barra -> URL (o búsqueda si no parece una dirección)."""
+    t = texto.strip()
+    if not t:
+        return None
+    if "://" in t:
+        return t
+    if "." in t and " " not in t:
+        return "https://" + t
+    return "https://html.duckduckgo.com/html/?q=" + _urlparse.quote(t)
+
+
+class WebApp(App):
+    title = "Navegador"
+
+    def __init__(self, sim):
+        super().__init__(sim)
+        self.url, self.titulo = "", ""
+        self.lineas, self.enlaces = [], []     # lineas: [[(texto, enlace, cabecera), ...], ...]
+        self.sel, self.scroll = -1, 0
+        self.historial = []
+        self.cargando, self.error = None, None
+        self.edit = None                       # T9 de la barra de dirección
+        self.pendiente = None                  # resultado del hilo de carga
+        self.inicio()
+
+    # ---- páginas -------------------------------------------------------------------
+    def inicio(self):
+        self.url, self.titulo = "", "Inicio"
+        self.enlaces = [u for _, u in WEB_INICIO]
+        parr = [[("Navegador", None, True), ("SciCalc", None, True)], []]
+        for i, (n, _) in enumerate(WEB_INICIO):
+            parr.append([("•", None, False)] + [(w, i, False) for w in n.split()])
+        parr += [[], [(w, None, False) for w in
+                      "SHIFT+EXE para escribir una dirección o buscar. Las descargas van a /descargas.".split()]]
+        self.maquetar(parr)
+
+    def maquetar(self, parrafos):
+        """Parte los párrafos en líneas que caben en la pantalla."""
+        f = font(17)
+        ancho = SCR_W - 28
+        self.lineas = []
+        for p in parrafos:
+            linea, x = [], 0
+            for w, en, cab in p:
+                wpx = f.size(w + " ")[0]
+                if x + wpx > ancho and linea:
+                    self.lineas.append(linea)
+                    linea, x = [], 0
+                linea.append((w, en, cab))
+                x += wpx
+            self.lineas.append(linea)
+        while self.lineas and not self.lineas[-1]:
+            self.lineas.pop()
+        self.sel, self.scroll = -1, 0
+
+    def abrir(self, url, guardar=True):
+        if not self.sim.wifi_net or self.sim.exam:
+            self.error = "Sin Wi-Fi" if not self.sim.wifi_net else "Bloqueado en modo examen"
+            return
+        if url == "buscar:":
+            self.escribir("")
+            return
+        if guardar and (self.url or self.titulo == "Inicio"):
+            self.historial.append(self.url)
+        self.cargando, self.error = url, None
+
+        def run():
+            try:
+                self.pendiente = ("ok", url) + web_descargar(url, WEB_MAX)
+            except Exception as e:                 # sin red, 404, certificado...
+                self.pendiente = ("error", url, str(e)[:80])
+        threading.Thread(target=run, daemon=True).start()
+
+    def recibir(self, res):
+        self.cargando = None
+        if res[0] == "error":
+            self.error = res[2]
+            if self.historial:
+                self.historial.pop()
+            return
+        _, pedida, final, tipo, datos, largo = res
+        if not tipo.startswith(WEB_ES_PAGINA):          # no es una página: ofrecer descargarla
+            if self.historial:
+                self.historial.pop()
+            self.ofrecer_descarga(final, largo or len(datos))
+            return
+        if len(datos) > WEB_MAX:
+            datos = datos[:WEB_MAX]
+        cod = "utf-8"
+        if "charset=" in tipo:
+            cod = tipo.split("charset=")[-1].split(";")[0].strip() or "utf-8"
+        texto = datos.decode(cod, "replace")
+        self.url = final
+        if tipo.startswith("text/plain"):
+            self.titulo, self.enlaces = final.rsplit("/", 1)[-1], []
+            self.maquetar([[(w, None, False) for w in l.split()] for l in texto.splitlines()])
+            return
+        p = _Texto(final)
+        try:
+            p.feed(texto)
+        except Exception:
+            pass
+        # Buscador: los enlaces de DuckDuckGo pasan por una redirección -> la URL real
+        enl = []
+        for u in p.enlaces:
+            q = _urlparse.parse_qs(_urlparse.urlparse(u).query)
+            enl.append(q["uddg"][0] if "duckduckgo.com/l/" in u and "uddg" in q else u)
+        self.titulo, self.enlaces = " ".join(p.titulo.split())[:60] or final, enl
+        self.maquetar(p.parrafos)
+        if self.sim.current is self:
+            self.sim.set_title(self.titulo[:28])
+
+    # ---- descargas -------------------------------------------------------------------
+    def ofrecer_descarga(self, url, largo):
+        nombre = _urlparse.unquote(_urlparse.urlparse(url).path.rsplit("/", 1)[-1]) or "descarga"
+        tam = f"{largo / 1024:.0f} KB" if largo < 1024 * 1024 else f"{largo / 1048576:.1f} MB"
+        if largo > WEB_DESCARGA_MAX:
+            self.sim.ask("Descargar", [nombre[:30], f"Ocupa {tam}: demasiado grande", "para la calculadora."],
+                         None, info=True)
+            return
+        self.sim.ask("Descargar", [nombre[:30], tam if largo else "tamaño desconocido", "",
+                                   "¿Guardar en /descargas", "de la MicroSD?"],
+                     lambda a: a in "ya" and self.descargar(url, nombre))
+
+    def descargar(self, url, nombre):
+        self.cargando = "descargando " + nombre
+
+        def run():
+            try:
+                _, _, datos, _ = web_descargar(url, WEB_DESCARGA_MAX)
+                if len(datos) > WEB_DESCARGA_MAX:
+                    raise OSError("demasiado grande")
+                d = SD_DIR / "descargas"
+                d.mkdir(exist_ok=True)
+                seguro = "".join(c for c in nombre if c.isalnum() or c in "._-") or "descarga"
+                destino, n = d / seguro, 1
+                while destino.exists():
+                    stem, ext = os.path.splitext(seguro)
+                    destino, n = d / f"{stem}({n}){ext}", n + 1
+                destino.write_bytes(datos)
+                self.pendiente = ("descargado", destino.name, len(datos))
+            except Exception as e:
+                self.pendiente = ("fallo", nombre, str(e)[:60])
+        threading.Thread(target=run, daemon=True).start()
+
+    # ---- teclas -------------------------------------------------------------------------
+    def escribir(self, texto):
+        self.edit = T9(texto, "url", 120)
+
+    def visibles(self):
+        return (SCR_H - HEADER_H - 64) // 22
+
+    def enlaces_en_pantalla(self):
+        out = []
+        for i in range(self.scroll, min(len(self.lineas), self.scroll + self.visibles())):
+            for _, en, _ in self.lineas[i]:
+                if en is not None and en not in out:
+                    out.append(en)
+        return out
+
+    def on_key(self, key, shift):
+        if self.edit:
+            r = self.edit.tecla(key, shift)
+            if r == "ok":
+                url = web_resolver(self.edit.texto)
+                self.edit = None
+                if url:
+                    self.abrir(url)
+            elif r == "cancelar":
+                self.edit = None
+            return
+        if shift and key == "EXE":
+            self.escribir(self.url)
+            return
+        if key == "AC":
+            self.sim.launch(self.sim.menu)
+            return
+        if self.cargando:
+            return
+        self.error = None
+        vis = self.visibles()
+        if key == "UP":
+            self.scroll = max(0, self.scroll - 1)
+        elif key == "DOWN":
+            self.scroll = min(max(0, len(self.lineas) - vis), self.scroll + 1)
+        elif key in ("LEFT", "RIGHT"):
+            en = self.enlaces_en_pantalla()
+            if en:
+                if self.sel not in en:
+                    self.sel = en[0] if key == "RIGHT" else en[-1]
+                else:
+                    i = en.index(self.sel) + (1 if key == "RIGHT" else -1)
+                    if 0 <= i < len(en):
+                        self.sel = en[i]
+                    elif key == "RIGHT":                 # pasar a la siguiente pantalla
+                        self.scroll = min(max(0, len(self.lineas) - vis), self.scroll + vis - 1)
+                        en = self.enlaces_en_pantalla()
+                        self.sel = next((e for e in en if e > self.sel), self.sel)
+        elif key == "EXE" and 0 <= self.sel < len(self.enlaces):
+            self.abrir(self.enlaces[self.sel])
+        elif key == "ADD" and 0 <= self.sel < len(self.enlaces):
+            self.ofrecer_descarga(self.enlaces[self.sel], 0)
+        elif key == "DEL":
+            if self.historial:
+                u = self.historial.pop()
+                if u:
+                    self.abrir(u, guardar=False)
+                else:
+                    self.inicio()
+            else:
+                self.sim.launch(self.sim.menu)
+
+    def update(self, dt):
+        res, self.pendiente = self.pendiente, None
+        if not res:
+            return
+        if res[0] in ("ok", "error"):
+            self.recibir(res)
+        else:
+            self.cargando = None
+            if res[0] == "descargado":
+                self.sim.ask("Descarga completa", [res[1][:30], f"{res[2] // 1024} KB en /descargas"],
+                             None, info=True)
+            else:
+                self.sim.ask("Descarga fallida", [res[1][:30], res[2][:34]], None, info=True)
+
+    # ---- dibujo -------------------------------------------------------------------------
+    def draw(self, s):
+        y0 = HEADER_H + 4
+        barra = self.edit.mostrar() if self.edit else (self.url or "inicio — SHIFT+EXE dirección")
+        pygame.draw.rect(s, PANEL if not self.edit else ACCENT, (8, y0, SCR_W - 16, 26), border_radius=6)
+        draw_text(s, barra[-48:], font(16), TEXT, (14, y0 + 4))
+        y = y0 + 32
+        if self.edit:
+            for i, l in enumerate(self.edit.ayuda()):
+                draw_text(s, l, font(16), MUTED, (14, y + i * 20))
+            return
+        msg = ("Cargando… " + self.cargando[:40]) if self.cargando else \
+              ("No se pudo abrir: " + self.error) if self.error else None
+        if msg:
+            draw_text(s, msg[:52], font(16), WARN if self.cargando else ERR, (14, y))
+            y += 22
+        f, fb = font(17), font(17, True)
+        for i in range(self.scroll, min(len(self.lineas), self.scroll + self.visibles())):
+            x = 14
+            for w, en, cab in self.lineas[i]:
+                ff = fb if cab else f
+                img_w = ff.size(w + " ")[0]
+                if en is not None and en == self.sel:
+                    pygame.draw.rect(s, ACCENT, (x - 2, y, img_w, 21), border_radius=3)
+                col = TEXT if en is None or en == self.sel else ACCENT
+                if cab and en is None:
+                    col = WARN
+                draw_text(s, w, ff, col, (x, y + 1))
+                x += img_w
+            y += 22
+        total = max(1, len(self.lineas))
+        if total > self.visibles():                       # barra de desplazamiento
+            h = SCR_H - HEADER_H - 70
+            pygame.draw.rect(s, PANEL, (SCR_W - 6, y0 + 32, 4, h))
+            pygame.draw.rect(s, ACCENT, (SCR_W - 6, y0 + 32 + h * self.scroll // total,
+                                         4, max(8, h * self.visibles() // total)))
+        self.footer(s, "▲▼ mover  ◄► enlace  EXE abrir  + bajar  DEL atrás")
+
+
+# =============================================================================
+#  Multijugador (menú principal): buscar partidas, servidores por IP, hostear
+# -----------------------------------------------------------------------------
+#  * Buscar partidas: pregunta por difusión UDP (puerto 8268) a los servidores
+#    SciCalc de la red local: dedicados (pc/scicalc_servidor.py) y calculadoras
+#    que hostean. Lista sus salas: cada sala es un juego con su mundo.
+#  * Servidores añadidos por IP (para jugar por internet): se guardan en red.json.
+#  * Hostear un mundo: esta calculadora hace de servidor y abre el juego.
+#  Al elegir una partida se abre el juego, que entra solo en el mundo
+#  (el juego recibe "--red unirse" o "--red hostear" en sys.argv).
+#  Bluetooth: solo en el ESP32 real (Bluetooth clásico SPP entre calculadoras).
+# =============================================================================
+class MultiApp(SettingsApp):
+    title = "Multijugador"
+
+    def __init__(self, sim):
+        super().__init__(sim)
+        self.found, self.buscando = None, False
+        self.srv = None              # (ip, puerto, índice en "servidores" o None)
+        self.srv_info = None         # respuesta del servidor, o texto de error
+        self.destino = None          # dónde se hostea al elegir un juego
+
+    def on_enter(self):
+        self.page, self.edit = "main", None
+        self.buscar()
+
+    def online(self):
+        return bool(self.sim.wifi_net) and not self.sim.exam
+
+    def buscar(self):
+        if self.buscando or not self.online():
+            return
+        self.buscando = True
+
+        def run():
+            self.found = buscar_partidas()
+            self.buscando = False
+        threading.Thread(target=run, daemon=True).start()
+
+    def consultar(self):
+        ip, puerto, _ = self.srv
+        self.srv_info = None
+
+        def run():
+            try:
+                self.srv_info = consultar_salas(ip, puerto)
+            except (OSError, ValueError) as e:
+                self.srv_info = f"No responde ({e})"[:60]
+        threading.Thread(target=run, daemon=True).start()
+
+    def sala_row(self, ip, puerto, srv_nombre, sala):
+        _, nombre = juego_de_sala(sala["sala"])
+        nombre = nombre.split(" (")[0]                       # "Paper Minecraft v11.7"
+        n = len(sala.get("jugadores", []))
+        srv_nombre = srv_nombre.replace("Calculadora de ", "")
+        return dict(label=nombre[:21], value=f"{n} jug. · {srv_nombre}"[:22],
+                    action=("unirse", ip, puerto, sala["sala"]), color=OK if n else None)
+
+    def rows(self):
+        sim, cfg = self.sim, read_red_config()
+        if self.page == "main":
+            if sim.exam:
+                return []
+            if not sim.wifi_net:
+                return [dict(label="Wi-Fi", value="sin conectar", action=("wifi",), color=WARN)]
+            r = [dict(label="Buscar partidas", value="buscando…" if self.buscando else "red local",
+                      action=("buscar",))]
+            for ip, info in (self.found or []):
+                for sala in info.get("salas", []):
+                    r.append(self.sala_row(ip, info.get("puerto", 8267), info.get("nombre", ip), sala))
+            for i, sv in enumerate(cfg["servidores"]):
+                r.append(dict(label=sv.get("nombre") or sv["ip"], value=f"{sv['ip']}:{sv['puerto']}",
+                              action=("servidor", sv["ip"], sv["puerto"], i)))
+            nuevo = self.edit[1].mostrar() if self.edit and self.edit[0] == "nuevo_ip" else "IP"
+            r += [dict(label="+ Añadir servidor", value=nuevo, action=("editar", "nuevo_ip")),
+                  dict(label="Hostear un mundo", value="tú eres el servidor", action=("hostear",)),
+                  dict(label="Bluetooth", value="solo en el ESP32", action=("bt",)),
+                  dict(label="Tu nombre", value=self.edit[1].mostrar() if self.edit and
+                       self.edit[0] == "nombre" else cfg["nombre"], action=("editar", "nombre"))]
+            return r
+        if self.page == "salas":
+            ip, puerto, idx = self.srv
+            info = self.srv_info
+            r = []
+            if isinstance(info, dict):
+                for sala in info.get("salas", []):
+                    r.append(self.sala_row(ip, puerto, info.get("nombre", ip), sala))
+            r.append(dict(label="Nueva partida aquí", value="abrir un juego", action=("hostear_en",)))
+            if idx is not None:
+                r.append(dict(label="Quitar servidor", value=f"{ip}:{puerto}", action=("quitar", idx),
+                              color=WARN))
+            return r
+        if self.page == "juegos":
+            return [dict(label=n.split(" (")[0][:26], value="abrir", action=("jugar", p))
+                    for p, n in juegos_multijugador()]
+        return []
+
+    def info_lines(self):
+        if self.edit:
+            return self.edit[1].ayuda()
+        sim = self.sim
+        if sim.exam:
+            return ["Bloqueado durante el modo examen."]
+        if self.page == "main" and not sim.wifi_net:
+            return ["Conecta el Wi-Fi para jugar en red."]
+        if self.page == "main" and self.found == [] and not self.buscando:
+            return ["No hay partidas abiertas en tu red.", "Hostea una, o añade un servidor por IP."]
+        if self.page == "salas":
+            if self.srv_info is None:
+                return ["Preguntando al servidor…"]
+            if isinstance(self.srv_info, str):
+                return [self.srv_info]
+            if not self.srv_info.get("salas"):
+                return ["No hay partidas en este servidor."]
+        if self.page == "juegos" and not self.rows():
+            return ["No hay juegos con multijugador en la SD.", "Clonaria, o un Scratch con perfil",
+                    "(p. ej. Paper Minecraft, pc/perfiles/)."]
+        if self.page == "juegos":
+            d = self.destino or {}
+            return ["Elige el juego. Los demás te verán en", "Multijugador › Buscar partidas." if
+                    d.get("hostear") else "la lista de este servidor."]
+        return []
+
+    def on_key(self, key, shift):
+        if self.edit:
+            campo, t9 = self.edit
+            r = t9.tecla(key, shift)
+            if r == "ok" and t9.texto.strip():
+                cfg = read_red_config()
+                if campo == "nuevo_ip":
+                    texto = t9.texto.strip()
+                    ip, _, port = texto.partition(":")
+                    cfg["servidores"].append({"nombre": ip, "ip": ip,
+                                              "puerto": int(port) if port.isdigit() else 8267})
+                else:
+                    cfg[campo] = t9.texto.strip()
+                write_red_config(cfg)
+            if r:
+                self.edit = None
+            return
+        super().on_key(key, shift)
+
+    def abrir(self, path, modo, destino):
+        NET_STATE["destino"] = destino
+        self.sim.launch(self.sim.py)
+        self.sim.py.start(Path(path), args=("--red", modo), keep_dest=True)
+        self.sim.py.back_to = self
+
+    def do(self, action):
+        sim, cfg = self.sim, read_red_config()
+        kind = action[0]
+        if kind == "wifi":
+            sim.launch(sim.settings)
+            sim.settings.do("page:wifi")
+        elif kind == "buscar":
+            self.buscar()
+        elif kind == "editar":
+            modo = "ip" if action[1] == "nuevo_ip" else "t9"
+            self.edit = (action[1], T9("" if modo == "ip" else cfg["nombre"], modo, 21 if modo == "ip" else 15))
+        elif kind == "servidor":
+            self.srv = (action[1], action[2], action[3])
+            self.page = "salas"
+            sim.set_title("Multijugador › " + action[1])
+            self.consultar()
+        elif kind == "unirse":
+            _, ip, puerto, sala = action
+            path, nombre = juego_de_sala(sala)
+            if path is None:
+                sim.ask("Multijugador", [f"No tienes «{nombre}» en la SD.", "",
+                                         "Cópialo o conviértelo primero", "(Scratch: pc/sb3_a_scicalc.py)."],
+                        None, info=True)
+                return
+            self.abrir(path, "unirse", {"host": ip, "puerto": puerto, "hostear": False})
+        elif kind == "hostear":
+            self.destino = {"host": "127.0.0.1", "puerto": cfg["puerto"], "hostear": True}
+            self.page = "juegos"
+            sim.set_title("Multijugador › Hostear")
+        elif kind == "hostear_en":
+            ip, puerto, _ = self.srv
+            self.destino = {"host": ip, "puerto": puerto, "hostear": False}
+            self.page = "juegos"
+            sim.set_title("Multijugador › Nueva partida")
+        elif kind == "jugar":
+            self.abrir(action[1], "hostear", self.destino)
+        elif kind == "quitar":
+            del cfg["servidores"][action[1]]
+            write_red_config(cfg)
+            self.page = "main"
+            sim.set_title(self.title)
+        elif kind == "bt":
+            sim.ask("Bluetooth", ["Partidas por Bluetooth entre", "calculadoras: solo en el ESP32",
+                                  "real (Bluetooth clásico SPP).", "",
+                                  "El simulador no tiene Bluetooth:", "usa la red local o un servidor."],
+                    None, info=True)
+
+    def update(self, dt):
+        pass
+
+
+# =============================================================================
 #  Simulador: carcasa + pantalla + gestor de apps
 # =============================================================================
 class Simulator:
@@ -2989,6 +3946,8 @@ class Simulator:
         self.modals = []                       # diálogos en pantalla (el primero es el visible)
         self.pending = queue.Queue()           # diálogos pedidos desde otros hilos
         self.settings = SettingsApp(self)
+        self.multi = MultiApp(self)
+        self.web = WebApp(self)
         self.console = ConsoleApp(self)
         self.editor = EditorApp(self)
         self.menu = MenuApp(self, [
@@ -2996,6 +3955,8 @@ class Simulator:
             ("Python", "sandbox .py", self.py),
             ("Archivos SD", "fotos · texto · todo", self.files),
             ("Consola", "tipo cmd", self.console),
+            ("Multijugador", "red local · IP · hostear", self.multi),
+            ("Navegador", "web · descargas", self.web),
             ("Ajustes", "Wi-Fi · BT · USB", self.settings),
             ("Diagnóstico", "HW y teclado", self.diag),
         ])
