@@ -10,9 +10,9 @@
 #      "camara":  ["_ScrX", "_ScrY"]     desplazamiento de la cámara (si lo hay)
 #      "casilla": 40                     unidades de Scratch por casilla
 #      "partes":  ["Steve Legs2", ...]   objetos que forman al jugador
-#      "nueva_partida": {"espera": 3000, "mensajes": [["world options", 0], ...]}
-#                     mensajes del propio juego que empiezan un mundo (para entrar
-#                     solo al unirse desde el título)
+#      "nueva_partida": [{"si": "Objeto:disfraz", "clic": [x, y]}, ...]
+#                     clics (ratón virtual) que empiezan un mundo desde el título:
+#                     cada uno cuando se ve ese objeto con ese disfraz (el botón)
 #
 #  En el juego: menú SciCalc (SHIFT+EXE) > Multijugador...
 #    Buscar partidas en la red · Hostear este mundo · servidores añadidos por IP
@@ -67,10 +67,11 @@ class Multijugador:
         self.rects = {}          # id -> rectángulo de pantalla donde se dibujó
         self.frame = 0
         self.enviado = None
-        self.nueva = cfg.get("nueva_partida") or {}
+        self.nueva = cfg.get("nueva_partida") or []
         self.modo_auto = None    # "unirse" / "hostear": esperando a estar en un mundo
         self.destino = {}        # {"host", "puerto", "hostear"} de la partida elegida
-        self.pasos = []          # [ms, mensaje] pendientes para empezar un mundo
+        self.pasos = []          # clics pendientes para empezar un mundo
+        self.clic_t = 0
         self.largo, self.largo_t = -1, 0
         # submenú Multijugador
         self.pagina, self.titulo, self.nota = "red", "Multijugador", ""
@@ -119,13 +120,28 @@ class Multijugador:
         """Entrar en la partida en cuanto el jugador esté en un mundo."""
         self.modo_auto, self.destino = modo, destino or {}
         if modo == "unirse" and not self.en_mundo():   # empezar un mundo cualquiera (se sustituye)
-            t0 = K.ms() + int(self.nueva.get("espera", 0))
-            self.pasos = [[t0 + int(ms), msg] for msg, ms in self.nueva.get("mensajes", [])]
+            self.pasos = [dict(p) for p in self.nueva]
+
+    def visible(self, cond):
+        nombre, _, disfraz = cond.partition(":")
+        for sp in self.p.layers:
+            if sp.visible and sp.name == nombre and (not disfraz or sp.costumes[sp.costume][0] == disfraz):
+                return True
+        return False
 
     def paso_auto(self):
         ahora = K.ms()
-        while self.pasos and ahora >= self.pasos[0][0]:
-            self.p.start_hats("event_whenbroadcastreceived", self.pasos.pop(0)[1])
+        if self.pasos:
+            paso = self.pasos[0]
+            if len(self.pasos) > 1 and self.visible(self.pasos[1]["si"]):
+                self.pasos.pop(0)                      # el clic anterior ya funcionó
+            elif self.visible(paso["si"]) and ahora - self.clic_t > 1500:
+                self.p.mouse[:] = [float(paso["clic"][0]), float(paso["clic"][1])]
+                self.p.clic_hasta = self.p.frame + 8   # botón pulsado unos fotogramas
+                self.p.click()
+                self.clic_t = ahora
+            elif len(self.pasos) == 1 and not self.visible(paso["si"]) and self.clic_t:
+                self.pasos = []                        # el último botón ya no está: hecho
         if self.en_mundo():
             self.modo_auto = None
             self.conectar()

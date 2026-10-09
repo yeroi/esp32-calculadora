@@ -74,19 +74,22 @@
       "Steve Arm",
       "Steves Head"
     ],
-    "nueva_partida": {
-      "espera": 3000,
-      "mensajes": [
-        [
-          "world options",
-          0
-        ],
-        [
-          "start clicked",
-          1000
+    "nueva_partida": [
+      {
+        "si": "Stage Sprite:Spl1b-New Game",
+        "clic": [
+          -114,
+          25
         ]
-      ]
-    }
+      },
+      {
+        "si": "Menu1:Done",
+        "clic": [
+          0,
+          -135
+        ]
+      }
+    ]
   },
   "parches": [
     {

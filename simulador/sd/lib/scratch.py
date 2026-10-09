@@ -1585,7 +1585,7 @@ class Project:
             self.mouse[1] = max(-180.0, min(180.0, self.mouse[1] + dy * speed))
         else:
             self.mouse_t = 0
-        self.mouse_down = "5" in keys
+        self.mouse_down = "5" in keys or self.frame < getattr(self, "clic_hasta", 0)
         if click and any(k == "5" and not sh for k, sh in events):
             self.click()
 
