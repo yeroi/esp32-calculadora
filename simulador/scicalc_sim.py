@@ -706,12 +706,22 @@ except SystemExit:
     pass
 except BaseException as ex:
     line = getattr(ex, "lineno", None) if isinstance(ex, SyntaxError) else None
+    deep = None                             # último punto dentro de un paquete de /lib
     tb = ex.__traceback__
     while tb:
-        if tb.tb_frame.f_code.co_filename == name:
+        fn = tb.tb_frame.f_code.co_filename
+        if fn == name:
             line = tb.tb_lineno
+        elif os.path.realpath(fn).startswith(LIB + os.sep):
+            deep = (os.path.relpath(os.path.realpath(fn), LIB).replace(os.sep, "/"), tb.tb_lineno)
         tb = tb.tb_next
     sys.stdout.write("\x01%s: %s%s\n" % (type(ex).__name__, ex, " (línea %d)" % line if line else ""))
+    if deep:
+        pkg = deep[0].split("/")[0].replace(".py", "")
+        sys.stdout.write("\x01  falló dentro de /lib/%s, línea %d\n" % deep)
+        sys.stdout.write("\x03El paquete '%s' usa partes del Python de PC que no existen "
+                         "en MicroPython: no funciona en la calculadora.\n" % pkg)
+        sys.stdout.write("\x03Desinstálalo con:  pip uninstall %s\n" % pkg)
     sys.stdout.flush()
     sys.exit(1)
 """
@@ -1435,6 +1445,10 @@ MIP_INDEX = os.environ.get("SCICALC_MIP_INDEX", "https://micropython.org/pi/v2")
 PYPI_JSON = os.environ.get("SCICALC_PYPI", "https://pypi.org/pypi")
 PIP_MAX_BYTES = 1024 * 1024            # más de 1 MB no cabe en la RAM del ESP32
 NATIVE_EXT = (".so", ".pyd", ".dll", ".dylib")
+# Herramientas para instalar/compilar paquetes en un PC: no tienen sentido en
+# la calculadora (y ninguna funciona en MicroPython).
+PC_ONLY = {"setuptools", "pip", "wheel", "cython", "distutils", "build", "poetry", "poetry-core",
+           "hatchling", "flit", "flit-core", "scikit-build", "pyinstaller", "virtualenv", "twine"}
 
 
 class PipError(Exception):
@@ -1555,6 +1569,9 @@ class PipJob:
 
     def _install(self):
         name = self.name
+        if name.lower().replace("_", "-") in PC_ONLY:
+            raise PipError(f"'{name}' es una herramienta del PC para instalar o compilar "
+                           "paquetes: no sirve en la calculadora")
         self.log(f"\x04Buscando '{name}' en micropython-lib…")
         found = fetch_mip(name, self.log)
         source = "micropython-lib"

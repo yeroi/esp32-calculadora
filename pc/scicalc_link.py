@@ -330,7 +330,14 @@ def read_manifest(link):
         return {}
 
 
+PC_ONLY = {"setuptools", "pip", "wheel", "cython", "distutils", "build", "poetry", "poetry-core",
+           "hatchling", "flit", "flit-core", "scikit-build", "pyinstaller", "virtualenv", "twine"}
+
+
 def install(link, name, source, log, progress):
+    if name.lower().replace("_", "-") in PC_ONLY:
+        raise LinkError(f"'{name}' es una herramienta del PC para instalar o compilar paquetes: "
+                        "no sirve en la calculadora")
     fetch = fetch_mip if source == "mip" else fetch_pypi
     version, files = fetch(name, log)
     if not files:
