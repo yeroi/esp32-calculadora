@@ -7,15 +7,76 @@ Calculadora científica portátil basada en ESP32 con un sistema híbrido:
 
 El simulador de escritorio [`simulador/scicalc_sim.py`](simulador/scicalc_sim.py) es la **especificación funcional**: el firmware imita su comportamiento.
 
+## Python en el ESP32 (Paso 5)
+
+El firmware lleva **MicroPython 1.24.1** dentro (`firmware/sketch/src/mpy/`, lo compila el IDE de Arduino sin instalar nada más). En el modo **Python**: EXE ejecuta el script, SHIFT+EXE muestra el código.
+
+- Cada script corre en **su propia tarea** con heap propio (~70 KB en el ESP32-WROOM sin PSRAM) y pila de 16 KB. Al acabar se libera todo.
+- **Watchdog de 5 s** (no cuenta el tiempo esperando un permiso). **AC** lo detiene. Una recursión infinita da `RuntimeError` y quedarse sin memoria da `MemoryError`: la calculadora sigue funcionando.
+- Los errores salen como en el simulador: `ZeroDivisionError: divide by zero (línea 5)`, y si fallan dentro de `/lib`, en qué archivo y línea.
+- **Archivos**: leer es libre; escribir, borrar, renombrar o crear carpetas **pregunta** en pantalla (EXE sí · SHIFT+EXE sí a todo · AC no). No se puede salir de la SD (`..` está bloqueado). En modo PC lo escrito aparece en la carpeta `simulador/sd` del PC.
+- `import` busca en la carpeta del script y en `/lib` (también paquetes con `__init__.py`).
+- Módulos: `math`, `cmath`, `random`, `time`, `os` (y `os.path`), `json`, `re`, `struct`, `array`, `collections`, `heapq`, `binascii`, `errno`, `io`, `gc`, `sys`. No existen `subprocess`, `socket`, `machine`… ni `eval`/`exec`/`input`. Números decimales en doble precisión (como la calculadora) y enteros de tamaño ilimitado.
+- Todos los ejemplos de `simulador/sd/scripts` funcionan igual que en el simulador.
+
+Pendiente: el módulo `scicalc` (pantalla y teclas) para los juegos, así que Clonaria y los proyectos de Scratch aún no arrancan en el ESP32 (además, `scratch.py` ocupa 66 KB: en una placa sin PSRAM no cabe). También faltan el editor de scripts y la Consola.
+
+Para cambiar la configuración de MicroPython, ver [`firmware/micropython/README.md`](firmware/micropython/README.md).
+
+## Modo PC: el ESP32 sin pantalla ni teclado
+
+Para desarrollar sin cablear nada: **todo el firmware corre en el ESP32**, pero la pantalla, el teclado, la MicroSD y el altavoz están en el PC, por el mismo cable USB.
+
+```
+ ESP32 (todo el sistema)                         PC (pc/scicalc_pantalla.py)
+ ───────────────────────     USB-serie 921600    ─────────────────────────────
+ Display  ── órdenes de dibujo ───────────────►  pinta la pantalla 320×240
+ Buzzer   ── tonos ───────────────────────────►  los toca por el altavoz
+ Storage  ── "dame /fotos/x.png" ─────────────►  lee simulador/sd/ (= MicroSD)
+          ◄── bytes del archivo ──────────────
+ Teclado  ◄── tecla pulsada / soltada ────────   ratón o teclado del PC
+ Serial.printf ── texto ──────────────────────►  consola del programa
+```
+
+Viene **activado por defecto** (`SCICALC_REMOTE 1` en `config.h`).
+
+1. **Arduino IDE**: abre `firmware/sketch/sketch.ino`. Placa *ESP32 Dev Module*, esquema de particiones *Huge APP (3MB No OTA)*. Instala las librerías de `libraries.txt` (Gestor de librerías). Probado con el núcleo **esp32 de Espressif** 2.0.17 y 3.3.12.
+2. Sube el programa al ESP32 y **cierra el Monitor Serie** del IDE (el puerto solo lo puede usar un programa).
+3. En el PC:
+
+   ```bash
+   pip install pygame-ce pyserial
+   python pc/scicalc_pantalla.py                  # busca el puerto solo
+   python pc/scicalc_pantalla.py --puerto COM5    # o dile cuál
+   python pc/scicalc_pantalla.py --lista          # ver puertos
+   ```
+
+Al conectar, el programa **reinicia el ESP32** (como hace el IDE al subir) y verás el arranque. Si cierras y vuelves a abrir el programa con `--sin-reset`, el ESP32 sigue donde estaba y repinta la pantalla entera.
+
+Teclas del PC: las mismas que el simulador (Enter = EXE, Retroceso = DEL, Esc = AC, Tab = SHIFT, M = MENU, flechas, números...). Además: **F2** sonido sí/no, **F5/F6** batería −/+ (el ESP32 la muestra en su barra), **F7** cargando, **F9** reiniciar el ESP32, **F12** captura de la pantalla.
+
+Detalles:
+
+- **Pantalla**: cada primitiva de `Display` (rectángulos, triángulos, texto, bloques de píxeles) es una trama. El texto viaja como códigos de glifo y cada glifo (la fuente 5×8 de Adafruit) se envía una sola vez. Los bloques de píxeles van comprimidos por tramos cuando compensa; las fotos van en crudo (~90 KB/s).
+- **MicroSD**: el ESP32 monta la carpeta del PC como sistema de archivos (`/pc`, VFS de ESP-IDF), así que el explorador, el visor de texto y los decodificadores PNG/JPG/GIF/BMP funcionan sin cambios. Las apps solo leen; los scripts de Python pueden escribir tras pedir permiso. Otra carpeta: `--sd ruta`.
+- **Sonido**: nueva clase `Buzzer` (`tone()` en cola). Clic al pulsar teclas, aviso al aparecer un diálogo y melodía al arrancar. En el hardware real usará el zumbador del pin `PIN_BUZZER`.
+- **Estado**: el ESP32 manda una vez por segundo heap, bloque máximo, tiempo encendido y app activa; el programa los muestra bajo la pantalla.
+- Protocolo: `A5 5A | tipo | longitud (2) | datos | suma`, descrito en `firmware/sketch/RemoteLink.h`. Lo que no es trama se muestra como texto.
+- Si la imagen sale con fallos, baja la velocidad: `REMOTE_BAUD = 460800` en `config.h` y `--baudios 460800` en el PC.
+- Con el cable ocupado por el modo PC, *SciCalc Link* por USB no se puede usar a la vez.
+
+**Volver al hardware real** (pantalla ILI9341, teclado y MicroSD cableados, o Wokwi): pon `#define SCICALC_REMOTE 0` en `config.h` (en PlatformIO, entorno `esp32dev-hw`). Con `SCICALC_REMOTE_SD 0` puedes usar la MicroSD física y seguir con la pantalla en el PC.
+
 ## Estado
 
 | Paso | Contenido | Estado |
 |---|---|---|
 | 1 | Hardware y mapa de pines | ✅ |
 | 2 | Firmware base (Display, Keyboard, Storage, AppManager) | ✅ |
-| **3** | **Menú e interfaz completos: 6 modos, diálogos, barra de estado, explorador, visores** | ✅ **este paso** |
+| 3 | Menú e interfaz completos: 6 modos, diálogos, barra de estado, explorador, visores | ✅ |
+| – | Modo PC: pantalla, teclado, SD y sonido en el PC (`pc/scicalc_pantalla.py`) | ✅ |
 | 4 | Calculadora nativa (parser C++) | pendiente |
-| 5 | MicroPython embed: tarea con heap propio, watchdog, VFS con permisos | pendiente |
+| **5** | **MicroPython: tarea con heap propio, watchdog, archivos con permisos, import desde la SD** | ✅ **este paso** (falta el módulo `scicalc` de juegos) |
 | – | Consola con ALPHA + editor de código + `pip` por Wi-Fi · Ajustes reales (WiFi.h, BT SPP, NVS) · LinkService · buzzer · batería | pendiente (ya especificado en el simulador v0.4) |
 | 9–10 | Hardware real (TFT_eSPI + DMA, MCP23017) · PCB | pendiente |
 
@@ -125,6 +186,7 @@ Medios de conexión en el ESP32 (firmware, pendiente; mismo protocolo en todos):
 ```
 firmware/
   platformio.ini        proyecto PlatformIO (src_dir = sketch)
+  micropython/          configuración y puerto de MicroPython (para regenerar src/mpy)
   sketch/               TODO el código, en una carpeta plana (vale para
                         PlatformIO, Arduino IDE y Wokwi sin cambios)
     sketch.ino          arranque y creación de servicios y modos
@@ -140,9 +202,15 @@ firmware/
     MenuApp CalcApp PythonApp FilesApp SettingsApp DiagApp PlaceholderApp
     BootScreen.*        arranque con autodiagnóstico
     PackageManifest.*   lectura de /lib/paquetes.json
+    PySandbox.*         Python: tarea, heap, watchdog, salida y permisos
+    src/mpy/            MicroPython 1.24.1 ya generado (no tocar a mano)
+    RemoteLink.*        modo PC: enlace USB (tramas, teclas, peticiones)
+    RemoteFS.*          modo PC: la carpeta del PC como "MicroSD" (VFS /pc)
+    Buzzer.*            sonido (zumbador o altavoz del PC)
     diagram.json libraries.txt wokwi.toml   simulación en Wokwi
 simulador/              scicalc_sim.py (referencia) + carpeta sd/ de ejemplo
-pc/                     scicalc_link.py (programa del PC), sb3_a_scicalc.py
+pc/                     scicalc_pantalla.py (modo PC: pantalla, teclado, SD
+                        y sonido del ESP32), scicalc_link.py, sb3_a_scicalc.py
                         (convertidor de Scratch), scicalc_servidor.py
                         (servidor multijugador) y ejemplos/
 ```

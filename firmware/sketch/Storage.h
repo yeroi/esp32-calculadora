@@ -1,10 +1,12 @@
 // =============================================================================
 //  Storage.h  —  Acceso a la MicroSD (FAT32) — API de SOLO LECTURA
 // -----------------------------------------------------------------------------
-//  Esta clase no tiene, a propósito, ninguna función para escribir, renombrar
-//  o borrar. Es la primera capa de seguridad del sandbox de Python: las apps
-//  y el intérprete solo llegan a la SD a través de aquí. Las escrituras
-//  pasarán por el gestor de permisos (Paso 5), que pregunta al usuario.
+//  Las apps solo LEEN. Las funciones de escritura existen únicamente para el
+//  sandbox de Python (PySandbox), que antes de llamarlas pregunta al usuario
+//  con un diálogo de permiso. Todo pasa por aquí: nadie más toca la SD.
+//
+//  Modo PC (SCICALC_REMOTE_SD = 1): la "tarjeta" es una carpeta del PC
+//  (RemoteFS); el resto del código no nota la diferencia.
 //
 //  Rutas: siempre absolutas dentro de la SD ("/scripts/hola.py"). Cualquier
 //  ruta con ".." se rechaza: no se puede salir de la SD.
@@ -41,7 +43,9 @@ class Storage {
   static constexpr size_t MAX_DIR_ENTRIES = 300;   // tope de RAM por carpeta
 
   bool begin();
-  bool mounted() const { return mounted_; }
+  // En modo PC la "tarjeta" está montada mientras el programa del PC esté
+  // conectado; con MicroSD física, si begin() la encontró.
+  bool mounted() const;
   uint64_t cardSizeBytes() const { return cardSize_; }
   const char* cardTypeName() const;
   // Espacio libre. La primera llamada puede tardar (FAT grande): se cachea.
@@ -67,8 +71,21 @@ class Storage {
   // Lee un archivo de texto entero (máx. maxBytes). false si es mayor o no existe.
   bool readText(const String& path, String& out, size_t maxBytes = 16 * 1024);
 
+  // 0 = no existe, 1 = archivo, 2 = carpeta (y su tamaño)
+  int stat(const String& path, uint32_t& size);
+
+  // ---- ESCRITURA ---------------------------------------------------------------
+  // SOLO las usa el sandbox de Python, y SOLO después de que el usuario haya
+  // dicho que sí en el diálogo de permiso. Devuelven bytes / 0, o -errno.
+  int writeAt(const String& path, uint32_t off, const uint8_t* data, size_t len, bool trunc);
+  int removeFile(const String& path);
+  int renamePath(const String& from, const String& to);
+  int makeDir(const String& path);
+  int removeDir(const String& path);
+
  private:
   bool mounted_ = false;
+  fs::FS* fs_ = nullptr;         // &SD o &pcFS (modo PC)
   uint64_t cardSize_ = 0;
   uint8_t cardType_ = 0;
   int64_t free_ = -1;            // caché de freeBytes()

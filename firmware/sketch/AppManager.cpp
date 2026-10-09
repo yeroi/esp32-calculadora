@@ -2,6 +2,7 @@
 //  AppManager.cpp  (incluye los accesos de la clase App)
 // =============================================================================
 #include "App.h"
+#include "Buzzer.h"
 
 // ---- App ----------------------------------------------------------------------
 Display& App::gfx() { return mgr_.gfx(); }
@@ -25,6 +26,7 @@ void AppManager::launch(App* app) {
 }
 
 void AppManager::dispatch(KeyEvent ev) {
+  if (!ev.repeat) buzzer.click();
   // --- SHIFT es global (también dentro de los diálogos: SHIFT+EXE) ---------
   if (ev.key == Key::Shift) {
     if (!ev.repeat) setShift(!shift_);
@@ -66,6 +68,13 @@ void AppManager::render() {
 }
 
 void AppManager::update() {
+  // 0) Modo PC: el programa del PC se acaba de conectar -> repintar TODO
+  if (gfx_.takeFullRedraw()) {
+    gfx_.clear();
+    bar_.invalidate();
+    bodyDirty_ = true;
+  }
+
   // 1) Diálogos pedidos desde otras tareas (sandbox, SciCalc Link)
   const bool wasActive = dlg_.active();
   if (dlg_.service()) {
@@ -92,6 +101,7 @@ void AppManager::update() {
 
   // 5) Dibujo
   render();
+  if (dlg_.active() && !dialogShown_) buzzer.alert();
   dialogShown_ = dlg_.active();
   bar_.update(millis());
 }
