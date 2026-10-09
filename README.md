@@ -19,7 +19,7 @@ El simulador de escritorio [`simulador/scicalc_sim.py`](simulador/scicalc_sim.py
 | – | Consola con ALPHA + editor de código + `pip` por Wi-Fi · Ajustes reales (WiFi.h, BT SPP, NVS) · LinkService · buzzer · batería | pendiente (ya especificado en el simulador v0.4) |
 | 9–10 | Hardware real (TFT_eSPI + DMA, MCP23017) · PCB | pendiente |
 
-## Simulador (v0.4)
+## Simulador (v0.5)
 
 ```bash
 pip install pygame-ce
@@ -34,6 +34,7 @@ Novedades de la v0.4 (especificación para el firmware):
   1. Busca primero en **micropython-lib** (el índice de `mip`): paquetes hechos para MicroPython.
   2. Si no está, prueba **PyPI**, solo ruedas de Python puro (`py3-none-any`), sin usar el pip del PC.
   3. Rechaza el código nativo (numpy, pandas…) y lo que pase de 1 MB.
+- **v0.5 — juegos**: módulo `scicalc` (`pantalla` + `teclas`) para que los scripts dibujen y lean teclas ([docs/API_scicalc.md](docs/API_scicalc.md)), y **Clonaria** convertido a MicroPython en `sd/juegos/clonaria/`. El watchdog no corta un juego mientras siga mostrando fotogramas; AC lo cierra.
 - `sys` del sandbox como el de MicroPython: `modules`, `implementation`, `exit`, `print_exception`.
 
 > En el ESP32 **no existe pip**. El comando `pip` de la calculadora es un instalador propio que hará lo mismo por Wi-Fi: `mip` (micropython-lib) y, como alternativa, descargar la rueda de PyPI y descomprimirla (el ESP32 trae `inflate` en la ROM). Aun así, casi nada de PyPI funciona en MicroPython porque usa módulos de CPython.

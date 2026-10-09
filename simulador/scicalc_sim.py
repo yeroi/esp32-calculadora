@@ -22,6 +22,8 @@
    * pip con Wi-Fi (Consola): "pip install x" busca en micropython-lib y,
      si no está, una versión de Python puro en PyPI. Instala en /lib.
    * Las líneas largas de la consola se parten en varias filas.
+   * Módulo "scicalc" (pantalla + teclas) para juegos: ver docs/API_scicalc.md.
+     Ejemplo: sd/juegos/clonaria/clonaria.py.
 
  Requisitos:   pip install pygame-ce   (funciona en Python 3.14)
  Ejecutar:     python scicalc_sim.py
@@ -593,6 +595,33 @@ for _m in ALLOWED:
 _real_import, _real_open, _stdin = builtins.__import__, builtins.open, sys.stdin
 _granted, _all = set(), [False]
 
+# El núcleo escribe por stdin dos cosas: respuestas de permiso ("y"/"a"/"n")
+# y el estado del teclado ("k {json}") para los scripts gráficos.
+import threading as _th, queue as _qu, time as _time
+_answers, _klock = _qu.Queue(), _th.Lock()
+_held, _events = set(), []
+
+def _stdin_reader():
+    for raw in _stdin:
+        line = raw.strip()
+        if line.startswith("k "):
+            try:
+                d = json.loads(line[2:])
+            except ValueError:
+                continue
+            with _klock:
+                if "held" in d:
+                    _held.clear()
+                    _held.update(d["held"])
+                if "ev" in d:
+                    _events.append((d["ev"], bool(d.get("shift"))))
+                    del _events[:-64]
+        else:
+            _answers.put(line)
+    _answers.put("n")
+
+_th.Thread(target=_stdin_reader, daemon=True).start()
+
 def _real(p):
     p = str(p)
     base = SD if p.startswith(("/", "\\")) else os.path.join(SD, CWD.lstrip("/"))
@@ -610,7 +639,7 @@ def _ask(op, q, extra=""):
         return
     sys.stdout.write("\x02" + json.dumps({"op": op, "path": _show(q), "extra": extra}) + "\n")
     sys.stdout.flush()
-    ans = _stdin.readline().strip()
+    ans = _answers.get()
     if ans == "a":
         _all[0] = True
     elif ans == "y":
@@ -662,6 +691,79 @@ _sys.print_exception = lambda e, f=None: sys.stdout.write("%s: %s\n" % (type(e).
 _sys.modules = {n: sys.modules[n] for n in ALLOWED if n in sys.modules}
 _sys.modules.update({"os": _os, "sys": _sys})
 
+# --- scicalc: pantalla y teclado para scripts gráficos (juegos) ---------------
+#  Coordenadas de la zona del script: 320 x 218 píxeles (debajo de la barra de
+#  estado). Colores 0xRRGGBB. Como en el ESP32 no hay framebuffer, lo que no
+#  se vuelve a dibujar se queda en pantalla: se redibuja solo lo que cambia.
+#  mostrar() envía el fotograma, limita a 30 fps y mantiene vivo el watchdog.
+_ops, _last = [], [0.0]
+_sprites = {}
+
+def _col(c):
+    return int(c) & 0xFFFFFF
+
+class Sprite:
+    def __init__(self, sid, w, h):
+        self.id, self.ancho, self.alto = sid, w, h
+
+def _png_size(q):
+    with _real_open(q, "rb") as f:
+        b = f.read(24)
+    if b[:8] != b"\x89PNG\r\n\x1a\n":
+        raise ValueError("solo se admiten sprites PNG")
+    return int.from_bytes(b[16:20], "big"), int.from_bytes(b[20:24], "big")
+
+_pant = types.ModuleType("scicalc.pantalla")
+_pant.ANCHO, _pant.ALTO = 320, 218
+_pant.NEGRO, _pant.BLANCO, _pant.ROJO, _pant.VERDE, _pant.AZUL, _pant.AMARILLO = (
+    0x000000, 0xFFFFFF, 0xFF0000, 0x00FF00, 0x0000FF, 0xFFFF00)
+_pant.color = lambda r, g, b: (int(r) & 255) << 16 | (int(g) & 255) << 8 | (int(b) & 255)
+_pant.limpiar = lambda c=0: _ops.append(("clear", _col(c)))
+_pant.rect = lambda x, y, w, h, c: _ops.append(("rect", int(x), int(y), int(w), int(h), _col(c)))
+_pant.marco = lambda x, y, w, h, c: _ops.append(("frame", int(x), int(y), int(w), int(h), _col(c)))
+_pant.linea = lambda x0, y0, x1, y1, c: _ops.append(("line", int(x0), int(y0), int(x1), int(y1), _col(c)))
+_pant.texto = lambda t, x, y, c=0xFFFFFF, fondo=None, tam=1: _ops.append(
+    ("text", str(t)[:80], int(x), int(y), _col(c), None if fondo is None else _col(fondo), int(tam)))
+
+def _sprite(ruta):
+    q = _real(ruta)
+    if q not in _sprites:
+        w, h = _png_size(q)
+        _sprites[q] = Sprite(len(_sprites), w, h)
+        _ops.append(("load", _sprites[q].id, q))
+    return _sprites[q]
+
+def _dibujar(s, x, y, escala=1, espejo=False):
+    _ops.append(("spr", s.id, int(x), int(y), int(escala), bool(espejo)))
+
+def _mostrar():
+    sys.stdout.write("\x06" + json.dumps(_ops) + "\n")
+    sys.stdout.flush()
+    del _ops[:]
+    espera = 1 / 30 - (_time.time() - _last[0])
+    if espera > 0:
+        _time.sleep(espera)
+    _last[0] = _time.time()
+
+_pant.sprite, _pant.dibujar, _pant.mostrar = _sprite, _dibujar, _mostrar
+
+_tecl = types.ModuleType("scicalc.teclas")
+def _pulsadas():
+    with _klock:
+        return set(_held)
+def _eventos():
+    with _klock:
+        ev = list(_events)
+        del _events[:]
+    return ev
+_tecl.pulsadas, _tecl.eventos = _pulsadas, _eventos
+_tecl.pulsada = lambda n: n in _pulsadas()
+_tecl.ms = lambda: int(_time.time() * 1000)       # como time.ticks_ms() del ESP32
+
+_scicalc = types.ModuleType("scicalc")
+_scicalc.pantalla, _scicalc.teclas = _pant, _tecl
+_sys.modules["scicalc"] = _scicalc
+
 def _sandboxed(g):
     if not g:
         return False
@@ -684,6 +786,8 @@ def _import(name, globals=None, locals=None, fromlist=(), level=0):
             return _os
         if root == "sys":
             return _sys
+        if root == "scicalc":
+            return _scicalc
         if root not in ALLOWED and not _in_lib(root):
             raise ImportError("módulo '%s' bloqueado por el sandbox" % name)
     return _real_import(name, globals, locals, fromlist, level)
@@ -758,6 +862,11 @@ class ScriptRunner:
         self.state, self.t0, self.elapsed = "running", time.time(), 0.0
         self.perm_request = None          # dict pendiente de mostrar
         self.ask_since = 0.0
+        # Scripts gráficos (módulo scicalc): lienzo propio a 2x, 320x218 lógicos
+        self.canvas = None
+        self.sprites, self._scaled = {}, {}
+        self.alive = time.time()          # último signo de vida (para el watchdog)
+        self.held_sent = None
         kw = {}
         if os.name == "nt":
             kw["creationflags"] = getattr(subprocess, "CREATE_NO_WINDOW", 0)
@@ -786,6 +895,13 @@ class ScriptRunner:
                     self.proc.wait()
                     self.state = "error" if self.proc.returncode else "ok"
                     return
+                if line.startswith("\x06"):           # fotograma de scicalc.pantalla
+                    self.alive = time.time()
+                    try:
+                        self._draw_ops(json.loads(line[1:]))
+                    except (ValueError, TypeError, pygame.error):
+                        pass
+                    continue
                 if line.startswith("\x02"):
                     try:
                         self.perm_request = json.loads(line[1:])
@@ -800,7 +916,9 @@ class ScriptRunner:
                     return
         except queue.Empty:
             pass
-        if self.elapsed > WATCHDOG_S:
+        # Un script que sigue mostrando fotogramas está vivo (juegos); uno que
+        # no da señales en WATCHDOG_S segundos se corta.
+        if time.time() - self.alive > WATCHDOG_S:
             self._kill("watchdog")
 
     def answer(self, code):
@@ -808,6 +926,7 @@ class ScriptRunner:
         if self.state != "asking":
             return
         self.t0 += time.time() - self.ask_since          # no cuenta para el watchdog
+        self.alive += time.time() - self.ask_since
         p = self.perm_request
         verdict = {"y": "permitido", "a": "permitido (todo)", "n": "DENEGADO"}[code]
         self.lines.append(f"\x03[permiso {verdict}: {p.get('op')} {p.get('path')}]")
@@ -818,6 +937,59 @@ class ScriptRunner:
             self.proc.stdin.flush()
         except Exception:
             pass
+
+    # ---- gráficos y teclado (scicalc) ------------------------------------------
+    def _send(self, obj):
+        try:
+            self.proc.stdin.write(("k " + json.dumps(obj) + "\n").encode())
+            self.proc.stdin.flush()
+        except Exception:
+            pass
+
+    def send_key(self, key, shift):
+        self._send({"ev": key, "shift": shift})
+
+    def send_held(self, held):
+        if held != self.held_sent:
+            self.held_sent = held
+            self._send({"held": sorted(held)})
+
+    def _sprite_img(self, sid, scale, flip):
+        k = (sid, scale, flip)
+        if k not in self._scaled:
+            base = self.sprites[sid]
+            img = pygame.transform.scale(base, (base.get_width() * scale * 2, base.get_height() * scale * 2))
+            self._scaled[k] = pygame.transform.flip(img, True, False) if flip else img
+        return self._scaled[k]
+
+    def _draw_ops(self, ops):
+        if self.canvas is None:
+            self.canvas = pygame.Surface((SCR_W, SCR_H - HEADER_H))
+            self.canvas.fill((0, 0, 0))
+        c = self.canvas
+        rgb = lambda v: ((v >> 16) & 255, (v >> 8) & 255, v & 255)
+        sd = str(SD_DIR.resolve())
+        for op in ops:
+            kind = op[0]
+            if kind == "clear":
+                c.fill(rgb(op[1]))
+            elif kind == "rect":
+                c.fill(rgb(op[5]), (op[1] * 2, op[2] * 2, op[3] * 2, op[4] * 2))
+            elif kind == "frame":
+                pygame.draw.rect(c, rgb(op[5]), (op[1] * 2, op[2] * 2, op[3] * 2, op[4] * 2), 2)
+            elif kind == "line":
+                pygame.draw.line(c, rgb(op[5]), (op[1] * 2, op[2] * 2), (op[3] * 2, op[4] * 2), 2)
+            elif kind == "text":
+                img = font(16 * max(1, op[6])).render(op[1], True, rgb(op[4]))
+                if op[5] is not None:
+                    c.fill(rgb(op[5]), (op[2] * 2, op[3] * 2, img.get_width(), img.get_height()))
+                c.blit(img, (op[2] * 2, op[3] * 2))
+            elif kind == "load":
+                path = os.path.realpath(op[2])
+                if os.path.commonpath([path, sd]) == sd:     # solo imágenes de la SD
+                    self.sprites[op[1]] = pygame.image.load(path)
+            elif kind == "spr" and op[1] in self.sprites:
+                c.blit(self._sprite_img(op[1], max(1, op[4]), op[5]), (op[2] * 2, op[3] * 2))
 
     def _kill(self, state):
         try:
@@ -996,8 +1168,11 @@ class PythonApp(App):
     def on_key(self, key, shift):
         if self.runner:
             if self.runner.state in ("running", "asking"):
-                if key in ("AC", "DEL"):
+                graphic = self.runner.canvas is not None
+                if key == "AC" or (key == "DEL" and not graphic):
                     self.runner.stop()
+                elif graphic:
+                    self.runner.send_key(key, shift)    # el juego recibe las teclas
                 return
             if key in ("AC", "DEL", "LEFT"):
                 self.runner = None
@@ -1043,6 +1218,8 @@ class PythonApp(App):
     def update(self, dt):
         if self.runner:
             pump_runner(self.sim, self.runner)
+            if self.runner.canvas is not None and self.runner.state == "running":
+                self.runner.send_held(self.sim.held - {"AC", "MENU"})
 
     def on_exit(self):
         if self.runner:
@@ -1054,6 +1231,9 @@ class PythonApp(App):
             self.footer(s, "EXE ejecutar   SHIFT+EXE editar/nuevo   ◄ subir")
             return
         r = self.runner
+        if r.canvas is not None and r.state in ("running", "asking"):
+            s.blit(r.canvas, (0, HEADER_H))          # juego: toda la zona del script
+            return
         st = {
             "running": (f"Ejecutando… {r.elapsed:4.1f} s   (AC detiene)", WARN),
             "asking": ("Esperando tu permiso… (watchdog en pausa)", SHIFT_C),
@@ -1925,7 +2105,7 @@ class DiagApp(App):
 # =============================================================================
 #  Paquetes instalados en /lib  (manifiesto  /lib/paquetes.json)
 # =============================================================================
-FW_VERSION = "0.4"
+FW_VERSION = "0.5"
 LIB_DIR = SD_DIR / "lib"
 MANIFEST = LIB_DIR / "paquetes.json"
 
@@ -2332,6 +2512,7 @@ class Simulator:
         self.screen = pygame.Surface((SCR_W, SCR_H))
         self.rects = build_layout()
         self.shift = False
+        self.held = set()                # teclas mantenidas (para juegos)
         self.degrees = True
         self.pressed = {}            # id -> instante de pulsación (animación)
         self.hover = None
@@ -2886,6 +3067,7 @@ def main():
     sim = Simulator()
     clock = pygame.time.Clock()
     mouse_key = None
+    pc_held = {}                     # tecla del PC -> tecla de la calculadora
 
     def to_base(pos):
         w, h = win.get_size()
@@ -2906,7 +3088,15 @@ def main():
             elif ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1:
                 mouse_key = sim.key_at(to_base(ev.pos))
                 if mouse_key:
+                    sim.held.add(mouse_key)
                     sim.press(mouse_key)
+            elif ev.type == pygame.MOUSEBUTTONUP and ev.button == 1:
+                sim.held.discard(mouse_key)
+                mouse_key = None
+            elif ev.type == pygame.KEYUP:
+                k = pc_held.pop(ev.key, None)
+                if k:
+                    sim.held.discard(k)
             elif ev.type == pygame.KEYDOWN:
                 hit = PC_KEYS.get(ev.key)
                 # La consola recibe letras del teclado del PC directamente
@@ -2919,6 +3109,8 @@ def main():
                     hit = (ch, None) if ch.isdigit() else PC_CHARS.get(ch)
                 if hit:
                     k, sh = hit
+                    pc_held[ev.key] = k
+                    sim.held.add(k)
                     if sh:
                         sim.press(k, force_shift=True)
                     else:
