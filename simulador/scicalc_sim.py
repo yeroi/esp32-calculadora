@@ -733,8 +733,17 @@ def _sprite(ruta):
         _ops.append(("load", _sprites[q].id, q))
     return _sprites[q]
 
-def _dibujar(s, x, y, escala=1, espejo=False):
-    _ops.append(("spr", s.id, int(x), int(y), int(escala), bool(espejo)))
+def _dibujar(s, x, y, escala=1, espejo=False, angulo=0, centro=None):
+    # Sin 'centro': (x, y) es la esquina superior izquierda y gira sobre el
+    # centro del sprite. Con centro=(cx, cy) (píxel del sprite sin escalar),
+    # ese punto cae en (x, y) y el giro es alrededor de él. angulo en grados,
+    # en el sentido de las agujas del reloj.
+    c = None if centro is None else [float(centro[0]), float(centro[1])]
+    _ops.append(("spr", s.id, float(x), float(y), float(escala), bool(espejo), float(angulo), c))
+
+def _recorte(x=None, y=None, w=None, h=None):
+    # Limita el dibujo a un rectángulo (redibujado parcial). Sin argumentos: quita el límite
+    _ops.append(("clip",) if x is None else ("clip", int(x), int(y), int(w), int(h)))
 
 def _mostrar():
     sys.stdout.write("\x06" + json.dumps(_ops) + "\n")
@@ -745,7 +754,7 @@ def _mostrar():
         _time.sleep(espera)
     _last[0] = _time.time()
 
-_pant.sprite, _pant.dibujar, _pant.mostrar = _sprite, _dibujar, _mostrar
+_pant.sprite, _pant.dibujar, _pant.mostrar, _pant.recorte = _sprite, _dibujar, _mostrar, _recorte
 
 _tecl = types.ModuleType("scicalc.teclas")
 def _pulsadas():
@@ -954,13 +963,42 @@ class ScriptRunner:
             self.held_sent = held
             self._send({"held": sorted(held)})
 
-    def _sprite_img(self, sid, scale, flip):
-        k = (sid, scale, flip)
+    def _sprite_img(self, sid, scale, flip, angle):
+        k = (sid, round(scale, 3), flip, round(angle, 1))
         if k not in self._scaled:
+            if len(self._scaled) > 400:
+                self._scaled.clear()
             base = self.sprites[sid]
-            img = pygame.transform.scale(base, (base.get_width() * scale * 2, base.get_height() * scale * 2))
-            self._scaled[k] = pygame.transform.flip(img, True, False) if flip else img
+            w = max(1, round(base.get_width() * scale * 2))
+            h = max(1, round(base.get_height() * scale * 2))
+            img = pygame.transform.scale(base, (w, h))
+            if flip:
+                img = pygame.transform.flip(img, True, False)
+            if angle % 360:
+                img = pygame.transform.rotate(img, -angle)
+            self._scaled[k] = img
         return self._scaled[k]
+
+    def _blit_sprite(self, c, op):
+        _, sid, x, y, scale, flip = op[:6]
+        angle = op[6] if len(op) > 6 else 0.0
+        centro = op[7] if len(op) > 7 else None
+        base = self.sprites[sid]
+        bw, bh = base.get_width() * scale * 2, base.get_height() * scale * 2
+        if centro is None:
+            px, py = bw / 2, bh / 2
+            tx, ty = x * 2 + px, y * 2 + py
+        else:
+            px, py = centro[0] * scale * 2, centro[1] * scale * 2
+            tx, ty = x * 2, y * 2
+        if flip:
+            px = bw - px
+        img = self._sprite_img(sid, scale, flip, angle)
+        # vector centro-de-imagen -> pivote, girado en sentido horario
+        vx, vy = px - bw / 2, py - bh / 2
+        a = math.radians(angle)
+        rx, ry = vx * math.cos(a) - vy * math.sin(a), vx * math.sin(a) + vy * math.cos(a)
+        c.blit(img, (round(tx - rx - img.get_width() / 2), round(ty - ry - img.get_height() / 2)))
 
     def _draw_ops(self, ops):
         if self.canvas is None:
@@ -989,7 +1027,10 @@ class ScriptRunner:
                 if os.path.commonpath([path, sd]) == sd:     # solo imágenes de la SD
                     self.sprites[op[1]] = pygame.image.load(path)
             elif kind == "spr" and op[1] in self.sprites:
-                c.blit(self._sprite_img(op[1], max(1, op[4]), op[5]), (op[2] * 2, op[3] * 2))
+                if op[4] > 0:
+                    self._blit_sprite(c, op)
+            elif kind == "clip":
+                c.set_clip(None if len(op) == 1 else pygame.Rect(op[1] * 2, op[2] * 2, op[3] * 2, op[4] * 2))
 
     def _kill(self, state):
         try:
