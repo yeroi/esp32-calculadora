@@ -119,7 +119,7 @@ class Multijugador:
     def auto(self, modo, destino=None):
         """Entrar en la partida en cuanto el jugador esté en un mundo."""
         self.modo_auto, self.destino = modo, destino or {}
-        if modo == "unirse" and not self.en_mundo():   # empezar un mundo cualquiera (se sustituye)
+        if not self.en_mundo():        # desde el título: el juego empieza un mundo nuevo
             self.pasos = [dict(p) for p in self.nueva]
 
     def visible(self, cond):
@@ -146,7 +146,7 @@ class Multijugador:
             self.modo_auto = None
             self.conectar()
         elif self.p.toast is None or ahora > self.p.toast[1] - 500:
-            self.aviso("Multijugador: empieza o carga una partida" if self.modo_auto == "hostear"
+            self.aviso("Creando el mundo para hostear..." if self.modo_auto == "hostear"
                        else "Entrando en la partida...")
 
     # ---- conectar / salir --------------------------------------------------------
@@ -295,7 +295,7 @@ class Multijugador:
             self.destino = destino
             self.conectar()
         else:
-            self.auto("hostear", destino)         # al empezar o cargar una partida se abre
+            self.auto("hostear", destino)         # empieza un mundo nuevo y lo abre
 
     def salir(self):
         self.p.menu = None
