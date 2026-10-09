@@ -68,6 +68,10 @@ extern const struct _mp_obj_module_t mp_module_micropython;
 #undef MODULE_DEF_MICROPYTHON
 #define MODULE_DEF_MICROPYTHON { MP_ROM_QSTR(MP_QSTR_micropython), MP_ROM_PTR(&mp_module_micropython) },
 
+extern const struct _mp_obj_module_t scicalc_module;
+#undef MODULE_DEF_SCICALC
+#define MODULE_DEF_SCICALC { MP_ROM_QSTR(MP_QSTR_scicalc), MP_ROM_PTR(&scicalc_module) },
+
 extern const struct _mp_obj_module_t mp_module_sys;
 #undef MODULE_DEF_SYS
 #define MODULE_DEF_SYS { MP_ROM_QSTR(MP_QSTR_sys), MP_ROM_PTR(&mp_module_sys) },
@@ -79,6 +83,7 @@ extern const struct _mp_obj_module_t mp_module_sys;
     MODULE_DEF_GC \
     MODULE_DEF_MATH \
     MODULE_DEF_MICROPYTHON \
+    MODULE_DEF_SCICALC \
     MODULE_DEF_SYS \
     MODULE_DEF__SC \
     MODULE_DEF___MAIN__ \

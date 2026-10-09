@@ -172,7 +172,8 @@ def leer_html(html, base):
                 enlace = None
             else:
                 href = atributo(tag, "href")
-                if href and not href.startswith(("javascript:", "#", "mailto:")):
+                if href and not (href.startswith("javascript:") or href.startswith("#")
+                                 or href.startswith("mailto:")):
                     enlaces.append(unir(base, entidades(href)))
                     enlace = len(enlaces) - 1
         elif nombre == "img" and not cierra:

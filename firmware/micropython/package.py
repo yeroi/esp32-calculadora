@@ -18,8 +18,10 @@ for f in os.listdir(f"{TOP}/lib/re1.5"):
     files[f"lib/re1.5/{f}"] = f"{TOP}/lib/re1.5/{f}"
 for f in ("moduledefs.h", "mpversion.h", "qstrdefs.generated.h", "root_pointers.h"):
     files[f"genhdr/{f}"] = f"{GEN}/build-embed/genhdr/{f}"
-for f in ("mphalport.h", "scicalc_py.h", "scicalc_port.c"):
+for f in ("mphalport.h", "scicalc_py.h", "scicalc_port.c", "scicalc_gfx.c"):
     files[f"port/{f}"] = f"{GEN}/port/{f}"
+# Módulos congelados (manifest.py), generados por el Makefile
+files["port/frozen_content.c"] = f"{GEN}/build-embed/frozen_content.c"
 files["mpconfigport.h"] = f"{GEN}/mpconfigport.h"
 
 # Los .c de re1.5 los incluye modre.c: con otra extensión el IDE no los compila sueltos

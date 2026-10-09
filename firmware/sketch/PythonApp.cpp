@@ -2,6 +2,7 @@
 //  PythonApp.cpp
 // =============================================================================
 #include "PythonApp.h"
+#include "PyGfx.h"
 
 namespace {
 uint16_t colorFor(char c) {
@@ -46,6 +47,7 @@ PythonApp::PythonApp(AppManager& m)
     : App(m), browser_(m.gfx(), m.storage(), true), viewer_(m.gfx(), m.storage()) {}
 
 void PythonApp::onEnter() {
+  if (pyGfx.active() && !pySandbox.alive()) pyGfx.end();   // juego anterior ya cerrado
   viewer_.close();
   console_ = false;
   browser_.refresh();
@@ -95,6 +97,7 @@ void PythonApp::start(const String& path) {
     dialogs().info("Python", {"Todavía se está cerrando el", "script anterior. Espera un", "momento."});
     return;
   }
+  if (pyGfx.active()) pyGfx.end();
   script_ = path;
   scroll_ = 0;
   rows_.clear();
@@ -190,6 +193,17 @@ void PythonApp::drawConsoleFooter() {
 
 void PythonApp::onTick(uint32_t now) {
   pySandbox.tick();
+  // Juego (scicalc.pantalla): la zona del script es suya; aquí solo se pintan
+  // sus órdenes. Al terminar se vuelve a la consola (errores, print...).
+  if (pyGfx.active()) {
+    if (canDraw()) pyGfx.drain(gfx(), sd(), 25);
+    if (!pySandbox.alive()) {
+      pyGfx.end();
+      stateShown_ = -1;
+      requestRedraw();
+    }
+    return;
+  }
   if (!console_ || viewer_.isOpen() || !canDraw()) return;
   if ((int32_t)(now - nextPaint_) < 0) return;
   nextPaint_ = now + 100;                         // 10 repintados por segundo como mucho
@@ -212,8 +226,10 @@ void PythonApp::onKey(const KeyEvent& ev) {
   }
 
   if (console_) {
-    if (!pySandbox.finished()) {                 // corriendo: solo se puede parar
-      if (ev.key == Key::AC || ev.key == Key::Del) pySandbox.stop();
+    if (!pySandbox.finished()) {                 // corriendo
+      if (ev.key == Key::AC) pySandbox.stop();
+      else if (pyGfx.active()) pyGfx.onKey(ev);  // un juego: las teclas son suyas
+      else if (ev.key == Key::Del) pySandbox.stop();
       return;
     }
     switch (ev.key) {

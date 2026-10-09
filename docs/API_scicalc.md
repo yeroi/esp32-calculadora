@@ -91,6 +91,13 @@ if red.esperar():
         ...
 ```
 
+## En el ESP32
+
+`pantalla` y `teclas` funcionan igual (módulo en C del firmware). Diferencias:
+sin `red` todavía (`from scicalc import red` da `ImportError`: comprueba si
+existe), los sprites grandes no giran, y Python tiene ~70 KB: para scripts
+grandes, precompila con `pc/compilar_mpy.py` (`juego.mpy` junto a `juego.py`).
+
 ## Watchdog
 
 Un script que no llama a `mostrar()` en 5 s se corta (protege de bucles infinitos).

@@ -43,6 +43,20 @@ const char* scpy_argv(int i);
 uint32_t scpy_random_seed(void);
 void scpy_fatal(const char* why);
 
+// ---- Pantalla y teclas para los juegos (módulo scicalc; lo da PyGfx.cpp) ------
+// Coordenadas de la zona del script (320 x 218), colores 0xRRGGBB.
+int  scpy_gfx_begin(void);                                   // 0 o -1 sin memoria
+// kind: 0 limpiar, 1 rect, 2 marco, 3 línea (x, y, w, h = x0, y0, x1, y1)
+void scpy_gfx_shape(int kind, int x, int y, int w, int h, uint32_t rgb);
+void scpy_gfx_text(const char* s, size_t n, int x, int y, uint32_t fg, int32_t bg, int size);
+int  scpy_gfx_sprite(const char* abs);                       // id del sprite
+void scpy_gfx_draw(int id, float x, float y, float sx, float sy, int flip, float ang,
+                   int hasCenter, float cx, float cy);
+void scpy_gfx_clip(int x, int y, int w, int h);              // w < 0: sin recorte
+int  scpy_gfx_show(void);                                    // 1 si hay que parar
+uint64_t scpy_keys_held(void);                               // bit = tecla del firmware
+int  scpy_key_event(int* key, int* shift);                   // 1 si había una
+
 #ifdef __cplusplus
 }
 #endif

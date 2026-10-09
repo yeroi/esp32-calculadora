@@ -280,7 +280,7 @@ class StopThread(Exception):
 class Project:
     def __init__(self, path):
         with open(path) as f:
-            data = json.load(f)
+            data = json.loads(f.read())   # (el open() del ESP32 no es un archivo nativo)
         # escala a la que se guardaron los PNG: (x, y), o un número en proyectos antiguos
         e = data["escala"]
         self.scale = (float(e[0]), float(e[1])) if isinstance(e, list) else (float(e), float(e))
@@ -290,7 +290,7 @@ class Project:
         cfg = {}
         try:
             with open(self.folder + "controles.json") as f:
-                cfg = json.load(f)
+                cfg = json.loads(f.read())
         except (OSError, ValueError):
             pass
         self.keymap = cfg.get("teclas", self.keymap)
@@ -951,6 +951,8 @@ class Project:
 
         def current(ctx, b):
             import time
+            if not hasattr(time, "localtime"):
+                return 0                   # el ESP32 aún no tiene reloj
             t = time.localtime()
             m = {"YEAR": 0, "MONTH": 1, "DATE": 2, "HOUR": 3, "MINUTE": 4, "SECOND": 5}
             return t[m.get(str(self.field(b, "CURRENTMENU", "YEAR")).upper(), 0)]

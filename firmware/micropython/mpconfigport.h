@@ -94,6 +94,18 @@ typedef long mp_off_t;
 #define MICROPY_PY_COLLECTIONS_DEQUE        (1)
 #define MICROPY_PY_COLLECTIONS_ORDEREDDICT  (1)
 
+// ---- Código ya compilado ------------------------------------------------------------
+// Módulos congelados en la flash (frozen_content.c, ver Makefile): el
+// intérprete de Scratch (scratch, scratch_red) y t9. No se compilan en la
+// placa ni ocupan RAM de Python. Y juego.mpy junto a juego.py (mpy-cross).
+#ifndef MICROPY_MODULE_FROZEN_MPY                   // (make ya los define al generar)
+#define MICROPY_MODULE_FROZEN_MPY           (1)
+#endif
+#ifndef MICROPY_QSTR_EXTRA_POOL
+#define MICROPY_QSTR_EXTRA_POOL             mp_qstr_frozen_const_pool
+#endif
+#define MICROPY_PERSISTENT_CODE_LOAD        (1)
+
 // Semilla de random: generador por hardware del ESP32
 uint32_t scpy_random_seed(void);
 #define MICROPY_PY_RANDOM_SEED_INIT_FUNC    (scpy_random_seed())

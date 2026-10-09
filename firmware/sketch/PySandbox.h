@@ -6,7 +6,8 @@
 //      suelen ser ~80-100 KB). Se libera entero al terminar.
 //    * pila propia de 16 KB con control de recursión.
 //    * WATCHDOG de 5 s (sin contar el tiempo esperando un permiso): si se
-//      pasa, se le lanza KeyboardInterrupt. AC hace lo mismo.
+//      pasa, se le lanza KeyboardInterrupt. AC hace lo mismo. Un juego que
+//      muestra fotogramas (scicalc.pantalla.mostrar) está vivo.
 //  La UI (core 1, loop de Arduino) nunca espera al script: lee su salida y
 //  su estado. El script solo toca la SD a través de Storage, con las rutas
 //  encerradas en la SD y PREGUNTANDO antes de escribir/borrar/renombrar
@@ -43,6 +44,8 @@ class PySandbox {
 
   State state() const { return state_; }
   bool alive() const { return task_ != nullptr; }
+  bool stopping() const { return stopReq_; }   // se le ha pedido parar
+  void kick() { aliveMs_ = millis(); }         // fotograma de un juego: sigue vivo
   bool finished() const { return state_ >= State::Ok; }
   uint32_t elapsedMs() const;
   size_t heapKB() const { return heapSize_ / 1024; }
@@ -82,6 +85,7 @@ class PySandbox {
   volatile bool stopReq_ = false;
   volatile State stopReason_ = State::Stopped;
   uint32_t nextKick_ = 0;
+  volatile uint32_t aliveMs_ = 0;            // última señal de vida (watchdog)
 
   std::vector<String> lines_;
   String cur_;                               // línea a medias

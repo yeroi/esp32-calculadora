@@ -8,7 +8,10 @@
 //    scpy_resolve() (no se puede salir de la SD) y toda escritura pregunta
 //    al usuario (scpy_ask) ANTES de tocar nada. Por eso un script que
 //    importe _sc directamente no gana nada.
-//  * import desde la SD: carpeta del script y /lib.
+//  * import desde la SD: carpeta del script, módulos congelados (.frozen:
+//    el intérprete de Scratch y t9, ya compilados en la flash) y /lib.
+//  * Si junto a juego.py hay un juego.mpy (compilado en el PC con mpy-cross),
+//    se ejecuta ese: no hay que compilar en la placa (ahorra RAM y tiempo).
 //  * gc_collect() para Xtensa: vuelca las ventanas de registros a la pila
 //    antes de buscar punteros (si no, el GC liberaría objetos vivos).
 // =============================================================================
@@ -21,6 +24,7 @@
 #include "py/mperrno.h"
 #include "py/mphal.h"
 #include "py/objstr.h"
+#include "py/persistentcode.h"
 #include "py/runtime.h"
 #include "py/stackctrl.h"
 #include "port/scicalc_py.h"
@@ -68,6 +72,13 @@ static NORETURN void sc_raise_perm(const char *msg) {
     }
     nlr_raise(mp_obj_new_exception_arg1(&mp_type_OSError, arg));
 }
+
+// Para scicalc_gfx.c: lanza KeyboardInterrupt si AC o el watchdog lo pidieron
+void sc_pending(void) {
+    sc_check_pending();
+}
+
+void sc_gfx_reset(void);                 // scicalc_gfx.c
 
 static void sc_check(int r) {
     if (r < 0) {
@@ -396,7 +407,7 @@ void nlr_jump_fail(void *val) {
 static const char sc_prelude[] =
     "import sys, builtins, _sc\n"
     "sys.path.clear()\n"
-    "sys.path.extend(('', '/lib'))\n"
+    "sys.path.extend(('', '.frozen', '/lib'))\n"
     "sys.argv.clear()\n"
     "sys.argv.extend(_sc.argv())\n"
     "class PermissionError(OSError):\n"
@@ -574,12 +585,14 @@ static int sc_report(mp_obj_t exc, const char *path) {
     size_t n = 0, *v = NULL;
     mp_obj_exception_get_traceback(exc, &n, &v);
     qstr script = qstr_find_strn(path, strlen(path));
+    const char *base = strrchr(path, '/');   // un .mpy guarda solo el nombre (mpy-cross -s)
+    base = base ? base + 1 : path;
     int line = -1;
     const char *deep = NULL;
     int deepLine = 0;
     for (size_t i = 0; i + 2 < n; i += 3) {          // (archivo, línea, bloque)
         qstr f = v[i];
-        if (line < 0 && f == script) {
+        if (line < 0 && (f == script || strcmp(qstr_str(f), base) == 0)) {
             line = (int)v[i + 1];
         }
         const char *fs = qstr_str(f);
@@ -607,6 +620,44 @@ static int sc_report(mp_obj_t exc, const char *path) {
     return SCPY_ERROR;
 }
 
+// ---- juego.mpy (precompilado) en lugar de juego.py -------------------------------------
+static bool sc_run_mpy(const char *path) {
+    size_t n = strlen(path);
+    if (n < 4 || n + 2 > SC_PATH_MAX || strcmp(path + n - 3, ".py") != 0) {
+        return false;
+    }
+    char mpy[SC_PATH_MAX];
+    memcpy(mpy, path, n - 3);
+    strcpy(mpy + n - 3, ".mpy");
+    uint32_t size = 0;
+    if (scpy_stat(mpy, &size) != 1 || size == 0) {
+        return false;
+    }
+    const char *name = strrchr(mpy, '/');
+    char note[96];
+    int k = snprintf(note, sizeof note, "\x05[%s precompilado]\n", name ? name + 1 : mpy);
+    scpy_out(note, k);
+    byte *data = m_new(byte, size);
+    size_t done = 0;
+    while (done < size) {
+        int r = scpy_read(mpy, done, data + done, size - done > SC_CHUNK ? SC_CHUNK : size - done);
+        if (r <= 0) {
+            m_del(byte, data, size);
+            mp_raise_OSError(r < 0 ? -r : MP_EIO);
+        }
+        done += r;
+    }
+    mp_module_context_t *ctx = m_new_obj(mp_module_context_t);
+    ctx->module.globals = mp_globals_get();
+    mp_compiled_module_t cm;
+    cm.context = ctx;
+    mp_raw_code_load_mem(data, size, &cm);
+    m_del(byte, data, size);
+    mp_obj_t f = mp_make_function_from_proto_fun(cm.rc, cm.context, NULL);
+    mp_call_function_0(f);
+    return true;
+}
+
 // ---- Ejecución -------------------------------------------------------------------------------
 int scpy_run(const char *path, void *heap, size_t heap_size, void *stack_top, size_t stack_size) {
     volatile int result = SCPY_OK;
@@ -614,6 +665,7 @@ int scpy_run(const char *path, void *heap, size_t heap_size, void *stack_top, si
     mp_stack_set_top(stack_top);
     mp_stack_set_limit(stack_size > 3072 ? stack_size - 3072 : stack_size / 2);
     gc_init(heap, (uint8_t *)heap + heap_size);
+    sc_gfx_reset();                      // los punteros raíz son del script anterior
     mp_init();
     nlr_buf_t nlr;
     if (nlr_push(&nlr) == 0) {
@@ -621,10 +673,12 @@ int scpy_run(const char *path, void *heap, size_t heap_size, void *stack_top, si
         sc_check_pending();
         qstr q = qstr_from_str(path);
         mp_store_global(MP_QSTR___file__, MP_OBJ_NEW_QSTR(q));
-        mp_lexer_t *lex = mp_lexer_new_from_file(q);
-        mp_parse_tree_t pt = mp_parse(lex, MP_PARSE_FILE_INPUT);
-        mp_obj_t f = mp_compile(&pt, q, false);
-        mp_call_function_0(f);
+        if (!sc_run_mpy(path)) {
+            mp_lexer_t *lex = mp_lexer_new_from_file(q);
+            mp_parse_tree_t pt = mp_parse(lex, MP_PARSE_FILE_INPUT);
+            mp_obj_t f = mp_compile(&pt, q, false);
+            mp_call_function_0(f);
+        }
         nlr_pop();
     } else {
         result = sc_report(MP_OBJ_FROM_PTR(nlr.ret_val), path);

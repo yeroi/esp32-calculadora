@@ -83,6 +83,10 @@ class Display {
   // Decodifica un carácter UTF-8 y avanza el puntero (devuelve code point)
   static uint16_t decodeUtf8(const char*& p);
 
+  // Columnas del glifo 5x8 de un carácter (bit 0 = fila de arriba). Para
+  // quien dibuja texto por su cuenta (p. ej. texto sin fondo de los juegos).
+  static void glyphColumns(uint16_t cp, uint8_t cols[5]);
+
  private:
   void drawGlyph(int16_t x, int16_t y, uint16_t cp, uint8_t size,
                  uint16_t fg, uint16_t bg, bool bold);

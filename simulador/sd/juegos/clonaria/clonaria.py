@@ -26,7 +26,11 @@
 import math
 import random
 import sys
-from scicalc import pantalla as P, teclas as K, red
+from scicalc import pantalla as P, teclas as K
+try:
+    from scicalc import red              # multijugador (si la calculadora lo tiene)
+except ImportError:
+    red = None
 
 # ---- Mundo -----------------------------------------------------------------
 W, H = 128, 64                      # en bloques (y hacia ARRIBA, como el original)
@@ -549,7 +553,7 @@ def conectar():
 
 
 def main():
-    online = "--red" in sys.argv or elegir_modo()   # "--red": directo a la partida
+    online = red is not None and ("--red" in sys.argv or elegir_modo())
     seed = conectar() if online else None
     P.limpiar(0)
     P.texto("CLONARIA", 112, 80, 0xFFFFFF, None, 2)

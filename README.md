@@ -19,7 +19,24 @@ El firmware lleva **MicroPython 1.24.1** dentro (`firmware/sketch/src/mpy/`, lo 
 - Módulos: `math`, `cmath`, `random`, `time`, `os` (y `os.path`), `json`, `re`, `struct`, `array`, `collections`, `heapq`, `binascii`, `errno`, `io`, `gc`, `sys`. No existen `subprocess`, `socket`, `machine`… ni `eval`/`exec`/`input`. Números decimales en doble precisión (como la calculadora) y enteros de tamaño ilimitado.
 - Todos los ejemplos de `simulador/sd/scripts` funcionan igual que en el simulador.
 
-Pendiente: el módulo `scicalc` (pantalla y teclas) para los juegos, así que Clonaria y los proyectos de Scratch aún no arrancan en el ESP32 (además, `scratch.py` ocupa 66 KB: en una placa sin PSRAM no cabe). También faltan el editor de scripts y la Consola.
+### Juegos en el ESP32 (módulo `scicalc`)
+
+Los juegos usan la misma API que en el simulador (`scicalc.pantalla` y `scicalc.teclas`, ver [docs/API_scicalc.md](docs/API_scicalc.md)):
+
+- **El script no dibuja**: apunta las órdenes en una cola y `mostrar()` se la pasa a la UI, que es la única que toca la pantalla (en modo PC, lo único que habla por el USB). Así el menú y el juego nunca dibujan a la vez. `mostrar()` limita a ~30 fps y mantiene vivo el watchdog.
+- **Sprites PNG**: los pequeños se guardan ya decodificados (hasta 48 KB entre todos); los grandes (un fondo de Scratch de 320×218 son 140 KB) se vuelven a leer de la SD cada vez que se dibujan. Escala, espejo, giro (los grandes no giran) y transparencia.
+- **Teclas**: las pulsaciones llegan al juego; AC lo para. En modo PC, «mantenida» es el estado real del teclado del PC; con el teclado físico, una tecla cuenta como mantenida mientras se autorrepite.
+- **El intérprete de Scratch va congelado en la flash** (`scratch`, `scratch_red` y `t9`, compilados al generar el firmware): ya no se compila en la placa ni gasta RAM de Python. AtrapaManzanas usa unos 49 KB de los ~70 KB que tiene Python (probado en un MicroPython 1.24.1 con 60 KB de heap).
+- **Scripts grandes precompilados**: si junto a `juego.py` hay un `juego.mpy`, el ESP32 ejecuta el `.mpy` (el simulador sigue con el `.py`). Así Clonaria (23 KB de código, que no se puede compilar en la placa) usa ~45 KB. Se generan en el PC:
+
+  ```bash
+  pip install mpy-cross==1.24.1
+  python pc/compilar_mpy.py simulador/sd/juegos/clonaria/clonaria.py
+  ```
+
+  `clonaria.mpy` ya viene hecho. Si cambias un `.py` que tiene `.mpy`, vuelve a compilarlo (o borra el `.mpy`): la consola avisa con «[clonaria.mpy precompilado]».
+
+Aún no hay `scicalc.red` en el ESP32 (multijugador, web): Clonaria juega solo y el navegador no funciona allí. Paper Minecraft no cabe (ver más abajo). También faltan el editor de scripts y la Consola.
 
 Para cambiar la configuración de MicroPython, ver [`firmware/micropython/README.md`](firmware/micropython/README.md).
 
@@ -76,7 +93,7 @@ Detalles:
 | 3 | Menú e interfaz completos: 6 modos, diálogos, barra de estado, explorador, visores | ✅ |
 | – | Modo PC: pantalla, teclado, SD y sonido en el PC (`pc/scicalc_pantalla.py`) | ✅ |
 | 4 | Calculadora nativa (parser C++) | pendiente |
-| **5** | **MicroPython: tarea con heap propio, watchdog, archivos con permisos, import desde la SD** | ✅ **este paso** (falta el módulo `scicalc` de juegos) |
+| **5** | **MicroPython: tarea con heap propio, watchdog, archivos con permisos, import desde la SD** | ✅ **este paso**: también los juegos (módulo `scicalc`, intérprete de Scratch congelado) |
 | – | Consola con ALPHA + editor de código + `pip` por Wi-Fi · Ajustes reales (WiFi.h, BT SPP, NVS) · LinkService · buzzer · batería | pendiente (ya especificado en el simulador v0.4) |
 | 9–10 | Hardware real (TFT_eSPI + DMA, MCP23017) · PCB | pendiente |
 

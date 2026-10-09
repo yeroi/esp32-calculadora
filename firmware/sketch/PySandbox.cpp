@@ -56,6 +56,7 @@ bool PySandbox::start(const String& path, const std::vector<String>& args) {
   askSince_ = 0;
   heapSize_ = 0;
   t0_ = millis();
+  aliveMs_ = t0_;
   endMs_ = 0;
   state_ = State::Running;
 
@@ -124,7 +125,7 @@ void PySandbox::stop() {
 void PySandbox::tick() {
   if (!task_) return;
   uint32_t now = millis();
-  if (!stopReq_ && state_ == State::Running && elapsedMs() > WATCHDOG_MS) {
+  if (!stopReq_ && state_ == State::Running && now - aliveMs_ > WATCHDOG_MS) {
     stopReason_ = State::Watchdog;
     stopReq_ = true;
     nextKick_ = 0;
@@ -223,6 +224,7 @@ int PySandbox::ask(const char* op, const char* abs, const char* extra) {
   if (extra && *extra) lines.push_back(String("  -> ") + extra);
   DlgAnswer a = dlg_->askBlocking("PERMISO", lines, true, 120000);
   pausedMs_ = pausedMs_ + (millis() - askSince_);
+  aliveMs_ = millis();                        // preguntar no cuenta para el watchdog
   if (state_ == State::Asking) state_ = State::Running;
 
   const char* verdict = a == DlgAnswer::Yes ? "permitido" : a == DlgAnswer::YesAll ? "permitido (todo)" : "DENEGADO";

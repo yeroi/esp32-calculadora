@@ -14,3 +14,6 @@ simulador/sd/red.json
 pc/mundos_servidor/
 simulador/sd/descargas/
 simulador/sd/wifi_ip.json
+# MicroPython: archivos intermedios al regenerar src/mpy
+firmware/micropython/build-embed/
+firmware/micropython/micropython_embed/

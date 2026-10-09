@@ -233,6 +233,27 @@ uint16_t Display::decodeUtf8(const char*& p) {
   return '?';
 }
 
+void Display::glyphColumns(uint16_t cp, uint8_t cols[5]) {
+  const uint8_t* g = customGlyph(cp);
+  if (g) {
+    memcpy(cols, g, 5);
+    return;
+  }
+  static GFXcanvas1* cv = nullptr;               // 6x8 bits: 6 bytes
+  if (!cv) {
+    cv = new GFXcanvas1(6, 8);
+    cv->cp437(true);
+  }
+  cv->fillScreen(0);
+  cv->drawChar(0, 0, toCp437(cp), 1, 0, 1);
+  for (uint8_t c = 0; c < 5; ++c) {
+    uint8_t bits = 0;
+    for (uint8_t r = 0; r < 8; ++r)
+      if (cv->getPixel(c, r)) bits |= 1 << r;
+    cols[c] = bits;
+  }
+}
+
 uint8_t Display::toCp437(uint16_t cp) {
   if (cp < 0x80) return static_cast<uint8_t>(cp);
   switch (cp) {
