@@ -53,6 +53,14 @@ python pc/sb3_a_scicalc.py MiJuego.sb3 E:\              # -> MicroSD (E:\scratch
 
 **Ratón virtual**: **8 4 6 2** mueven el puntero (mantener acelera) y **5** es el clic (mantenido = botón pulsado). Funcionan "ratón x/y", "¿ratón presionado?", "tocando puntero del ratón" y "al hacer clic en este objeto". Si el juego usa también las teclas 2, 4, 5, 6 u 8, pasan a SHIFT+número; cuando se acaban las teclas libres se usan combinaciones SHIFT+tecla. WASD van a las flechas.
 
+**Pantalla completa**: el escenario se estira a toda la pantalla (320×218); en el menú se puede cambiar a "proporcional".
+
+**Menú SciCalc** (SHIFT+EXE, o la tecla que diga el perfil): pausa el juego y permite guardar la partida, mandar la pausa del juego, cambiar la pantalla, poner el rendimiento en "rápido" (dibuja 1 de cada 2 fotogramas) y ver los controles.
+
+**Partidas guardadas**: si el juego muestra una lista cuyo nombre contiene "save", su contenido se guarda en `partida_N.txt` junto al juego (el sandbox pide permiso para escribir). Cuando el juego pide pegar un código de partida, aparece un selector: pulsa el número de la partida.
+
+**Controles por juego**: el convertidor crea `controles.json` (editable) y aplica los perfiles de `pc/perfiles/` (incluido el de Paper Minecraft: E → 9, F → 7, barra de objetos en SHIFT+1…9, P → "(" abre el menú, guardar con O). Correr (SHIFT en Scratch) es un doble toque rápido en ◄ o ►.
+
 El intérprete reparte el tiempo como Scratch: en cada fotograma repite los guiones hasta que algo cambia en pantalla, así que los bucles de cálculo (generar un mundo, por ejemplo) van a toda velocidad. Probado con *Paper Minecraft* de griffpatch (30 objetos, 14 000 bloques): genera el mundo y se juega en el simulador.
 
 Ejemplo incluido: `pc/ejemplos/AtrapaManzanas.sb3`, ya convertido en `simulador/sd/scratch/atrapamanzanas/`.

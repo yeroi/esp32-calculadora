@@ -255,13 +255,19 @@ class TargetConverter:
 MOUSE_KEYS = ("8", "4", "6", "2", "5")
 
 
-def build_keymap(keys_used):
+def build_keymap(keys_used, preset=None):
     """Teclas de Scratch -> teclas de la calculadora.
-    Si se acaban las teclas libres se usan combinaciones SHIFT+tecla ("S:x")."""
+    Si se acaban las teclas libres se usan combinaciones SHIFT+tecla ("S:x").
+    'preset' (de un perfil) fija algunas teclas antes de repartir el resto."""
     used = {k for k in keys_used if k and k != "any"}
     km = {}
-    taken = set(MOUSE_KEYS)
+    taken = set(MOUSE_KEYS) | {"S:EXE"}            # SHIFT+EXE: menú de la calculadora
+    for k, ck in (preset or {}).items():
+        km[k] = list(ck)
+        taken.update(ck)
     for k in used:
+        if k in km:
+            continue
         if k in FIXED_KEYS:
             km[k] = FIXED_KEYS[k]
             taken.update(FIXED_KEYS[k])
@@ -270,12 +276,14 @@ def build_keymap(keys_used):
             taken.add(k)
     wasd = {"w": "UP", "a": "LEFT", "s": "DOWN", "d": "RIGHT"}
     free = [f for f in FREE_KEYS if f not in taken]
-    combos = ["S:" + d for d in "0123456789"] + ["S:" + f for f in FREE_KEYS]
+    combos = [c for c in ["S:" + d for d in "0123456789"] + ["S:" + f for f in FREE_KEYS]
+              if c not in taken]
     # Primero los dígitos del ratón (SHIFT+ese dígito, fácil de recordar)
     for k in sorted(used):
-        if k in MOUSE_KEYS:
+        if k in MOUSE_KEYS and k not in km:
             km[k] = ["S:" + k]
-            combos.remove("S:" + k)
+            if "S:" + k in combos:
+                combos.remove("S:" + k)
     for k in sorted(used):
         if k in km:
             continue
@@ -356,11 +364,34 @@ def convert(sb3_path, sd_root):
             monitors.append([m.get("id"), m["params"]["VARIABLE"], m.get("spriteName"),
                              m.get("x", 0), m.get("y", 0), m.get("mode", "default")])
 
-    keymap = build_keymap(keys_used)
+    # Perfil de controles para este juego (pc/perfiles/*.json), si lo hay
+    profile = {}
+    for pf in sorted((HERE / "perfiles").glob("*.json")):
+        try:
+            data_pf = json.loads(pf.read_text(encoding="utf-8"))
+        except ValueError:
+            continue
+        if name.startswith(data_pf.get("coincide", "\0")):
+            profile = data_pf
+            print(f"  perfil de controles: {pf.name}")
+    keymap = build_keymap(keys_used, profile.get("teclas"))
     data = {"v": FORMAT_VERSION, "nombre": Path(sb3_path).stem, "escala": STAGE_SCALE,
             "teclas": keymap, "objetos": targets_out, "monitores": monitors}
     text = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
     (out_dir / "proyecto.json").write_text(text, encoding="utf-8")
+
+    # controles.json: editable a mano; el intérprete lo lee al arrancar
+    controls = {
+        "teclas": keymap,
+        "menu": profile.get("menu", []),
+        "guardar": profile.get("guardar"),
+        "tras_guardar": profile.get("tras_guardar"),
+        "correr": profile.get("correr") or ({"tecla": "", "doble_toque": True} if "" in keys_used else None),
+        "pantalla": profile.get("pantalla", "estirar"),
+        "rendimiento": profile.get("rendimiento", "normal"),
+    }
+    (out_dir / "controles.json").write_text(json.dumps(controls, ensure_ascii=False, indent=1),
+                                           encoding="utf-8")
 
     launcher = out_dir / f"{name}.py"
     launcher.write_text(
@@ -372,7 +403,13 @@ def convert(sb3_path, sd_root):
     lines = [f"{Path(sb3_path).stem} (Scratch)", "", "Teclas:"]
     for sk, ck in sorted(keymap.items()):
         lines.append(f"  {sk:<12} -> {', '.join(key_label(c) for c in ck)}")
+    if controls["correr"]:
+        lines.append("  correr       -> doble toque rápido en ◄ o ►")
     lines.append("  ratón        -> 8 4 6 2 mueven el puntero · 5 = clic")
+    lines.append("  menú         -> SHIFT+EXE" + (" o " + ", ".join(key_label(c) for k in controls["menu"]
+                                                                  for c in keymap.get(k, []))
+                                                if controls["menu"] else "")
+                 + " (guardar, pantalla, rendimiento...)")
     lines.append("  AC           -> salir")
     (out_dir / "LEEME.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
 

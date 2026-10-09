@@ -741,7 +741,9 @@ def _dibujar(s, x, y, escala=1, espejo=False, angulo=0, centro=None):
     # ese punto cae en (x, y) y el giro es alrededor de él. angulo en grados,
     # en el sentido de las agujas del reloj.
     c = None if centro is None else [float(centro[0]), float(centro[1])]
-    _ops.append(("spr", s.id, float(x), float(y), float(escala), bool(espejo), float(angulo), c))
+    # escala: un número, o (ancho, alto) para estirar distinto en cada eje
+    e = [float(escala[0]), float(escala[1])] if isinstance(escala, (tuple, list)) else float(escala)
+    _ops.append(("spr", s.id, float(x), float(y), e, bool(espejo), float(angulo), c))
 
 def _recorte(x=None, y=None, w=None, h=None):
     # Limita el dibujo a un rectángulo (redibujado parcial). Sin argumentos: quita el límite
@@ -834,6 +836,10 @@ except BaseException as ex:
     if deep:
         pkg = deep[0].split("/")[0].replace(".py", "")
         sys.stdout.write("\x01  falló dentro de /lib/%s, línea %d\n" % deep)
+    if deep and pkg == "scratch":
+        sys.stdout.write("\x03Es un fallo del intérprete de Scratch de la calculadora, "
+                         "no del juego.\n")
+    elif deep and isinstance(ex, (ImportError, AttributeError)):
         sys.stdout.write("\x03El paquete '%s' usa partes del Python de PC que no existen "
                          "en MicroPython: no funciona en la calculadora.\n" % pkg)
         sys.stdout.write("\x03Desinstálalo con:  pip uninstall %s\n" % pkg)
@@ -966,13 +972,14 @@ class ScriptRunner:
             self._send({"held": sorted(held)})
 
     def _sprite_img(self, sid, scale, flip, angle):
-        k = (sid, round(scale, 3), flip, round(angle, 1))
+        ex, ey = scale
+        k = (sid, round(ex, 3), round(ey, 3), flip, round(angle, 1))
         if k not in self._scaled:
             if len(self._scaled) > 400:
                 self._scaled.clear()
             base = self.sprites[sid]
-            w = max(1, round(base.get_width() * scale * 2))
-            h = max(1, round(base.get_height() * scale * 2))
+            w = max(1, round(base.get_width() * ex * 2))
+            h = max(1, round(base.get_height() * ey * 2))
             img = pygame.transform.scale(base, (w, h))
             if flip:
                 img = pygame.transform.flip(img, True, False)
@@ -986,16 +993,17 @@ class ScriptRunner:
         angle = op[6] if len(op) > 6 else 0.0
         centro = op[7] if len(op) > 7 else None
         base = self.sprites[sid]
-        bw, bh = base.get_width() * scale * 2, base.get_height() * scale * 2
+        ex, ey = (scale, scale) if not isinstance(scale, list) else scale
+        bw, bh = base.get_width() * ex * 2, base.get_height() * ey * 2
         if centro is None:
             px, py = bw / 2, bh / 2
             tx, ty = x * 2 + px, y * 2 + py
         else:
-            px, py = centro[0] * scale * 2, centro[1] * scale * 2
+            px, py = centro[0] * ex * 2, centro[1] * ey * 2
             tx, ty = x * 2, y * 2
         if flip:
             px = bw - px
-        img = self._sprite_img(sid, scale, flip, angle)
+        img = self._sprite_img(sid, (ex, ey), flip, angle)
         # vector centro-de-imagen -> pivote, girado en sentido horario
         vx, vy = px - bw / 2, py - bh / 2
         a = math.radians(angle)
@@ -1029,7 +1037,8 @@ class ScriptRunner:
                 if os.path.commonpath([path, sd]) == sd:     # solo imágenes de la SD
                     self.sprites[op[1]] = pygame.image.load(path)
             elif kind == "spr" and op[1] in self.sprites:
-                if op[4] > 0:
+                e = op[4]
+                if (min(e) if isinstance(e, list) else e) > 0:
                     self._blit_sprite(c, op)
             elif kind == "clip":
                 c.set_clip(None if len(op) == 1 else pygame.Rect(op[1] * 2, op[2] * 2, op[3] * 2, op[4] * 2))

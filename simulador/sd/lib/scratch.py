@@ -48,6 +48,19 @@ def num(v):
         return 0
 
 
+INF = float("inf")
+
+
+def finite(v):
+    return v == v and v != INF and v != -INF
+
+
+def toint(v):
+    """Entero para índices y repeticiones: infinito o NaN cuentan como 0."""
+    n = num(v)
+    return int(n) if finite(n) else 0
+
+
 def is_num(v):
     if isinstance(v, (int, float)) and not isinstance(v, bool):
         return True
@@ -65,6 +78,8 @@ def text(v):
     if isinstance(v, bool):
         return "true" if v else "false"
     if isinstance(v, float):
+        if not finite(v):
+            return "Infinity" if v == INF else ("-Infinity" if v == -INF else "NaN")
         if v == int(v) and abs(v) < 1e16:
             return str(int(v))
         return str(v)
@@ -140,7 +155,7 @@ class Sprite:
     # Caja en coordenadas de Scratch (sin tener en cuenta el giro)
     def bbox(self):
         _, _, w, h, cx, cy = self.costumes[self.costume]
-        k = self.size / 100 / self.proj.scale
+        k = self.size / 100 / self.proj.scale            # px del PNG -> unidades de Scratch
         left = self.x - cx * k
         top = self.y + cy * k
         return left, top - h * k, left + w * k, top     # x0, y0, x1, y1
@@ -150,16 +165,16 @@ class Sprite:
         if not self.visible or self.ghost >= 100:
             return None
         _, _, w, h, cx, cy = self.costumes[self.costume]
-        s = self.size / 100
+        kx, ky = self.size / 100 * self.proj.kx, self.size / 100 * self.proj.ky
         sx, sy = self.proj.to_screen(self.x, self.y)
         if self.rot == "all around" and (self.dir - 90) % 360:
             r = max(math.sqrt(cx * cx + cy * cy), math.sqrt((w - cx) ** 2 + cy * cy),
-                    math.sqrt(cx * cx + (h - cy) ** 2), math.sqrt((w - cx) ** 2 + (h - cy) ** 2)) * s
+                    math.sqrt(cx * cx + (h - cy) ** 2), math.sqrt((w - cx) ** 2 + (h - cy) ** 2)) * max(kx, ky)
             return (int(sx - r) - 1, int(sy - r) - 1, int(2 * r) + 3, int(2 * r) + 3)
-        x0, y0 = sx - cx * s, sy - cy * s
+        x0, y0 = sx - cx * kx, sy - cy * ky
         if self.rot == "left-right" and self.dir < 0:
-            x0 = sx - (w - cx) * s
-        return (int(x0) - 1, int(y0) - 1, int(w * s) + 3, int(h * s) + 3)
+            x0 = sx - (w - cx) * kx
+        return (int(x0) - 1, int(y0) - 1, int(w * kx) + 3, int(h * ky) + 3)
 
     def draw(self):
         if not self.visible or self.ghost >= 100:
@@ -171,7 +186,8 @@ class Sprite:
             ang = self.dir - 90
         elif self.rot == "left-right":
             flip = self.dir < 0
-        P.dibujar(self.img(), sx, sy, self.size / 100, flip, ang, (cx, cy))
+        s = self.size / 100
+        P.dibujar(self.img(), sx, sy, (s * self.proj.kx, s * self.proj.ky), flip, ang, (cx, cy))
 
     def set_costume(self, v):
         n = len(self.costumes)
@@ -200,7 +216,7 @@ class Sprite:
                 return
             if not is_num(v):
                 return
-        i = int(round(num(v))) - 1
+        i = toint(round(num(v)) if finite(num(v)) else 0) - 1
         self.costume = i % n
 
     def fence(self):
@@ -255,15 +271,36 @@ class Project:
     def __init__(self, path):
         with open(path) as f:
             data = json.load(f)
-        self.scale = data["escala"]
+        self.scale = data["escala"]                  # escala a la que se guardaron los PNG
         self.keymap = data.get("teclas", {})
-        self.ox = (P.ANCHO - STAGE_W * self.scale) / 2
-        self.oy = (P.ALTO - STAGE_H * self.scale) / 2
+        # Controles y opciones (controles.json junto al proyecto, editable)
+        self.folder = path[:path.rfind("/") + 1] if "/" in path else ""
+        cfg = {}
+        try:
+            with open(self.folder + "controles.json") as f:
+                cfg = json.load(f)
+        except (OSError, ValueError):
+            pass
+        self.keymap = cfg.get("teclas", self.keymap)
+        self.menu_keys = ["S:EXE"]                   # SHIFT+EXE abre el menú siempre
+        for sk in cfg.get("menu", []):
+            self.menu_keys += self.keymap.get(sk, [])
+        self.menu_scratch = cfg.get("menu", [])      # teclas de Scratch que abren el menú
+        self.save_key = cfg.get("guardar")           # tecla de Scratch con la que el juego guarda
+        self.after_save = cfg.get("tras_guardar")    # tecla que pulsar al acabar de guardar
+        self.pending = None                          # [tecla, cuándo] pulsación programada
+        run = cfg.get("correr") or {}
+        self.run_key = run.get("tecla") if run.get("doble_toque") else None
+        self.screen_mode = cfg.get("pantalla", "estirar")
+        self.fast = cfg.get("rendimiento", "normal") == "rapido"
+        self.set_screen(self.screen_mode)
         self.sprites = [Sprite(d, self) for d in data["objetos"]]
         self.names = {}                          # id de variable -> nombre
         for d in data["objetos"]:
             for vid, v in d["vars"].items():
                 self.names[vid] = v[0]
+            for lid, v in d["listas"].items():
+                self.names[lid] = v[0]
         self.stage = [s for s in self.sprites if s.stage][0]
         order = sorted([(d["capa"], i) for i, d in enumerate(data["objetos"]) if not d["escenario"]])
         self.layers = [self.sprites[i] for _, i in order]      # de atrás adelante
@@ -286,6 +323,13 @@ class Project:
         self.mouse_t = 0                         # ms que lleva moviéndose (acelera)
         self.mouse_drawn = None
         self.taps = {}                           # "S:x" (SHIFT+tecla) -> válido hasta (ms)
+        self.injected = {}                       # tecla de Scratch pulsada por el menú -> hasta (ms)
+        self.last_tap = (None, 0)                # para el doble toque (correr)
+        self.sprint = None                       # flecha con la que se está corriendo
+        self.menu = None                         # menú propio abierto: [opción, página]
+        self.picker = None                       # selector de partidas (en "preguntar")
+        self.toast = None                        # [texto, hasta (ms)]
+        self.frame = 0
         self.uses_mouse = self._uses_mouse()
         self.unsupported = set()
         self.S = {}
@@ -308,8 +352,21 @@ class Project:
         return False
 
     # ---- coordenadas ------------------------------------------------------------
+    def set_screen(self, mode):
+        """'estirar': el escenario ocupa toda la pantalla. 'proporcion': sin deformar."""
+        self.screen_mode = mode
+        fx, fy = P.ANCHO / STAGE_W, P.ALTO / STAGE_H
+        if mode != "estirar":
+            fx = fy = min(fx, fy)
+        self.fx, self.fy = fx, fy                    # unidades de Scratch -> píxeles
+        self.kx, self.ky = fx / self.scale, fy / self.scale   # px del PNG -> píxeles
+        self.sw, self.sh = STAGE_W * fx, STAGE_H * fy
+        self.ox, self.oy = (P.ANCHO - self.sw) / 2, (P.ALTO - self.sh) / 2
+        self.dirty_all = True
+        P.limpiar(0)
+
     def to_screen(self, x, y):
-        return self.ox + (x + 240) * self.scale, self.oy + (180 - y) * self.scale
+        return self.ox + (x + 240) * self.fx, self.oy + (180 - y) * self.fy
 
     # ---- variables ---------------------------------------------------------------
     def var_get(self, sp, vid):
@@ -422,6 +479,10 @@ class Project:
 
         # ---------- movimiento ----------
         def moved(sp):
+            if not finite(sp.x):
+                sp.x = 0.0
+            if not finite(sp.y):
+                sp.y = 0.0
             sp.fence()
             self.mark(sp)
 
@@ -435,6 +496,8 @@ class Project:
         S["motion_movesteps"] = move
 
         def set_dir(sp, d):
+            if not finite(d):
+                return
             d = ((d + 179) % 360) - 179
             sp.dir = d
             self.mark(sp)
@@ -569,7 +632,8 @@ class Project:
 
         def size(ctx, b, delta):
             v = float(num(self.ev(ctx, b, "CHANGE" if delta else "SIZE")))
-            ctx.sp.size = max(5.0, min(500.0, ctx.sp.size + v if delta else v))
+            if finite(v):
+                ctx.sp.size = max(5.0, min(500.0, ctx.sp.size + v if delta else v))
             self.mark(ctx.sp)
         S["looks_changesizeby"] = lambda ctx, b: size(ctx, b, True)
         S["looks_setsizeto"] = lambda ctx, b: size(ctx, b, False)
@@ -609,7 +673,7 @@ class Project:
             sp = ctx.sp
             if sp not in self.layers:
                 return
-            n = int(num(self.ev(ctx, b, "NUM")))
+            n = toint(self.ev(ctx, b, "NUM"))
             if self.field(b, "FORWARD_BACKWARD", "forward") == "backward":
                 n = -n
             i = self.layers.index(sp)
@@ -652,7 +716,8 @@ class Project:
         S["control_wait"] = wait
 
         def repeat(ctx, b):
-            n = int(round(num(self.ev(ctx, b, "TIMES"))))
+            t = num(self.ev(ctx, b, "TIMES"))
+            n = int(round(t)) if finite(t) else 0
 
             def g():
                 for _ in range(n):
@@ -747,14 +812,18 @@ class Project:
 
         # ---------- sensores ----------
         def down(k):
-            if k.startswith("S:"):                  # SHIFT+tecla: vale unos ms tras pulsarla
-                return self.taps.get(k, 0) > self.now
+            if k.startswith("S:"):                  # SHIFT+tecla: vale unos fotogramas
+                return self.taps.get(k, -1) >= self.frame
             return k in self.held
 
         def key_pressed(name):
             name = str(name).lower()
+            if self.injected.get(name, -1) >= self.frame:
+                return True
+            if self.run_key is not None and name == self.run_key and self.sprint:
+                return True                            # correr: doble toque en una flecha
             if name == "any":
-                return bool(self.held - self.mouse_keys()) or any(t > self.now for t in self.taps.values())
+                return bool(self.held - self.mouse_keys()) or any(t >= self.frame for t in self.taps.values())
             return any(down(k) for k in self.keymap.get(name, ()))
         R["sensing_keypressed"] = lambda ctx, b: key_pressed(self.ev(ctx, b, "KEY_OPTION"))
 
@@ -824,6 +893,9 @@ class Project:
         def ask(ctx, b):
             q = text(self.ev(ctx, b, "QUESTION"))
             self.asking = [q, "", False]
+            ql = q.lower()
+            if ("save" in ql or "paste" in ql or "partida" in ql or "pega" in ql) and self.list_saves():
+                self.picker = self.list_saves()        # elegir partida guardada con un número
             self.dirty_all = True
 
             def g():
@@ -831,6 +903,7 @@ class Project:
                     yield
                 self.answer = self.asking[1]
                 self.asking = None
+                self.picker = None
                 self.dirty_all = True
             return g()
         S["sensing_askandwait"] = ask
@@ -846,12 +919,16 @@ class Project:
 
         def mod(ctx, b):
             a, c = num(self.ev(ctx, b, "NUM1")), num(self.ev(ctx, b, "NUM2"))
-            return 0 if c == 0 else a - c * math.floor(a / c)
+            if c == 0 or not finite(a) or not finite(c):
+                return float("nan") if c == 0 or not finite(a) else a
+            return a - c * math.floor(a / c)
         R["operator_mod"] = mod
 
         def rnd(ctx, b):
             f, t = self.ev(ctx, b, "FROM"), self.ev(ctx, b, "TO")
             a, c = num(f), num(t)
+            if not (finite(a) and finite(c)):
+                return 0
             if a > c:
                 a, c = c, a
             if isinstance(a, int) and isinstance(c, int) and "." not in text(f) + text(t):
@@ -870,17 +947,23 @@ class Project:
 
         def letter(ctx, b):
             s = text(self.ev(ctx, b, "STRING", ""))
-            i = int(num(self.ev(ctx, b, "LETTER"))) - 1
+            i = toint(self.ev(ctx, b, "LETTER")) - 1
             return s[i] if 0 <= i < len(s) else ""
         R["operator_letter_of"] = letter
         R["operator_length"] = lambda ctx, b: len(text(self.ev(ctx, b, "STRING", "")))
         R["operator_contains"] = lambda ctx, b: text(self.ev(ctx, b, "STRING2", "")).lower() in \
             text(self.ev(ctx, b, "STRING1", "")).lower()
-        R["operator_round"] = lambda ctx, b: int(math.floor(num(self.ev(ctx, b, "NUM")) + 0.5))
+
+        def round_(ctx, b):
+            n = num(self.ev(ctx, b, "NUM"))
+            return int(math.floor(n + 0.5)) if finite(n) else n
+        R["operator_round"] = round_
 
         def mathop(ctx, b):
             op = self.field(b, "OPERATOR", "abs")
             n = num(self.ev(ctx, b, "NUM"))
+            if not finite(n) and op in ("floor", "ceiling", "abs"):
+                return abs(n) if op == "abs" else n
             try:
                 if op == "abs": return abs(n)
                 if op == "floor": return math.floor(n)
@@ -912,7 +995,13 @@ class Project:
         S["data_changevariableby"] = changevar
         S["data_showvariable"] = lambda ctx, b: None
         S["data_hidevariable"] = lambda ctx, b: None
-        S["data_showlist"] = lambda ctx, b: None
+
+        def showlist(ctx, b):
+            lid = self.field(b, "LIST")
+            name = self.names.get(lid, "")
+            if "save" in name.lower() or "guard" in name.lower():
+                self.save_game(self.lst(ctx.sp, lid))
+        S["data_showlist"] = showlist
         S["data_hidelist"] = lambda ctx, b: None
 
         def L(ctx, b):
@@ -925,7 +1014,7 @@ class Project:
                 return len(items) - 1 + add
             if s in ("random", "any"):
                 return random.randint(0, max(0, len(items) - 1))
-            return int(num(v)) - 1
+            return toint(v) - 1
 
         def add(ctx, b):
             items = L(ctx, b)
@@ -1032,7 +1121,7 @@ class Project:
         st = self.stage
         sx, sy = self.to_screen(0, 0)
         _, _, w, h, cx, cy = st.costumes[st.costume]
-        P.dibujar(st.img(), sx, sy, 1, False, 0, (cx, cy))
+        P.dibujar(st.img(), sx, sy, (self.kx, self.ky), False, 0, (cx, cy))
         for sp in self.layers:
             sp.draw()
         for sp in self.layers:
@@ -1042,7 +1131,12 @@ class Project:
         if self.uses_mouse:
             self.draw_cursor()
         if self.asking:
-            self.draw_ask()
+            self.draw_picker() if self.picker else self.draw_ask()
+        if self.toast:
+            P.rect(int(self.ox) + 4, int(self.oy) + 4, len(self.toast[0]) * 6 + 10, 14, 0x203020)
+            P.texto(self.toast[0], int(self.ox) + 9, int(self.oy) + 7, 0x80FF80)
+        if self.menu:
+            self.draw_menu()
         if clip:
             P.recorte()
 
@@ -1092,11 +1186,150 @@ class Project:
         if self.mouse_down:
             P.rect(sx - 1, sy - 1, 3, 3, 0xFF3030)
 
+    # ---- partidas guardadas (archivos partida_N.txt junto al proyecto) -------------
+    def list_saves(self):
+        import os
+        out = []
+        try:
+            names = os.listdir(self.folder or ".")
+        except OSError:
+            return out
+        for n in names:
+            if n.startswith("partida_") and n.endswith(".txt"):
+                try:
+                    out.append(int(n[8:-4]))
+                except ValueError:
+                    pass
+        out.sort(reverse=True)                       # la más reciente primero
+        return out[:9]
+
+    def save_game(self, items):
+        nums = self.list_saves()
+        n = (max(nums) + 1) if nums else 1
+        try:
+            with open(self.folder + "partida_%d.txt" % n, "w") as f:
+                f.write("\n".join(text(i) for i in items))
+            self.show_toast("Partida %d guardada" % n)
+            if self.after_save:                      # cerrar la pantalla de "copia el código"
+                self.pending = [self.after_save, self.now + 700]
+        except OSError as e:
+            self.show_toast("No se pudo guardar: %s" % e)
+
+    def load_save(self, n):
+        try:
+            with open(self.folder + "partida_%d.txt" % n) as f:
+                return f.read().strip()
+        except OSError:
+            return ""
+
+    def show_toast(self, t):
+        self.toast = [t, self.now + 2500]
+        self.dirty_all = True
+
+    def draw_picker(self):
+        x, y, w = int(self.ox) + 20, int(self.oy) + 20, int(self.sw) - 40
+        h = 30 + 12 * len(self.picker)
+        P.rect(x, y, w, h, 0xFFFFFF)
+        P.marco(x, y, w, h, 0x855CD6)
+        P.texto("Elige una partida guardada:", x + 6, y + 4, 0x202020)
+        for i, n in enumerate(self.picker):
+            P.texto("%d  ->  partida %d" % (i + 1, n), x + 10, y + 18 + i * 12, 0x855CD6)
+        P.texto("DEL: escribir un número en vez de cargar", x + 6, y + h - 10, 0x888888)
+
+    # ---- menú propio (SHIFT+EXE o la tecla de pausa del juego) ----------------------
+    def menu_items(self):
+        items = [("Continuar", "seguir")]
+        if self.save_key:
+            items.append(("Guardar partida", "guardar"))
+        if "p" in self.menu_scratch:
+            items.append(("Pausa del juego (P)", "pausa"))
+        items.append(("Pantalla: " + ("estirada" if self.screen_mode == "estirar" else "proporcional"),
+                      "pantalla"))
+        items.append(("Rendimiento: " + ("rápido" if self.fast else "normal"), "rendimiento"))
+        items.append(("Ver controles", "controles"))
+        return items
+
+    def menu_key(self, k):
+        items = self.menu_items()
+        sel, page = self.menu
+        if page == "controles":
+            if k in ("EXE", "DEL", "LEFT") or k.startswith("S:"):
+                self.menu = [sel, None]
+            elif k in ("UP", "DOWN"):
+                self.menu = [sel, "controles"]
+            self.dirty_all = True
+            return
+        action = None
+        if k == "UP":
+            sel = (sel - 1) % len(items)
+        elif k == "DOWN":
+            sel = (sel + 1) % len(items)
+        elif k.isdigit() and 1 <= int(k) <= len(items):
+            sel = int(k) - 1
+            action = items[sel][1]
+        elif k == "EXE":
+            action = items[sel][1]
+        elif k == "DEL" or k.startswith("S:"):
+            action = "seguir"
+        self.menu = [sel, None]
+        if action == "seguir":
+            self.menu = None
+        elif action == "guardar":
+            self.menu = None
+            self.inject(self.save_key)
+        elif action == "pausa":
+            self.menu = None
+            self.inject("p")
+        elif action == "pantalla":
+            self.set_screen("proporcion" if self.screen_mode == "estirar" else "estirar")
+        elif action == "rendimiento":
+            self.fast = not self.fast
+        elif action == "controles":
+            self.menu = [sel, "controles"]
+        self.dirty_all = True
+
+    def inject(self, sk):
+        """Pulsa una tecla de Scratch como si la hubiera pulsado el jugador."""
+        self.injected[sk] = self.frame + 6            # dura 6 fotogramas (no ms: en mundos
+                                                      # pesados un fotograma puede ser lento)
+        self.start_hats("event_whenkeypressed", sk, restart=False)
+
+    def draw_menu(self):
+        sel, page = self.menu
+        x, y, w = int(self.ox) + 30, int(self.oy) + 16, int(self.sw) - 60
+        if page == "controles":
+            lines = []
+            for sk, ck in sorted(self.keymap.items()):
+                lines.append("%-11s %s" % (sk[:11], ", ".join(c.replace("S:", "SHIFT+") for c in ck)))
+            if self.run_key is not None:
+                lines.append("correr      doble toque en ◄ o ►")
+            if self.uses_mouse:
+                lines.append("ratón       8 4 6 2 mover · 5 clic")
+            lines.append("menú        SHIFT+EXE")
+            lines = lines[:15]
+            h = 22 + 11 * len(lines)
+            P.rect(x, y, w, h, 0x1E222C)
+            P.marco(x, y, w, h, 0x28A8FA)
+            P.texto("Controles  (EXE vuelve)", x + 6, y + 4, 0x28A8FA)
+            for i, ln in enumerate(lines):
+                P.texto(ln, x + 6, y + 18 + i * 11, 0xEEEEEE)
+            return
+        items = self.menu_items()
+        h = 26 + 14 * len(items)
+        P.rect(x, y, w, h, 0x1E222C)
+        P.marco(x, y, w, h, 0x28A8FA)
+        P.texto("Menú SciCalc  (juego en pausa)", x + 6, y + 5, 0x28A8FA)
+        for i, (label, _) in enumerate(items):
+            yy = y + 20 + i * 14
+            if i == sel:
+                P.rect(x + 3, yy - 2, w - 6, 13, 0x28A8FA)
+            P.texto("%d  %s" % (i + 1, label), x + 8, yy, 0xFFFFFF)
+
     def draw_ask(self):
         q, a, _ = self.asking
         y = P.ALTO - 34
-        P.rect(int(self.ox) + 4, y, int(STAGE_W * self.scale) - 8, 30, 0xFFFFFF)
-        P.marco(int(self.ox) + 4, y, int(STAGE_W * self.scale) - 8, 30, 0x855CD6)
+        P.rect(int(self.ox) + 4, y, int(self.sw) - 8, 30, 0xFFFFFF)
+        P.marco(int(self.ox) + 4, y, int(self.sw) - 8, 30, 0x855CD6)
         P.texto(q[:44], int(self.ox) + 8, y + 3, 0x202020)
         P.texto("> " + a + "_   (EXE)", int(self.ox) + 8, y + 16, 0x855CD6)
 
@@ -1130,7 +1363,7 @@ class Project:
             self.dirty_all = True
         if self.dirty_all:
             self.dirty_all = False
-            self.draw_all((int(self.ox), int(self.oy), int(STAGE_W * self.scale), int(STAGE_H * self.scale)))
+            self.draw_all((int(self.ox), int(self.oy), int(self.sw), int(self.sh)))
             for sp in self.layers:
                 sp.drawn = sp.screen_rect()
             return
@@ -1138,8 +1371,8 @@ class Project:
             return
         x0 = max(int(self.ox), min(r[0] for r in rects))
         y0 = max(int(self.oy), min(r[1] for r in rects))
-        x1 = min(int(self.ox + STAGE_W * self.scale), max(r[0] + r[2] for r in rects))
-        y1 = min(int(self.oy + STAGE_H * self.scale), max(r[1] + r[3] for r in rects))
+        x1 = min(int(self.ox + self.sw), max(r[0] + r[2] for r in rects))
+        y1 = min(int(self.oy + self.sh), max(r[1] + r[3] for r in rects))
         if x1 > x0 and y1 > y0:
             self.draw_all((x0, y0, x1 - x0, y1 - y0))
 
@@ -1178,9 +1411,44 @@ class Project:
     def input(self):
         events = K.eventos()
         self.held = set(K.pulsadas())
+        # Menú propio abierto: se queda con todas las teclas
+        if self.menu:
+            for k, shift in events:
+                self.menu_key(("S:" + k) if shift else k)
+                if not self.menu:
+                    break
+            return
+        for k, shift in events:
+            name = ("S:" + k) if shift else k
+            if name in self.menu_keys and not self.asking:
+                self.menu = [0, None]
+                self.dirty_all = True
+                return
+        # Selector de partidas (al cargar)
+        if self.picker:
+            for k, shift in events:
+                if k.isdigit() and 1 <= int(k) <= len(self.picker):
+                    self.asking[1] = self.load_save(self.picker[int(k) - 1])
+                    self.asking[2] = True
+                    return
+                if k == "DEL":                         # escribir a mano
+                    self.picker = None
+                    self.dirty_all = True
+                    return
+            return
+        # Correr: doble toque rápido en una flecha
+        for k, shift in events:
+            if k in ("LEFT", "RIGHT") and not shift:
+                last, t = self.last_tap
+                if last == k and self.now - t < 350:
+                    self.sprint = k
+                self.last_tap = (k, self.now)
+        if self.sprint and self.sprint not in self.held and \
+                not any(k == self.sprint for k, _ in events):
+            self.sprint = None
         for k, shift in events:
             if shift:
-                self.taps["S:" + k] = self.now + 150   # SHIFT+tecla: pulsación corta
+                self.taps["S:" + k] = self.frame + 3   # SHIFT+tecla: pulsación de 3 fotogramas
             else:
                 self.held.add(k)               # un toque cuenta como pulsada este fotograma
         if self.uses_mouse and not self.asking:
@@ -1214,6 +1482,16 @@ class Project:
         # tiempo (WORK_MS). Así los bucles de cálculo puro van a toda velocidad.
         self.now = K.ms()
         self.input()
+        if self.pending and self.now >= self.pending[1]:
+            self.inject(self.pending[0])
+            self.pending = None
+        if self.toast and self.now > self.toast[1]:
+            self.toast = None
+            self.dirty_all = True
+        if self.menu:                                 # juego en pausa mientras está el menú
+            self.render()
+            P.mostrar()
+            return
         start = K.ms()
         while True:
             self.redraw = False
@@ -1230,7 +1508,9 @@ class Project:
             if self.redraw or self.dirty_all or not self.threads or K.ms() - start >= WORK_MS:
                 break
             self.now = K.ms()
-        self.render()
+        self.frame += 1
+        if not self.fast or self.frame % 2 == 0 or self.dirty_all:
+            self.render()                             # "rápido": se dibuja 1 de cada 2 fotogramas
         P.mostrar()
 
 
