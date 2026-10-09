@@ -1722,6 +1722,8 @@ def ejecutar(ruta):
     P.mostrar()
     proj = Project(ruta)
     proj.cloud_connect()
+    if proj.multi:                                   # que se sepa que se puede desde el título
+        proj.toast = ["En red: SHIFT+EXE > Multijugador (ya aquí)", K.ms() + 6000]
     P.limpiar(0)
     proj.start_hats("event_whenflagclicked")
     try:
