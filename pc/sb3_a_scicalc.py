@@ -379,6 +379,7 @@ def convert(sb3_path, sd_root):
         "correr": profile.get("correr") or ({"tecla": "", "doble_toque": True} if "" in keys_used else None),
         "pantalla": profile.get("pantalla", "estirar"),
         "rendimiento": profile.get("rendimiento", "normal"),
+        "multijugador": profile.get("multijugador"),
     }
     (out_dir / "controles.json").write_text(json.dumps(controls, ensure_ascii=False, indent=1),
                                            encoding="utf-8")

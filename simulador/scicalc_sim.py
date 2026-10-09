@@ -2864,7 +2864,9 @@ class SettingsApp(App):
                 self.sim.set_title(self.title)
             return
         elif key in ("EXE", "RIGHT") and rows and rows[sel].get("action"):
+            self.sel[self.page] = sel             # antes de cambiar de página
             self.do(rows[sel]["action"])
+            return
         self.sel[self.page] = sel
 
     def do(self, action):

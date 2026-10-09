@@ -326,6 +326,14 @@ class Project:
         order = sorted([(d["capa"], i) for i, d in enumerate(data["objetos"]) if not d["escenario"]])
         self.layers = [self.sprites[i] for _, i in order]      # de atrás adelante
         self.by_name = {s.name: s for s in self.sprites}
+        # Multijugador propio para juegos que no lo traen (ver /lib/scratch_red.py)
+        self.multi = None
+        if cfg.get("multijugador") and red is not None:
+            from scratch_red import Multijugador
+            m = Multijugador(self, cfg["multijugador"])
+            if m.disponible():
+                self.multi = m
+                self.multi_layer = min(self.layers.index(sp) for sp in m.partes) if m.partes else -1
         self.monitors = data.get("monitores", [])
         self.threads = []
         self.timer0 = K.ms()
@@ -1101,7 +1109,10 @@ class Project:
             items = L(ctx, b)
             i = index(ctx, b, items)
             if 0 <= i < len(items):
-                items[i] = self.ev(ctx, b, "ITEM", "")
+                v = self.ev(ctx, b, "ITEM", "")
+                items[i] = v
+                if self.multi:
+                    self.multi.bloque(self.field(b, "LIST"), i, v)
         S["data_replaceitemoflist"] = replace
 
         def item(ctx, b):
@@ -1176,8 +1187,10 @@ class Project:
         sx, sy = self.to_screen(0, 0)
         _, _, w, h, cx, cy = st.costumes[st.costume]
         P.dibujar(st.img(), sx, sy, (self.kx, self.ky), False, 0, (cx, cy))
-        for sp in self.layers:
+        for i, sp in enumerate(self.layers):
             sp.draw()
+            if self.multi and i == self.multi_layer:
+                self.multi.dibujar()                  # los demás jugadores, a la altura del mío
         for sp in self.layers:
             if sp.say_text and sp.visible:
                 self.draw_bubble(sp)
@@ -1321,6 +1334,11 @@ class Project:
             items.append(("Guardar partida", "guardar"))
         if "p" in self.menu_scratch:
             items.append(("Pausa del juego (P)", "pausa"))
+        if self.multi:
+            if self.multi.on:
+                items.append(("Multijugador: salir (%d jug.)" % len(red.jugadores()), "red"))
+            else:
+                items.append(("Multijugador: conectar", "red"))
         items.append(("Pantalla: " + ("estirada" if self.screen_mode == "estirar" else "proporcional"),
                       "pantalla"))
         items.append(("Rendimiento: " + ("rápido" if self.fast else "normal"), "rendimiento"))
@@ -1359,6 +1377,12 @@ class Project:
         elif action == "pausa":
             self.menu = None
             self.inject("p")
+        elif action == "red":
+            self.menu = None
+            if self.multi.on:
+                self.multi.salir()
+            else:
+                self.multi.conectar()
         elif action == "pantalla":
             self.set_screen("proporcion" if self.screen_mode == "estirar" else "estirar")
         elif action == "rendimiento":
@@ -1636,6 +1660,8 @@ class Project:
         self.now = K.ms()
         self.input()
         self.cloud_poll()
+        if self.multi:
+            self.multi.paso()
         if self.pending and self.now >= self.pending[1]:
             self.inject(self.pending[0])
             self.pending = None

@@ -94,6 +94,7 @@ Necesita Wi-Fi conectado y está bloqueado en modo examen.
 
 - **Clonaria**: al empezar, `1` un jugador / `2` multijugador. Todos comparten el mismo mundo (semilla del anfitrión), ven los bloques que pican o ponen los demás —también los cambiados antes de entrar— y a los otros jugadores con su nombre encima.
 - **Scratch**: las variables en la nube (☁) se sincronizan entre todos los que juegan al mismo proyecto.
+- **Paper Minecraft** (y otros juegos de Scratch con un perfil): menú SciCalc (SHIFT+EXE o «(») › **Multijugador: conectar**. El primero que se conecta abre la partida y sube su mundo; los demás lo reciben y aparecen a su lado. Los bloques que pica o pone cada uno se ven en todas las pantallas y cada jugador ve a los demás con su nombre. No se comparten criaturas, objetos tirados ni inventario. Se configura en la sección `multijugador` del perfil (`pc/perfiles/paper_minecraft.json`, ver `/lib/scratch_red.py`).
 - **Tus juegos**: módulo `scicalc.red` ([docs/API_scicalc.md](docs/API_scicalc.md)).
 
 Medios de conexión en el ESP32 (firmware, pendiente; mismo protocolo en todos):
