@@ -1,0 +1,14 @@
+CLONARIA para ESP32 SciCalc
+Conversión de Clonaria (https://github.com/rettigs/clonaria, licencia MIT,
+ver LICENSE.txt) a MicroPython con el módulo scicalc de la calculadora.
+
+Ejecutar: Python > juegos > clonaria > clonaria.py
+
+  ◄ ►        andar            ▲      saltar (mantén para más alto)
+  8 2 4 6    mover el cursor  5      cursor delante del jugador
+  DEL        picar bloque     EXE    poner bloque
+  ( )        elegir bloque    + −    zoom x2 / x1
+  ▼          bajar de una plataforma
+  AC         salir
+
+En el simulador también: flechas del PC, Retroceso = DEL, Enter = EXE.

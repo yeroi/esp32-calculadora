@@ -1,0 +1,6 @@
+ESP32 SciCalc - MicroSD
+
+/scripts  tus programas .py
+/lib      paquetes instalados con SciCalc Link
+/fotos    imágenes (PNG/JPG)
+/docs     documentos

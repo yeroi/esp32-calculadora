@@ -1,0 +1,7 @@
+# PlatformIO / IDEs
+.pio/
+.vscode/
+*.code-workspace
+# Python
+__pycache__/
+*.pyc

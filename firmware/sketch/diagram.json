@@ -1,0 +1,283 @@
+{
+  "version": 1,
+  "author": "ESP32 SciCalc",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-ili9341",
+      "id": "lcd1",
+      "top": -40,
+      "left": 230,
+      "rotate": 270,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-microsd-card",
+      "id": "sd1",
+      "top": -60,
+      "left": -160,
+      "rotate": 90,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-membrane-keypad",
+      "id": "kpA",
+      "top": 290,
+      "left": -420,
+      "attrs": {
+        "keys": [
+          "SHIFT",
+          "MENU",
+          "▲",
+          "▼",
+          "◄",
+          "►",
+          "DEL",
+          "AC",
+          "sin",
+          "cos",
+          "tan",
+          "xʸ",
+          "ln",
+          "√",
+          "(",
+          ")"
+        ]
+      }
+    },
+    {
+      "type": "wokwi-membrane-keypad",
+      "id": "kpB",
+      "top": 290,
+      "left": -110,
+      "attrs": {
+        "keys": [
+          "7",
+          "8",
+          "9",
+          "÷",
+          "4",
+          "5",
+          "6",
+          "×",
+          "1",
+          "2",
+          "3",
+          "−",
+          "0",
+          ".",
+          "EXE",
+          "+"
+        ]
+      }
+    }
+  ],
+  "connections": [
+    [
+      "esp:TX",
+      "$serialMonitor:RX",
+      "",
+      []
+    ],
+    [
+      "esp:RX",
+      "$serialMonitor:TX",
+      "",
+      []
+    ],
+    [
+      "lcd1:VCC",
+      "esp:3V3",
+      "red",
+      []
+    ],
+    [
+      "lcd1:GND",
+      "esp:GND.2",
+      "black",
+      []
+    ],
+    [
+      "lcd1:CS",
+      "esp:5",
+      "orange",
+      []
+    ],
+    [
+      "lcd1:RST",
+      "esp:3V3",
+      "red",
+      []
+    ],
+    [
+      "lcd1:D/C",
+      "esp:4",
+      "purple",
+      []
+    ],
+    [
+      "lcd1:MOSI",
+      "esp:23",
+      "blue",
+      []
+    ],
+    [
+      "lcd1:SCK",
+      "esp:18",
+      "yellow",
+      []
+    ],
+    [
+      "lcd1:LED",
+      "esp:3V3",
+      "red",
+      []
+    ],
+    [
+      "lcd1:MISO",
+      "esp:19",
+      "green",
+      []
+    ],
+    [
+      "sd1:VCC",
+      "esp:3V3",
+      "red",
+      []
+    ],
+    [
+      "sd1:GND",
+      "esp:GND.1",
+      "black",
+      []
+    ],
+    [
+      "sd1:SCK",
+      "esp:18",
+      "yellow",
+      []
+    ],
+    [
+      "sd1:DI",
+      "esp:23",
+      "blue",
+      []
+    ],
+    [
+      "sd1:DO",
+      "esp:19",
+      "green",
+      []
+    ],
+    [
+      "sd1:CS",
+      "esp:15",
+      "orange",
+      []
+    ],
+    [
+      "kpA:R1",
+      "esp:32",
+      "cyan",
+      []
+    ],
+    [
+      "kpA:R2",
+      "esp:33",
+      "cyan",
+      []
+    ],
+    [
+      "kpA:R3",
+      "esp:25",
+      "cyan",
+      []
+    ],
+    [
+      "kpA:R4",
+      "esp:26",
+      "cyan",
+      []
+    ],
+    [
+      "kpA:C1",
+      "esp:16",
+      "magenta",
+      []
+    ],
+    [
+      "kpA:C2",
+      "esp:17",
+      "magenta",
+      []
+    ],
+    [
+      "kpA:C3",
+      "esp:21",
+      "magenta",
+      []
+    ],
+    [
+      "kpA:C4",
+      "esp:22",
+      "magenta",
+      []
+    ],
+    [
+      "kpB:R1",
+      "esp:27",
+      "cyan",
+      []
+    ],
+    [
+      "kpB:R2",
+      "esp:14",
+      "cyan",
+      []
+    ],
+    [
+      "kpB:R3",
+      "esp:12",
+      "cyan",
+      []
+    ],
+    [
+      "kpB:R4",
+      "esp:13",
+      "cyan",
+      []
+    ],
+    [
+      "kpB:C1",
+      "esp:16",
+      "magenta",
+      []
+    ],
+    [
+      "kpB:C2",
+      "esp:17",
+      "magenta",
+      []
+    ],
+    [
+      "kpB:C3",
+      "esp:21",
+      "magenta",
+      []
+    ],
+    [
+      "kpB:C4",
+      "esp:22",
+      "magenta",
+      []
+    ]
+  ],
+  "dependencies": {}
+}

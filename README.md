@@ -1,1 +1,156 @@
-# esp32-calculadora
+# ESP32 SciCalc
+
+Calculadora científica portátil basada en ESP32 con un sistema híbrido:
+
+- **Núcleo en C++ nativo** (FreeRTOS): interfaz, calculadora, archivos, conectividad y supervisión.
+- **Sandbox MicroPython**: ejecuta los `.py` de la MicroSD sin poder colgar ni dañar el sistema.
+
+El simulador de escritorio [`simulador/scicalc_sim.py`](simulador/scicalc_sim.py) es la **especificación funcional**: el firmware imita su comportamiento.
+
+## Estado
+
+| Paso | Contenido | Estado |
+|---|---|---|
+| 1 | Hardware y mapa de pines | ✅ |
+| 2 | Firmware base (Display, Keyboard, Storage, AppManager) | ✅ |
+| **3** | **Menú e interfaz completos: 6 modos, diálogos, barra de estado, explorador, visores** | ✅ **este paso** |
+| 4 | Calculadora nativa (parser C++) | pendiente |
+| 5 | MicroPython embed: tarea con heap propio, watchdog, VFS con permisos | pendiente |
+| – | Consola con ALPHA + editor de código + `pip` por Wi-Fi · Ajustes reales (WiFi.h, BT SPP, NVS) · LinkService · buzzer · batería | pendiente (ya especificado en el simulador v0.4) |
+| 9–10 | Hardware real (TFT_eSPI + DMA, MCP23017) · PCB | pendiente |
+
+## Simulador (v0.5)
+
+```bash
+pip install pygame-ce
+python simulador/scicalc_sim.py
+```
+
+Novedades de la v0.4 (especificación para el firmware):
+
+- **Las líneas largas se parten** en varias filas en la salida de Python y en la Consola (por palabras cuando se puede).
+- **Editor de código** en la calculadora: en *Python*, SHIFT+EXE sobre un `.py` lo edita y sobre una carpeta crea `nuevo.py`; en la *Consola*, `edit archivo.py`. Sangría automática tras `:`, DEL quita un nivel de sangría, SHIFT+EXE guarda, SHIFT+► guarda y ejecuta (y al cerrar la salida vuelves al editor), AC sale (pregunta si hay cambios). Bloqueado en modo examen.
+- **`pip` con Wi-Fi** en la Consola: `pip install x`, `pip uninstall x`, `pip list`. Necesita Wi-Fi conectado (Ajustes › Wi-Fi) y pide confirmación antes de escribir en `/lib`.
+  1. Busca primero en **micropython-lib** (el índice de `mip`): paquetes hechos para MicroPython.
+  2. Si no está, prueba **PyPI**, solo ruedas de Python puro (`py3-none-any`), sin usar el pip del PC.
+  3. Rechaza el código nativo (numpy, pandas…) y lo que pase de 1 MB.
+- **v0.5 — juegos**: módulo `scicalc` (`pantalla` + `teclas`) para que los scripts dibujen y lean teclas ([docs/API_scicalc.md](docs/API_scicalc.md)), y **Clonaria** convertido a MicroPython en `sd/juegos/clonaria/`. El watchdog no corta un juego mientras siga mostrando fotogramas; AC lo cierra.
+- `sys` del sandbox como el de MicroPython: `modules`, `implementation`, `exit`, `print_exception`.
+
+> En el ESP32 **no existe pip**. El comando `pip` de la calculadora es un instalador propio que hará lo mismo por Wi-Fi: `mip` (micropython-lib) y, como alternativa, descargar la rueda de PyPI y descomprimirla (el ESP32 trae `inflate` en la ROM). Aun así, casi nada de PyPI funciona en MicroPython porque usa módulos de CPython.
+
+## Estructura
+
+```
+firmware/
+  platformio.ini        proyecto PlatformIO (src_dir = sketch)
+  sketch/               TODO el código, en una carpeta plana (vale para
+                        PlatformIO, Arduino IDE y Wokwi sin cambios)
+    sketch.ino          arranque y creación de servicios y modos
+    config.h Theme.h    pines, constantes, paleta
+    Display.*           HAL gráfica (UTF-8 -> CP437 + glifos propios)
+    Keyboard.*          escaneo en tarea FreeRTOS (core 0) -> cola
+    Storage.*           MicroSD de SOLO lectura + utilidades de rutas
+    SystemState.h       estado global (DEG/RAD, radios, examen, SD...)
+    StatusBar.*         barra de estado
+    Dialog.*            diálogos modales
+    App.h AppManager.cpp  marco de modos y teclas globales
+    ScrollList.h FolderBrowser.* FileViewer.* ImageDecoder.*  componentes
+    MenuApp CalcApp PythonApp FilesApp SettingsApp DiagApp PlaceholderApp
+    BootScreen.*        arranque con autodiagnóstico
+    PackageManifest.*   lectura de /lib/paquetes.json
+    diagram.json libraries.txt wokwi.toml   simulación en Wokwi
+simulador/              scicalc_sim.py (referencia) + carpeta sd/ de ejemplo
+pc/                     scicalc_link.py (programa del PC)
+```
+
+## Compilar y probar
+
+**PlatformIO** (recomendado):
+
+```bash
+cd firmware
+pio run                     # compilar
+pio run -t upload           # grabar el ESP32
+pio device monitor          # monitor serie a 115200 (DTR/RTS desactivados)
+```
+
+**Arduino IDE**: abre `firmware/sketch/sketch.ino`, instala las librerías de `libraries.txt`, placa *ESP32 Dev Module* y esquema de particiones *Huge APP (3MB No OTA)*.
+
+**Wokwi (web)**: crea un proyecto ESP32 y sube todos los archivos de `firmware/sketch/` (incluidos `diagram.json` y `libraries.txt`). Los archivos que añadas al proyecto aparecen en la raíz de la MicroSD simulada.
+
+**Wokwi (VS Code)**: `pio run` en `firmware/` y luego *Wokwi: Start Simulator* con `firmware/sketch/wokwi.toml`.
+
+Teclas en Wokwi: el teclado izquierdo es el bloque A (SHIFT, MENU, flechas, DEL, AC, funciones) y el derecho el bloque B (numérico).
+
+## Paso 3: qué hace el firmware
+
+- **Arranque**: autodiagnóstico de pantalla, teclado, MicroSD, PSRAM y sandbox, con barra de progreso.
+- **Menú**: 6 modos, ▲▼ + EXE o acceso directo con las teclas 1–6. MENU vuelve desde cualquier sitio.
+- **Barra de estado**: título, SHIFT, EXAMEN, LINK, BT, WiFi, DEG/RAD (solo en la calculadora), SD, hora y batería. Se repinta solo cuando algo cambia.
+- **Diálogos modales**: EXE = Sí, SHIFT+EXE = Sí a todo, AC/DEL = No; los informativos solo tienen Aceptar. Se encolan y se pueden pedir **desde otra tarea** (`askBlocking`, con timeout), que es lo que usarán el sandbox (permisos) y SciCalc Link.
+- **Archivos SD**: carpetas primero, `..` para subir, iconos por tipo, desplazamiento.
+  - Texto/código con números de línea y resaltado de Python (comentarios, cadenas, palabras clave). No se carga entero: se indexan las líneas y se leen solo las 18 visibles.
+  - Imágenes **PNG, JPG (baseline), BMP y GIF** (primer fotograma), escaladas y centradas como en el simulador (hasta x4).
+  - Binarios en vista hexadecimal desplazable.
+- **Python**: explorador de carpetas y `.py`. En modo examen está bloqueado. Hasta el Paso 5, EXE ofrece ver el código.
+- **Ajustes**: todas las páginas (Wi-Fi, Bluetooth, USB, modo examen, paquetes, acerca de). El **modo examen funciona** (apaga Wi-Fi y BT, bloquea Python y muestra EXAMEN). Los interruptores de radio aún solo cambian el estado.
+- **Diagnóstico**: chip, flash, PSRAM, heap y bloque máximo, SD y rejilla de las 32 teclas.
+- **Calculadora y Consola**: pantallas provisionales (Pasos 4 y ALPHA). SHIFT+AC ya cambia DEG/RAD.
+
+### Memoria (ESP32-WROOM-32, sin PSRAM)
+
+| | |
+|---|---|
+| Flash usada | ~445 KB de 3 MB (partición *huge_app*) |
+| RAM estática | ~27 KB |
+| Visor PNG / GIF / JPG | ~45 / ~25 / ~4 KB, **solo mientras se dibuja** |
+| Índice del visor de texto | 4 B por línea (máx. 4000 líneas = 16 KB) |
+
+No hay framebuffer (150 KB no caben): todo se dibuja directamente en la pantalla y cada app redibuja solo lo que cambia.
+
+### Limitaciones conocidas
+
+- **JPG progresivo** no soportado (TJpgDec solo decodifica *baseline*): se avisa en pantalla.
+- **PNG**: ancho máximo 640 px en RGBA con PlatformIO (`-DPNG_MAX_BUFFERED_PIXELS` en `platformio.ini`); en Arduino IDE/Wokwi, 320 px (no se pueden pasar opciones de compilación).
+- **Hora**: sin RTC ni NTP se muestra `--:--` (la hora llegará con Wi-Fi/NTP).
+- **Batería**: icono con `?` hasta el paso de lectura por ADC.
+- **Disco USB (MSC)**: necesita USB nativo, es decir, un **ESP32-S3**. Con el WROOM-32 se usa el modo serie.
+
+## Conexiones
+
+Bus SPI compartido por la pantalla y la MicroSD (cada una con su CS).
+
+```
+                 ESP32 DevKit (WROOM-32)
+              ┌───────────────────────────┐
+   TFT SCK ───┤ GPIO18 (SCK)              │
+   SD  SCK ───┤                           │
+   TFT MOSI ──┤ GPIO23 (MOSI)             │
+   SD  DI ────┤                           │
+   TFT MISO ──┤ GPIO19 (MISO)             │
+   SD  DO ────┤                           │
+   TFT CS ────┤ GPIO5                     │
+   TFT D/C ───┤ GPIO4                     │
+   SD  CS ────┤ GPIO15                    │
+   TFT RST ───┤ 3V3                       │
+   TFT LED ───┤ 3V3                       │
+              │                           │
+   Filas   ───┤ 32 33 25 26 │ 27 14 12 13 │  (INPUT_PULLUP)
+              │  teclado A  │  teclado B  │
+   Columnas ──┤ 16 17 21 22 (compartidas) │  (activas a nivel bajo)
+              └───────────────────────────┘
+```
+
+| Señal | GPIO | Notas |
+|---|---|---|
+| SPI SCK / MOSI / MISO | 18 / 23 / 19 | compartido TFT + SD |
+| TFT CS / DC / RST | 5 / 4 / 3V3 | ILI9341 320×240 |
+| SD CS | 15 | pin de arranque: en alto al encender, válido como CS |
+| Filas teclado (Wokwi) | 32, 33, 25, 26, 27, 14, 12, 13 | 12 es de arranque: solo entrada con pull-up |
+| Columnas teclado (Wokwi) | 16, 17, 21, 22 | |
+| MCP23017 (real) | SDA 21, SCL 22, INTA 39 | INTA con pull-up externa de 10k |
+| Batería (real) | 34 (ADC1) | divisor 100k + 100k |
+| Buzzer (real) | 2 o 27 | LEDC, según el mapa final |
+
+Prohibidos: GPIO 6–11 (flash), 1 y 3 (UART0).
