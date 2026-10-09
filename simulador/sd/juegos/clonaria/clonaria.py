@@ -549,8 +549,7 @@ def conectar():
 
 
 def main():
-    # Abierto desde la app Multijugador ("--red unirse/hostear"): directo a la partida
-    online = "--red" in sys.argv or elegir_modo()
+    online = "--red" in sys.argv or elegir_modo()   # "--red": directo a la partida
     seed = conectar() if online else None
     P.limpiar(0)
     P.texto("CLONARIA", 112, 80, 0xFFFFFF, None, 2)

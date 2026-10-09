@@ -12,7 +12,13 @@
 #      "partes":  ["Steve Legs2", ...]   objetos que forman al jugador
 #      "nueva_partida": {"espera": 3000, "mensajes": [["world options", 0], ...]}
 #                     mensajes del propio juego que empiezan un mundo (para entrar
-#                     solo al unirse desde la app Multijugador)
+#                     solo al unirse desde el título)
+#
+#  En el juego: menú SciCalc (SHIFT+EXE) > Multijugador...
+#    Buscar partidas en la red · Hostear este mundo · servidores añadidos por IP
+#    (con sus partidas, o "Nueva partida aquí") · + Añadir servidor · Tu nombre
+#  Si te unes desde el título, el juego empieza un mundo cualquiera y se cambia
+#  por el de la partida al terminar.
 #
 #  Cómo funciona (todo con scicalc.red, en la sala del juego):
 #    * El primero que se conecta ABRE la partida: sube las listas del mundo
@@ -62,9 +68,14 @@ class Multijugador:
         self.frame = 0
         self.enviado = None
         self.nueva = cfg.get("nueva_partida") or {}
-        self.modo_auto = None    # "unirse" / "hostear": abierto desde la app Multijugador
+        self.modo_auto = None    # "unirse" / "hostear": esperando a estar en un mundo
+        self.destino = {}        # {"host", "puerto", "hostear"} de la partida elegida
         self.pasos = []          # [ms, mensaje] pendientes para empezar un mundo
         self.largo, self.largo_t = -1, 0
+        # submenú Multijugador
+        self.pagina, self.titulo, self.nota = "red", "Multijugador", ""
+        self.encontradas, self.servidores, self.srv_sel = [], [], None
+        self.nombre_cfg = "Jugador"
 
     def disponible(self):
         return (red is not None and self.vx is not None and self.vy is not None
@@ -104,11 +115,11 @@ class Multijugador:
         quieto = ahora - self.largo_t > 1500
         return n > 0 and quieto and any(sp.visible for sp in self.partes)
 
-    def auto(self, modo):
-        """Abierto desde la app Multijugador: entrar solo en la partida."""
-        self.modo_auto = modo
-        if modo == "unirse":                       # empezar un mundo cualquiera (se sustituye)
-            t0 = K.ms() + int(self.nueva.get("espera", 3000))
+    def auto(self, modo, destino=None):
+        """Entrar en la partida en cuanto el jugador esté en un mundo."""
+        self.modo_auto, self.destino = modo, destino or {}
+        if modo == "unirse" and not self.en_mundo():   # empezar un mundo cualquiera (se sustituye)
+            t0 = K.ms() + int(self.nueva.get("espera", 0))
             self.pasos = [[t0 + int(ms), msg] for msg, ms in self.nueva.get("mensajes", [])]
 
     def paso_auto(self):
@@ -127,7 +138,8 @@ class Multijugador:
         P.rect(int(self.p.ox) + 60, int(self.p.oy) + 95, 200, 22, 0x203020)
         P.texto("Conectando...", int(self.p.ox) + 120, int(self.p.oy) + 102, 0x80FF80)
         P.mostrar()
-        red.conectar(self.p.room)
+        d = self.destino
+        red.conectar(self.p.room, None, d.get("host"), d.get("puerto"), d.get("hostear", False))
         if not red.esperar():
             self.aviso("Sin conexión: " + red.error())
             return
@@ -136,14 +148,141 @@ class Multijugador:
         if "mundo" not in vs and red.anfitrion() != red.mi_id():
             # otro jugador está abriendo la partida: esperar a que suba el mundo
             vs = self.esperar_vars(lambda v: "mundo" in v, ESPERA_MUNDO)
-        if "mundo" in vs:
+        if d.get("subir"):                          # hostear: TU mundo es el de la partida
+            self.publicar()
+        elif "mundo" in vs:
             self.descargar(vs)
         else:
             self.publicar()
         self.listo = True
         self.p.dirty_all = True
 
+    # ---- submenú Multijugador (menú SciCalc del juego) -----------------------------------
+    def items(self):
+        """[(texto, función)] de la página actual del submenú."""
+        if self.pagina == "lista":
+            out = []
+            for ip, puerto, srv, sala in self.encontradas:
+                out.append(("Unirse: %s · %d jug." % (srv[:16], len(sala.get("jugadores", []))),
+                            lambda d={"host": ip, "puerto": puerto}: self.unirse(d)))
+            out.append(("Volver", self.atras))
+            return out
+        if self.pagina == "servidor":
+            sv = self.servidores[self.srv_sel]
+            d = {"host": sv["ip"], "puerto": sv["puerto"]}
+            out = [(t, f) for t, f in self.salas_servidor]
+            out += [("Nueva partida aquí (sube tu mundo)",
+                     lambda: self.hostear(dict(d, subir=True))),
+                    ("Quitar este servidor", self.quitar), ("Volver", self.atras)]
+            return out
+        if self.on:
+            return [("Jugadores: " + ", ".join(red.jugadores().values())[:30], lambda: None),
+                    ("Salir de la partida", self.salir), ("Volver", self.atras)]
+        out = [("Buscar partidas en la red", self.buscar),
+               ("Hostear este mundo", lambda: self.hostear({"hostear": True, "subir": True}))]
+        for i, sv in enumerate(self.servidores):
+            out.append(("Servidor: %s" % sv.get("nombre", sv["ip"])[:22], lambda i=i: self.ver_servidor(i)))
+        out += [("+ Añadir servidor (IP)", self.anadir),
+                ("Tu nombre: " + self.nombre_cfg, self.cambiar_nombre),
+                ("Volver", self.atras)]
+        return out
+
+    def abrir_menu(self):
+        self.pagina, self.titulo, self.nota = "red", "Multijugador", ""
+        r = red.servidores()
+        self.servidores = r if isinstance(r, list) else []
+        c = red.config()
+        if isinstance(c, dict) and "nombre" in c:
+            self.nombre_cfg = c["nombre"]
+        if self.on:
+            self.nota = "Conectado a la partida"
+
+    def atras(self):
+        if self.pagina != "red":
+            self.abrir_menu()
+            self.p.menu = [0, "red"]
+        else:
+            self.p.menu = [0, None]               # vuelve al menú SciCalc
+
+    def buscar(self):
+        self.nota = "Buscando..."
+        self.p.render()
+        P.mostrar()
+        r = red.buscar()
+        self.encontradas = []
+        if isinstance(r, dict):
+            self.nota = r.get("error", "")
+            return
+        for srv in r:
+            for sala in srv.get("salas", []):
+                if sala.get("sala") == self.p.room:          # partidas de ESTE juego
+                    self.encontradas.append((srv["ip"], srv["puerto"], srv.get("nombre", srv["ip"]), sala))
+        self.pagina, self.titulo = "lista", "Partidas en tu red"
+        self.nota = "" if self.encontradas else "No hay partidas abiertas de este juego"
+        self.p.menu = [0, "red"]
+
+    def ver_servidor(self, i):
+        self.srv_sel = i
+        sv = self.servidores[i]
+        self.pagina, self.titulo = "servidor", "Servidor " + sv.get("nombre", sv["ip"])[:20]
+        self.nota = "Preguntando..."
+        self.salas_servidor = []
+        self.p.render()
+        P.mostrar()
+        r = red.salas(sv["ip"], sv["puerto"])
+        if not isinstance(r, dict) or "error" in r:
+            self.nota = "No responde: %s" % (r.get("error", "") if isinstance(r, dict) else "")
+            return
+        d = {"host": sv["ip"], "puerto": sv["puerto"]}
+        for sala in r.get("salas", []):
+            if sala.get("sala") == self.p.room:
+                n = len(sala.get("jugadores", []))
+                self.salas_servidor.append(("Unirse a la partida · %d jug." % n, lambda: self.unirse(d)))
+        self.nota = "%s:%d" % (sv["ip"], sv["puerto"])
+        self.p.menu = [0, "red"]
+
+    def anadir(self):
+        def hecho(t):
+            t = t.strip()
+            if t:
+                ip, _, puerto = t.partition(":")
+                red.guardar_servidor(ip, int(puerto) if puerto.isdigit() else 8267)
+                self.aviso("Servidor %s añadido" % ip)
+            self.abrir_menu()
+            self.p.menu = [0, "red"]
+        self.p.preguntar("IP del servidor (:puerto)", "", hecho)
+
+    def cambiar_nombre(self):
+        def hecho(t):
+            if t.strip():
+                self.nombre_cfg = red.poner_nombre(t.strip()) or self.nombre_cfg
+            self.abrir_menu()
+            self.p.menu = [0, "red"]
+        self.p.preguntar("Tu nombre", self.nombre_cfg, hecho)
+
+    def quitar(self):
+        red.quitar_servidor(self.srv_sel)
+        self.abrir_menu()
+        self.p.menu = [0, "red"]
+
+    def unirse(self, destino):
+        self.p.menu = None
+        if self.en_mundo():
+            self.destino = destino
+            self.conectar()                       # tu mundo se cambia por el de la partida
+        else:
+            self.auto("unirse", destino)          # desde el título: empieza uno y se cambia
+
+    def hostear(self, destino):
+        self.p.menu = None
+        if self.en_mundo():
+            self.destino = destino
+            self.conectar()
+        else:
+            self.auto("hostear", destino)         # al empezar o cargar una partida se abre
+
     def salir(self):
+        self.p.menu = None
         red.desconectar()
         self.on = self.listo = False
         self.otros, self.rects = {}, {}
@@ -152,6 +291,7 @@ class Multijugador:
     def publicar(self):
         st = self.p.stage
         info = {}
+        red.vaciar()                                # fuera lo de un mundo anterior
         for nombre, lid in self.listas.items():
             items = st.lists[lid]
             n = (len(items) + TROZO - 1) // TROZO

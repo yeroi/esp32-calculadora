@@ -21,6 +21,7 @@
      {"t":"hola", "sala":"clonaria", "nombre":"Yerai"}   entrar en una sala
      {"t":"todos", "d":{...}}                            mensaje a los demás de la sala
      {"t":"var", "n":"nombre", "v":valor}                variable compartida (se guarda)
+     {"t":"vaciar"}                                      borra las variables (mundo nuevo)
      {"t":"salas"}                                       (sin entrar) lista de salas
    Servidor -> calculadora
      {"t":"salas", "nombre":"...", "salas":[{"sala":..., "jugadores":[...], "mundo":true}]}
@@ -231,6 +232,9 @@ class Servidor:
                 return
             if t == "todos":
                 self._difundir(sala, {"t": "de", "id": cli["id"], "d": msg.get("d")}, menos=cli["id"])
+            elif t == "vaciar":                      # alguien abre un mundo nuevo en la sala
+                sala["vars"] = {}
+                self.cambios = True
             elif t == "var":
                 n = str(msg.get("n", ""))[:64]
                 if n in sala["vars"] or len(sala["vars"]) < MAX_VARS:

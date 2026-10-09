@@ -1335,10 +1335,8 @@ class Project:
         if "p" in self.menu_scratch:
             items.append(("Pausa del juego (P)", "pausa"))
         if self.multi:
-            if self.multi.on:
-                items.append(("Multijugador: salir (%d jug.)" % len(red.jugadores()), "red"))
-            else:
-                items.append(("Multijugador: conectar", "red"))
+            items.append(("Multijugador (%d jug.)" % len(red.jugadores()) if self.multi.on
+                          else "Multijugador...", "red"))
         items.append(("Pantalla: " + ("estirada" if self.screen_mode == "estirar" else "proporcional"),
                       "pantalla"))
         items.append(("Rendimiento: " + ("rápido" if self.fast else "normal"), "rendimiento"))
@@ -1347,6 +1345,9 @@ class Project:
         return items
 
     def menu_key(self, k):
+        if self.menu[1] == "red":                    # submenú Multijugador (scratch_red.py)
+            self.menu_red_key(k)
+            return
         items = self.menu_items()
         sel, page = self.menu
         if page == "controles":
@@ -1378,13 +1379,8 @@ class Project:
             self.menu = None
             self.inject("p")
         elif action == "red":
-            self.menu = None
-            if self.multi.on:
-                self.multi.salir()
-            elif not self.multi.en_mundo():
-                self.multi.aviso("Primero empieza o carga una partida")
-            else:
-                self.multi.conectar()
+            self.multi.abrir_menu()
+            self.menu = [0, "red"]
         elif action == "pantalla":
             self.set_screen("proporcion" if self.screen_mode == "estirar" else "estirar")
         elif action == "rendimiento":
@@ -1393,6 +1389,35 @@ class Project:
             self.menu = [sel, "controles"]
         elif action == "salir":
             raise SystemExit
+        self.dirty_all = True
+
+    def menu_red_key(self, k):
+        sel = self.menu[0]
+        items = self.multi.items()
+        fn = None
+        if k == "UP":
+            sel = (sel - 1) % len(items)
+        elif k == "DOWN":
+            sel = (sel + 1) % len(items)
+        elif k.isdigit() and 1 <= int(k) <= len(items):
+            sel = int(k) - 1
+            fn = items[sel][1]
+        elif k == "EXE":
+            fn = items[sel][1]
+        elif k == "DEL" or k.startswith("S:"):
+            fn = self.multi.atras
+        self.menu = [sel, "red"]
+        if fn:
+            fn()                       # puede cambiar de página, cerrar el menú o preguntar
+            if self.menu and self.menu[1] == "red":
+                self.menu[0] = min(self.menu[0], len(self.multi.items()) - 1)
+        self.dirty_all = True
+
+    def preguntar(self, pregunta, inicial, cb):
+        """Teclado en pantalla para el propio intérprete (IP, nombre...): cb(texto)."""
+        self.menu = None
+        self.asking = [pregunta, inicial, False]
+        self.ask_cb = cb
         self.dirty_all = True
 
     def inject(self, sk):
@@ -1421,28 +1446,22 @@ class Project:
             for i, ln in enumerate(lines):
                 P.texto(ln, x + 6, y + 18 + i * 11, 0xEEEEEE)
             return
-        items = self.menu_items()
-        h = 26 + 14 * len(items)
+        if page == "red":
+            items = [(t, None) for t, _ in self.multi.items()]
+            titulo, nota = self.multi.titulo, self.multi.nota
+        else:
+            items, titulo, nota = self.menu_items(), "Menú SciCalc  (juego en pausa)", ""
+        h = 26 + 14 * len(items) + (12 if nota else 0)
         P.rect(x, y, w, h, 0x1E222C)
         P.marco(x, y, w, h, 0x28A8FA)
-        P.texto("Menú SciCalc  (juego en pausa)", x + 6, y + 5, 0x28A8FA)
+        P.texto(titulo, x + 6, y + 5, 0x28A8FA)
+        if nota:
+            P.texto(nota[:44], x + 8, y + h - 13, 0x878E9E)
         for i, (label, _) in enumerate(items):
             yy = y + 20 + i * 14
             if i == sel:
                 P.rect(x + 3, yy - 2, w - 6, 13, 0x28A8FA)
-            P.texto("%d  %s" % (i + 1, label), x + 8, yy, 0xFFFFFF)
-
-    def kb_hit(self):
-        """Tecla del teclado en pantalla bajo el ratón, o None."""
-        if not self.uses_mouse or not self.asking:
-            return None
-        x, y, cw, ch = self.kb_layout()
-        mx, my = self.mouse_screen()
-        r = (my - (y + 27)) // ch
-        c = (mx - (x + 5)) // cw
-        if 0 <= r < len(KB_ROWS) and 0 <= c < len(KB_ROWS[r]):
-            return [r, c]
-        return None
+            P.texto(("%d  %s" % (i + 1, label))[:44], x + 8, yy, 0xFFFFFF)
 
     def kb_layout(self):
         cw, ch = 17, 12
@@ -1455,14 +1474,6 @@ class Project:
     def ask_key(self, k, shift):
         """Teclas mientras el juego pregunta: teclado en pantalla."""
         q = self.asking
-        if k == "5" and not shift and self.uses_mouse:
-            hit = self.kb_hit()                        # clic del ratón sobre una tecla
-            if hit is None:
-                return
-            self.kb = hit
-            k = "EXE"
-        if k in ("8", "2", "4", "6") and self.uses_mouse:
-            return                                     # esas mueven el ratón
         r, c = self.kb
         if shift and k == "EXE":
             q[2] = True                                # SHIFT+EXE: aceptar
@@ -1609,8 +1620,8 @@ class Project:
                 self.taps["S:" + k] = self.frame + 3   # SHIFT+tecla: pulsación de 3 fotogramas
             else:
                 self.held.add(k)               # un toque cuenta como pulsada este fotograma
-        if self.uses_mouse:
-            self.move_mouse(events, click=not self.asking)
+        if self.uses_mouse and not (self.asking and not self.picker):
+            self.move_mouse(events, click=not self.asking)   # con el teclado en pantalla, 2 4 6 8 escriben
         # Selector de partidas (al cargar)
         if self.picker:
             hit = self.picker_hit()
@@ -1670,6 +1681,11 @@ class Project:
         if self.toast and self.now > self.toast[1]:
             self.toast = None
             self.dirty_all = True
+        if self.asking and self.asking[2] and getattr(self, "ask_cb", None):
+            cb, texto = self.ask_cb, self.asking[1]       # pregunta del propio intérprete
+            self.ask_cb, self.asking = None, None
+            self.dirty_all = True
+            cb(texto)
         if self.menu or (self.asking and not self.asking[2]):
             self.render()                             # juego en pausa (menú o pregunta)
             P.mostrar()
@@ -1702,10 +1718,6 @@ def ejecutar(ruta):
     P.mostrar()
     proj = Project(ruta)
     proj.cloud_connect()
-    import sys
-    if proj.multi and "--red" in sys.argv:          # abierto desde la app Multijugador
-        i = sys.argv.index("--red")
-        proj.multi.auto(sys.argv[i + 1] if i + 1 < len(sys.argv) else "unirse")
     P.limpiar(0)
     proj.start_hats("event_whenflagclicked")
     try:

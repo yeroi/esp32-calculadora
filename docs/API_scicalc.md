@@ -60,6 +60,19 @@ El script no abre sockets: le pide la conexión al núcleo, que la lleva por él
 | `vars()` | todas las variables de la sala (también las de antes de entrar) |
 | `recibir()` | lista de mensajes llegados desde la última llamada |
 | `desconectar()` | sale de la sala |
+| `conectar(sala, nombre, host, puerto, hostear)` | con `host`: a ese servidor; `hostear=True`: esta calculadora es el servidor |
+| `vaciar()` | borra las variables de la sala (al abrir un mundo nuevo) |
+| `buscar()` | partidas en la red local: `[{"ip", "puerto", "nombre", "salas": [...]}]` |
+| `salas(host, puerto)` | salas de un servidor |
+| `servidores()` / `guardar_servidor(host, puerto)` / `quitar_servidor(i)` | servidores añadidos por IP |
+| `config()` / `poner_nombre(n)` | nombre y servidor de Ajustes › Multijugador |
+| `web(url)` / `descargar(url, nombre)` | piden una página o guardan un archivo en `/descargas`; devuelven un número de petición |
+| `respuesta(n)` | respuesta de `web`/`descargar` (o `None` si aún no llegó) |
+
+Las funciones `buscar`, `salas`, `servidores`, `config`... esperan la respuesta
+(manteniendo vivo el watchdog). `web` y `descargar` no esperan: el script sigue
+dibujando y mira `respuesta(n)` en cada fotograma (ver `sd/apps/navegador.py`).
+Si falla, la respuesta es `{"error": "..."}`.
 
 Mensajes de `recibir()`: `{"t":"de","id":3,"d":{...}}` (un `enviar`),
 `{"t":"var","id":3,"n":...,"v":...}`, `{"t":"entra","id":4,"nombre":"Luis"}`,

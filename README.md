@@ -85,12 +85,12 @@ Las calculadoras juegan juntas a través de un **servidor SciCalc** (protocolo p
 python pc/scicalc_servidor.py          # servidor dedicado en un PC (o en internet)
 ```
 
-La forma fácil es la app **Multijugador** del menú principal:
+**En Paper Minecraft**: menú SciCalc (SHIFT+EXE o «(») › **Multijugador...**
 
-- **Buscar partidas**: encuentra sola las partidas abiertas en tu red (Wi-Fi) — servidores dedicados y calculadoras que hostean — y entras con EXE: se abre el juego y te mete en el mundo.
-- **+ Añadir servidor**: escribe la IP (y `:puerto` si no es el 8267) de un servidor de internet; luego eliges partida o abres una nueva allí.
-- **Hostear un mundo**: tu calculadora hace de servidor; eliges el juego (Clonaria, Paper Minecraft…) y los demás te encuentran en *Buscar partidas*.
-- **Tu nombre**: se escribe como en un Nokia (2 = abc, 3 = def… repite la tecla para otra letra; SHIFT = mayúscula).
+- **Buscar partidas en la red**: encuentra las partidas de este juego abiertas en tu Wi-Fi (servidores dedicados y calculadoras que hostean). *Unirse* te mete en ese mundo; si estás en el título, el juego empieza uno solo y lo cambia por el de la partida.
+- **Hostear este mundo**: tu calculadora hace de servidor con el mundo en el que estás; los demás lo encuentran con *Buscar*.
+- **+ Añadir servidor (IP)**: para jugar por internet; escribe `IP` o `IP:puerto` con el teclado en pantalla (los números se escriben directamente). Luego, en el servidor: *Unirse* o *Nueva partida aquí* (sube tu mundo).
+- **Tu nombre**: el que ven los demás encima de tu personaje.
 - **Bluetooth**: solo en el ESP32 real.
 
 El servidor dedicado guarda los mundos en `pc/mundos_servidor/`: aunque se vaya todo el mundo o se apague, al volver la partida sigue ahí. `python pc/scicalc_servidor.py --nombre "Casa de Yerai"` le pone nombre.
@@ -104,7 +104,7 @@ Necesita Wi-Fi conectado y está bloqueado en modo examen.
 
 - **Clonaria**: al empezar, `1` un jugador / `2` multijugador. Todos comparten el mismo mundo (semilla del anfitrión), ven los bloques que pican o ponen los demás —también los cambiados antes de entrar— y a los otros jugadores con su nombre encima.
 - **Scratch**: las variables en la nube (☁) se sincronizan entre todos los que juegan al mismo proyecto.
-- **Paper Minecraft** (y otros juegos de Scratch con un perfil): desde la app Multijugador, o en la partida con el menú SciCalc (SHIFT+EXE o «(») › **Multijugador: conectar**. El primero que se conecta abre la partida y sube su mundo; los demás lo reciben y aparecen a su lado. Los bloques que pica o pone cada uno se ven en todas las pantallas y cada jugador ve a los demás con su nombre. No se comparten criaturas, objetos tirados ni inventario. Se configura en la sección `multijugador` del perfil (`pc/perfiles/paper_minecraft.json`, ver `/lib/scratch_red.py`).
+- **Paper Minecraft** (y otros juegos de Scratch con un perfil): menú SciCalc › **Multijugador...** (ver arriba). Quien hostea sube su mundo; los demás lo reciben y aparecen a su lado. Los bloques que pica o pone cada uno se ven en todas las pantallas y cada jugador ve a los demás con su nombre. No se comparten criaturas, objetos tirados ni inventario. Se configura en la sección `multijugador` del perfil (`pc/perfiles/paper_minecraft.json`, ver `/lib/scratch_red.py`).
 - **Tus juegos**: módulo `scicalc.red` ([docs/API_scicalc.md](docs/API_scicalc.md)).
 
 Medios de conexión en el ESP32 (firmware, pendiente; mismo protocolo en todos):
@@ -117,7 +117,7 @@ Medios de conexión en el ESP32 (firmware, pendiente; mismo protocolo en todos):
 
 ## Navegador y red
 
-- **Navegador** (menú principal): páginas web en modo texto, como los móviles de antes (el ESP32 no puede con JavaScript ni CSS). SHIFT+EXE escribe la dirección con T9 (sin punto = busca en internet), ◄ ► eligen enlace, EXE lo abre, **+** descarga lo enlazado, DEL vuelve atrás. Lo que no es una página (zip, py, png…) se ofrece para descargar a `/descargas` de la MicroSD.
+- **Navegador** (`sd/apps/navegador.py`, en Python › apps): páginas web en modo texto, como los móviles de antes (el ESP32 no puede con JavaScript ni CSS). SHIFT+EXE escribe la dirección con T9 como en un Nokia (sin punto = busca en internet), ◄ ► eligen enlace, EXE lo abre, **+** descarga lo enlazado, DEL vuelve atrás. Lo que no es una página (zip, py, png…) se guarda en `/descargas` de la MicroSD. Es un script normal: usa `scicalc.red.web()` y `/lib/t9.py`.
 - **Ajustes › Wi-Fi › Detalles de la red**: tu IP local, máscara de subred, puerta de enlace, DNS 1 y 2, MAC y señal. IP automática (DHCP) o estática; los DNS se pueden cambiar siempre y *Probar DNS* pregunta directamente al DNS elegido. En el ESP32: `WiFi.config(ip, puerta, máscara, dns1, dns2)` guardado en NVS.
 
 ## Estructura
