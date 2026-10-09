@@ -187,6 +187,7 @@ class Multijugador:
             elif t == "de" and isinstance(m.get("d"), dict) and "x" in m["d"]:
                 self.otros[m.get("id")] = m["d"]
             elif t == "entra":
+                self.enviado = None                 # que el nuevo reciba ya mi posición
                 self.aviso("%s se ha unido" % m.get("nombre", "?"))
             elif t == "sale":
                 self.otros.pop(m.get("id"), None)
