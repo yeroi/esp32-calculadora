@@ -16,8 +16,27 @@ El simulador de escritorio [`simulador/scicalc_sim.py`](simulador/scicalc_sim.py
 | **3** | **Menú e interfaz completos: 6 modos, diálogos, barra de estado, explorador, visores** | ✅ **este paso** |
 | 4 | Calculadora nativa (parser C++) | pendiente |
 | 5 | MicroPython embed: tarea con heap propio, watchdog, VFS con permisos | pendiente |
-| – | Consola con ALPHA · Ajustes reales (WiFi.h, BT SPP, NVS) · LinkService · buzzer · batería | pendiente |
+| – | Consola con ALPHA + editor de código + `pip` por Wi-Fi · Ajustes reales (WiFi.h, BT SPP, NVS) · LinkService · buzzer · batería | pendiente (ya especificado en el simulador v0.4) |
 | 9–10 | Hardware real (TFT_eSPI + DMA, MCP23017) · PCB | pendiente |
+
+## Simulador (v0.4)
+
+```bash
+pip install pygame-ce
+python simulador/scicalc_sim.py
+```
+
+Novedades de la v0.4 (especificación para el firmware):
+
+- **Las líneas largas se parten** en varias filas en la salida de Python y en la Consola (por palabras cuando se puede).
+- **Editor de código** en la calculadora: en *Python*, SHIFT+EXE sobre un `.py` lo edita y sobre una carpeta crea `nuevo.py`; en la *Consola*, `edit archivo.py`. Sangría automática tras `:`, DEL quita un nivel de sangría, SHIFT+EXE guarda, SHIFT+► guarda y ejecuta (y al cerrar la salida vuelves al editor), AC sale (pregunta si hay cambios). Bloqueado en modo examen.
+- **`pip` con Wi-Fi** en la Consola: `pip install x`, `pip uninstall x`, `pip list`. Necesita Wi-Fi conectado (Ajustes › Wi-Fi) y pide confirmación antes de escribir en `/lib`.
+  1. Busca primero en **micropython-lib** (el índice de `mip`): paquetes hechos para MicroPython.
+  2. Si no está, prueba **PyPI**, solo ruedas de Python puro (`py3-none-any`), sin usar el pip del PC.
+  3. Rechaza el código nativo (numpy, pandas…) y lo que pase de 1 MB.
+- `sys` del sandbox como el de MicroPython: `modules`, `implementation`, `exit`, `print_exception`.
+
+> En el ESP32 **no existe pip**. El comando `pip` de la calculadora es un instalador propio que hará lo mismo por Wi-Fi: `mip` (micropython-lib) y, como alternativa, descargar la rueda de PyPI y descomprimirla (el ESP32 trae `inflate` en la ROM). Aun así, casi nada de PyPI funciona en MicroPython porque usa módulos de CPython.
 
 ## Estructura
 

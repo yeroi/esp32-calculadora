@@ -17,6 +17,11 @@
        - WATCHDOG: si el script tarda más de 5 s se detiene y se vuelve
          al menú sin colgar la calculadora.
    * Explorador de la SD con visor de código y diagnóstico de teclado.
+   * Editor de scripts (Python: SHIFT+EXE, o "edit x.py" en la Consola):
+     sangría automática, guardar con SHIFT+EXE, ejecutar con SHIFT+►.
+   * pip con Wi-Fi (Consola): "pip install x" busca en micropython-lib y,
+     si no está, una versión de Python puro en PyPI. Instala en /lib.
+   * Las líneas largas de la consola se parten en varias filas.
 
  Requisitos:   pip install pygame-ce   (funciona en Python 3.14)
  Ejecutar:     python scicalc_sim.py
@@ -643,12 +648,19 @@ for _n in ("join", "basename", "dirname", "split", "splitext"):
     setattr(_path, _n, getattr(posixpath, _n))
 _os.path = _path
 
-# --- sys reducido ---------------------------------------------------------------
+# --- sys reducido (lo mismo que trae el 'sys' de MicroPython) ---------------------
 _sys = types.ModuleType("sys")
 _sys.platform, _sys.version, _sys.maxsize = "esp32", sys.version, sys.maxsize
-_sys.version_info, _sys.byteorder, _sys.stdout = sys.version_info, sys.byteorder, sys.stdout
+_sys.version_info, _sys.byteorder = sys.version_info, sys.byteorder
+_sys.stdout, _sys.stderr = sys.stdout, sys.stdout
 _sys.path = ["", "/lib"]
 _sys.argv = [os.path.basename(PATH)] + ARGS
+_sys.exit = sys.exit
+_sys.implementation = types.SimpleNamespace(name="micropython", version=(1, 24, 0), _machine="ESP32")
+_sys.print_exception = lambda e, f=None: sys.stdout.write("%s: %s\n" % (type(e).__name__, e))
+# Solo los módulos que el script puede usar (no los internos del simulador)
+_sys.modules = {n: sys.modules[n] for n in ALLOWED if n in sys.modules}
+_sys.modules.update({"os": _os, "sys": _sys})
 
 def _sandboxed(g):
     if not g:
@@ -964,10 +976,12 @@ class PythonApp(App):
         super().__init__(sim)
         self.browser = Browser(only_py=True)
         self.runner, self.scroll_off, self.script = None, 0, None
+        self.back_to = None              # app a la que volver (p. ej. el editor)
 
     def on_enter(self):
         self.browser.refresh()
         self.runner = None
+        self.back_to = None
 
     def on_key(self, key, shift):
         if self.runner:
@@ -978,15 +992,29 @@ class PythonApp(App):
             if key in ("AC", "DEL", "LEFT"):
                 self.runner = None
                 self.sim.set_title(self.title)
+                if self.back_to:
+                    self.sim.launch(self.back_to)
             elif key == "EXE":
                 self.start(self.script)
             elif key == "UP":
-                self.scroll_off += 1
+                rows = len(wrap_console(self.runner.lines, console_cols()))
+                self.scroll_off = min(self.scroll_off + 1, max(0, rows - 15))
             elif key == "DOWN":
                 self.scroll_off = max(0, self.scroll_off - 1)
             return
         if key == "AC":
             self.browser.go_up()
+            return
+        if shift and key == "EXE":                 # editar el script o crear uno nuevo
+            b = self.browser
+            it = b.items[b.sel] if b.items else None
+            if it is not None and it.is_file():
+                self.sim.edit_file(it)
+            else:
+                n = 1
+                while (b.cwd / ("nuevo.py" if n == 1 else f"nuevo{n}.py")).exists():
+                    n += 1
+                self.sim.edit_file(b.cwd / ("nuevo.py" if n == 1 else f"nuevo{n}.py"))
             return
         f = self.browser.key(key)
         if f:
@@ -1013,7 +1041,7 @@ class PythonApp(App):
     def draw(self, s):
         if not self.runner:
             self.browser.draw(s, "No hay scripts .py aquí")
-            self.footer(s, "↑↓ mover   EXE abrir/ejecutar   ◄ subir carpeta")
+            self.footer(s, "EXE ejecutar   SHIFT+EXE editar/nuevo   ◄ subir")
             return
         r = self.runner
         st = {
@@ -1027,29 +1055,53 @@ class PythonApp(App):
         }[r.state]
         pygame.draw.rect(s, PANEL, (0, HEADER_H, SCR_W, 34))
         draw_text(s, st[0], font(18, True), st[1], (14, HEADER_H + 7))
-        y = draw_console(s, r.lines, HEADER_H + 42, 15, self.scroll_off)
+        y, _ = draw_console(s, r.lines, HEADER_H + 42, 15, self.scroll_off)
         if r.state == "running" and int(time.time() * 2) % 2 == 0:
             pygame.draw.rect(s, TEXT, (12, y + 3, 10, 16))
         if r.state not in ("running", "asking"):
             self.footer(s, "EXE repetir   ↑↓ desplazar   ◄/AC volver")
 
 
-def draw_console(s, lines, y, rows, scroll_off=0, x=12, cols=58):
+CONSOLE_COLORS = {"\x01": ERR, "\x03": SHIFT_C, "\x04": ACCENT, "\x05": MUTED}
+
+
+def console_cols(x=12):
+    """Caracteres que caben en una fila de la consola."""
+    return max(10, (SCR_W - x - 10) // font(18).size("M")[0])
+
+
+def wrap_console(lines, cols):
+    """Parte las líneas largas en varias filas, como una terminal: lo que no
+    cabe sigue en la fila de abajo. Devuelve [(texto, color)]."""
+    out = []
+    for line in lines:
+        col = CONSOLE_COLORS.get(line[:1])
+        if col:
+            line = line[1:]
+        col = col or TEXT
+        while len(line) > cols:
+            cut = line.rfind(" ", cols // 2, cols + 1)   # mejor por un espacio...
+            if cut <= 0:
+                cut = cols                                 # ...si no, en seco
+            out.append((line[:cut], col))
+            line = line[cut:].lstrip(" ") if cut < cols else line[cut:]
+        out.append((line, col))
+    return out
+
+
+def draw_console(s, lines, y, rows, scroll_off=0, x=12):
+    """Dibuja las últimas 'rows' filas (ya partidas). Devuelve (y siguiente,
+    texto de la última fila dibujada) para colocar el cursor."""
     f = font(18)
-    end = max(0, len(lines) - scroll_off)
-    for line in lines[max(0, end - rows):end]:
-        col = TEXT
-        if line.startswith("\x01"):
-            line, col = line[1:], ERR
-        elif line.startswith("\x03"):
-            line, col = line[1:], SHIFT_C
-        elif line.startswith("\x04"):
-            line, col = line[1:], ACCENT
-        elif line.startswith("\x05"):
-            line, col = line[1:], MUTED
-        draw_text(s, line[:cols], f, col, (x, y))
+    vis = wrap_console(lines, console_cols(x))
+    scroll_off = min(scroll_off, max(0, len(vis) - rows))
+    end = len(vis) - scroll_off
+    last = ""
+    for text, col in vis[max(0, end - rows):end]:
+        draw_text(s, text, f, col, (x, y))
+        last = text
         y += 22
-    return y
+    return y, last
 
 
 # ----------------------------------------------------------- Archivos SD ----
@@ -1189,6 +1241,369 @@ class FilesApp(App):
                 i += 1
 
 
+# --------------------------------------------------------------- Editor -----
+class EditorApp(App):
+    """Editor de scripts .py en la propia calculadora.
+    En el simulador se escribe con el teclado del PC; en el ESP32 real, con
+    ALPHA (letras impresas en las teclas). Las teclas de la calculadora
+    también escriben: dígitos, operadores, sin( cos( √ → sqrt( ...
+    Las líneas largas se parten en varias filas (no hay scroll horizontal)."""
+    title = "Editor"
+    accepts_text = True
+    ROWS = 18
+    NUM_W = 46                           # ancho de la columna de números de línea
+    KEY_TEXT = {"ADD": "+", "SUB": "-", "MUL": "*", "DIV": "/", "POW": "**", "LP": "(", "RP": ")",
+                ".": ".", "SIN": "sin(", "COS": "cos(", "TAN": "tan(", "LN": "log(", "SQRT": "sqrt("}
+    SHIFT_TEXT = {"SIN": "asin(", "COS": "acos(", "TAN": "atan(", "POW": "**2", "LN": "log10(",
+                  "SQRT": "pi", "LP": "=", "RP": ":", ".": ",", "DIV": "#", "ADD": "\"", "SUB": "_"}
+
+    def __init__(self, sim):
+        super().__init__(sim)
+        self.path, self.lines = None, [""]
+        self.cx = self.cy = self.top = 0
+        self.modified, self.blink, self.msg = False, 0.0, ""
+
+    # ---- archivo -------------------------------------------------------------
+    def open(self, path):
+        self.path = Path(path)
+        try:
+            text = self.path.read_text(encoding="utf-8") if self.path.exists() else ""
+        except (OSError, UnicodeDecodeError):
+            text = ""
+        self.lines = text.replace("\r", "").replace("\t", "    ").split("\n") or [""]
+        if len(self.lines) > 1 and self.lines[-1] == "":
+            self.lines.pop()                         # el \n final no es una línea más
+        self.cx = self.cy = self.top = 0
+        self.modified = not self.path.exists()
+        self.msg = "archivo nuevo" if self.modified else ""
+
+    def save(self):
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+        self.path.write_text("\n".join(self.lines) + "\n", encoding="utf-8")
+        self.modified, self.msg = False, "guardado"
+
+    def on_enter(self):
+        self.title = ("✎ " + self.path.name) if self.path else "Editor"
+
+    # ---- edición -------------------------------------------------------------
+    def insert(self, text):
+        ln = self.lines[self.cy]
+        self.lines[self.cy] = ln[:self.cx] + text + ln[self.cx:]
+        self.cx += len(text)
+        self.modified, self.msg, self.blink = True, "", 0
+
+    def type_char(self, ch):
+        self.insert(ch)
+
+    def newline(self):
+        ln = self.lines[self.cy]
+        before, after = ln[:self.cx], ln[self.cx:]
+        indent = len(before) - len(before.lstrip(" "))
+        if before.rstrip().endswith(":"):
+            indent += 4                               # bloque nuevo: sangría automática
+        self.lines[self.cy] = before
+        self.lines.insert(self.cy + 1, " " * indent + after.lstrip(" "))
+        self.cy, self.cx = self.cy + 1, indent
+        self.modified, self.msg = True, ""
+
+    def backspace(self):
+        ln = self.lines[self.cy]
+        if self.cx > 0:
+            n = 1
+            if ln[:self.cx].strip() == "" and self.cx % 4 == 0:
+                n = 4                                 # borra un nivel de sangría
+            self.lines[self.cy] = ln[:self.cx - n] + ln[self.cx:]
+            self.cx -= n
+        elif self.cy > 0:                             # une con la línea de arriba
+            self.cx = len(self.lines[self.cy - 1])
+            self.lines[self.cy - 1] += ln
+            del self.lines[self.cy]
+            self.cy -= 1
+        else:
+            return
+        self.modified, self.msg = True, ""
+
+    def on_key(self, key, shift):
+        self.blink = 0
+        if shift and key == "EXE":
+            self.save()
+        elif shift and key == "RIGHT":               # guardar y ejecutar
+            self.save()
+            self.sim.run_script(self.path, back_to=self)
+        elif key == "AC":
+            self.close()
+        elif key == "EXE":
+            self.newline()
+        elif key == "DEL":
+            self.backspace()
+        elif key == "LEFT":
+            if self.cx > 0:
+                self.cx -= 1
+            elif self.cy > 0:
+                self.cy -= 1
+                self.cx = len(self.lines[self.cy])
+        elif key == "RIGHT":
+            if self.cx < len(self.lines[self.cy]):
+                self.cx += 1
+            elif self.cy < len(self.lines) - 1:
+                self.cy, self.cx = self.cy + 1, 0
+        elif key in ("UP", "DOWN"):
+            step = (-1 if key == "UP" else 1) * (self.ROWS if shift else 1)
+            self.cy = min(max(0, self.cy + step), len(self.lines) - 1)
+            self.cx = min(self.cx, len(self.lines[self.cy]))
+        elif key.isdigit():
+            self.insert(key)
+        elif shift and key in self.SHIFT_TEXT:
+            self.insert(self.SHIFT_TEXT[key])
+        elif key in self.KEY_TEXT:
+            self.insert(self.KEY_TEXT[key])
+
+    def close(self):
+        if not self.modified:
+            self.sim.launch(self.sim.py)
+            return
+
+        def done(a):
+            if a in "ya":
+                self.save()
+            self.modified = False
+            self.sim.launch(self.sim.py)
+        self.sim.ask("Editor", ["Hay cambios sin guardar en", "  " + self.path.name, "",
+                                "¿Guardarlos antes de salir?"], done)
+
+    def update(self, dt):
+        self.blink += dt
+        t = ("✎ " + self.path.name + (" *" if self.modified else "")) if self.path else "Editor"
+        if t != self.sim.title:
+            self.sim.set_title(t)
+
+    # ---- dibujo (líneas largas partidas en varias filas) -----------------------
+    def _cols(self):
+        return max(10, (SCR_W - self.NUM_W - 10) // font(17).size("M")[0])
+
+    def _rows(self, cols):
+        """Filas visibles: (índice de línea, columna de inicio)."""
+        out = []
+        for i, ln in enumerate(self.lines):
+            n = max(1, -(-len(ln) // cols))
+            out.extend((i, k * cols) for k in range(n))
+        return out
+
+    def draw(self, s):
+        f = font(17)
+        cw = f.size("M")[0]
+        cols = self._cols()
+        rows = self._rows(cols)
+        # fila del cursor (si está justo al final de una fila llena, se queda en ella)
+        cur = 0
+        for r, (li, start) in enumerate(rows):
+            if li == self.cy and start <= self.cx:
+                cur = r
+        if cur < self.top:
+            self.top = cur
+        elif cur >= self.top + self.ROWS:
+            self.top = cur - self.ROWS + 1
+        y = HEADER_H + 6
+        for r in range(self.top, min(len(rows), self.top + self.ROWS)):
+            li, start = rows[r]
+            if start == 0:
+                draw_text(s, f"{li + 1:3}", f, MUTED, (6, y))
+            else:
+                draw_text(s, "  ↪", f, PANEL, (6, y))
+            FilesApp.draw_code(s, self.lines[li][start:start + cols], f, self.NUM_W, y)
+            if r == cur and int(self.blink * 2) % 2 == 0:
+                pygame.draw.rect(s, ACCENT, (self.NUM_W + (self.cx - start) * cw, y, 2, 19))
+            y += 21
+        info = f"lín {self.cy + 1}/{len(self.lines)} col {self.cx + 1}"
+        if self.msg:
+            info = self.msg + " · " + info
+        draw_text(s, info, font(15), OK if self.msg == "guardado" else MUTED, (0, SCR_H - 44),
+                  "right", SCR_W - 12)
+        self.footer(s, "SHIFT+EXE guardar   SHIFT+► ejecutar   AC salir")
+
+
+# ------------------------------------------------------- pip (con Wi-Fi) ----
+#  En el ESP32 NO existe pip: el comando "pip" de la consola es el instalador
+#  de la calculadora y hace lo mismo que hará el firmware con Wi-Fi:
+#    1) micropython-lib (el índice oficial de "mip"): paquetes hechos para
+#       MicroPython. Es la opción buena.
+#    2) Si no está ahí, PyPI: solo ruedas de Python PURO ("py3-none-any").
+#       Se descomprimen en /lib. Casi nada de PyPI funciona en MicroPython
+#       (usa módulos de CPython que no existen), así que se avisa.
+#  Nunca se instala código nativo (.so/.pyd): no puede ejecutarse en el ESP32.
+MIP_INDEX = os.environ.get("SCICALC_MIP_INDEX", "https://micropython.org/pi/v2")
+PYPI_JSON = os.environ.get("SCICALC_PYPI", "https://pypi.org/pypi")
+PIP_MAX_BYTES = 1024 * 1024            # más de 1 MB no cabe en la RAM del ESP32
+NATIVE_EXT = (".so", ".pyd", ".dll", ".dylib")
+
+
+class PipError(Exception):
+    pass
+
+
+def _http_get(url, limit=4 * PIP_MAX_BYTES):
+    import urllib.request
+    req = urllib.request.Request(url, headers={"User-Agent": "ESP32-SciCalc"})
+    with urllib.request.urlopen(req, timeout=20) as r:
+        data = r.read(limit + 1)
+    if len(data) > limit:
+        raise PipError("descarga demasiado grande para la calculadora")
+    return data
+
+
+def _net_error(e):
+    import urllib.error
+    if isinstance(e, urllib.error.HTTPError):
+        return e.code
+    if isinstance(e, urllib.error.URLError):
+        raise PipError(f"sin conexión a internet ({e.reason})")
+    raise PipError(str(e))
+
+
+def fetch_mip(name, log, seen=None):
+    """micropython-lib. Devuelve (versión, {ruta: bytes}) o None si no existe."""
+    seen = set() if seen is None else seen
+    if name in seen:
+        return "?", {}
+    seen.add(name)
+    try:
+        meta = json.loads(_http_get(f"{MIP_INDEX}/package/py/{name}/latest.json"))
+    except Exception as e:
+        if _net_error(e) == 404:
+            return None
+        raise PipError(f"error HTTP {e.code} en micropython-lib")
+    files = {}
+    for path, h in meta.get("hashes", []):
+        log(f"  descargando {path}")
+        files[path] = _http_get(f"{MIP_INDEX}/file/{h[:2]}/{h}")
+    for dep in meta.get("deps", []):
+        dname = dep[0] if isinstance(dep, (list, tuple)) else dep
+        if ":" in dname or "/" in dname:
+            log(f"\x05  (dependencia externa omitida: {dname})")
+            continue
+        log(f"  dependencia: {dname}")
+        sub = fetch_mip(dname, log, seen)
+        if sub is None:
+            log(f"\x03  dependencia {dname} no encontrada")
+            continue
+        files.update(sub[1])
+    return meta.get("version", "?"), files
+
+
+def fetch_pypi(name, log):
+    """Rueda de Python puro de PyPI, sin usar pip. Devuelve (versión, archivos)."""
+    import io
+    import zipfile
+    try:
+        meta = json.loads(_http_get(f"{PYPI_JSON}/{name}/json"))
+    except Exception as e:
+        if _net_error(e) == 404:
+            raise PipError(f"'{name}' no existe ni en micropython-lib ni en PyPI")
+        raise PipError(f"error HTTP {e.code} en PyPI")
+    version = meta.get("info", {}).get("version", "?")
+    wheels = [u for u in meta.get("urls", []) if u.get("packagetype") == "bdist_wheel"
+              and u.get("filename", "").endswith(("-py3-none-any.whl", "-py2.py3-none-any.whl"))]
+    if not wheels:
+        raise PipError(f"'{name}' {version} no tiene versión de Python puro "
+                       "(trae código nativo en C): no puede funcionar en el ESP32")
+    w = wheels[0]
+    if w.get("size", 0) > PIP_MAX_BYTES:
+        raise PipError(f"'{name}' ocupa {w['size'] // 1024} KB: demasiado para el ESP32")
+    log(f"  descargando {w['filename']}")
+    files = {}
+    with zipfile.ZipFile(io.BytesIO(_http_get(w["url"]))) as z:
+        for info in z.infolist():
+            rel = info.filename
+            top = rel.split("/")[0]
+            if info.is_dir() or top.endswith((".dist-info", ".data")) or "__pycache__" in rel:
+                continue
+            if rel.lower().endswith(NATIVE_EXT):
+                raise PipError(f"'{name}' trae código nativo ({rel}): no funciona en el ESP32")
+            files[rel] = z.read(info)
+    deps = [d.split(";")[0].strip() for d in (meta.get("info", {}).get("requires_dist") or [])
+            if "extra ==" not in d]
+    if deps:
+        log(f"\x03  dependencias NO instaladas: {', '.join(deps)}")
+        log("\x03  instálalas con pip si las necesitas")
+    log("\x03  aviso: es un paquete de CPython; puede no funcionar en MicroPython")
+    return version, files
+
+
+class PipJob:
+    """pip install / uninstall en un hilo, para no congelar la calculadora.
+    La salida va por una cola a la consola; las preguntas usan ask_blocking()."""
+
+    def __init__(self, sim, action, name):
+        self.sim, self.action, self.name = sim, action, name
+        self.q, self.done, self.cancelled = queue.Queue(), False, False
+        threading.Thread(target=self._run, daemon=True).start()
+
+    def log(self, line):
+        self.q.put(line)
+
+    def _run(self):
+        try:
+            if self.action == "install":
+                self._install()
+            else:
+                self._uninstall()
+        except PipError as e:
+            self.log(f"\x01ERROR: {e}")
+        except Exception as e:                      # nunca tumbar la calculadora
+            self.log(f"\x01ERROR inesperado: {type(e).__name__}: {e}")
+        self.done = True
+
+    def _install(self):
+        name = self.name
+        self.log(f"\x04Buscando '{name}' en micropython-lib…")
+        found = fetch_mip(name, self.log)
+        source = "micropython-lib"
+        if found is None:
+            self.log("\x05  no está en micropython-lib; probando PyPI (Python puro)…")
+            found = fetch_pypi(name, self.log)
+            source = "PyPI"
+        version, files = found
+        if not files:
+            raise PipError("el paquete no contiene archivos")
+        total = sum(len(b) for b in files.values())
+        if total > PIP_MAX_BYTES:
+            raise PipError(f"{total // 1024} KB: demasiado para la RAM del ESP32")
+        if self.cancelled:
+            raise PipError("cancelado")
+        ans = self.sim.ask_blocking("Instalar paquete", [
+            f"  {name} {version}", f"origen: {source}",
+            f"{len(files)} archivos · {human_size(total)}", "destino: /lib", "", "¿Instalar?"])
+        if ans not in ("y", "a"):
+            raise PipError("instalación cancelada")
+        lib = LIB_DIR.resolve()
+        for rel, data in sorted(files.items()):
+            dst = (lib / rel).resolve()
+            if lib not in dst.parents:                 # nada fuera de /lib
+                raise PipError(f"ruta no permitida en el paquete: {rel}")
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            dst.write_bytes(data)
+        m = read_manifest()
+        m[name] = {"version": version, "source": source, "files": sorted(files)}
+        write_manifest(m)
+        self.log(f"\x05Instalado {name} {version} en /lib ({len(files)} archivos)")
+        self.log(f"\x05Úsalo en tus scripts con:  import {self._import_name(files)}")
+
+    @staticmethod
+    def _import_name(files):
+        first = sorted(files)[0]
+        top = first.split("/")[0]
+        return top[:-3] if top.endswith(".py") else top
+
+    def _uninstall(self):
+        if self.name not in read_manifest():
+            raise PipError(f"'{self.name}' no está instalado (mira: pip list)")
+        ans = self.sim.ask_blocking("Desinstalar", [f"Paquete: {self.name}", "", "¿Desinstalar?"])
+        if ans not in ("y", "a"):
+            raise PipError("cancelado")
+        n = uninstall_package(self.name)
+        self.log(f"\x05Desinstalado {self.name} ({n} archivos borrados)")
+
+
 # ------------------------------------------------------------- Consola ------
 class ConsoleApp(App):
     """Consola tipo cmd sobre la SD. En el simulador se escribe con el teclado
@@ -1205,6 +1620,9 @@ class ConsoleApp(App):
         "  mkdir <nombre>         crear carpeta (pregunta)",
         "  rm / del <archivo>     borrar (pregunta)",
         "  tree                   árbol de carpetas",
+        "  edit <archivo.py>      editar (o crear) un script",
+        "  pip install <paquete>  instalar en /lib (necesita Wi-Fi)",
+        "  pip uninstall <paq.>   desinstalar  ·  pip list",
         "  clear / cls            limpiar pantalla",
         "  exit                   volver al menú",
     ]
@@ -1215,6 +1633,7 @@ class ConsoleApp(App):
         self.out = ["\x04SciCalc shell — escribe 'help'", ""]
         self.line, self.hist, self.hpos = "", [], -1
         self.runner, self.blink = None, 0.0
+        self.job = None                  # pip en curso
 
     def prompt(self):
         return sd_name(self.cwd) + "> "
@@ -1225,7 +1644,7 @@ class ConsoleApp(App):
 
     # -- entrada ----------------------------------------------------------------
     def type_char(self, ch):
-        if not self.runner:
+        if not self.runner and not self.job:
             self.line += ch
             self.blink = 0
 
@@ -1233,6 +1652,11 @@ class ConsoleApp(App):
         if self.runner:
             if key in ("AC", "DEL"):
                 self.runner.stop()
+            return
+        if self.job:
+            if key == "AC" and not self.job.cancelled:
+                self.job.cancelled = True
+                self.emit("\x03[cancelando: se detiene antes de escribir en /lib]")
             return
         chars = {"ADD": "+", "SUB": "-", "MUL": "*", "DIV": "/", "POW": "^", "LP": "(", "RP": ")", ".": "."}
         if key.isdigit():
@@ -1324,6 +1748,17 @@ class ConsoleApp(App):
                 what = "la carpeta (y su contenido)" if f.is_dir() else "el archivo"
                 self.sim.ask("PERMISO", [f"¿Borrar {what}?", "  " + sd_name(f)],
                              lambda a: a in "ya" and self._rm(f))
+            elif c == "edit":
+                if not args:
+                    self.emit("\x01uso: edit archivo.py")
+                    return
+                f = self.resolve(args[0])
+                if f.is_dir():
+                    self.emit("\x01es una carpeta: " + args[0])
+                    return
+                self.sim.edit_file(f)
+            elif c == "pip":
+                self.pip(args)
             elif c == "python" or c.endswith(".py"):
                 if c == "python":
                     if not args:
@@ -1348,6 +1783,26 @@ class ConsoleApp(App):
         except Exception as e:
             self.emit(f"\x01{type(e).__name__}: {e}")
 
+    def pip(self, args):
+        sub = args[0].lower() if args else ""
+        if sub == "list":
+            m = read_manifest()
+            if not m:
+                self.emit("\x05  (no hay paquetes en /lib)")
+            for n, i in sorted(m.items()):
+                self.emit(f"  {n:<20}{i.get('version', '?'):<10}{i.get('source', '?')}")
+            return
+        if sub not in ("install", "uninstall") or len(args) < 2:
+            self.emit("\x01uso: pip install <paquete> · pip uninstall <paquete> · pip list")
+            return
+        if self.sim.exam:
+            self.emit("\x01pip bloqueado: modo examen")
+            return
+        if sub == "install" and not self.sim.wifi_net:
+            self.emit("\x01sin Wi-Fi: conéctate en Ajustes › Wi-Fi", "\x05  (o instala desde el PC con SciCalc Link)")
+            return
+        self.job = PipJob(self.sim, sub, args[1])
+
     def _rm(self, f):
         shutil.rmtree(f) if f.is_dir() else f.unlink()
         self.emit("\x05borrado")
@@ -1365,6 +1820,14 @@ class ConsoleApp(App):
 
     def update(self, dt):
         self.blink += dt
+        if self.job:
+            while True:
+                try:
+                    self.emit(self.job.q.get_nowait())
+                except queue.Empty:
+                    break
+            if self.job.done and self.job.q.empty():
+                self.job = None
         r = self.runner
         if not r:
             return
@@ -1385,13 +1848,20 @@ class ConsoleApp(App):
 
     def draw(self, s):
         rows = 18
-        lines = self.out + ([] if self.runner else [self.prompt() + self.line])
-        y = draw_console(s, lines, HEADER_H + 6, rows)
-        if not self.runner and int(self.blink * 2) % 2 == 0:
-            last = (self.prompt() + self.line)[:58]
-            pygame.draw.rect(s, ACCENT, (12 + font(18).size(last)[0], y - 20, 9, 18))
-        self.footer(s, "AC detiene el script" if self.runner else
-                    "escribe con el teclado del PC · EXE ejecuta · ↑↓ historial")
+        busy = self.runner or self.job
+        lines = self.out + ([] if busy else [self.prompt() + self.line])
+        y, last = draw_console(s, lines, HEADER_H + 6, rows)
+        if not busy and int(self.blink * 2) % 2 == 0:
+            cw = font(18).size("M")[0]
+            cx = 12 + len(last) * cw
+            if len(last) >= console_cols():         # fila llena: el cursor baja
+                cx, y = 12, y + 22
+            pygame.draw.rect(s, ACCENT, (cx, y - 20, 9, 18))
+        if self.job:
+            self.footer(s, "instalando… (AC cancela)")
+        else:
+            self.footer(s, "AC detiene el script" if self.runner else
+                        "escribe con el teclado del PC · EXE ejecuta · ↑↓ historial")
 
 
 # ----------------------------------------------------------- Diagnóstico ----
@@ -1438,7 +1908,7 @@ class DiagApp(App):
 # =============================================================================
 #  Paquetes instalados en /lib  (manifiesto  /lib/paquetes.json)
 # =============================================================================
-FW_VERSION = "0.3"
+FW_VERSION = "0.4"
 LIB_DIR = SD_DIR / "lib"
 MANIFEST = LIB_DIR / "paquetes.json"
 
@@ -1866,6 +2336,7 @@ class Simulator:
         self.pending = queue.Queue()           # diálogos pedidos desde otros hilos
         self.settings = SettingsApp(self)
         self.console = ConsoleApp(self)
+        self.editor = EditorApp(self)
         self.menu = MenuApp(self, [
             ("Calculadora", "C++ nativo", self.calc),
             ("Python", "sandbox .py", self.py),
@@ -1888,6 +2359,21 @@ class Simulator:
 
     def set_title(self, t):
         self.title = t
+
+    def edit_file(self, path):
+        """Abre el editor con 'path' (lo crea al guardar si no existe)."""
+        if self.exam:
+            self.ask("Modo examen", ["El editor de scripts está", "bloqueado durante el examen."],
+                     None, info=True)
+            return
+        self.editor.open(path)
+        self.launch(self.editor)
+
+    def run_script(self, path, back_to=None):
+        """Ejecuta un script en la app Python y, al cerrar la salida, vuelve a 'back_to'."""
+        self.launch(self.py)
+        self.py.start(Path(path))
+        self.py.back_to = back_to
 
     # ---- diálogos (permisos, confirmaciones) -------------------------------
     def ask(self, title, lines, callback, allow_all=False, info=False):
