@@ -50,7 +50,7 @@ python pc/sb3_a_scicalc.py MiJuego.sb3                  # -> simulador/sd/scratc
 python pc/sb3_a_scicalc.py MiJuego.sb3 E:\              # -> MicroSD (E:\scratch\)
 ```
 
-`resvg-py` hace falta para dibujar bien los disfraces SVG: muchos llevan imágenes PNG incrustadas que pygame no sabe dibujar. Crea `sd/scratch/mijuego/` con los disfraces ya escalados (el escenario de 480×360 se ve a 288×216), un `proyecto.json` simplificado y un lanzador `mijuego.py`. En la calculadora: **Python › scratch › mijuego › mijuego.py**. El convertidor dice qué tecla de la calculadora corresponde a cada tecla de Scratch (flechas → flechas, espacio → EXE; las letras a teclas libres, también en `LEEME.txt`). AC sale.
+`resvg-py` hace falta para dibujar bien los disfraces SVG: muchos llevan imágenes PNG incrustadas que pygame no sabe dibujar. Crea `sd/scratch/mijuego/` con los disfraces ya escalados (el escenario de 480×360 se guarda a 320×218, píxel a píxel con la pantalla), un `proyecto.json` simplificado y un lanzador `mijuego.py`. En la calculadora: **Python › scratch › mijuego › mijuego.py**. El convertidor dice qué tecla de la calculadora corresponde a cada tecla de Scratch (flechas → flechas, espacio → EXE; las letras a teclas libres, también en `LEEME.txt`). AC sale.
 
 **Ratón virtual**: **8 4 6 2** mueven el puntero (mantener acelera) y **5** es el clic (mantenido = botón pulsado). Funcionan "ratón x/y", "¿ratón presionado?", "tocando puntero del ratón" y "al hacer clic en este objeto". Si el juego usa también las teclas 2, 4, 5, 6 u 8, pasan a SHIFT+número; cuando se acaban las teclas libres se usan combinaciones SHIFT+tecla. WASD van a las flechas.
 

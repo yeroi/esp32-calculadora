@@ -5,4 +5,5 @@ Teclas:
   right arrow  -> ►
   space        -> EXE
   ratón        -> 8 4 6 2 mueven el puntero · 5 = clic
+  menú         -> SHIFT+EXE (guardar, pantalla, rendimiento...)
   AC           -> salir

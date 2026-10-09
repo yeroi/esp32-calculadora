@@ -8,7 +8,7 @@
 #   * Cada guion es un "hilo" (un generador). En cada fotograma cada hilo
 #     avanza hasta su siguiente pausa: el final de una vuelta de bucle, un
 #     "esperar"... como en Scratch.
-#   * El escenario de 480x360 se dibuja a 288x216 y solo se redibuja la zona
+#   * El escenario de 480x360 se dibuja a 320x218 (o proporcional) y solo se redibuja la zona
 #     que cambia (scicalc.pantalla.recorte), porque no hay framebuffer.
 #
 #  Soportado: eventos (bandera, teclas, mensajes, clones, cambio de fondo),
@@ -163,10 +163,11 @@ class Sprite:
     # Caja en coordenadas de Scratch (sin tener en cuenta el giro)
     def bbox(self):
         _, _, w, h, cx, cy = self.costumes[self.costume]
-        k = self.size / 100 / self.proj.scale            # px del PNG -> unidades de Scratch
-        left = self.x - cx * k
-        top = self.y + cy * k
-        return left, top - h * k, left + w * k, top     # x0, y0, x1, y1
+        k = self.size / 100
+        kx, ky = k / self.proj.scale[0], k / self.proj.scale[1]   # px del PNG -> unidades
+        left = self.x - cx * kx
+        top = self.y + cy * ky
+        return left, top - h * ky, left + w * kx, top   # x0, y0, x1, y1
 
     def screen_rect(self):
         """Rectángulo de pantalla que puede ocupar (contando el giro)."""
@@ -279,7 +280,9 @@ class Project:
     def __init__(self, path):
         with open(path) as f:
             data = json.load(f)
-        self.scale = data["escala"]                  # escala a la que se guardaron los PNG
+        # escala a la que se guardaron los PNG: (x, y), o un número en proyectos antiguos
+        e = data["escala"]
+        self.scale = (float(e[0]), float(e[1])) if isinstance(e, list) else (float(e), float(e))
         self.keymap = data.get("teclas", {})
         # Controles y opciones (controles.json junto al proyecto, editable)
         self.folder = path[:path.rfind("/") + 1] if "/" in path else ""
@@ -378,7 +381,7 @@ class Project:
         if mode != "estirar":
             fx = fy = min(fx, fy)
         self.fx, self.fy = fx, fy                    # unidades de Scratch -> píxeles
-        self.kx, self.ky = fx / self.scale, fy / self.scale   # px del PNG -> píxeles
+        self.kx, self.ky = fx / self.scale[0], fy / self.scale[1]   # px del PNG -> píxeles
         self.sw, self.sh = STAGE_W * fx, STAGE_H * fy
         self.ox, self.oy = (P.ANCHO - self.sw) / 2, (P.ALTO - self.sh) / 2
         self.dirty_all = True

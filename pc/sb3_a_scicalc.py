@@ -8,7 +8,7 @@
  SVG/PNG grandes y un project.json pensado para un PC). Este programa, en el PC:
 
    1. Pasa cada disfraz (SVG, PNG, JPG) a un PNG pequeño, ya escalado a la
-      pantalla de la calculadora (el escenario de 480x360 se ve a 288x216).
+      pantalla de la calculadora (el escenario de 480x360 se guarda a 320x218, el tamaño de la pantalla).
    2. Simplifica project.json: quita lo que la calculadora no usa (sonidos,
       comentarios, posiciones de bloques...) y numera los bloques.
    3. Asigna las teclas de Scratch a teclas de la calculadora.
@@ -50,8 +50,11 @@ except ImportError:
 
 HERE = Path(__file__).resolve().parent         # carpeta pc/
 REPO = HERE.parent                             # raíz del proyecto
-STAGE_SCALE = 0.6           # 480x360 -> 288x216 (cabe en los 320x218 del script)
-MAX_COSTUME_PX = 288        # ningún disfraz más grande que el escenario
+# El escenario de 480x360 se guarda ya al tamaño de la zona del script
+# (320x218): así, en el modo "estirar" (el normal) cada píxel del PNG es un
+# píxel de la pantalla, sin volver a escalar (que es lo que emborronaba).
+STAGE_SCALE = (320 / 480, 218 / 360)
+MAX_COSTUME_PX = 320        # ningún disfraz más grande que el escenario
 FORMAT_VERSION = 1
 
 HATS = {"event_whenflagclicked", "event_whenkeypressed", "event_whenbroadcastreceived",
@@ -94,41 +97,28 @@ def convert_costume(zf, c, out_png):
     name = c.get("md5ext") or (c["assetId"] + "." + fmt)
     data = zf.read(name)
     res = c.get("bitmapResolution", 1) or 1
-    k = STAGE_SCALE / res                      # px del disfraz -> px de pantalla
+    kx, ky = STAGE_SCALE[0] / res, STAGE_SCALE[1] / res     # px del disfraz -> px de pantalla
     if fmt == "svg" and resvg_py is not None:
-        return convert_svg_resvg(data, c, k, out_png)
-    base = load_costume(data, fmt, 0, 0)
-    w, h = base.get_size()
-    tw, th = max(1, round(w * k)), max(1, round(h * k))
+        base = _resvg(data.decode("utf-8", "replace"), 2 * max(kx, ky))   # supermuestreo
+        w, h = base.get_width() / (2 * max(kx, ky)), base.get_height() / (2 * max(kx, ky))
+    else:
+        base = load_costume(data, fmt, 0, 0)
+        w, h = base.get_size()
+    tw, th = max(1, round(w * kx)), max(1, round(h * ky))
     if max(tw, th) > MAX_COSTUME_PX:            # demasiado grande: se reduce más
         f = MAX_COSTUME_PX / max(tw, th)
-        tw, th, k = max(1, round(tw * f)), max(1, round(th * f)), k * f
-    if fmt == "svg":                           # vector: se rasteriza ya al tamaño final
-        img = load_costume(data, fmt, tw, th)
-    else:
-        img = pygame.transform.smoothscale(base.convert_alpha(), (tw, th))
+        tw, th, kx, ky = max(1, round(tw * f)), max(1, round(th * f)), kx * f, ky * f
+    if fmt == "svg" and resvg_py is None:      # vector sin resvg: pygame al doble y se reduce
+        base = load_costume(data, fmt, tw * 2, th * 2)
+    img = pygame.transform.smoothscale(base.convert_alpha(), (tw, th))
     pygame.image.save(img, str(out_png))
-    return tw, th, round(c.get("rotationCenterX", w / 2) * k, 2), round(c.get("rotationCenterY", h / 2) * k, 2)
+    return (tw, th, round(c.get("rotationCenterX", w / 2) * kx, 2),
+            round(c.get("rotationCenterY", h / 2) * ky, 2))
 
 
 def _resvg(svg_text, zoom):
     out = resvg_py.svg_to_bytes(svg_string=svg_text, zoom=zoom)
     return pygame.image.load(io.BytesIO(bytes(out)), "x.png")
-
-
-def convert_svg_resvg(data, c, k, out_png):
-    """SVG con resvg: respeta degradados, textos e imágenes incrustadas."""
-    svg = data.decode("utf-8", "replace")
-    img = _resvg(svg, k)
-    tw, th = img.get_size()
-    if max(tw, th) > MAX_COSTUME_PX:           # demasiado grande: se reduce más
-        f = MAX_COSTUME_PX / max(tw, th)
-        k *= f
-        img = _resvg(svg, k)
-        tw, th = img.get_size()
-    pygame.image.save(img, str(out_png))
-    w, h = tw / k, th / k
-    return tw, th, round(c.get("rotationCenterX", w / 2) * k, 2), round(c.get("rotationCenterY", h / 2) * k, 2)
 
 
 def find_path(p, must_exist=True):
@@ -375,7 +365,7 @@ def convert(sb3_path, sd_root):
             profile = data_pf
             print(f"  perfil de controles: {pf.name}")
     keymap = build_keymap(keys_used, profile.get("teclas"))
-    data = {"v": FORMAT_VERSION, "nombre": Path(sb3_path).stem, "escala": STAGE_SCALE,
+    data = {"v": FORMAT_VERSION, "nombre": Path(sb3_path).stem, "escala": list(STAGE_SCALE),
             "teclas": keymap, "objetos": targets_out, "monitores": monitors}
     text = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
     (out_dir / "proyecto.json").write_text(text, encoding="utf-8")
