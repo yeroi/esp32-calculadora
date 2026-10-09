@@ -14,14 +14,16 @@
    3. Asigna las teclas de Scratch a teclas de la calculadora.
    4. Escribe un lanzador <nombre>.py: se abre desde el modo Python.
 
- Uso:
-     python sb3_a_scicalc.py juego.sb3                 -> ./scratch/<nombre>/
+ Uso (desde la raíz del proyecto o desde la carpeta pc, da igual):
+     python sb3_a_scicalc.py juego.sb3                 -> simulador/sd/scratch/<nombre>/
      python sb3_a_scicalc.py juego.sb3 RUTA_DE_LA_SD   -> RUTA/scratch/<nombre>/
 
  Después copia la carpeta a la MicroSD (o usa la carpeta sd/ del simulador).
  El intérprete es /lib/scratch.py (va incluido en la carpeta sd/ del simulador).
 
- Requisitos: pip install pygame-ce   (para convertir SVG y PNG)
+ Requisitos: pip install pygame-ce resvg-py
+   resvg-py dibuja los SVG completos (muchos disfraces de Scratch llevan
+   imágenes PNG incrustadas, que el lector SVG de pygame ignora).
 ===============================================================================
 """
 import io
@@ -41,6 +43,13 @@ except ImportError:
     print("Falta pygame. Instálalo con:  pip install pygame-ce")
     sys.exit(1)
 
+try:
+    import resvg_py                    # SVG completos (con imágenes incrustadas)
+except ImportError:
+    resvg_py = None
+
+HERE = Path(__file__).resolve().parent         # carpeta pc/
+REPO = HERE.parent                             # raíz del proyecto
 STAGE_SCALE = 0.6           # 480x360 -> 288x216 (cabe en los 320x218 del script)
 MAX_COSTUME_PX = 288        # ningún disfraz más grande que el escenario
 FORMAT_VERSION = 1
@@ -86,6 +95,8 @@ def convert_costume(zf, c, out_png):
     data = zf.read(name)
     res = c.get("bitmapResolution", 1) or 1
     k = STAGE_SCALE / res                      # px del disfraz -> px de pantalla
+    if fmt == "svg" and resvg_py is not None:
+        return convert_svg_resvg(data, c, k, out_png)
     base = load_costume(data, fmt, 0, 0)
     w, h = base.get_size()
     tw, th = max(1, round(w * k)), max(1, round(h * k))
@@ -98,6 +109,41 @@ def convert_costume(zf, c, out_png):
         img = pygame.transform.smoothscale(base.convert_alpha(), (tw, th))
     pygame.image.save(img, str(out_png))
     return tw, th, round(c.get("rotationCenterX", w / 2) * k, 2), round(c.get("rotationCenterY", h / 2) * k, 2)
+
+
+def _resvg(svg_text, zoom):
+    out = resvg_py.svg_to_bytes(svg_string=svg_text, zoom=zoom)
+    return pygame.image.load(io.BytesIO(bytes(out)), "x.png")
+
+
+def convert_svg_resvg(data, c, k, out_png):
+    """SVG con resvg: respeta degradados, textos e imágenes incrustadas."""
+    svg = data.decode("utf-8", "replace")
+    img = _resvg(svg, k)
+    tw, th = img.get_size()
+    if max(tw, th) > MAX_COSTUME_PX:           # demasiado grande: se reduce más
+        f = MAX_COSTUME_PX / max(tw, th)
+        k *= f
+        img = _resvg(svg, k)
+        tw, th = img.get_size()
+    pygame.image.save(img, str(out_png))
+    w, h = tw / k, th / k
+    return tw, th, round(c.get("rotationCenterX", w / 2) * k, 2), round(c.get("rotationCenterY", h / 2) * k, 2)
+
+
+def find_path(p, must_exist=True):
+    """Acepta rutas relativas a la carpeta actual, a pc/ o a la raíz del proyecto."""
+    p = Path(p)
+    if p.is_absolute() or p.exists():
+        return p
+    for base in (HERE, REPO):
+        for cand in (base / p, base / Path(*p.parts[1:]) if len(p.parts) > 1 else None):
+            if cand is not None and cand.exists():
+                return cand
+    if must_exist:
+        print(f"No encuentro '{p}'. Pon la ruta completa al .sb3 (entre comillas si tiene espacios).")
+        sys.exit(1)
+    return REPO / p
 
 
 # -----------------------------------------------------------------------------
@@ -253,6 +299,11 @@ def convert(sb3_path, sd_root):
     sys.setrecursionlimit(20000)               # guiones muy largos
     pygame.display.init()
     pygame.display.set_mode((1, 1))            # necesario para convert_alpha()
+    sb3_path = find_path(sb3_path)
+    sd_root = find_path(sd_root, must_exist=False)
+    if resvg_py is None:
+        print("  aviso: falta resvg-py; los SVG con imágenes incrustadas saldrán incompletos.")
+        print("         Instálalo con:  pip install resvg-py")
     zf = zipfile.ZipFile(sb3_path)
     project = json.loads(zf.read("project.json").decode("utf-8"))
     name = slug(Path(sb3_path).stem)
@@ -339,4 +390,4 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         print(__doc__)
         sys.exit(1)
-    convert(sys.argv[1], sys.argv[2] if len(sys.argv) > 2 else ".")
+    convert(sys.argv[1], sys.argv[2] if len(sys.argv) > 2 else REPO / "simulador" / "sd")
