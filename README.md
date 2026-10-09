@@ -50,15 +50,19 @@ python pc/sb3_a_scicalc.py MiJuego.sb3 simulador/sd     # o la ruta de la MicroS
 
 Crea `sd/scratch/mijuego/` con los disfraces ya escalados (el escenario de 480×360 se ve a 288×216), un `proyecto.json` simplificado y un lanzador `mijuego.py`. En la calculadora: **Python › scratch › mijuego › mijuego.py**. El convertidor dice qué tecla de la calculadora corresponde a cada tecla de Scratch (flechas → flechas, espacio → EXE; las letras a teclas libres, también en `LEEME.txt`). AC sale.
 
+**Ratón virtual**: **8 4 6 2** mueven el puntero (mantener acelera) y **5** es el clic (mantenido = botón pulsado). Funcionan "ratón x/y", "¿ratón presionado?", "tocando puntero del ratón" y "al hacer clic en este objeto". Si el juego usa también las teclas 2, 4, 5, 6 u 8, pasan a SHIFT+número; cuando se acaban las teclas libres se usan combinaciones SHIFT+tecla. WASD van a las flechas.
+
+El intérprete reparte el tiempo como Scratch: en cada fotograma repite los guiones hasta que algo cambia en pantalla, así que los bucles de cálculo (generar un mundo, por ejemplo) van a toda velocidad. Probado con *Paper Minecraft* de griffpatch (30 objetos, 14 000 bloques): genera el mundo y se juega en el simulador.
+
 Ejemplo incluido: `pc/ejemplos/AtrapaManzanas.sb3`, ya convertido en `simulador/sd/scratch/atrapamanzanas/`.
 
 | Soportado | No soportado (por ahora) |
 |---|---|
-| Eventos: bandera, teclas, mensajes (y esperar), clones, cambio de fondo | Sonido (los bloques no hacen nada) |
+| Eventos: bandera, teclas, clic en objeto/escenario, mensajes (y esperar), clones (hasta 300), cambio de fondo | Sonido (los bloques no hacen nada) |
 | Movimiento completo, rebotar, estilo de giro | Lápiz |
-| Disfraces, fondos, tamaño, mostrar/ocultar, decir/pensar, capas, efecto fantasma | Ratón y "al hacer clic en este objeto" |
+| Disfraces, fondos, tamaño, mostrar/ocultar, decir/pensar, capas, efecto fantasma | Arrastrar objetos con el ratón |
 | Control: esperar, repetir, por siempre, si/si no, hasta, mientras, detener, clones | "Tocando color" y efectos de color |
-| Sensores: tecla, tocando objeto/borde, temporizador, distancia, "de", preguntar (solo números) | Escribir letras en "preguntar" (llegará con ALPHA) |
+| Sensores: tecla, ratón virtual, tocando objeto/borde, temporizador, distancia, "de", preguntar (solo números) | Escribir letras en "preguntar" (llegará con ALPHA) |
 | Operadores, variables (con marcadores), listas, bloques propios (también sin refrescar) | |
 
 La colisión usa cajas rectangulares (no el contorno exacto). En el ESP32 sin PSRAM solo caben proyectos pequeños (`proyecto.json` de pocas decenas de KB); con un ESP32-S3 con PSRAM, mucho más.

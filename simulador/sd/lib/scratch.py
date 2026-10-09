@@ -25,7 +25,8 @@ import random
 from scicalc import pantalla as P, teclas as K
 
 STAGE_W, STAGE_H = 480, 360
-MAX_CLONES = 60
+MAX_CLONES = 300                    # el mismo límite que Scratch
+WORK_MS = 25                        # tiempo de CPU por fotograma (75 % de 33 ms, como Scratch)
 WARP_LIMIT = 200000                 # pasos máximos de un bloque "sin refrescar"
 
 
@@ -240,6 +241,12 @@ class StopAll(Exception):
 
 
 class StopScript(Exception):
+    """'detener este programa': dentro de un bloque propio solo sale de él (return)."""
+    pass
+
+
+class StopThread(Exception):
+    """Acaba el hilo entero (p. ej. 'eliminar este clon')."""
     pass
 
 
@@ -272,10 +279,33 @@ class Project:
         self.dirty = []
         self.mon_text = {}
         self.held = set()
+        self.redraw = False                      # algo visible cambió en esta vuelta
+        # Ratón virtual: 8 4 6 2 lo mueven, 5 es el botón
+        self.mouse = [0.0, 0.0]
+        self.mouse_down = False
+        self.mouse_t = 0                         # ms que lleva moviéndose (acelera)
+        self.mouse_drawn = None
+        self.taps = {}                           # "S:x" (SHIFT+tecla) -> válido hasta (ms)
+        self.uses_mouse = self._uses_mouse()
         self.unsupported = set()
         self.S = {}
         self.R = {}
         self._register()
+
+    def _uses_mouse(self):
+        ops = ("sensing_mousex", "sensing_mousey", "sensing_mousedown",
+               "event_whenthisspriteclicked", "event_whenstageclicked")
+        for sp in self.sprites:
+            for h in sp.hats:
+                if h[0] in ops:
+                    return True
+            for b in sp.blocks:
+                if b[0] in ops:
+                    return True
+                for inp in b[2].values():
+                    if inp[0] == "l" and inp[1] == "_mouse_":
+                        return True
+        return False
 
     # ---- coordenadas ------------------------------------------------------------
     def to_screen(self, x, y):
@@ -416,7 +446,7 @@ class Project:
             if name == "_random_":
                 return random.randint(-240, 240), random.randint(-180, 180)
             if name == "_mouse_":
-                return 0, 0
+                return self.mouse[0], self.mouse[1]
             o = self.by_name.get(name)
             return (o.x, o.y) if o else (ctx.sp.x, ctx.sp.y)
 
@@ -712,15 +742,20 @@ class Project:
             for t in self.threads:
                 if t.sp is sp:
                     t.done = True
-            raise StopScript()
+            raise StopThread()
         S["control_delete_this_clone"] = delete_clone
 
         # ---------- sensores ----------
+        def down(k):
+            if k.startswith("S:"):                  # SHIFT+tecla: vale unos ms tras pulsarla
+                return self.taps.get(k, 0) > self.now
+            return k in self.held
+
         def key_pressed(name):
             name = str(name).lower()
             if name == "any":
-                return bool(self.held)
-            return any(k in self.held for k in self.keymap.get(name, ()))
+                return bool(self.held - self.mouse_keys()) or any(t > self.now for t in self.taps.values())
+            return any(down(k) for k in self.keymap.get(name, ()))
         R["sensing_keypressed"] = lambda ctx, b: key_pressed(self.ev(ctx, b, "KEY_OPTION"))
 
         def overlap(a, c):
@@ -735,7 +770,8 @@ class Project:
             if name == "_edge_":
                 return box[0] < -240 or box[2] > 240 or box[1] < -180 or box[3] > 180
             if name == "_mouse_":
-                return False
+                mx, my = self.mouse
+                return box[0] <= mx <= box[2] and box[1] <= my <= box[3]
             for o in self.layers:
                 if o.original.name == name and o is not sp and o.visible and o.ghost < 100 \
                         and overlap(box, o.bbox()):
@@ -749,9 +785,9 @@ class Project:
         def reset_timer(ctx, b):
             self.timer0 = self.now
         S["sensing_resettimer"] = reset_timer
-        R["sensing_mousex"] = lambda ctx, b: 0
-        R["sensing_mousey"] = lambda ctx, b: 0
-        R["sensing_mousedown"] = lambda ctx, b: False
+        R["sensing_mousex"] = lambda ctx, b: round(self.mouse[0])
+        R["sensing_mousey"] = lambda ctx, b: round(self.mouse[1])
+        R["sensing_mousedown"] = lambda ctx, b: self.mouse_down
         R["sensing_answer"] = lambda ctx, b: self.answer
         R["sensing_username"] = lambda ctx, b: ""
         R["sensing_loudness"] = lambda ctx, b: 0
@@ -971,6 +1007,8 @@ class Project:
                             ctx.warp -= 1
                     else:
                         yield from self.run(ctx, body)
+                except StopScript:
+                    pass                    # "detener este programa" = salir del bloque propio
                 finally:
                     ctx.args.pop()
             return g()
@@ -986,6 +1024,7 @@ class Project:
     # =============================================================================
     def mark(self, sp):
         sp.changed = True
+        self.redraw = True
 
     def draw_all(self, clip=None):
         if clip:
@@ -1000,6 +1039,8 @@ class Project:
             if sp.say_text and sp.visible:
                 self.draw_bubble(sp)
         self.draw_monitors()
+        if self.uses_mouse:
+            self.draw_cursor()
         if self.asking:
             self.draw_ask()
         if clip:
@@ -1037,6 +1078,20 @@ class Project:
             out.append(text(self.var_get(sp, m[0])))
         return out
 
+    def cursor_rect(self):
+        sx, sy = self.to_screen(self.mouse[0], self.mouse[1])
+        return (int(sx) - 6, int(sy) - 6, 13, 13)
+
+    def draw_cursor(self):
+        sx, sy = self.to_screen(self.mouse[0], self.mouse[1])
+        sx, sy = int(sx), int(sy)
+        P.rect(sx - 5, sy - 1, 11, 3, 0x000000)        # cruz negra con centro blanco
+        P.rect(sx - 1, sy - 5, 3, 11, 0x000000)
+        P.rect(sx - 4, sy, 9, 1, 0xFFFFFF)
+        P.rect(sx, sy - 4, 1, 9, 0xFFFFFF)
+        if self.mouse_down:
+            P.rect(sx - 1, sy - 1, 3, 3, 0xFF3030)
+
     def draw_ask(self):
         q, a, _ = self.asking
         y = P.ALTO - 34
@@ -1061,6 +1116,14 @@ class Project:
                     self.dirty_all = True
                 sp.had_bubble = bool(sp.say_text)
                 sp.drawn = new
+        if self.uses_mouse:
+            state = (round(self.mouse[0]), round(self.mouse[1]), self.mouse_down)
+            if state != self.mouse_drawn:
+                if self.mouse_drawn:
+                    rects.append(self.mouse_drawn[3])
+                cr = self.cursor_rect()
+                rects.append(cr)
+                self.mouse_drawn = state + (cr,)
         mon = self.monitor_values()
         if mon != getattr(self, "_mon", None):
             self._mon = mon
@@ -1083,11 +1146,46 @@ class Project:
     # =============================================================================
     #  Bucle principal
     # =============================================================================
+    def mouse_keys(self):
+        return {"8", "4", "6", "2", "5"} if self.uses_mouse else set()
+
+    def move_mouse(self, events):
+        keys = self.held
+        dx = (1 if "6" in keys else 0) - (1 if "4" in keys else 0)
+        dy = (1 if "8" in keys else 0) - (1 if "2" in keys else 0)
+        if dx or dy:
+            self.mouse_t += 33
+            # 4 px por fotograma (un toque = 4 px); manteniendo, acelera hasta 10
+            speed = 4 if self.mouse_t < 500 else min(10, 4 + (self.mouse_t - 500) // 100)
+            self.mouse[0] = max(-240.0, min(240.0, self.mouse[0] + dx * speed))
+            self.mouse[1] = max(-180.0, min(180.0, self.mouse[1] + dy * speed))
+        else:
+            self.mouse_t = 0
+        self.mouse_down = "5" in keys
+        if any(k == "5" and not sh for k, sh in events):
+            self.click()
+
+    def click(self):
+        mx, my = self.mouse
+        for sp in reversed(self.layers):              # el de más arriba primero
+            if sp.visible and sp.ghost < 100:
+                x0, y0, x1, y1 = sp.bbox()
+                if x0 <= mx <= x1 and y0 <= my <= y1:
+                    self.start_hats("event_whenthisspriteclicked", sprites=[sp])
+                    return
+        self.start_hats("event_whenstageclicked", sprites=[self.stage])
+
     def input(self):
         events = K.eventos()
         self.held = set(K.pulsadas())
         for k, shift in events:
-            self.held.add(k)                   # un toque cuenta como pulsada este fotograma
+            if shift:
+                self.taps["S:" + k] = self.now + 150   # SHIFT+tecla: pulsación corta
+            else:
+                self.held.add(k)               # un toque cuenta como pulsada este fotograma
+        if self.uses_mouse and not self.asking:
+            self.move_mouse(events)
+        for k, shift in events:
             if self.asking:
                 q = self.asking
                 if k.isdigit() and len(q[1]) < 20:
@@ -1102,24 +1200,36 @@ class Project:
                     q[2] = True
                 self.dirty_all = True
                 continue
+            name = ("S:" + k) if shift else k
+            if not shift and k in self.mouse_keys():
+                continue                       # teclas del ratón: no son teclas de Scratch
             for sk, calc_keys in self.keymap.items():
-                if k in calc_keys:
+                if name in calc_keys:
                     self.start_hats("event_whenkeypressed", sk, restart=False)
             self.start_hats("event_whenkeypressed", "any", restart=False)
 
     def step(self):
+        # Como el planificador de Scratch: dentro de un fotograma se dan vueltas
+        # a todos los hilos hasta que alguno cambia algo visible o se acaba el
+        # tiempo (WORK_MS). Así los bucles de cálculo puro van a toda velocidad.
         self.now = K.ms()
         self.input()
-        for t in list(self.threads):
-            if t.done:
-                continue
-            try:
-                next(t.gen)
-            except StopIteration:
-                t.done = True
-            except StopScript:
-                t.done = True
-        self.threads = [t for t in self.threads if not t.done]
+        start = K.ms()
+        while True:
+            self.redraw = False
+            for t in list(self.threads):
+                if t.done:
+                    continue
+                try:
+                    next(t.gen)
+                except StopIteration:
+                    t.done = True
+                except (StopScript, StopThread):
+                    t.done = True
+            self.threads = [t for t in self.threads if not t.done]
+            if self.redraw or self.dirty_all or not self.threads or K.ms() - start >= WORK_MS:
+                break
+            self.now = K.ms()
         self.render()
         P.mostrar()
 

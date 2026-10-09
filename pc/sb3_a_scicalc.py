@@ -205,29 +205,47 @@ class TargetConverter:
         return self.out
 
 
+# 8 4 6 2 mueven el ratón virtual y 5 es el clic: no se usan como teclas de Scratch
+MOUSE_KEYS = ("8", "4", "6", "2", "5")
+
+
 def build_keymap(keys_used):
-    """Teclas de Scratch -> teclas de la calculadora."""
+    """Teclas de Scratch -> teclas de la calculadora.
+    Si se acaban las teclas libres se usan combinaciones SHIFT+tecla ("S:x")."""
     used = {k for k in keys_used if k and k != "any"}
     km = {}
-    taken = set()
+    taken = set(MOUSE_KEYS)
     for k in used:
         if k in FIXED_KEYS:
             km[k] = FIXED_KEYS[k]
             taken.update(FIXED_KEYS[k])
-        elif len(k) == 1 and k.isdigit():
+        elif len(k) == 1 and k.isdigit() and k not in MOUSE_KEYS:
             km[k] = [k]
             taken.add(k)
-    arrows_used = any(k.endswith("arrow") for k in used)
     wasd = {"w": "UP", "a": "LEFT", "s": "DOWN", "d": "RIGHT"}
     free = [f for f in FREE_KEYS if f not in taken]
+    combos = ["S:" + d for d in "0123456789"] + ["S:" + f for f in FREE_KEYS]
+    # Primero los dígitos del ratón (SHIFT+ese dígito, fácil de recordar)
+    for k in sorted(used):
+        if k in MOUSE_KEYS:
+            km[k] = ["S:" + k]
+            combos.remove("S:" + k)
     for k in sorted(used):
         if k in km:
             continue
-        if k in wasd and not arrows_used:
+        if k in wasd:                       # WASD = flechas (en Scratch suelen ser lo mismo)
             km[k] = [wasd[k]]
         elif free:
             km[k] = [free.pop(0)]
+        elif combos:
+            km[k] = [combos.pop(0)]
     return km
+
+
+def key_label(c):
+    if c.startswith("S:"):
+        return "SHIFT+" + KEY_LABELS.get(c[2:], c[2:])
+    return KEY_LABELS.get(c, c)
 
 
 # -----------------------------------------------------------------------------
@@ -238,7 +256,9 @@ def convert(sb3_path, sd_root):
     zf = zipfile.ZipFile(sb3_path)
     project = json.loads(zf.read("project.json").decode("utf-8"))
     name = slug(Path(sb3_path).stem)
-    out_dir = Path(sd_root) / "scratch" / name
+    root = Path(sd_root)
+    # Vale tanto la raíz de la SD como su carpeta "scratch"
+    out_dir = (root if root.name.lower() == "scratch" else root / "scratch") / name
     img_dir = out_dir / "img"
     img_dir.mkdir(parents=True, exist_ok=True)
 
@@ -254,12 +274,13 @@ def convert(sb3_path, sd_root):
             png = img_dir / f"{ti}_{ci}.png"
             try:
                 w, h, cx, cy = convert_costume(zf, c, png)
-            except Exception as e:                            # disfraz roto: cuadrado gris
-                print(f"  aviso: disfraz '{c.get('name')}' de '{t['name']}': {e}")
-                surf = pygame.Surface((8, 8))
-                surf.fill((128, 128, 128))
+            except Exception as e:            # disfraz vacío o ilegible: transparente
+                print(f"  aviso: disfraz '{c.get('name')}' de '{t['name']}' vacío o ilegible "
+                      f"({e}): se deja transparente")
+                surf = pygame.Surface((2, 2), pygame.SRCALPHA)
+                surf.fill((0, 0, 0, 0))
                 pygame.image.save(surf, str(png))
-                w, h, cx, cy = 8, 8, 4, 4
+                w, h, cx, cy = 2, 2, 1, 1
             costumes.append([c.get("name", str(ci)), f"img/{png.name}", w, h, cx, cy])
         targets_out.append({
             "nombre": t["name"],
@@ -299,7 +320,8 @@ def convert(sb3_path, sd_root):
 
     lines = [f"{Path(sb3_path).stem} (Scratch)", "", "Teclas:"]
     for sk, ck in sorted(keymap.items()):
-        lines.append(f"  {sk:<12} -> {', '.join(KEY_LABELS.get(c, c) for c in ck)}")
+        lines.append(f"  {sk:<12} -> {', '.join(key_label(c) for c in ck)}")
+    lines.append("  ratón        -> 8 4 6 2 mueven el puntero · 5 = clic")
     lines.append("  AC           -> salir")
     (out_dir / "LEEME.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
