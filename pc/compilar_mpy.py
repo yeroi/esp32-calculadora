@@ -11,7 +11,7 @@
  Si junto a juego.py hay un juego.mpy, el ESP32 ejecuta el .mpy (el
  simulador sigue usando el .py). Vuelve a compilar si cambias el .py.
 
-   pip install mpy-cross==1.24.1          (la MISMA versión que el firmware)
+   pip install mpy-cross==1.24.1.post3          (la MISMA versión que el firmware)
    python pc/compilar_mpy.py simulador/sd/juegos/clonaria/clonaria.py
    python pc/compilar_mpy.py carpeta/      (todos los .py de la carpeta)
 ===============================================================================
@@ -27,7 +27,7 @@ MP_VERSION = "1.24"          # MicroPython del firmware (firmware/sketch/src/mpy
 def mpy_cross_cmd():
     """Devuelve el comando de mpy-cross: el paquete de pip o el del PATH."""
     try:
-        import mpy_cross                      # pip install mpy-cross==1.24.1
+        import mpy_cross                      # pip install mpy-cross==1.24.1.post3
         exe = getattr(mpy_cross, "mpy_cross", None)
         if exe and Path(exe).exists():
             return [exe]
@@ -37,7 +37,7 @@ def mpy_cross_cmd():
     exe = shutil.which("mpy-cross")
     if exe:
         return [exe]
-    print("No encuentro mpy-cross. Instálalo con:  pip install mpy-cross==1.24.1")
+    print("No encuentro mpy-cross. Instálalo con:  pip install mpy-cross==1.24.1.post3")
     sys.exit(1)
 
 
@@ -49,7 +49,7 @@ def main():
     ver = subprocess.run(cmd + ["--version"], capture_output=True, text=True).stdout
     if MP_VERSION not in ver:
         print(f"Aviso: mpy-cross es {ver.strip() or '?'}; el firmware usa MicroPython {MP_VERSION}.")
-        print(f"       Si el ESP32 dice 'incompatible .mpy', instala mpy-cross=={MP_VERSION}.1")
+        print(f"       Si el ESP32 dice 'incompatible .mpy', instala mpy-cross==1.24.1.post3")
     files = []
     for a in sys.argv[1:]:
         p = Path(a)

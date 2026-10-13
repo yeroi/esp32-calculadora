@@ -35,7 +35,7 @@ Los juegos usan la misma API que en el simulador (`scicalc.pantalla` y `scicalc.
 - **Scripts grandes precompilados**: si junto a `juego.py` hay un `juego.mpy`, el ESP32 ejecuta el `.mpy` (el simulador sigue con el `.py`). Así Clonaria (23 KB de código, que no se puede compilar en la placa) usa ~45 KB. Se generan en el PC:
 
   ```bash
-  pip install mpy-cross==1.24.1
+  pip install mpy-cross==1.24.1.post3
   python pc/compilar_mpy.py simulador/sd/juegos/clonaria/clonaria.py
   ```
 
