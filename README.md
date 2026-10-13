@@ -7,6 +7,11 @@ Calculadora científica portátil basada en ESP32 con un sistema híbrido:
 
 El simulador de escritorio [`simulador/scicalc_sim.py`](simulador/scicalc_sim.py) es la **especificación funcional**: el firmware imita su comportamiento.
 
+## Instalar todo en Windows (PC recién formateado)
+
+Doble clic en **`instalar_windows.bat`**: instala Python 3.12, las librerías
+(`requirements.txt`), Git, VS Code y la extensión PlatformIO con `winget`.
+
 ## Python en el ESP32 (Paso 5)
 
 El firmware lleva **MicroPython 1.24.1** dentro (`firmware/sketch/src/mpy/`, lo compila el IDE de Arduino sin instalar nada más). En el modo **Python**: EXE ejecuta el script, SHIFT+EXE muestra el código.
