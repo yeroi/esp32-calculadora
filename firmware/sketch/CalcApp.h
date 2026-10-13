@@ -1,12 +1,16 @@
 // =============================================================================
 //  CalcApp.h  —  Calculadora científica nativa (C++)
 // -----------------------------------------------------------------------------
-//  PASO 3: solo el "esqueleto" de la app, para que el menú, la barra de estado
-//  (DEG/RAD) y las teclas globales ya funcionen igual que en el simulador.
-//  PASO 4: aquí irá el analizador por descenso recursivo traducido de
-//  scicalc_sim.py (tokens, historial, Ans, errores, formato de 10 cifras).
+//  Igual que CalcApp del simulador:
+//    * La expresión es una lista de tokens ("sin(", "π", "2"...): DEL borra un
+//      token entero y el cursor salta de token en token.
+//    * EXE evalúa (CalcEngine), guarda en el historial y en Ans. Empezar por un
+//      operador tras un resultado continúa desde Ans (5 EXE + 3 -> Ans+3).
+//    * ▲/▼ recuperan operaciones anteriores; AC limpia (dos veces: historial).
+//    * SHIFT+AC cambia DEG/RAD.
 // =============================================================================
 #pragma once
+#include <vector>
 #include "App.h"
 
 class CalcApp : public App {
@@ -16,17 +20,29 @@ class CalcApp : public App {
   const char* title() const override { return "Calculadora"; }
   bool showsAngleMode() const override { return true; }   // DEG/RAD en la barra
 
-  void draw() override {
-    gfx().text(0, 82, "Escribe una operación y pulsa EXE", 1, Theme::MUTED, Theme::BG,
-               Align::Center, Display::W);
-    gfx().text(0, 98, "(el motor de cálculo llega en el Paso 4)", 1, Theme::MUTED, Theme::BG,
-               Align::Center, Display::W);
-    gfx().hLine(10, 161, Display::W - 20, Theme::PANEL);
-    gfx().footer("SHIFT+AC DEG/RAD  ↑ recuperar  DEL borra  AC limpia");
-  }
+  void draw() override;
+  void onKey(const KeyEvent& ev) override;
+  void onTick(uint32_t nowMs) override;
 
-  void onKey(const KeyEvent& ev) override {
-    // SHIFT+AC cambia DEG/RAD; la barra de estado se actualiza sola
-    if (ev.shift && ev.key == Key::AC) st().degrees = !st().degrees;
-  }
+ private:
+  struct Entry {
+    std::vector<const char*> toks;
+    String result;
+    bool error;
+  };
+
+  void insert(const char* tok);
+  void run();
+  String joined(size_t upto) const;
+  void drawInput();
+  void drawCursor(bool on);
+
+  std::vector<const char*> toks_;
+  size_t cur_ = 0;
+  std::vector<Entry> history_;
+  double ans_ = 0;
+  int recall_ = -1;
+  uint32_t blinkT_ = 0;
+  bool blinkOn_ = true;
+  int16_t cursorX_ = -1;                 // dónde se pintó el cursor
 };
