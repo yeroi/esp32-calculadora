@@ -71,6 +71,7 @@ MAX_PAYLOAD = 4096
 HELLO, STATE = 0x01, 0x03
 FILL, RECT, FILL_RR, RECT_RR, TRI = 0x10, 0x11, 0x12, 0x13, 0x14
 PIXELS, PIXELS_RLE, GLYPH, TEXT = 0x15, 0x16, 0x17, 0x18
+SPR_DEF, SPR_DRAW = 0x19, 0x1A          # sprites de los juegos: los dibuja el PC
 TONE = 0x20
 FS_REQ = 0x40
 # PC -> ESP32
@@ -80,7 +81,7 @@ FS_STAT, FS_LIST, FS_READ, FS_INFO = 1, 2, 3, 4
 FS_WRITE, FS_REMOVE, FS_RENAME, FS_MKDIR, FS_RMDIR = 5, 6, 7, 8, 9   # solo tras el permiso en la calculadora
 
 TFT_W, TFT_H = 320, 240
-DRAW_TYPES = {FILL, RECT, FILL_RR, RECT_RR, TRI, PIXELS, PIXELS_RLE, GLYPH, TEXT}
+DRAW_TYPES = {FILL, RECT, FILL_RR, RECT_RR, TRI, PIXELS, PIXELS_RLE, GLYPH, TEXT, SPR_DEF, SPR_DRAW}
 
 # Chips USB-serie habituales en placas ESP32 (VID)
 USB_VIDS = {0x10C4: "CP210x", 0x1A86: "CH340", 0x0403: "FTDI", 0x303A: "ESP32 USB"}
@@ -423,10 +424,61 @@ class Tft:
         self.glyphs = {}            # id -> 5 columnas
         self.cache = {}             # (id, size, fg, bg, bold) -> Surface
         self.dirty = True
+        self.sd = None              # SdFolder: los PNG de los sprites
+        self.spr_path = {}          # id -> ruta en la SD
+        self.spr_img = {}           # ruta -> Surface (o None si no se pudo)
+        self.spr_scaled = {}        # (ruta, ancho, alto, espejo, ángulo) -> Surface
 
     def reset(self):
         self.glyphs.clear()
         self.cache.clear()
+        self.spr_path.clear()
+
+    # ---- Sprites de los juegos (como _blit_sprite del simulador, a escala 1) ----
+    def sprite_base(self, path):
+        if path not in self.spr_img:
+            try:
+                self.spr_img[path] = pygame.image.load(str(self.sd.real(path)))
+            except (OSError, pygame.error, PermissionError, AttributeError) as e:
+                print(f"[PC] sprite no válido {path}: {e}", flush=True)
+                self.spr_img[path] = None
+        return self.spr_img[path]
+
+    def draw_sprite(self, p):
+        sid, flags = struct.unpack_from("<HB", p)
+        x, y, sx, sy, ang, cx, cy = struct.unpack_from("<7f", p, 3)
+        x0, y0, x1, y1 = struct.unpack_from("<4h", p, 31)
+        path = self.spr_path.get(sid)
+        base = self.sprite_base(path) if path else None
+        if base is None or sx <= 0 or sy <= 0 or x1 <= x0 or y1 <= y0:
+            return
+        flip, centro = bool(flags & 1), bool(flags & 2)
+        bw, bh = base.get_width() * sx, base.get_height() * sy
+        if centro:
+            px, py, tx, ty = cx * sx, cy * sy, x, y
+        else:
+            px, py = bw / 2, bh / 2
+            tx, ty = x + px, y + py
+        if flip:
+            px = bw - px
+        key = (path, max(1, round(bw)), max(1, round(bh)), flip, round(ang, 1))
+        img = self.spr_scaled.get(key)
+        if img is None:
+            img = pygame.transform.scale(base, key[1:3])
+            if flip:
+                img = pygame.transform.flip(img, True, False)
+            if ang % 360:
+                img = pygame.transform.rotate(img, -ang)
+            if len(self.spr_scaled) > 600:
+                self.spr_scaled.clear()
+            self.spr_scaled[key] = img
+        vx, vy = px - bw / 2, py - bh / 2
+        a = math.radians(ang)
+        rx, ry = vx * math.cos(a) - vy * math.sin(a), vx * math.sin(a) + vy * math.cos(a)
+        s = self.surf
+        s.set_clip((x0, y0, x1 - x0, y1 - y0))
+        s.blit(img, (round(tx - rx - img.get_width() / 2), round(ty - ry - img.get_height() / 2)))
+        s.set_clip(None)
 
     def glyph_surface(self, gid, size, fg, bg, bold):
         key = (gid, size, fg, bg, bold)
@@ -484,6 +536,10 @@ class Tft:
             gid = p[0] | (p[1] << 8)
             self.glyphs[gid] = tuple(p[2:7])
             self.cache = {k: v for k, v in self.cache.items() if k[0] != gid}
+        elif t == SPR_DEF:
+            self.spr_path[p[0] | (p[1] << 8)] = p[2:].decode("utf-8", "replace")
+        elif t == SPR_DRAW:
+            self.draw_sprite(p)
         elif t == TEXT:
             x, y, size, fg, bg, bold, n = struct.unpack_from("<hhBHHBB", p)
             ids = struct.unpack_from(f"<{n}H", p, 11)
@@ -810,6 +866,7 @@ def main():
     win = pygame.display.set_mode((int(BASE_W * scale), int(BASE_H * scale)), pygame.RESIZABLE)
 
     tft = Tft()
+    tft.sd = sd
     case = Case()
     sound = Sound()
     link = Link(args.puerto, args.baudios, sd, reset=not args.sin_reset)

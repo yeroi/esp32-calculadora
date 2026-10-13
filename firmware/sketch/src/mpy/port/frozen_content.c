@@ -489,6 +489,7 @@ enum {
     MP_QSTR_m_colon__percent_s_colon__percent_d,
     MP_QSTR_mark,
     MP_QSTR_mathop,
+    MP_QSTR_max_pieces,
     MP_QSTR_maximo,
     MP_QSTR_menu,
     MP_QSTR_menu_items,
@@ -497,6 +498,7 @@ enum {
     MP_QSTR_menu_red_key,
     MP_QSTR_menu_scratch,
     MP_QSTR_men_uacute__space__space__space__space__space__space__space__space_SHIFT_plus_EXE,
+    MP_QSTR_merge,
     MP_QSTR_mi_id,
     MP_QSTR_mno6,
     MP_QSTR_mod,
@@ -1210,6 +1212,7 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     58207,
     47984,
     22666,
+    54215,
     2842,
     51446,
     33167,
@@ -1218,6 +1221,7 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     50994,
     36053,
     55401,
+    23325,
     23923,
     42015,
     17379,
@@ -1931,6 +1935,7 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     7,
     4,
     6,
+    10,
     6,
     4,
     10,
@@ -1939,6 +1944,7 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     12,
     12,
     22,
+    5,
     5,
     4,
     3,
@@ -2210,7 +2216,7 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
     MP_QSTRnumber_of, // previous pool size
     true, // is_sorted
     10, // allocated entries
-    718, // used entries
+    720, // used entries
     (qstr_hash_t *)mp_qstr_frozen_const_hashes,
     (qstr_len_t *)mp_qstr_frozen_const_lengths,
     {
@@ -2661,6 +2667,7 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "m:%s:%d",
         "mark",
         "mathop",
+        "max_pieces",
         "maximo",
         "menu",
         "menu_items",
@@ -2669,6 +2676,7 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "menu_red_key",
         "menu_scratch",
         "\x6d\x65\x6e\xc3\xba\x20\x20\x20\x20\x20\x20\x20\x20\x53\x48\x49\x46\x54\x2b\x45\x58\x45",
+        "merge",
         "mi_id",
         "mno6",
         "mod",
@@ -2945,7 +2953,7 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
 static const byte fun_data_scratch__lt_module_gt_[320] = {
     0x6c,0x5e, // prelude
     0x01, // names: <module>
-    0x80,0x15,0x26,0x26,0x26,0x26,0x34,0x22,0x56,0x46,0x2a,0x46,0x3c,0x3b,0x24,0x66,0x40,0x84,0x11,0x6a,0x64,0x20,0x64,0x60,0x84,0x0d,0x84,0x0c,0x84,0x09,0x84,0x09,0x89,0x85,0x89,0x09,0x89,0x07,0x6c,0x20,0x6c,0x40,0x6c,0x60,0xd9,0xa1, // code info
+    0x80,0x15,0x26,0x26,0x26,0x26,0x34,0x22,0x56,0x46,0x2a,0x46,0x3c,0x3b,0x24,0x66,0x40,0x84,0x11,0x6a,0x64,0x20,0x64,0x60,0x84,0x0d,0x84,0x0c,0x84,0x09,0x84,0x09,0x89,0x85,0x89,0x09,0x89,0x07,0x6c,0x20,0x6c,0x40,0x6c,0x60,0xd9,0xc2, // code info
     0x80, // LOAD_CONST_SMALL_INT 0
     0x51, // LOAD_CONST_NONE
     0x1b,0x02, // IMPORT_NAME 'json'
@@ -2968,9 +2976,9 @@ static const byte fun_data_scratch__lt_module_gt_[320] = {
     0x2a,0x02, // BUILD_TUPLE 2
     0x1b,0x08, // IMPORT_NAME 'scicalc'
     0x1c,0x06, // IMPORT_FROM 'pantalla'
-    0x16,0x83,0x6c, // STORE_NAME 'P'
+    0x16,0x83,0x6f, // STORE_NAME 'P'
     0x1c,0x07, // IMPORT_FROM 'teclas'
-    0x16,0x83,0x6d, // STORE_NAME 'K'
+    0x16,0x83,0x70, // STORE_NAME 'K'
     0x59, // POP_TOP
     0x48,0x0e, // SETUP_EXCEPT 14
     0x80, // LOAD_CONST_SMALL_INT 0
@@ -2982,7 +2990,7 @@ static const byte fun_data_scratch__lt_module_gt_[320] = {
     0x59, // POP_TOP
     0x4a,0x0e, // POP_EXCEPT_JUMP 14
     0x57, // DUP_TOP
-    0x11,0x83,0x6e, // LOAD_NAME 'ImportError'
+    0x11,0x83,0x71, // LOAD_NAME 'ImportError'
     0xdf, // BINARY_OP 8 <exception match>
     0x44,0x46, // POP_JUMP_IF_FALSE 6
     0x59, // POP_TOP
@@ -2992,20 +3000,20 @@ static const byte fun_data_scratch__lt_module_gt_[320] = {
     0x5d, // END_FINALLY
     0x23,0x00, // LOAD_CONST_OBJ 0
     0x30,0x02, // UNPACK_SEQUENCE 2
-    0x16,0x83,0x6f, // STORE_NAME 'STAGE_W'
-    0x16,0x83,0x70, // STORE_NAME 'STAGE_H'
+    0x16,0x83,0x72, // STORE_NAME 'STAGE_W'
+    0x16,0x83,0x73, // STORE_NAME 'STAGE_H'
     0x22,0x82,0x2c, // LOAD_CONST_SMALL_INT 300
-    0x16,0x83,0x71, // STORE_NAME 'MAX_CLONES'
-    0x11,0x83,0x72, // LOAD_NAME 'list'
+    0x16,0x83,0x74, // STORE_NAME 'MAX_CLONES'
+    0x11,0x83,0x75, // LOAD_NAME 'list'
     0x10,0x0a, // LOAD_CONST_STRING '1234567890'
     0x34,0x01, // CALL_FUNCTION 1
-    0x11,0x83,0x72, // LOAD_NAME 'list'
+    0x11,0x83,0x75, // LOAD_NAME 'list'
     0x10,0x0b, // LOAD_CONST_STRING 'qwertyuiop'
     0x34,0x01, // CALL_FUNCTION 1
-    0x11,0x83,0x72, // LOAD_NAME 'list'
+    0x11,0x83,0x75, // LOAD_NAME 'list'
     0x10,0x0c, // LOAD_CONST_STRING 'asdfghjkl/'
     0x34,0x01, // CALL_FUNCTION 1
-    0x11,0x83,0x72, // LOAD_NAME 'list'
+    0x11,0x83,0x75, // LOAD_NAME 'list'
     0x10,0x0d, // LOAD_CONST_STRING 'zxcvbnm.-_'
     0x34,0x01, // CALL_FUNCTION 1
     0x10,0x0e, // LOAD_CONST_STRING ' '
@@ -3020,17 +3028,17 @@ static const byte fun_data_scratch__lt_module_gt_[320] = {
     0x10,0x17, // LOAD_CONST_STRING 'OK'
     0x2b,0x0a, // BUILD_LIST 10
     0x2b,0x05, // BUILD_LIST 5
-    0x16,0x83,0x73, // STORE_NAME 'KB_ROWS'
+    0x16,0x83,0x76, // STORE_NAME 'KB_ROWS'
     0x99, // LOAD_CONST_SMALL_INT 25
-    0x16,0x83,0x74, // STORE_NAME 'WORK_MS'
+    0x16,0x83,0x77, // STORE_NAME 'WORK_MS'
     0x22,0x83,0x74, // LOAD_CONST_SMALL_INT 500
-    0x16,0x83,0x75, // STORE_NAME 'WARP_MS'
+    0x16,0x83,0x78, // STORE_NAME 'WARP_MS'
     0x32,0x00, // MAKE_FUNCTION 0
     0x16,0x20, // STORE_NAME 'num'
-    0x11,0x83,0x76, // LOAD_NAME 'float'
+    0x11,0x83,0x79, // LOAD_NAME 'float'
     0x10,0x18, // LOAD_CONST_STRING 'inf'
     0x34,0x01, // CALL_FUNCTION 1
-    0x16,0x83,0x77, // STORE_NAME 'INF'
+    0x16,0x83,0x7a, // STORE_NAME 'INF'
     0x32,0x01, // MAKE_FUNCTION 1
     0x16,0x25, // STORE_NAME 'finite'
     0x32,0x02, // MAKE_FUNCTION 2
@@ -3061,19 +3069,19 @@ static const byte fun_data_scratch__lt_module_gt_[320] = {
     0x54, // LOAD_BUILD_CLASS
     0x32,0x0a, // MAKE_FUNCTION 10
     0x10,0x1c, // LOAD_CONST_STRING 'StopAll'
-    0x11,0x83,0x78, // LOAD_NAME 'Exception'
+    0x11,0x83,0x7b, // LOAD_NAME 'Exception'
     0x34,0x03, // CALL_FUNCTION 3
     0x16,0x1c, // STORE_NAME 'StopAll'
     0x54, // LOAD_BUILD_CLASS
     0x32,0x0b, // MAKE_FUNCTION 11
     0x10,0x1d, // LOAD_CONST_STRING 'StopScript'
-    0x11,0x83,0x78, // LOAD_NAME 'Exception'
+    0x11,0x83,0x7b, // LOAD_NAME 'Exception'
     0x34,0x03, // CALL_FUNCTION 3
     0x16,0x1d, // STORE_NAME 'StopScript'
     0x54, // LOAD_BUILD_CLASS
     0x32,0x0c, // MAKE_FUNCTION 12
     0x10,0x1e, // LOAD_CONST_STRING 'StopThread'
-    0x11,0x83,0x78, // LOAD_NAME 'Exception'
+    0x11,0x83,0x7b, // LOAD_NAME 'Exception'
     0x34,0x03, // CALL_FUNCTION 3
     0x16,0x1e, // STORE_NAME 'StopThread'
     0x54, // LOAD_BUILD_CLASS
@@ -3090,11 +3098,11 @@ static const byte fun_data_scratch__lt_module_gt_[320] = {
 // frozen bytecode for file scratch.py, scope scratch_num
 static const byte fun_data_scratch_num[152] = {
     0x4d,0x26, // prelude
-    0x20,0x81,0x5d, // names: num, v
+    0x20,0x81,0x5f, // names: num, v
     0x80,0x2b,0x2b,0x27,0x30,0x29,0x22,0x2b,0x23,0x22,0x27,0x25,0x22,0x1f,0x28,0x2c, // code info
-    0x12,0x83,0x79, // LOAD_GLOBAL 'isinstance'
+    0x12,0x83,0x7c, // LOAD_GLOBAL 'isinstance'
     0xb0, // LOAD_FAST 0
-    0x12,0x83,0x7a, // LOAD_GLOBAL 'bool'
+    0x12,0x83,0x7d, // LOAD_GLOBAL 'bool'
     0x34,0x02, // CALL_FUNCTION 2
     0x44,0x47, // POP_JUMP_IF_FALSE 7
     0xb0, // LOAD_FAST 0
@@ -3103,10 +3111,10 @@ static const byte fun_data_scratch_num[152] = {
     0x63, // RETURN_VALUE
     0x80, // LOAD_CONST_SMALL_INT 0
     0x63, // RETURN_VALUE
-    0x12,0x83,0x79, // LOAD_GLOBAL 'isinstance'
+    0x12,0x83,0x7c, // LOAD_GLOBAL 'isinstance'
     0xb0, // LOAD_FAST 0
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
-    0x12,0x83,0x76, // LOAD_GLOBAL 'float'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x79, // LOAD_GLOBAL 'float'
     0x2a,0x02, // BUILD_TUPLE 2
     0x34,0x02, // CALL_FUNCTION 2
     0x44,0x49, // POP_JUMP_IF_FALSE 9
@@ -3119,7 +3127,7 @@ static const byte fun_data_scratch_num[152] = {
     0xb0, // LOAD_FAST 0
     0x63, // RETURN_VALUE
     0x48,0x44, // SETUP_EXCEPT 68
-    0x12,0x83,0x7c, // LOAD_GLOBAL 'str'
+    0x12,0x83,0x7f, // LOAD_GLOBAL 'str'
     0xb0, // LOAD_FAST 0
     0x34,0x01, // CALL_FUNCTION 1
     0x14,0x21, // LOAD_METHOD 'strip'
@@ -3129,7 +3137,7 @@ static const byte fun_data_scratch_num[152] = {
     0x43,0x42, // POP_JUMP_IF_TRUE 2
     0x80, // LOAD_CONST_SMALL_INT 0
     0x63, // RETURN_VALUE
-    0x12,0x83,0x76, // LOAD_GLOBAL 'float'
+    0x12,0x83,0x79, // LOAD_GLOBAL 'float'
     0xb1, // LOAD_FAST 1
     0x34,0x01, // CALL_FUNCTION 1
     0xc2, // STORE_FAST 2
@@ -3151,21 +3159,21 @@ static const byte fun_data_scratch_num[152] = {
     0xdd, // BINARY_OP 6 <in>
     0xd3, // UNARY_OP 3 <not>
     0x44,0x52, // POP_JUMP_IF_FALSE 18
-    0x12,0x83,0x4f, // LOAD_GLOBAL 'abs'
+    0x12,0x83,0x52, // LOAD_GLOBAL 'abs'
     0xb2, // LOAD_FAST 2
     0x34,0x01, // CALL_FUNCTION 1
     0x23,0x01, // LOAD_CONST_OBJ 1
     0xd7, // BINARY_OP 0 __lt__
     0x44,0x47, // POP_JUMP_IF_FALSE 7
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb2, // LOAD_FAST 2
     0x34,0x01, // CALL_FUNCTION 1
     0x63, // RETURN_VALUE
     0xb2, // LOAD_FAST 2
     0x63, // RETURN_VALUE
     0x57, // DUP_TOP
-    0x12,0x83,0x7d, // LOAD_GLOBAL 'ValueError'
-    0x12,0x83,0x7e, // LOAD_GLOBAL 'TypeError'
+    0x12,0x84,0x00, // LOAD_GLOBAL 'ValueError'
+    0x12,0x84,0x01, // LOAD_GLOBAL 'TypeError'
     0x2a,0x02, // BUILD_TUPLE 2
     0xdf, // BINARY_OP 8 <exception match>
     0x44,0x43, // POP_JUMP_IF_FALSE 3
@@ -3215,18 +3223,18 @@ static const mp_raw_code_truncated_t proto_fun_scratch_num = {
 // frozen bytecode for file scratch.py, scope scratch_finite
 static const byte fun_data_scratch_finite[26] = {
     0x11,0x0a, // prelude
-    0x25,0x81,0x5d, // names: finite, v
+    0x25,0x81,0x5f, // names: finite, v
     0x80,0x3f, // code info
     0xb0, // LOAD_FAST 0
     0xb0, // LOAD_FAST 0
     0xd9, // BINARY_OP 2 __eq__
     0x46,0x0d, // JUMP_IF_FALSE_OR_POP 13
     0xb0, // LOAD_FAST 0
-    0x12,0x83,0x77, // LOAD_GLOBAL 'INF'
+    0x12,0x83,0x7a, // LOAD_GLOBAL 'INF'
     0xdc, // BINARY_OP 5 __ne__
     0x46,0x06, // JUMP_IF_FALSE_OR_POP 6
     0xb0, // LOAD_FAST 0
-    0x12,0x83,0x77, // LOAD_GLOBAL 'INF'
+    0x12,0x83,0x7a, // LOAD_GLOBAL 'INF'
     0xd1, // UNARY_OP 1 __neg__
     0xdc, // BINARY_OP 5 __ne__
     0x63, // RETURN_VALUE
@@ -3270,7 +3278,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_finite = {
 // frozen bytecode for file scratch.py, scope scratch_toint
 static const byte fun_data_scratch_toint[31] = {
     0x19,0x0e, // prelude
-    0x26,0x81,0x5d, // names: toint, v
+    0x26,0x81,0x5f, // names: toint, v
     0x80,0x43,0x20,0x26, // code info
     0x12,0x20, // LOAD_GLOBAL 'num'
     0xb0, // LOAD_FAST 0
@@ -3280,7 +3288,7 @@ static const byte fun_data_scratch_toint[31] = {
     0xb1, // LOAD_FAST 1
     0x34,0x01, // CALL_FUNCTION 1
     0x44,0x47, // POP_JUMP_IF_FALSE 7
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb1, // LOAD_FAST 1
     0x34,0x01, // CALL_FUNCTION 1
     0x63, // RETURN_VALUE
@@ -3326,24 +3334,24 @@ static const mp_raw_code_truncated_t proto_fun_scratch_toint = {
 // frozen bytecode for file scratch.py, scope scratch_is_num
 static const byte fun_data_scratch_is_num[90] = {
     0x45,0x1c, // prelude
-    0x27,0x81,0x5d, // names: is_num, v
+    0x27,0x81,0x5f, // names: is_num, v
     0x80,0x49,0x3b,0x22,0x22,0x2b,0x23,0x22,0x27,0x23,0x2c, // code info
-    0x12,0x83,0x79, // LOAD_GLOBAL 'isinstance'
+    0x12,0x83,0x7c, // LOAD_GLOBAL 'isinstance'
     0xb0, // LOAD_FAST 0
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
-    0x12,0x83,0x76, // LOAD_GLOBAL 'float'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x79, // LOAD_GLOBAL 'float'
     0x2a,0x02, // BUILD_TUPLE 2
     0x34,0x02, // CALL_FUNCTION 2
     0x44,0x4d, // POP_JUMP_IF_FALSE 13
-    0x12,0x83,0x79, // LOAD_GLOBAL 'isinstance'
+    0x12,0x83,0x7c, // LOAD_GLOBAL 'isinstance'
     0xb0, // LOAD_FAST 0
-    0x12,0x83,0x7a, // LOAD_GLOBAL 'bool'
+    0x12,0x83,0x7d, // LOAD_GLOBAL 'bool'
     0x34,0x02, // CALL_FUNCTION 2
     0x43,0x42, // POP_JUMP_IF_TRUE 2
     0x52, // LOAD_CONST_TRUE
     0x63, // RETURN_VALUE
     0x48,0x19, // SETUP_EXCEPT 25
-    0x12,0x83,0x7c, // LOAD_GLOBAL 'str'
+    0x12,0x83,0x7f, // LOAD_GLOBAL 'str'
     0xb0, // LOAD_FAST 0
     0x34,0x01, // CALL_FUNCTION 1
     0x14,0x21, // LOAD_METHOD 'strip'
@@ -3353,15 +3361,15 @@ static const byte fun_data_scratch_is_num[90] = {
     0x43,0x42, // POP_JUMP_IF_TRUE 2
     0x50, // LOAD_CONST_FALSE
     0x63, // RETURN_VALUE
-    0x12,0x83,0x76, // LOAD_GLOBAL 'float'
+    0x12,0x83,0x79, // LOAD_GLOBAL 'float'
     0xb1, // LOAD_FAST 1
     0x34,0x01, // CALL_FUNCTION 1
     0x59, // POP_TOP
     0x52, // LOAD_CONST_TRUE
     0x63, // RETURN_VALUE
     0x57, // DUP_TOP
-    0x12,0x83,0x7d, // LOAD_GLOBAL 'ValueError'
-    0x12,0x83,0x7e, // LOAD_GLOBAL 'TypeError'
+    0x12,0x84,0x00, // LOAD_GLOBAL 'ValueError'
+    0x12,0x84,0x01, // LOAD_GLOBAL 'TypeError'
     0x2a,0x02, // BUILD_TUPLE 2
     0xdf, // BINARY_OP 8 <exception match>
     0x44,0x43, // POP_JUMP_IF_FALSE 3
@@ -3411,11 +3419,11 @@ static const mp_raw_code_truncated_t proto_fun_scratch_is_num = {
 // frozen bytecode for file scratch.py, scope scratch_text
 static const byte fun_data_scratch_text[126] = {
     0x19,0x1a, // prelude
-    0x28,0x81,0x5d, // names: text, v
+    0x28,0x81,0x5f, // names: text, v
     0x80,0x56,0x2b,0x29,0x2c,0x27,0x39,0x35,0x2c,0x27, // code info
-    0x12,0x83,0x79, // LOAD_GLOBAL 'isinstance'
+    0x12,0x83,0x7c, // LOAD_GLOBAL 'isinstance'
     0xb0, // LOAD_FAST 0
-    0x12,0x83,0x7a, // LOAD_GLOBAL 'bool'
+    0x12,0x83,0x7d, // LOAD_GLOBAL 'bool'
     0x34,0x02, // CALL_FUNCTION 2
     0x44,0x49, // POP_JUMP_IF_FALSE 9
     0xb0, // LOAD_FAST 0
@@ -3424,9 +3432,9 @@ static const byte fun_data_scratch_text[126] = {
     0x63, // RETURN_VALUE
     0x10,0x2a, // LOAD_CONST_STRING 'false'
     0x63, // RETURN_VALUE
-    0x12,0x83,0x79, // LOAD_GLOBAL 'isinstance'
+    0x12,0x83,0x7c, // LOAD_GLOBAL 'isinstance'
     0xb0, // LOAD_FAST 0
-    0x12,0x83,0x76, // LOAD_GLOBAL 'float'
+    0x12,0x83,0x79, // LOAD_GLOBAL 'float'
     0x34,0x02, // CALL_FUNCTION 2
     0x44,0xc8,0x80, // POP_JUMP_IF_FALSE 72
     0x12,0x25, // LOAD_GLOBAL 'finite'
@@ -3434,13 +3442,13 @@ static const byte fun_data_scratch_text[126] = {
     0x34,0x01, // CALL_FUNCTION 1
     0x43,0x59, // POP_JUMP_IF_TRUE 25
     0xb0, // LOAD_FAST 0
-    0x12,0x83,0x77, // LOAD_GLOBAL 'INF'
+    0x12,0x83,0x7a, // LOAD_GLOBAL 'INF'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x43, // POP_JUMP_IF_FALSE 3
     0x10,0x2b, // LOAD_CONST_STRING 'Infinity'
     0x63, // RETURN_VALUE
     0xb0, // LOAD_FAST 0
-    0x12,0x83,0x77, // LOAD_GLOBAL 'INF'
+    0x12,0x83,0x7a, // LOAD_GLOBAL 'INF'
     0xd1, // UNARY_OP 1 __neg__
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x44, // POP_JUMP_IF_FALSE 4
@@ -3449,28 +3457,28 @@ static const byte fun_data_scratch_text[126] = {
     0x10,0x2d, // LOAD_CONST_STRING 'NaN'
     0x63, // RETURN_VALUE
     0xb0, // LOAD_FAST 0
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
     0x34,0x01, // CALL_FUNCTION 1
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x57, // POP_JUMP_IF_FALSE 23
-    0x12,0x83,0x4f, // LOAD_GLOBAL 'abs'
+    0x12,0x83,0x52, // LOAD_GLOBAL 'abs'
     0xb0, // LOAD_FAST 0
     0x34,0x01, // CALL_FUNCTION 1
     0x23,0x02, // LOAD_CONST_OBJ 2
     0xd7, // BINARY_OP 0 __lt__
     0x44,0x4c, // POP_JUMP_IF_FALSE 12
-    0x12,0x83,0x7c, // LOAD_GLOBAL 'str'
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7f, // LOAD_GLOBAL 'str'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
     0x34,0x01, // CALL_FUNCTION 1
     0x34,0x01, // CALL_FUNCTION 1
     0x63, // RETURN_VALUE
-    0x12,0x83,0x7c, // LOAD_GLOBAL 'str'
+    0x12,0x83,0x7f, // LOAD_GLOBAL 'str'
     0xb0, // LOAD_FAST 0
     0x34,0x01, // CALL_FUNCTION 1
     0x63, // RETURN_VALUE
-    0x12,0x83,0x7c, // LOAD_GLOBAL 'str'
+    0x12,0x83,0x7f, // LOAD_GLOBAL 'str'
     0xb0, // LOAD_FAST 0
     0x34,0x01, // CALL_FUNCTION 1
     0x63, // RETURN_VALUE
@@ -3514,19 +3522,19 @@ static const mp_raw_code_truncated_t proto_fun_scratch_text = {
 // frozen bytecode for file scratch.py, scope scratch_truth
 static const byte fun_data_scratch_truth[62] = {
     0x29,0x14, // prelude
-    0x2e,0x81,0x5d, // names: truth, v
+    0x2e,0x81,0x5f, // names: truth, v
     0x80,0x62,0x2b,0x22,0x30,0x24,0x2b, // code info
-    0x12,0x83,0x79, // LOAD_GLOBAL 'isinstance'
+    0x12,0x83,0x7c, // LOAD_GLOBAL 'isinstance'
     0xb0, // LOAD_FAST 0
-    0x12,0x83,0x7a, // LOAD_GLOBAL 'bool'
+    0x12,0x83,0x7d, // LOAD_GLOBAL 'bool'
     0x34,0x02, // CALL_FUNCTION 2
     0x44,0x42, // POP_JUMP_IF_FALSE 2
     0xb0, // LOAD_FAST 0
     0x63, // RETURN_VALUE
-    0x12,0x83,0x79, // LOAD_GLOBAL 'isinstance'
+    0x12,0x83,0x7c, // LOAD_GLOBAL 'isinstance'
     0xb0, // LOAD_FAST 0
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
-    0x12,0x83,0x76, // LOAD_GLOBAL 'float'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x79, // LOAD_GLOBAL 'float'
     0x2a,0x02, // BUILD_TUPLE 2
     0x34,0x02, // CALL_FUNCTION 2
     0x44,0x44, // POP_JUMP_IF_FALSE 4
@@ -3534,7 +3542,7 @@ static const byte fun_data_scratch_truth[62] = {
     0x80, // LOAD_CONST_SMALL_INT 0
     0xdc, // BINARY_OP 5 __ne__
     0x63, // RETURN_VALUE
-    0x12,0x83,0x7c, // LOAD_GLOBAL 'str'
+    0x12,0x83,0x7f, // LOAD_GLOBAL 'str'
     0xb0, // LOAD_FAST 0
     0x34,0x01, // CALL_FUNCTION 1
     0x14,0x24, // LOAD_METHOD 'lower'
@@ -3585,7 +3593,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_truth = {
 // frozen bytecode for file scratch.py, scope scratch_compare
 static const byte fun_data_scratch_compare[87] = {
     0x3a,0x16, // prelude
-    0x2f,0x83,0x7f,0x81,0x6a, // names: compare, a, b
+    0x2f,0x84,0x02,0x81,0x6c, // names: compare, a, b
     0x80,0x6b,0x2e,0x37,0x28,0x35, // code info
     0x12,0x27, // LOAD_GLOBAL 'is_num'
     0xb0, // LOAD_FAST 0
@@ -3595,12 +3603,12 @@ static const byte fun_data_scratch_compare[87] = {
     0xb1, // LOAD_FAST 1
     0x34,0x01, // CALL_FUNCTION 1
     0x44,0x5f, // POP_JUMP_IF_FALSE 31
-    0x12,0x83,0x76, // LOAD_GLOBAL 'float'
+    0x12,0x83,0x79, // LOAD_GLOBAL 'float'
     0x12,0x20, // LOAD_GLOBAL 'num'
     0xb0, // LOAD_FAST 0
     0x34,0x01, // CALL_FUNCTION 1
     0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x83,0x76, // LOAD_GLOBAL 'float'
+    0x12,0x83,0x79, // LOAD_GLOBAL 'float'
     0x12,0x20, // LOAD_GLOBAL 'num'
     0xb1, // LOAD_FAST 1
     0x34,0x01, // CALL_FUNCTION 1
@@ -3679,10 +3687,10 @@ static const byte fun_data_scratch_Sprite[69] = {
     0x00,0x24, // prelude
     0x19, // names: Sprite
     0x8b,0x74,0x64,0x84,0x1c,0x84,0x0b,0x64,0x60,0x84,0x08,0x84,0x10,0x84,0x0d,0x84,0x1e, // code info
-    0x11,0x84,0x00, // LOAD_NAME '__name__'
-    0x16,0x84,0x01, // STORE_NAME '__module__'
+    0x11,0x84,0x03, // LOAD_NAME '__name__'
+    0x16,0x84,0x04, // STORE_NAME '__module__'
     0x10,0x19, // LOAD_CONST_STRING 'Sprite'
-    0x16,0x84,0x02, // STORE_NAME '__qualname__'
+    0x16,0x84,0x05, // STORE_NAME '__qualname__'
     0x23,0x04, // LOAD_CONST_OBJ 4
     0x16,0x63, // STORE_NAME 'COPY'
     0x32,0x00, // MAKE_FUNCTION 0
@@ -3708,7 +3716,7 @@ static const byte fun_data_scratch_Sprite[69] = {
 // frozen bytecode for file scratch.py, scope scratch_Sprite___init__
 static const byte fun_data_scratch_Sprite___init__[254] = {
     0x3b,0x42, // prelude
-    0x3e,0x84,0x06,0x84,0x07,0x41, // names: __init__, self, data, proj
+    0x3e,0x84,0x0a,0x84,0x0b,0x41, // names: __init__, self, data, proj
     0x80,0x78,0x24,0x24,0x25,0x22,0x24,0x27,0x27,0x27,0x27,0x27,0x27,0x2f,0x2f,0x2f,0x36,0x39,0x2c,0x2c,0x27,0x27,0x25,0x25,0x24,0x24,0x24, // code info
     0x50, // LOAD_CONST_FALSE
     0xb0, // LOAD_FAST 0
@@ -3757,7 +3765,7 @@ static const byte fun_data_scratch_Sprite___init__[254] = {
     0x18,0x4c, // STORE_ATTR 'costumes'
     0x51, // LOAD_CONST_NONE
     0x2b,0x01, // BUILD_LIST 1
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xb0, // LOAD_FAST 0
     0x13,0x4c, // LOAD_ATTR 'costumes'
     0x34,0x01, // CALL_FUNCTION 1
@@ -3785,9 +3793,9 @@ static const byte fun_data_scratch_Sprite___init__[254] = {
     0xb1, // LOAD_FAST 1
     0x10,0x52, // LOAD_CONST_STRING 'disfraz'
     0x55, // LOAD_SUBSCR
-    0x12,0x84,0x09, // LOAD_GLOBAL 'max'
+    0x12,0x84,0x0d, // LOAD_GLOBAL 'max'
     0x81, // LOAD_CONST_SMALL_INT 1
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xb0, // LOAD_FAST 0
     0x13,0x4c, // LOAD_ATTR 'costumes'
     0x34,0x01, // CALL_FUNCTION 1
@@ -3795,12 +3803,12 @@ static const byte fun_data_scratch_Sprite___init__[254] = {
     0xf8, // BINARY_OP 33 __mod__
     0xb0, // LOAD_FAST 0
     0x18,0x53, // STORE_ATTR 'costume'
-    0x12,0x83,0x76, // LOAD_GLOBAL 'float'
+    0x12,0x83,0x79, // LOAD_GLOBAL 'float'
     0xb1, // LOAD_FAST 1
     0x10,0x54, // LOAD_CONST_STRING 'x'
     0x55, // LOAD_SUBSCR
     0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x83,0x76, // LOAD_GLOBAL 'float'
+    0x12,0x83,0x79, // LOAD_GLOBAL 'float'
     0xb1, // LOAD_FAST 1
     0x10,0x55, // LOAD_CONST_STRING 'y'
     0x55, // LOAD_SUBSCR
@@ -3810,14 +3818,14 @@ static const byte fun_data_scratch_Sprite___init__[254] = {
     0x18,0x54, // STORE_ATTR 'x'
     0xb0, // LOAD_FAST 0
     0x18,0x55, // STORE_ATTR 'y'
-    0x12,0x83,0x76, // LOAD_GLOBAL 'float'
+    0x12,0x83,0x79, // LOAD_GLOBAL 'float'
     0xb1, // LOAD_FAST 1
     0x10,0x56, // LOAD_CONST_STRING 'dir'
     0x55, // LOAD_SUBSCR
     0x34,0x01, // CALL_FUNCTION 1
     0xb0, // LOAD_FAST 0
     0x18,0x56, // STORE_ATTR 'dir'
-    0x12,0x83,0x76, // LOAD_GLOBAL 'float'
+    0x12,0x83,0x79, // LOAD_GLOBAL 'float'
     0xb1, // LOAD_FAST 1
     0x10,0x57, // LOAD_CONST_STRING 'tam'
     0x55, // LOAD_SUBSCR
@@ -3859,7 +3867,7 @@ static const byte fun_data_scratch_Sprite___init__[254] = {
 // frozen bytecode for file scratch.py, scope scratch_Sprite___init____lt_dictcomp_gt_
 static const byte fun_data_scratch_Sprite___init____lt_dictcomp_gt_[26] = {
     0x49,0x0a, // prelude
-    0x82,0x4b,0x12, // names: <dictcomp>, *
+    0x82,0x4f,0x12, // names: <dictcomp>, *
     0x80,0x84, // code info
     0x2c,0x00, // BUILD_MAP 0
     0xb0, // LOAD_FAST 0
@@ -3899,7 +3907,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Sprite___init____lt_dictc
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 331,
+        .qstr_block_name_idx = 335,
         .line_info = fun_data_scratch_Sprite___init____lt_dictcomp_gt_ + 5,
         .line_info_top = fun_data_scratch_Sprite___init____lt_dictcomp_gt_ + 7,
         .opcodes = fun_data_scratch_Sprite___init____lt_dictcomp_gt_ + 7,
@@ -3915,7 +3923,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Sprite___init____lt_dictc
 // frozen bytecode for file scratch.py, scope scratch_Sprite___init____lt_dictcomp_gt_2
 static const byte fun_data_scratch_Sprite___init____lt_dictcomp_gt_2[31] = {
     0x51,0x0a, // prelude
-    0x82,0x4b,0x12, // names: <dictcomp>, *
+    0x82,0x4f,0x12, // names: <dictcomp>, *
     0x80,0x85, // code info
     0x2c,0x00, // BUILD_MAP 0
     0xb0, // LOAD_FAST 0
@@ -3924,7 +3932,7 @@ static const byte fun_data_scratch_Sprite___init____lt_dictcomp_gt_2[31] = {
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xc1, // STORE_FAST 1
     0xc2, // STORE_FAST 2
-    0x12,0x83,0x72, // LOAD_GLOBAL 'list'
+    0x12,0x83,0x75, // LOAD_GLOBAL 'list'
     0xb2, // LOAD_FAST 2
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
@@ -3957,7 +3965,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Sprite___init____lt_dictc
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 331,
+        .qstr_block_name_idx = 335,
         .line_info = fun_data_scratch_Sprite___init____lt_dictcomp_gt_2 + 5,
         .line_info_top = fun_data_scratch_Sprite___init____lt_dictcomp_gt_2 + 7,
         .opcodes = fun_data_scratch_Sprite___init____lt_dictcomp_gt_2 + 7,
@@ -4009,7 +4017,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Sprite___init__ = {
 // frozen bytecode for file scratch.py, scope scratch_Sprite_clone
 static const byte fun_data_scratch_Sprite_clone[97] = {
     0x61,0x1a, // prelude
-    0x62,0x84,0x06, // names: clone, self
+    0x62,0x84,0x0a, // names: clone, self
     0x80,0x94,0x27,0x28,0x31,0x24,0x2b,0x2e,0x2d,0x26, // code info
     0x12,0x19, // LOAD_GLOBAL 'Sprite'
     0x51, // LOAD_CONST_NONE
@@ -4021,10 +4029,10 @@ static const byte fun_data_scratch_Sprite_clone[97] = {
     0x5f, // GET_ITER_STACK
     0x4b,0x12, // FOR_ITER 18
     0xc2, // STORE_FAST 2
-    0x12,0x84,0x0a, // LOAD_GLOBAL 'setattr'
+    0x12,0x84,0x0e, // LOAD_GLOBAL 'setattr'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x12,0x84,0x0b, // LOAD_GLOBAL 'getattr'
+    0x12,0x84,0x0f, // LOAD_GLOBAL 'getattr'
     0xb0, // LOAD_FAST 0
     0xb2, // LOAD_FAST 2
     0x34,0x02, // CALL_FUNCTION 2
@@ -4034,7 +4042,7 @@ static const byte fun_data_scratch_Sprite_clone[97] = {
     0x52, // LOAD_CONST_TRUE
     0xb1, // LOAD_FAST 1
     0x18,0x60, // STORE_ATTR 'alive'
-    0x12,0x84,0x0c, // LOAD_GLOBAL 'dict'
+    0x12,0x84,0x10, // LOAD_GLOBAL 'dict'
     0xb0, // LOAD_FAST 0
     0x13,0x4e, // LOAD_ATTR 'vars'
     0x34,0x01, // CALL_FUNCTION 1
@@ -4067,7 +4075,7 @@ static const byte fun_data_scratch_Sprite_clone[97] = {
 // frozen bytecode for file scratch.py, scope scratch_Sprite_clone__lt_dictcomp_gt_
 static const byte fun_data_scratch_Sprite_clone__lt_dictcomp_gt_[29] = {
     0x49,0x0a, // prelude
-    0x82,0x4b,0x12, // names: <dictcomp>, *
+    0x82,0x4f,0x12, // names: <dictcomp>, *
     0x80,0x99, // code info
     0x2c,0x00, // BUILD_MAP 0
     0xb0, // LOAD_FAST 0
@@ -4076,7 +4084,7 @@ static const byte fun_data_scratch_Sprite_clone__lt_dictcomp_gt_[29] = {
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xc1, // STORE_FAST 1
     0xc2, // STORE_FAST 2
-    0x12,0x83,0x72, // LOAD_GLOBAL 'list'
+    0x12,0x83,0x75, // LOAD_GLOBAL 'list'
     0xb2, // LOAD_FAST 2
     0x34,0x01, // CALL_FUNCTION 1
     0xb1, // LOAD_FAST 1
@@ -4107,7 +4115,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Sprite_clone__lt_dictcomp
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 331,
+        .qstr_block_name_idx = 335,
         .line_info = fun_data_scratch_Sprite_clone__lt_dictcomp_gt_ + 5,
         .line_info_top = fun_data_scratch_Sprite_clone__lt_dictcomp_gt_ + 7,
         .opcodes = fun_data_scratch_Sprite_clone__lt_dictcomp_gt_ + 7,
@@ -4158,7 +4166,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Sprite_clone = {
 // frozen bytecode for file scratch.py, scope scratch_Sprite_img
 static const byte fun_data_scratch_Sprite_img[51] = {
     0x21,0x0e, // prelude
-    0x64,0x84,0x06, // names: img, self
+    0x64,0x84,0x0a, // names: img, self
     0x80,0x9f,0x2b,0x37, // code info
     0xb0, // LOAD_FAST 0
     0x13,0x4d, // LOAD_ATTR 'imgs'
@@ -4168,7 +4176,7 @@ static const byte fun_data_scratch_Sprite_img[51] = {
     0x51, // LOAD_CONST_NONE
     0xde, // BINARY_OP 7 <is>
     0x44,0x57, // POP_JUMP_IF_FALSE 23
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
     0x14,0x65, // LOAD_METHOD 'sprite'
     0xb0, // LOAD_FAST 0
     0x13,0x4c, // LOAD_ATTR 'costumes'
@@ -4229,7 +4237,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Sprite_img = {
 // frozen bytecode for file scratch.py, scope scratch_Sprite_bbox
 static const byte fun_data_scratch_Sprite_bbox[88] = {
     0x81,0x10,0x14, // prelude
-    0x66,0x84,0x06, // names: bbox, self
+    0x66,0x84,0x0a, // names: bbox, self
     0x80,0xa5,0x2f,0x28,0x35,0x28,0x28, // code info
     0xb0, // LOAD_FAST 0
     0x13,0x4c, // LOAD_ATTR 'costumes'
@@ -4333,7 +4341,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Sprite_bbox = {
 // frozen bytecode for file scratch.py, scope scratch_Sprite_screen_rect
 static const byte fun_data_scratch_Sprite_screen_rect[315] = {
     0xa9,0x10,0x28, // prelude
-    0x68,0x84,0x06, // names: screen_rect, self
+    0x68,0x84,0x0a, // names: screen_rect, self
     0x80,0xad,0x20,0x2e,0x22,0x2f,0x3d,0x31,0x37,0x3f,0x1f,0x2c,0x1f,0x2c,0x2d,0x2f,0x28, // code info
     0xb0, // LOAD_FAST 0
     0x13,0x59, // LOAD_ATTR 'visible'
@@ -4399,7 +4407,7 @@ static const byte fun_data_scratch_Sprite_screen_rect[315] = {
     0x22,0x82,0x68, // LOAD_CONST_SMALL_INT 360
     0xf8, // BINARY_OP 33 __mod__
     0x44,0xf5,0x80, // POP_JUMP_IF_FALSE 117
-    0x12,0x84,0x09, // LOAD_GLOBAL 'max'
+    0x12,0x84,0x0d, // LOAD_GLOBAL 'max'
     0x12,0x03, // LOAD_GLOBAL 'math'
     0x14,0x6d, // LOAD_METHOD 'sqrt'
     0xb4, // LOAD_FAST 4
@@ -4449,34 +4457,34 @@ static const byte fun_data_scratch_Sprite_screen_rect[315] = {
     0xf2, // BINARY_OP 27 __add__
     0x36,0x01, // CALL_METHOD 1
     0x34,0x04, // CALL_FUNCTION 4
-    0x12,0x84,0x09, // LOAD_GLOBAL 'max'
+    0x12,0x84,0x0d, // LOAD_GLOBAL 'max'
     0xb6, // LOAD_FAST 6
     0xb7, // LOAD_FAST 7
     0x34,0x02, // CALL_FUNCTION 2
     0xf4, // BINARY_OP 29 __mul__
     0xca, // STORE_FAST 10
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb8, // LOAD_FAST 8
     0xba, // LOAD_FAST 10
     0xf3, // BINARY_OP 28 __sub__
     0x34,0x01, // CALL_FUNCTION 1
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf3, // BINARY_OP 28 __sub__
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb9, // LOAD_FAST 9
     0xba, // LOAD_FAST 10
     0xf3, // BINARY_OP 28 __sub__
     0x34,0x01, // CALL_FUNCTION 1
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf3, // BINARY_OP 28 __sub__
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0x82, // LOAD_CONST_SMALL_INT 2
     0xba, // LOAD_FAST 10
     0xf4, // BINARY_OP 29 __mul__
     0x34,0x01, // CALL_FUNCTION 1
     0x83, // LOAD_CONST_SMALL_INT 3
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0x82, // LOAD_CONST_SMALL_INT 2
     0xba, // LOAD_FAST 10
     0xf4, // BINARY_OP 29 __mul__
@@ -4516,24 +4524,24 @@ static const byte fun_data_scratch_Sprite_screen_rect[315] = {
     0xf4, // BINARY_OP 29 __mul__
     0xf3, // BINARY_OP 28 __sub__
     0xcb, // STORE_FAST 11
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xbb, // LOAD_FAST 11
     0x34,0x01, // CALL_FUNCTION 1
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf3, // BINARY_OP 28 __sub__
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xbc, // LOAD_FAST 12
     0x34,0x01, // CALL_FUNCTION 1
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf3, // BINARY_OP 28 __sub__
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb2, // LOAD_FAST 2
     0xb6, // LOAD_FAST 6
     0xf4, // BINARY_OP 29 __mul__
     0x34,0x01, // CALL_FUNCTION 1
     0x83, // LOAD_CONST_SMALL_INT 3
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb3, // LOAD_FAST 3
     0xb7, // LOAD_FAST 7
     0xf4, // BINARY_OP 29 __mul__
@@ -4582,7 +4590,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Sprite_screen_rect = {
 // frozen bytecode for file scratch.py, scope scratch_Sprite_draw
 static const byte fun_data_scratch_Sprite_draw[153] = {
     0xa1,0x10,0x1e, // prelude
-    0x6f,0x84,0x06, // names: draw, self
+    0x6f,0x84,0x0a, // names: draw, self
     0x80,0xbd,0x2e,0x22,0x2f,0x31,0x26,0x28,0x2a,0x28,0x28,0x28, // code info
     0xb0, // LOAD_FAST 0
     0x13,0x59, // LOAD_ATTR 'visible'
@@ -4648,7 +4656,7 @@ static const byte fun_data_scratch_Sprite_draw[153] = {
     0x22,0x80,0x64, // LOAD_CONST_SMALL_INT 100
     0xf7, // BINARY_OP 32 __truediv__
     0xca, // STORE_FAST 10
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
     0x14,0x70, // LOAD_METHOD 'dibujar'
     0xb0, // LOAD_FAST 0
     0x14,0x64, // LOAD_METHOD 'img'
@@ -4715,9 +4723,9 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Sprite_draw = {
 // frozen bytecode for file scratch.py, scope scratch_Sprite_set_costume
 static const byte fun_data_scratch_Sprite_set_costume[240] = {
     0x52,0x44, // prelude
-    0x71,0x84,0x06,0x81,0x5d, // names: set_costume, self, v
+    0x71,0x84,0x0a,0x81,0x5f, // names: set_costume, self, v
     0x80,0xca,0x29,0x23,0x22,0x2c,0x2f,0x27,0x24,0x24,0x25,0x26,0x2a,0x22,0x26,0x2a,0x22,0x26,0x2d,0x24,0x26,0x2a,0x22,0x26,0x2a,0x22,0x27,0x22,0x3f, // code info
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xb0, // LOAD_FAST 0
     0x13,0x4c, // LOAD_ATTR 'costumes'
     0x34,0x01, // CALL_FUNCTION 1
@@ -4726,12 +4734,12 @@ static const byte fun_data_scratch_Sprite_set_costume[240] = {
     0x43,0x42, // POP_JUMP_IF_TRUE 2
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
-    0x12,0x83,0x79, // LOAD_GLOBAL 'isinstance'
+    0x12,0x83,0x7c, // LOAD_GLOBAL 'isinstance'
     0xb1, // LOAD_FAST 1
-    0x12,0x83,0x7c, // LOAD_GLOBAL 'str'
+    0x12,0x83,0x7f, // LOAD_GLOBAL 'str'
     0x34,0x02, // CALL_FUNCTION 2
     0x44,0x8b,0x81, // POP_JUMP_IF_FALSE 139
-    0x12,0x84,0x0d, // LOAD_GLOBAL 'enumerate'
+    0x12,0x84,0x11, // LOAD_GLOBAL 'enumerate'
     0xb0, // LOAD_FAST 0
     0x13,0x4c, // LOAD_ATTR 'costumes'
     0x34,0x01, // CALL_FUNCTION 1
@@ -4840,7 +4848,7 @@ static const byte fun_data_scratch_Sprite_set_costume[240] = {
     0x34,0x01, // CALL_FUNCTION 1
     0x34,0x01, // CALL_FUNCTION 1
     0x44,0x4c, // POP_JUMP_IF_FALSE 12
-    0x12,0x84,0x0e, // LOAD_GLOBAL 'round'
+    0x12,0x84,0x12, // LOAD_GLOBAL 'round'
     0x12,0x20, // LOAD_GLOBAL 'num'
     0xb1, // LOAD_FAST 1
     0x34,0x01, // CALL_FUNCTION 1
@@ -4898,7 +4906,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Sprite_set_costume = {
 // frozen bytecode for file scratch.py, scope scratch_Sprite_fence
 static const byte fun_data_scratch_Sprite_fence[147] = {
     0x61,0x22, // prelude
-    0x73,0x84,0x06, // names: fence, self
+    0x73,0x84,0x0a, // names: fence, self
     0x80,0xe9,0x2b,0x31,0x24,0x29,0x2a,0x29,0x2a,0x29,0x2a,0x29,0x2a,0x29, // code info
     0xb0, // LOAD_FAST 0
     0x14,0x66, // LOAD_METHOD 'bbox'
@@ -4908,7 +4916,7 @@ static const byte fun_data_scratch_Sprite_fence[147] = {
     0xc2, // STORE_FAST 2
     0xc3, // STORE_FAST 3
     0xc4, // STORE_FAST 4
-    0x12,0x84,0x0f, // LOAD_GLOBAL 'min'
+    0x12,0x84,0x13, // LOAD_GLOBAL 'min'
     0x8f, // LOAD_CONST_SMALL_INT 15
     0xb3, // LOAD_FAST 3
     0xb1, // LOAD_FAST 1
@@ -5078,10 +5086,10 @@ static const byte fun_data_scratch_Ctx[23] = {
     0x00,0x08, // prelude
     0x1a, // names: Ctx
     0x8b,0xf9,0x20, // code info
-    0x11,0x84,0x00, // LOAD_NAME '__name__'
-    0x16,0x84,0x01, // STORE_NAME '__module__'
+    0x11,0x84,0x03, // LOAD_NAME '__name__'
+    0x16,0x84,0x04, // STORE_NAME '__module__'
     0x10,0x1a, // LOAD_CONST_STRING 'Ctx'
-    0x16,0x84,0x02, // STORE_NAME '__qualname__'
+    0x16,0x84,0x05, // STORE_NAME '__qualname__'
     0x32,0x00, // MAKE_FUNCTION 0
     0x16,0x3e, // STORE_NAME '__init__'
     0x51, // LOAD_CONST_NONE
@@ -5091,7 +5099,7 @@ static const byte fun_data_scratch_Ctx[23] = {
 // frozen bytecode for file scratch.py, scope scratch_Ctx___init__
 static const byte fun_data_scratch_Ctx___init__[33] = {
     0x23,0x14, // prelude
-    0x3e,0x84,0x06,0x74,0x75, // names: __init__, self, sp, thread
+    0x3e,0x84,0x0a,0x74,0x75, // names: __init__, self, sp, thread
     0x80,0xfb,0x24,0x24,0x27, // code info
     0xb1, // LOAD_FAST 1
     0xb0, // LOAD_FAST 0
@@ -5185,10 +5193,10 @@ static const byte fun_data_scratch_Thread[22] = {
     0x00,0x06, // prelude
     0x1b, // names: Thread
     0x9b,0x02, // code info
-    0x11,0x84,0x00, // LOAD_NAME '__name__'
-    0x16,0x84,0x01, // STORE_NAME '__module__'
+    0x11,0x84,0x03, // LOAD_NAME '__name__'
+    0x16,0x84,0x04, // STORE_NAME '__module__'
     0x10,0x1b, // LOAD_CONST_STRING 'Thread'
-    0x16,0x84,0x02, // STORE_NAME '__qualname__'
+    0x16,0x84,0x05, // STORE_NAME '__qualname__'
     0x32,0x00, // MAKE_FUNCTION 0
     0x16,0x3e, // STORE_NAME '__init__'
     0x51, // LOAD_CONST_NONE
@@ -5198,7 +5206,7 @@ static const byte fun_data_scratch_Thread[22] = {
 // frozen bytecode for file scratch.py, scope scratch_Thread___init__
 static const byte fun_data_scratch_Thread___init__[52] = {
     0xc1,0x04,0x18, // prelude
-    0x3e,0x84,0x06,0x41,0x74,0x78,0x84,0x10, // names: __init__, self, proj, sp, hat, body
+    0x3e,0x84,0x0a,0x41,0x74,0x78,0x84,0x14, // names: __init__, self, proj, sp, hat, body
     0x90,0x03,0x2e,0x29, // code info
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
@@ -5304,10 +5312,10 @@ static const byte fun_data_scratch_StopAll[18] = {
     0x00,0x06, // prelude
     0x1c, // names: StopAll
     0x9b,0x09, // code info
-    0x11,0x84,0x00, // LOAD_NAME '__name__'
-    0x16,0x84,0x01, // STORE_NAME '__module__'
+    0x11,0x84,0x03, // LOAD_NAME '__name__'
+    0x16,0x84,0x04, // STORE_NAME '__module__'
     0x10,0x1c, // LOAD_CONST_STRING 'StopAll'
-    0x16,0x84,0x02, // STORE_NAME '__qualname__'
+    0x16,0x84,0x05, // STORE_NAME '__qualname__'
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -5352,10 +5360,10 @@ static const byte fun_data_scratch_StopScript[19] = {
     0x00,0x08, // prelude
     0x1d, // names: StopScript
     0x9b,0x0d,0x20, // code info
-    0x11,0x84,0x00, // LOAD_NAME '__name__'
-    0x16,0x84,0x01, // STORE_NAME '__module__'
+    0x11,0x84,0x03, // LOAD_NAME '__name__'
+    0x16,0x84,0x04, // STORE_NAME '__module__'
     0x10,0x1d, // LOAD_CONST_STRING 'StopScript'
-    0x16,0x84,0x02, // STORE_NAME '__qualname__'
+    0x16,0x84,0x05, // STORE_NAME '__qualname__'
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -5400,10 +5408,10 @@ static const byte fun_data_scratch_StopThread[19] = {
     0x00,0x08, // prelude
     0x1e, // names: StopThread
     0x9b,0x12,0x20, // code info
-    0x11,0x84,0x00, // LOAD_NAME '__name__'
-    0x16,0x84,0x01, // STORE_NAME '__module__'
+    0x11,0x84,0x03, // LOAD_NAME '__name__'
+    0x16,0x84,0x04, // STORE_NAME '__module__'
     0x10,0x1e, // LOAD_CONST_STRING 'StopThread'
-    0x16,0x84,0x02, // STORE_NAME '__qualname__'
+    0x16,0x84,0x05, // STORE_NAME '__qualname__'
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -5444,44 +5452,44 @@ static const mp_raw_code_truncated_t proto_fun_scratch_StopThread = {
 
 // child of scratch__lt_module_gt_
 // frozen bytecode for file scratch.py, scope scratch_Project
-static const byte fun_data_scratch_Project[382] = {
-    0x10,0xc6,0x02, // prelude
+static const byte fun_data_scratch_Project[394] = {
+    0x10,0xca,0x02, // prelude
     0x1f, // names: Project
-    0x9b,0x18,0x84,0x59,0x85,0x10,0x85,0x0d,0x64,0x20,0x65,0x40,0x85,0x09,0x84,0x0d,0x65,0x60,0x85,0x0a,0x65,0x60,0x89,0x14,0x6a,0x20,0x8a,0x14,0x65,0x84,0x0e,0x65,0x60,0x85,0x0a,0xa5,0x8a,0x65,0x60,0x65,0x20,0x89,0x1b,0x85,0x08,0x65,0x60,0x85,0x0b,0x85,0x07,0x65,0x20,0x85,0x0b,0x85,0x10,0x85,0x0c,0x85,0x07,0x65,0x20,0x65,0x20,0x65,0x20,0x85,0x0c,0x85,0x0f,0x85,0x10,0x85,0x2f,0x85,0x16,0x85,0x07,0x65,0x60,0x85,0x25,0x85,0x08,0x85,0x21,0x85,0x14,0x85,0x2e,0x65,0x89,0x10,0x85,0x0a,0x85,0x43, // code info
-    0x11,0x84,0x00, // LOAD_NAME '__name__'
-    0x16,0x84,0x01, // STORE_NAME '__module__'
+    0x9b,0x18,0x84,0x5b,0x85,0x10,0x85,0x0d,0x64,0x20,0x65,0x40,0x85,0x09,0x84,0x0d,0x65,0x60,0x85,0x0a,0x65,0x60,0x89,0x14,0x6a,0x20,0x8a,0x14,0x65,0x84,0x0e,0x65,0x60,0x85,0x0a,0xa5,0x8a,0x65,0x60,0x65,0x20,0x89,0x20,0x85,0x08,0x65,0x60,0x85,0x0b,0x85,0x07,0x65,0x20,0x85,0x0b,0x85,0x10,0x85,0x0c,0x85,0x07,0x65,0x20,0x65,0x20,0x65,0x20,0x85,0x0c,0x85,0x0f,0x85,0x10,0x85,0x2f,0x85,0x16,0x85,0x07,0x65,0x60,0x85,0x25,0x85,0x08,0x85,0x21,0x85,0x14,0x85,0x31,0x8a,0x17,0x65,0x89,0x10,0x85,0x0a,0x85,0x43, // code info
+    0x11,0x84,0x03, // LOAD_NAME '__name__'
+    0x16,0x84,0x04, // STORE_NAME '__module__'
     0x10,0x1f, // LOAD_CONST_STRING 'Project'
-    0x16,0x84,0x02, // STORE_NAME '__qualname__'
+    0x16,0x84,0x05, // STORE_NAME '__qualname__'
     0x32,0x00, // MAKE_FUNCTION 0
     0x16,0x3e, // STORE_NAME '__init__'
     0x32,0x01, // MAKE_FUNCTION 1
-    0x16,0x81,0x43, // STORE_NAME '_uses_mouse'
+    0x16,0x81,0x45, // STORE_NAME '_uses_mouse'
     0x32,0x02, // MAKE_FUNCTION 2
     0x16,0x81,0x15, // STORE_NAME 'set_screen'
     0x32,0x03, // MAKE_FUNCTION 3
     0x16,0x6b, // STORE_NAME 'to_screen'
     0x32,0x04, // MAKE_FUNCTION 4
-    0x16,0x81,0x53, // STORE_NAME 'var_get'
+    0x16,0x81,0x55, // STORE_NAME 'var_get'
     0x32,0x05, // MAKE_FUNCTION 5
-    0x16,0x81,0x54, // STORE_NAME 'var_set'
+    0x16,0x81,0x56, // STORE_NAME 'var_set'
     0x32,0x06, // MAKE_FUNCTION 6
     0x16,0x35, // STORE_NAME 'cloud_connect'
     0x32,0x07, // MAKE_FUNCTION 7
-    0x16,0x81,0x59, // STORE_NAME 'cloud_apply'
+    0x16,0x81,0x5b, // STORE_NAME 'cloud_apply'
     0x32,0x08, // MAKE_FUNCTION 8
-    0x16,0x81,0x5a, // STORE_NAME 'cloud_poll'
+    0x16,0x81,0x5c, // STORE_NAME 'cloud_poll'
     0x32,0x09, // MAKE_FUNCTION 9
-    0x16,0x81,0x61, // STORE_NAME 'lst'
+    0x16,0x81,0x63, // STORE_NAME 'lst'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x2a,0x01, // BUILD_TUPLE 1
     0x53, // LOAD_NULL
     0x33,0x0a, // MAKE_FUNCTION_DEFARGS 10
-    0x16,0x81,0x63, // STORE_NAME 'ev'
+    0x16,0x81,0x65, // STORE_NAME 'ev'
     0x10,0x30, // LOAD_CONST_STRING ''
     0x2a,0x01, // BUILD_TUPLE 1
     0x53, // LOAD_NULL
     0x33,0x0b, // MAKE_FUNCTION_DEFARGS 11
-    0x16,0x81,0x66, // STORE_NAME 'field'
+    0x16,0x81,0x68, // STORE_NAME 'field'
     0x51, // LOAD_CONST_NONE
     0x51, // LOAD_CONST_NONE
     0x52, // LOAD_CONST_TRUE
@@ -5490,95 +5498,99 @@ static const byte fun_data_scratch_Project[382] = {
     0x33,0x0c, // MAKE_FUNCTION_DEFARGS 12
     0x16,0x39, // STORE_NAME 'start_hats'
     0x32,0x0d, // MAKE_FUNCTION 13
-    0x16,0x81,0x67, // STORE_NAME 'all_sprites'
+    0x16,0x81,0x69, // STORE_NAME 'all_sprites'
     0x32,0x0e, // MAKE_FUNCTION 14
     0x16,0x7b, // STORE_NAME 'run'
     0x32,0x0f, // MAKE_FUNCTION 15
-    0x16,0x81,0x69, // STORE_NAME 'sub'
+    0x16,0x81,0x6b, // STORE_NAME 'sub'
     0x32,0x10, // MAKE_FUNCTION 16
-    0x16,0x81,0x6b, // STORE_NAME 'loop_yield'
+    0x16,0x81,0x6d, // STORE_NAME 'loop_yield'
     0x32,0x11, // MAKE_FUNCTION 17
-    0x16,0x81,0x47, // STORE_NAME '_register'
+    0x16,0x81,0x49, // STORE_NAME '_register'
     0x32,0x12, // MAKE_FUNCTION 18
-    0x16,0x81,0x75, // STORE_NAME 'var_name'
+    0x16,0x81,0x77, // STORE_NAME 'var_name'
     0x32,0x13, // MAKE_FUNCTION 19
-    0x16,0x81,0x76, // STORE_NAME 'mark'
+    0x16,0x81,0x78, // STORE_NAME 'mark'
     0x51, // LOAD_CONST_NONE
     0x2a,0x01, // BUILD_TUPLE 1
     0x53, // LOAD_NULL
     0x33,0x14, // MAKE_FUNCTION_DEFARGS 20
-    0x16,0x81,0x77, // STORE_NAME 'draw_all'
+    0x16,0x81,0x79, // STORE_NAME 'draw_all'
     0x32,0x15, // MAKE_FUNCTION 21
-    0x16,0x82,0x00, // STORE_NAME 'bubble_rect'
+    0x16,0x82,0x02, // STORE_NAME 'bubble_rect'
     0x32,0x16, // MAKE_FUNCTION 22
-    0x16,0x81,0x79, // STORE_NAME 'draw_bubble'
+    0x16,0x81,0x7b, // STORE_NAME 'draw_bubble'
     0x32,0x17, // MAKE_FUNCTION 23
-    0x16,0x81,0x7a, // STORE_NAME 'draw_monitors'
+    0x16,0x81,0x7c, // STORE_NAME 'draw_monitors'
     0x32,0x18, // MAKE_FUNCTION 24
-    0x16,0x82,0x04, // STORE_NAME 'monitor_values'
+    0x16,0x82,0x06, // STORE_NAME 'monitor_values'
     0x32,0x19, // MAKE_FUNCTION 25
-    0x16,0x82,0x05, // STORE_NAME 'cursor_rect'
+    0x16,0x82,0x07, // STORE_NAME 'cursor_rect'
     0x32,0x1a, // MAKE_FUNCTION 26
-    0x16,0x81,0x7f, // STORE_NAME 'draw_cursor'
+    0x16,0x82,0x01, // STORE_NAME 'draw_cursor'
     0x32,0x1b, // MAKE_FUNCTION 27
-    0x16,0x82,0x06, // STORE_NAME 'list_saves'
+    0x16,0x82,0x08, // STORE_NAME 'list_saves'
     0x32,0x1c, // MAKE_FUNCTION 28
-    0x16,0x82,0x0d, // STORE_NAME 'save_game'
+    0x16,0x82,0x0f, // STORE_NAME 'save_game'
     0x32,0x1d, // MAKE_FUNCTION 29
-    0x16,0x82,0x12, // STORE_NAME 'load_save'
+    0x16,0x82,0x14, // STORE_NAME 'load_save'
     0x32,0x1e, // MAKE_FUNCTION 30
-    0x16,0x82,0x11, // STORE_NAME 'show_toast'
+    0x16,0x82,0x13, // STORE_NAME 'show_toast'
     0x32,0x1f, // MAKE_FUNCTION 31
-    0x16,0x82,0x13, // STORE_NAME 'picker_box'
+    0x16,0x82,0x15, // STORE_NAME 'picker_box'
     0x32,0x20, // MAKE_FUNCTION 32
-    0x16,0x82,0x14, // STORE_NAME 'mouse_screen'
+    0x16,0x82,0x16, // STORE_NAME 'mouse_screen'
     0x32,0x21, // MAKE_FUNCTION 33
-    0x16,0x82,0x15, // STORE_NAME 'picker_hit'
+    0x16,0x82,0x17, // STORE_NAME 'picker_hit'
     0x32,0x22, // MAKE_FUNCTION 34
-    0x16,0x81,0x7b, // STORE_NAME 'draw_picker'
+    0x16,0x81,0x7d, // STORE_NAME 'draw_picker'
     0x32,0x23, // MAKE_FUNCTION 35
-    0x16,0x82,0x17, // STORE_NAME 'menu_items'
+    0x16,0x82,0x19, // STORE_NAME 'menu_items'
     0x32,0x24, // MAKE_FUNCTION 36
-    0x16,0x82,0x1e, // STORE_NAME 'menu_key'
+    0x16,0x82,0x20, // STORE_NAME 'menu_key'
     0x32,0x25, // MAKE_FUNCTION 37
-    0x16,0x82,0x1f, // STORE_NAME 'menu_red_key'
+    0x16,0x82,0x21, // STORE_NAME 'menu_red_key'
     0x32,0x26, // MAKE_FUNCTION 38
-    0x16,0x82,0x2e, // STORE_NAME 'preguntar'
+    0x16,0x82,0x30, // STORE_NAME 'preguntar'
     0x32,0x27, // MAKE_FUNCTION 39
-    0x16,0x82,0x28, // STORE_NAME 'inject'
+    0x16,0x82,0x2a, // STORE_NAME 'inject'
     0x32,0x28, // MAKE_FUNCTION 40
-    0x16,0x81,0x7e, // STORE_NAME 'draw_menu'
+    0x16,0x82,0x00, // STORE_NAME 'draw_menu'
     0x32,0x29, // MAKE_FUNCTION 41
-    0x16,0x82,0x35, // STORE_NAME 'kb_layout'
+    0x16,0x82,0x37, // STORE_NAME 'kb_layout'
     0x32,0x2a, // MAKE_FUNCTION 42
-    0x16,0x82,0x36, // STORE_NAME 'ask_key'
+    0x16,0x82,0x38, // STORE_NAME 'ask_key'
     0x32,0x2b, // MAKE_FUNCTION 43
-    0x16,0x81,0x7c, // STORE_NAME 'draw_ask'
+    0x16,0x81,0x7e, // STORE_NAME 'draw_ask'
     0x32,0x2c, // MAKE_FUNCTION 44
-    0x16,0x82,0x3b, // STORE_NAME 'render'
+    0x16,0x82,0x3d, // STORE_NAME 'render'
+    0x11,0x84,0x06, // LOAD_NAME 'staticmethod'
     0x32,0x2d, // MAKE_FUNCTION 45
-    0x16,0x82,0x3d, // STORE_NAME 'mouse_keys'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x16,0x82,0x3f, // STORE_NAME 'merge'
+    0x32,0x2e, // MAKE_FUNCTION 46
+    0x16,0x82,0x41, // STORE_NAME 'mouse_keys'
     0x52, // LOAD_CONST_TRUE
     0x2a,0x01, // BUILD_TUPLE 1
     0x53, // LOAD_NULL
-    0x33,0x2e, // MAKE_FUNCTION_DEFARGS 46
-    0x16,0x82,0x43, // STORE_NAME 'move_mouse'
-    0x32,0x2f, // MAKE_FUNCTION 47
-    0x16,0x82,0x45, // STORE_NAME 'click'
+    0x33,0x2f, // MAKE_FUNCTION_DEFARGS 47
+    0x16,0x82,0x47, // STORE_NAME 'move_mouse'
     0x32,0x30, // MAKE_FUNCTION 48
-    0x16,0x82,0x46, // STORE_NAME 'input'
+    0x16,0x82,0x49, // STORE_NAME 'click'
     0x32,0x31, // MAKE_FUNCTION 49
+    0x16,0x82,0x4a, // STORE_NAME 'input'
+    0x32,0x32, // MAKE_FUNCTION 50
     0x16,0x3a, // STORE_NAME 'step'
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
 // child of scratch_Project
 // frozen bytecode for file scratch.py, scope scratch_Project___init__
-static const byte fun_data_scratch_Project___init__[1099] = {
-    0xda,0x12,0xb5,0x02, // prelude
-    0x3e,0x84,0x06,0x84,0x11, // names: __init__, self, path
-    0x90,0x19,0x29,0x4f,0x25,0x1f,0x32,0x4f,0x1f,0x21,0x23,0x22,0x30,0x32,0x2c,0x23,0x32,0x2a,0x2f,0x3a,0x30,0x2e,0x2d,0x26,0x2e,0x3b,0x30,0x34,0x2d,0x30,0x27,0x29,0x2f,0x2c,0x2f,0x2e,0x6f,0x54,0x32,0x46,0x1f,0x25,0x39,0x1f,0x21,0x34,0x2c,0x4e,0x25,0x33,0x2e,0x2b,0x29,0x26,0x1f,0x21,0x30,0x27,0x2c,0x2c,0x26,0x27,0x26,0x26,0x27,0x27,0x2a,0x46,0x2b,0x26,0x26,0x26,0x27,0x27,0x27,0x26,0x26,0x26,0x25,0x26,0x29,0x2c,0x29,0x27,0x27,0x00, // code info
-    0x12,0x84,0x12, // LOAD_GLOBAL 'open'
+static const byte fun_data_scratch_Project___init__[1129] = {
+    0xda,0x12,0xb7,0x02, // prelude
+    0x3e,0x84,0x0a,0x84,0x15, // names: __init__, self, path
+    0x90,0x19,0x29,0x4f,0x25,0x1f,0x32,0x4f,0x1f,0x21,0x23,0x22,0x30,0x32,0x2c,0x23,0x32,0x2a,0x2f,0x3a,0x30,0x2e,0x2d,0x26,0x2e,0x3b,0x30,0x34,0x4d,0x3d,0x30,0x27,0x29,0x2f,0x2c,0x2f,0x2e,0x6f,0x54,0x32,0x46,0x1f,0x25,0x39,0x1f,0x21,0x34,0x2c,0x4e,0x25,0x33,0x2e,0x2b,0x29,0x26,0x1f,0x21,0x30,0x27,0x2c,0x2c,0x26,0x27,0x26,0x26,0x27,0x27,0x2a,0x46,0x2b,0x26,0x26,0x26,0x27,0x27,0x27,0x26,0x26,0x26,0x25,0x26,0x29,0x2c,0x29,0x27,0x27,0x00, // code info
+    0x12,0x84,0x16, // LOAD_GLOBAL 'open'
     0xb1, // LOAD_FAST 1
     0x34,0x01, // CALL_FUNCTION 1
     0x47,0x0e, // SETUP_WITH 14
@@ -5597,27 +5609,27 @@ static const byte fun_data_scratch_Project___init__[1099] = {
     0x10,0x7f, // LOAD_CONST_STRING 'escala'
     0x55, // LOAD_SUBSCR
     0xc4, // STORE_FAST 4
-    0x12,0x83,0x79, // LOAD_GLOBAL 'isinstance'
+    0x12,0x83,0x7c, // LOAD_GLOBAL 'isinstance'
     0xb4, // LOAD_FAST 4
-    0x12,0x83,0x72, // LOAD_GLOBAL 'list'
+    0x12,0x83,0x75, // LOAD_GLOBAL 'list'
     0x34,0x02, // CALL_FUNCTION 2
     0x44,0x54, // POP_JUMP_IF_FALSE 20
-    0x12,0x83,0x76, // LOAD_GLOBAL 'float'
+    0x12,0x83,0x79, // LOAD_GLOBAL 'float'
     0xb4, // LOAD_FAST 4
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
     0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x83,0x76, // LOAD_GLOBAL 'float'
+    0x12,0x83,0x79, // LOAD_GLOBAL 'float'
     0xb4, // LOAD_FAST 4
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
     0x34,0x01, // CALL_FUNCTION 1
     0x2a,0x02, // BUILD_TUPLE 2
     0x42,0x4e, // JUMP 14
-    0x12,0x83,0x76, // LOAD_GLOBAL 'float'
+    0x12,0x83,0x79, // LOAD_GLOBAL 'float'
     0xb4, // LOAD_FAST 4
     0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x83,0x76, // LOAD_GLOBAL 'float'
+    0x12,0x83,0x79, // LOAD_GLOBAL 'float'
     0xb4, // LOAD_FAST 4
     0x34,0x01, // CALL_FUNCTION 1
     0x2a,0x02, // BUILD_TUPLE 2
@@ -5651,7 +5663,7 @@ static const byte fun_data_scratch_Project___init__[1099] = {
     0x2c,0x00, // BUILD_MAP 0
     0xc5, // STORE_FAST 5
     0x48,0x21, // SETUP_EXCEPT 33
-    0x12,0x84,0x12, // LOAD_GLOBAL 'open'
+    0x12,0x84,0x16, // LOAD_GLOBAL 'open'
     0x25,0x00, // LOAD_DEREF 0
     0x13,0x81,0x04, // LOAD_ATTR 'folder'
     0x23,0x12, // LOAD_CONST_OBJ 18
@@ -5671,8 +5683,8 @@ static const byte fun_data_scratch_Project___init__[1099] = {
     0x5d, // END_FINALLY
     0x4a,0x10, // POP_EXCEPT_JUMP 16
     0x57, // DUP_TOP
-    0x12,0x84,0x13, // LOAD_GLOBAL 'OSError'
-    0x12,0x83,0x7d, // LOAD_GLOBAL 'ValueError'
+    0x12,0x84,0x17, // LOAD_GLOBAL 'OSError'
+    0x12,0x84,0x00, // LOAD_GLOBAL 'ValueError'
     0x2a,0x02, // BUILD_TUPLE 2
     0xdf, // BINARY_OP 8 <exception match>
     0x44,0x43, // POP_JUMP_IF_FALSE 3
@@ -5776,19 +5788,31 @@ static const byte fun_data_scratch_Project___init__[1099] = {
     0x13,0x81,0x11, // LOAD_ATTR 'screen_mode'
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
+    0x12,0x84,0x18, // LOAD_GLOBAL 'hasattr'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
+    0x10,0x81,0x16, // LOAD_CONST_STRING 'trozos'
+    0x34,0x02, // CALL_FUNCTION 2
+    0x44,0x4a, // POP_JUMP_IF_FALSE 10
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x16, // LOAD_METHOD 'trozos'
+    0x36,0x00, // CALL_METHOD 0
+    0x42,0x41, // JUMP 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x25,0x00, // LOAD_DEREF 0
+    0x18,0x81,0x17, // STORE_ATTR 'max_pieces'
     0xb0, // LOAD_FAST 0
     0x20,0x00,0x01, // MAKE_CLOSURE 0
     0xb3, // LOAD_FAST 3
-    0x10,0x81,0x16, // LOAD_CONST_STRING 'objetos'
+    0x10,0x81,0x18, // LOAD_CONST_STRING 'objetos'
     0x55, // LOAD_SUBSCR
     0x34,0x01, // CALL_FUNCTION 1
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x17, // STORE_ATTR 'sprites'
+    0x18,0x81,0x19, // STORE_ATTR 'sprites'
     0x2c,0x00, // BUILD_MAP 0
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x18, // STORE_ATTR 'names'
+    0x18,0x81,0x1a, // STORE_ATTR 'names'
     0xb3, // LOAD_FAST 3
-    0x10,0x81,0x16, // LOAD_CONST_STRING 'objetos'
+    0x10,0x81,0x18, // LOAD_CONST_STRING 'objetos'
     0x55, // LOAD_SUBSCR
     0x5f, // GET_ITER_STACK
     0x4b,0x39, // FOR_ITER 57
@@ -5807,7 +5831,7 @@ static const byte fun_data_scratch_Project___init__[1099] = {
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x18, // LOAD_ATTR 'names'
+    0x13,0x81,0x1a, // LOAD_ATTR 'names'
     0xb9, // LOAD_FAST 9
     0x56, // STORE_SUBSCR
     0x42,0x2e, // JUMP -18
@@ -5825,14 +5849,14 @@ static const byte fun_data_scratch_Project___init__[1099] = {
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x18, // LOAD_ATTR 'names'
+    0x13,0x81,0x1a, // LOAD_ATTR 'names'
     0xbb, // LOAD_FAST 11
     0x56, // STORE_SUBSCR
     0x42,0x2e, // JUMP -18
     0x42,0x05, // JUMP -59
     0x32,0x01, // MAKE_FUNCTION 1
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x17, // LOAD_ATTR 'sprites'
+    0x13,0x81,0x19, // LOAD_ATTR 'sprites'
     0x34,0x01, // CALL_FUNCTION 1
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
@@ -5841,34 +5865,34 @@ static const byte fun_data_scratch_Project___init__[1099] = {
     0xb0, // LOAD_FAST 0
     0x20,0x02,0x01, // MAKE_CLOSURE 2
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x18, // LOAD_ATTR 'names'
+    0x13,0x81,0x1a, // LOAD_ATTR 'names'
     0x14,0x4f, // LOAD_METHOD 'items'
     0x36,0x00, // CALL_METHOD 0
     0x34,0x01, // CALL_FUNCTION 1
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x19, // STORE_ATTR 'cloud'
+    0x18,0x81,0x1b, // STORE_ATTR 'cloud'
     0x32,0x03, // MAKE_FUNCTION 3
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x19, // LOAD_ATTR 'cloud'
+    0x13,0x81,0x1b, // LOAD_ATTR 'cloud'
     0x14,0x4f, // LOAD_METHOD 'items'
     0x36,0x00, // CALL_METHOD 0
     0x34,0x01, // CALL_FUNCTION 1
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x1a, // STORE_ATTR 'cloud_ids'
+    0x18,0x81,0x1c, // STORE_ATTR 'cloud_ids'
     0x50, // LOAD_CONST_FALSE
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x1b, // STORE_ATTR 'online'
+    0x18,0x81,0x1d, // STORE_ATTR 'online'
     0xb1, // LOAD_FAST 1
-    0x14,0x81,0x1c, // LOAD_METHOD 'startswith'
+    0x14,0x81,0x1e, // LOAD_METHOD 'startswith'
     0x10,0x81,0x02, // LOAD_CONST_STRING '/'
     0x36,0x01, // CALL_METHOD 1
     0x44,0x43, // POP_JUMP_IF_FALSE 3
     0xb1, // LOAD_FAST 1
     0x42,0x55, // JUMP 21
     0x12,0x04, // LOAD_GLOBAL 'os'
-    0x14,0x81,0x1d, // LOAD_METHOD 'getcwd'
+    0x14,0x81,0x1f, // LOAD_METHOD 'getcwd'
     0x36,0x00, // CALL_METHOD 0
-    0x14,0x81,0x1e, // LOAD_METHOD 'rstrip'
+    0x14,0x81,0x20, // LOAD_METHOD 'rstrip'
     0x10,0x81,0x02, // LOAD_CONST_STRING '/'
     0x36,0x01, // CALL_METHOD 1
     0x10,0x81,0x02, // LOAD_CONST_STRING '/'
@@ -5878,17 +5902,17 @@ static const byte fun_data_scratch_Project___init__[1099] = {
     0xcc, // STORE_FAST 12
     0x32,0x04, // MAKE_FUNCTION 4
     0xbc, // LOAD_FAST 12
-    0x14,0x81,0x1f, // LOAD_METHOD 'replace'
-    0x10,0x81,0x20, // LOAD_CONST_STRING '\\'
+    0x14,0x81,0x21, // LOAD_METHOD 'replace'
+    0x10,0x81,0x22, // LOAD_CONST_STRING '\\'
     0x10,0x81,0x02, // LOAD_CONST_STRING '/'
     0x36,0x02, // CALL_METHOD 2
-    0x14,0x81,0x21, // LOAD_METHOD 'split'
+    0x14,0x81,0x23, // LOAD_METHOD 'split'
     0x10,0x81,0x02, // LOAD_CONST_STRING '/'
     0x36,0x01, // CALL_METHOD 1
     0x34,0x01, // CALL_FUNCTION 1
     0xcd, // STORE_FAST 13
-    0x10,0x81,0x22, // LOAD_CONST_STRING 'scratch:'
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x10,0x81,0x24, // LOAD_CONST_STRING 'scratch:'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xbd, // LOAD_FAST 13
     0x34,0x01, // CALL_FUNCTION 1
     0x81, // LOAD_CONST_SMALL_INT 1
@@ -5907,12 +5931,12 @@ static const byte fun_data_scratch_Project___init__[1099] = {
     0x55, // LOAD_SUBSCR
     0xf2, // BINARY_OP 27 __add__
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x23, // STORE_ATTR 'room'
-    0x12,0x84,0x05, // LOAD_GLOBAL 'sorted'
+    0x18,0x81,0x25, // STORE_ATTR 'room'
+    0x12,0x84,0x09, // LOAD_GLOBAL 'sorted'
     0x32,0x05, // MAKE_FUNCTION 5
-    0x12,0x84,0x0d, // LOAD_GLOBAL 'enumerate'
+    0x12,0x84,0x11, // LOAD_GLOBAL 'enumerate'
     0xb3, // LOAD_FAST 3
-    0x10,0x81,0x16, // LOAD_CONST_STRING 'objetos'
+    0x10,0x81,0x18, // LOAD_CONST_STRING 'objetos'
     0x55, // LOAD_SUBSCR
     0x34,0x01, // CALL_FUNCTION 1
     0x34,0x01, // CALL_FUNCTION 1
@@ -5923,13 +5947,13 @@ static const byte fun_data_scratch_Project___init__[1099] = {
     0xbe, // LOAD_FAST 14
     0x34,0x01, // CALL_FUNCTION 1
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x24, // STORE_ATTR 'layers'
+    0x18,0x81,0x26, // STORE_ATTR 'layers'
     0x32,0x07, // MAKE_FUNCTION 7
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x17, // LOAD_ATTR 'sprites'
+    0x13,0x81,0x19, // LOAD_ATTR 'sprites'
     0x34,0x01, // CALL_FUNCTION 1
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x25, // STORE_ATTR 'by_name'
+    0x18,0x81,0x27, // STORE_ATTR 'by_name'
     0x51, // LOAD_CONST_NONE
     0x25,0x00, // LOAD_DEREF 0
     0x18,0x36, // STORE_ATTR 'multi'
@@ -5944,10 +5968,10 @@ static const byte fun_data_scratch_Project___init__[1099] = {
     0xd3, // UNARY_OP 3 <not>
     0x44,0xc8,0x80, // POP_JUMP_IF_FALSE 72
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x10,0x81,0x26, // LOAD_CONST_STRING 'Multijugador'
+    0x10,0x81,0x28, // LOAD_CONST_STRING 'Multijugador'
     0x2a,0x01, // BUILD_TUPLE 1
-    0x1b,0x81,0x27, // IMPORT_NAME 'scratch_red'
-    0x1c,0x81,0x26, // IMPORT_FROM 'Multijugador'
+    0x1b,0x81,0x29, // IMPORT_NAME 'scratch_red'
+    0x1c,0x81,0x28, // IMPORT_FROM 'Multijugador'
     0xcf, // STORE_FAST 15
     0x59, // POP_TOP
     0xbf, // LOAD_FAST 15
@@ -5958,132 +5982,132 @@ static const byte fun_data_scratch_Project___init__[1099] = {
     0x34,0x02, // CALL_FUNCTION 2
     0x26,0x10, // STORE_FAST_N 16
     0x24,0x10, // LOAD_FAST_N 16
-    0x14,0x81,0x28, // LOAD_METHOD 'disponible'
+    0x14,0x81,0x2a, // LOAD_METHOD 'disponible'
     0x36,0x00, // CALL_METHOD 0
     0x44,0x66, // POP_JUMP_IF_FALSE 38
     0x24,0x10, // LOAD_FAST_N 16
     0x25,0x00, // LOAD_DEREF 0
     0x18,0x36, // STORE_ATTR 'multi'
     0x24,0x10, // LOAD_FAST_N 16
-    0x13,0x81,0x29, // LOAD_ATTR 'partes'
+    0x13,0x81,0x2b, // LOAD_ATTR 'partes'
     0x44,0x53, // POP_JUMP_IF_FALSE 19
-    0x12,0x84,0x0f, // LOAD_GLOBAL 'min'
+    0x12,0x84,0x13, // LOAD_GLOBAL 'min'
     0xb0, // LOAD_FAST 0
     0x20,0x08,0x01, // MAKE_CLOSURE 8
     0x24,0x10, // LOAD_FAST_N 16
-    0x13,0x81,0x29, // LOAD_ATTR 'partes'
+    0x13,0x81,0x2b, // LOAD_ATTR 'partes'
     0x5e, // GET_ITER
     0x34,0x01, // CALL_FUNCTION 1
     0x34,0x01, // CALL_FUNCTION 1
     0x42,0x41, // JUMP 1
     0x7f, // LOAD_CONST_SMALL_INT -1
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x2a, // STORE_ATTR 'multi_layer'
+    0x18,0x81,0x2c, // STORE_ATTR 'multi_layer'
     0xb3, // LOAD_FAST 3
     0x14,0x81,0x00, // LOAD_METHOD 'get'
-    0x10,0x81,0x2b, // LOAD_CONST_STRING 'monitores'
+    0x10,0x81,0x2d, // LOAD_CONST_STRING 'monitores'
     0x2b,0x00, // BUILD_LIST 0
     0x36,0x02, // CALL_METHOD 2
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x2c, // STORE_ATTR 'monitors'
+    0x18,0x81,0x2e, // STORE_ATTR 'monitors'
     0x2b,0x00, // BUILD_LIST 0
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x2d, // STORE_ATTR 'threads'
-    0x12,0x83,0x6d, // LOAD_GLOBAL 'K'
+    0x18,0x81,0x2f, // STORE_ATTR 'threads'
+    0x12,0x83,0x70, // LOAD_GLOBAL 'K'
     0x14,0x37, // LOAD_METHOD 'ms'
     0x36,0x00, // CALL_METHOD 0
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x2e, // STORE_ATTR 'timer0'
-    0x12,0x83,0x6d, // LOAD_GLOBAL 'K'
+    0x18,0x81,0x30, // STORE_ATTR 'timer0'
+    0x12,0x83,0x70, // LOAD_GLOBAL 'K'
     0x14,0x37, // LOAD_METHOD 'ms'
     0x36,0x00, // CALL_METHOD 0
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x2f, // STORE_ATTR 'now'
+    0x18,0x81,0x31, // STORE_ATTR 'now'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x30, // STORE_ATTR 'clones'
+    0x18,0x81,0x32, // STORE_ATTR 'clones'
     0x10,0x30, // LOAD_CONST_STRING ''
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x31, // STORE_ATTR 'answer'
+    0x18,0x81,0x33, // STORE_ATTR 'answer'
     0x51, // LOAD_CONST_NONE
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x32, // STORE_ATTR 'asking'
+    0x18,0x81,0x34, // STORE_ATTR 'asking'
     0x52, // LOAD_CONST_TRUE
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x33, // STORE_ATTR 'dirty_all'
+    0x18,0x81,0x35, // STORE_ATTR 'dirty_all'
     0x2b,0x00, // BUILD_LIST 0
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x34, // STORE_ATTR 'dirty'
+    0x18,0x81,0x36, // STORE_ATTR 'dirty'
     0x2c,0x00, // BUILD_MAP 0
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x35, // STORE_ATTR 'mon_text'
-    0x12,0x84,0x14, // LOAD_GLOBAL 'set'
+    0x18,0x81,0x37, // STORE_ATTR 'mon_text'
+    0x12,0x84,0x19, // LOAD_GLOBAL 'set'
     0x34,0x00, // CALL_FUNCTION 0
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x36, // STORE_ATTR 'held'
+    0x18,0x81,0x38, // STORE_ATTR 'held'
     0x50, // LOAD_CONST_FALSE
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x37, // STORE_ATTR 'redraw'
+    0x18,0x81,0x39, // STORE_ATTR 'redraw'
     0x23,0x0a, // LOAD_CONST_OBJ 10
     0x23,0x0a, // LOAD_CONST_OBJ 10
     0x2b,0x02, // BUILD_LIST 2
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x38, // STORE_ATTR 'mouse'
+    0x18,0x81,0x3a, // STORE_ATTR 'mouse'
     0x50, // LOAD_CONST_FALSE
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x39, // STORE_ATTR 'mouse_down'
+    0x18,0x81,0x3b, // STORE_ATTR 'mouse_down'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x3a, // STORE_ATTR 'mouse_t'
+    0x18,0x81,0x3c, // STORE_ATTR 'mouse_t'
     0x51, // LOAD_CONST_NONE
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x3b, // STORE_ATTR 'mouse_drawn'
+    0x18,0x81,0x3d, // STORE_ATTR 'mouse_drawn'
     0x2c,0x00, // BUILD_MAP 0
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x3c, // STORE_ATTR 'taps'
+    0x18,0x81,0x3e, // STORE_ATTR 'taps'
     0x2c,0x00, // BUILD_MAP 0
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x3d, // STORE_ATTR 'injected'
+    0x18,0x81,0x3f, // STORE_ATTR 'injected'
     0x23,0x17, // LOAD_CONST_OBJ 23
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x3e, // STORE_ATTR 'last_tap'
+    0x18,0x81,0x40, // STORE_ATTR 'last_tap'
     0x51, // LOAD_CONST_NONE
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x3f, // STORE_ATTR 'sprint'
+    0x18,0x81,0x41, // STORE_ATTR 'sprint'
     0x51, // LOAD_CONST_NONE
     0x25,0x00, // LOAD_DEREF 0
     0x18,0x81,0x07, // STORE_ATTR 'menu'
     0x51, // LOAD_CONST_NONE
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x40, // STORE_ATTR 'picker'
+    0x18,0x81,0x42, // STORE_ATTR 'picker'
     0x51, // LOAD_CONST_NONE
     0x25,0x00, // LOAD_DEREF 0
     0x18,0x38, // STORE_ATTR 'toast'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x41, // STORE_ATTR 'frame'
+    0x18,0x81,0x43, // STORE_ATTR 'frame'
     0x81, // LOAD_CONST_SMALL_INT 1
     0x80, // LOAD_CONST_SMALL_INT 0
     0x2b,0x02, // BUILD_LIST 2
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x42, // STORE_ATTR 'kb'
+    0x18,0x81,0x44, // STORE_ATTR 'kb'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x43, // LOAD_METHOD '_uses_mouse'
+    0x14,0x81,0x45, // LOAD_METHOD '_uses_mouse'
     0x36,0x00, // CALL_METHOD 0
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x44, // STORE_ATTR 'uses_mouse'
-    0x12,0x84,0x14, // LOAD_GLOBAL 'set'
+    0x18,0x81,0x46, // STORE_ATTR 'uses_mouse'
+    0x12,0x84,0x19, // LOAD_GLOBAL 'set'
     0x34,0x00, // CALL_FUNCTION 0
     0x25,0x00, // LOAD_DEREF 0
     0x18,0x3b, // STORE_ATTR 'unsupported'
     0x2c,0x00, // BUILD_MAP 0
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x45, // STORE_ATTR 'S'
+    0x18,0x81,0x47, // STORE_ATTR 'S'
     0x2c,0x00, // BUILD_MAP 0
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x46, // STORE_ATTR 'R'
+    0x18,0x81,0x48, // STORE_ATTR 'R'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x47, // LOAD_METHOD '_register'
+    0x14,0x81,0x49, // LOAD_METHOD '_register'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0x51, // LOAD_CONST_NONE
@@ -6093,8 +6117,8 @@ static const byte fun_data_scratch_Project___init__[1099] = {
 // frozen bytecode for file scratch.py, scope scratch_Project___init____lt_listcomp_gt_
 static const byte fun_data_scratch_Project___init____lt_listcomp_gt_[27] = {
     0x52,0x0c, // prelude
-    0x82,0x4c,0x12,0x12, // names: <listcomp>, *, *
-    0x90,0x34, // code info
+    0x82,0x50,0x12,0x12, // names: <listcomp>, *, *
+    0x90,0x36, // code info
     0x2b,0x00, // BUILD_LIST 0
     0xb1, // LOAD_FAST 1
     0x5f, // GET_ITER_STACK
@@ -6131,7 +6155,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project___init____lt_list
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 332,
+        .qstr_block_name_idx = 336,
         .line_info = fun_data_scratch_Project___init____lt_listcomp_gt_ + 6,
         .line_info_top = fun_data_scratch_Project___init____lt_listcomp_gt_ + 8,
         .opcodes = fun_data_scratch_Project___init____lt_listcomp_gt_ + 8,
@@ -6147,8 +6171,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project___init____lt_list
 // frozen bytecode for file scratch.py, scope scratch_Project___init____lt_listcomp_gt_2
 static const byte fun_data_scratch_Project___init____lt_listcomp_gt_2[25] = {
     0x39,0x0a, // prelude
-    0x82,0x4c,0x12, // names: <listcomp>, *
-    0x90,0x3b, // code info
+    0x82,0x50,0x12, // names: <listcomp>, *
+    0x90,0x3d, // code info
     0x2b,0x00, // BUILD_LIST 0
     0xb0, // LOAD_FAST 0
     0x5f, // GET_ITER_STACK
@@ -6185,7 +6209,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project___init____lt_list
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 332,
+        .qstr_block_name_idx = 336,
         .line_info = fun_data_scratch_Project___init____lt_listcomp_gt_2 + 5,
         .line_info_top = fun_data_scratch_Project___init____lt_listcomp_gt_2 + 7,
         .opcodes = fun_data_scratch_Project___init____lt_listcomp_gt_2 + 7,
@@ -6201,8 +6225,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project___init____lt_list
 // frozen bytecode for file scratch.py, scope scratch_Project___init____lt_dictcomp_gt_
 static const byte fun_data_scratch_Project___init____lt_dictcomp_gt_[52] = {
     0x5a,0x0e, // prelude
-    0x82,0x4b,0x12,0x12, // names: <dictcomp>, *, *
-    0x90,0x3e,0x2a, // code info
+    0x82,0x4f,0x12,0x12, // names: <dictcomp>, *, *
+    0x90,0x40,0x2a, // code info
     0x2c,0x00, // BUILD_MAP 0
     0xb1, // LOAD_FAST 1
     0x5f, // GET_ITER_STACK
@@ -6216,11 +6240,11 @@ static const byte fun_data_scratch_Project___init____lt_dictcomp_gt_[52] = {
     0x13,0x4e, // LOAD_ATTR 'vars'
     0xdd, // BINARY_OP 6 <in>
     0x44,0x30, // POP_JUMP_IF_FALSE -16
-    0x12,0x83,0x7c, // LOAD_GLOBAL 'str'
+    0x12,0x83,0x7f, // LOAD_GLOBAL 'str'
     0xb3, // LOAD_FAST 3
     0x34,0x01, // CALL_FUNCTION 1
-    0x14,0x81,0x1c, // LOAD_METHOD 'startswith'
-    0x10,0x82,0x4d, // LOAD_CONST_STRING '☁'
+    0x14,0x81,0x1e, // LOAD_METHOD 'startswith'
+    0x10,0x82,0x51, // LOAD_CONST_STRING '☁'
     0x36,0x01, // CALL_METHOD 1
     0x44,0x20, // POP_JUMP_IF_FALSE -32
     0xb3, // LOAD_FAST 3
@@ -6252,7 +6276,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project___init____lt_dict
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 331,
+        .qstr_block_name_idx = 335,
         .line_info = fun_data_scratch_Project___init____lt_dictcomp_gt_ + 6,
         .line_info_top = fun_data_scratch_Project___init____lt_dictcomp_gt_ + 9,
         .opcodes = fun_data_scratch_Project___init____lt_dictcomp_gt_ + 9,
@@ -6268,8 +6292,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project___init____lt_dict
 // frozen bytecode for file scratch.py, scope scratch_Project___init____lt_dictcomp_gt_2
 static const byte fun_data_scratch_Project___init____lt_dictcomp_gt_2[24] = {
     0x49,0x0a, // prelude
-    0x82,0x4b,0x12, // names: <dictcomp>, *
-    0x90,0x40, // code info
+    0x82,0x4f,0x12, // names: <dictcomp>, *
+    0x90,0x42, // code info
     0x2c,0x00, // BUILD_MAP 0
     0xb0, // LOAD_FAST 0
     0x5f, // GET_ITER_STACK
@@ -6306,7 +6330,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project___init____lt_dict
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 331,
+        .qstr_block_name_idx = 335,
         .line_info = fun_data_scratch_Project___init____lt_dictcomp_gt_2 + 5,
         .line_info_top = fun_data_scratch_Project___init____lt_dictcomp_gt_2 + 7,
         .opcodes = fun_data_scratch_Project___init____lt_dictcomp_gt_2 + 7,
@@ -6322,8 +6346,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project___init____lt_dict
 // frozen bytecode for file scratch.py, scope scratch_Project___init____lt_listcomp_gt_3
 static const byte fun_data_scratch_Project___init____lt_listcomp_gt_3[23] = {
     0x39,0x0a, // prelude
-    0x82,0x4c,0x12, // names: <listcomp>, *
-    0x90,0x44, // code info
+    0x82,0x50,0x12, // names: <listcomp>, *
+    0x90,0x46, // code info
     0x2b,0x00, // BUILD_LIST 0
     0xb0, // LOAD_FAST 0
     0x5f, // GET_ITER_STACK
@@ -6359,7 +6383,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project___init____lt_list
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 332,
+        .qstr_block_name_idx = 336,
         .line_info = fun_data_scratch_Project___init____lt_listcomp_gt_3 + 5,
         .line_info_top = fun_data_scratch_Project___init____lt_listcomp_gt_3 + 7,
         .opcodes = fun_data_scratch_Project___init____lt_listcomp_gt_3 + 7,
@@ -6375,8 +6399,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project___init____lt_list
 // frozen bytecode for file scratch.py, scope scratch_Project___init____lt_listcomp_gt_4
 static const byte fun_data_scratch_Project___init____lt_listcomp_gt_4[36] = {
     0x49,0x0a, // prelude
-    0x82,0x4c,0x12, // names: <listcomp>, *
-    0x90,0x46, // code info
+    0x82,0x50,0x12, // names: <listcomp>, *
+    0x90,0x48, // code info
     0x2b,0x00, // BUILD_LIST 0
     0xb0, // LOAD_FAST 0
     0x5f, // GET_ITER_STACK
@@ -6389,7 +6413,7 @@ static const byte fun_data_scratch_Project___init____lt_listcomp_gt_4[36] = {
     0x55, // LOAD_SUBSCR
     0x43,0x34, // POP_JUMP_IF_TRUE -12
     0xb2, // LOAD_FAST 2
-    0x10,0x82,0x4e, // LOAD_CONST_STRING 'capa'
+    0x10,0x82,0x52, // LOAD_CONST_STRING 'capa'
     0x55, // LOAD_SUBSCR
     0xb1, // LOAD_FAST 1
     0x2a,0x02, // BUILD_TUPLE 2
@@ -6420,7 +6444,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project___init____lt_list
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 332,
+        .qstr_block_name_idx = 336,
         .line_info = fun_data_scratch_Project___init____lt_listcomp_gt_4 + 5,
         .line_info_top = fun_data_scratch_Project___init____lt_listcomp_gt_4 + 7,
         .opcodes = fun_data_scratch_Project___init____lt_listcomp_gt_4 + 7,
@@ -6436,8 +6460,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project___init____lt_list
 // frozen bytecode for file scratch.py, scope scratch_Project___init____lt_listcomp_gt_5
 static const byte fun_data_scratch_Project___init____lt_listcomp_gt_5[30] = {
     0x52,0x0c, // prelude
-    0x82,0x4c,0x12,0x12, // names: <listcomp>, *, *
-    0x90,0x47, // code info
+    0x82,0x50,0x12,0x12, // names: <listcomp>, *, *
+    0x90,0x49, // code info
     0x2b,0x00, // BUILD_LIST 0
     0xb1, // LOAD_FAST 1
     0x5f, // GET_ITER_STACK
@@ -6446,7 +6470,7 @@ static const byte fun_data_scratch_Project___init____lt_listcomp_gt_5[30] = {
     0xc2, // STORE_FAST 2
     0xc3, // STORE_FAST 3
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x17, // LOAD_ATTR 'sprites'
+    0x13,0x81,0x19, // LOAD_ATTR 'sprites'
     0xb3, // LOAD_FAST 3
     0x55, // LOAD_SUBSCR
     0x2f,0x14, // STORE_COMP 20
@@ -6476,7 +6500,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project___init____lt_list
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 332,
+        .qstr_block_name_idx = 336,
         .line_info = fun_data_scratch_Project___init____lt_listcomp_gt_5 + 6,
         .line_info_top = fun_data_scratch_Project___init____lt_listcomp_gt_5 + 8,
         .opcodes = fun_data_scratch_Project___init____lt_listcomp_gt_5 + 8,
@@ -6492,8 +6516,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project___init____lt_list
 // frozen bytecode for file scratch.py, scope scratch_Project___init____lt_dictcomp_gt_3
 static const byte fun_data_scratch_Project___init____lt_dictcomp_gt_3[23] = {
     0x41,0x0a, // prelude
-    0x82,0x4b,0x12, // names: <dictcomp>, *
-    0x90,0x48, // code info
+    0x82,0x4f,0x12, // names: <dictcomp>, *
+    0x90,0x4a, // code info
     0x2c,0x00, // BUILD_MAP 0
     0xb0, // LOAD_FAST 0
     0x5f, // GET_ITER_STACK
@@ -6529,7 +6553,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project___init____lt_dict
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 331,
+        .qstr_block_name_idx = 335,
         .line_info = fun_data_scratch_Project___init____lt_dictcomp_gt_3 + 5,
         .line_info_top = fun_data_scratch_Project___init____lt_dictcomp_gt_3 + 7,
         .opcodes = fun_data_scratch_Project___init____lt_dictcomp_gt_3 + 7,
@@ -6545,8 +6569,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project___init____lt_dict
 // frozen bytecode for file scratch.py, scope scratch_Project___init____lt_genexpr_gt_
 static const byte fun_data_scratch_Project___init____lt_genexpr_gt_[33] = {
     0xca,0x40,0x0c, // prelude
-    0x82,0x4f,0x12,0x12, // names: <genexpr>, *, *
-    0x90,0x50, // code info
+    0x82,0x53,0x12,0x12, // names: <genexpr>, *, *
+    0x90,0x52, // code info
     0x53, // LOAD_NULL
     0xb1, // LOAD_FAST 1
     0x53, // LOAD_NULL
@@ -6554,8 +6578,8 @@ static const byte fun_data_scratch_Project___init____lt_genexpr_gt_[33] = {
     0x4b,0x10, // FOR_ITER 16
     0xc2, // STORE_FAST 2
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x24, // LOAD_ATTR 'layers'
-    0x14,0x82,0x50, // LOAD_METHOD 'index'
+    0x13,0x81,0x26, // LOAD_ATTR 'layers'
+    0x14,0x82,0x54, // LOAD_METHOD 'index'
     0xb2, // LOAD_FAST 2
     0x36,0x01, // CALL_METHOD 1
     0x67, // YIELD_VALUE
@@ -6587,7 +6611,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project___init____lt_gene
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 335,
+        .qstr_block_name_idx = 339,
         .line_info = fun_data_scratch_Project___init____lt_genexpr_gt_ + 7,
         .line_info_top = fun_data_scratch_Project___init____lt_genexpr_gt_ + 9,
         .opcodes = fun_data_scratch_Project___init____lt_genexpr_gt_ + 9,
@@ -6619,7 +6643,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project___init__ = {
     .fun_data = fun_data_scratch_Project___init__,
     .children = (void *)&children_scratch_Project___init__,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 1099,
+    .fun_data_len = 1129,
     .n_children = 9,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -6635,8 +6659,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project___init__ = {
         .n_def_pos_args = 0,
         .qstr_block_name_idx = 62,
         .line_info = fun_data_scratch_Project___init__ + 9,
-        .line_info_top = fun_data_scratch_Project___init__ + 94,
-        .opcodes = fun_data_scratch_Project___init__ + 95,
+        .line_info_top = fun_data_scratch_Project___init__ + 95,
+        .opcodes = fun_data_scratch_Project___init__ + 96,
     },
     #endif
     #endif
@@ -6646,12 +6670,12 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project___init__ = {
 // frozen bytecode for file scratch.py, scope scratch_Project__uses_mouse
 static const byte fun_data_scratch_Project__uses_mouse[106] = {
     0x99,0x10,0x22, // prelude
-    0x81,0x43,0x84,0x06, // names: _uses_mouse, self
-    0x90,0x72,0x43,0x28,0x27,0x27,0x24,0x27,0x27,0x22,0x2c,0x32,0x29, // code info
+    0x81,0x45,0x84,0x0a, // names: _uses_mouse, self
+    0x90,0x74,0x43,0x28,0x27,0x27,0x24,0x27,0x27,0x22,0x2c,0x32,0x29, // code info
     0x23,0x18, // LOAD_CONST_OBJ 24
     0xc1, // STORE_FAST 1
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x17, // LOAD_ATTR 'sprites'
+    0x13,0x81,0x19, // LOAD_ATTR 'sprites'
     0x5f, // GET_ITER_STACK
     0x4b,0x4a, // FOR_ITER 74
     0xc2, // STORE_FAST 2
@@ -6685,7 +6709,7 @@ static const byte fun_data_scratch_Project__uses_mouse[106] = {
     0xb4, // LOAD_FAST 4
     0x82, // LOAD_CONST_SMALL_INT 2
     0x55, // LOAD_SUBSCR
-    0x14,0x81,0x48, // LOAD_METHOD 'values'
+    0x14,0x81,0x4a, // LOAD_METHOD 'values'
     0x36,0x00, // CALL_METHOD 0
     0x5f, // GET_ITER_STACK
     0x4b,0x17, // FOR_ITER 23
@@ -6693,13 +6717,13 @@ static const byte fun_data_scratch_Project__uses_mouse[106] = {
     0xb5, // LOAD_FAST 5
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
-    0x10,0x81,0x49, // LOAD_CONST_STRING 'l'
+    0x10,0x81,0x4b, // LOAD_CONST_STRING 'l'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x4b, // POP_JUMP_IF_FALSE 11
     0xb5, // LOAD_FAST 5
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
-    0x10,0x81,0x4a, // LOAD_CONST_STRING '_mouse_'
+    0x10,0x81,0x4c, // LOAD_CONST_STRING '_mouse_'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x42, // POP_JUMP_IF_FALSE 2
     0x52, // LOAD_CONST_TRUE
@@ -6733,7 +6757,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__uses_mouse = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 195,
+        .qstr_block_name_idx = 197,
         .line_info = fun_data_scratch_Project__uses_mouse + 7,
         .line_info_top = fun_data_scratch_Project__uses_mouse + 20,
         .opcodes = fun_data_scratch_Project__uses_mouse + 20,
@@ -6749,18 +6773,18 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__uses_mouse = {
 // frozen bytecode for file scratch.py, scope scratch_Project_set_screen
 static const byte fun_data_scratch_Project_set_screen[168] = {
     0x3a,0x26, // prelude
-    0x81,0x15,0x84,0x06,0x84,0x15, // names: set_screen, self, mode
-    0x90,0x82,0x20,0x25,0x37,0x27,0x2a,0x2b,0x35,0x33,0x1f,0x24,0x25, // code info
+    0x81,0x15,0x84,0x0a,0x84,0x1a, // names: set_screen, self, mode
+    0x90,0x84,0x20,0x25,0x37,0x27,0x2a,0x2b,0x35,0x33,0x1f,0x24,0x25, // code info
     0xb1, // LOAD_FAST 1
     0xb0, // LOAD_FAST 0
     0x18,0x81,0x11, // STORE_ATTR 'screen_mode'
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
-    0x13,0x81,0x4b, // LOAD_ATTR 'ANCHO'
-    0x12,0x83,0x6f, // LOAD_GLOBAL 'STAGE_W'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
+    0x13,0x81,0x4d, // LOAD_ATTR 'ANCHO'
+    0x12,0x83,0x72, // LOAD_GLOBAL 'STAGE_W'
     0xf7, // BINARY_OP 32 __truediv__
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
-    0x13,0x81,0x4c, // LOAD_ATTR 'ALTO'
-    0x12,0x83,0x70, // LOAD_GLOBAL 'STAGE_H'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
+    0x13,0x81,0x4e, // LOAD_ATTR 'ALTO'
+    0x12,0x83,0x73, // LOAD_GLOBAL 'STAGE_H'
     0xf7, // BINARY_OP 32 __truediv__
     0x5a, // ROT_TWO
     0xc2, // STORE_FAST 2
@@ -6769,7 +6793,7 @@ static const byte fun_data_scratch_Project_set_screen[168] = {
     0x10,0x81,0x10, // LOAD_CONST_STRING 'estirar'
     0xdc, // BINARY_OP 5 __ne__
     0x44,0x4a, // POP_JUMP_IF_FALSE 10
-    0x12,0x84,0x0f, // LOAD_GLOBAL 'min'
+    0x12,0x84,0x13, // LOAD_GLOBAL 'min'
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
     0x34,0x02, // CALL_FUNCTION 2
@@ -6780,9 +6804,9 @@ static const byte fun_data_scratch_Project_set_screen[168] = {
     0xb3, // LOAD_FAST 3
     0x5a, // ROT_TWO
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x4d, // STORE_ATTR 'fx'
+    0x18,0x81,0x4f, // STORE_ATTR 'fx'
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x4e, // STORE_ATTR 'fy'
+    0x18,0x81,0x50, // STORE_ATTR 'fy'
     0xb2, // LOAD_FAST 2
     0xb0, // LOAD_FAST 0
     0x13,0x67, // LOAD_ATTR 'scale'
@@ -6800,40 +6824,40 @@ static const byte fun_data_scratch_Project_set_screen[168] = {
     0x18,0x69, // STORE_ATTR 'kx'
     0xb0, // LOAD_FAST 0
     0x18,0x6a, // STORE_ATTR 'ky'
-    0x12,0x83,0x6f, // LOAD_GLOBAL 'STAGE_W'
+    0x12,0x83,0x72, // LOAD_GLOBAL 'STAGE_W'
     0xb2, // LOAD_FAST 2
     0xf4, // BINARY_OP 29 __mul__
-    0x12,0x83,0x70, // LOAD_GLOBAL 'STAGE_H'
+    0x12,0x83,0x73, // LOAD_GLOBAL 'STAGE_H'
     0xb3, // LOAD_FAST 3
     0xf4, // BINARY_OP 29 __mul__
     0x5a, // ROT_TWO
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x4f, // STORE_ATTR 'sw'
+    0x18,0x81,0x51, // STORE_ATTR 'sw'
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x50, // STORE_ATTR 'sh'
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
-    0x13,0x81,0x4b, // LOAD_ATTR 'ANCHO'
+    0x18,0x81,0x52, // STORE_ATTR 'sh'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
+    0x13,0x81,0x4d, // LOAD_ATTR 'ANCHO'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x4f, // LOAD_ATTR 'sw'
+    0x13,0x81,0x51, // LOAD_ATTR 'sw'
     0xf3, // BINARY_OP 28 __sub__
     0x82, // LOAD_CONST_SMALL_INT 2
     0xf7, // BINARY_OP 32 __truediv__
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
-    0x13,0x81,0x4c, // LOAD_ATTR 'ALTO'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
+    0x13,0x81,0x4e, // LOAD_ATTR 'ALTO'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x50, // LOAD_ATTR 'sh'
+    0x13,0x81,0x52, // LOAD_ATTR 'sh'
     0xf3, // BINARY_OP 28 __sub__
     0x82, // LOAD_CONST_SMALL_INT 2
     0xf7, // BINARY_OP 32 __truediv__
     0x5a, // ROT_TWO
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x51, // STORE_ATTR 'ox'
+    0x18,0x81,0x53, // STORE_ATTR 'ox'
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x52, // STORE_ATTR 'oy'
+    0x18,0x81,0x54, // STORE_ATTR 'oy'
     0x52, // LOAD_CONST_TRUE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x33, // STORE_ATTR 'dirty_all'
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
+    0x18,0x81,0x35, // STORE_ATTR 'dirty_all'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
     0x14,0x32, // LOAD_METHOD 'limpiar'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x36,0x01, // CALL_METHOD 1
@@ -6880,24 +6904,24 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_set_screen = {
 // frozen bytecode for file scratch.py, scope scratch_Project_to_screen
 static const byte fun_data_scratch_Project_to_screen[42] = {
     0x33,0x0e, // prelude
-    0x6b,0x84,0x06,0x54,0x55, // names: to_screen, self, x, y
-    0x90,0x8f, // code info
+    0x6b,0x84,0x0a,0x54,0x55, // names: to_screen, self, x, y
+    0x90,0x91, // code info
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x51, // LOAD_ATTR 'ox'
+    0x13,0x81,0x53, // LOAD_ATTR 'ox'
     0xb1, // LOAD_FAST 1
     0x22,0x81,0x70, // LOAD_CONST_SMALL_INT 240
     0xf2, // BINARY_OP 27 __add__
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x4d, // LOAD_ATTR 'fx'
+    0x13,0x81,0x4f, // LOAD_ATTR 'fx'
     0xf4, // BINARY_OP 29 __mul__
     0xf2, // BINARY_OP 27 __add__
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x52, // LOAD_ATTR 'oy'
+    0x13,0x81,0x54, // LOAD_ATTR 'oy'
     0x22,0x81,0x34, // LOAD_CONST_SMALL_INT 180
     0xb2, // LOAD_FAST 2
     0xf3, // BINARY_OP 28 __sub__
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x4e, // LOAD_ATTR 'fy'
+    0x13,0x81,0x50, // LOAD_ATTR 'fy'
     0xf4, // BINARY_OP 29 __mul__
     0xf2, // BINARY_OP 27 __add__
     0x2a,0x02, // BUILD_TUPLE 2
@@ -6942,8 +6966,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_to_screen = {
 // frozen bytecode for file scratch.py, scope scratch_Project_var_get
 static const byte fun_data_scratch_Project_var_get[39] = {
     0x33,0x16, // prelude
-    0x81,0x53,0x84,0x06,0x74,0x84,0x16, // names: var_get, self, sp, vid
-    0x90,0x93,0x27,0x26, // code info
+    0x81,0x55,0x84,0x0a,0x74,0x84,0x1b, // names: var_get, self, sp, vid
+    0x90,0x95,0x27,0x26, // code info
     0xb2, // LOAD_FAST 2
     0xb1, // LOAD_FAST 1
     0x13,0x4e, // LOAD_ATTR 'vars'
@@ -6986,7 +7010,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_var_get = {
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 211,
+        .qstr_block_name_idx = 213,
         .line_info = fun_data_scratch_Project_var_get + 9,
         .line_info_top = fun_data_scratch_Project_var_get + 13,
         .opcodes = fun_data_scratch_Project_var_get + 13,
@@ -7002,8 +7026,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_var_get = {
 // frozen bytecode for file scratch.py, scope scratch_Project_var_set
 static const byte fun_data_scratch_Project_var_set[95] = {
     0xb8,0x04,0x1e, // prelude
-    0x81,0x54,0x84,0x06,0x74,0x84,0x16,0x84,0x17, // names: var_set, self, sp, vid, value
-    0x90,0x98,0x2f,0x48,0x3d,0x2f, // code info
+    0x81,0x56,0x84,0x0a,0x74,0x84,0x1b,0x84,0x1c, // names: var_set, self, sp, vid, value
+    0x90,0x9a,0x2f,0x48,0x3d,0x2f, // code info
     0xb2, // LOAD_FAST 2
     0xb1, // LOAD_FAST 1
     0x13,0x4e, // LOAD_ATTR 'vars'
@@ -7022,11 +7046,11 @@ static const byte fun_data_scratch_Project_var_set[95] = {
     0x56, // STORE_SUBSCR
     0x42,0x74, // JUMP 52
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x1b, // LOAD_ATTR 'online'
+    0x13,0x81,0x1d, // LOAD_ATTR 'online'
     0x44,0x66, // POP_JUMP_IF_FALSE 38
     0xb2, // LOAD_FAST 2
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x19, // LOAD_ATTR 'cloud'
+    0x13,0x81,0x1b, // LOAD_ATTR 'cloud'
     0xdd, // BINARY_OP 6 <in>
     0x44,0x5e, // POP_JUMP_IF_FALSE 30
     0xb0, // LOAD_FAST 0
@@ -7039,9 +7063,9 @@ static const byte fun_data_scratch_Project_var_set[95] = {
     0xdc, // BINARY_OP 5 __ne__
     0x44,0x4f, // POP_JUMP_IF_FALSE 15
     0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x81,0x55, // LOAD_METHOD 'var'
+    0x14,0x81,0x57, // LOAD_METHOD 'var'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x19, // LOAD_ATTR 'cloud'
+    0x13,0x81,0x1b, // LOAD_ATTR 'cloud'
     0xb2, // LOAD_FAST 2
     0x55, // LOAD_SUBSCR
     0xb3, // LOAD_FAST 3
@@ -7079,7 +7103,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_var_set = {
         .n_pos_args = 4,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 212,
+        .qstr_block_name_idx = 214,
         .line_info = fun_data_scratch_Project_var_set + 12,
         .line_info_top = fun_data_scratch_Project_var_set + 18,
         .opcodes = fun_data_scratch_Project_var_set + 18,
@@ -7095,10 +7119,10 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_var_set = {
 // frozen bytecode for file scratch.py, scope scratch_Project_cloud_connect
 static const byte fun_data_scratch_Project_cloud_connect[143] = {
     0x31,0x1e, // prelude
-    0x35,0x84,0x06, // names: cloud_connect, self
-    0x90,0xa1,0x2c,0x22,0x29,0x35,0x28,0x2c,0x29,0x3f,0x22,0x25, // code info
+    0x35,0x84,0x0a, // names: cloud_connect, self
+    0x90,0xa3,0x2c,0x22,0x29,0x35,0x28,0x2c,0x29,0x3f,0x22,0x25, // code info
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x19, // LOAD_ATTR 'cloud'
+    0x13,0x81,0x1b, // LOAD_ATTR 'cloud'
     0x44,0x46, // POP_JUMP_IF_FALSE 6
     0x12,0x09, // LOAD_GLOBAL 'red'
     0x51, // LOAD_CONST_NONE
@@ -7106,12 +7130,12 @@ static const byte fun_data_scratch_Project_cloud_connect[143] = {
     0x44,0x42, // POP_JUMP_IF_FALSE 2
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
     0x14,0x32, // LOAD_METHOD 'limpiar'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
     0x14,0x33, // LOAD_METHOD 'texto'
     0x23,0x19, // LOAD_CONST_OBJ 25
     0x22,0x80,0x50, // LOAD_CONST_SMALL_INT 80
@@ -7119,30 +7143,30 @@ static const byte fun_data_scratch_Project_cloud_connect[143] = {
     0x22,0x87,0xff,0xff,0x7f, // LOAD_CONST_SMALL_INT 16777215
     0x36,0x04, // CALL_METHOD 4
     0x59, // POP_TOP
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
     0x14,0x34, // LOAD_METHOD 'mostrar'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x81,0x56, // LOAD_METHOD 'conectar'
+    0x14,0x81,0x58, // LOAD_METHOD 'conectar'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x23, // LOAD_ATTR 'room'
+    0x13,0x81,0x25, // LOAD_ATTR 'room'
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x81,0x57, // LOAD_METHOD 'esperar'
+    0x14,0x81,0x59, // LOAD_METHOD 'esperar'
     0x36,0x00, // CALL_METHOD 0
     0x43,0x61, // POP_JUMP_IF_TRUE 33
     0x23,0x1a, // LOAD_CONST_OBJ 26
     0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x81,0x58, // LOAD_METHOD 'error'
+    0x14,0x81,0x5a, // LOAD_METHOD 'error'
     0x36,0x00, // CALL_METHOD 0
     0x51, // LOAD_CONST_NONE
     0xa2, // LOAD_CONST_SMALL_INT 34
     0x2e,0x02, // BUILD_SLICE 2
     0x55, // LOAD_SUBSCR
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x6d, // LOAD_GLOBAL 'K'
+    0x12,0x83,0x70, // LOAD_GLOBAL 'K'
     0x14,0x37, // LOAD_METHOD 'ms'
     0x36,0x00, // CALL_METHOD 0
     0x22,0x9f,0x20, // LOAD_CONST_SMALL_INT 4000
@@ -7154,9 +7178,9 @@ static const byte fun_data_scratch_Project_cloud_connect[143] = {
     0x63, // RETURN_VALUE
     0x52, // LOAD_CONST_TRUE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x1b, // STORE_ATTR 'online'
+    0x18,0x81,0x1d, // STORE_ATTR 'online'
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x59, // LOAD_METHOD 'cloud_apply'
+    0x14,0x81,0x5b, // LOAD_METHOD 'cloud_apply'
     0x12,0x09, // LOAD_GLOBAL 'red'
     0x14,0x4e, // LOAD_METHOD 'vars'
     0x36,0x00, // CALL_METHOD 0
@@ -7204,8 +7228,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_cloud_connect = {
 // frozen bytecode for file scratch.py, scope scratch_Project_cloud_apply
 static const byte fun_data_scratch_Project_cloud_apply[54] = {
     0x5a,0x16, // prelude
-    0x81,0x59,0x84,0x06,0x84,0x18, // names: cloud_apply, self, vs
-    0x90,0xae,0x2c,0x2b,0x26, // code info
+    0x81,0x5b,0x84,0x0a,0x84,0x1d, // names: cloud_apply, self, vs
+    0x90,0xb0,0x2c,0x2b,0x26, // code info
     0xb1, // LOAD_FAST 1
     0x14,0x4f, // LOAD_METHOD 'items'
     0x36,0x00, // CALL_METHOD 0
@@ -7215,7 +7239,7 @@ static const byte fun_data_scratch_Project_cloud_apply[54] = {
     0xc2, // STORE_FAST 2
     0xc3, // STORE_FAST 3
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x1a, // LOAD_ATTR 'cloud_ids'
+    0x13,0x81,0x1c, // LOAD_ATTR 'cloud_ids'
     0x14,0x81,0x00, // LOAD_METHOD 'get'
     0xb2, // LOAD_FAST 2
     0x36,0x01, // CALL_METHOD 1
@@ -7258,7 +7282,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_cloud_apply = {
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 217,
+        .qstr_block_name_idx = 219,
         .line_info = fun_data_scratch_Project_cloud_apply + 8,
         .line_info_top = fun_data_scratch_Project_cloud_apply + 13,
         .opcodes = fun_data_scratch_Project_cloud_apply + 13,
@@ -7274,36 +7298,36 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_cloud_apply = {
 // frozen bytecode for file scratch.py, scope scratch_Project_cloud_poll
 static const byte fun_data_scratch_Project_cloud_poll[135] = {
     0x61,0x1a, // prelude
-    0x81,0x5a,0x84,0x06, // names: cloud_poll, self
-    0x90,0xb4,0x26,0x22,0x2b,0x2f,0x3e,0x3d,0x25, // code info
+    0x81,0x5c,0x84,0x0a, // names: cloud_poll, self
+    0x90,0xb6,0x26,0x22,0x2b,0x2f,0x3e,0x3d,0x25, // code info
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x1b, // LOAD_ATTR 'online'
+    0x13,0x81,0x1d, // LOAD_ATTR 'online'
     0x43,0x42, // POP_JUMP_IF_TRUE 2
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
     0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x81,0x5b, // LOAD_METHOD 'recibir'
+    0x14,0x81,0x5d, // LOAD_METHOD 'recibir'
     0x36,0x00, // CALL_METHOD 0
     0x5f, // GET_ITER_STACK
     0x4b,0x64, // FOR_ITER 100
     0xc1, // STORE_FAST 1
     0xb1, // LOAD_FAST 1
     0x14,0x81,0x00, // LOAD_METHOD 'get'
-    0x10,0x81,0x5c, // LOAD_CONST_STRING 't'
+    0x10,0x81,0x5e, // LOAD_CONST_STRING 't'
     0x36,0x01, // CALL_METHOD 1
-    0x10,0x81,0x55, // LOAD_CONST_STRING 'var'
+    0x10,0x81,0x57, // LOAD_CONST_STRING 'var'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x5e, // POP_JUMP_IF_FALSE 30
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x59, // LOAD_METHOD 'cloud_apply'
+    0x14,0x81,0x5b, // LOAD_METHOD 'cloud_apply'
     0x2c,0x01, // BUILD_MAP 1
     0xb1, // LOAD_FAST 1
     0x14,0x81,0x00, // LOAD_METHOD 'get'
-    0x10,0x81,0x5d, // LOAD_CONST_STRING 'v'
+    0x10,0x81,0x5f, // LOAD_CONST_STRING 'v'
     0x36,0x01, // CALL_METHOD 1
     0xb1, // LOAD_FAST 1
     0x14,0x81,0x00, // LOAD_METHOD 'get'
-    0x10,0x81,0x5e, // LOAD_CONST_STRING 'n'
+    0x10,0x81,0x60, // LOAD_CONST_STRING 'n'
     0x36,0x01, // CALL_METHOD 1
     0x62, // STORE_MAP
     0x36,0x01, // CALL_METHOD 1
@@ -7311,24 +7335,24 @@ static const byte fun_data_scratch_Project_cloud_poll[135] = {
     0x42,0x73, // JUMP 51
     0xb1, // LOAD_FAST 1
     0x14,0x81,0x00, // LOAD_METHOD 'get'
-    0x10,0x81,0x5c, // LOAD_CONST_STRING 't'
+    0x10,0x81,0x5e, // LOAD_CONST_STRING 't'
     0x36,0x01, // CALL_METHOD 1
-    0x10,0x81,0x5f, // LOAD_CONST_STRING 'estado'
+    0x10,0x81,0x61, // LOAD_CONST_STRING 'estado'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x64, // POP_JUMP_IF_FALSE 36
     0xb1, // LOAD_FAST 1
     0x14,0x81,0x00, // LOAD_METHOD 'get'
     0x10,0x23, // LOAD_CONST_STRING 'e'
     0x36,0x01, // CALL_METHOD 1
-    0x10,0x81,0x60, // LOAD_CONST_STRING 'conectado'
+    0x10,0x81,0x62, // LOAD_CONST_STRING 'conectado'
     0xdc, // BINARY_OP 5 __ne__
     0x44,0x56, // POP_JUMP_IF_FALSE 22
     0x50, // LOAD_CONST_FALSE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x1b, // STORE_ATTR 'online'
+    0x18,0x81,0x1d, // STORE_ATTR 'online'
     0x23,0x1b, // LOAD_CONST_OBJ 27
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x2f, // LOAD_ATTR 'now'
+    0x13,0x81,0x31, // LOAD_ATTR 'now'
     0x22,0x9f,0x20, // LOAD_CONST_SMALL_INT 4000
     0xf2, // BINARY_OP 27 __add__
     0x2b,0x02, // BUILD_LIST 2
@@ -7362,7 +7386,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_cloud_poll = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 218,
+        .qstr_block_name_idx = 220,
         .line_info = fun_data_scratch_Project_cloud_poll + 6,
         .line_info_top = fun_data_scratch_Project_cloud_poll + 15,
         .opcodes = fun_data_scratch_Project_cloud_poll + 15,
@@ -7378,8 +7402,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_cloud_poll = {
 // frozen bytecode for file scratch.py, scope scratch_Project_lst
 static const byte fun_data_scratch_Project_lst[40] = {
     0x33,0x16, // prelude
-    0x81,0x61,0x84,0x06,0x74,0x84,0x19, // names: lst, self, sp, lid
-    0x90,0xbe,0x27,0x26, // code info
+    0x81,0x63,0x84,0x0a,0x74,0x84,0x1e, // names: lst, self, sp, lid
+    0x90,0xc0,0x27,0x26, // code info
     0xb2, // LOAD_FAST 2
     0xb1, // LOAD_FAST 1
     0x13,0x51, // LOAD_ATTR 'lists'
@@ -7393,7 +7417,7 @@ static const byte fun_data_scratch_Project_lst[40] = {
     0xb0, // LOAD_FAST 0
     0x13,0x45, // LOAD_ATTR 'stage'
     0x13,0x51, // LOAD_ATTR 'lists'
-    0x14,0x81,0x62, // LOAD_METHOD 'setdefault'
+    0x14,0x81,0x64, // LOAD_METHOD 'setdefault'
     0xb2, // LOAD_FAST 2
     0x2b,0x00, // BUILD_LIST 0
     0x36,0x02, // CALL_METHOD 2
@@ -7422,7 +7446,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_lst = {
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 225,
+        .qstr_block_name_idx = 227,
         .line_info = fun_data_scratch_Project_lst + 9,
         .line_info_top = fun_data_scratch_Project_lst + 13,
         .opcodes = fun_data_scratch_Project_lst + 13,
@@ -7438,8 +7462,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_lst = {
 // frozen bytecode for file scratch.py, scope scratch_Project_ev
 static const byte fun_data_scratch_Project_ev[177] = {
     0xf9,0x05,0x3a, // prelude
-    0x81,0x63,0x84,0x06,0x7a,0x81,0x6a,0x43,0x84,0x1a, // names: ev, self, ctx, b, name, default
-    0x90,0xc4,0x2a,0x25,0x22,0x25,0x27,0x22,0x27,0x2b,0x27,0x2b,0x34,0x2c,0x28,0x2d,0x25,0x2c,0x22, // code info
+    0x81,0x65,0x84,0x0a,0x7a,0x81,0x6c,0x43,0x84,0x1f, // names: ev, self, ctx, b, name, default
+    0x90,0xc6,0x2a,0x25,0x22,0x25,0x27,0x22,0x27,0x2b,0x27,0x2b,0x34,0x2c,0x28,0x2d,0x25,0x2c,0x22, // code info
     0xb2, // LOAD_FAST 2
     0x82, // LOAD_CONST_SMALL_INT 2
     0x55, // LOAD_SUBSCR
@@ -7458,34 +7482,34 @@ static const byte fun_data_scratch_Project_ev[177] = {
     0xc6, // STORE_FAST 6
     0xc7, // STORE_FAST 7
     0xb6, // LOAD_FAST 6
-    0x10,0x81,0x49, // LOAD_CONST_STRING 'l'
+    0x10,0x81,0x4b, // LOAD_CONST_STRING 'l'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x42, // POP_JUMP_IF_FALSE 2
     0xb7, // LOAD_FAST 7
     0x63, // RETURN_VALUE
     0xb6, // LOAD_FAST 6
-    0x10,0x81,0x5d, // LOAD_CONST_STRING 'v'
+    0x10,0x81,0x5f, // LOAD_CONST_STRING 'v'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x4b, // POP_JUMP_IF_FALSE 11
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x53, // LOAD_METHOD 'var_get'
+    0x14,0x81,0x55, // LOAD_METHOD 'var_get'
     0xb1, // LOAD_FAST 1
     0x13,0x74, // LOAD_ATTR 'sp'
     0xb7, // LOAD_FAST 7
     0x36,0x02, // CALL_METHOD 2
     0x63, // RETURN_VALUE
     0xb6, // LOAD_FAST 6
-    0x10,0x81,0x64, // LOAD_CONST_STRING 'L'
+    0x10,0x81,0x66, // LOAD_CONST_STRING 'L'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x6b, // POP_JUMP_IF_FALSE 43
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x61, // LOAD_METHOD 'lst'
+    0x14,0x81,0x63, // LOAD_METHOD 'lst'
     0xb1, // LOAD_FAST 1
     0x13,0x74, // LOAD_ATTR 'sp'
     0xb7, // LOAD_FAST 7
     0x36,0x02, // CALL_METHOD 2
     0xc8, // STORE_FAST 8
-    0x12,0x83,0x16, // LOAD_GLOBAL 'all'
+    0x12,0x83,0x19, // LOAD_GLOBAL 'all'
     0x32,0x00, // MAKE_FUNCTION 0
     0xb8, // LOAD_FAST 8
     0x5e, // GET_ITER
@@ -7511,7 +7535,7 @@ static const byte fun_data_scratch_Project_ev[177] = {
     0x55, // LOAD_SUBSCR
     0xca, // STORE_FAST 10
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x46, // LOAD_ATTR 'R'
+    0x13,0x81,0x48, // LOAD_ATTR 'R'
     0x14,0x81,0x00, // LOAD_METHOD 'get'
     0xba, // LOAD_FAST 10
     0x80, // LOAD_CONST_SMALL_INT 0
@@ -7524,7 +7548,7 @@ static const byte fun_data_scratch_Project_ev[177] = {
     0x44,0x4e, // POP_JUMP_IF_FALSE 14
     0xb0, // LOAD_FAST 0
     0x13,0x3b, // LOAD_ATTR 'unsupported'
-    0x14,0x81,0x65, // LOAD_METHOD 'add'
+    0x14,0x81,0x67, // LOAD_METHOD 'add'
     0xba, // LOAD_FAST 10
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
@@ -7542,15 +7566,15 @@ static const byte fun_data_scratch_Project_ev[177] = {
 // frozen bytecode for file scratch.py, scope scratch_Project_ev__lt_genexpr_gt_
 static const byte fun_data_scratch_Project_ev__lt_genexpr_gt_[33] = {
     0xc1,0x40,0x0a, // prelude
-    0x82,0x4f,0x12, // names: <genexpr>, *
-    0x90,0xce, // code info
+    0x82,0x53,0x12, // names: <genexpr>, *
+    0x90,0xd0, // code info
     0x53, // LOAD_NULL
     0xb0, // LOAD_FAST 0
     0x53, // LOAD_NULL
     0x53, // LOAD_NULL
     0x4b,0x11, // FOR_ITER 17
     0xc1, // STORE_FAST 1
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0x12,0x28, // LOAD_GLOBAL 'text'
     0xb1, // LOAD_FAST 1
     0x34,0x01, // CALL_FUNCTION 1
@@ -7586,7 +7610,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_ev__lt_genexpr_gt
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 335,
+        .qstr_block_name_idx = 339,
         .line_info = fun_data_scratch_Project_ev__lt_genexpr_gt_ + 6,
         .line_info_top = fun_data_scratch_Project_ev__lt_genexpr_gt_ + 8,
         .opcodes = fun_data_scratch_Project_ev__lt_genexpr_gt_ + 8,
@@ -7602,8 +7626,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_ev__lt_genexpr_gt
 // frozen bytecode for file scratch.py, scope scratch_Project_ev__lt_genexpr_gt_2
 static const byte fun_data_scratch_Project_ev__lt_genexpr_gt_2[26] = {
     0xb9,0x40,0x0a, // prelude
-    0x82,0x4f,0x12, // names: <genexpr>, *
-    0x90,0xcf, // code info
+    0x82,0x53,0x12, // names: <genexpr>, *
+    0x90,0xd1, // code info
     0x53, // LOAD_NULL
     0xb0, // LOAD_FAST 0
     0x53, // LOAD_NULL
@@ -7642,7 +7666,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_ev__lt_genexpr_gt
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 335,
+        .qstr_block_name_idx = 339,
         .line_info = fun_data_scratch_Project_ev__lt_genexpr_gt_2 + 6,
         .line_info_top = fun_data_scratch_Project_ev__lt_genexpr_gt_2 + 8,
         .opcodes = fun_data_scratch_Project_ev__lt_genexpr_gt_2 + 8,
@@ -7681,7 +7705,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_ev = {
         .n_pos_args = 5,
         .n_kwonly_args = 0,
         .n_def_pos_args = 1,
-        .qstr_block_name_idx = 227,
+        .qstr_block_name_idx = 229,
         .line_info = fun_data_scratch_Project_ev + 13,
         .line_info_top = fun_data_scratch_Project_ev + 32,
         .opcodes = fun_data_scratch_Project_ev + 32,
@@ -7694,8 +7718,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_ev = {
 // frozen bytecode for file scratch.py, scope scratch_Project_field
 static const byte fun_data_scratch_Project_field[25] = {
     0xb8,0x05,0x16, // prelude
-    0x81,0x66,0x84,0x06,0x81,0x6a,0x43,0x84,0x1a, // names: field, self, b, name, default
-    0x90,0xd8, // code info
+    0x81,0x68,0x84,0x0a,0x81,0x6c,0x43,0x84,0x1f, // names: field, self, b, name, default
+    0x90,0xda, // code info
     0xb1, // LOAD_FAST 1
     0x83, // LOAD_CONST_SMALL_INT 3
     0x55, // LOAD_SUBSCR
@@ -7728,7 +7752,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_field = {
         .n_pos_args = 4,
         .n_kwonly_args = 0,
         .n_def_pos_args = 1,
-        .qstr_block_name_idx = 230,
+        .qstr_block_name_idx = 232,
         .line_info = fun_data_scratch_Project_field + 12,
         .line_info_top = fun_data_scratch_Project_field + 14,
         .opcodes = fun_data_scratch_Project_field + 14,
@@ -7744,14 +7768,14 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_field = {
 // frozen bytecode for file scratch.py, scope scratch_Project_start_hats
 static const byte fun_data_scratch_Project_start_hats[191] = {
     0xc9,0x95,0x01,0xba,0x80,0x01, // prelude
-    0x39,0x84,0x06,0x84,0x1b,0x84,0x1c,0x81,0x17,0x82,0x30, // names: start_hats, self, op, key, sprites, restart
-    0x90,0xdc,0x23,0x2f,0x2f,0x26,0x22,0x3e,0x22,0x4e,0x23,0x23,0x23,0x25,0x26,0x32,0x2b,0x2e,0x08,0x09,0x0a,0x0b, // code info
+    0x39,0x84,0x0a,0x84,0x20,0x84,0x21,0x81,0x19,0x82,0x32, // names: start_hats, self, op, key, sprites, restart
+    0x90,0xde,0x23,0x2f,0x2f,0x26,0x22,0x3e,0x22,0x4e,0x23,0x23,0x23,0x25,0x26,0x32,0x2b,0x2e,0x08,0x09,0x0a,0x0b, // code info
     0x2b,0x00, // BUILD_LIST 0
     0xc5, // STORE_FAST 5
     0xb3, // LOAD_FAST 3
     0x45,0x06, // JUMP_IF_TRUE_OR_POP 6
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x67, // LOAD_METHOD 'all_sprites'
+    0x14,0x81,0x69, // LOAD_METHOD 'all_sprites'
     0x36,0x00, // CALL_METHOD 0
     0x5f, // GET_ITER_STACK
     0x4b,0x86,0x01, // FOR_ITER 134
@@ -7774,12 +7798,12 @@ static const byte fun_data_scratch_Project_start_hats[191] = {
     0xde, // BINARY_OP 7 <is>
     0xd3, // UNARY_OP 3 <not>
     0x44,0x5a, // POP_JUMP_IF_FALSE 26
-    0x12,0x83,0x7c, // LOAD_GLOBAL 'str'
+    0x12,0x83,0x7f, // LOAD_GLOBAL 'str'
     0x25,0x0a, // LOAD_DEREF 10
     0x34,0x01, // CALL_FUNCTION 1
     0x14,0x24, // LOAD_METHOD 'lower'
     0x36,0x00, // CALL_METHOD 0
-    0x12,0x83,0x7c, // LOAD_GLOBAL 'str'
+    0x12,0x83,0x7f, // LOAD_GLOBAL 'str'
     0xb2, // LOAD_FAST 2
     0x34,0x01, // CALL_FUNCTION 1
     0x14,0x24, // LOAD_METHOD 'lower'
@@ -7793,7 +7817,7 @@ static const byte fun_data_scratch_Project_start_hats[191] = {
     0xbb, // LOAD_FAST 11
     0x20,0x00,0x04, // MAKE_CLOSURE 0
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x2d, // LOAD_ATTR 'threads'
+    0x13,0x81,0x2f, // LOAD_ATTR 'threads'
     0x34,0x01, // CALL_FUNCTION 1
     0xc6, // STORE_FAST 6
     0xb6, // LOAD_FAST 6
@@ -7820,13 +7844,13 @@ static const byte fun_data_scratch_Project_start_hats[191] = {
     0x34,0x04, // CALL_FUNCTION 4
     0xc7, // STORE_FAST 7
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x2d, // LOAD_ATTR 'threads'
-    0x14,0x81,0x68, // LOAD_METHOD 'append'
+    0x13,0x81,0x2f, // LOAD_ATTR 'threads'
+    0x14,0x81,0x6a, // LOAD_METHOD 'append'
     0xb7, // LOAD_FAST 7
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0xb5, // LOAD_FAST 5
-    0x14,0x81,0x68, // LOAD_METHOD 'append'
+    0x14,0x81,0x6a, // LOAD_METHOD 'append'
     0xb7, // LOAD_FAST 7
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
@@ -7839,8 +7863,8 @@ static const byte fun_data_scratch_Project_start_hats[191] = {
 // frozen bytecode for file scratch.py, scope scratch_Project_start_hats__lt_listcomp_gt_
 static const byte fun_data_scratch_Project_start_hats__lt_listcomp_gt_[53] = {
     0xf1,0x04,0x14, // prelude
-    0x82,0x4c,0x12,0x12,0x12,0x12,0x12, // names: <listcomp>, *, *, *, *, *
-    0x90,0xe3,0x3d, // code info
+    0x82,0x50,0x12,0x12,0x12,0x12,0x12, // names: <listcomp>, *, *, *, *, *
+    0x90,0xe5,0x3d, // code info
     0x2b,0x00, // BUILD_LIST 0
     0xb4, // LOAD_FAST 4
     0x5f, // GET_ITER_STACK
@@ -7890,7 +7914,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_start_hats__lt_li
         .n_pos_args = 5,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 332,
+        .qstr_block_name_idx = 336,
         .line_info = fun_data_scratch_Project_start_hats__lt_listcomp_gt_ + 10,
         .line_info_top = fun_data_scratch_Project_start_hats__lt_listcomp_gt_ + 13,
         .opcodes = fun_data_scratch_Project_start_hats__lt_listcomp_gt_ + 13,
@@ -7941,14 +7965,14 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_start_hats = {
 // frozen bytecode for file scratch.py, scope scratch_Project_all_sprites
 static const byte fun_data_scratch_Project_all_sprites[23] = {
     0x19,0x0c, // prelude
-    0x81,0x67,0x84,0x06, // names: all_sprites, self
-    0x90,0xf0, // code info
+    0x81,0x69,0x84,0x0a, // names: all_sprites, self
+    0x90,0xf2, // code info
     0xb0, // LOAD_FAST 0
     0x13,0x45, // LOAD_ATTR 'stage'
     0x2b,0x01, // BUILD_LIST 1
     0x32,0x00, // MAKE_FUNCTION 0
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x24, // LOAD_ATTR 'layers'
+    0x13,0x81,0x26, // LOAD_ATTR 'layers'
     0x34,0x01, // CALL_FUNCTION 1
     0xf2, // BINARY_OP 27 __add__
     0x63, // RETURN_VALUE
@@ -7957,8 +7981,8 @@ static const byte fun_data_scratch_Project_all_sprites[23] = {
 // frozen bytecode for file scratch.py, scope scratch_Project_all_sprites__lt_listcomp_gt_
 static const byte fun_data_scratch_Project_all_sprites__lt_listcomp_gt_[20] = {
     0x39,0x0a, // prelude
-    0x82,0x4c,0x12, // names: <listcomp>, *
-    0x90,0xf0, // code info
+    0x82,0x50,0x12, // names: <listcomp>, *
+    0x90,0xf2, // code info
     0x2b,0x00, // BUILD_LIST 0
     0xb0, // LOAD_FAST 0
     0x5f, // GET_ITER_STACK
@@ -7992,7 +8016,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_all_sprites__lt_l
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 332,
+        .qstr_block_name_idx = 336,
         .line_info = fun_data_scratch_Project_all_sprites__lt_listcomp_gt_ + 5,
         .line_info_top = fun_data_scratch_Project_all_sprites__lt_listcomp_gt_ + 7,
         .opcodes = fun_data_scratch_Project_all_sprites__lt_listcomp_gt_ + 7,
@@ -8030,7 +8054,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_all_sprites = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 231,
+        .qstr_block_name_idx = 233,
         .line_info = fun_data_scratch_Project_all_sprites + 6,
         .line_info_top = fun_data_scratch_Project_all_sprites + 8,
         .opcodes = fun_data_scratch_Project_all_sprites + 8,
@@ -8043,8 +8067,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_all_sprites = {
 // frozen bytecode for file scratch.py, scope scratch_Project_run
 static const byte fun_data_scratch_Project_run[100] = {
     0xd3,0x40,0x24, // prelude
-    0x7b,0x84,0x06,0x7a,0x84,0x1d, // names: run, self, ctx, bid
-    0x90,0xf3,0x20,0x26,0x22,0x24,0x2d,0x25,0x4e,0x26,0x26,0x25, // code info
+    0x7b,0x84,0x0a,0x7a,0x84,0x22, // names: run, self, ctx, bid
+    0x90,0xf5,0x20,0x26,0x22,0x24,0x2d,0x25,0x4e,0x26,0x26,0x25, // code info
     0xb1, // LOAD_FAST 1
     0x13,0x74, // LOAD_ATTR 'sp'
     0x13,0x47, // LOAD_ATTR 'blocks'
@@ -8055,7 +8079,7 @@ static const byte fun_data_scratch_Project_run[100] = {
     0x55, // LOAD_SUBSCR
     0xc4, // STORE_FAST 4
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x45, // LOAD_ATTR 'S'
+    0x13,0x81,0x47, // LOAD_ATTR 'S'
     0x14,0x81,0x00, // LOAD_METHOD 'get'
     0xb4, // LOAD_FAST 4
     0x80, // LOAD_CONST_SMALL_INT 0
@@ -8068,7 +8092,7 @@ static const byte fun_data_scratch_Project_run[100] = {
     0x44,0x4e, // POP_JUMP_IF_FALSE 14
     0xb0, // LOAD_FAST 0
     0x13,0x3b, // LOAD_ATTR 'unsupported'
-    0x14,0x81,0x65, // LOAD_METHOD 'add'
+    0x14,0x81,0x67, // LOAD_METHOD 'add'
     0xb4, // LOAD_FAST 4
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
@@ -8145,8 +8169,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_run = {
 // frozen bytecode for file scratch.py, scope scratch_Project_sub
 static const byte fun_data_scratch_Project_sub[50] = {
     0xc8,0x04,0x1a, // prelude
-    0x81,0x69,0x84,0x06,0x7a,0x81,0x6a,0x43, // names: sub, self, ctx, b, name
-    0xa0,0x01,0x2a,0x2c,0x2a, // code info
+    0x81,0x6b,0x84,0x0a,0x7a,0x81,0x6c,0x43, // names: sub, self, ctx, b, name
+    0xa0,0x03,0x2a,0x2c,0x2a, // code info
     0xb2, // LOAD_FAST 2
     0x82, // LOAD_CONST_SMALL_INT 2
     0x55, // LOAD_SUBSCR
@@ -8159,7 +8183,7 @@ static const byte fun_data_scratch_Project_sub[50] = {
     0xb4, // LOAD_FAST 4
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
-    0x10,0x81,0x6a, // LOAD_CONST_STRING 'b'
+    0x10,0x81,0x6c, // LOAD_CONST_STRING 'b'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x4a, // POP_JUMP_IF_FALSE 10
     0xb0, // LOAD_FAST 0
@@ -8196,7 +8220,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_sub = {
         .n_pos_args = 4,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 233,
+        .qstr_block_name_idx = 235,
         .line_info = fun_data_scratch_Project_sub + 11,
         .line_info_top = fun_data_scratch_Project_sub + 16,
         .opcodes = fun_data_scratch_Project_sub + 16,
@@ -8212,8 +8236,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_sub = {
 // frozen bytecode for file scratch.py, scope scratch_Project_loop_yield
 static const byte fun_data_scratch_Project_loop_yield[58] = {
     0x22,0x14, // prelude
-    0x81,0x6b,0x84,0x06,0x7a, // names: loop_yield, self, ctx
-    0xa0,0x08,0x25,0x22,0x2b, // code info
+    0x81,0x6d,0x84,0x0a,0x7a, // names: loop_yield, self, ctx
+    0xa0,0x0a,0x25,0x22,0x2b, // code info
     0xb1, // LOAD_FAST 1
     0x13,0x77, // LOAD_ATTR 'warp'
     0x43,0x42, // POP_JUMP_IF_TRUE 2
@@ -8221,25 +8245,25 @@ static const byte fun_data_scratch_Project_loop_yield[58] = {
     0x63, // RETURN_VALUE
     0xb1, // LOAD_FAST 1
     0x57, // DUP_TOP
-    0x13,0x81,0x6c, // LOAD_ATTR 'warp_n'
+    0x13,0x81,0x6e, // LOAD_ATTR 'warp_n'
     0x81, // LOAD_CONST_SMALL_INT 1
     0xe5, // BINARY_OP 14 __iadd__
     0x5a, // ROT_TWO
-    0x18,0x81,0x6c, // STORE_ATTR 'warp_n'
+    0x18,0x81,0x6e, // STORE_ATTR 'warp_n'
     0xb1, // LOAD_FAST 1
-    0x13,0x81,0x6c, // LOAD_ATTR 'warp_n'
+    0x13,0x81,0x6e, // LOAD_ATTR 'warp_n'
     0x22,0x3f, // LOAD_CONST_SMALL_INT 63
     0xef, // BINARY_OP 24 __and__
     0x80, // LOAD_CONST_SMALL_INT 0
     0xd9, // BINARY_OP 2 __eq__
     0x46,0x10, // JUMP_IF_FALSE_OR_POP 16
-    0x12,0x83,0x6d, // LOAD_GLOBAL 'K'
+    0x12,0x83,0x70, // LOAD_GLOBAL 'K'
     0x14,0x37, // LOAD_METHOD 'ms'
     0x36,0x00, // CALL_METHOD 0
     0xb1, // LOAD_FAST 1
-    0x13,0x81,0x6d, // LOAD_ATTR 'warp_t'
+    0x13,0x81,0x6f, // LOAD_ATTR 'warp_t'
     0xf3, // BINARY_OP 28 __sub__
-    0x12,0x83,0x75, // LOAD_GLOBAL 'WARP_MS'
+    0x12,0x83,0x78, // LOAD_GLOBAL 'WARP_MS'
     0xd8, // BINARY_OP 1 __gt__
     0x63, // RETURN_VALUE
 };
@@ -8266,7 +8290,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_loop_yield = {
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 235,
+        .qstr_block_name_idx = 237,
         .line_info = fun_data_scratch_Project_loop_yield + 7,
         .line_info_top = fun_data_scratch_Project_loop_yield + 12,
         .opcodes = fun_data_scratch_Project_loop_yield + 12,
@@ -8282,12 +8306,12 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_loop_yield = {
 // frozen bytecode for file scratch.py, scope scratch_Project__register
 static const byte fun_data_scratch_Project__register[1462] = {
     0xd1,0x80,0x10,0xc1,0x86,0x80,0x80,0x01, // prelude
-    0x81,0x47,0x84,0x06, // names: _register, self
-    0xa0,0x11,0x6d,0x45,0x45,0x85,0x07,0x65,0x86,0x08,0x87,0x07,0x45,0x66,0x60,0x2a,0x2a,0x4a,0x86,0x08,0x69,0x45,0x67,0x45,0x68,0x20,0x29,0x29,0x29,0x49,0x88,0x0f,0x6a,0x20,0x69,0x45,0x89,0x09,0x45,0x88,0x0f,0x45,0x65,0x25,0x26,0x26,0x66,0x8a,0x0e,0x2a,0x29,0x29,0x49,0x65,0x45,0x65,0x45,0x6a,0x40,0x26,0x49,0x66,0x40,0x29,0x49,0x66,0x60,0x29,0x49,0x65,0x45,0x66,0x2a,0x4a,0x85,0x09,0x45,0x86,0x0b,0x46,0x66,0x40,0x46,0x66,0x40,0x26,0x67,0x47,0x28,0x26,0x66,0x86,0x08,0x46,0x86,0x0c,0x46,0x86,0x09,0x46,0x66,0x20,0x47,0x66,0x46,0x66,0x40,0x46,0x8a,0x09,0x26,0x49,0x86,0x09,0x46,0x86,0x0b,0x46,0x86,0x0e,0x66,0x66,0x40,0x88,0x09,0x4a,0x64,0x88,0x10,0x26,0x26,0x26,0x48,0x46,0x26,0x28,0x28,0x28,0x28,0x26,0x46,0x68,0x46,0x86,0x0f,0x47,0x86,0x07,0x46,0x86,0x10,0x66,0x46,0x2a,0x2a,0x2a,0x6a,0x66,0x40,0x46,0x86,0x0a,0x26,0x28,0x28,0x28,0x48,0x48,0x28,0x48,0x66,0x20,0x26,0x28,0x68,0x66,0x46,0x86,0x17,0x66,0x46,0x46,0x66,0x26,0x26,0x46,0x66,0x40,0x26,0x46,0x66,0x8d,0x09,0x68,0x20,0x46,0x8a,0x08,0x46,0x47,0x46,0x6a,0x40,0x46,0x8a,0x08,0x46,0x69,0x20,0x46,0x88,0x07,0x26,0x29,0x6a,0x20,0x86,0x20,0x26,0x28,0x00,0x34,0x35,0x36,0x37,0x38,0x39,0x3a,0x3b,0x3c,0x3d,0x3e,0x3f,0x40,0x41,0x42,0x43, // code info
+    0x81,0x49,0x84,0x0a, // names: _register, self
+    0xa0,0x13,0x6d,0x45,0x45,0x85,0x07,0x65,0x86,0x08,0x87,0x07,0x45,0x66,0x60,0x2a,0x2a,0x4a,0x86,0x08,0x69,0x45,0x67,0x45,0x68,0x20,0x29,0x29,0x29,0x49,0x88,0x0f,0x6a,0x20,0x69,0x45,0x89,0x09,0x45,0x88,0x0f,0x45,0x65,0x25,0x26,0x26,0x66,0x8a,0x0e,0x2a,0x29,0x29,0x49,0x65,0x45,0x65,0x45,0x6a,0x40,0x26,0x49,0x66,0x40,0x29,0x49,0x66,0x60,0x29,0x49,0x65,0x45,0x66,0x2a,0x4a,0x85,0x09,0x45,0x86,0x0b,0x46,0x66,0x40,0x46,0x66,0x40,0x26,0x67,0x47,0x28,0x26,0x66,0x86,0x08,0x46,0x86,0x0c,0x46,0x86,0x09,0x46,0x66,0x20,0x47,0x66,0x46,0x66,0x40,0x46,0x8a,0x09,0x26,0x49,0x86,0x09,0x46,0x86,0x0b,0x46,0x86,0x0e,0x66,0x66,0x40,0x88,0x09,0x4a,0x64,0x88,0x10,0x26,0x26,0x26,0x48,0x46,0x26,0x28,0x28,0x28,0x28,0x26,0x46,0x68,0x46,0x86,0x0f,0x47,0x86,0x07,0x46,0x86,0x10,0x66,0x46,0x2a,0x2a,0x2a,0x6a,0x66,0x40,0x46,0x86,0x0a,0x26,0x28,0x28,0x28,0x48,0x48,0x28,0x48,0x66,0x20,0x26,0x28,0x68,0x66,0x46,0x86,0x17,0x66,0x46,0x46,0x66,0x26,0x26,0x46,0x66,0x40,0x26,0x46,0x66,0x8d,0x09,0x68,0x20,0x46,0x8a,0x08,0x46,0x47,0x46,0x6a,0x40,0x46,0x8a,0x08,0x46,0x69,0x20,0x46,0x88,0x07,0x26,0x29,0x6a,0x20,0x86,0x20,0x26,0x28,0x00,0x34,0x35,0x36,0x37,0x38,0x39,0x3a,0x3b,0x3c,0x3d,0x3e,0x3f,0x40,0x41,0x42,0x43, // code info
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x45, // LOAD_ATTR 'S'
+    0x13,0x81,0x47, // LOAD_ATTR 'S'
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x46, // LOAD_ATTR 'R'
+    0x13,0x81,0x48, // LOAD_ATTR 'R'
     0x5a, // ROT_TWO
     0xc1, // STORE_FAST 1
     0xc2, // STORE_FAST 2
@@ -8445,7 +8469,7 @@ static const byte fun_data_scratch_Project__register[1462] = {
     0x24,0x39, // LOAD_FAST_N 57
     0x20,0x1a,0x01, // MAKE_CLOSURE 26
     0xb1, // LOAD_FAST 1
-    0x10,0x81,0x6e, // LOAD_CONST_STRING 'looks_say'
+    0x10,0x81,0x70, // LOAD_CONST_STRING 'looks_say'
     0x56, // STORE_SUBSCR
     0x24,0x39, // LOAD_FAST_N 57
     0x20,0x1b,0x01, // MAKE_CLOSURE 27
@@ -8530,12 +8554,12 @@ static const byte fun_data_scratch_Project__register[1462] = {
     0x24,0x3d, // LOAD_FAST_N 61
     0x20,0x2a,0x01, // MAKE_CLOSURE 42
     0xb1, // LOAD_FAST 1
-    0x10,0x81,0x6f, // LOAD_CONST_STRING 'looks_show'
+    0x10,0x81,0x71, // LOAD_CONST_STRING 'looks_show'
     0x56, // STORE_SUBSCR
     0x24,0x3d, // LOAD_FAST_N 61
     0x20,0x2b,0x01, // MAKE_CLOSURE 43
     0xb1, // LOAD_FAST 1
-    0x10,0x81,0x70, // LOAD_CONST_STRING 'looks_hide'
+    0x10,0x81,0x72, // LOAD_CONST_STRING 'looks_hide'
     0x56, // STORE_SUBSCR
     0xb0, // LOAD_FAST 0
     0x20,0x2c,0x01, // MAKE_CLOSURE 44
@@ -8567,7 +8591,7 @@ static const byte fun_data_scratch_Project__register[1462] = {
     0x56, // STORE_SUBSCR
     0x32,0x30, // MAKE_FUNCTION 48
     0xb2, // LOAD_FAST 2
-    0x10,0x81,0x71, // LOAD_CONST_STRING 'looks_size'
+    0x10,0x81,0x73, // LOAD_CONST_STRING 'looks_size'
     0x56, // STORE_SUBSCR
     0x23,0x40, // LOAD_CONST_OBJ 64
     0x5f, // GET_ITER_STACK
@@ -8612,7 +8636,7 @@ static const byte fun_data_scratch_Project__register[1462] = {
     0x26,0x17, // STORE_FAST_N 23
     0x24,0x17, // LOAD_FAST_N 23
     0xb1, // LOAD_FAST 1
-    0x10,0x81,0x72, // LOAD_CONST_STRING 'control_if'
+    0x10,0x81,0x74, // LOAD_CONST_STRING 'control_if'
     0x56, // STORE_SUBSCR
     0xb0, // LOAD_FAST 0
     0x20,0x38,0x01, // MAKE_CLOSURE 56
@@ -8748,7 +8772,7 @@ static const byte fun_data_scratch_Project__register[1462] = {
     0x26,0x20, // STORE_FAST_N 32
     0x24,0x20, // LOAD_FAST_N 32
     0xb2, // LOAD_FAST 2
-    0x10,0x81,0x73, // LOAD_CONST_STRING 'sensing_of'
+    0x10,0x81,0x75, // LOAD_CONST_STRING 'sensing_of'
     0x56, // STORE_SUBSCR
     0xb0, // LOAD_FAST 0
     0x20,0x50,0x01, // MAKE_CLOSURE 80
@@ -8907,7 +8931,7 @@ static const byte fun_data_scratch_Project__register[1462] = {
     0xb0, // LOAD_FAST 0
     0x20,0x6b,0x01, // MAKE_CLOSURE 107
     0x27,0x42, // STORE_DEREF 66
-    0x10,0x81,0x74, // LOAD_CONST_STRING 'INDEX'
+    0x10,0x81,0x76, // LOAD_CONST_STRING 'INDEX'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x2a,0x02, // BUILD_TUPLE 2
     0x53, // LOAD_NULL
@@ -9007,14 +9031,14 @@ static const byte fun_data_scratch_Project__register[1462] = {
 // frozen bytecode for file scratch.py, scope scratch_Project__register_broadcast
 static const byte fun_data_scratch_Project__register_broadcast[38] = {
     0x5b,0x10, // prelude
-    0x82,0x51,0x12,0x7a,0x81,0x6a, // names: broadcast, *, ctx, b
-    0xa0,0x15, // code info
+    0x82,0x55,0x12,0x7a,0x81,0x6c, // names: broadcast, *, ctx, b
+    0xa0,0x17, // code info
     0x25,0x00, // LOAD_DEREF 0
     0x14,0x39, // LOAD_METHOD 'start_hats'
     0x23,0x81,0x20, // LOAD_CONST_OBJ 160
     0x12,0x28, // LOAD_GLOBAL 'text'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0x23,0x81,0x21, // LOAD_CONST_OBJ 161
@@ -9048,7 +9072,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_broadca
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 337,
+        .qstr_block_name_idx = 341,
         .line_info = fun_data_scratch_Project__register_broadcast + 8,
         .line_info_top = fun_data_scratch_Project__register_broadcast + 10,
         .opcodes = fun_data_scratch_Project__register_broadcast + 10,
@@ -9064,14 +9088,14 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_broadca
 // frozen bytecode for file scratch.py, scope scratch_Project__register_broadcast_wait
 static const byte fun_data_scratch_Project__register_broadcast_wait[49] = {
     0x6b,0x15, // prelude
-    0x82,0x52,0x12,0x7a,0x81,0x6a, // names: broadcast_wait, *, ctx, b
-    0xa0,0x19,0x5b,0x65,0x04, // code info
+    0x82,0x56,0x12,0x7a,0x81,0x6c, // names: broadcast_wait, *, ctx, b
+    0xa0,0x1b,0x5b,0x65,0x04, // code info
     0x25,0x00, // LOAD_DEREF 0
     0x14,0x39, // LOAD_METHOD 'start_hats'
     0x23,0x81,0x20, // LOAD_CONST_OBJ 160
     0x12,0x28, // LOAD_GLOBAL 'text'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0x23,0x81,0x21, // LOAD_CONST_OBJ 161
@@ -9090,13 +9114,13 @@ static const byte fun_data_scratch_Project__register_broadcast_wait[49] = {
 // frozen bytecode for file scratch.py, scope scratch_Project__register_broadcast_wait_g
 static const byte fun_data_scratch_Project__register_broadcast_wait_g[30] = {
     0x99,0x40,0x0c, // prelude
-    0x83,0x6a,0x12, // names: g, *
-    0xa0,0x1c,0x22, // code info
+    0x83,0x6d,0x12, // names: g, *
+    0xa0,0x1e,0x22, // code info
     0x42,0x43, // JUMP 3
     0x51, // LOAD_CONST_NONE
     0x67, // YIELD_VALUE
     0x59, // POP_TOP
-    0x12,0x82,0x49, // LOAD_GLOBAL 'any'
+    0x12,0x82,0x4d, // LOAD_GLOBAL 'any'
     0x32,0x00, // MAKE_FUNCTION 0
     0x25,0x00, // LOAD_DEREF 0
     0x5e, // GET_ITER
@@ -9110,8 +9134,8 @@ static const byte fun_data_scratch_Project__register_broadcast_wait_g[30] = {
 // frozen bytecode for file scratch.py, scope scratch_Project__register_broadcast_wait_g__lt_genexpr_gt_
 static const byte fun_data_scratch_Project__register_broadcast_wait_g__lt_genexpr_gt_[25] = {
     0xb1,0x40,0x0a, // prelude
-    0x82,0x4f,0x12, // names: <genexpr>, *
-    0xa0,0x1c, // code info
+    0x82,0x53,0x12, // names: <genexpr>, *
+    0xa0,0x1e, // code info
     0x53, // LOAD_NULL
     0xb0, // LOAD_FAST 0
     0x53, // LOAD_NULL
@@ -9150,7 +9174,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_broadca
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 335,
+        .qstr_block_name_idx = 339,
         .line_info = fun_data_scratch_Project__register_broadcast_wait_g__lt_genexpr_gt_ + 6,
         .line_info_top = fun_data_scratch_Project__register_broadcast_wait_g__lt_genexpr_gt_ + 8,
         .opcodes = fun_data_scratch_Project__register_broadcast_wait_g__lt_genexpr_gt_ + 8,
@@ -9188,7 +9212,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_broadca
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 490,
+        .qstr_block_name_idx = 493,
         .line_info = fun_data_scratch_Project__register_broadcast_wait_g + 6,
         .line_info_top = fun_data_scratch_Project__register_broadcast_wait_g + 9,
         .opcodes = fun_data_scratch_Project__register_broadcast_wait_g + 9,
@@ -9223,7 +9247,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_broadca
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 338,
+        .qstr_block_name_idx = 342,
         .line_info = fun_data_scratch_Project__register_broadcast_wait + 8,
         .line_info_top = fun_data_scratch_Project__register_broadcast_wait + 12,
         .opcodes = fun_data_scratch_Project__register_broadcast_wait + 13,
@@ -9236,8 +9260,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_broadca
 // frozen bytecode for file scratch.py, scope scratch_Project__register_moved
 static const byte fun_data_scratch_Project__register_moved[58] = {
     0x22,0x16, // prelude
-    0x82,0x53,0x12,0x74, // names: moved, *, sp
-    0xa0,0x23,0x29,0x25,0x29,0x25,0x26, // code info
+    0x82,0x57,0x12,0x74, // names: moved, *, sp
+    0xa0,0x25,0x29,0x25,0x29,0x25,0x26, // code info
     0x12,0x25, // LOAD_GLOBAL 'finite'
     0xb1, // LOAD_FAST 1
     0x13,0x54, // LOAD_ATTR 'x'
@@ -9259,7 +9283,7 @@ static const byte fun_data_scratch_Project__register_moved[58] = {
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x76, // LOAD_METHOD 'mark'
+    0x14,0x81,0x78, // LOAD_METHOD 'mark'
     0xb1, // LOAD_FAST 1
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
@@ -9289,7 +9313,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_moved =
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 339,
+        .qstr_block_name_idx = 343,
         .line_info = fun_data_scratch_Project__register_moved + 6,
         .line_info_top = fun_data_scratch_Project__register_moved + 13,
         .opcodes = fun_data_scratch_Project__register_moved + 13,
@@ -9305,22 +9329,22 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_moved =
 // frozen bytecode for file scratch.py, scope scratch_Project__register_move
 static const byte fun_data_scratch_Project__register_move[97] = {
     0xe0,0x04,0x1c, // prelude
-    0x82,0x54,0x12,0x12,0x7a,0x81,0x6a, // names: move, *, *, ctx, b
-    0xa0,0x2b,0x24,0x31,0x2f,0x32,0x32, // code info
+    0x82,0x58,0x12,0x12,0x7a,0x81,0x6c, // names: move, *, *, ctx, b
+    0xa0,0x2d,0x24,0x31,0x2f,0x32,0x32, // code info
     0xb2, // LOAD_FAST 2
     0x13,0x74, // LOAD_ATTR 'sp'
     0xc4, // STORE_FAST 4
     0x12,0x20, // LOAD_GLOBAL 'num'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
-    0x10,0x82,0x55, // LOAD_CONST_STRING 'STEPS'
+    0x10,0x82,0x59, // LOAD_CONST_STRING 'STEPS'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
     0xc5, // STORE_FAST 5
     0x12,0x03, // LOAD_GLOBAL 'math'
-    0x14,0x82,0x56, // LOAD_METHOD 'radians'
+    0x14,0x82,0x5a, // LOAD_METHOD 'radians'
     0x22,0x80,0x5a, // LOAD_CONST_SMALL_INT 90
     0xb4, // LOAD_FAST 4
     0x13,0x56, // LOAD_ATTR 'dir'
@@ -9332,7 +9356,7 @@ static const byte fun_data_scratch_Project__register_move[97] = {
     0x13,0x54, // LOAD_ATTR 'x'
     0xb5, // LOAD_FAST 5
     0x12,0x03, // LOAD_GLOBAL 'math'
-    0x14,0x82,0x57, // LOAD_METHOD 'cos'
+    0x14,0x82,0x5b, // LOAD_METHOD 'cos'
     0xb6, // LOAD_FAST 6
     0x36,0x01, // CALL_METHOD 1
     0xf4, // BINARY_OP 29 __mul__
@@ -9344,7 +9368,7 @@ static const byte fun_data_scratch_Project__register_move[97] = {
     0x13,0x55, // LOAD_ATTR 'y'
     0xb5, // LOAD_FAST 5
     0x12,0x03, // LOAD_GLOBAL 'math'
-    0x14,0x82,0x58, // LOAD_METHOD 'sin'
+    0x14,0x82,0x5c, // LOAD_METHOD 'sin'
     0xb6, // LOAD_FAST 6
     0x36,0x01, // CALL_METHOD 1
     0xf4, // BINARY_OP 29 __mul__
@@ -9381,7 +9405,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_move = 
         .n_pos_args = 4,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 340,
+        .qstr_block_name_idx = 344,
         .line_info = fun_data_scratch_Project__register_move + 10,
         .line_info_top = fun_data_scratch_Project__register_move + 17,
         .opcodes = fun_data_scratch_Project__register_move + 17,
@@ -9397,8 +9421,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_move = 
 // frozen bytecode for file scratch.py, scope scratch_Project__register_set_dir
 static const byte fun_data_scratch_Project__register_set_dir[52] = {
     0x2b,0x18, // prelude
-    0x82,0x59,0x12,0x74,0x84,0x2a, // names: set_dir, *, sp, d
-    0xa0,0x34,0x27,0x22,0x2e,0x24, // code info
+    0x82,0x5d,0x12,0x74,0x84,0x30, // names: set_dir, *, sp, d
+    0xa0,0x36,0x27,0x22,0x2e,0x24, // code info
     0x12,0x25, // LOAD_GLOBAL 'finite'
     0xb2, // LOAD_FAST 2
     0x34,0x01, // CALL_FUNCTION 1
@@ -9417,7 +9441,7 @@ static const byte fun_data_scratch_Project__register_set_dir[52] = {
     0xb1, // LOAD_FAST 1
     0x18,0x56, // STORE_ATTR 'dir'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x76, // LOAD_METHOD 'mark'
+    0x14,0x81,0x78, // LOAD_METHOD 'mark'
     0xb1, // LOAD_FAST 1
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
@@ -9447,7 +9471,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_set_dir
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 345,
+        .qstr_block_name_idx = 349,
         .line_info = fun_data_scratch_Project__register_set_dir + 8,
         .line_info_top = fun_data_scratch_Project__register_set_dir + 14,
         .opcodes = fun_data_scratch_Project__register_set_dir + 14,
@@ -9463,8 +9487,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_set_dir
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_[42] = {
     0xe0,0x04,0x12, // prelude
-    0x82,0x5a,0x12,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, *, ctx, b
-    0xa0,0x39, // code info
+    0x82,0x5e,0x12,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, *, ctx, b
+    0xa0,0x3b, // code info
     0x25,0x01, // LOAD_DEREF 1
     0xb2, // LOAD_FAST 2
     0x13,0x74, // LOAD_ATTR 'sp'
@@ -9473,10 +9497,10 @@ static const byte fun_data_scratch_Project__register__lt_lambda_gt_[42] = {
     0x13,0x56, // LOAD_ATTR 'dir'
     0x12,0x20, // LOAD_GLOBAL 'num'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
-    0x10,0x82,0x5b, // LOAD_CONST_STRING 'DEGREES'
+    0x10,0x82,0x5f, // LOAD_CONST_STRING 'DEGREES'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
     0xf2, // BINARY_OP 27 __add__
@@ -9506,7 +9530,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 4,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_ + 10,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_ + 12,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_ + 12,
@@ -9522,8 +9546,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_2
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_2[42] = {
     0xe0,0x04,0x12, // prelude
-    0x82,0x5a,0x12,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, *, ctx, b
-    0xa0,0x3a, // code info
+    0x82,0x5e,0x12,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, *, ctx, b
+    0xa0,0x3c, // code info
     0x25,0x01, // LOAD_DEREF 1
     0xb2, // LOAD_FAST 2
     0x13,0x74, // LOAD_ATTR 'sp'
@@ -9532,10 +9556,10 @@ static const byte fun_data_scratch_Project__register__lt_lambda_gt_2[42] = {
     0x13,0x56, // LOAD_ATTR 'dir'
     0x12,0x20, // LOAD_GLOBAL 'num'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
-    0x10,0x82,0x5b, // LOAD_CONST_STRING 'DEGREES'
+    0x10,0x82,0x5f, // LOAD_CONST_STRING 'DEGREES'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
     0xf3, // BINARY_OP 28 __sub__
@@ -9565,7 +9589,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 4,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_2 + 10,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_2 + 12,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_2 + 12,
@@ -9581,17 +9605,17 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_3
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_3[36] = {
     0xd8,0x04,0x12, // prelude
-    0x82,0x5a,0x12,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, *, ctx, b
-    0xa0,0x3b, // code info
+    0x82,0x5e,0x12,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, *, ctx, b
+    0xa0,0x3d, // code info
     0x25,0x01, // LOAD_DEREF 1
     0xb2, // LOAD_FAST 2
     0x13,0x74, // LOAD_ATTR 'sp'
     0x12,0x20, // LOAD_GLOBAL 'num'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
-    0x10,0x82,0x5c, // LOAD_CONST_STRING 'DIRECTION'
+    0x10,0x82,0x60, // LOAD_CONST_STRING 'DIRECTION'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
     0x34,0x02, // CALL_FUNCTION 2
@@ -9620,7 +9644,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 4,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_3 + 10,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_3 + 12,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_3 + 12,
@@ -9636,10 +9660,10 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register_target_xy
 static const byte fun_data_scratch_Project__register_target_xy[109] = {
     0x43,0x18, // prelude
-    0x82,0x5d,0x12,0x7a,0x43, // names: target_xy, *, ctx, name
-    0xa0,0x3e,0x27,0x3b,0x27,0x31,0x2c, // code info
+    0x82,0x61,0x12,0x7a,0x43, // names: target_xy, *, ctx, name
+    0xa0,0x40,0x27,0x3b,0x27,0x31,0x2c, // code info
     0xb2, // LOAD_FAST 2
-    0x10,0x82,0x5e, // LOAD_CONST_STRING '_random_'
+    0x10,0x82,0x62, // LOAD_CONST_STRING '_random_'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x5b, // POP_JUMP_IF_FALSE 27
     0x12,0x05, // LOAD_GLOBAL 'random'
@@ -9655,21 +9679,21 @@ static const byte fun_data_scratch_Project__register_target_xy[109] = {
     0x2a,0x02, // BUILD_TUPLE 2
     0x63, // RETURN_VALUE
     0xb2, // LOAD_FAST 2
-    0x10,0x81,0x4a, // LOAD_CONST_STRING '_mouse_'
+    0x10,0x81,0x4c, // LOAD_CONST_STRING '_mouse_'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x51, // POP_JUMP_IF_FALSE 17
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x38, // LOAD_ATTR 'mouse'
+    0x13,0x81,0x3a, // LOAD_ATTR 'mouse'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x38, // LOAD_ATTR 'mouse'
+    0x13,0x81,0x3a, // LOAD_ATTR 'mouse'
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
     0x2a,0x02, // BUILD_TUPLE 2
     0x63, // RETURN_VALUE
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x25, // LOAD_ATTR 'by_name'
+    0x13,0x81,0x27, // LOAD_ATTR 'by_name'
     0x14,0x81,0x00, // LOAD_METHOD 'get'
     0xb2, // LOAD_FAST 2
     0x36,0x01, // CALL_METHOD 1
@@ -9714,7 +9738,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_target_
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 349,
+        .qstr_block_name_idx = 353,
         .line_info = fun_data_scratch_Project__register_target_xy + 7,
         .line_info_top = fun_data_scratch_Project__register_target_xy + 14,
         .opcodes = fun_data_scratch_Project__register_target_xy + 14,
@@ -9730,16 +9754,16 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_target_
 // frozen bytecode for file scratch.py, scope scratch_Project__register_goto
 static const byte fun_data_scratch_Project__register_goto[58] = {
     0xe1,0x04,0x18, // prelude
-    0x82,0x5f,0x12,0x12,0x12,0x7a,0x81,0x6a, // names: goto, *, *, *, ctx, b
-    0xa0,0x46,0x1f,0x22, // code info
+    0x82,0x63,0x12,0x12,0x12,0x7a,0x81,0x6c, // names: goto, *, *, *, ctx, b
+    0xa0,0x48,0x1f,0x22, // code info
     0x25,0x02, // LOAD_DEREF 2
     0xb3, // LOAD_FAST 3
     0x12,0x28, // LOAD_GLOBAL 'text'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb3, // LOAD_FAST 3
     0xb4, // LOAD_FAST 4
-    0x10,0x82,0x60, // LOAD_CONST_STRING 'TO'
+    0x10,0x82,0x64, // LOAD_CONST_STRING 'TO'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
     0x34,0x02, // CALL_FUNCTION 2
@@ -9781,7 +9805,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_goto = 
         .n_pos_args = 5,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 351,
+        .qstr_block_name_idx = 355,
         .line_info = fun_data_scratch_Project__register_goto + 11,
         .line_info_top = fun_data_scratch_Project__register_goto + 15,
         .opcodes = fun_data_scratch_Project__register_goto + 15,
@@ -9797,25 +9821,25 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_goto = 
 // frozen bytecode for file scratch.py, scope scratch_Project__register_gotoxy
 static const byte fun_data_scratch_Project__register_gotoxy[77] = {
     0xd8,0x04,0x16, // prelude
-    0x82,0x61,0x12,0x12,0x7a,0x81,0x6a, // names: gotoxy, *, *, ctx, b
-    0xa0,0x4b,0x1f,0x36, // code info
-    0x12,0x83,0x76, // LOAD_GLOBAL 'float'
+    0x82,0x65,0x12,0x12,0x7a,0x81,0x6c, // names: gotoxy, *, *, ctx, b
+    0xa0,0x4d,0x1f,0x36, // code info
+    0x12,0x83,0x79, // LOAD_GLOBAL 'float'
     0x12,0x20, // LOAD_GLOBAL 'num'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
-    0x10,0x82,0x62, // LOAD_CONST_STRING 'X'
+    0x10,0x82,0x66, // LOAD_CONST_STRING 'X'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
     0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x83,0x76, // LOAD_GLOBAL 'float'
+    0x12,0x83,0x79, // LOAD_GLOBAL 'float'
     0x12,0x20, // LOAD_GLOBAL 'num'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
-    0x10,0x82,0x63, // LOAD_CONST_STRING 'Y'
+    0x10,0x82,0x67, // LOAD_CONST_STRING 'Y'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
     0x34,0x01, // CALL_FUNCTION 1
@@ -9857,7 +9881,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_gotoxy 
         .n_pos_args = 4,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 353,
+        .qstr_block_name_idx = 357,
         .line_info = fun_data_scratch_Project__register_gotoxy + 10,
         .line_info_top = fun_data_scratch_Project__register_gotoxy + 14,
         .opcodes = fun_data_scratch_Project__register_gotoxy + 14,
@@ -9873,12 +9897,12 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_gotoxy 
 // frozen bytecode for file scratch.py, scope scratch_Project__register_setxy
 static const byte fun_data_scratch_Project__register_setxy[76] = {
     0xf3,0x04,0x20, // prelude
-    0x82,0x64,0x12,0x12,0x7a,0x81,0x6a,0x84,0x2b,0x43,0x84,0x2c, // names: setxy, *, *, ctx, b, attr, name, delta
-    0xa0,0x50,0x34,0x3b, // code info
-    0x12,0x83,0x76, // LOAD_GLOBAL 'float'
+    0x82,0x68,0x12,0x12,0x7a,0x81,0x6c,0x84,0x31,0x43,0x84,0x32, // names: setxy, *, *, ctx, b, attr, name, delta
+    0xa0,0x52,0x34,0x3b, // code info
+    0x12,0x83,0x79, // LOAD_GLOBAL 'float'
     0x12,0x20, // LOAD_GLOBAL 'num'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
     0xb5, // LOAD_FAST 5
@@ -9886,13 +9910,13 @@ static const byte fun_data_scratch_Project__register_setxy[76] = {
     0x34,0x01, // CALL_FUNCTION 1
     0x34,0x01, // CALL_FUNCTION 1
     0xc7, // STORE_FAST 7
-    0x12,0x84,0x0a, // LOAD_GLOBAL 'setattr'
+    0x12,0x84,0x0e, // LOAD_GLOBAL 'setattr'
     0xb2, // LOAD_FAST 2
     0x13,0x74, // LOAD_ATTR 'sp'
     0xb4, // LOAD_FAST 4
     0xb6, // LOAD_FAST 6
     0x44,0x4d, // POP_JUMP_IF_FALSE 13
-    0x12,0x84,0x0b, // LOAD_GLOBAL 'getattr'
+    0x12,0x84,0x0f, // LOAD_GLOBAL 'getattr'
     0xb2, // LOAD_FAST 2
     0x13,0x74, // LOAD_ATTR 'sp'
     0xb4, // LOAD_FAST 4
@@ -9934,7 +9958,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_setxy =
         .n_pos_args = 7,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 356,
+        .qstr_block_name_idx = 360,
         .line_info = fun_data_scratch_Project__register_setxy + 15,
         .line_info_top = fun_data_scratch_Project__register_setxy + 19,
         .opcodes = fun_data_scratch_Project__register_setxy + 19,
@@ -9950,13 +9974,13 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_setxy =
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_4
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_4[23] = {
     0x43,0x10, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xa0,0x53, // code info
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xa0,0x55, // code info
     0x25,0x00, // LOAD_DEREF 0
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0x10,0x54, // LOAD_CONST_STRING 'x'
-    0x10,0x82,0x65, // LOAD_CONST_STRING 'DX'
+    0x10,0x82,0x69, // LOAD_CONST_STRING 'DX'
     0x52, // LOAD_CONST_TRUE
     0x34,0x05, // CALL_FUNCTION 5
     0x63, // RETURN_VALUE
@@ -9984,7 +10008,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_4 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_4 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_4 + 10,
@@ -10000,13 +10024,13 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_5
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_5[23] = {
     0x43,0x10, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xa0,0x54, // code info
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xa0,0x56, // code info
     0x25,0x00, // LOAD_DEREF 0
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0x10,0x54, // LOAD_CONST_STRING 'x'
-    0x10,0x82,0x62, // LOAD_CONST_STRING 'X'
+    0x10,0x82,0x66, // LOAD_CONST_STRING 'X'
     0x50, // LOAD_CONST_FALSE
     0x34,0x05, // CALL_FUNCTION 5
     0x63, // RETURN_VALUE
@@ -10034,7 +10058,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_5 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_5 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_5 + 10,
@@ -10050,13 +10074,13 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_6
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_6[23] = {
     0x43,0x10, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xa0,0x55, // code info
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xa0,0x57, // code info
     0x25,0x00, // LOAD_DEREF 0
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0x10,0x55, // LOAD_CONST_STRING 'y'
-    0x10,0x82,0x66, // LOAD_CONST_STRING 'DY'
+    0x10,0x82,0x6a, // LOAD_CONST_STRING 'DY'
     0x52, // LOAD_CONST_TRUE
     0x34,0x05, // CALL_FUNCTION 5
     0x63, // RETURN_VALUE
@@ -10084,7 +10108,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_6 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_6 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_6 + 10,
@@ -10100,13 +10124,13 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_7
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_7[23] = {
     0x43,0x10, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xa0,0x56, // code info
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xa0,0x58, // code info
     0x25,0x00, // LOAD_DEREF 0
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0x10,0x55, // LOAD_CONST_STRING 'y'
-    0x10,0x82,0x63, // LOAD_CONST_STRING 'Y'
+    0x10,0x82,0x67, // LOAD_CONST_STRING 'Y'
     0x50, // LOAD_CONST_FALSE
     0x34,0x05, // CALL_FUNCTION 5
     0x63, // RETURN_VALUE
@@ -10134,7 +10158,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_7 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_7 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_7 + 10,
@@ -10150,8 +10174,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register_glide_to
 static const byte fun_data_scratch_Project__register_glide_to[87] = {
     0xa2,0x14,0xa7,0x81,0x01, // prelude
-    0x82,0x67,0x12,0x12,0x7a,0x84,0x2d,0x84,0x2e,0x84,0x2f, // names: glide_to, *, *, ctx, x1, y1, secs
-    0xa0,0x59,0x25,0x2d,0x27,0x4e,0x8d,0x08,0x03,0x04,0x07,0x08,0x09,0x0a,0x0b, // code info
+    0x82,0x6b,0x12,0x12,0x7a,0x84,0x33,0x84,0x34,0x84,0x35, // names: glide_to, *, *, ctx, x1, y1, secs
+    0xa0,0x5b,0x25,0x2d,0x27,0x4e,0x8d,0x08,0x03,0x04,0x07,0x08,0x09,0x0a,0x0b, // code info
     0xb2, // LOAD_FAST 2
     0x13,0x74, // LOAD_ATTR 'sp'
     0x27,0x07, // STORE_DEREF 7
@@ -10163,9 +10187,9 @@ static const byte fun_data_scratch_Project__register_glide_to[87] = {
     0x27,0x08, // STORE_DEREF 8
     0x27,0x09, // STORE_DEREF 9
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x2f, // LOAD_ATTR 'now'
+    0x13,0x81,0x31, // LOAD_ATTR 'now'
     0x27,0x0a, // STORE_DEREF 10
-    0x12,0x84,0x09, // LOAD_GLOBAL 'max'
+    0x12,0x84,0x0d, // LOAD_GLOBAL 'max'
     0x23,0x0a, // LOAD_CONST_OBJ 10
     0xb5, // LOAD_FAST 5
     0x34,0x02, // CALL_FUNCTION 2
@@ -10191,18 +10215,18 @@ static const byte fun_data_scratch_Project__register_glide_to[87] = {
 // frozen bytecode for file scratch.py, scope scratch_Project__register_glide_to_g
 static const byte fun_data_scratch_Project__register_glide_to_g[105] = {
     0xe9,0xc0,0x04,0x26, // prelude
-    0x83,0x6a,0x12,0x12,0x12,0x12,0x12,0x12,0x12,0x12,0x12, // names: g, *, *, *, *, *, *, *, *, *
-    0xa0,0x5f,0x20,0x3f,0x3d,0x27,0x25,0x22, // code info
+    0x83,0x6d,0x12,0x12,0x12,0x12,0x12,0x12,0x12,0x12,0x12, // names: g, *, *, *, *, *, *, *, *, *
+    0xa0,0x61,0x20,0x3f,0x3d,0x27,0x25,0x22, // code info
     0x25,0x07, // LOAD_DEREF 7
     0x80, // LOAD_CONST_SMALL_INT 0
     0xda, // BINARY_OP 3 __le__
     0x44,0x45, // POP_JUMP_IF_FALSE 5
     0x23,0x81,0x34, // LOAD_CONST_OBJ 180
     0x42,0x53, // JUMP 19
-    0x12,0x84,0x0f, // LOAD_GLOBAL 'min'
+    0x12,0x84,0x13, // LOAD_GLOBAL 'min'
     0x23,0x81,0x34, // LOAD_CONST_OBJ 180
     0x25,0x05, // LOAD_DEREF 5
-    0x13,0x81,0x2f, // LOAD_ATTR 'now'
+    0x13,0x81,0x31, // LOAD_ATTR 'now'
     0x25,0x06, // LOAD_DEREF 6
     0xf3, // BINARY_OP 28 __sub__
     0x25,0x07, // LOAD_DEREF 7
@@ -10268,7 +10292,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_glide_t
         .n_pos_args = 9,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 490,
+        .qstr_block_name_idx = 493,
         .line_info = fun_data_scratch_Project__register_glide_to_g + 15,
         .line_info_top = fun_data_scratch_Project__register_glide_to_g + 23,
         .opcodes = fun_data_scratch_Project__register_glide_to_g + 23,
@@ -10306,7 +10330,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_glide_t
         .n_pos_args = 6,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 359,
+        .qstr_block_name_idx = 363,
         .line_info = fun_data_scratch_Project__register_glide_to + 16,
         .line_info_top = fun_data_scratch_Project__register_glide_to + 24,
         .opcodes = fun_data_scratch_Project__register_glide_to + 31,
@@ -10319,36 +10343,36 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_glide_t
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_8
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_8[79] = {
     0xe8,0x04,0x18, // prelude
-    0x82,0x5a,0x12,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, *, ctx, b
-    0xa0,0x67,0x23,0x1f,0x2b, // code info
+    0x82,0x5e,0x12,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, *, ctx, b
+    0xa0,0x69,0x23,0x1f,0x2b, // code info
     0x25,0x01, // LOAD_DEREF 1
     0xb2, // LOAD_FAST 2
-    0x12,0x83,0x76, // LOAD_GLOBAL 'float'
+    0x12,0x83,0x79, // LOAD_GLOBAL 'float'
     0x12,0x20, // LOAD_GLOBAL 'num'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
-    0x10,0x82,0x62, // LOAD_CONST_STRING 'X'
+    0x10,0x82,0x66, // LOAD_CONST_STRING 'X'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
     0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x83,0x76, // LOAD_GLOBAL 'float'
+    0x12,0x83,0x79, // LOAD_GLOBAL 'float'
     0x12,0x20, // LOAD_GLOBAL 'num'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
-    0x10,0x82,0x63, // LOAD_CONST_STRING 'Y'
+    0x10,0x82,0x67, // LOAD_CONST_STRING 'Y'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
     0x34,0x01, // CALL_FUNCTION 1
     0x12,0x20, // LOAD_GLOBAL 'num'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
-    0x10,0x82,0x68, // LOAD_CONST_STRING 'SECS'
+    0x10,0x82,0x6c, // LOAD_CONST_STRING 'SECS'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
     0x34,0x04, // CALL_FUNCTION 4
@@ -10377,7 +10401,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 4,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_8 + 10,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_8 + 15,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_8 + 15,
@@ -10393,16 +10417,16 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register_glide_obj
 static const byte fun_data_scratch_Project__register_glide_obj[63] = {
     0x81,0x14,0x16, // prelude
-    0x82,0x69,0x12,0x12,0x12,0x7a,0x81,0x6a, // names: glide_obj, *, *, *, ctx, b
-    0xa0,0x6c,0x39, // code info
+    0x82,0x6d,0x12,0x12,0x12,0x7a,0x81,0x6c, // names: glide_obj, *, *, *, ctx, b
+    0xa0,0x6e,0x39, // code info
     0x25,0x01, // LOAD_DEREF 1
     0xb3, // LOAD_FAST 3
     0x12,0x28, // LOAD_GLOBAL 'text'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb3, // LOAD_FAST 3
     0xb4, // LOAD_FAST 4
-    0x10,0x82,0x60, // LOAD_CONST_STRING 'TO'
+    0x10,0x82,0x64, // LOAD_CONST_STRING 'TO'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
     0x34,0x02, // CALL_FUNCTION 2
@@ -10415,10 +10439,10 @@ static const byte fun_data_scratch_Project__register_glide_obj[63] = {
     0xb6, // LOAD_FAST 6
     0x12,0x20, // LOAD_GLOBAL 'num'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb3, // LOAD_FAST 3
     0xb4, // LOAD_FAST 4
-    0x10,0x82,0x68, // LOAD_CONST_STRING 'SECS'
+    0x10,0x82,0x6c, // LOAD_CONST_STRING 'SECS'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
     0x34,0x04, // CALL_FUNCTION 4
@@ -10447,7 +10471,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_glide_o
         .n_pos_args = 5,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 361,
+        .qstr_block_name_idx = 365,
         .line_info = fun_data_scratch_Project__register_glide_obj + 11,
         .line_info_top = fun_data_scratch_Project__register_glide_obj + 14,
         .opcodes = fun_data_scratch_Project__register_glide_obj + 14,
@@ -10463,19 +10487,19 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_glide_o
 // frozen bytecode for file scratch.py, scope scratch_Project__register_point_towards
 static const byte fun_data_scratch_Project__register_point_towards[129] = {
     0x91,0x14,0x22, // prelude
-    0x82,0x6a,0x12,0x12,0x12,0x7a,0x81,0x6a, // names: point_towards, *, *, *, ctx, b
-    0xa0,0x71,0x31,0x27,0x34,0x22,0x2a,0x31,0x26, // code info
+    0x82,0x6e,0x12,0x12,0x12,0x7a,0x81,0x6c, // names: point_towards, *, *, *, ctx, b
+    0xa0,0x73,0x31,0x27,0x34,0x22,0x2a,0x31,0x26, // code info
     0x12,0x28, // LOAD_GLOBAL 'text'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb3, // LOAD_FAST 3
     0xb4, // LOAD_FAST 4
-    0x10,0x82,0x6b, // LOAD_CONST_STRING 'TOWARDS'
+    0x10,0x82,0x6f, // LOAD_CONST_STRING 'TOWARDS'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
     0xc5, // STORE_FAST 5
     0xb5, // LOAD_FAST 5
-    0x10,0x82,0x5e, // LOAD_CONST_STRING '_random_'
+    0x10,0x82,0x62, // LOAD_CONST_STRING '_random_'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x56, // POP_JUMP_IF_FALSE 22
     0x25,0x01, // LOAD_DEREF 1
@@ -10519,9 +10543,9 @@ static const byte fun_data_scratch_Project__register_point_towards[129] = {
     0x13,0x74, // LOAD_ATTR 'sp'
     0x22,0x80,0x5a, // LOAD_CONST_SMALL_INT 90
     0x12,0x03, // LOAD_GLOBAL 'math'
-    0x14,0x82,0x6c, // LOAD_METHOD 'degrees'
+    0x14,0x82,0x70, // LOAD_METHOD 'degrees'
     0x12,0x03, // LOAD_GLOBAL 'math'
-    0x14,0x82,0x6d, // LOAD_METHOD 'atan2'
+    0x14,0x82,0x71, // LOAD_METHOD 'atan2'
     0xb9, // LOAD_FAST 9
     0xb8, // LOAD_FAST 8
     0x36,0x02, // CALL_METHOD 2
@@ -10555,7 +10579,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_point_t
         .n_pos_args = 5,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 362,
+        .qstr_block_name_idx = 366,
         .line_info = fun_data_scratch_Project__register_point_towards + 11,
         .line_info_top = fun_data_scratch_Project__register_point_towards + 20,
         .opcodes = fun_data_scratch_Project__register_point_towards + 20,
@@ -10571,8 +10595,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_point_t
 // frozen bytecode for file scratch.py, scope scratch_Project__register_bounce
 static const byte fun_data_scratch_Project__register_bounce[165] = {
     0xe8,0x04,0x2c, // prelude
-    0x82,0x6e,0x12,0x12,0x7a,0x81,0x6a, // names: bounce, *, *, ctx, b
-    0xa0,0x7c,0x24,0x2b,0x22,0x2e,0x27,0x3b,0x22,0x2e,0x2a,0x3b,0x22,0x23,0x29, // code info
+    0x82,0x72,0x12,0x12,0x7a,0x81,0x6c, // names: bounce, *, *, ctx, b
+    0xa0,0x7e,0x24,0x2b,0x22,0x2e,0x27,0x3b,0x22,0x2e,0x2a,0x3b,0x22,0x23,0x29, // code info
     0xb2, // LOAD_FAST 2
     0x13,0x74, // LOAD_ATTR 'sp'
     0xc4, // STORE_FAST 4
@@ -10689,7 +10713,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_bounce 
         .n_pos_args = 4,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 366,
+        .qstr_block_name_idx = 370,
         .line_info = fun_data_scratch_Project__register_bounce + 10,
         .line_info_top = fun_data_scratch_Project__register_bounce + 25,
         .opcodes = fun_data_scratch_Project__register_bounce + 25,
@@ -10705,19 +10729,19 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_bounce 
 // frozen bytecode for file scratch.py, scope scratch_Project__register_rot_style
 static const byte fun_data_scratch_Project__register_rot_style[42] = {
     0x3b,0x12, // prelude
-    0x82,0x6f,0x12,0x7a,0x81,0x6a, // names: rot_style, *, ctx, b
-    0xa0,0x8d,0x32, // code info
+    0x82,0x73,0x12,0x7a,0x81,0x6c, // names: rot_style, *, ctx, b
+    0xa0,0x8f,0x32, // code info
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x66, // LOAD_METHOD 'field'
+    0x14,0x81,0x68, // LOAD_METHOD 'field'
     0xb2, // LOAD_FAST 2
-    0x10,0x82,0x70, // LOAD_CONST_STRING 'STYLE'
+    0x10,0x82,0x74, // LOAD_CONST_STRING 'STYLE'
     0x10,0x6c, // LOAD_CONST_STRING 'all around'
     0x36,0x03, // CALL_METHOD 3
     0xb1, // LOAD_FAST 1
     0x13,0x74, // LOAD_ATTR 'sp'
     0x18,0x5b, // STORE_ATTR 'rot'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x76, // LOAD_METHOD 'mark'
+    0x14,0x81,0x78, // LOAD_METHOD 'mark'
     0xb1, // LOAD_FAST 1
     0x13,0x74, // LOAD_ATTR 'sp'
     0x36,0x01, // CALL_METHOD 1
@@ -10748,7 +10772,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_rot_sty
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 367,
+        .qstr_block_name_idx = 371,
         .line_info = fun_data_scratch_Project__register_rot_style + 8,
         .line_info_top = fun_data_scratch_Project__register_rot_style + 11,
         .opcodes = fun_data_scratch_Project__register_rot_style + 11,
@@ -10764,9 +10788,9 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_rot_sty
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_9
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_9[21] = {
     0x22,0x0e, // prelude
-    0x82,0x5a,0x7a,0x81,0x6a, // names: <lambda>, ctx, b
-    0xa0,0x90, // code info
-    0x12,0x84,0x0e, // LOAD_GLOBAL 'round'
+    0x82,0x5e,0x7a,0x81,0x6c, // names: <lambda>, ctx, b
+    0xa0,0x92, // code info
+    0x12,0x84,0x12, // LOAD_GLOBAL 'round'
     0xb0, // LOAD_FAST 0
     0x13,0x74, // LOAD_ATTR 'sp'
     0x13,0x54, // LOAD_ATTR 'x'
@@ -10797,7 +10821,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_9 + 7,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_9 + 9,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_9 + 9,
@@ -10813,9 +10837,9 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_10
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_10[21] = {
     0x22,0x0e, // prelude
-    0x82,0x5a,0x7a,0x81,0x6a, // names: <lambda>, ctx, b
-    0xa0,0x91, // code info
-    0x12,0x84,0x0e, // LOAD_GLOBAL 'round'
+    0x82,0x5e,0x7a,0x81,0x6c, // names: <lambda>, ctx, b
+    0xa0,0x93, // code info
+    0x12,0x84,0x12, // LOAD_GLOBAL 'round'
     0xb0, // LOAD_FAST 0
     0x13,0x74, // LOAD_ATTR 'sp'
     0x13,0x55, // LOAD_ATTR 'y'
@@ -10846,7 +10870,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_10 + 7,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_10 + 9,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_10 + 9,
@@ -10862,8 +10886,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_11
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_11[15] = {
     0x12,0x0e, // prelude
-    0x82,0x5a,0x7a,0x81,0x6a, // names: <lambda>, ctx, b
-    0xa0,0x92, // code info
+    0x82,0x5e,0x7a,0x81,0x6c, // names: <lambda>, ctx, b
+    0xa0,0x94, // code info
     0xb0, // LOAD_FAST 0
     0x13,0x74, // LOAD_ATTR 'sp'
     0x13,0x56, // LOAD_ATTR 'dir'
@@ -10892,7 +10916,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_11 + 7,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_11 + 9,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_11 + 9,
@@ -10908,23 +10932,23 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register_say
 static const byte fun_data_scratch_Project__register_say[103] = {
     0xe8,0x05,0xa4,0x01, // prelude
-    0x82,0x71,0x12,0x7a,0x81,0x6a,0x84,0x30, // names: say, *, ctx, b, secs_name
-    0xa0,0x96,0x25,0x34,0x2a,0x25,0x22,0x5a,0x67,0x40,0x05,0x06, // code info
+    0x82,0x75,0x12,0x7a,0x81,0x6c,0x84,0x36, // names: say, *, ctx, b, secs_name
+    0xa0,0x98,0x25,0x34,0x2a,0x25,0x22,0x5a,0x67,0x40,0x05,0x06, // code info
     0xb1, // LOAD_FAST 1
     0x13,0x74, // LOAD_ATTR 'sp'
     0x27,0x05, // STORE_DEREF 5
     0x12,0x28, // LOAD_GLOBAL 'text'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x82,0x72, // LOAD_CONST_STRING 'MESSAGE'
+    0x10,0x82,0x76, // LOAD_CONST_STRING 'MESSAGE'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
     0x25,0x05, // LOAD_DEREF 5
     0x18,0x5d, // STORE_ATTR 'say_text'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x76, // LOAD_METHOD 'mark'
+    0x14,0x81,0x78, // LOAD_METHOD 'mark'
     0x25,0x05, // LOAD_DEREF 5
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
@@ -10935,10 +10959,10 @@ static const byte fun_data_scratch_Project__register_say[103] = {
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x2f, // LOAD_ATTR 'now'
+    0x13,0x81,0x31, // LOAD_ATTR 'now'
     0x12,0x20, // LOAD_GLOBAL 'num'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
@@ -10961,14 +10985,14 @@ static const byte fun_data_scratch_Project__register_say[103] = {
 // frozen bytecode for file scratch.py, scope scratch_Project__register_say_g
 static const byte fun_data_scratch_Project__register_say_g[46] = {
     0xab,0x40,0x14, // prelude
-    0x83,0x6a,0x12,0x12,0x12, // names: g, *, *, *
-    0xa0,0x9e,0x22,0x2d,0x26, // code info
+    0x83,0x6d,0x12,0x12,0x12, // names: g, *, *, *
+    0xa0,0xa0,0x22,0x2d,0x26, // code info
     0x42,0x43, // JUMP 3
     0x51, // LOAD_CONST_NONE
     0x67, // YIELD_VALUE
     0x59, // POP_TOP
     0x25,0x01, // LOAD_DEREF 1
-    0x13,0x81,0x2f, // LOAD_ATTR 'now'
+    0x13,0x81,0x31, // LOAD_ATTR 'now'
     0x25,0x02, // LOAD_DEREF 2
     0xd7, // BINARY_OP 0 __lt__
     0x43,0x33, // POP_JUMP_IF_TRUE -13
@@ -10976,7 +11000,7 @@ static const byte fun_data_scratch_Project__register_say_g[46] = {
     0x25,0x00, // LOAD_DEREF 0
     0x18,0x5d, // STORE_ATTR 'say_text'
     0x25,0x01, // LOAD_DEREF 1
-    0x14,0x81,0x76, // LOAD_METHOD 'mark'
+    0x14,0x81,0x78, // LOAD_METHOD 'mark'
     0x25,0x00, // LOAD_DEREF 0
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
@@ -11006,7 +11030,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_say_g =
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 490,
+        .qstr_block_name_idx = 493,
         .line_info = fun_data_scratch_Project__register_say_g + 8,
         .line_info_top = fun_data_scratch_Project__register_say_g + 13,
         .opcodes = fun_data_scratch_Project__register_say_g + 13,
@@ -11044,7 +11068,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_say = {
         .n_pos_args = 4,
         .n_kwonly_args = 0,
         .n_def_pos_args = 1,
-        .qstr_block_name_idx = 369,
+        .qstr_block_name_idx = 373,
         .line_info = fun_data_scratch_Project__register_say + 12,
         .line_info_top = fun_data_scratch_Project__register_say + 22,
         .opcodes = fun_data_scratch_Project__register_say + 24,
@@ -11057,8 +11081,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_say = {
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_12
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_12[17] = {
     0x2b,0x10, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xa0,0xa3, // code info
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xa0,0xa5, // code info
     0x25,0x00, // LOAD_DEREF 0
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
@@ -11088,7 +11112,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_12 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_12 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_12 + 10,
@@ -11104,8 +11128,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_13
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_13[17] = {
     0x2b,0x10, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xa0,0xa4, // code info
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xa0,0xa6, // code info
     0x25,0x00, // LOAD_DEREF 0
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
@@ -11135,7 +11159,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_13 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_13 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_13 + 10,
@@ -11151,12 +11175,12 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_14
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_14[20] = {
     0x33,0x10, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xa0,0xa5, // code info
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xa0,0xa7, // code info
     0x25,0x00, // LOAD_DEREF 0
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x82,0x68, // LOAD_CONST_STRING 'SECS'
+    0x10,0x82,0x6c, // LOAD_CONST_STRING 'SECS'
     0x34,0x03, // CALL_FUNCTION 3
     0x63, // RETURN_VALUE
 };
@@ -11183,7 +11207,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_14 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_14 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_14 + 10,
@@ -11199,12 +11223,12 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_15
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_15[20] = {
     0x33,0x10, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xa0,0xa6, // code info
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xa0,0xa8, // code info
     0x25,0x00, // LOAD_DEREF 0
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x82,0x68, // LOAD_CONST_STRING 'SECS'
+    0x10,0x82,0x6c, // LOAD_CONST_STRING 'SECS'
     0x34,0x03, // CALL_FUNCTION 3
     0x63, // RETURN_VALUE
 };
@@ -11231,7 +11255,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_15 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_15 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_15 + 10,
@@ -11247,21 +11271,21 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register_costume
 static const byte fun_data_scratch_Project__register_costume[43] = {
     0x4b,0x10, // prelude
-    0x53,0x12,0x7a,0x81,0x6a, // names: costume, *, ctx, b
-    0xa0,0xa9,0x34, // code info
+    0x53,0x12,0x7a,0x81,0x6c, // names: costume, *, ctx, b
+    0xa0,0xab,0x34, // code info
     0xb1, // LOAD_FAST 1
     0x13,0x74, // LOAD_ATTR 'sp'
     0x14,0x71, // LOAD_METHOD 'set_costume'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x82,0x73, // LOAD_CONST_STRING 'COSTUME'
+    0x10,0x82,0x77, // LOAD_CONST_STRING 'COSTUME'
     0x36,0x03, // CALL_METHOD 3
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x76, // LOAD_METHOD 'mark'
+    0x14,0x81,0x78, // LOAD_METHOD 'mark'
     0xb1, // LOAD_FAST 1
     0x13,0x74, // LOAD_ATTR 'sp'
     0x36,0x01, // CALL_METHOD 1
@@ -11308,8 +11332,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_costume
 // frozen bytecode for file scratch.py, scope scratch_Project__register_next_costume
 static const byte fun_data_scratch_Project__register_next_costume[34] = {
     0x2b,0x12, // prelude
-    0x82,0x74,0x12,0x7a,0x81,0x6a, // names: next_costume, *, ctx, b
-    0xa0,0xae,0x2a, // code info
+    0x82,0x78,0x12,0x7a,0x81,0x6c, // names: next_costume, *, ctx, b
+    0xa0,0xb0,0x2a, // code info
     0xb1, // LOAD_FAST 1
     0x13,0x74, // LOAD_ATTR 'sp'
     0x14,0x71, // LOAD_METHOD 'set_costume'
@@ -11317,7 +11341,7 @@ static const byte fun_data_scratch_Project__register_next_costume[34] = {
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x76, // LOAD_METHOD 'mark'
+    0x14,0x81,0x78, // LOAD_METHOD 'mark'
     0xb1, // LOAD_FAST 1
     0x13,0x74, // LOAD_ATTR 'sp'
     0x36,0x01, // CALL_METHOD 1
@@ -11348,7 +11372,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_next_co
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 372,
+        .qstr_block_name_idx = 376,
         .line_info = fun_data_scratch_Project__register_next_costume + 8,
         .line_info_top = fun_data_scratch_Project__register_next_costume + 11,
         .opcodes = fun_data_scratch_Project__register_next_costume + 11,
@@ -11364,8 +11388,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_next_co
 // frozen bytecode for file scratch.py, scope scratch_Project__register_backdrop
 static const byte fun_data_scratch_Project__register_backdrop[75] = {
     0xd8,0x05,0x1a, // prelude
-    0x82,0x75,0x12,0x7a,0x81,0x6a,0x84,0x17, // names: backdrop, *, ctx, b, value
-    0xa0,0xb3,0x25,0x3b,0x26, // code info
+    0x82,0x79,0x12,0x7a,0x81,0x6c,0x84,0x1c, // names: backdrop, *, ctx, b, value
+    0xa0,0xb5,0x25,0x3b,0x26, // code info
     0x25,0x00, // LOAD_DEREF 0
     0x13,0x45, // LOAD_ATTR 'stage'
     0xc4, // STORE_FAST 4
@@ -11379,16 +11403,16 @@ static const byte fun_data_scratch_Project__register_backdrop[75] = {
     0xb3, // LOAD_FAST 3
     0x42,0x4c, // JUMP 12
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x82,0x76, // LOAD_CONST_STRING 'BACKDROP'
+    0x10,0x82,0x7a, // LOAD_CONST_STRING 'BACKDROP'
     0x36,0x03, // CALL_METHOD 3
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0x52, // LOAD_CONST_TRUE
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x33, // STORE_ATTR 'dirty_all'
+    0x18,0x81,0x35, // STORE_ATTR 'dirty_all'
     0x25,0x00, // LOAD_DEREF 0
     0x14,0x39, // LOAD_METHOD 'start_hats'
     0x23,0x81,0x22, // LOAD_CONST_OBJ 162
@@ -11427,7 +11451,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_backdro
         .n_pos_args = 4,
         .n_kwonly_args = 0,
         .n_def_pos_args = 1,
-        .qstr_block_name_idx = 373,
+        .qstr_block_name_idx = 377,
         .line_info = fun_data_scratch_Project__register_backdrop + 11,
         .line_info_top = fun_data_scratch_Project__register_backdrop + 16,
         .opcodes = fun_data_scratch_Project__register_backdrop + 16,
@@ -11443,8 +11467,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_backdro
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_16
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_16[19] = {
     0x33,0x10, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xa0,0xb8, // code info
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xa0,0xba, // code info
     0x25,0x00, // LOAD_DEREF 0
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
@@ -11475,7 +11499,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_16 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_16 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_16 + 10,
@@ -11491,19 +11515,19 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register_size
 static const byte fun_data_scratch_Project__register_size[100] = {
     0xd8,0x04,0x1a, // prelude
-    0x58,0x12,0x7a,0x81,0x6a,0x84,0x2c, // names: size, *, ctx, b, delta
-    0xa0,0xbb,0x3e,0x27,0x1f,0x23, // code info
-    0x12,0x83,0x76, // LOAD_GLOBAL 'float'
+    0x58,0x12,0x7a,0x81,0x6c,0x84,0x32, // names: size, *, ctx, b, delta
+    0xa0,0xbd,0x3e,0x27,0x1f,0x23, // code info
+    0x12,0x83,0x79, // LOAD_GLOBAL 'float'
     0x12,0x20, // LOAD_GLOBAL 'num'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
     0x44,0x45, // POP_JUMP_IF_FALSE 5
-    0x10,0x82,0x77, // LOAD_CONST_STRING 'CHANGE'
+    0x10,0x82,0x7b, // LOAD_CONST_STRING 'CHANGE'
     0x42,0x43, // JUMP 3
-    0x10,0x82,0x78, // LOAD_CONST_STRING 'SIZE'
+    0x10,0x82,0x7c, // LOAD_CONST_STRING 'SIZE'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
     0x34,0x01, // CALL_FUNCTION 1
@@ -11512,9 +11536,9 @@ static const byte fun_data_scratch_Project__register_size[100] = {
     0xb4, // LOAD_FAST 4
     0x34,0x01, // CALL_FUNCTION 1
     0x44,0x62, // POP_JUMP_IF_FALSE 34
-    0x12,0x84,0x09, // LOAD_GLOBAL 'max'
+    0x12,0x84,0x0d, // LOAD_GLOBAL 'max'
     0x23,0x81,0x23, // LOAD_CONST_OBJ 163
-    0x12,0x84,0x0f, // LOAD_GLOBAL 'min'
+    0x12,0x84,0x13, // LOAD_GLOBAL 'min'
     0x23,0x81,0x24, // LOAD_CONST_OBJ 164
     0xb3, // LOAD_FAST 3
     0x44,0x49, // POP_JUMP_IF_FALSE 9
@@ -11531,7 +11555,7 @@ static const byte fun_data_scratch_Project__register_size[100] = {
     0x13,0x74, // LOAD_ATTR 'sp'
     0x18,0x58, // STORE_ATTR 'size'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x76, // LOAD_METHOD 'mark'
+    0x14,0x81,0x78, // LOAD_METHOD 'mark'
     0xb1, // LOAD_FAST 1
     0x13,0x74, // LOAD_ATTR 'sp'
     0x36,0x01, // CALL_METHOD 1
@@ -11578,8 +11602,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_size = 
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_17
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_17[18] = {
     0x33,0x10, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xa0,0xbf, // code info
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xa0,0xc1, // code info
     0x25,0x00, // LOAD_DEREF 0
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
@@ -11610,7 +11634,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_17 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_17 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_17 + 10,
@@ -11626,8 +11650,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_18
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_18[18] = {
     0x33,0x10, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xa0,0xc0, // code info
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xa0,0xc2, // code info
     0x25,0x00, // LOAD_DEREF 0
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
@@ -11658,7 +11682,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_18 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_18 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_18 + 10,
@@ -11674,13 +11698,13 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register_effect
 static const byte fun_data_scratch_Project__register_effect[123] = {
     0xd8,0x04,0x1e, // prelude
-    0x82,0x79,0x12,0x7a,0x81,0x6a,0x84,0x2c, // names: effect, *, ctx, b, delta
-    0xa0,0xc3,0x3b,0x22,0x3e,0x1f,0x22, // code info
-    0x12,0x83,0x7c, // LOAD_GLOBAL 'str'
+    0x82,0x7d,0x12,0x7a,0x81,0x6c,0x84,0x32, // names: effect, *, ctx, b, delta
+    0xa0,0xc5,0x3b,0x22,0x3e,0x1f,0x22, // code info
+    0x12,0x83,0x7f, // LOAD_GLOBAL 'str'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x66, // LOAD_METHOD 'field'
+    0x14,0x81,0x68, // LOAD_METHOD 'field'
     0xb2, // LOAD_FAST 2
-    0x10,0x82,0x7a, // LOAD_CONST_STRING 'EFFECT'
+    0x10,0x82,0x7e, // LOAD_CONST_STRING 'EFFECT'
     0x10,0x30, // LOAD_CONST_STRING ''
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
@@ -11691,24 +11715,24 @@ static const byte fun_data_scratch_Project__register_effect[123] = {
     0x44,0x42, // POP_JUMP_IF_FALSE 2
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
-    0x12,0x83,0x76, // LOAD_GLOBAL 'float'
+    0x12,0x83,0x79, // LOAD_GLOBAL 'float'
     0x12,0x20, // LOAD_GLOBAL 'num'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
     0x44,0x45, // POP_JUMP_IF_FALSE 5
-    0x10,0x82,0x77, // LOAD_CONST_STRING 'CHANGE'
+    0x10,0x82,0x7b, // LOAD_CONST_STRING 'CHANGE'
     0x42,0x43, // JUMP 3
-    0x10,0x82,0x7b, // LOAD_CONST_STRING 'VALUE'
+    0x10,0x82,0x7f, // LOAD_CONST_STRING 'VALUE'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
     0x34,0x01, // CALL_FUNCTION 1
     0xc4, // STORE_FAST 4
-    0x12,0x84,0x09, // LOAD_GLOBAL 'max'
+    0x12,0x84,0x0d, // LOAD_GLOBAL 'max'
     0x23,0x0a, // LOAD_CONST_OBJ 10
-    0x12,0x84,0x0f, // LOAD_GLOBAL 'min'
+    0x12,0x84,0x13, // LOAD_GLOBAL 'min'
     0x23,0x81,0x25, // LOAD_CONST_OBJ 165
     0xb3, // LOAD_FAST 3
     0x44,0x49, // POP_JUMP_IF_FALSE 9
@@ -11725,7 +11749,7 @@ static const byte fun_data_scratch_Project__register_effect[123] = {
     0x13,0x74, // LOAD_ATTR 'sp'
     0x18,0x5c, // STORE_ATTR 'ghost'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x76, // LOAD_METHOD 'mark'
+    0x14,0x81,0x78, // LOAD_METHOD 'mark'
     0xb1, // LOAD_FAST 1
     0x13,0x74, // LOAD_ATTR 'sp'
     0x36,0x01, // CALL_METHOD 1
@@ -11756,7 +11780,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_effect 
         .n_pos_args = 4,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 377,
+        .qstr_block_name_idx = 381,
         .line_info = fun_data_scratch_Project__register_effect + 11,
         .line_info_top = fun_data_scratch_Project__register_effect + 18,
         .opcodes = fun_data_scratch_Project__register_effect + 18,
@@ -11772,8 +11796,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_effect 
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_19
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_19[18] = {
     0x33,0x10, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xa0,0xc8, // code info
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xa0,0xca, // code info
     0x25,0x00, // LOAD_DEREF 0
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
@@ -11804,7 +11828,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_19 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_19 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_19 + 10,
@@ -11820,8 +11844,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_20
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_20[18] = {
     0x33,0x10, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xa0,0xc9, // code info
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xa0,0xcb, // code info
     0x25,0x00, // LOAD_DEREF 0
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
@@ -11852,7 +11876,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_20 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_20 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_20 + 10,
@@ -11868,14 +11892,14 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register_clear_fx
 static const byte fun_data_scratch_Project__register_clear_fx[30] = {
     0x2b,0x12, // prelude
-    0x82,0x7c,0x12,0x7a,0x81,0x6a, // names: clear_fx, *, ctx, b
-    0xa0,0xcc,0x26, // code info
+    0x83,0x00,0x12,0x7a,0x81,0x6c, // names: clear_fx, *, ctx, b
+    0xa0,0xce,0x26, // code info
     0x80, // LOAD_CONST_SMALL_INT 0
     0xb1, // LOAD_FAST 1
     0x13,0x74, // LOAD_ATTR 'sp'
     0x18,0x5c, // STORE_ATTR 'ghost'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x76, // LOAD_METHOD 'mark'
+    0x14,0x81,0x78, // LOAD_METHOD 'mark'
     0xb1, // LOAD_FAST 1
     0x13,0x74, // LOAD_ATTR 'sp'
     0x36,0x01, // CALL_METHOD 1
@@ -11906,7 +11930,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_clear_f
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 380,
+        .qstr_block_name_idx = 384,
         .line_info = fun_data_scratch_Project__register_clear_fx + 8,
         .line_info_top = fun_data_scratch_Project__register_clear_fx + 11,
         .opcodes = fun_data_scratch_Project__register_clear_fx + 11,
@@ -11922,14 +11946,14 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_clear_f
 // frozen bytecode for file scratch.py, scope scratch_Project__register_show
 static const byte fun_data_scratch_Project__register_show[33] = {
     0xb0,0x04,0x16, // prelude
-    0x82,0x7d,0x12,0x7a,0x81,0x6a,0x81,0x5d, // names: show, *, ctx, b, v
-    0xa0,0xd1,0x26, // code info
+    0x83,0x01,0x12,0x7a,0x81,0x6c,0x81,0x5f, // names: show, *, ctx, b, v
+    0xa0,0xd3,0x26, // code info
     0xb3, // LOAD_FAST 3
     0xb1, // LOAD_FAST 1
     0x13,0x74, // LOAD_ATTR 'sp'
     0x18,0x59, // STORE_ATTR 'visible'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x76, // LOAD_METHOD 'mark'
+    0x14,0x81,0x78, // LOAD_METHOD 'mark'
     0xb1, // LOAD_FAST 1
     0x13,0x74, // LOAD_ATTR 'sp'
     0x36,0x01, // CALL_METHOD 1
@@ -11960,7 +11984,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_show = 
         .n_pos_args = 4,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 381,
+        .qstr_block_name_idx = 385,
         .line_info = fun_data_scratch_Project__register_show + 11,
         .line_info_top = fun_data_scratch_Project__register_show + 14,
         .opcodes = fun_data_scratch_Project__register_show + 14,
@@ -11976,8 +12000,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_show = 
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_21
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_21[18] = {
     0x33,0x10, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xa0,0xd3, // code info
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xa0,0xd5, // code info
     0x25,0x00, // LOAD_DEREF 0
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
@@ -12008,7 +12032,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_21 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_21 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_21 + 10,
@@ -12024,8 +12048,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_22
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_22[18] = {
     0x33,0x10, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xa0,0xd4, // code info
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xa0,0xd6, // code info
     0x25,0x00, // LOAD_DEREF 0
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
@@ -12056,7 +12080,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_22 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_22 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_22 + 10,
@@ -12072,47 +12096,47 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register_front_back
 static const byte fun_data_scratch_Project__register_front_back[100] = {
     0x43,0x1c, // prelude
-    0x82,0x7e,0x12,0x7a,0x81,0x6a, // names: front_back, *, ctx, b
-    0xa0,0xd7,0x24,0x2a,0x2c,0x34,0x4e,0x2d, // code info
+    0x83,0x02,0x12,0x7a,0x81,0x6c, // names: front_back, *, ctx, b
+    0xa0,0xd9,0x24,0x2a,0x2c,0x34,0x4e,0x2d, // code info
     0xb1, // LOAD_FAST 1
     0x13,0x74, // LOAD_ATTR 'sp'
     0xc3, // STORE_FAST 3
     0xb3, // LOAD_FAST 3
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x24, // LOAD_ATTR 'layers'
+    0x13,0x81,0x26, // LOAD_ATTR 'layers'
     0xdd, // BINARY_OP 6 <in>
     0x44,0xc4,0x80, // POP_JUMP_IF_FALSE 68
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x24, // LOAD_ATTR 'layers'
-    0x14,0x82,0x7f, // LOAD_METHOD 'remove'
+    0x13,0x81,0x26, // LOAD_ATTR 'layers'
+    0x14,0x82,0x40, // LOAD_METHOD 'remove'
     0xb3, // LOAD_FAST 3
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x66, // LOAD_METHOD 'field'
+    0x14,0x81,0x68, // LOAD_METHOD 'field'
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x00, // LOAD_CONST_STRING 'FRONT_BACK'
-    0x10,0x83,0x01, // LOAD_CONST_STRING 'front'
+    0x10,0x83,0x03, // LOAD_CONST_STRING 'FRONT_BACK'
+    0x10,0x83,0x04, // LOAD_CONST_STRING 'front'
     0x36,0x03, // CALL_METHOD 3
-    0x10,0x83,0x01, // LOAD_CONST_STRING 'front'
+    0x10,0x83,0x04, // LOAD_CONST_STRING 'front'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x4e, // POP_JUMP_IF_FALSE 14
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x24, // LOAD_ATTR 'layers'
-    0x14,0x81,0x68, // LOAD_METHOD 'append'
+    0x13,0x81,0x26, // LOAD_ATTR 'layers'
+    0x14,0x81,0x6a, // LOAD_METHOD 'append'
     0xb3, // LOAD_FAST 3
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0x42,0x4d, // JUMP 13
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x24, // LOAD_ATTR 'layers'
-    0x14,0x83,0x02, // LOAD_METHOD 'insert'
+    0x13,0x81,0x26, // LOAD_ATTR 'layers'
+    0x14,0x83,0x05, // LOAD_METHOD 'insert'
     0x80, // LOAD_CONST_SMALL_INT 0
     0xb3, // LOAD_FAST 3
     0x36,0x02, // CALL_METHOD 2
     0x59, // POP_TOP
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x76, // LOAD_METHOD 'mark'
+    0x14,0x81,0x78, // LOAD_METHOD 'mark'
     0xb3, // LOAD_FAST 3
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
@@ -12142,7 +12166,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_front_b
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 382,
+        .qstr_block_name_idx = 386,
         .line_info = fun_data_scratch_Project__register_front_back + 8,
         .line_info_top = fun_data_scratch_Project__register_front_back + 16,
         .opcodes = fun_data_scratch_Project__register_front_back + 16,
@@ -12158,14 +12182,14 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_front_b
 // frozen bytecode for file scratch.py, scope scratch_Project__register_layers
 static const byte fun_data_scratch_Project__register_layers[147] = {
     0x6b,0x24, // prelude
-    0x81,0x24,0x12,0x7a,0x81,0x6a, // names: layers, *, ctx, b
-    0xa0,0xe2,0x24,0x2a,0x22,0x31,0x34,0x23,0x2c,0x2c,0x1f,0x25, // code info
+    0x81,0x26,0x12,0x7a,0x81,0x6c, // names: layers, *, ctx, b
+    0xa0,0xe4,0x24,0x2a,0x22,0x31,0x34,0x23,0x2c,0x2c,0x1f,0x25, // code info
     0xb1, // LOAD_FAST 1
     0x13,0x74, // LOAD_ATTR 'sp'
     0xc3, // STORE_FAST 3
     0xb3, // LOAD_FAST 3
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x24, // LOAD_ATTR 'layers'
+    0x13,0x81,0x26, // LOAD_ATTR 'layers'
     0xdd, // BINARY_OP 6 <in>
     0xd3, // UNARY_OP 3 <not>
     0x44,0x42, // POP_JUMP_IF_FALSE 2
@@ -12173,46 +12197,46 @@ static const byte fun_data_scratch_Project__register_layers[147] = {
     0x63, // RETURN_VALUE
     0x12,0x26, // LOAD_GLOBAL 'toint'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x03, // LOAD_CONST_STRING 'NUM'
+    0x10,0x83,0x06, // LOAD_CONST_STRING 'NUM'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
     0xc4, // STORE_FAST 4
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x66, // LOAD_METHOD 'field'
+    0x14,0x81,0x68, // LOAD_METHOD 'field'
     0xb2, // LOAD_FAST 2
     0x23,0x81,0x26, // LOAD_CONST_OBJ 166
-    0x10,0x83,0x04, // LOAD_CONST_STRING 'forward'
+    0x10,0x83,0x07, // LOAD_CONST_STRING 'forward'
     0x36,0x03, // CALL_METHOD 3
-    0x10,0x83,0x05, // LOAD_CONST_STRING 'backward'
+    0x10,0x83,0x08, // LOAD_CONST_STRING 'backward'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x43, // POP_JUMP_IF_FALSE 3
     0xb4, // LOAD_FAST 4
     0xd1, // UNARY_OP 1 __neg__
     0xc4, // STORE_FAST 4
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x24, // LOAD_ATTR 'layers'
-    0x14,0x82,0x50, // LOAD_METHOD 'index'
+    0x13,0x81,0x26, // LOAD_ATTR 'layers'
+    0x14,0x82,0x54, // LOAD_METHOD 'index'
     0xb3, // LOAD_FAST 3
     0x36,0x01, // CALL_METHOD 1
     0xc5, // STORE_FAST 5
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x24, // LOAD_ATTR 'layers'
-    0x14,0x82,0x7f, // LOAD_METHOD 'remove'
+    0x13,0x81,0x26, // LOAD_ATTR 'layers'
+    0x14,0x82,0x40, // LOAD_METHOD 'remove'
     0xb3, // LOAD_FAST 3
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x24, // LOAD_ATTR 'layers'
-    0x14,0x83,0x02, // LOAD_METHOD 'insert'
-    0x12,0x84,0x09, // LOAD_GLOBAL 'max'
+    0x13,0x81,0x26, // LOAD_ATTR 'layers'
+    0x14,0x83,0x05, // LOAD_METHOD 'insert'
+    0x12,0x84,0x0d, // LOAD_GLOBAL 'max'
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x12,0x84,0x0f, // LOAD_GLOBAL 'min'
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x13, // LOAD_GLOBAL 'min'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x24, // LOAD_ATTR 'layers'
+    0x13,0x81,0x26, // LOAD_ATTR 'layers'
     0x34,0x01, // CALL_FUNCTION 1
     0xb5, // LOAD_FAST 5
     0xb4, // LOAD_FAST 4
@@ -12223,7 +12247,7 @@ static const byte fun_data_scratch_Project__register_layers[147] = {
     0x36,0x02, // CALL_METHOD 2
     0x59, // POP_TOP
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x76, // LOAD_METHOD 'mark'
+    0x14,0x81,0x78, // LOAD_METHOD 'mark'
     0xb3, // LOAD_FAST 3
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
@@ -12253,7 +12277,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_layers 
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 164,
+        .qstr_block_name_idx = 166,
         .line_info = fun_data_scratch_Project__register_layers + 8,
         .line_info_top = fun_data_scratch_Project__register_layers + 20,
         .opcodes = fun_data_scratch_Project__register_layers + 20,
@@ -12269,16 +12293,16 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_layers 
 // frozen bytecode for file scratch.py, scope scratch_Project__register_cos_num
 static const byte fun_data_scratch_Project__register_cos_num[52] = {
     0x43,0x16, // prelude
-    0x83,0x06,0x12,0x7a,0x81,0x6a, // names: cos_num, *, ctx, b
-    0xa0,0xef,0x24,0x33,0x2a, // code info
+    0x83,0x09,0x12,0x7a,0x81,0x6c, // names: cos_num, *, ctx, b
+    0xa0,0xf1,0x24,0x33,0x2a, // code info
     0xb1, // LOAD_FAST 1
     0x13,0x74, // LOAD_ATTR 'sp'
     0xc3, // STORE_FAST 3
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x66, // LOAD_METHOD 'field'
+    0x14,0x81,0x68, // LOAD_METHOD 'field'
     0xb2, // LOAD_FAST 2
     0x23,0x81,0x27, // LOAD_CONST_OBJ 167
-    0x10,0x83,0x07, // LOAD_CONST_STRING 'number'
+    0x10,0x83,0x0a, // LOAD_CONST_STRING 'number'
     0x36,0x03, // CALL_METHOD 3
     0x10,0x43, // LOAD_CONST_STRING 'name'
     0xd9, // BINARY_OP 2 __eq__
@@ -12320,7 +12344,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_cos_num
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 390,
+        .qstr_block_name_idx = 393,
         .line_info = fun_data_scratch_Project__register_cos_num + 8,
         .line_info_top = fun_data_scratch_Project__register_cos_num + 13,
         .opcodes = fun_data_scratch_Project__register_cos_num + 13,
@@ -12336,16 +12360,16 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_cos_num
 // frozen bytecode for file scratch.py, scope scratch_Project__register_bd_num
 static const byte fun_data_scratch_Project__register_bd_num[53] = {
     0x43,0x16, // prelude
-    0x83,0x08,0x12,0x7a,0x81,0x6a, // names: bd_num, *, ctx, b
-    0xa0,0xf6,0x25,0x33,0x2a, // code info
+    0x83,0x0b,0x12,0x7a,0x81,0x6c, // names: bd_num, *, ctx, b
+    0xa0,0xf8,0x25,0x33,0x2a, // code info
     0x25,0x00, // LOAD_DEREF 0
     0x13,0x45, // LOAD_ATTR 'stage'
     0xc3, // STORE_FAST 3
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x66, // LOAD_METHOD 'field'
+    0x14,0x81,0x68, // LOAD_METHOD 'field'
     0xb2, // LOAD_FAST 2
     0x23,0x81,0x27, // LOAD_CONST_OBJ 167
-    0x10,0x83,0x07, // LOAD_CONST_STRING 'number'
+    0x10,0x83,0x0a, // LOAD_CONST_STRING 'number'
     0x36,0x03, // CALL_METHOD 3
     0x10,0x43, // LOAD_CONST_STRING 'name'
     0xd9, // BINARY_OP 2 __eq__
@@ -12387,7 +12411,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_bd_num 
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 392,
+        .qstr_block_name_idx = 395,
         .line_info = fun_data_scratch_Project__register_bd_num + 8,
         .line_info_top = fun_data_scratch_Project__register_bd_num + 13,
         .opcodes = fun_data_scratch_Project__register_bd_num + 13,
@@ -12403,9 +12427,9 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_bd_num 
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_23
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_23[20] = {
     0x1a,0x0e, // prelude
-    0x82,0x5a,0x7a,0x81,0x6a, // names: <lambda>, ctx, b
-    0xa0,0xfb, // code info
-    0x12,0x84,0x0e, // LOAD_GLOBAL 'round'
+    0x82,0x5e,0x7a,0x81,0x6c, // names: <lambda>, ctx, b
+    0xa0,0xfd, // code info
+    0x12,0x84,0x12, // LOAD_GLOBAL 'round'
     0xb0, // LOAD_FAST 0
     0x13,0x74, // LOAD_ATTR 'sp'
     0x13,0x58, // LOAD_ATTR 'size'
@@ -12435,7 +12459,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_23 + 7,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_23 + 9,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_23 + 9,
@@ -12451,8 +12475,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_24
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_24[11] = {
     0x12,0x0e, // prelude
-    0x82,0x5a,0x7a,0x81,0x6a, // names: <lambda>, ctx, b
-    0xb0,0x00, // code info
+    0x82,0x5e,0x7a,0x81,0x6c, // names: <lambda>, ctx, b
+    0xb0,0x02, // code info
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -12479,7 +12503,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_24 + 7,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_24 + 9,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_24 + 9,
@@ -12495,8 +12519,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_25
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_25[11] = {
     0x12,0x0e, // prelude
-    0x82,0x5a,0x7a,0x81,0x6a, // names: <lambda>, ctx, b
-    0xb0,0x01, // code info
+    0x82,0x5e,0x7a,0x81,0x6c, // names: <lambda>, ctx, b
+    0xb0,0x03, // code info
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -12523,7 +12547,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_25 + 7,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_25 + 9,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_25 + 9,
@@ -12539,8 +12563,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_26
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_26[13] = {
     0x12,0x0e, // prelude
-    0x82,0x5a,0x7a,0x81,0x6a, // names: <lambda>, ctx, b
-    0xb0,0x02, // code info
+    0x82,0x5e,0x7a,0x81,0x6c, // names: <lambda>, ctx, b
+    0xb0,0x04, // code info
     0x22,0x80,0x64, // LOAD_CONST_SMALL_INT 100
     0x63, // RETURN_VALUE
 };
@@ -12567,7 +12591,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_26 + 7,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_26 + 9,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_26 + 9,
@@ -12583,16 +12607,16 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register_wait
 static const byte fun_data_scratch_Project__register_wait[52] = {
     0x5b,0x17, // prelude
-    0x83,0x09,0x12,0x7a,0x81,0x6a, // names: wait, *, ctx, b
-    0xb0,0x06,0x5c,0x66,0x20,0x04, // code info
+    0x83,0x0c,0x12,0x7a,0x81,0x6c, // names: wait, *, ctx, b
+    0xb0,0x08,0x5c,0x66,0x20,0x04, // code info
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x2f, // LOAD_ATTR 'now'
+    0x13,0x81,0x31, // LOAD_ATTR 'now'
     0x12,0x20, // LOAD_GLOBAL 'num'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x0a, // LOAD_CONST_STRING 'DURATION'
+    0x10,0x83,0x0d, // LOAD_CONST_STRING 'DURATION'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
     0x22,0x87,0x68, // LOAD_CONST_SMALL_INT 1000
@@ -12611,8 +12635,8 @@ static const byte fun_data_scratch_Project__register_wait[52] = {
 // frozen bytecode for file scratch.py, scope scratch_Project__register_wait_g
 static const byte fun_data_scratch_Project__register_wait_g[31] = {
     0x9a,0x40,0x10, // prelude
-    0x83,0x6a,0x12,0x12, // names: g, *, *
-    0xb0,0x09,0x23,0x22, // code info
+    0x83,0x6d,0x12,0x12, // names: g, *, *
+    0xb0,0x0b,0x23,0x22, // code info
     0x51, // LOAD_CONST_NONE
     0x67, // YIELD_VALUE
     0x59, // POP_TOP
@@ -12621,7 +12645,7 @@ static const byte fun_data_scratch_Project__register_wait_g[31] = {
     0x67, // YIELD_VALUE
     0x59, // POP_TOP
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x2f, // LOAD_ATTR 'now'
+    0x13,0x81,0x31, // LOAD_ATTR 'now'
     0x25,0x01, // LOAD_DEREF 1
     0xd7, // BINARY_OP 0 __lt__
     0x43,0x33, // POP_JUMP_IF_TRUE -13
@@ -12651,7 +12675,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_wait_g 
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 490,
+        .qstr_block_name_idx = 493,
         .line_info = fun_data_scratch_Project__register_wait_g + 7,
         .line_info_top = fun_data_scratch_Project__register_wait_g + 11,
         .opcodes = fun_data_scratch_Project__register_wait_g + 11,
@@ -12689,7 +12713,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_wait = 
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 393,
+        .qstr_block_name_idx = 396,
         .line_info = fun_data_scratch_Project__register_wait + 8,
         .line_info_top = fun_data_scratch_Project__register_wait + 13,
         .opcodes = fun_data_scratch_Project__register_wait + 14,
@@ -12702,14 +12726,14 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_wait = 
 // frozen bytecode for file scratch.py, scope scratch_Project__register_repeat
 static const byte fun_data_scratch_Project__register_repeat[72] = {
     0x5b,0x99,0x01, // prelude
-    0x83,0x0b,0x12,0x7a,0x81,0x6a, // names: repeat, *, ctx, b
-    0xb0,0x10,0x33,0x57,0x88,0x07,0x01,0x02,0x05, // code info
+    0x83,0x0e,0x12,0x7a,0x81,0x6c, // names: repeat, *, ctx, b
+    0xb0,0x12,0x33,0x57,0x88,0x07,0x01,0x02,0x05, // code info
     0x12,0x20, // LOAD_GLOBAL 'num'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0x25,0x01, // LOAD_DEREF 1
     0x25,0x02, // LOAD_DEREF 2
-    0x10,0x83,0x0c, // LOAD_CONST_STRING 'TIMES'
+    0x10,0x83,0x0f, // LOAD_CONST_STRING 'TIMES'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
     0xc3, // STORE_FAST 3
@@ -12717,8 +12741,8 @@ static const byte fun_data_scratch_Project__register_repeat[72] = {
     0xb3, // LOAD_FAST 3
     0x34,0x01, // CALL_FUNCTION 1
     0x44,0x4d, // POP_JUMP_IF_FALSE 13
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
-    0x12,0x84,0x0e, // LOAD_GLOBAL 'round'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
+    0x12,0x84,0x12, // LOAD_GLOBAL 'round'
     0xb3, // LOAD_FAST 3
     0x34,0x01, // CALL_FUNCTION 1
     0x34,0x01, // CALL_FUNCTION 1
@@ -12739,18 +12763,18 @@ static const byte fun_data_scratch_Project__register_repeat[72] = {
 // frozen bytecode for file scratch.py, scope scratch_Project__register_repeat_g
 static const byte fun_data_scratch_Project__register_repeat_g[71] = {
     0xe0,0x44,0x1a, // prelude
-    0x83,0x6a,0x12,0x12,0x12,0x12, // names: g, *, *, *, *
-    0xb0,0x14,0x27,0x2f,0x23,0x25,0x2b, // code info
+    0x83,0x6d,0x12,0x12,0x12,0x12, // names: g, *, *, *, *
+    0xb0,0x16,0x27,0x2f,0x23,0x25,0x2b, // code info
     0x25,0x03, // LOAD_DEREF 3
     0x80, // LOAD_CONST_SMALL_INT 0
     0x42,0x69, // JUMP 41
     0x57, // DUP_TOP
     0xc4, // STORE_FAST 4
     0x25,0x02, // LOAD_DEREF 2
-    0x14,0x81,0x69, // LOAD_METHOD 'sub'
+    0x14,0x81,0x6b, // LOAD_METHOD 'sub'
     0x25,0x00, // LOAD_DEREF 0
     0x25,0x01, // LOAD_DEREF 1
-    0x10,0x83,0x10, // LOAD_CONST_STRING 'SUBSTACK'
+    0x10,0x83,0x13, // LOAD_CONST_STRING 'SUBSTACK'
     0x36,0x03, // CALL_METHOD 3
     0xc5, // STORE_FAST 5
     0xb5, // LOAD_FAST 5
@@ -12761,7 +12785,7 @@ static const byte fun_data_scratch_Project__register_repeat_g[71] = {
     0x68, // YIELD_FROM
     0x59, // POP_TOP
     0x25,0x02, // LOAD_DEREF 2
-    0x14,0x81,0x6b, // LOAD_METHOD 'loop_yield'
+    0x14,0x81,0x6d, // LOAD_METHOD 'loop_yield'
     0x25,0x00, // LOAD_DEREF 0
     0x36,0x01, // CALL_METHOD 1
     0x44,0x43, // POP_JUMP_IF_FALSE 3
@@ -12802,7 +12826,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_repeat_
         .n_pos_args = 4,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 490,
+        .qstr_block_name_idx = 493,
         .line_info = fun_data_scratch_Project__register_repeat_g + 9,
         .line_info_top = fun_data_scratch_Project__register_repeat_g + 16,
         .opcodes = fun_data_scratch_Project__register_repeat_g + 16,
@@ -12840,7 +12864,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_repeat 
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 395,
+        .qstr_block_name_idx = 398,
         .line_info = fun_data_scratch_Project__register_repeat + 9,
         .line_info_top = fun_data_scratch_Project__register_repeat + 15,
         .opcodes = fun_data_scratch_Project__register_repeat + 18,
@@ -12853,8 +12877,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_repeat 
 // frozen bytecode for file scratch.py, scope scratch_Project__register_forever
 static const byte fun_data_scratch_Project__register_forever[26] = {
     0x33,0x94,0x01, // prelude
-    0x83,0x0d,0x12,0x7a,0x81,0x6a, // names: forever, *, ctx, b
-    0xb0,0x1e,0x87,0x07,0x01,0x02, // code info
+    0x83,0x10,0x12,0x7a,0x81,0x6c, // names: forever, *, ctx, b
+    0xb0,0x20,0x87,0x07,0x01,0x02, // code info
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0xb0, // LOAD_FAST 0
@@ -12868,13 +12892,13 @@ static const byte fun_data_scratch_Project__register_forever[26] = {
 // frozen bytecode for file scratch.py, scope scratch_Project__register_forever_g
 static const byte fun_data_scratch_Project__register_forever_g[56] = {
     0xc3,0x40,0x18, // prelude
-    0x83,0x6a,0x12,0x12,0x12, // names: g, *, *, *
-    0xb0,0x1f,0x20,0x2f,0x23,0x25,0x2b, // code info
+    0x83,0x6d,0x12,0x12,0x12, // names: g, *, *, *
+    0xb0,0x21,0x20,0x2f,0x23,0x25,0x2b, // code info
     0x25,0x02, // LOAD_DEREF 2
-    0x14,0x81,0x69, // LOAD_METHOD 'sub'
+    0x14,0x81,0x6b, // LOAD_METHOD 'sub'
     0x25,0x00, // LOAD_DEREF 0
     0x25,0x01, // LOAD_DEREF 1
-    0x10,0x83,0x10, // LOAD_CONST_STRING 'SUBSTACK'
+    0x10,0x83,0x13, // LOAD_CONST_STRING 'SUBSTACK'
     0x36,0x03, // CALL_METHOD 3
     0xc3, // STORE_FAST 3
     0xb3, // LOAD_FAST 3
@@ -12885,7 +12909,7 @@ static const byte fun_data_scratch_Project__register_forever_g[56] = {
     0x68, // YIELD_FROM
     0x59, // POP_TOP
     0x25,0x02, // LOAD_DEREF 2
-    0x14,0x81,0x6b, // LOAD_METHOD 'loop_yield'
+    0x14,0x81,0x6d, // LOAD_METHOD 'loop_yield'
     0x25,0x00, // LOAD_DEREF 0
     0x36,0x01, // CALL_METHOD 1
     0x44,0x43, // POP_JUMP_IF_FALSE 3
@@ -12919,7 +12943,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_forever
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 490,
+        .qstr_block_name_idx = 493,
         .line_info = fun_data_scratch_Project__register_forever_g + 8,
         .line_info_top = fun_data_scratch_Project__register_forever_g + 15,
         .opcodes = fun_data_scratch_Project__register_forever_g + 15,
@@ -12957,7 +12981,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_forever
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 397,
+        .qstr_block_name_idx = 400,
         .line_info = fun_data_scratch_Project__register_forever + 9,
         .line_info_top = fun_data_scratch_Project__register_forever + 13,
         .opcodes = fun_data_scratch_Project__register_forever + 15,
@@ -12970,23 +12994,23 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_forever
 // frozen bytecode for file scratch.py, scope scratch_Project__register_if_
 static const byte fun_data_scratch_Project__register_if_[46] = {
     0x4b,0x14, // prelude
-    0x83,0x0e,0x12,0x7a,0x81,0x6a, // names: if_, *, ctx, b
-    0xb0,0x29,0x33,0x2d, // code info
+    0x83,0x11,0x12,0x7a,0x81,0x6c, // names: if_, *, ctx, b
+    0xb0,0x2b,0x33,0x2d, // code info
     0x12,0x2e, // LOAD_GLOBAL 'truth'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x0f, // LOAD_CONST_STRING 'CONDITION'
+    0x10,0x83,0x12, // LOAD_CONST_STRING 'CONDITION'
     0x50, // LOAD_CONST_FALSE
     0x36,0x04, // CALL_METHOD 4
     0x34,0x01, // CALL_FUNCTION 1
     0x44,0x4d, // POP_JUMP_IF_FALSE 13
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x69, // LOAD_METHOD 'sub'
+    0x14,0x81,0x6b, // LOAD_METHOD 'sub'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x10, // LOAD_CONST_STRING 'SUBSTACK'
+    0x10,0x83,0x13, // LOAD_CONST_STRING 'SUBSTACK'
     0x36,0x03, // CALL_METHOD 3
     0x63, // RETURN_VALUE
     0x51, // LOAD_CONST_NONE
@@ -13015,7 +13039,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_if_ = {
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 398,
+        .qstr_block_name_idx = 401,
         .line_info = fun_data_scratch_Project__register_if_ + 8,
         .line_info_top = fun_data_scratch_Project__register_if_ + 12,
         .opcodes = fun_data_scratch_Project__register_if_ + 12,
@@ -13031,24 +13055,24 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_if_ = {
 // frozen bytecode for file scratch.py, scope scratch_Project__register_if_else
 static const byte fun_data_scratch_Project__register_if_else[50] = {
     0x53,0x12, // prelude
-    0x83,0x11,0x12,0x7a,0x81,0x6a, // names: if_else, *, ctx, b
-    0xb0,0x2f,0x3c, // code info
+    0x83,0x14,0x12,0x7a,0x81,0x6c, // names: if_else, *, ctx, b
+    0xb0,0x31,0x3c, // code info
     0x12,0x2e, // LOAD_GLOBAL 'truth'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x0f, // LOAD_CONST_STRING 'CONDITION'
+    0x10,0x83,0x12, // LOAD_CONST_STRING 'CONDITION'
     0x50, // LOAD_CONST_FALSE
     0x36,0x04, // CALL_METHOD 4
     0x34,0x01, // CALL_FUNCTION 1
     0x44,0x45, // POP_JUMP_IF_FALSE 5
-    0x10,0x83,0x10, // LOAD_CONST_STRING 'SUBSTACK'
+    0x10,0x83,0x13, // LOAD_CONST_STRING 'SUBSTACK'
     0x42,0x43, // JUMP 3
-    0x10,0x83,0x12, // LOAD_CONST_STRING 'SUBSTACK2'
+    0x10,0x83,0x15, // LOAD_CONST_STRING 'SUBSTACK2'
     0xc3, // STORE_FAST 3
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x69, // LOAD_METHOD 'sub'
+    0x14,0x81,0x6b, // LOAD_METHOD 'sub'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
@@ -13078,7 +13102,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_if_else
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 401,
+        .qstr_block_name_idx = 404,
         .line_info = fun_data_scratch_Project__register_if_else + 8,
         .line_info_top = fun_data_scratch_Project__register_if_else + 11,
         .opcodes = fun_data_scratch_Project__register_if_else + 11,
@@ -13094,8 +13118,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_if_else
 // frozen bytecode for file scratch.py, scope scratch_Project__register_wait_until
 static const byte fun_data_scratch_Project__register_wait_until[25] = {
     0x33,0x92,0x01, // prelude
-    0x83,0x13,0x12,0x7a,0x81,0x6a, // names: wait_until, *, ctx, b
-    0xb0,0x34,0x67,0x01,0x02, // code info
+    0x83,0x16,0x12,0x7a,0x81,0x6c, // names: wait_until, *, ctx, b
+    0xb0,0x36,0x67,0x01,0x02, // code info
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0xb0, // LOAD_FAST 0
@@ -13109,18 +13133,18 @@ static const byte fun_data_scratch_Project__register_wait_until[25] = {
 // frozen bytecode for file scratch.py, scope scratch_Project__register_wait_until_g
 static const byte fun_data_scratch_Project__register_wait_until_g[39] = {
     0xcb,0x40,0x10, // prelude
-    0x83,0x6a,0x12,0x12,0x12, // names: g, *, *, *
-    0xb0,0x35,0x22, // code info
+    0x83,0x6d,0x12,0x12,0x12, // names: g, *, *, *
+    0xb0,0x37,0x22, // code info
     0x42,0x43, // JUMP 3
     0x51, // LOAD_CONST_NONE
     0x67, // YIELD_VALUE
     0x59, // POP_TOP
     0x12,0x2e, // LOAD_GLOBAL 'truth'
     0x25,0x02, // LOAD_DEREF 2
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0x25,0x00, // LOAD_DEREF 0
     0x25,0x01, // LOAD_DEREF 1
-    0x10,0x83,0x0f, // LOAD_CONST_STRING 'CONDITION'
+    0x10,0x83,0x12, // LOAD_CONST_STRING 'CONDITION'
     0x50, // LOAD_CONST_FALSE
     0x36,0x04, // CALL_METHOD 4
     0x34,0x01, // CALL_FUNCTION 1
@@ -13151,7 +13175,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_wait_un
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 490,
+        .qstr_block_name_idx = 493,
         .line_info = fun_data_scratch_Project__register_wait_until_g + 8,
         .line_info_top = fun_data_scratch_Project__register_wait_until_g + 11,
         .opcodes = fun_data_scratch_Project__register_wait_until_g + 11,
@@ -13189,7 +13213,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_wait_un
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 403,
+        .qstr_block_name_idx = 406,
         .line_info = fun_data_scratch_Project__register_wait_until + 9,
         .line_info_top = fun_data_scratch_Project__register_wait_until + 12,
         .opcodes = fun_data_scratch_Project__register_wait_until + 14,
@@ -13202,8 +13226,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_wait_un
 // frozen bytecode for file scratch.py, scope scratch_Project__register_repeat_until
 static const byte fun_data_scratch_Project__register_repeat_until[31] = {
     0xc0,0x05,0x99,0x01, // prelude
-    0x83,0x14,0x12,0x7a,0x81,0x6a,0x84,0x31, // names: repeat_until, *, ctx, b, until
-    0xb0,0x3b,0x88,0x07,0x01,0x02,0x03, // code info
+    0x83,0x17,0x12,0x7a,0x81,0x6c,0x84,0x37, // names: repeat_until, *, ctx, b, until
+    0xb0,0x3d,0x88,0x07,0x01,0x02,0x03, // code info
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
@@ -13218,14 +13242,14 @@ static const byte fun_data_scratch_Project__register_repeat_until[31] = {
 // frozen bytecode for file scratch.py, scope scratch_Project__register_repeat_until_g
 static const byte fun_data_scratch_Project__register_repeat_until_g[81] = {
     0xd8,0x44,0x1a, // prelude
-    0x83,0x6a,0x12,0x12,0x12,0x12, // names: g, *, *, *, *
-    0xb0,0x3c,0x22,0x2f,0x23,0x25,0x2b, // code info
+    0x83,0x6d,0x12,0x12,0x12,0x12, // names: g, *, *, *, *
+    0xb0,0x3e,0x22,0x2f,0x23,0x25,0x2b, // code info
     0x42,0x65, // JUMP 37
     0x25,0x03, // LOAD_DEREF 3
-    0x14,0x81,0x69, // LOAD_METHOD 'sub'
+    0x14,0x81,0x6b, // LOAD_METHOD 'sub'
     0x25,0x00, // LOAD_DEREF 0
     0x25,0x01, // LOAD_DEREF 1
-    0x10,0x83,0x10, // LOAD_CONST_STRING 'SUBSTACK'
+    0x10,0x83,0x13, // LOAD_CONST_STRING 'SUBSTACK'
     0x36,0x03, // CALL_METHOD 3
     0xc4, // STORE_FAST 4
     0xb4, // LOAD_FAST 4
@@ -13236,7 +13260,7 @@ static const byte fun_data_scratch_Project__register_repeat_until_g[81] = {
     0x68, // YIELD_FROM
     0x59, // POP_TOP
     0x25,0x03, // LOAD_DEREF 3
-    0x14,0x81,0x6b, // LOAD_METHOD 'loop_yield'
+    0x14,0x81,0x6d, // LOAD_METHOD 'loop_yield'
     0x25,0x00, // LOAD_DEREF 0
     0x36,0x01, // CALL_METHOD 1
     0x44,0x43, // POP_JUMP_IF_FALSE 3
@@ -13245,10 +13269,10 @@ static const byte fun_data_scratch_Project__register_repeat_until_g[81] = {
     0x59, // POP_TOP
     0x12,0x2e, // LOAD_GLOBAL 'truth'
     0x25,0x03, // LOAD_DEREF 3
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0x25,0x00, // LOAD_DEREF 0
     0x25,0x01, // LOAD_DEREF 1
-    0x10,0x83,0x0f, // LOAD_CONST_STRING 'CONDITION'
+    0x10,0x83,0x12, // LOAD_CONST_STRING 'CONDITION'
     0x50, // LOAD_CONST_FALSE
     0x36,0x04, // CALL_METHOD 4
     0x34,0x01, // CALL_FUNCTION 1
@@ -13281,7 +13305,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_repeat_
         .n_pos_args = 4,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 490,
+        .qstr_block_name_idx = 493,
         .line_info = fun_data_scratch_Project__register_repeat_until_g + 9,
         .line_info_top = fun_data_scratch_Project__register_repeat_until_g + 16,
         .opcodes = fun_data_scratch_Project__register_repeat_until_g + 16,
@@ -13319,7 +13343,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_repeat_
         .n_pos_args = 4,
         .n_kwonly_args = 0,
         .n_def_pos_args = 1,
-        .qstr_block_name_idx = 404,
+        .qstr_block_name_idx = 407,
         .line_info = fun_data_scratch_Project__register_repeat_until + 12,
         .line_info_top = fun_data_scratch_Project__register_repeat_until + 16,
         .opcodes = fun_data_scratch_Project__register_repeat_until + 19,
@@ -13332,8 +13356,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_repeat_
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_27
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_27[18] = {
     0x33,0x10, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xb0,0x44, // code info
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xb0,0x46, // code info
     0x25,0x00, // LOAD_DEREF 0
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
@@ -13364,7 +13388,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_27 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_27 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_27 + 10,
@@ -13380,17 +13404,17 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register_stop
 static const byte fun_data_scratch_Project__register_stop[90] = {
     0x53,0x1e, // prelude
-    0x83,0x15,0x12,0x7a,0x81,0x6a, // names: stop, *, ctx, b
-    0xb0,0x47,0x2f,0x27,0x25,0x27,0x25,0x29,0x31, // code info
+    0x83,0x18,0x12,0x7a,0x81,0x6c, // names: stop, *, ctx, b
+    0xb0,0x49,0x2f,0x27,0x25,0x27,0x25,0x29,0x31, // code info
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x66, // LOAD_METHOD 'field'
+    0x14,0x81,0x68, // LOAD_METHOD 'field'
     0xb2, // LOAD_FAST 2
     0x23,0x81,0x28, // LOAD_CONST_OBJ 168
-    0x10,0x83,0x16, // LOAD_CONST_STRING 'all'
+    0x10,0x83,0x19, // LOAD_CONST_STRING 'all'
     0x36,0x03, // CALL_METHOD 3
     0xc3, // STORE_FAST 3
     0xb3, // LOAD_FAST 3
-    0x10,0x83,0x16, // LOAD_CONST_STRING 'all'
+    0x10,0x83,0x19, // LOAD_CONST_STRING 'all'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x45, // POP_JUMP_IF_FALSE 5
     0x12,0x1c, // LOAD_GLOBAL 'StopAll'
@@ -13404,7 +13428,7 @@ static const byte fun_data_scratch_Project__register_stop[90] = {
     0x34,0x00, // CALL_FUNCTION 0
     0x65, // RAISE_OBJ
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x2d, // LOAD_ATTR 'threads'
+    0x13,0x81,0x2f, // LOAD_ATTR 'threads'
     0x5f, // GET_ITER_STACK
     0x4b,0x18, // FOR_ITER 24
     0xc4, // STORE_FAST 4
@@ -13450,7 +13474,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_stop = 
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 405,
+        .qstr_block_name_idx = 408,
         .line_info = fun_data_scratch_Project__register_stop + 8,
         .line_info_top = fun_data_scratch_Project__register_stop + 17,
         .opcodes = fun_data_scratch_Project__register_stop + 17,
@@ -13466,11 +13490,11 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_stop = 
 // frozen bytecode for file scratch.py, scope scratch_Project__register_create_clone
 static const byte fun_data_scratch_Project__register_create_clone[176] = {
     0x63,0x24, // prelude
-    0x83,0x17,0x12,0x7a,0x81,0x6a, // names: create_clone, *, ctx, b
-    0xb0,0x52,0x31,0x38,0x33,0x22,0x26,0x2c,0x1f,0x24,0x2d,0x29, // code info
+    0x83,0x1a,0x12,0x7a,0x81,0x6c, // names: create_clone, *, ctx, b
+    0xb0,0x54,0x31,0x38,0x33,0x22,0x26,0x2c,0x1f,0x24,0x2d,0x29, // code info
     0x12,0x28, // LOAD_GLOBAL 'text'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0x23,0x81,0x2a, // LOAD_CONST_OBJ 170
@@ -13478,14 +13502,14 @@ static const byte fun_data_scratch_Project__register_create_clone[176] = {
     0x34,0x01, // CALL_FUNCTION 1
     0xc3, // STORE_FAST 3
     0xb3, // LOAD_FAST 3
-    0x10,0x83,0x18, // LOAD_CONST_STRING '_myself_'
+    0x10,0x83,0x1b, // LOAD_CONST_STRING '_myself_'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x45, // POP_JUMP_IF_FALSE 5
     0xb1, // LOAD_FAST 1
     0x13,0x74, // LOAD_ATTR 'sp'
     0x42,0x4b, // JUMP 11
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x25, // LOAD_ATTR 'by_name'
+    0x13,0x81,0x27, // LOAD_ATTR 'by_name'
     0x14,0x81,0x00, // LOAD_METHOD 'get'
     0xb3, // LOAD_FAST 3
     0x36,0x01, // CALL_METHOD 1
@@ -13496,8 +13520,8 @@ static const byte fun_data_scratch_Project__register_create_clone[176] = {
     0x13,0x45, // LOAD_ATTR 'stage'
     0x43,0x4b, // POP_JUMP_IF_TRUE 11
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x30, // LOAD_ATTR 'clones'
-    0x12,0x83,0x71, // LOAD_GLOBAL 'MAX_CLONES'
+    0x13,0x81,0x32, // LOAD_ATTR 'clones'
+    0x12,0x83,0x74, // LOAD_GLOBAL 'MAX_CLONES'
     0xdb, // BINARY_OP 4 __ge__
     0x44,0x42, // POP_JUMP_IF_FALSE 2
     0x51, // LOAD_CONST_NONE
@@ -13508,45 +13532,45 @@ static const byte fun_data_scratch_Project__register_create_clone[176] = {
     0xc5, // STORE_FAST 5
     0x25,0x00, // LOAD_DEREF 0
     0x57, // DUP_TOP
-    0x13,0x81,0x30, // LOAD_ATTR 'clones'
+    0x13,0x81,0x32, // LOAD_ATTR 'clones'
     0x81, // LOAD_CONST_SMALL_INT 1
     0xe5, // BINARY_OP 14 __iadd__
     0x5a, // ROT_TWO
-    0x18,0x81,0x30, // STORE_ATTR 'clones'
+    0x18,0x81,0x32, // STORE_ATTR 'clones'
     0xb4, // LOAD_FAST 4
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x24, // LOAD_ATTR 'layers'
+    0x13,0x81,0x26, // LOAD_ATTR 'layers'
     0xdd, // BINARY_OP 6 <in>
     0x44,0x4d, // POP_JUMP_IF_FALSE 13
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x24, // LOAD_ATTR 'layers'
-    0x14,0x82,0x50, // LOAD_METHOD 'index'
+    0x13,0x81,0x26, // LOAD_ATTR 'layers'
+    0x14,0x82,0x54, // LOAD_METHOD 'index'
     0xb4, // LOAD_FAST 4
     0x36,0x01, // CALL_METHOD 1
     0x42,0x4c, // JUMP 12
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x24, // LOAD_ATTR 'layers'
+    0x13,0x81,0x26, // LOAD_ATTR 'layers'
     0x34,0x01, // CALL_FUNCTION 1
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf3, // BINARY_OP 28 __sub__
     0xc6, // STORE_FAST 6
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x24, // LOAD_ATTR 'layers'
-    0x14,0x83,0x02, // LOAD_METHOD 'insert'
+    0x13,0x81,0x26, // LOAD_ATTR 'layers'
+    0x14,0x83,0x05, // LOAD_METHOD 'insert'
     0xb6, // LOAD_FAST 6
     0xb5, // LOAD_FAST 5
     0x36,0x02, // CALL_METHOD 2
     0x59, // POP_TOP
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x76, // LOAD_METHOD 'mark'
+    0x14,0x81,0x78, // LOAD_METHOD 'mark'
     0xb5, // LOAD_FAST 5
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0x25,0x00, // LOAD_DEREF 0
     0x14,0x39, // LOAD_METHOD 'start_hats'
     0x23,0x81,0x2b, // LOAD_CONST_OBJ 171
-    0x10,0x81,0x17, // LOAD_CONST_STRING 'sprites'
+    0x10,0x81,0x19, // LOAD_CONST_STRING 'sprites'
     0xb5, // LOAD_FAST 5
     0x2b,0x01, // BUILD_LIST 1
     0x36,0x82,0x01, // CALL_METHOD 257
@@ -13577,7 +13601,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_create_
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 407,
+        .qstr_block_name_idx = 410,
         .line_info = fun_data_scratch_Project__register_create_clone + 8,
         .line_info_top = fun_data_scratch_Project__register_create_clone + 20,
         .opcodes = fun_data_scratch_Project__register_create_clone + 20,
@@ -13593,8 +13617,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_create_
 // frozen bytecode for file scratch.py, scope scratch_Project__register_delete_clone
 static const byte fun_data_scratch_Project__register_delete_clone[116] = {
     0x53,0x28, // prelude
-    0x83,0x19,0x12,0x7a,0x81,0x6a, // names: delete_clone, *, ctx, b
-    0xb0,0x5f,0x24,0x25,0x22,0x25,0x2e,0x29,0x2c,0x24,0x2c,0x29,0x27,0x26, // code info
+    0x83,0x1c,0x12,0x7a,0x81,0x6c, // names: delete_clone, *, ctx, b
+    0xb0,0x61,0x24,0x25,0x22,0x25,0x2e,0x29,0x2c,0x24,0x2c,0x29,0x27,0x26, // code info
     0xb1, // LOAD_FAST 1
     0x13,0x74, // LOAD_ATTR 'sp'
     0xc3, // STORE_FAST 3
@@ -13607,20 +13631,20 @@ static const byte fun_data_scratch_Project__register_delete_clone[116] = {
     0x13,0x61, // LOAD_ATTR 'drawn'
     0x44,0x4e, // POP_JUMP_IF_FALSE 14
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x34, // LOAD_ATTR 'dirty'
-    0x14,0x81,0x68, // LOAD_METHOD 'append'
+    0x13,0x81,0x36, // LOAD_ATTR 'dirty'
+    0x14,0x81,0x6a, // LOAD_METHOD 'append'
     0xb3, // LOAD_FAST 3
     0x13,0x61, // LOAD_ATTR 'drawn'
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0xb3, // LOAD_FAST 3
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x24, // LOAD_ATTR 'layers'
+    0x13,0x81,0x26, // LOAD_ATTR 'layers'
     0xdd, // BINARY_OP 6 <in>
     0x44,0x4c, // POP_JUMP_IF_FALSE 12
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x24, // LOAD_ATTR 'layers'
-    0x14,0x82,0x7f, // LOAD_METHOD 'remove'
+    0x13,0x81,0x26, // LOAD_ATTR 'layers'
+    0x14,0x82,0x40, // LOAD_METHOD 'remove'
     0xb3, // LOAD_FAST 3
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
@@ -13629,13 +13653,13 @@ static const byte fun_data_scratch_Project__register_delete_clone[116] = {
     0x18,0x60, // STORE_ATTR 'alive'
     0x25,0x00, // LOAD_DEREF 0
     0x57, // DUP_TOP
-    0x13,0x81,0x30, // LOAD_ATTR 'clones'
+    0x13,0x81,0x32, // LOAD_ATTR 'clones'
     0x81, // LOAD_CONST_SMALL_INT 1
     0xe6, // BINARY_OP 15 __isub__
     0x5a, // ROT_TWO
-    0x18,0x81,0x30, // STORE_ATTR 'clones'
+    0x18,0x81,0x32, // STORE_ATTR 'clones'
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x2d, // LOAD_ATTR 'threads'
+    0x13,0x81,0x2f, // LOAD_ATTR 'threads'
     0x5f, // GET_ITER_STACK
     0x4b,0x0e, // FOR_ITER 14
     0xc4, // STORE_FAST 4
@@ -13675,7 +13699,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_delete_
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 409,
+        .qstr_block_name_idx = 412,
         .line_info = fun_data_scratch_Project__register_delete_clone + 8,
         .line_info_top = fun_data_scratch_Project__register_delete_clone + 22,
         .opcodes = fun_data_scratch_Project__register_delete_clone + 22,
@@ -13691,26 +13715,26 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_delete_
 // frozen bytecode for file scratch.py, scope scratch_Project__register_down
 static const byte fun_data_scratch_Project__register_down[49] = {
     0x2a,0x12, // prelude
-    0x83,0x1a,0x12,0x84,0x1f, // names: down, *, k
-    0xb0,0x70,0x2b,0x33, // code info
+    0x83,0x1d,0x12,0x84,0x24, // names: down, *, k
+    0xb0,0x72,0x2b,0x33, // code info
     0xb1, // LOAD_FAST 1
-    0x14,0x81,0x1c, // LOAD_METHOD 'startswith'
-    0x10,0x82,0x21, // LOAD_CONST_STRING 'S:'
+    0x14,0x81,0x1e, // LOAD_METHOD 'startswith'
+    0x10,0x82,0x23, // LOAD_CONST_STRING 'S:'
     0x36,0x01, // CALL_METHOD 1
     0x44,0x53, // POP_JUMP_IF_FALSE 19
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x3c, // LOAD_ATTR 'taps'
+    0x13,0x81,0x3e, // LOAD_ATTR 'taps'
     0x14,0x81,0x00, // LOAD_METHOD 'get'
     0xb1, // LOAD_FAST 1
     0x7f, // LOAD_CONST_SMALL_INT -1
     0x36,0x02, // CALL_METHOD 2
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x41, // LOAD_ATTR 'frame'
+    0x13,0x81,0x43, // LOAD_ATTR 'frame'
     0xdb, // BINARY_OP 4 __ge__
     0x63, // RETURN_VALUE
     0xb1, // LOAD_FAST 1
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x36, // LOAD_ATTR 'held'
+    0x13,0x81,0x38, // LOAD_ATTR 'held'
     0xdd, // BINARY_OP 6 <in>
     0x63, // RETURN_VALUE
 };
@@ -13737,7 +13761,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_down = 
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 410,
+        .qstr_block_name_idx = 413,
         .line_info = fun_data_scratch_Project__register_down + 7,
         .line_info_top = fun_data_scratch_Project__register_down + 11,
         .opcodes = fun_data_scratch_Project__register_down + 11,
@@ -13753,22 +13777,22 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_down = 
 // frozen bytecode for file scratch.py, scope scratch_Project__register_key_pressed
 static const byte fun_data_scratch_Project__register_key_pressed[154] = {
     0x43,0x1e, // prelude
-    0x83,0x1b,0x12,0x12,0x43, // names: key_pressed, *, *, name
-    0xb0,0x75,0x2b,0x34,0x22,0x3a,0x22,0x27,0x1f,0x2c, // code info
-    0x12,0x83,0x7c, // LOAD_GLOBAL 'str'
+    0x83,0x1e,0x12,0x12,0x43, // names: key_pressed, *, *, name
+    0xb0,0x77,0x2b,0x34,0x22,0x3a,0x22,0x27,0x1f,0x2c, // code info
+    0x12,0x83,0x7f, // LOAD_GLOBAL 'str'
     0xb2, // LOAD_FAST 2
     0x34,0x01, // CALL_FUNCTION 1
     0x14,0x24, // LOAD_METHOD 'lower'
     0x36,0x00, // CALL_METHOD 0
     0xc2, // STORE_FAST 2
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x3d, // LOAD_ATTR 'injected'
+    0x13,0x81,0x3f, // LOAD_ATTR 'injected'
     0x14,0x81,0x00, // LOAD_METHOD 'get'
     0xb2, // LOAD_FAST 2
     0x7f, // LOAD_CONST_SMALL_INT -1
     0x36,0x02, // CALL_METHOD 2
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x41, // LOAD_ATTR 'frame'
+    0x13,0x81,0x43, // LOAD_ATTR 'frame'
     0xdb, // BINARY_OP 4 __ge__
     0x44,0x42, // POP_JUMP_IF_FALSE 2
     0x52, // LOAD_CONST_TRUE
@@ -13785,35 +13809,35 @@ static const byte fun_data_scratch_Project__register_key_pressed[154] = {
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x49, // POP_JUMP_IF_FALSE 9
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x3f, // LOAD_ATTR 'sprint'
+    0x13,0x81,0x41, // LOAD_ATTR 'sprint'
     0x44,0x42, // POP_JUMP_IF_FALSE 2
     0x52, // LOAD_CONST_TRUE
     0x63, // RETURN_VALUE
     0xb2, // LOAD_FAST 2
-    0x10,0x82,0x49, // LOAD_CONST_STRING 'any'
+    0x10,0x82,0x4d, // LOAD_CONST_STRING 'any'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x6b, // POP_JUMP_IF_FALSE 43
-    0x12,0x83,0x7a, // LOAD_GLOBAL 'bool'
+    0x12,0x83,0x7d, // LOAD_GLOBAL 'bool'
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x36, // LOAD_ATTR 'held'
+    0x13,0x81,0x38, // LOAD_ATTR 'held'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x82,0x3d, // LOAD_METHOD 'mouse_keys'
+    0x14,0x82,0x41, // LOAD_METHOD 'mouse_keys'
     0x36,0x00, // CALL_METHOD 0
     0xf3, // BINARY_OP 28 __sub__
     0x34,0x01, // CALL_FUNCTION 1
     0x45,0x16, // JUMP_IF_TRUE_OR_POP 22
-    0x12,0x82,0x49, // LOAD_GLOBAL 'any'
+    0x12,0x82,0x4d, // LOAD_GLOBAL 'any'
     0xb0, // LOAD_FAST 0
     0x20,0x00,0x01, // MAKE_CLOSURE 0
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x3c, // LOAD_ATTR 'taps'
-    0x14,0x81,0x48, // LOAD_METHOD 'values'
+    0x13,0x81,0x3e, // LOAD_ATTR 'taps'
+    0x14,0x81,0x4a, // LOAD_METHOD 'values'
     0x36,0x00, // CALL_METHOD 0
     0x5e, // GET_ITER
     0x34,0x01, // CALL_FUNCTION 1
     0x34,0x01, // CALL_FUNCTION 1
     0x63, // RETURN_VALUE
-    0x12,0x82,0x49, // LOAD_GLOBAL 'any'
+    0x12,0x82,0x4d, // LOAD_GLOBAL 'any'
     0xb1, // LOAD_FAST 1
     0x20,0x01,0x01, // MAKE_CLOSURE 1
     0x25,0x00, // LOAD_DEREF 0
@@ -13831,8 +13855,8 @@ static const byte fun_data_scratch_Project__register_key_pressed[154] = {
 // frozen bytecode for file scratch.py, scope scratch_Project__register_key_pressed__lt_genexpr_gt_
 static const byte fun_data_scratch_Project__register_key_pressed__lt_genexpr_gt_[29] = {
     0xc2,0x40,0x0c, // prelude
-    0x82,0x4f,0x12,0x12, // names: <genexpr>, *, *
-    0xb0,0x7b, // code info
+    0x82,0x53,0x12,0x12, // names: <genexpr>, *, *
+    0xb0,0x7d, // code info
     0x53, // LOAD_NULL
     0xb1, // LOAD_FAST 1
     0x53, // LOAD_NULL
@@ -13841,7 +13865,7 @@ static const byte fun_data_scratch_Project__register_key_pressed__lt_genexpr_gt_
     0xc2, // STORE_FAST 2
     0xb2, // LOAD_FAST 2
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x41, // LOAD_ATTR 'frame'
+    0x13,0x81,0x43, // LOAD_ATTR 'frame'
     0xdb, // BINARY_OP 4 __ge__
     0x67, // YIELD_VALUE
     0x59, // POP_TOP
@@ -13872,7 +13896,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_key_pre
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 335,
+        .qstr_block_name_idx = 339,
         .line_info = fun_data_scratch_Project__register_key_pressed__lt_genexpr_gt_ + 7,
         .line_info_top = fun_data_scratch_Project__register_key_pressed__lt_genexpr_gt_ + 9,
         .opcodes = fun_data_scratch_Project__register_key_pressed__lt_genexpr_gt_ + 9,
@@ -13888,8 +13912,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_key_pre
 // frozen bytecode for file scratch.py, scope scratch_Project__register_key_pressed__lt_genexpr_gt_2
 static const byte fun_data_scratch_Project__register_key_pressed__lt_genexpr_gt_2[27] = {
     0xc2,0x40,0x0c, // prelude
-    0x82,0x4f,0x12,0x12, // names: <genexpr>, *, *
-    0xb0,0x7c, // code info
+    0x82,0x53,0x12,0x12, // names: <genexpr>, *, *
+    0xb0,0x7e, // code info
     0x53, // LOAD_NULL
     0xb1, // LOAD_FAST 1
     0x53, // LOAD_NULL
@@ -13928,7 +13952,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_key_pre
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 335,
+        .qstr_block_name_idx = 339,
         .line_info = fun_data_scratch_Project__register_key_pressed__lt_genexpr_gt_2 + 7,
         .line_info_top = fun_data_scratch_Project__register_key_pressed__lt_genexpr_gt_2 + 9,
         .opcodes = fun_data_scratch_Project__register_key_pressed__lt_genexpr_gt_2 + 9,
@@ -13967,7 +13991,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_key_pre
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 411,
+        .qstr_block_name_idx = 414,
         .line_info = fun_data_scratch_Project__register_key_pressed + 7,
         .line_info_top = fun_data_scratch_Project__register_key_pressed + 17,
         .opcodes = fun_data_scratch_Project__register_key_pressed + 17,
@@ -13980,14 +14004,14 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_key_pre
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_28
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_28[29] = {
     0xc8,0x04,0x12, // prelude
-    0x82,0x5a,0x12,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, *, ctx, b
-    0xb0,0x7d, // code info
+    0x82,0x5e,0x12,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, *, ctx, b
+    0xb0,0x7f, // code info
     0x25,0x01, // LOAD_DEREF 1
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
-    0x10,0x83,0x1c, // LOAD_CONST_STRING 'KEY_OPTION'
+    0x10,0x83,0x1f, // LOAD_CONST_STRING 'KEY_OPTION'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
     0x63, // RETURN_VALUE
@@ -14015,7 +14039,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 4,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_28 + 10,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_28 + 12,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_28 + 12,
@@ -14031,8 +14055,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register_overlap
 static const byte fun_data_scratch_Project__register_overlap[45] = {
     0x22,0x10, // prelude
-    0x83,0x1d,0x83,0x7f,0x84,0x32, // names: overlap, a, c
-    0xb0,0x80, // code info
+    0x83,0x20,0x84,0x02,0x84,0x38, // names: overlap, a, c
+    0xb0,0x82, // code info
     0xb0, // LOAD_FAST 0
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
@@ -14089,7 +14113,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_overlap
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 413,
+        .qstr_block_name_idx = 416,
         .line_info = fun_data_scratch_Project__register_overlap + 8,
         .line_info_top = fun_data_scratch_Project__register_overlap + 10,
         .opcodes = fun_data_scratch_Project__register_overlap + 10,
@@ -14105,8 +14129,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_overlap
 // frozen bytecode for file scratch.py, scope scratch_Project__register_touching
 static const byte fun_data_scratch_Project__register_touching[213] = {
     0x88,0x14,0x32, // prelude
-    0x83,0x1e,0x12,0x12,0x7a,0x81,0x6a, // names: touching, *, *, ctx, b
-    0xb0,0x83,0x24,0x25,0x22,0x31,0x26,0x27,0x1f,0x24,0x27,0x29,0x1f,0x26,0x29,0x3d,0x2c,0x24, // code info
+    0x83,0x21,0x12,0x12,0x7a,0x81,0x6c, // names: touching, *, *, ctx, b
+    0xb0,0x85,0x24,0x25,0x22,0x31,0x26,0x27,0x1f,0x24,0x27,0x29,0x1f,0x26,0x29,0x3d,0x2c,0x24, // code info
     0xb2, // LOAD_FAST 2
     0x13,0x74, // LOAD_ATTR 'sp'
     0xc4, // STORE_FAST 4
@@ -14117,7 +14141,7 @@ static const byte fun_data_scratch_Project__register_touching[213] = {
     0x63, // RETURN_VALUE
     0x12,0x28, // LOAD_GLOBAL 'text'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
     0x23,0x81,0x2c, // LOAD_CONST_OBJ 172
@@ -14129,7 +14153,7 @@ static const byte fun_data_scratch_Project__register_touching[213] = {
     0x36,0x00, // CALL_METHOD 0
     0xc6, // STORE_FAST 6
     0xb5, // LOAD_FAST 5
-    0x10,0x83,0x1f, // LOAD_CONST_STRING '_edge_'
+    0x10,0x83,0x22, // LOAD_CONST_STRING '_edge_'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x63, // POP_JUMP_IF_FALSE 35
     0xb6, // LOAD_FAST 6
@@ -14157,11 +14181,11 @@ static const byte fun_data_scratch_Project__register_touching[213] = {
     0xd8, // BINARY_OP 1 __gt__
     0x63, // RETURN_VALUE
     0xb5, // LOAD_FAST 5
-    0x10,0x81,0x4a, // LOAD_CONST_STRING '_mouse_'
+    0x10,0x81,0x4c, // LOAD_CONST_STRING '_mouse_'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x6e, // POP_JUMP_IF_FALSE 46
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x38, // LOAD_ATTR 'mouse'
+    0x13,0x81,0x3a, // LOAD_ATTR 'mouse'
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xc7, // STORE_FAST 7
     0xc8, // STORE_FAST 8
@@ -14198,7 +14222,7 @@ static const byte fun_data_scratch_Project__register_touching[213] = {
     0x59, // POP_TOP
     0x63, // RETURN_VALUE
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x24, // LOAD_ATTR 'layers'
+    0x13,0x81,0x26, // LOAD_ATTR 'layers'
     0x5f, // GET_ITER_STACK
     0x4b,0x2e, // FOR_ITER 46
     0xc9, // STORE_FAST 9
@@ -14257,7 +14281,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_touchin
         .n_pos_args = 4,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 414,
+        .qstr_block_name_idx = 417,
         .line_info = fun_data_scratch_Project__register_touching + 10,
         .line_info_top = fun_data_scratch_Project__register_touching + 28,
         .opcodes = fun_data_scratch_Project__register_touching + 28,
@@ -14273,8 +14297,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_touchin
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_29
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_29[11] = {
     0x12,0x0e, // prelude
-    0x82,0x5a,0x7a,0x81,0x6a, // names: <lambda>, ctx, b
-    0xb0,0x93, // code info
+    0x82,0x5e,0x7a,0x81,0x6c, // names: <lambda>, ctx, b
+    0xb0,0x95, // code info
     0x50, // LOAD_CONST_FALSE
     0x63, // RETURN_VALUE
 };
@@ -14301,7 +14325,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_29 + 7,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_29 + 9,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_29 + 9,
@@ -14317,8 +14341,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_30
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_30[11] = {
     0x12,0x0e, // prelude
-    0x82,0x5a,0x7a,0x81,0x6a, // names: <lambda>, ctx, b
-    0xb0,0x94, // code info
+    0x82,0x5e,0x7a,0x81,0x6c, // names: <lambda>, ctx, b
+    0xb0,0x96, // code info
     0x50, // LOAD_CONST_FALSE
     0x63, // RETURN_VALUE
 };
@@ -14345,7 +14369,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_30 + 7,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_30 + 9,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_30 + 9,
@@ -14361,13 +14385,13 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_31
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_31[32] = {
     0x2b,0x10, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xb0,0x95, // code info
-    0x12,0x84,0x0e, // LOAD_GLOBAL 'round'
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xb0,0x97, // code info
+    0x12,0x84,0x12, // LOAD_GLOBAL 'round'
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x2f, // LOAD_ATTR 'now'
+    0x13,0x81,0x31, // LOAD_ATTR 'now'
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x2e, // LOAD_ATTR 'timer0'
+    0x13,0x81,0x30, // LOAD_ATTR 'timer0'
     0xf3, // BINARY_OP 28 __sub__
     0x22,0x87,0x68, // LOAD_CONST_SMALL_INT 1000
     0xf7, // BINARY_OP 32 __truediv__
@@ -14398,7 +14422,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_31 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_31 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_31 + 10,
@@ -14414,12 +14438,12 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register_reset_timer
 static const byte fun_data_scratch_Project__register_reset_timer[22] = {
     0x23,0x10, // prelude
-    0x83,0x20,0x12,0x7a,0x81,0x6a, // names: reset_timer, *, ctx, b
-    0xb0,0x98, // code info
+    0x83,0x23,0x12,0x7a,0x81,0x6c, // names: reset_timer, *, ctx, b
+    0xb0,0x9a, // code info
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x2f, // LOAD_ATTR 'now'
+    0x13,0x81,0x31, // LOAD_ATTR 'now'
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x2e, // STORE_ATTR 'timer0'
+    0x18,0x81,0x30, // STORE_ATTR 'timer0'
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -14446,7 +14470,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_reset_t
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 416,
+        .qstr_block_name_idx = 419,
         .line_info = fun_data_scratch_Project__register_reset_timer + 8,
         .line_info_top = fun_data_scratch_Project__register_reset_timer + 10,
         .opcodes = fun_data_scratch_Project__register_reset_timer + 10,
@@ -14462,11 +14486,11 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_reset_t
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_32
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_32[23] = {
     0x2b,0x10, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xb0,0x9a, // code info
-    0x12,0x84,0x0e, // LOAD_GLOBAL 'round'
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xb0,0x9c, // code info
+    0x12,0x84,0x12, // LOAD_GLOBAL 'round'
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x38, // LOAD_ATTR 'mouse'
+    0x13,0x81,0x3a, // LOAD_ATTR 'mouse'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
     0x34,0x01, // CALL_FUNCTION 1
@@ -14495,7 +14519,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_32 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_32 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_32 + 10,
@@ -14511,11 +14535,11 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_33
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_33[23] = {
     0x2b,0x10, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xb0,0x9b, // code info
-    0x12,0x84,0x0e, // LOAD_GLOBAL 'round'
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xb0,0x9d, // code info
+    0x12,0x84,0x12, // LOAD_GLOBAL 'round'
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x38, // LOAD_ATTR 'mouse'
+    0x13,0x81,0x3a, // LOAD_ATTR 'mouse'
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
     0x34,0x01, // CALL_FUNCTION 1
@@ -14544,7 +14568,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_33 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_33 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_33 + 10,
@@ -14560,10 +14584,10 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_34
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_34[16] = {
     0x1b,0x10, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xb0,0x9c, // code info
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xb0,0x9e, // code info
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x39, // LOAD_ATTR 'mouse_down'
+    0x13,0x81,0x3b, // LOAD_ATTR 'mouse_down'
     0x63, // RETURN_VALUE
 };
 #if MICROPY_PERSISTENT_CODE_SAVE
@@ -14589,7 +14613,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_34 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_34 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_34 + 10,
@@ -14605,10 +14629,10 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_35
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_35[16] = {
     0x1b,0x10, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xb0,0x9d, // code info
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xb0,0x9f, // code info
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x31, // LOAD_ATTR 'answer'
+    0x13,0x81,0x33, // LOAD_ATTR 'answer'
     0x63, // RETURN_VALUE
 };
 #if MICROPY_PERSISTENT_CODE_SAVE
@@ -14634,7 +14658,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_35 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_35 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_35 + 10,
@@ -14650,8 +14674,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_36
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_36[12] = {
     0x12,0x0e, // prelude
-    0x82,0x5a,0x7a,0x81,0x6a, // names: <lambda>, ctx, b
-    0xb0,0x9e, // code info
+    0x82,0x5e,0x7a,0x81,0x6c, // names: <lambda>, ctx, b
+    0xb0,0xa0, // code info
     0x10,0x30, // LOAD_CONST_STRING ''
     0x63, // RETURN_VALUE
 };
@@ -14678,7 +14702,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_36 + 7,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_36 + 9,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_36 + 9,
@@ -14694,8 +14718,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_37
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_37[11] = {
     0x12,0x0e, // prelude
-    0x82,0x5a,0x7a,0x81,0x6a, // names: <lambda>, ctx, b
-    0xb0,0x9f, // code info
+    0x82,0x5e,0x7a,0x81,0x6c, // names: <lambda>, ctx, b
+    0xb0,0xa1, // code info
     0x80, // LOAD_CONST_SMALL_INT 0
     0x63, // RETURN_VALUE
 };
@@ -14722,7 +14746,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_37 + 7,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_37 + 9,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_37 + 9,
@@ -14738,13 +14762,13 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register_distance
 static const byte fun_data_scratch_Project__register_distance[64] = {
     0xe8,0x04,0x14, // prelude
-    0x83,0x21,0x12,0x12,0x7a,0x81,0x6a, // names: distance, *, *, ctx, b
-    0xb0,0xa2,0x39, // code info
+    0x83,0x24,0x12,0x12,0x7a,0x81,0x6c, // names: distance, *, *, ctx, b
+    0xb0,0xa4,0x39, // code info
     0x25,0x01, // LOAD_DEREF 1
     0xb2, // LOAD_FAST 2
     0x12,0x28, // LOAD_GLOBAL 'text'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
     0x23,0x81,0x2d, // LOAD_CONST_OBJ 173
@@ -14797,7 +14821,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_distanc
         .n_pos_args = 4,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 417,
+        .qstr_block_name_idx = 420,
         .line_info = fun_data_scratch_Project__register_distance + 10,
         .line_info_top = fun_data_scratch_Project__register_distance + 13,
         .opcodes = fun_data_scratch_Project__register_distance + 13,
@@ -14813,25 +14837,25 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_distanc
 // frozen bytecode for file scratch.py, scope scratch_Project__register_of
 static const byte fun_data_scratch_Project__register_of[199] = {
     0x7b,0x2a, // prelude
-    0x83,0x22,0x12,0x7a,0x81,0x6a, // names: of, *, ctx, b
-    0xb0,0xa7,0x3b,0x2e,0x25,0x22,0x37,0x36,0x36,0x2e,0x25,0x24,0x2e,0x32,0x24, // code info
+    0x83,0x25,0x12,0x7a,0x81,0x6c, // names: of, *, ctx, b
+    0xb0,0xa9,0x3b,0x2e,0x25,0x22,0x37,0x36,0x36,0x2e,0x25,0x24,0x2e,0x32,0x24, // code info
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x25, // LOAD_ATTR 'by_name'
+    0x13,0x81,0x27, // LOAD_ATTR 'by_name'
     0x14,0x81,0x00, // LOAD_METHOD 'get'
     0x12,0x28, // LOAD_GLOBAL 'text'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x23, // LOAD_CONST_STRING 'OBJECT'
+    0x10,0x83,0x26, // LOAD_CONST_STRING 'OBJECT'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
     0x36,0x01, // CALL_METHOD 1
     0xc3, // STORE_FAST 3
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x66, // LOAD_METHOD 'field'
+    0x14,0x81,0x68, // LOAD_METHOD 'field'
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x24, // LOAD_CONST_STRING 'PROPERTY'
+    0x10,0x83,0x27, // LOAD_CONST_STRING 'PROPERTY'
     0x10,0x30, // LOAD_CONST_STRING ''
     0x36,0x03, // CALL_METHOD 3
     0xc4, // STORE_FAST 4
@@ -14844,21 +14868,21 @@ static const byte fun_data_scratch_Project__register_of[199] = {
     0x2c,0x09, // BUILD_MAP 9
     0xb3, // LOAD_FAST 3
     0x13,0x54, // LOAD_ATTR 'x'
-    0x10,0x83,0x25, // LOAD_CONST_STRING 'x position'
+    0x10,0x83,0x28, // LOAD_CONST_STRING 'x position'
     0x62, // STORE_MAP
     0xb3, // LOAD_FAST 3
     0x13,0x55, // LOAD_ATTR 'y'
-    0x10,0x83,0x26, // LOAD_CONST_STRING 'y position'
+    0x10,0x83,0x29, // LOAD_CONST_STRING 'y position'
     0x62, // STORE_MAP
     0xb3, // LOAD_FAST 3
     0x13,0x56, // LOAD_ATTR 'dir'
-    0x10,0x83,0x27, // LOAD_CONST_STRING 'direction'
+    0x10,0x83,0x2a, // LOAD_CONST_STRING 'direction'
     0x62, // STORE_MAP
     0xb3, // LOAD_FAST 3
     0x13,0x53, // LOAD_ATTR 'costume'
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
-    0x10,0x83,0x28, // LOAD_CONST_STRING 'costume #'
+    0x10,0x83,0x2b, // LOAD_CONST_STRING 'costume #'
     0x62, // STORE_MAP
     0xb3, // LOAD_FAST 3
     0x13,0x4c, // LOAD_ATTR 'costumes'
@@ -14874,13 +14898,13 @@ static const byte fun_data_scratch_Project__register_of[199] = {
     0x10,0x58, // LOAD_CONST_STRING 'size'
     0x62, // STORE_MAP
     0x22,0x80,0x64, // LOAD_CONST_SMALL_INT 100
-    0x10,0x83,0x29, // LOAD_CONST_STRING 'volume'
+    0x10,0x83,0x2c, // LOAD_CONST_STRING 'volume'
     0x62, // STORE_MAP
     0xb3, // LOAD_FAST 3
     0x13,0x53, // LOAD_ATTR 'costume'
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
-    0x10,0x83,0x2a, // LOAD_CONST_STRING 'backdrop #'
+    0x10,0x83,0x2d, // LOAD_CONST_STRING 'backdrop #'
     0x62, // STORE_MAP
     0xb3, // LOAD_FAST 3
     0x13,0x4c, // LOAD_ATTR 'costumes'
@@ -14914,7 +14938,7 @@ static const byte fun_data_scratch_Project__register_of[199] = {
     0xd9, // BINARY_OP 2 __eq__
     0x43,0x4d, // POP_JUMP_IF_TRUE 13
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x75, // LOAD_METHOD 'var_name'
+    0x14,0x81,0x77, // LOAD_METHOD 'var_name'
     0xb3, // LOAD_FAST 3
     0xb6, // LOAD_FAST 6
     0x36,0x02, // CALL_METHOD 2
@@ -14950,7 +14974,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_of = {
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 418,
+        .qstr_block_name_idx = 421,
         .line_info = fun_data_scratch_Project__register_of + 8,
         .line_info_top = fun_data_scratch_Project__register_of + 23,
         .opcodes = fun_data_scratch_Project__register_of + 23,
@@ -14966,55 +14990,55 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_of = {
 // frozen bytecode for file scratch.py, scope scratch_Project__register_current
 static const byte fun_data_scratch_Project__register_current[109] = {
     0x73,0x1c, // prelude
-    0x83,0x2b,0x12,0x7a,0x81,0x6a, // names: current, *, ctx, b
-    0xb0,0xb8,0x26,0x2b,0x22,0x27,0x1f,0x22, // code info
+    0x83,0x2e,0x12,0x7a,0x81,0x6c, // names: current, *, ctx, b
+    0xb0,0xba,0x26,0x2b,0x22,0x27,0x1f,0x22, // code info
     0x80, // LOAD_CONST_SMALL_INT 0
     0x51, // LOAD_CONST_NONE
-    0x1b,0x83,0x2c, // IMPORT_NAME 'time'
+    0x1b,0x83,0x2f, // IMPORT_NAME 'time'
     0xc3, // STORE_FAST 3
-    0x12,0x84,0x33, // LOAD_GLOBAL 'hasattr'
+    0x12,0x84,0x18, // LOAD_GLOBAL 'hasattr'
     0xb3, // LOAD_FAST 3
-    0x10,0x83,0x2d, // LOAD_CONST_STRING 'localtime'
+    0x10,0x83,0x30, // LOAD_CONST_STRING 'localtime'
     0x34,0x02, // CALL_FUNCTION 2
     0x43,0x42, // POP_JUMP_IF_TRUE 2
     0x80, // LOAD_CONST_SMALL_INT 0
     0x63, // RETURN_VALUE
     0xb3, // LOAD_FAST 3
-    0x14,0x83,0x2d, // LOAD_METHOD 'localtime'
+    0x14,0x83,0x30, // LOAD_METHOD 'localtime'
     0x36,0x00, // CALL_METHOD 0
     0xc4, // STORE_FAST 4
     0x2c,0x06, // BUILD_MAP 6
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x10,0x83,0x2e, // LOAD_CONST_STRING 'YEAR'
+    0x10,0x83,0x31, // LOAD_CONST_STRING 'YEAR'
     0x62, // STORE_MAP
     0x81, // LOAD_CONST_SMALL_INT 1
-    0x10,0x83,0x2f, // LOAD_CONST_STRING 'MONTH'
+    0x10,0x83,0x32, // LOAD_CONST_STRING 'MONTH'
     0x62, // STORE_MAP
     0x82, // LOAD_CONST_SMALL_INT 2
-    0x10,0x83,0x30, // LOAD_CONST_STRING 'DATE'
+    0x10,0x83,0x33, // LOAD_CONST_STRING 'DATE'
     0x62, // STORE_MAP
     0x83, // LOAD_CONST_SMALL_INT 3
-    0x10,0x83,0x31, // LOAD_CONST_STRING 'HOUR'
+    0x10,0x83,0x34, // LOAD_CONST_STRING 'HOUR'
     0x62, // STORE_MAP
     0x84, // LOAD_CONST_SMALL_INT 4
-    0x10,0x83,0x32, // LOAD_CONST_STRING 'MINUTE'
+    0x10,0x83,0x35, // LOAD_CONST_STRING 'MINUTE'
     0x62, // STORE_MAP
     0x85, // LOAD_CONST_SMALL_INT 5
-    0x10,0x83,0x33, // LOAD_CONST_STRING 'SECOND'
+    0x10,0x83,0x36, // LOAD_CONST_STRING 'SECOND'
     0x62, // STORE_MAP
     0xc5, // STORE_FAST 5
     0xb4, // LOAD_FAST 4
     0xb5, // LOAD_FAST 5
     0x14,0x81,0x00, // LOAD_METHOD 'get'
-    0x12,0x83,0x7c, // LOAD_GLOBAL 'str'
+    0x12,0x83,0x7f, // LOAD_GLOBAL 'str'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x66, // LOAD_METHOD 'field'
+    0x14,0x81,0x68, // LOAD_METHOD 'field'
     0xb2, // LOAD_FAST 2
     0x23,0x81,0x30, // LOAD_CONST_OBJ 176
-    0x10,0x83,0x2e, // LOAD_CONST_STRING 'YEAR'
+    0x10,0x83,0x31, // LOAD_CONST_STRING 'YEAR'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
-    0x14,0x83,0x34, // LOAD_METHOD 'upper'
+    0x14,0x83,0x37, // LOAD_METHOD 'upper'
     0x36,0x00, // CALL_METHOD 0
     0x80, // LOAD_CONST_SMALL_INT 0
     0x36,0x02, // CALL_METHOD 2
@@ -15044,7 +15068,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_current
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 427,
+        .qstr_block_name_idx = 430,
         .line_info = fun_data_scratch_Project__register_current + 8,
         .line_info_top = fun_data_scratch_Project__register_current + 16,
         .opcodes = fun_data_scratch_Project__register_current + 16,
@@ -15060,14 +15084,14 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_current
 // frozen bytecode for file scratch.py, scope scratch_Project__register_ask
 static const byte fun_data_scratch_Project__register_ask[117] = {
     0x5b,0x22, // prelude
-    0x83,0x35,0x12,0x7a,0x81,0x6a, // names: ask, *, ctx, b
-    0xb0,0xc1,0x31,0x2b,0x26,0x1f,0x26,0x2c,0x46,0x85,0x07, // code info
+    0x83,0x38,0x12,0x7a,0x81,0x6c, // names: ask, *, ctx, b
+    0xb0,0xc3,0x31,0x2b,0x26,0x1f,0x26,0x2c,0x46,0x85,0x07, // code info
     0x12,0x28, // LOAD_GLOBAL 'text'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x36, // LOAD_CONST_STRING 'QUESTION'
+    0x10,0x83,0x39, // LOAD_CONST_STRING 'QUESTION'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
     0xc3, // STORE_FAST 3
@@ -15076,39 +15100,39 @@ static const byte fun_data_scratch_Project__register_ask[117] = {
     0x50, // LOAD_CONST_FALSE
     0x2b,0x03, // BUILD_LIST 3
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x32, // STORE_ATTR 'asking'
+    0x18,0x81,0x34, // STORE_ATTR 'asking'
     0xb3, // LOAD_FAST 3
     0x14,0x24, // LOAD_METHOD 'lower'
     0x36,0x00, // CALL_METHOD 0
     0xc4, // STORE_FAST 4
-    0x10,0x83,0x37, // LOAD_CONST_STRING 'save'
+    0x10,0x83,0x3a, // LOAD_CONST_STRING 'save'
     0xb4, // LOAD_FAST 4
     0xdd, // BINARY_OP 6 <in>
     0x43,0x55, // POP_JUMP_IF_TRUE 21
-    0x10,0x83,0x38, // LOAD_CONST_STRING 'paste'
+    0x10,0x83,0x3b, // LOAD_CONST_STRING 'paste'
     0xb4, // LOAD_FAST 4
     0xdd, // BINARY_OP 6 <in>
     0x43,0x4e, // POP_JUMP_IF_TRUE 14
-    0x10,0x83,0x39, // LOAD_CONST_STRING 'partida'
+    0x10,0x83,0x3c, // LOAD_CONST_STRING 'partida'
     0xb4, // LOAD_FAST 4
     0xdd, // BINARY_OP 6 <in>
     0x43,0x47, // POP_JUMP_IF_TRUE 7
-    0x10,0x83,0x3a, // LOAD_CONST_STRING 'pega'
+    0x10,0x83,0x3d, // LOAD_CONST_STRING 'pega'
     0xb4, // LOAD_FAST 4
     0xdd, // BINARY_OP 6 <in>
     0x44,0x55, // POP_JUMP_IF_FALSE 21
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x82,0x06, // LOAD_METHOD 'list_saves'
+    0x14,0x82,0x08, // LOAD_METHOD 'list_saves'
     0x36,0x00, // CALL_METHOD 0
     0x44,0x4c, // POP_JUMP_IF_FALSE 12
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x82,0x06, // LOAD_METHOD 'list_saves'
+    0x14,0x82,0x08, // LOAD_METHOD 'list_saves'
     0x36,0x00, // CALL_METHOD 0
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x40, // STORE_ATTR 'picker'
+    0x18,0x81,0x42, // STORE_ATTR 'picker'
     0x52, // LOAD_CONST_TRUE
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x33, // STORE_ATTR 'dirty_all'
+    0x18,0x81,0x35, // STORE_ATTR 'dirty_all'
     0xb0, // LOAD_FAST 0
     0x20,0x00,0x01, // MAKE_CLOSURE 0
     0xc5, // STORE_FAST 5
@@ -15120,32 +15144,32 @@ static const byte fun_data_scratch_Project__register_ask[117] = {
 // frozen bytecode for file scratch.py, scope scratch_Project__register_ask_g
 static const byte fun_data_scratch_Project__register_ask_g[59] = {
     0x91,0x40,0x14, // prelude
-    0x83,0x6a,0x12, // names: g, *
-    0xb0,0xc9,0x22,0x2c,0x2c,0x26,0x26, // code info
+    0x83,0x6d,0x12, // names: g, *
+    0xb0,0xcb,0x22,0x2c,0x2c,0x26,0x26, // code info
     0x42,0x43, // JUMP 3
     0x51, // LOAD_CONST_NONE
     0x67, // YIELD_VALUE
     0x59, // POP_TOP
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x32, // LOAD_ATTR 'asking'
+    0x13,0x81,0x34, // LOAD_ATTR 'asking'
     0x82, // LOAD_CONST_SMALL_INT 2
     0x55, // LOAD_SUBSCR
     0x44,0x34, // POP_JUMP_IF_FALSE -12
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x32, // LOAD_ATTR 'asking'
+    0x13,0x81,0x34, // LOAD_ATTR 'asking'
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x31, // STORE_ATTR 'answer'
+    0x18,0x81,0x33, // STORE_ATTR 'answer'
     0x51, // LOAD_CONST_NONE
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x32, // STORE_ATTR 'asking'
+    0x18,0x81,0x34, // STORE_ATTR 'asking'
     0x51, // LOAD_CONST_NONE
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x40, // STORE_ATTR 'picker'
+    0x18,0x81,0x42, // STORE_ATTR 'picker'
     0x52, // LOAD_CONST_TRUE
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x33, // STORE_ATTR 'dirty_all'
+    0x18,0x81,0x35, // STORE_ATTR 'dirty_all'
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -15172,7 +15196,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_ask_g =
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 490,
+        .qstr_block_name_idx = 493,
         .line_info = fun_data_scratch_Project__register_ask_g + 6,
         .line_info_top = fun_data_scratch_Project__register_ask_g + 13,
         .opcodes = fun_data_scratch_Project__register_ask_g + 13,
@@ -15210,7 +15234,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_ask = {
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 437,
+        .qstr_block_name_idx = 440,
         .line_info = fun_data_scratch_Project__register_ask + 8,
         .line_info_top = fun_data_scratch_Project__register_ask + 19,
         .opcodes = fun_data_scratch_Project__register_ask + 19,
@@ -15223,8 +15247,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_ask = {
 // frozen bytecode for file scratch.py, scope scratch_Project__register_arith
 static const byte fun_data_scratch_Project__register_arith[16] = {
     0x1a,0x0f, // prelude
-    0x83,0x3b,0x12,0x84,0x34, // names: arith, *, fn
-    0xb0,0xd4,0x01, // code info
+    0x83,0x3e,0x12,0x84,0x39, // names: arith, *, fn
+    0xb0,0xd6,0x01, // code info
     0xb1, // LOAD_FAST 1
     0xb0, // LOAD_FAST 0
     0x20,0x00,0x02, // MAKE_CLOSURE 0
@@ -15234,23 +15258,23 @@ static const byte fun_data_scratch_Project__register_arith[16] = {
 // frozen bytecode for file scratch.py, scope scratch_Project__register_arith__lt_lambda_gt_
 static const byte fun_data_scratch_Project__register_arith__lt_lambda_gt_[49] = {
     0xd8,0x04,0x12, // prelude
-    0x82,0x5a,0x12,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, *, ctx, b
-    0xb0,0xd4, // code info
+    0x82,0x5e,0x12,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, *, ctx, b
+    0xb0,0xd6, // code info
     0x25,0x00, // LOAD_DEREF 0
     0x12,0x20, // LOAD_GLOBAL 'num'
     0x25,0x01, // LOAD_DEREF 1
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
-    0x10,0x83,0x3e, // LOAD_CONST_STRING 'NUM1'
+    0x10,0x83,0x41, // LOAD_CONST_STRING 'NUM1'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
     0x12,0x20, // LOAD_GLOBAL 'num'
     0x25,0x01, // LOAD_DEREF 1
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
-    0x10,0x83,0x3f, // LOAD_CONST_STRING 'NUM2'
+    0x10,0x83,0x42, // LOAD_CONST_STRING 'NUM2'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
     0x34,0x02, // CALL_FUNCTION 2
@@ -15279,7 +15303,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_arith__
         .n_pos_args = 4,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register_arith__lt_lambda_gt_ + 10,
         .line_info_top = fun_data_scratch_Project__register_arith__lt_lambda_gt_ + 12,
         .opcodes = fun_data_scratch_Project__register_arith__lt_lambda_gt_ + 12,
@@ -15317,7 +15341,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_arith =
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 443,
+        .qstr_block_name_idx = 446,
         .line_info = fun_data_scratch_Project__register_arith + 7,
         .line_info_top = fun_data_scratch_Project__register_arith + 9,
         .opcodes = fun_data_scratch_Project__register_arith + 10,
@@ -15330,8 +15354,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_arith =
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_38
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_38[14] = {
     0x1a,0x10, // prelude
-    0x82,0x5a,0x83,0x7f,0x84,0x32, // names: <lambda>, a, c
-    0xb0,0xd5, // code info
+    0x82,0x5e,0x84,0x02,0x84,0x38, // names: <lambda>, a, c
+    0xb0,0xd7, // code info
     0xb0, // LOAD_FAST 0
     0xb1, // LOAD_FAST 1
     0xf2, // BINARY_OP 27 __add__
@@ -15360,7 +15384,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_38 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_38 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_38 + 10,
@@ -15376,8 +15400,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_39
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_39[14] = {
     0x1a,0x10, // prelude
-    0x82,0x5a,0x83,0x7f,0x84,0x32, // names: <lambda>, a, c
-    0xb0,0xd6, // code info
+    0x82,0x5e,0x84,0x02,0x84,0x38, // names: <lambda>, a, c
+    0xb0,0xd8, // code info
     0xb0, // LOAD_FAST 0
     0xb1, // LOAD_FAST 1
     0xf3, // BINARY_OP 28 __sub__
@@ -15406,7 +15430,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_39 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_39 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_39 + 10,
@@ -15422,8 +15446,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_40
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_40[14] = {
     0x1a,0x10, // prelude
-    0x82,0x5a,0x83,0x7f,0x84,0x32, // names: <lambda>, a, c
-    0xb0,0xd7, // code info
+    0x82,0x5e,0x84,0x02,0x84,0x38, // names: <lambda>, a, c
+    0xb0,0xd9, // code info
     0xb0, // LOAD_FAST 0
     0xb1, // LOAD_FAST 1
     0xf4, // BINARY_OP 29 __mul__
@@ -15452,7 +15476,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_40 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_40 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_40 + 10,
@@ -15468,8 +15492,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_41
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_41[50] = {
     0x1a,0x12, // prelude
-    0x82,0x5a,0x83,0x7f,0x84,0x32, // names: <lambda>, a, c
-    0xb0,0xd8,0x36, // code info
+    0x82,0x5e,0x84,0x02,0x84,0x38, // names: <lambda>, a, c
+    0xb0,0xda,0x36, // code info
     0xb1, // LOAD_FAST 1
     0x44,0x45, // POP_JUMP_IF_FALSE 5
     0xb0, // LOAD_FAST 0
@@ -15480,7 +15504,7 @@ static const byte fun_data_scratch_Project__register__lt_lambda_gt_41[50] = {
     0x80, // LOAD_CONST_SMALL_INT 0
     0xd8, // BINARY_OP 1 __gt__
     0x44,0x49, // POP_JUMP_IF_FALSE 9
-    0x12,0x83,0x76, // LOAD_GLOBAL 'float'
+    0x12,0x83,0x79, // LOAD_GLOBAL 'float'
     0x10,0x18, // LOAD_CONST_STRING 'inf'
     0x34,0x01, // CALL_FUNCTION 1
     0x42,0x50, // JUMP 16
@@ -15488,8 +15512,8 @@ static const byte fun_data_scratch_Project__register__lt_lambda_gt_41[50] = {
     0x80, // LOAD_CONST_SMALL_INT 0
     0xd7, // BINARY_OP 0 __lt__
     0x44,0x4a, // POP_JUMP_IF_FALSE 10
-    0x12,0x83,0x76, // LOAD_GLOBAL 'float'
-    0x10,0x83,0x3c, // LOAD_CONST_STRING '-inf'
+    0x12,0x83,0x79, // LOAD_GLOBAL 'float'
+    0x10,0x83,0x3f, // LOAD_CONST_STRING '-inf'
     0x34,0x01, // CALL_FUNCTION 1
     0x42,0x41, // JUMP 1
     0x80, // LOAD_CONST_SMALL_INT 0
@@ -15518,7 +15542,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_41 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_41 + 11,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_41 + 11,
@@ -15534,22 +15558,22 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register_mod
 static const byte fun_data_scratch_Project__register_mod[106] = {
     0x5b,0x18, // prelude
-    0x83,0x3d,0x12,0x7a,0x81,0x6a, // names: mod, *, ctx, b
-    0xb0,0xdc,0x1f,0x24,0x33,0x37, // code info
+    0x83,0x40,0x12,0x7a,0x81,0x6c, // names: mod, *, ctx, b
+    0xb0,0xde,0x1f,0x24,0x33,0x37, // code info
     0x12,0x20, // LOAD_GLOBAL 'num'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x3e, // LOAD_CONST_STRING 'NUM1'
+    0x10,0x83,0x41, // LOAD_CONST_STRING 'NUM1'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
     0x12,0x20, // LOAD_GLOBAL 'num'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x3f, // LOAD_CONST_STRING 'NUM2'
+    0x10,0x83,0x42, // LOAD_CONST_STRING 'NUM2'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
     0x5a, // ROT_TWO
@@ -15575,8 +15599,8 @@ static const byte fun_data_scratch_Project__register_mod[106] = {
     0xb3, // LOAD_FAST 3
     0x34,0x01, // CALL_FUNCTION 1
     0x43,0x49, // POP_JUMP_IF_TRUE 9
-    0x12,0x83,0x76, // LOAD_GLOBAL 'float'
-    0x10,0x83,0x40, // LOAD_CONST_STRING 'nan'
+    0x12,0x83,0x79, // LOAD_GLOBAL 'float'
+    0x10,0x83,0x43, // LOAD_CONST_STRING 'nan'
     0x34,0x01, // CALL_FUNCTION 1
     0x63, // RETURN_VALUE
     0xb3, // LOAD_FAST 3
@@ -15584,7 +15608,7 @@ static const byte fun_data_scratch_Project__register_mod[106] = {
     0xb3, // LOAD_FAST 3
     0xb4, // LOAD_FAST 4
     0x12,0x03, // LOAD_GLOBAL 'math'
-    0x14,0x83,0x41, // LOAD_METHOD 'floor'
+    0x14,0x83,0x44, // LOAD_METHOD 'floor'
     0xb3, // LOAD_FAST 3
     0xb4, // LOAD_FAST 4
     0xf7, // BINARY_OP 32 __truediv__
@@ -15616,7 +15640,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_mod = {
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 445,
+        .qstr_block_name_idx = 448,
         .line_info = fun_data_scratch_Project__register_mod + 8,
         .line_info_top = fun_data_scratch_Project__register_mod + 14,
         .opcodes = fun_data_scratch_Project__register_mod + 14,
@@ -15632,19 +15656,19 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_mod = {
 // frozen bytecode for file scratch.py, scope scratch_Project__register_rnd
 static const byte fun_data_scratch_Project__register_rnd[146] = {
     0x63,0x22, // prelude
-    0x83,0x42,0x12,0x7a,0x81,0x6a, // names: rnd, *, ctx, b
-    0xb0,0xe3,0x3b,0x2d,0x2e,0x22,0x25,0x25,0x1f,0x28,0x29, // code info
+    0x83,0x45,0x12,0x7a,0x81,0x6c, // names: rnd, *, ctx, b
+    0xb0,0xe5,0x3b,0x2d,0x2e,0x22,0x25,0x25,0x1f,0x28,0x29, // code info
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x43, // LOAD_CONST_STRING 'FROM'
+    0x10,0x83,0x46, // LOAD_CONST_STRING 'FROM'
     0x36,0x03, // CALL_METHOD 3
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x82,0x60, // LOAD_CONST_STRING 'TO'
+    0x10,0x82,0x64, // LOAD_CONST_STRING 'TO'
     0x36,0x03, // CALL_METHOD 3
     0x5a, // ROT_TWO
     0xc3, // STORE_FAST 3
@@ -15677,14 +15701,14 @@ static const byte fun_data_scratch_Project__register_rnd[146] = {
     0x5a, // ROT_TWO
     0xc5, // STORE_FAST 5
     0xc6, // STORE_FAST 6
-    0x12,0x83,0x79, // LOAD_GLOBAL 'isinstance'
+    0x12,0x83,0x7c, // LOAD_GLOBAL 'isinstance'
     0xb5, // LOAD_FAST 5
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0x34,0x02, // CALL_FUNCTION 2
     0x44,0x65, // POP_JUMP_IF_FALSE 37
-    0x12,0x83,0x79, // LOAD_GLOBAL 'isinstance'
+    0x12,0x83,0x7c, // LOAD_GLOBAL 'isinstance'
     0xb6, // LOAD_FAST 6
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0x34,0x02, // CALL_FUNCTION 2
     0x44,0x5a, // POP_JUMP_IF_FALSE 26
     0x10,0x22, // LOAD_CONST_STRING '.'
@@ -15738,7 +15762,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_rnd = {
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 450,
+        .qstr_block_name_idx = 453,
         .line_info = fun_data_scratch_Project__register_rnd + 8,
         .line_info_top = fun_data_scratch_Project__register_rnd + 19,
         .opcodes = fun_data_scratch_Project__register_rnd + 19,
@@ -15754,20 +15778,20 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_rnd = {
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_42
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_42[41] = {
     0x4b,0x10, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xb0,0xed, // code info
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xb0,0xef, // code info
     0x12,0x2f, // LOAD_GLOBAL 'compare'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x44, // LOAD_CONST_STRING 'OPERAND1'
+    0x10,0x83,0x47, // LOAD_CONST_STRING 'OPERAND1'
     0x36,0x03, // CALL_METHOD 3
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x45, // LOAD_CONST_STRING 'OPERAND2'
+    0x10,0x83,0x48, // LOAD_CONST_STRING 'OPERAND2'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x02, // CALL_FUNCTION 2
     0x80, // LOAD_CONST_SMALL_INT 0
@@ -15797,7 +15821,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_42 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_42 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_42 + 10,
@@ -15813,20 +15837,20 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_43
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_43[41] = {
     0x4b,0x10, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xb0,0xee, // code info
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xb0,0xf0, // code info
     0x12,0x2f, // LOAD_GLOBAL 'compare'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x44, // LOAD_CONST_STRING 'OPERAND1'
+    0x10,0x83,0x47, // LOAD_CONST_STRING 'OPERAND1'
     0x36,0x03, // CALL_METHOD 3
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x45, // LOAD_CONST_STRING 'OPERAND2'
+    0x10,0x83,0x48, // LOAD_CONST_STRING 'OPERAND2'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x02, // CALL_FUNCTION 2
     0x80, // LOAD_CONST_SMALL_INT 0
@@ -15856,7 +15880,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_43 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_43 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_43 + 10,
@@ -15872,20 +15896,20 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_44
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_44[41] = {
     0x4b,0x10, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xb0,0xef, // code info
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xb0,0xf1, // code info
     0x12,0x2f, // LOAD_GLOBAL 'compare'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x44, // LOAD_CONST_STRING 'OPERAND1'
+    0x10,0x83,0x47, // LOAD_CONST_STRING 'OPERAND1'
     0x36,0x03, // CALL_METHOD 3
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x45, // LOAD_CONST_STRING 'OPERAND2'
+    0x10,0x83,0x48, // LOAD_CONST_STRING 'OPERAND2'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x02, // CALL_FUNCTION 2
     0x80, // LOAD_CONST_SMALL_INT 0
@@ -15915,7 +15939,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_44 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_44 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_44 + 10,
@@ -15931,24 +15955,24 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_45
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_45[48] = {
     0x4b,0x12, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xb0,0xf0,0x33, // code info
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xb0,0xf2,0x33, // code info
     0x12,0x2e, // LOAD_GLOBAL 'truth'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x44, // LOAD_CONST_STRING 'OPERAND1'
+    0x10,0x83,0x47, // LOAD_CONST_STRING 'OPERAND1'
     0x50, // LOAD_CONST_FALSE
     0x36,0x04, // CALL_METHOD 4
     0x34,0x01, // CALL_FUNCTION 1
     0x46,0x11, // JUMP_IF_FALSE_OR_POP 17
     0x12,0x2e, // LOAD_GLOBAL 'truth'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x45, // LOAD_CONST_STRING 'OPERAND2'
+    0x10,0x83,0x48, // LOAD_CONST_STRING 'OPERAND2'
     0x50, // LOAD_CONST_FALSE
     0x36,0x04, // CALL_METHOD 4
     0x34,0x01, // CALL_FUNCTION 1
@@ -15977,7 +16001,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_45 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_45 + 11,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_45 + 11,
@@ -15993,24 +16017,24 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_46
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_46[48] = {
     0x4b,0x12, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xb0,0xf2,0x33, // code info
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xb0,0xf4,0x33, // code info
     0x12,0x2e, // LOAD_GLOBAL 'truth'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x44, // LOAD_CONST_STRING 'OPERAND1'
+    0x10,0x83,0x47, // LOAD_CONST_STRING 'OPERAND1'
     0x50, // LOAD_CONST_FALSE
     0x36,0x04, // CALL_METHOD 4
     0x34,0x01, // CALL_FUNCTION 1
     0x45,0x11, // JUMP_IF_TRUE_OR_POP 17
     0x12,0x2e, // LOAD_GLOBAL 'truth'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x45, // LOAD_CONST_STRING 'OPERAND2'
+    0x10,0x83,0x48, // LOAD_CONST_STRING 'OPERAND2'
     0x50, // LOAD_CONST_FALSE
     0x36,0x04, // CALL_METHOD 4
     0x34,0x01, // CALL_FUNCTION 1
@@ -16039,7 +16063,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_46 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_46 + 11,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_46 + 11,
@@ -16055,14 +16079,14 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_47
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_47[29] = {
     0x4b,0x10, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xb0,0xf4, // code info
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xb0,0xf6, // code info
     0x12,0x2e, // LOAD_GLOBAL 'truth'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x46, // LOAD_CONST_STRING 'OPERAND'
+    0x10,0x83,0x49, // LOAD_CONST_STRING 'OPERAND'
     0x50, // LOAD_CONST_FALSE
     0x36,0x04, // CALL_METHOD 4
     0x34,0x01, // CALL_FUNCTION 1
@@ -16092,7 +16116,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_47 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_47 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_47 + 10,
@@ -16108,23 +16132,23 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_48
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_48[48] = {
     0x53,0x10, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xb0,0xf5, // code info
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xb0,0xf7, // code info
     0x12,0x28, // LOAD_GLOBAL 'text'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x47, // LOAD_CONST_STRING 'STRING1'
+    0x10,0x83,0x4a, // LOAD_CONST_STRING 'STRING1'
     0x10,0x30, // LOAD_CONST_STRING ''
     0x36,0x04, // CALL_METHOD 4
     0x34,0x01, // CALL_FUNCTION 1
     0x12,0x28, // LOAD_GLOBAL 'text'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x48, // LOAD_CONST_STRING 'STRING2'
+    0x10,0x83,0x4b, // LOAD_CONST_STRING 'STRING2'
     0x10,0x30, // LOAD_CONST_STRING ''
     0x36,0x04, // CALL_METHOD 4
     0x34,0x01, // CALL_FUNCTION 1
@@ -16154,7 +16178,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_48 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_48 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_48 + 10,
@@ -16170,24 +16194,24 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register_letter
 static const byte fun_data_scratch_Project__register_letter[77] = {
     0x5b,0x14, // prelude
-    0x83,0x49,0x12,0x7a,0x81,0x6a, // names: letter, *, ctx, b
-    0xb0,0xf8,0x33,0x33, // code info
+    0x83,0x4c,0x12,0x7a,0x81,0x6c, // names: letter, *, ctx, b
+    0xb0,0xfa,0x33,0x33, // code info
     0x12,0x28, // LOAD_GLOBAL 'text'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x4a, // LOAD_CONST_STRING 'STRING'
+    0x10,0x83,0x4d, // LOAD_CONST_STRING 'STRING'
     0x10,0x30, // LOAD_CONST_STRING ''
     0x36,0x04, // CALL_METHOD 4
     0x34,0x01, // CALL_FUNCTION 1
     0xc3, // STORE_FAST 3
     0x12,0x26, // LOAD_GLOBAL 'toint'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x4b, // LOAD_CONST_STRING 'LETTER'
+    0x10,0x83,0x4e, // LOAD_CONST_STRING 'LETTER'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
     0x81, // LOAD_CONST_SMALL_INT 1
@@ -16199,7 +16223,7 @@ static const byte fun_data_scratch_Project__register_letter[77] = {
     0x5b, // ROT_THREE
     0xda, // BINARY_OP 3 __le__
     0x46,0x09, // JUMP_IF_FALSE_OR_POP 9
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xb3, // LOAD_FAST 3
     0x34,0x01, // CALL_FUNCTION 1
     0xd7, // BINARY_OP 0 __lt__
@@ -16237,7 +16261,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_letter 
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 457,
+        .qstr_block_name_idx = 460,
         .line_info = fun_data_scratch_Project__register_letter + 8,
         .line_info_top = fun_data_scratch_Project__register_letter + 12,
         .opcodes = fun_data_scratch_Project__register_letter + 12,
@@ -16253,15 +16277,15 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_letter 
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_49
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_49[34] = {
     0x53,0x10, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xb0,0xfc, // code info
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xb0,0xfe, // code info
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0x12,0x28, // LOAD_GLOBAL 'text'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x4a, // LOAD_CONST_STRING 'STRING'
+    0x10,0x83,0x4d, // LOAD_CONST_STRING 'STRING'
     0x10,0x30, // LOAD_CONST_STRING ''
     0x36,0x04, // CALL_METHOD 4
     0x34,0x01, // CALL_FUNCTION 1
@@ -16291,7 +16315,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_49 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_49 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_49 + 10,
@@ -16307,14 +16331,14 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_50
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_50[57] = {
     0x53,0x12, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xb0,0xfd,0x36, // code info
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xb0,0xff,0x36, // code info
     0x12,0x28, // LOAD_GLOBAL 'text'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x48, // LOAD_CONST_STRING 'STRING2'
+    0x10,0x83,0x4b, // LOAD_CONST_STRING 'STRING2'
     0x10,0x30, // LOAD_CONST_STRING ''
     0x36,0x04, // CALL_METHOD 4
     0x34,0x01, // CALL_FUNCTION 1
@@ -16322,10 +16346,10 @@ static const byte fun_data_scratch_Project__register__lt_lambda_gt_50[57] = {
     0x36,0x00, // CALL_METHOD 0
     0x12,0x28, // LOAD_GLOBAL 'text'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x47, // LOAD_CONST_STRING 'STRING1'
+    0x10,0x83,0x4a, // LOAD_CONST_STRING 'STRING1'
     0x10,0x30, // LOAD_CONST_STRING ''
     0x36,0x04, // CALL_METHOD 4
     0x34,0x01, // CALL_FUNCTION 1
@@ -16357,7 +16381,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_50 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_50 + 11,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_50 + 11,
@@ -16373,14 +16397,14 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register_round_
 static const byte fun_data_scratch_Project__register_round_[55] = {
     0x4b,0x12, // prelude
-    0x83,0x4c,0x12,0x7a,0x81,0x6a, // names: round_, *, ctx, b
-    0xc0,0x01,0x31, // code info
+    0x83,0x4f,0x12,0x7a,0x81,0x6c, // names: round_, *, ctx, b
+    0xc0,0x03,0x31, // code info
     0x12,0x20, // LOAD_GLOBAL 'num'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x03, // LOAD_CONST_STRING 'NUM'
+    0x10,0x83,0x06, // LOAD_CONST_STRING 'NUM'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
     0xc3, // STORE_FAST 3
@@ -16388,9 +16412,9 @@ static const byte fun_data_scratch_Project__register_round_[55] = {
     0xb3, // LOAD_FAST 3
     0x34,0x01, // CALL_FUNCTION 1
     0x44,0x52, // POP_JUMP_IF_FALSE 18
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0x12,0x03, // LOAD_GLOBAL 'math'
-    0x14,0x83,0x41, // LOAD_METHOD 'floor'
+    0x14,0x83,0x44, // LOAD_METHOD 'floor'
     0xb3, // LOAD_FAST 3
     0x23,0x81,0x31, // LOAD_CONST_OBJ 177
     0xf2, // BINARY_OP 27 __add__
@@ -16423,7 +16447,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_round_ 
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 460,
+        .qstr_block_name_idx = 463,
         .line_info = fun_data_scratch_Project__register_round_ + 8,
         .line_info_top = fun_data_scratch_Project__register_round_ + 11,
         .opcodes = fun_data_scratch_Project__register_round_ + 11,
@@ -16439,21 +16463,21 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_round_ 
 // frozen bytecode for file scratch.py, scope scratch_Project__register_mathop
 static const byte fun_data_scratch_Project__register_mathop[400] = {
     0x5f,0x3a, // prelude
-    0x83,0x4d,0x12,0x7a,0x81,0x6a, // names: mathop, *, ctx, b
-    0xc0,0x06,0x2f,0x31,0x2e,0x30,0x23,0x2e,0x30,0x30,0x2e,0x3d,0x3d,0x3d,0x37,0x37,0x37,0x30,0x39,0x30,0x2e,0x2c,0x23, // code info
+    0x83,0x50,0x12,0x7a,0x81,0x6c, // names: mathop, *, ctx, b
+    0xc0,0x08,0x2f,0x31,0x2e,0x30,0x23,0x2e,0x30,0x30,0x2e,0x3d,0x3d,0x3d,0x37,0x37,0x37,0x30,0x39,0x30,0x2e,0x2c,0x23, // code info
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x66, // LOAD_METHOD 'field'
+    0x14,0x81,0x68, // LOAD_METHOD 'field'
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x4e, // LOAD_CONST_STRING 'OPERATOR'
-    0x10,0x83,0x4f, // LOAD_CONST_STRING 'abs'
+    0x10,0x83,0x51, // LOAD_CONST_STRING 'OPERATOR'
+    0x10,0x83,0x52, // LOAD_CONST_STRING 'abs'
     0x36,0x03, // CALL_METHOD 3
     0xc3, // STORE_FAST 3
     0x12,0x20, // LOAD_GLOBAL 'num'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x03, // LOAD_CONST_STRING 'NUM'
+    0x10,0x83,0x06, // LOAD_CONST_STRING 'NUM'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
     0xc4, // STORE_FAST 4
@@ -16466,10 +16490,10 @@ static const byte fun_data_scratch_Project__register_mathop[400] = {
     0xdd, // BINARY_OP 6 <in>
     0x44,0x50, // POP_JUMP_IF_FALSE 16
     0xb3, // LOAD_FAST 3
-    0x10,0x83,0x4f, // LOAD_CONST_STRING 'abs'
+    0x10,0x83,0x52, // LOAD_CONST_STRING 'abs'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x47, // POP_JUMP_IF_FALSE 7
-    0x12,0x83,0x4f, // LOAD_GLOBAL 'abs'
+    0x12,0x83,0x52, // LOAD_GLOBAL 'abs'
     0xb4, // LOAD_FAST 4
     0x34,0x01, // CALL_FUNCTION 1
     0x63, // RETURN_VALUE
@@ -16477,28 +16501,28 @@ static const byte fun_data_scratch_Project__register_mathop[400] = {
     0x63, // RETURN_VALUE
     0x48,0x9e,0x02, // SETUP_EXCEPT 286
     0xb3, // LOAD_FAST 3
-    0x10,0x83,0x4f, // LOAD_CONST_STRING 'abs'
+    0x10,0x83,0x52, // LOAD_CONST_STRING 'abs'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x47, // POP_JUMP_IF_FALSE 7
-    0x12,0x83,0x4f, // LOAD_GLOBAL 'abs'
+    0x12,0x83,0x52, // LOAD_GLOBAL 'abs'
     0xb4, // LOAD_FAST 4
     0x34,0x01, // CALL_FUNCTION 1
     0x63, // RETURN_VALUE
     0xb3, // LOAD_FAST 3
-    0x10,0x83,0x41, // LOAD_CONST_STRING 'floor'
+    0x10,0x83,0x44, // LOAD_CONST_STRING 'floor'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x49, // POP_JUMP_IF_FALSE 9
     0x12,0x03, // LOAD_GLOBAL 'math'
-    0x14,0x83,0x41, // LOAD_METHOD 'floor'
+    0x14,0x83,0x44, // LOAD_METHOD 'floor'
     0xb4, // LOAD_FAST 4
     0x36,0x01, // CALL_METHOD 1
     0x63, // RETURN_VALUE
     0xb3, // LOAD_FAST 3
-    0x10,0x83,0x50, // LOAD_CONST_STRING 'ceiling'
+    0x10,0x83,0x53, // LOAD_CONST_STRING 'ceiling'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x49, // POP_JUMP_IF_FALSE 9
     0x12,0x03, // LOAD_GLOBAL 'math'
-    0x14,0x83,0x51, // LOAD_METHOD 'ceil'
+    0x14,0x83,0x54, // LOAD_METHOD 'ceil'
     0xb4, // LOAD_FAST 4
     0x36,0x01, // CALL_METHOD 1
     0x63, // RETURN_VALUE
@@ -16512,14 +16536,14 @@ static const byte fun_data_scratch_Project__register_mathop[400] = {
     0x36,0x01, // CALL_METHOD 1
     0x63, // RETURN_VALUE
     0xb3, // LOAD_FAST 3
-    0x10,0x82,0x58, // LOAD_CONST_STRING 'sin'
+    0x10,0x82,0x5c, // LOAD_CONST_STRING 'sin'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x56, // POP_JUMP_IF_FALSE 22
-    0x12,0x84,0x0e, // LOAD_GLOBAL 'round'
+    0x12,0x84,0x12, // LOAD_GLOBAL 'round'
     0x12,0x03, // LOAD_GLOBAL 'math'
-    0x14,0x82,0x58, // LOAD_METHOD 'sin'
+    0x14,0x82,0x5c, // LOAD_METHOD 'sin'
     0x12,0x03, // LOAD_GLOBAL 'math'
-    0x14,0x82,0x56, // LOAD_METHOD 'radians'
+    0x14,0x82,0x5a, // LOAD_METHOD 'radians'
     0xb4, // LOAD_FAST 4
     0x36,0x01, // CALL_METHOD 1
     0x36,0x01, // CALL_METHOD 1
@@ -16527,14 +16551,14 @@ static const byte fun_data_scratch_Project__register_mathop[400] = {
     0x34,0x02, // CALL_FUNCTION 2
     0x63, // RETURN_VALUE
     0xb3, // LOAD_FAST 3
-    0x10,0x82,0x57, // LOAD_CONST_STRING 'cos'
+    0x10,0x82,0x5b, // LOAD_CONST_STRING 'cos'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x56, // POP_JUMP_IF_FALSE 22
-    0x12,0x84,0x0e, // LOAD_GLOBAL 'round'
+    0x12,0x84,0x12, // LOAD_GLOBAL 'round'
     0x12,0x03, // LOAD_GLOBAL 'math'
-    0x14,0x82,0x57, // LOAD_METHOD 'cos'
+    0x14,0x82,0x5b, // LOAD_METHOD 'cos'
     0x12,0x03, // LOAD_GLOBAL 'math'
-    0x14,0x82,0x56, // LOAD_METHOD 'radians'
+    0x14,0x82,0x5a, // LOAD_METHOD 'radians'
     0xb4, // LOAD_FAST 4
     0x36,0x01, // CALL_METHOD 1
     0x36,0x01, // CALL_METHOD 1
@@ -16542,14 +16566,14 @@ static const byte fun_data_scratch_Project__register_mathop[400] = {
     0x34,0x02, // CALL_FUNCTION 2
     0x63, // RETURN_VALUE
     0xb3, // LOAD_FAST 3
-    0x10,0x83,0x52, // LOAD_CONST_STRING 'tan'
+    0x10,0x83,0x55, // LOAD_CONST_STRING 'tan'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x56, // POP_JUMP_IF_FALSE 22
-    0x12,0x84,0x0e, // LOAD_GLOBAL 'round'
+    0x12,0x84,0x12, // LOAD_GLOBAL 'round'
     0x12,0x03, // LOAD_GLOBAL 'math'
-    0x14,0x83,0x52, // LOAD_METHOD 'tan'
+    0x14,0x83,0x55, // LOAD_METHOD 'tan'
     0x12,0x03, // LOAD_GLOBAL 'math'
-    0x14,0x82,0x56, // LOAD_METHOD 'radians'
+    0x14,0x82,0x5a, // LOAD_METHOD 'radians'
     0xb4, // LOAD_FAST 4
     0x36,0x01, // CALL_METHOD 1
     0x36,0x01, // CALL_METHOD 1
@@ -16557,75 +16581,75 @@ static const byte fun_data_scratch_Project__register_mathop[400] = {
     0x34,0x02, // CALL_FUNCTION 2
     0x63, // RETURN_VALUE
     0xb3, // LOAD_FAST 3
-    0x10,0x83,0x53, // LOAD_CONST_STRING 'asin'
+    0x10,0x83,0x56, // LOAD_CONST_STRING 'asin'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x50, // POP_JUMP_IF_FALSE 16
     0x12,0x03, // LOAD_GLOBAL 'math'
-    0x14,0x82,0x6c, // LOAD_METHOD 'degrees'
+    0x14,0x82,0x70, // LOAD_METHOD 'degrees'
     0x12,0x03, // LOAD_GLOBAL 'math'
-    0x14,0x83,0x53, // LOAD_METHOD 'asin'
+    0x14,0x83,0x56, // LOAD_METHOD 'asin'
     0xb4, // LOAD_FAST 4
     0x36,0x01, // CALL_METHOD 1
     0x36,0x01, // CALL_METHOD 1
     0x63, // RETURN_VALUE
     0xb3, // LOAD_FAST 3
-    0x10,0x83,0x54, // LOAD_CONST_STRING 'acos'
+    0x10,0x83,0x57, // LOAD_CONST_STRING 'acos'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x50, // POP_JUMP_IF_FALSE 16
     0x12,0x03, // LOAD_GLOBAL 'math'
-    0x14,0x82,0x6c, // LOAD_METHOD 'degrees'
+    0x14,0x82,0x70, // LOAD_METHOD 'degrees'
     0x12,0x03, // LOAD_GLOBAL 'math'
-    0x14,0x83,0x54, // LOAD_METHOD 'acos'
+    0x14,0x83,0x57, // LOAD_METHOD 'acos'
     0xb4, // LOAD_FAST 4
     0x36,0x01, // CALL_METHOD 1
     0x36,0x01, // CALL_METHOD 1
     0x63, // RETURN_VALUE
     0xb3, // LOAD_FAST 3
-    0x10,0x83,0x55, // LOAD_CONST_STRING 'atan'
+    0x10,0x83,0x58, // LOAD_CONST_STRING 'atan'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x50, // POP_JUMP_IF_FALSE 16
     0x12,0x03, // LOAD_GLOBAL 'math'
-    0x14,0x82,0x6c, // LOAD_METHOD 'degrees'
+    0x14,0x82,0x70, // LOAD_METHOD 'degrees'
     0x12,0x03, // LOAD_GLOBAL 'math'
-    0x14,0x83,0x55, // LOAD_METHOD 'atan'
+    0x14,0x83,0x58, // LOAD_METHOD 'atan'
     0xb4, // LOAD_FAST 4
     0x36,0x01, // CALL_METHOD 1
     0x36,0x01, // CALL_METHOD 1
     0x63, // RETURN_VALUE
     0xb3, // LOAD_FAST 3
-    0x10,0x83,0x56, // LOAD_CONST_STRING 'ln'
+    0x10,0x83,0x59, // LOAD_CONST_STRING 'ln'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x49, // POP_JUMP_IF_FALSE 9
     0x12,0x03, // LOAD_GLOBAL 'math'
-    0x14,0x83,0x57, // LOAD_METHOD 'log'
+    0x14,0x83,0x5a, // LOAD_METHOD 'log'
     0xb4, // LOAD_FAST 4
     0x36,0x01, // CALL_METHOD 1
     0x63, // RETURN_VALUE
     0xb3, // LOAD_FAST 3
-    0x10,0x83,0x57, // LOAD_CONST_STRING 'log'
+    0x10,0x83,0x5a, // LOAD_CONST_STRING 'log'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x52, // POP_JUMP_IF_FALSE 18
     0x12,0x03, // LOAD_GLOBAL 'math'
-    0x14,0x83,0x57, // LOAD_METHOD 'log'
+    0x14,0x83,0x5a, // LOAD_METHOD 'log'
     0xb4, // LOAD_FAST 4
     0x36,0x01, // CALL_METHOD 1
     0x12,0x03, // LOAD_GLOBAL 'math'
-    0x14,0x83,0x57, // LOAD_METHOD 'log'
+    0x14,0x83,0x5a, // LOAD_METHOD 'log'
     0x8a, // LOAD_CONST_SMALL_INT 10
     0x36,0x01, // CALL_METHOD 1
     0xf7, // BINARY_OP 32 __truediv__
     0x63, // RETURN_VALUE
     0xb3, // LOAD_FAST 3
-    0x10,0x83,0x58, // LOAD_CONST_STRING 'e ^'
+    0x10,0x83,0x5b, // LOAD_CONST_STRING 'e ^'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x49, // POP_JUMP_IF_FALSE 9
     0x12,0x03, // LOAD_GLOBAL 'math'
-    0x14,0x83,0x59, // LOAD_METHOD 'exp'
+    0x14,0x83,0x5c, // LOAD_METHOD 'exp'
     0xb4, // LOAD_FAST 4
     0x36,0x01, // CALL_METHOD 1
     0x63, // RETURN_VALUE
     0xb3, // LOAD_FAST 3
-    0x10,0x83,0x5a, // LOAD_CONST_STRING '10 ^'
+    0x10,0x83,0x5d, // LOAD_CONST_STRING '10 ^'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x44, // POP_JUMP_IF_FALSE 4
     0x8a, // LOAD_CONST_SMALL_INT 10
@@ -16634,8 +16658,8 @@ static const byte fun_data_scratch_Project__register_mathop[400] = {
     0x63, // RETURN_VALUE
     0x4a,0x10, // POP_EXCEPT_JUMP 16
     0x57, // DUP_TOP
-    0x12,0x83,0x7d, // LOAD_GLOBAL 'ValueError'
-    0x12,0x84,0x35, // LOAD_GLOBAL 'OverflowError'
+    0x12,0x84,0x00, // LOAD_GLOBAL 'ValueError'
+    0x12,0x84,0x3a, // LOAD_GLOBAL 'OverflowError'
     0x2a,0x02, // BUILD_TUPLE 2
     0xdf, // BINARY_OP 8 <exception match>
     0x44,0x43, // POP_JUMP_IF_FALSE 3
@@ -16669,7 +16693,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_mathop 
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 461,
+        .qstr_block_name_idx = 464,
         .line_info = fun_data_scratch_Project__register_mathop + 8,
         .line_info_top = fun_data_scratch_Project__register_mathop + 31,
         .opcodes = fun_data_scratch_Project__register_mathop + 31,
@@ -16685,22 +16709,22 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_mathop 
 // frozen bytecode for file scratch.py, scope scratch_Project__register_setvar
 static const byte fun_data_scratch_Project__register_setvar[48] = {
     0x63,0x10, // prelude
-    0x83,0x5b,0x12,0x7a,0x81,0x6a, // names: setvar, *, ctx, b
-    0xc0,0x20, // code info
+    0x83,0x5e,0x12,0x7a,0x81,0x6c, // names: setvar, *, ctx, b
+    0xc0,0x22, // code info
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x54, // LOAD_METHOD 'var_set'
+    0x14,0x81,0x56, // LOAD_METHOD 'var_set'
     0xb1, // LOAD_FAST 1
     0x13,0x74, // LOAD_ATTR 'sp'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x66, // LOAD_METHOD 'field'
+    0x14,0x81,0x68, // LOAD_METHOD 'field'
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x5c, // LOAD_CONST_STRING 'VARIABLE'
+    0x10,0x83,0x5f, // LOAD_CONST_STRING 'VARIABLE'
     0x36,0x02, // CALL_METHOD 2
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x82,0x7b, // LOAD_CONST_STRING 'VALUE'
+    0x10,0x82,0x7f, // LOAD_CONST_STRING 'VALUE'
     0x10,0x30, // LOAD_CONST_STRING ''
     0x36,0x04, // CALL_METHOD 4
     0x36,0x03, // CALL_METHOD 3
@@ -16731,7 +16755,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_setvar 
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 475,
+        .qstr_block_name_idx = 478,
         .line_info = fun_data_scratch_Project__register_setvar + 8,
         .line_info_top = fun_data_scratch_Project__register_setvar + 10,
         .opcodes = fun_data_scratch_Project__register_setvar + 10,
@@ -16747,22 +16771,22 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_setvar 
 // frozen bytecode for file scratch.py, scope scratch_Project__register_changevar
 static const byte fun_data_scratch_Project__register_changevar[69] = {
     0x73,0x12, // prelude
-    0x83,0x5d,0x12,0x7a,0x81,0x6a, // names: changevar, *, ctx, b
-    0xc0,0x24,0x2c, // code info
+    0x83,0x60,0x12,0x7a,0x81,0x6c, // names: changevar, *, ctx, b
+    0xc0,0x26,0x2c, // code info
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x66, // LOAD_METHOD 'field'
+    0x14,0x81,0x68, // LOAD_METHOD 'field'
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x5c, // LOAD_CONST_STRING 'VARIABLE'
+    0x10,0x83,0x5f, // LOAD_CONST_STRING 'VARIABLE'
     0x36,0x02, // CALL_METHOD 2
     0xc3, // STORE_FAST 3
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x54, // LOAD_METHOD 'var_set'
+    0x14,0x81,0x56, // LOAD_METHOD 'var_set'
     0xb1, // LOAD_FAST 1
     0x13,0x74, // LOAD_ATTR 'sp'
     0xb3, // LOAD_FAST 3
     0x12,0x20, // LOAD_GLOBAL 'num'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x53, // LOAD_METHOD 'var_get'
+    0x14,0x81,0x55, // LOAD_METHOD 'var_get'
     0xb1, // LOAD_FAST 1
     0x13,0x74, // LOAD_ATTR 'sp'
     0xb3, // LOAD_FAST 3
@@ -16770,10 +16794,10 @@ static const byte fun_data_scratch_Project__register_changevar[69] = {
     0x34,0x01, // CALL_FUNCTION 1
     0x12,0x20, // LOAD_GLOBAL 'num'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x10,0x82,0x7b, // LOAD_CONST_STRING 'VALUE'
+    0x10,0x82,0x7f, // LOAD_CONST_STRING 'VALUE'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
     0xf2, // BINARY_OP 27 __add__
@@ -16805,7 +16829,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_changev
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 477,
+        .qstr_block_name_idx = 480,
         .line_info = fun_data_scratch_Project__register_changevar + 8,
         .line_info_top = fun_data_scratch_Project__register_changevar + 11,
         .opcodes = fun_data_scratch_Project__register_changevar + 11,
@@ -16821,8 +16845,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_changev
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_51
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_51[11] = {
     0x12,0x0e, // prelude
-    0x82,0x5a,0x7a,0x81,0x6a, // names: <lambda>, ctx, b
-    0xc0,0x27, // code info
+    0x82,0x5e,0x7a,0x81,0x6c, // names: <lambda>, ctx, b
+    0xc0,0x29, // code info
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -16849,7 +16873,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_51 + 7,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_51 + 9,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_51 + 9,
@@ -16865,8 +16889,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_52
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_52[11] = {
     0x12,0x0e, // prelude
-    0x82,0x5a,0x7a,0x81,0x6a, // names: <lambda>, ctx, b
-    0xc0,0x28, // code info
+    0x82,0x5e,0x7a,0x81,0x6c, // names: <lambda>, ctx, b
+    0xc0,0x2a, // code info
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -16893,7 +16917,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_52 + 7,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_52 + 9,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_52 + 9,
@@ -16909,37 +16933,37 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register_showlist
 static const byte fun_data_scratch_Project__register_showlist[82] = {
     0x53,0x16, // prelude
-    0x83,0x5e,0x12,0x7a,0x81,0x6a, // names: showlist, *, ctx, b
-    0xc0,0x2b,0x2c,0x2e,0x36, // code info
+    0x83,0x61,0x12,0x7a,0x81,0x6c, // names: showlist, *, ctx, b
+    0xc0,0x2d,0x2c,0x2e,0x36, // code info
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x66, // LOAD_METHOD 'field'
+    0x14,0x81,0x68, // LOAD_METHOD 'field'
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x5f, // LOAD_CONST_STRING 'LIST'
+    0x10,0x83,0x62, // LOAD_CONST_STRING 'LIST'
     0x36,0x02, // CALL_METHOD 2
     0xc3, // STORE_FAST 3
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x18, // LOAD_ATTR 'names'
+    0x13,0x81,0x1a, // LOAD_ATTR 'names'
     0x14,0x81,0x00, // LOAD_METHOD 'get'
     0xb3, // LOAD_FAST 3
     0x10,0x30, // LOAD_CONST_STRING ''
     0x36,0x02, // CALL_METHOD 2
     0xc4, // STORE_FAST 4
-    0x10,0x83,0x37, // LOAD_CONST_STRING 'save'
+    0x10,0x83,0x3a, // LOAD_CONST_STRING 'save'
     0xb4, // LOAD_FAST 4
     0x14,0x24, // LOAD_METHOD 'lower'
     0x36,0x00, // CALL_METHOD 0
     0xdd, // BINARY_OP 6 <in>
     0x43,0x4b, // POP_JUMP_IF_TRUE 11
-    0x10,0x83,0x60, // LOAD_CONST_STRING 'guard'
+    0x10,0x83,0x63, // LOAD_CONST_STRING 'guard'
     0xb4, // LOAD_FAST 4
     0x14,0x24, // LOAD_METHOD 'lower'
     0x36,0x00, // CALL_METHOD 0
     0xdd, // BINARY_OP 6 <in>
     0x44,0x53, // POP_JUMP_IF_FALSE 19
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x82,0x0d, // LOAD_METHOD 'save_game'
+    0x14,0x82,0x0f, // LOAD_METHOD 'save_game'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x61, // LOAD_METHOD 'lst'
+    0x14,0x81,0x63, // LOAD_METHOD 'lst'
     0xb1, // LOAD_FAST 1
     0x13,0x74, // LOAD_ATTR 'sp'
     0xb3, // LOAD_FAST 3
@@ -16972,7 +16996,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_showlis
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 478,
+        .qstr_block_name_idx = 481,
         .line_info = fun_data_scratch_Project__register_showlist + 8,
         .line_info_top = fun_data_scratch_Project__register_showlist + 13,
         .opcodes = fun_data_scratch_Project__register_showlist + 13,
@@ -16988,8 +17012,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_showlis
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_53
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_53[11] = {
     0x12,0x0e, // prelude
-    0x82,0x5a,0x7a,0x81,0x6a, // names: <lambda>, ctx, b
-    0xc0,0x30, // code info
+    0x82,0x5e,0x7a,0x81,0x6c, // names: <lambda>, ctx, b
+    0xc0,0x32, // code info
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -17016,7 +17040,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_53 + 7,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_53 + 9,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_53 + 9,
@@ -17032,16 +17056,16 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register_L
 static const byte fun_data_scratch_Project__register_L[32] = {
     0x4b,0x10, // prelude
-    0x81,0x64,0x12,0x7a,0x81,0x6a, // names: L, *, ctx, b
-    0xc0,0x33, // code info
+    0x81,0x66,0x12,0x7a,0x81,0x6c, // names: L, *, ctx, b
+    0xc0,0x35, // code info
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x61, // LOAD_METHOD 'lst'
+    0x14,0x81,0x63, // LOAD_METHOD 'lst'
     0xb1, // LOAD_FAST 1
     0x13,0x74, // LOAD_ATTR 'sp'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x66, // LOAD_METHOD 'field'
+    0x14,0x81,0x68, // LOAD_METHOD 'field'
     0xb2, // LOAD_FAST 2
-    0x10,0x83,0x5f, // LOAD_CONST_STRING 'LIST'
+    0x10,0x83,0x62, // LOAD_CONST_STRING 'LIST'
     0x36,0x02, // CALL_METHOD 2
     0x36,0x02, // CALL_METHOD 2
     0x63, // RETURN_VALUE
@@ -17069,7 +17093,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_L = {
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 228,
+        .qstr_block_name_idx = 230,
         .line_info = fun_data_scratch_Project__register_L + 8,
         .line_info_top = fun_data_scratch_Project__register_L + 10,
         .opcodes = fun_data_scratch_Project__register_L + 10,
@@ -17085,10 +17109,10 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_L = {
 // frozen bytecode for file scratch.py, scope scratch_Project__register_index
 static const byte fun_data_scratch_Project__register_index[98] = {
     0xf2,0x84,0x01,0x24, // prelude
-    0x82,0x50,0x12,0x7a,0x81,0x6a,0x4f,0x43,0x81,0x65, // names: index, *, ctx, b, items, name, add
-    0xc0,0x36,0x2b,0x2a,0x27,0x2b,0x27,0x36, // code info
+    0x82,0x54,0x12,0x7a,0x81,0x6c,0x4f,0x43,0x81,0x67, // names: index, *, ctx, b, items, name, add
+    0xc0,0x38,0x2b,0x2a,0x27,0x2b,0x27,0x36, // code info
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0xb4, // LOAD_FAST 4
@@ -17101,10 +17125,10 @@ static const byte fun_data_scratch_Project__register_index[98] = {
     0x36,0x00, // CALL_METHOD 0
     0xc7, // STORE_FAST 7
     0xb7, // LOAD_FAST 7
-    0x10,0x83,0x61, // LOAD_CONST_STRING 'last'
+    0x10,0x83,0x64, // LOAD_CONST_STRING 'last'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x4b, // POP_JUMP_IF_FALSE 11
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xb3, // LOAD_FAST 3
     0x34,0x01, // CALL_FUNCTION 1
     0x81, // LOAD_CONST_SMALL_INT 1
@@ -17119,9 +17143,9 @@ static const byte fun_data_scratch_Project__register_index[98] = {
     0x12,0x05, // LOAD_GLOBAL 'random'
     0x14,0x72, // LOAD_METHOD 'randint'
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x12,0x84,0x09, // LOAD_GLOBAL 'max'
+    0x12,0x84,0x0d, // LOAD_GLOBAL 'max'
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xb3, // LOAD_FAST 3
     0x34,0x01, // CALL_FUNCTION 1
     0x81, // LOAD_CONST_SMALL_INT 1
@@ -17159,7 +17183,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_index =
         .n_pos_args = 6,
         .n_kwonly_args = 0,
         .n_def_pos_args = 2,
-        .qstr_block_name_idx = 336,
+        .qstr_block_name_idx = 340,
         .line_info = fun_data_scratch_Project__register_index + 14,
         .line_info_top = fun_data_scratch_Project__register_index + 22,
         .opcodes = fun_data_scratch_Project__register_index + 22,
@@ -17175,26 +17199,26 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_index =
 // frozen bytecode for file scratch.py, scope scratch_Project__register_add
 static const byte fun_data_scratch_Project__register_add[57] = {
     0xe0,0x04,0x16, // prelude
-    0x81,0x65,0x12,0x12,0x7a,0x81,0x6a, // names: add, *, *, ctx, b
-    0xc0,0x3f,0x27,0x2d, // code info
+    0x81,0x67,0x12,0x12,0x7a,0x81,0x6c, // names: add, *, *, ctx, b
+    0xc0,0x41,0x27,0x2d, // code info
     0x25,0x01, // LOAD_DEREF 1
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
     0x34,0x02, // CALL_FUNCTION 2
     0xc4, // STORE_FAST 4
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xb4, // LOAD_FAST 4
     0x34,0x01, // CALL_FUNCTION 1
     0x22,0x8c,0x9a,0x40, // LOAD_CONST_SMALL_INT 200000
     0xd7, // BINARY_OP 0 __lt__
     0x44,0x55, // POP_JUMP_IF_FALSE 21
     0xb4, // LOAD_FAST 4
-    0x14,0x81,0x68, // LOAD_METHOD 'append'
+    0x14,0x81,0x6a, // LOAD_METHOD 'append'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
-    0x10,0x83,0x62, // LOAD_CONST_STRING 'ITEM'
+    0x10,0x83,0x65, // LOAD_CONST_STRING 'ITEM'
     0x10,0x30, // LOAD_CONST_STRING ''
     0x36,0x04, // CALL_METHOD 4
     0x36,0x01, // CALL_METHOD 1
@@ -17225,7 +17249,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_add = {
         .n_pos_args = 4,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 229,
+        .qstr_block_name_idx = 231,
         .line_info = fun_data_scratch_Project__register_add + 10,
         .line_info_top = fun_data_scratch_Project__register_add + 14,
         .opcodes = fun_data_scratch_Project__register_add + 14,
@@ -17241,8 +17265,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_add = {
 // frozen bytecode for file scratch.py, scope scratch_Project__register_delete
 static const byte fun_data_scratch_Project__register_delete[97] = {
     0xe1,0x04,0x20, // prelude
-    0x83,0x63,0x12,0x12,0x12,0x7a,0x81,0x6a, // names: delete, *, *, *, ctx, b
-    0xc0,0x45,0x27,0x3a,0x28,0x22,0x28,0x34, // code info
+    0x83,0x66,0x12,0x12,0x12,0x7a,0x81,0x6c, // names: delete, *, *, *, ctx, b
+    0xc0,0x47,0x27,0x3a,0x28,0x22,0x28,0x34, // code info
     0x25,0x01, // LOAD_DEREF 1
     0xb3, // LOAD_FAST 3
     0xb4, // LOAD_FAST 4
@@ -17250,15 +17274,15 @@ static const byte fun_data_scratch_Project__register_delete[97] = {
     0xc5, // STORE_FAST 5
     0x12,0x28, // LOAD_GLOBAL 'text'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb3, // LOAD_FAST 3
     0xb4, // LOAD_FAST 4
-    0x10,0x81,0x74, // LOAD_CONST_STRING 'INDEX'
+    0x10,0x81,0x76, // LOAD_CONST_STRING 'INDEX'
     0x36,0x03, // CALL_METHOD 3
     0x34,0x01, // CALL_FUNCTION 1
     0x14,0x24, // LOAD_METHOD 'lower'
     0x36,0x00, // CALL_METHOD 0
-    0x10,0x83,0x16, // LOAD_CONST_STRING 'all'
+    0x10,0x83,0x19, // LOAD_CONST_STRING 'all'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x4a, // POP_JUMP_IF_FALSE 10
     0xb5, // LOAD_FAST 5
@@ -17282,7 +17306,7 @@ static const byte fun_data_scratch_Project__register_delete[97] = {
     0x5b, // ROT_THREE
     0xda, // BINARY_OP 3 __le__
     0x46,0x09, // JUMP_IF_FALSE_OR_POP 9
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xb5, // LOAD_FAST 5
     0x34,0x01, // CALL_FUNCTION 1
     0xd7, // BINARY_OP 0 __lt__
@@ -17321,7 +17345,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_delete 
         .n_pos_args = 5,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 483,
+        .qstr_block_name_idx = 486,
         .line_info = fun_data_scratch_Project__register_delete + 11,
         .line_info_top = fun_data_scratch_Project__register_delete + 19,
         .opcodes = fun_data_scratch_Project__register_delete + 19,
@@ -17337,8 +17361,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_delete 
 // frozen bytecode for file scratch.py, scope scratch_Project__register_delete_all
 static const byte fun_data_scratch_Project__register_delete_all[25] = {
     0x2b,0x10, // prelude
-    0x83,0x64,0x12,0x7a,0x81,0x6a, // names: delete_all, *, ctx, b
-    0xc0,0x4f, // code info
+    0x83,0x67,0x12,0x7a,0x81,0x6c, // names: delete_all, *, ctx, b
+    0xc0,0x51, // code info
     0x25,0x00, // LOAD_DEREF 0
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
@@ -17375,7 +17399,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_delete_
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 484,
+        .qstr_block_name_idx = 487,
         .line_info = fun_data_scratch_Project__register_delete_all + 8,
         .line_info_top = fun_data_scratch_Project__register_delete_all + 10,
         .opcodes = fun_data_scratch_Project__register_delete_all + 10,
@@ -17391,8 +17415,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_delete_
 // frozen bytecode for file scratch.py, scope scratch_Project__register_insert
 static const byte fun_data_scratch_Project__register_insert[80] = {
     0xf9,0x04,0x1a, // prelude
-    0x83,0x02,0x12,0x12,0x12,0x7a,0x81,0x6a, // names: insert, *, *, *, ctx, b
-    0xc0,0x53,0x27,0x2d,0x34, // code info
+    0x83,0x05,0x12,0x12,0x12,0x7a,0x81,0x6c, // names: insert, *, *, *, ctx, b
+    0xc0,0x55,0x27,0x2d,0x34, // code info
     0x25,0x01, // LOAD_DEREF 1
     0xb3, // LOAD_FAST 3
     0xb4, // LOAD_FAST 4
@@ -17402,7 +17426,7 @@ static const byte fun_data_scratch_Project__register_insert[80] = {
     0xb3, // LOAD_FAST 3
     0xb4, // LOAD_FAST 4
     0xb5, // LOAD_FAST 5
-    0x10,0x81,0x65, // LOAD_CONST_STRING 'add'
+    0x10,0x81,0x67, // LOAD_CONST_STRING 'add'
     0x81, // LOAD_CONST_SMALL_INT 1
     0x34,0x82,0x03, // CALL_FUNCTION 259
     0xc6, // STORE_FAST 6
@@ -17412,7 +17436,7 @@ static const byte fun_data_scratch_Project__register_insert[80] = {
     0x5b, // ROT_THREE
     0xda, // BINARY_OP 3 __le__
     0x46,0x09, // JUMP_IF_FALSE_OR_POP 9
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xb5, // LOAD_FAST 5
     0x34,0x01, // CALL_FUNCTION 1
     0xda, // BINARY_OP 3 __le__
@@ -17421,13 +17445,13 @@ static const byte fun_data_scratch_Project__register_insert[80] = {
     0x59, // POP_TOP
     0x44,0x56, // POP_JUMP_IF_FALSE 22
     0xb5, // LOAD_FAST 5
-    0x14,0x83,0x02, // LOAD_METHOD 'insert'
+    0x14,0x83,0x05, // LOAD_METHOD 'insert'
     0xb6, // LOAD_FAST 6
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb3, // LOAD_FAST 3
     0xb4, // LOAD_FAST 4
-    0x10,0x83,0x62, // LOAD_CONST_STRING 'ITEM'
+    0x10,0x83,0x65, // LOAD_CONST_STRING 'ITEM'
     0x10,0x30, // LOAD_CONST_STRING ''
     0x36,0x04, // CALL_METHOD 4
     0x36,0x02, // CALL_METHOD 2
@@ -17458,7 +17482,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_insert 
         .n_pos_args = 5,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 386,
+        .qstr_block_name_idx = 389,
         .line_info = fun_data_scratch_Project__register_insert + 11,
         .line_info_top = fun_data_scratch_Project__register_insert + 16,
         .opcodes = fun_data_scratch_Project__register_insert + 16,
@@ -17474,8 +17498,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_insert 
 // frozen bytecode for file scratch.py, scope scratch_Project__register_replace
 static const byte fun_data_scratch_Project__register_replace[104] = {
     0xe9,0x04,0x20, // prelude
-    0x81,0x1f,0x12,0x12,0x12,0x7a,0x81,0x6a, // names: replace, *, *, *, ctx, b
-    0xc0,0x5a,0x27,0x28,0x34,0x2f,0x24,0x26, // code info
+    0x81,0x21,0x12,0x12,0x12,0x7a,0x81,0x6c, // names: replace, *, *, *, ctx, b
+    0xc0,0x5c,0x27,0x28,0x34,0x2f,0x24,0x26, // code info
     0x25,0x01, // LOAD_DEREF 1
     0xb3, // LOAD_FAST 3
     0xb4, // LOAD_FAST 4
@@ -17493,7 +17517,7 @@ static const byte fun_data_scratch_Project__register_replace[104] = {
     0x5b, // ROT_THREE
     0xda, // BINARY_OP 3 __le__
     0x46,0x09, // JUMP_IF_FALSE_OR_POP 9
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xb5, // LOAD_FAST 5
     0x34,0x01, // CALL_FUNCTION 1
     0xd7, // BINARY_OP 0 __lt__
@@ -17502,10 +17526,10 @@ static const byte fun_data_scratch_Project__register_replace[104] = {
     0x59, // POP_TOP
     0x44,0x70, // POP_JUMP_IF_FALSE 48
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb3, // LOAD_FAST 3
     0xb4, // LOAD_FAST 4
-    0x10,0x83,0x62, // LOAD_CONST_STRING 'ITEM'
+    0x10,0x83,0x65, // LOAD_CONST_STRING 'ITEM'
     0x10,0x30, // LOAD_CONST_STRING ''
     0x36,0x04, // CALL_METHOD 4
     0xc7, // STORE_FAST 7
@@ -17518,11 +17542,11 @@ static const byte fun_data_scratch_Project__register_replace[104] = {
     0x44,0x57, // POP_JUMP_IF_FALSE 23
     0x25,0x00, // LOAD_DEREF 0
     0x13,0x36, // LOAD_ATTR 'multi'
-    0x14,0x83,0x65, // LOAD_METHOD 'bloque'
+    0x14,0x83,0x68, // LOAD_METHOD 'bloque'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x66, // LOAD_METHOD 'field'
+    0x14,0x81,0x68, // LOAD_METHOD 'field'
     0xb4, // LOAD_FAST 4
-    0x10,0x83,0x5f, // LOAD_CONST_STRING 'LIST'
+    0x10,0x83,0x62, // LOAD_CONST_STRING 'LIST'
     0x36,0x02, // CALL_METHOD 2
     0xb6, // LOAD_FAST 6
     0xb7, // LOAD_FAST 7
@@ -17554,7 +17578,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_replace
         .n_pos_args = 5,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 159,
+        .qstr_block_name_idx = 161,
         .line_info = fun_data_scratch_Project__register_replace + 11,
         .line_info_top = fun_data_scratch_Project__register_replace + 19,
         .opcodes = fun_data_scratch_Project__register_replace + 19,
@@ -17570,8 +17594,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_replace
 // frozen bytecode for file scratch.py, scope scratch_Project__register_item
 static const byte fun_data_scratch_Project__register_item[56] = {
     0xc8,0x04,0x16, // prelude
-    0x83,0x66,0x12,0x12,0x7a,0x81,0x6a, // names: item, *, *, ctx, b
-    0xc0,0x64,0x27,0x28, // code info
+    0x83,0x69,0x12,0x12,0x7a,0x81,0x6c, // names: item, *, *, ctx, b
+    0xc0,0x66,0x27,0x28, // code info
     0x25,0x00, // LOAD_DEREF 0
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
@@ -17589,7 +17613,7 @@ static const byte fun_data_scratch_Project__register_item[56] = {
     0x5b, // ROT_THREE
     0xda, // BINARY_OP 3 __le__
     0x46,0x09, // JUMP_IF_FALSE_OR_POP 9
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xb4, // LOAD_FAST 4
     0x34,0x01, // CALL_FUNCTION 1
     0xd7, // BINARY_OP 0 __lt__
@@ -17627,7 +17651,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_item = 
         .n_pos_args = 4,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 486,
+        .qstr_block_name_idx = 489,
         .line_info = fun_data_scratch_Project__register_item + 10,
         .line_info_top = fun_data_scratch_Project__register_item + 14,
         .opcodes = fun_data_scratch_Project__register_item + 14,
@@ -17643,22 +17667,22 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_item = 
 // frozen bytecode for file scratch.py, scope scratch_Project__register_itemnum
 static const byte fun_data_scratch_Project__register_itemnum[70] = {
     0xf0,0x04,0x1c, // prelude
-    0x83,0x67,0x12,0x12,0x7a,0x81,0x6a, // names: itemnum, *, *, ctx, b
-    0xc0,0x6a,0x27,0x2f,0x2d,0x2a,0x26, // code info
+    0x83,0x6a,0x12,0x12,0x7a,0x81,0x6c, // names: itemnum, *, *, ctx, b
+    0xc0,0x6c,0x27,0x2f,0x2d,0x2a,0x26, // code info
     0x25,0x01, // LOAD_DEREF 1
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
     0x34,0x02, // CALL_FUNCTION 2
     0xc4, // STORE_FAST 4
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
-    0x10,0x83,0x62, // LOAD_CONST_STRING 'ITEM'
+    0x10,0x83,0x65, // LOAD_CONST_STRING 'ITEM'
     0x10,0x30, // LOAD_CONST_STRING ''
     0x36,0x04, // CALL_METHOD 4
     0xc5, // STORE_FAST 5
-    0x12,0x84,0x0d, // LOAD_GLOBAL 'enumerate'
+    0x12,0x84,0x11, // LOAD_GLOBAL 'enumerate'
     0xb4, // LOAD_FAST 4
     0x34,0x01, // CALL_FUNCTION 1
     0x5f, // GET_ITER_STACK
@@ -17704,7 +17728,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_itemnum
         .n_pos_args = 4,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 487,
+        .qstr_block_name_idx = 490,
         .line_info = fun_data_scratch_Project__register_itemnum + 10,
         .line_info_top = fun_data_scratch_Project__register_itemnum + 17,
         .opcodes = fun_data_scratch_Project__register_itemnum + 17,
@@ -17720,9 +17744,9 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_itemnum
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_54
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_54[22] = {
     0x33,0x10, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xc0,0x71, // code info
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xc0,0x73, // code info
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0x25,0x00, // LOAD_DEREF 0
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
@@ -17753,7 +17777,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_54 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_54 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_54 + 10,
@@ -17769,9 +17793,9 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_55
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_55[39] = {
     0xc0,0x04,0x94,0x01, // prelude
-    0x82,0x5a,0x12,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, *, ctx, b
-    0xc0,0x72,0x29,0x02,0x03, // code info
-    0x12,0x82,0x49, // LOAD_GLOBAL 'any'
+    0x82,0x5e,0x12,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, *, ctx, b
+    0xc0,0x74,0x29,0x02,0x03, // code info
+    0x12,0x82,0x4d, // LOAD_GLOBAL 'any'
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
     0xb0, // LOAD_FAST 0
@@ -17789,8 +17813,8 @@ static const byte fun_data_scratch_Project__register__lt_lambda_gt_55[39] = {
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_55__lt_genexpr_gt_
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_55__lt_genexpr_gt_[47] = {
     0x80,0x54,0x10, // prelude
-    0x82,0x4f,0x12,0x12,0x12,0x12, // names: <genexpr>, *, *, *, *
-    0xc0,0x73, // code info
+    0x82,0x53,0x12,0x12,0x12,0x12, // names: <genexpr>, *, *, *, *
+    0xc0,0x75, // code info
     0x53, // LOAD_NULL
     0xb3, // LOAD_FAST 3
     0x53, // LOAD_NULL
@@ -17800,10 +17824,10 @@ static const byte fun_data_scratch_Project__register__lt_lambda_gt_55__lt_genexp
     0x12,0x2f, // LOAD_GLOBAL 'compare'
     0xb4, // LOAD_FAST 4
     0x25,0x02, // LOAD_DEREF 2
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0x25,0x00, // LOAD_DEREF 0
     0x25,0x01, // LOAD_DEREF 1
-    0x10,0x83,0x62, // LOAD_CONST_STRING 'ITEM'
+    0x10,0x83,0x65, // LOAD_CONST_STRING 'ITEM'
     0x10,0x30, // LOAD_CONST_STRING ''
     0x36,0x04, // CALL_METHOD 4
     0x34,0x02, // CALL_FUNCTION 2
@@ -17838,7 +17862,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 4,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 335,
+        .qstr_block_name_idx = 339,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_55__lt_genexpr_gt_ + 9,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_55__lt_genexpr_gt_ + 11,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_55__lt_genexpr_gt_ + 11,
@@ -17876,7 +17900,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 4,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_55 + 11,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_55 + 14,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_55 + 16,
@@ -17889,8 +17913,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register_call
 static const byte fun_data_scratch_Project__register_call[115] = {
     0xab,0x10,0xa6,0x80,0x01, // prelude
-    0x83,0x68,0x12,0x7a,0x81,0x6a, // names: call, *, ctx, b
-    0xc0,0x77,0x2f,0x23,0x22,0x29,0x24,0x2e,0x33,0x26,0x42,0x89,0x14,0x01,0x09,0x0a,0x0b, // code info
+    0x83,0x6b,0x12,0x7a,0x81,0x6c, // names: call, *, ctx, b
+    0xc0,0x79,0x2f,0x23,0x22,0x29,0x24,0x2e,0x33,0x26,0x42,0x89,0x14,0x01,0x09,0x0a,0x0b, // code info
     0x25,0x01, // LOAD_DEREF 1
     0x13,0x74, // LOAD_ATTR 'sp'
     0x13,0x4a, // LOAD_ATTR 'procs'
@@ -17912,7 +17936,7 @@ static const byte fun_data_scratch_Project__register_call[115] = {
     0x27,0x0a, // STORE_DEREF 10
     0x2c,0x00, // BUILD_MAP 0
     0x27,0x0b, // STORE_DEREF 11
-    0x12,0x84,0x36, // LOAD_GLOBAL 'zip'
+    0x12,0x84,0x3b, // LOAD_GLOBAL 'zip'
     0xb4, // LOAD_FAST 4
     0xb5, // LOAD_FAST 5
     0x34,0x02, // CALL_FUNCTION 2
@@ -17922,7 +17946,7 @@ static const byte fun_data_scratch_Project__register_call[115] = {
     0xc6, // STORE_FAST 6
     0xc7, // STORE_FAST 7
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x63, // LOAD_METHOD 'ev'
+    0x14,0x81,0x65, // LOAD_METHOD 'ev'
     0x25,0x01, // LOAD_DEREF 1
     0xb2, // LOAD_FAST 2
     0xb6, // LOAD_FAST 6
@@ -17953,11 +17977,11 @@ static const byte fun_data_scratch_Project__register_call[115] = {
 // frozen bytecode for file scratch.py, scope scratch_Project__register_call_g
 static const byte fun_data_scratch_Project__register_call_g[198] = {
     0xf5,0x46,0x2e, // prelude
-    0x83,0x6a,0x12,0x12,0x12,0x12,0x12, // names: g, *, *, *, *, *
-    0xc0,0x82,0x2c,0x26,0x2b,0x2a,0x28,0x33,0x22,0x2e,0x33,0x23,0x4f,0x4d,0x57,0x44, // code info
+    0x83,0x6d,0x12,0x12,0x12,0x12,0x12, // names: g, *, *, *, *, *
+    0xc0,0x84,0x2c,0x26,0x2b,0x2a,0x28,0x33,0x22,0x2e,0x33,0x23,0x4f,0x4d,0x57,0x44, // code info
     0x25,0x00, // LOAD_DEREF 0
     0x13,0x76, // LOAD_ATTR 'args'
-    0x14,0x81,0x68, // LOAD_METHOD 'append'
+    0x14,0x81,0x6a, // LOAD_METHOD 'append'
     0x25,0x03, // LOAD_DEREF 3
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
@@ -17980,15 +18004,15 @@ static const byte fun_data_scratch_Project__register_call_g[198] = {
     0x81, // LOAD_CONST_SMALL_INT 1
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x53, // POP_JUMP_IF_FALSE 19
-    0x12,0x83,0x6d, // LOAD_GLOBAL 'K'
+    0x12,0x83,0x70, // LOAD_GLOBAL 'K'
     0x14,0x37, // LOAD_METHOD 'ms'
     0x36,0x00, // CALL_METHOD 0
     0x80, // LOAD_CONST_SMALL_INT 0
     0x5a, // ROT_TWO
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x6d, // STORE_ATTR 'warp_t'
+    0x18,0x81,0x6f, // STORE_ATTR 'warp_t'
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x6c, // STORE_ATTR 'warp_n'
+    0x18,0x81,0x6e, // STORE_ATTR 'warp_n'
     0x49,0x33, // SETUP_FINALLY 51
     0x25,0x04, // LOAD_DEREF 4
     0x14,0x7b, // LOAD_METHOD 'run'
@@ -17998,23 +18022,23 @@ static const byte fun_data_scratch_Project__register_call_g[198] = {
     0x5f, // GET_ITER_STACK
     0x4b,0x25, // FOR_ITER 37
     0xc5, // STORE_FAST 5
-    0x12,0x83,0x6d, // LOAD_GLOBAL 'K'
+    0x12,0x83,0x70, // LOAD_GLOBAL 'K'
     0x14,0x37, // LOAD_METHOD 'ms'
     0x36,0x00, // CALL_METHOD 0
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x6d, // LOAD_ATTR 'warp_t'
+    0x13,0x81,0x6f, // LOAD_ATTR 'warp_t'
     0xf3, // BINARY_OP 28 __sub__
-    0x12,0x83,0x75, // LOAD_GLOBAL 'WARP_MS'
+    0x12,0x83,0x78, // LOAD_GLOBAL 'WARP_MS'
     0xd8, // BINARY_OP 1 __gt__
     0x44,0x4f, // POP_JUMP_IF_FALSE 15
     0x51, // LOAD_CONST_NONE
     0x67, // YIELD_VALUE
     0x59, // POP_TOP
-    0x12,0x83,0x6d, // LOAD_GLOBAL 'K'
+    0x12,0x83,0x70, // LOAD_GLOBAL 'K'
     0x14,0x37, // LOAD_METHOD 'ms'
     0x36,0x00, // CALL_METHOD 0
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x6d, // STORE_ATTR 'warp_t'
+    0x18,0x81,0x6f, // STORE_ATTR 'warp_t'
     0x42,0x19, // JUMP -39
     0x51, // LOAD_CONST_NONE
     0x25,0x00, // LOAD_DEREF 0
@@ -18046,7 +18070,7 @@ static const byte fun_data_scratch_Project__register_call_g[198] = {
     0x51, // LOAD_CONST_NONE
     0x25,0x00, // LOAD_DEREF 0
     0x13,0x76, // LOAD_ATTR 'args'
-    0x14,0x83,0x6b, // LOAD_METHOD 'pop'
+    0x14,0x83,0x6e, // LOAD_METHOD 'pop'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0x5d, // END_FINALLY
@@ -18076,7 +18100,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_call_g 
         .n_pos_args = 5,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 490,
+        .qstr_block_name_idx = 493,
         .line_info = fun_data_scratch_Project__register_call_g + 10,
         .line_info_top = fun_data_scratch_Project__register_call_g + 26,
         .opcodes = fun_data_scratch_Project__register_call_g + 26,
@@ -18114,7 +18138,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_call = 
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 488,
+        .qstr_block_name_idx = 491,
         .line_info = fun_data_scratch_Project__register_call + 11,
         .line_info_top = fun_data_scratch_Project__register_call + 24,
         .opcodes = fun_data_scratch_Project__register_call + 28,
@@ -18127,17 +18151,17 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register_call = 
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_56
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_56[33] = {
     0x43,0x10, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xc0,0x97, // code info
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xc0,0x99, // code info
     0xb1, // LOAD_FAST 1
     0x13,0x76, // LOAD_ATTR 'args'
     0x7f, // LOAD_CONST_SMALL_INT -1
     0x55, // LOAD_SUBSCR
     0x14,0x81,0x00, // LOAD_METHOD 'get'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x66, // LOAD_METHOD 'field'
+    0x14,0x81,0x68, // LOAD_METHOD 'field'
     0xb2, // LOAD_FAST 2
-    0x10,0x82,0x7b, // LOAD_CONST_STRING 'VALUE'
+    0x10,0x82,0x7f, // LOAD_CONST_STRING 'VALUE'
     0x36,0x02, // CALL_METHOD 2
     0x80, // LOAD_CONST_SMALL_INT 0
     0x36,0x02, // CALL_METHOD 2
@@ -18166,7 +18190,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_56 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_56 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_56 + 10,
@@ -18182,17 +18206,17 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
 // frozen bytecode for file scratch.py, scope scratch_Project__register__lt_lambda_gt_57
 static const byte fun_data_scratch_Project__register__lt_lambda_gt_57[33] = {
     0x43,0x10, // prelude
-    0x82,0x5a,0x12,0x7a,0x81,0x6a, // names: <lambda>, *, ctx, b
-    0xc0,0x98, // code info
+    0x82,0x5e,0x12,0x7a,0x81,0x6c, // names: <lambda>, *, ctx, b
+    0xc0,0x9a, // code info
     0xb1, // LOAD_FAST 1
     0x13,0x76, // LOAD_ATTR 'args'
     0x7f, // LOAD_CONST_SMALL_INT -1
     0x55, // LOAD_SUBSCR
     0x14,0x81,0x00, // LOAD_METHOD 'get'
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x81,0x66, // LOAD_METHOD 'field'
+    0x14,0x81,0x68, // LOAD_METHOD 'field'
     0xb2, // LOAD_FAST 2
-    0x10,0x82,0x7b, // LOAD_CONST_STRING 'VALUE'
+    0x10,0x82,0x7f, // LOAD_CONST_STRING 'VALUE'
     0x36,0x02, // CALL_METHOD 2
     0x50, // LOAD_CONST_FALSE
     0x36,0x02, // CALL_METHOD 2
@@ -18221,7 +18245,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register__lt_lam
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 346,
+        .qstr_block_name_idx = 350,
         .line_info = fun_data_scratch_Project__register__lt_lambda_gt_57 + 8,
         .line_info_top = fun_data_scratch_Project__register__lt_lambda_gt_57 + 10,
         .opcodes = fun_data_scratch_Project__register__lt_lambda_gt_57 + 10,
@@ -18379,7 +18403,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 199,
+        .qstr_block_name_idx = 201,
         .line_info = fun_data_scratch_Project__register + 12,
         .line_info_top = fun_data_scratch_Project__register + 232,
         .opcodes = fun_data_scratch_Project__register + 249,
@@ -18392,10 +18416,10 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project__register = {
 // frozen bytecode for file scratch.py, scope scratch_Project_var_name
 static const byte fun_data_scratch_Project_var_name[23] = {
     0x33,0x12, // prelude
-    0x81,0x75,0x84,0x06,0x74,0x84,0x16, // names: var_name, self, sp, vid
-    0xc0,0x9b, // code info
+    0x81,0x77,0x84,0x0a,0x74,0x84,0x1b, // names: var_name, self, sp, vid
+    0xc0,0x9d, // code info
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x18, // LOAD_ATTR 'names'
+    0x13,0x81,0x1a, // LOAD_ATTR 'names'
     0x14,0x81,0x00, // LOAD_METHOD 'get'
     0xb2, // LOAD_FAST 2
     0xb2, // LOAD_FAST 2
@@ -18425,7 +18449,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_var_name = {
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 245,
+        .qstr_block_name_idx = 247,
         .line_info = fun_data_scratch_Project_var_name + 9,
         .line_info_top = fun_data_scratch_Project_var_name + 11,
         .opcodes = fun_data_scratch_Project_var_name + 11,
@@ -18441,14 +18465,14 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_var_name = {
 // frozen bytecode for file scratch.py, scope scratch_Project_mark
 static const byte fun_data_scratch_Project_mark[21] = {
     0x1a,0x10, // prelude
-    0x81,0x76,0x84,0x06,0x74, // names: mark, self, sp
-    0xc0,0xa1,0x24, // code info
+    0x81,0x78,0x84,0x0a,0x74, // names: mark, self, sp
+    0xc0,0xa3,0x24, // code info
     0x52, // LOAD_CONST_TRUE
     0xb1, // LOAD_FAST 1
     0x18,0x3f, // STORE_ATTR 'changed'
     0x52, // LOAD_CONST_TRUE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x37, // STORE_ATTR 'redraw'
+    0x18,0x81,0x39, // STORE_ATTR 'redraw'
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -18475,7 +18499,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_mark = {
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 246,
+        .qstr_block_name_idx = 248,
         .line_info = fun_data_scratch_Project_mark + 7,
         .line_info_top = fun_data_scratch_Project_mark + 10,
         .opcodes = fun_data_scratch_Project_mark + 10,
@@ -18489,14 +18513,14 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_mark = {
 
 // child of scratch_Project
 // frozen bytecode for file scratch.py, scope scratch_Project_draw_all
-static const byte fun_data_scratch_Project_draw_all[354] = {
-    0xaa,0x11,0x44, // prelude
-    0x81,0x77,0x84,0x06,0x84,0x1e, // names: draw_all, self, clip
-    0xc0,0xa5,0x23,0x2b,0x24,0x2b,0x2f,0x3d,0x30,0x26,0x2d,0x2a,0x28,0x2a,0x2a,0x27,0x26,0x35,0x26,0x1f,0x34,0x1f,0x29,0x26,0x27,0x26,0x27,0x23, // code info
+static const byte fun_data_scratch_Project_draw_all[459] = {
+    0xd2,0x11,0x50, // prelude
+    0x81,0x79,0x84,0x0a,0x84,0x23, // names: draw_all, self, clip
+    0xc0,0xa7,0x23,0x2b,0x24,0x2b,0x2f,0x3d,0x28,0x23,0x3c,0x30,0x2b,0x1f,0x31,0x26,0x2d,0x2b,0x28,0x2a,0x2a,0x27,0x26,0x35,0x26,0x1f,0x34,0x1f,0x29,0x26,0x27,0x26,0x27,0x23, // code info
     0xb1, // LOAD_FAST 1
     0x44,0x4b, // POP_JUMP_IF_FALSE 11
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
-    0x14,0x81,0x78, // LOAD_METHOD 'recorte'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x7a, // LOAD_METHOD 'recorte'
     0xb1, // LOAD_FAST 1
     0x81, // LOAD_CONST_SMALL_INT 1
     0x37,0x01, // CALL_METHOD_VAR_KW 1
@@ -18524,7 +18548,7 @@ static const byte fun_data_scratch_Project_draw_all[354] = {
     0xc7, // STORE_FAST 7
     0xc8, // STORE_FAST 8
     0xc9, // STORE_FAST 9
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
     0x14,0x70, // LOAD_METHOD 'dibujar'
     0xb2, // LOAD_FAST 2
     0x14,0x64, // LOAD_METHOD 'img'
@@ -18543,25 +18567,104 @@ static const byte fun_data_scratch_Project_draw_all[354] = {
     0x2a,0x02, // BUILD_TUPLE 2
     0x36,0x07, // CALL_METHOD 7
     0x59, // POP_TOP
-    0x12,0x84,0x0d, // LOAD_GLOBAL 'enumerate'
-    0xb0, // LOAD_FAST 0
-    0x13,0x81,0x24, // LOAD_ATTR 'layers'
-    0x34,0x01, // CALL_FUNCTION 1
-    0x5f, // GET_ITER_STACK
-    0x4b,0x21, // FOR_ITER 33
-    0x30,0x02, // UNPACK_SEQUENCE 2
+    0x51, // LOAD_CONST_NONE
+    0x57, // DUP_TOP
+    0xca, // STORE_FAST 10
+    0x57, // DUP_TOP
+    0xcb, // STORE_FAST 11
+    0x57, // DUP_TOP
+    0xcc, // STORE_FAST 12
+    0xcd, // STORE_FAST 13
+    0xb1, // LOAD_FAST 1
+    0x44,0x5c, // POP_JUMP_IF_FALSE 28
+    0xb1, // LOAD_FAST 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0xf2, // BINARY_OP 27 __add__
+    0xb1, // LOAD_FAST 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x55, // LOAD_SUBSCR
+    0xf2, // BINARY_OP 27 __add__
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x30,0x04, // UNPACK_SEQUENCE 4
     0xca, // STORE_FAST 10
     0xcb, // STORE_FAST 11
+    0xcc, // STORE_FAST 12
+    0xcd, // STORE_FAST 13
+    0x12,0x84,0x11, // LOAD_GLOBAL 'enumerate'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x26, // LOAD_ATTR 'layers'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x5f, // GET_ITER_STACK
+    0x4b,0x5d, // FOR_ITER 93
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xce, // STORE_FAST 14
+    0xcf, // STORE_FAST 15
+    0xb1, // LOAD_FAST 1
+    0x44,0x45, // POP_JUMP_IF_FALSE 5
+    0xbf, // LOAD_FAST 15
+    0x13,0x61, // LOAD_ATTR 'drawn'
+    0x42,0x41, // JUMP 1
+    0x51, // LOAD_CONST_NONE
+    0x26,0x10, // STORE_FAST_N 16
+    0x24,0x10, // LOAD_FAST_N 16
+    0x51, // LOAD_CONST_NONE
+    0xde, // BINARY_OP 7 <is>
+    0x43,0x6a, // POP_JUMP_IF_TRUE 42
+    0x24,0x10, // LOAD_FAST_N 16
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0xbc, // LOAD_FAST 12
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x68, // POP_JUMP_IF_FALSE 40
+    0xba, // LOAD_FAST 10
+    0x24,0x10, // LOAD_FAST_N 16
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0x24,0x10, // LOAD_FAST_N 16
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0xf2, // BINARY_OP 27 __add__
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x5b, // POP_JUMP_IF_FALSE 27
+    0x24,0x10, // LOAD_FAST_N 16
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0xbd, // LOAD_FAST 13
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x53, // POP_JUMP_IF_FALSE 19
     0xbb, // LOAD_FAST 11
+    0x24,0x10, // LOAD_FAST_N 16
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0x24,0x10, // LOAD_FAST_N 16
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x55, // LOAD_SUBSCR
+    0xf2, // BINARY_OP 27 __add__
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x46, // POP_JUMP_IF_FALSE 6
+    0xbf, // LOAD_FAST 15
     0x14,0x6f, // LOAD_METHOD 'draw'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0xb0, // LOAD_FAST 0
     0x13,0x36, // LOAD_ATTR 'multi'
     0x44,0x50, // POP_JUMP_IF_FALSE 16
-    0xba, // LOAD_FAST 10
+    0xbe, // LOAD_FAST 14
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x2a, // LOAD_ATTR 'multi_layer'
+    0x13,0x81,0x2c, // LOAD_ATTR 'multi_layer'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x48, // POP_JUMP_IF_FALSE 8
     0xb0, // LOAD_FAST 0
@@ -18569,60 +18672,60 @@ static const byte fun_data_scratch_Project_draw_all[354] = {
     0x14,0x70, // LOAD_METHOD 'dibujar'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
-    0x42,0x1d, // JUMP -35
+    0x42,0xa1,0x7f, // JUMP -95
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x24, // LOAD_ATTR 'layers'
+    0x13,0x81,0x26, // LOAD_ATTR 'layers'
     0x5f, // GET_ITER_STACK
     0x4b,0x15, // FOR_ITER 21
-    0xcb, // STORE_FAST 11
-    0xbb, // LOAD_FAST 11
+    0xcf, // STORE_FAST 15
+    0xbf, // LOAD_FAST 15
     0x13,0x5d, // LOAD_ATTR 'say_text'
     0x44,0x4d, // POP_JUMP_IF_FALSE 13
-    0xbb, // LOAD_FAST 11
+    0xbf, // LOAD_FAST 15
     0x13,0x59, // LOAD_ATTR 'visible'
     0x44,0x48, // POP_JUMP_IF_FALSE 8
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x79, // LOAD_METHOD 'draw_bubble'
-    0xbb, // LOAD_FAST 11
+    0x14,0x81,0x7b, // LOAD_METHOD 'draw_bubble'
+    0xbf, // LOAD_FAST 15
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0x42,0x29, // JUMP -23
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x7a, // LOAD_METHOD 'draw_monitors'
+    0x14,0x81,0x7c, // LOAD_METHOD 'draw_monitors'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x32, // LOAD_ATTR 'asking'
+    0x13,0x81,0x34, // LOAD_ATTR 'asking'
     0x44,0x55, // POP_JUMP_IF_FALSE 21
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x40, // LOAD_ATTR 'picker'
+    0x13,0x81,0x42, // LOAD_ATTR 'picker'
     0x44,0x48, // POP_JUMP_IF_FALSE 8
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x7b, // LOAD_METHOD 'draw_picker'
+    0x14,0x81,0x7d, // LOAD_METHOD 'draw_picker'
     0x36,0x00, // CALL_METHOD 0
     0x42,0x46, // JUMP 6
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x7c, // LOAD_METHOD 'draw_ask'
+    0x14,0x81,0x7e, // LOAD_METHOD 'draw_ask'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0xb0, // LOAD_FAST 0
     0x13,0x38, // LOAD_ATTR 'toast'
     0x44,0xdb,0x80, // POP_JUMP_IF_FALSE 91
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
-    0x14,0x81,0x7d, // LOAD_METHOD 'rect'
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x7f, // LOAD_METHOD 'rect'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x51, // LOAD_ATTR 'ox'
+    0x13,0x81,0x53, // LOAD_ATTR 'ox'
     0x34,0x01, // CALL_FUNCTION 1
     0x84, // LOAD_CONST_SMALL_INT 4
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x52, // LOAD_ATTR 'oy'
+    0x13,0x81,0x54, // LOAD_ATTR 'oy'
     0x34,0x01, // CALL_FUNCTION 1
     0x84, // LOAD_CONST_SMALL_INT 4
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xb0, // LOAD_FAST 0
     0x13,0x38, // LOAD_ATTR 'toast'
     0x80, // LOAD_CONST_SMALL_INT 0
@@ -18636,21 +18739,21 @@ static const byte fun_data_scratch_Project_draw_all[354] = {
     0x22,0x81,0x80,0xe0,0x20, // LOAD_CONST_SMALL_INT 2109472
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
     0x14,0x33, // LOAD_METHOD 'texto'
     0xb0, // LOAD_FAST 0
     0x13,0x38, // LOAD_ATTR 'toast'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x51, // LOAD_ATTR 'ox'
+    0x13,0x81,0x53, // LOAD_ATTR 'ox'
     0x34,0x01, // CALL_FUNCTION 1
     0x89, // LOAD_CONST_SMALL_INT 9
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x52, // LOAD_ATTR 'oy'
+    0x13,0x81,0x54, // LOAD_ATTR 'oy'
     0x34,0x01, // CALL_FUNCTION 1
     0x87, // LOAD_CONST_SMALL_INT 7
     0xf2, // BINARY_OP 27 __add__
@@ -18661,20 +18764,20 @@ static const byte fun_data_scratch_Project_draw_all[354] = {
     0x13,0x81,0x07, // LOAD_ATTR 'menu'
     0x44,0x47, // POP_JUMP_IF_FALSE 7
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x7e, // LOAD_METHOD 'draw_menu'
+    0x14,0x82,0x00, // LOAD_METHOD 'draw_menu'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x44, // LOAD_ATTR 'uses_mouse'
+    0x13,0x81,0x46, // LOAD_ATTR 'uses_mouse'
     0x44,0x47, // POP_JUMP_IF_FALSE 7
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x7f, // LOAD_METHOD 'draw_cursor'
+    0x14,0x82,0x01, // LOAD_METHOD 'draw_cursor'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0xb1, // LOAD_FAST 1
     0x44,0x49, // POP_JUMP_IF_FALSE 9
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
-    0x14,0x81,0x78, // LOAD_METHOD 'recorte'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x7a, // LOAD_METHOD 'recorte'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0x51, // LOAD_CONST_NONE
@@ -18689,7 +18792,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_draw_all = {
     .fun_data = fun_data_scratch_Project_draw_all,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 354,
+    .fun_data_len = 459,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -18697,16 +18800,16 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_draw_all = {
     #if MICROPY_PY_SYS_SETTRACE
     .line_of_definition = 0,
     .prelude = {
-        .n_state = 22,
+        .n_state = 27,
         .n_exc_stack = 0,
         .scope_flags = 0,
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 1,
-        .qstr_block_name_idx = 247,
+        .qstr_block_name_idx = 249,
         .line_info = fun_data_scratch_Project_draw_all + 9,
-        .line_info_top = fun_data_scratch_Project_draw_all + 37,
-        .opcodes = fun_data_scratch_Project_draw_all + 37,
+        .line_info_top = fun_data_scratch_Project_draw_all + 43,
+        .opcodes = fun_data_scratch_Project_draw_all + 43,
     },
     #endif
     #endif
@@ -18719,8 +18822,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_draw_all = {
 // frozen bytecode for file scratch.py, scope scratch_Project_bubble_rect
 static const byte fun_data_scratch_Project_bubble_rect[95] = {
     0x6a,0x18, // prelude
-    0x82,0x00,0x84,0x06,0x74, // names: bubble_rect, self, sp
-    0xc0,0xc0,0x2b,0x29,0x2b,0x3f,0x2c, // code info
+    0x82,0x02,0x84,0x0a,0x74, // names: bubble_rect, self, sp
+    0xc0,0xc7,0x2b,0x29,0x2b,0x3f,0x2c, // code info
     0xb1, // LOAD_FAST 1
     0x14,0x68, // LOAD_METHOD 'screen_rect'
     0x36,0x00, // CALL_METHOD 0
@@ -18734,7 +18837,7 @@ static const byte fun_data_scratch_Project_bubble_rect[95] = {
     0x2e,0x02, // BUILD_SLICE 2
     0x55, // LOAD_SUBSCR
     0xc3, // STORE_FAST 3
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xb3, // LOAD_FAST 3
     0x34,0x01, // CALL_FUNCTION 1
     0x86, // LOAD_CONST_SMALL_INT 6
@@ -18742,14 +18845,14 @@ static const byte fun_data_scratch_Project_bubble_rect[95] = {
     0x88, // LOAD_CONST_SMALL_INT 8
     0xf2, // BINARY_OP 27 __add__
     0xc4, // STORE_FAST 4
-    0x12,0x84,0x0f, // LOAD_GLOBAL 'min'
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
-    0x13,0x81,0x4b, // LOAD_ATTR 'ANCHO'
+    0x12,0x84,0x13, // LOAD_GLOBAL 'min'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
+    0x13,0x81,0x4d, // LOAD_ATTR 'ANCHO'
     0xb4, // LOAD_FAST 4
     0xf3, // BINARY_OP 28 __sub__
     0x82, // LOAD_CONST_SMALL_INT 2
     0xf3, // BINARY_OP 28 __sub__
-    0x12,0x84,0x09, // LOAD_GLOBAL 'max'
+    0x12,0x84,0x0d, // LOAD_GLOBAL 'max'
     0x82, // LOAD_CONST_SMALL_INT 2
     0xb2, // LOAD_FAST 2
     0x80, // LOAD_CONST_SMALL_INT 0
@@ -18763,7 +18866,7 @@ static const byte fun_data_scratch_Project_bubble_rect[95] = {
     0x34,0x02, // CALL_FUNCTION 2
     0x34,0x02, // CALL_FUNCTION 2
     0xc5, // STORE_FAST 5
-    0x12,0x84,0x09, // LOAD_GLOBAL 'max'
+    0x12,0x84,0x0d, // LOAD_GLOBAL 'max'
     0x82, // LOAD_CONST_SMALL_INT 2
     0xb2, // LOAD_FAST 2
     0x81, // LOAD_CONST_SMALL_INT 1
@@ -18802,7 +18905,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_bubble_rect = {
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 256,
+        .qstr_block_name_idx = 258,
         .line_info = fun_data_scratch_Project_bubble_rect + 7,
         .line_info_top = fun_data_scratch_Project_bubble_rect + 14,
         .opcodes = fun_data_scratch_Project_bubble_rect + 14,
@@ -18818,10 +18921,10 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_bubble_rect = {
 // frozen bytecode for file scratch.py, scope scratch_Project_draw_bubble
 static const byte fun_data_scratch_Project_draw_bubble[90] = {
     0x62,0x14, // prelude
-    0x81,0x79,0x84,0x06,0x74, // names: draw_bubble, self, sp
-    0xc0,0xc8,0x2d,0x32,0x32, // code info
+    0x81,0x7b,0x84,0x0a,0x74, // names: draw_bubble, self, sp
+    0xc0,0xcf,0x2d,0x32,0x32, // code info
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x00, // LOAD_METHOD 'bubble_rect'
+    0x14,0x82,0x02, // LOAD_METHOD 'bubble_rect'
     0xb1, // LOAD_FAST 1
     0x36,0x01, // CALL_METHOD 1
     0x30,0x04, // UNPACK_SEQUENCE 4
@@ -18829,8 +18932,8 @@ static const byte fun_data_scratch_Project_draw_bubble[90] = {
     0xc3, // STORE_FAST 3
     0xc4, // STORE_FAST 4
     0xc5, // STORE_FAST 5
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
-    0x14,0x81,0x7d, // LOAD_METHOD 'rect'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x7f, // LOAD_METHOD 'rect'
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
     0xb4, // LOAD_FAST 4
@@ -18838,8 +18941,8 @@ static const byte fun_data_scratch_Project_draw_bubble[90] = {
     0x22,0x87,0xff,0xff,0x7f, // LOAD_CONST_SMALL_INT 16777215
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
-    0x14,0x82,0x01, // LOAD_METHOD 'marco'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
+    0x14,0x82,0x03, // LOAD_METHOD 'marco'
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
     0xb4, // LOAD_FAST 4
@@ -18847,7 +18950,7 @@ static const byte fun_data_scratch_Project_draw_bubble[90] = {
     0x22,0x84,0xa2,0x91,0x08, // LOAD_CONST_SMALL_INT 8947848
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
     0x14,0x33, // LOAD_METHOD 'texto'
     0xb1, // LOAD_FAST 1
     0x13,0x5d, // LOAD_ATTR 'say_text'
@@ -18890,7 +18993,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_draw_bubble = {
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 249,
+        .qstr_block_name_idx = 251,
         .line_info = fun_data_scratch_Project_draw_bubble + 7,
         .line_info_top = fun_data_scratch_Project_draw_bubble + 12,
         .opcodes = fun_data_scratch_Project_draw_bubble + 12,
@@ -18906,10 +19009,10 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_draw_bubble = {
 // frozen bytecode for file scratch.py, scope scratch_Project_draw_monitors
 static const byte fun_data_scratch_Project_draw_monitors[194] = {
     0xb1,0x10,0x1e, // prelude
-    0x81,0x7a,0x84,0x06, // names: draw_monitors, self
-    0xc0,0xce,0x30,0x36,0x2d,0x23,0x28,0x37,0x33,0x1f,0x26, // code info
+    0x81,0x7c,0x84,0x0a, // names: draw_monitors, self
+    0xc0,0xd5,0x30,0x36,0x2d,0x23,0x28,0x37,0x33,0x1f,0x26, // code info
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x2c, // LOAD_ATTR 'monitors'
+    0x13,0x81,0x2e, // LOAD_ATTR 'monitors'
     0x5f, // GET_ITER_STACK
     0x4b,0xa6,0x01, // FOR_ITER 166
     0x30,0x06, // UNPACK_SEQUENCE 6
@@ -18922,7 +19025,7 @@ static const byte fun_data_scratch_Project_draw_monitors[194] = {
     0xb3, // LOAD_FAST 3
     0x44,0x4f, // POP_JUMP_IF_FALSE 15
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x25, // LOAD_ATTR 'by_name'
+    0x13,0x81,0x27, // LOAD_ATTR 'by_name'
     0x14,0x81,0x00, // LOAD_METHOD 'get'
     0xb3, // LOAD_FAST 3
     0xb0, // LOAD_FAST 0
@@ -18934,7 +19037,7 @@ static const byte fun_data_scratch_Project_draw_monitors[194] = {
     0xc7, // STORE_FAST 7
     0x12,0x28, // LOAD_GLOBAL 'text'
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x53, // LOAD_METHOD 'var_get'
+    0x14,0x81,0x55, // LOAD_METHOD 'var_get'
     0xb7, // LOAD_FAST 7
     0xb1, // LOAD_FAST 1
     0x36,0x02, // CALL_METHOD 2
@@ -18943,19 +19046,19 @@ static const byte fun_data_scratch_Project_draw_monitors[194] = {
     0xb3, // LOAD_FAST 3
     0x44,0x48, // POP_JUMP_IF_FALSE 8
     0xb3, // LOAD_FAST 3
-    0x10,0x82,0x02, // LOAD_CONST_STRING ': '
+    0x10,0x82,0x04, // LOAD_CONST_STRING ': '
     0xf2, // BINARY_OP 27 __add__
     0xb2, // LOAD_FAST 2
     0xf2, // BINARY_OP 27 __add__
     0xc2, // STORE_FAST 2
     0xb6, // LOAD_FAST 6
-    0x10,0x82,0x03, // LOAD_CONST_STRING 'large'
+    0x10,0x82,0x05, // LOAD_CONST_STRING 'large'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x43, // POP_JUMP_IF_FALSE 3
     0xb8, // LOAD_FAST 8
     0x42,0x47, // JUMP 7
     0xb2, // LOAD_FAST 2
-    0x10,0x82,0x02, // LOAD_CONST_STRING ': '
+    0x10,0x82,0x04, // LOAD_CONST_STRING ': '
     0xf2, // BINARY_OP 27 __add__
     0xb8, // LOAD_FAST 8
     0xf2, // BINARY_OP 27 __add__
@@ -18976,15 +19079,15 @@ static const byte fun_data_scratch_Project_draw_monitors[194] = {
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xca, // STORE_FAST 10
     0xcb, // STORE_FAST 11
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
-    0x14,0x81,0x7d, // LOAD_METHOD 'rect'
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x7f, // LOAD_METHOD 'rect'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xba, // LOAD_FAST 10
     0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xbb, // LOAD_FAST 11
     0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xb9, // LOAD_FAST 9
     0x34,0x01, // CALL_FUNCTION 1
     0x86, // LOAD_CONST_SMALL_INT 6
@@ -18995,15 +19098,15 @@ static const byte fun_data_scratch_Project_draw_monitors[194] = {
     0x22,0x87,0x9b,0xe1,0x7f, // LOAD_CONST_SMALL_INT 15134975
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
     0x14,0x33, // LOAD_METHOD 'texto'
     0xb9, // LOAD_FAST 9
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xba, // LOAD_FAST 10
     0x34,0x01, // CALL_FUNCTION 1
     0x83, // LOAD_CONST_SMALL_INT 3
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xbb, // LOAD_FAST 11
     0x34,0x01, // CALL_FUNCTION 1
     0x82, // LOAD_CONST_SMALL_INT 2
@@ -19038,7 +19141,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_draw_monitors = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 250,
+        .qstr_block_name_idx = 252,
         .line_info = fun_data_scratch_Project_draw_monitors + 7,
         .line_info_top = fun_data_scratch_Project_draw_monitors + 18,
         .opcodes = fun_data_scratch_Project_draw_monitors + 18,
@@ -19054,12 +19157,12 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_draw_monitors = {
 // frozen bytecode for file scratch.py, scope scratch_Project_monitor_values
 static const byte fun_data_scratch_Project_monitor_values[74] = {
     0x79,0x14, // prelude
-    0x82,0x04,0x84,0x06, // names: monitor_values, self
-    0xc0,0xd9,0x23,0x28,0x3a,0x37, // code info
+    0x82,0x06,0x84,0x0a, // names: monitor_values, self
+    0xc0,0xe0,0x23,0x28,0x3a,0x37, // code info
     0x2b,0x00, // BUILD_LIST 0
     0xc1, // STORE_FAST 1
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x2c, // LOAD_ATTR 'monitors'
+    0x13,0x81,0x2e, // LOAD_ATTR 'monitors'
     0x5f, // GET_ITER_STACK
     0x4b,0x32, // FOR_ITER 50
     0xc2, // STORE_FAST 2
@@ -19068,7 +19171,7 @@ static const byte fun_data_scratch_Project_monitor_values[74] = {
     0x55, // LOAD_SUBSCR
     0x44,0x51, // POP_JUMP_IF_FALSE 17
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x25, // LOAD_ATTR 'by_name'
+    0x13,0x81,0x27, // LOAD_ATTR 'by_name'
     0x14,0x81,0x00, // LOAD_METHOD 'get'
     0xb2, // LOAD_FAST 2
     0x82, // LOAD_CONST_SMALL_INT 2
@@ -19081,10 +19184,10 @@ static const byte fun_data_scratch_Project_monitor_values[74] = {
     0x13,0x45, // LOAD_ATTR 'stage'
     0xc3, // STORE_FAST 3
     0xb1, // LOAD_FAST 1
-    0x14,0x81,0x68, // LOAD_METHOD 'append'
+    0x14,0x81,0x6a, // LOAD_METHOD 'append'
     0x12,0x28, // LOAD_GLOBAL 'text'
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x53, // LOAD_METHOD 'var_get'
+    0x14,0x81,0x55, // LOAD_METHOD 'var_get'
     0xb3, // LOAD_FAST 3
     0xb2, // LOAD_FAST 2
     0x80, // LOAD_CONST_SMALL_INT 0
@@ -19120,7 +19223,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_monitor_values = 
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 260,
+        .qstr_block_name_idx = 262,
         .line_info = fun_data_scratch_Project_monitor_values + 6,
         .line_info_top = fun_data_scratch_Project_monitor_values + 12,
         .opcodes = fun_data_scratch_Project_monitor_values + 12,
@@ -19136,28 +19239,28 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_monitor_values = 
 // frozen bytecode for file scratch.py, scope scratch_Project_cursor_rect
 static const byte fun_data_scratch_Project_cursor_rect[51] = {
     0x39,0x0e, // prelude
-    0x82,0x05,0x84,0x06, // names: cursor_rect, self
-    0xc0,0xe0,0x35, // code info
+    0x82,0x07,0x84,0x0a, // names: cursor_rect, self
+    0xc0,0xe7,0x35, // code info
     0xb0, // LOAD_FAST 0
     0x14,0x6b, // LOAD_METHOD 'to_screen'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x38, // LOAD_ATTR 'mouse'
+    0x13,0x81,0x3a, // LOAD_ATTR 'mouse'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x38, // LOAD_ATTR 'mouse'
+    0x13,0x81,0x3a, // LOAD_ATTR 'mouse'
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
     0x36,0x02, // CALL_METHOD 2
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xc1, // STORE_FAST 1
     0xc2, // STORE_FAST 2
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb1, // LOAD_FAST 1
     0x34,0x01, // CALL_FUNCTION 1
     0x86, // LOAD_CONST_SMALL_INT 6
     0xf3, // BINARY_OP 28 __sub__
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb2, // LOAD_FAST 2
     0x34,0x01, // CALL_FUNCTION 1
     0x86, // LOAD_CONST_SMALL_INT 6
@@ -19190,7 +19293,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_cursor_rect = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 261,
+        .qstr_block_name_idx = 263,
         .line_info = fun_data_scratch_Project_cursor_rect + 6,
         .line_info_top = fun_data_scratch_Project_cursor_rect + 9,
         .opcodes = fun_data_scratch_Project_cursor_rect + 9,
@@ -19206,33 +19309,33 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_cursor_rect = {
 // frozen bytecode for file scratch.py, scope scratch_Project_draw_cursor
 static const byte fun_data_scratch_Project_draw_cursor[157] = {
     0x49,0x1a, // prelude
-    0x81,0x7f,0x84,0x06, // names: draw_cursor, self
-    0xc0,0xe4,0x35,0x2f,0x32,0x32,0x34,0x34,0x26, // code info
+    0x82,0x01,0x84,0x0a, // names: draw_cursor, self
+    0xc0,0xeb,0x35,0x2f,0x32,0x32,0x34,0x34,0x26, // code info
     0xb0, // LOAD_FAST 0
     0x14,0x6b, // LOAD_METHOD 'to_screen'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x38, // LOAD_ATTR 'mouse'
+    0x13,0x81,0x3a, // LOAD_ATTR 'mouse'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x38, // LOAD_ATTR 'mouse'
+    0x13,0x81,0x3a, // LOAD_ATTR 'mouse'
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
     0x36,0x02, // CALL_METHOD 2
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xc1, // STORE_FAST 1
     0xc2, // STORE_FAST 2
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb1, // LOAD_FAST 1
     0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb2, // LOAD_FAST 2
     0x34,0x01, // CALL_FUNCTION 1
     0x5a, // ROT_TWO
     0xc1, // STORE_FAST 1
     0xc2, // STORE_FAST 2
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
-    0x14,0x81,0x7d, // LOAD_METHOD 'rect'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x7f, // LOAD_METHOD 'rect'
     0xb1, // LOAD_FAST 1
     0x85, // LOAD_CONST_SMALL_INT 5
     0xf3, // BINARY_OP 28 __sub__
@@ -19244,8 +19347,8 @@ static const byte fun_data_scratch_Project_draw_cursor[157] = {
     0x80, // LOAD_CONST_SMALL_INT 0
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
-    0x14,0x81,0x7d, // LOAD_METHOD 'rect'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x7f, // LOAD_METHOD 'rect'
     0xb1, // LOAD_FAST 1
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf3, // BINARY_OP 28 __sub__
@@ -19257,8 +19360,8 @@ static const byte fun_data_scratch_Project_draw_cursor[157] = {
     0x80, // LOAD_CONST_SMALL_INT 0
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
-    0x14,0x81,0x7d, // LOAD_METHOD 'rect'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x7f, // LOAD_METHOD 'rect'
     0xb1, // LOAD_FAST 1
     0x84, // LOAD_CONST_SMALL_INT 4
     0xf3, // BINARY_OP 28 __sub__
@@ -19268,8 +19371,8 @@ static const byte fun_data_scratch_Project_draw_cursor[157] = {
     0x22,0x87,0xff,0xff,0x7f, // LOAD_CONST_SMALL_INT 16777215
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
-    0x14,0x81,0x7d, // LOAD_METHOD 'rect'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x7f, // LOAD_METHOD 'rect'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0x84, // LOAD_CONST_SMALL_INT 4
@@ -19280,10 +19383,10 @@ static const byte fun_data_scratch_Project_draw_cursor[157] = {
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x39, // LOAD_ATTR 'mouse_down'
+    0x13,0x81,0x3b, // LOAD_ATTR 'mouse_down'
     0x44,0x56, // POP_JUMP_IF_FALSE 22
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
-    0x14,0x81,0x7d, // LOAD_METHOD 'rect'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x7f, // LOAD_METHOD 'rect'
     0xb1, // LOAD_FAST 1
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf3, // BINARY_OP 28 __sub__
@@ -19321,7 +19424,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_draw_cursor = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 255,
+        .qstr_block_name_idx = 257,
         .line_info = fun_data_scratch_Project_draw_cursor + 6,
         .line_info_top = fun_data_scratch_Project_draw_cursor + 15,
         .opcodes = fun_data_scratch_Project_draw_cursor + 15,
@@ -19337,8 +19440,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_draw_cursor = {
 // frozen bytecode for file scratch.py, scope scratch_Project_list_saves
 static const byte fun_data_scratch_Project_list_saves[138] = {
     0x75,0x22, // prelude
-    0x82,0x06,0x84,0x06, // names: list_saves, self
-    0xc0,0xef,0x25,0x23,0x22,0x59,0x23,0x25,0x36,0x22,0x5c,0x25,0x2c, // code info
+    0x82,0x08,0x84,0x0a, // names: list_saves, self
+    0xc0,0xf6,0x25,0x23,0x22,0x59,0x23,0x25,0x36,0x22,0x5c,0x25,0x2c, // code info
     0x80, // LOAD_CONST_SMALL_INT 0
     0x51, // LOAD_CONST_NONE
     0x1b,0x04, // IMPORT_NAME 'os'
@@ -19347,7 +19450,7 @@ static const byte fun_data_scratch_Project_list_saves[138] = {
     0xc2, // STORE_FAST 2
     0x48,0x11, // SETUP_EXCEPT 17
     0xb1, // LOAD_FAST 1
-    0x14,0x82,0x07, // LOAD_METHOD 'listdir'
+    0x14,0x82,0x09, // LOAD_METHOD 'listdir'
     0xb0, // LOAD_FAST 0
     0x13,0x81,0x04, // LOAD_ATTR 'folder'
     0x45,0x02, // JUMP_IF_TRUE_OR_POP 2
@@ -19356,7 +19459,7 @@ static const byte fun_data_scratch_Project_list_saves[138] = {
     0xc3, // STORE_FAST 3
     0x4a,0x0b, // POP_EXCEPT_JUMP 11
     0x57, // DUP_TOP
-    0x12,0x84,0x13, // LOAD_GLOBAL 'OSError'
+    0x12,0x84,0x17, // LOAD_GLOBAL 'OSError'
     0xdf, // BINARY_OP 8 <exception match>
     0x44,0x43, // POP_JUMP_IF_FALSE 3
     0x59, // POP_TOP
@@ -19368,19 +19471,19 @@ static const byte fun_data_scratch_Project_list_saves[138] = {
     0x4b,0x3a, // FOR_ITER 58
     0xc4, // STORE_FAST 4
     0xb4, // LOAD_FAST 4
-    0x14,0x81,0x1c, // LOAD_METHOD 'startswith'
-    0x10,0x82,0x08, // LOAD_CONST_STRING 'partida_'
+    0x14,0x81,0x1e, // LOAD_METHOD 'startswith'
+    0x10,0x82,0x0a, // LOAD_CONST_STRING 'partida_'
     0x36,0x01, // CALL_METHOD 1
     0x44,0x6c, // POP_JUMP_IF_FALSE 44
     0xb4, // LOAD_FAST 4
-    0x14,0x82,0x09, // LOAD_METHOD 'endswith'
-    0x10,0x82,0x0a, // LOAD_CONST_STRING '.txt'
+    0x14,0x82,0x0b, // LOAD_METHOD 'endswith'
+    0x10,0x82,0x0c, // LOAD_CONST_STRING '.txt'
     0x36,0x01, // CALL_METHOD 1
     0x44,0x61, // POP_JUMP_IF_FALSE 33
     0x48,0x14, // SETUP_EXCEPT 20
     0xb2, // LOAD_FAST 2
-    0x14,0x81,0x68, // LOAD_METHOD 'append'
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x14,0x81,0x6a, // LOAD_METHOD 'append'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb4, // LOAD_FAST 4
     0x88, // LOAD_CONST_SMALL_INT 8
     0x7c, // LOAD_CONST_SMALL_INT -4
@@ -19391,7 +19494,7 @@ static const byte fun_data_scratch_Project_list_saves[138] = {
     0x59, // POP_TOP
     0x4a,0x0b, // POP_EXCEPT_JUMP 11
     0x57, // DUP_TOP
-    0x12,0x83,0x7d, // LOAD_GLOBAL 'ValueError'
+    0x12,0x84,0x00, // LOAD_GLOBAL 'ValueError'
     0xdf, // BINARY_OP 8 <exception match>
     0x44,0x43, // POP_JUMP_IF_FALSE 3
     0x59, // POP_TOP
@@ -19399,8 +19502,8 @@ static const byte fun_data_scratch_Project_list_saves[138] = {
     0x5d, // END_FINALLY
     0x42,0x04, // JUMP -60
     0xb2, // LOAD_FAST 2
-    0x14,0x82,0x0b, // LOAD_METHOD 'sort'
-    0x10,0x82,0x0c, // LOAD_CONST_STRING 'reverse'
+    0x14,0x82,0x0d, // LOAD_METHOD 'sort'
+    0x10,0x82,0x0e, // LOAD_CONST_STRING 'reverse'
     0x52, // LOAD_CONST_TRUE
     0x36,0x82,0x00, // CALL_METHOD 256
     0x59, // POP_TOP
@@ -19434,7 +19537,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_list_saves = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 262,
+        .qstr_block_name_idx = 264,
         .line_info = fun_data_scratch_Project_list_saves + 6,
         .line_info_top = fun_data_scratch_Project_list_saves + 19,
         .opcodes = fun_data_scratch_Project_list_saves + 19,
@@ -19450,15 +19553,15 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_list_saves = {
 // frozen bytecode for file scratch.py, scope scratch_Project_save_game
 static const byte fun_data_scratch_Project_save_game[157] = {
     0xea,0x02,0x1e, // prelude
-    0x82,0x0d,0x84,0x06,0x4f, // names: save_game, self, items
-    0xc0,0xff,0x27,0x2f,0x22,0x35,0x37,0x2c,0x26,0x5e, // code info
+    0x82,0x0f,0x84,0x0a,0x4f, // names: save_game, self, items
+    0xd0,0x06,0x27,0x2f,0x22,0x35,0x37,0x2c,0x26,0x5e, // code info
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x06, // LOAD_METHOD 'list_saves'
+    0x14,0x82,0x08, // LOAD_METHOD 'list_saves'
     0x36,0x00, // CALL_METHOD 0
     0xc2, // STORE_FAST 2
     0xb2, // LOAD_FAST 2
     0x44,0x4a, // POP_JUMP_IF_FALSE 10
-    0x12,0x84,0x09, // LOAD_GLOBAL 'max'
+    0x12,0x84,0x0d, // LOAD_GLOBAL 'max'
     0xb2, // LOAD_FAST 2
     0x34,0x01, // CALL_FUNCTION 1
     0x81, // LOAD_CONST_SMALL_INT 1
@@ -19467,20 +19570,20 @@ static const byte fun_data_scratch_Project_save_game[157] = {
     0x81, // LOAD_CONST_SMALL_INT 1
     0xc3, // STORE_FAST 3
     0x48,0x52, // SETUP_EXCEPT 82
-    0x12,0x84,0x12, // LOAD_GLOBAL 'open'
+    0x12,0x84,0x16, // LOAD_GLOBAL 'open'
     0xb0, // LOAD_FAST 0
     0x13,0x81,0x04, // LOAD_ATTR 'folder'
     0x23,0x81,0x01, // LOAD_CONST_OBJ 129
     0xb3, // LOAD_FAST 3
     0xf8, // BINARY_OP 33 __mod__
     0xf2, // BINARY_OP 27 __add__
-    0x10,0x82,0x0e, // LOAD_CONST_STRING 'w'
+    0x10,0x82,0x10, // LOAD_CONST_STRING 'w'
     0x34,0x02, // CALL_FUNCTION 2
     0x47,0x16, // SETUP_WITH 22
     0xc4, // STORE_FAST 4
     0xb4, // LOAD_FAST 4
-    0x14,0x82,0x0f, // LOAD_METHOD 'write'
-    0x10,0x82,0x10, // LOAD_CONST_STRING '\n'
+    0x14,0x82,0x11, // LOAD_METHOD 'write'
+    0x10,0x82,0x12, // LOAD_CONST_STRING '\n'
     0x14,0x3d, // LOAD_METHOD 'join'
     0x32,0x00, // MAKE_FUNCTION 0
     0xb1, // LOAD_FAST 1
@@ -19493,7 +19596,7 @@ static const byte fun_data_scratch_Project_save_game[157] = {
     0x5c, // WITH_CLEANUP
     0x5d, // END_FINALLY
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x11, // LOAD_METHOD 'show_toast'
+    0x14,0x82,0x13, // LOAD_METHOD 'show_toast'
     0x23,0x81,0x02, // LOAD_CONST_OBJ 130
     0xb3, // LOAD_FAST 3
     0xf8, // BINARY_OP 33 __mod__
@@ -19505,7 +19608,7 @@ static const byte fun_data_scratch_Project_save_game[157] = {
     0xb0, // LOAD_FAST 0
     0x13,0x81,0x0b, // LOAD_ATTR 'after_save'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x2f, // LOAD_ATTR 'now'
+    0x13,0x81,0x31, // LOAD_ATTR 'now'
     0x22,0x85,0x3c, // LOAD_CONST_SMALL_INT 700
     0xf2, // BINARY_OP 27 __add__
     0x2b,0x02, // BUILD_LIST 2
@@ -19513,13 +19616,13 @@ static const byte fun_data_scratch_Project_save_game[157] = {
     0x18,0x81,0x0c, // STORE_ATTR 'pending'
     0x4a,0x1f, // POP_EXCEPT_JUMP 31
     0x57, // DUP_TOP
-    0x12,0x84,0x13, // LOAD_GLOBAL 'OSError'
+    0x12,0x84,0x17, // LOAD_GLOBAL 'OSError'
     0xdf, // BINARY_OP 8 <exception match>
     0x44,0x57, // POP_JUMP_IF_FALSE 23
     0xc5, // STORE_FAST 5
     0x49,0x0d, // SETUP_FINALLY 13
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x11, // LOAD_METHOD 'show_toast'
+    0x14,0x82,0x13, // LOAD_METHOD 'show_toast'
     0x23,0x81,0x03, // LOAD_CONST_OBJ 131
     0xb5, // LOAD_FAST 5
     0xf8, // BINARY_OP 33 __mod__
@@ -19539,8 +19642,8 @@ static const byte fun_data_scratch_Project_save_game[157] = {
 // frozen bytecode for file scratch.py, scope scratch_Project_save_game__lt_genexpr_gt_
 static const byte fun_data_scratch_Project_save_game__lt_genexpr_gt_[26] = {
     0xb9,0x40,0x0a, // prelude
-    0x82,0x4f,0x12, // names: <genexpr>, *
-    0xd0,0x03, // code info
+    0x82,0x53,0x12, // names: <genexpr>, *
+    0xd0,0x0a, // code info
     0x53, // LOAD_NULL
     0xb0, // LOAD_FAST 0
     0x53, // LOAD_NULL
@@ -19579,7 +19682,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_save_game__lt_gen
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 335,
+        .qstr_block_name_idx = 339,
         .line_info = fun_data_scratch_Project_save_game__lt_genexpr_gt_ + 6,
         .line_info_top = fun_data_scratch_Project_save_game__lt_genexpr_gt_ + 8,
         .opcodes = fun_data_scratch_Project_save_game__lt_genexpr_gt_ + 8,
@@ -19617,7 +19720,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_save_game = {
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 269,
+        .qstr_block_name_idx = 271,
         .line_info = fun_data_scratch_Project_save_game + 8,
         .line_info_top = fun_data_scratch_Project_save_game + 18,
         .opcodes = fun_data_scratch_Project_save_game + 18,
@@ -19630,10 +19733,10 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_save_game = {
 // frozen bytecode for file scratch.py, scope scratch_Project_load_save
 static const byte fun_data_scratch_Project_load_save[62] = {
     0xc2,0x02,0x16, // prelude
-    0x82,0x12,0x84,0x06,0x81,0x5e, // names: load_save, self, n
-    0xd0,0x0b,0x22,0x32,0x56, // code info
+    0x82,0x14,0x84,0x0a,0x81,0x60, // names: load_save, self, n
+    0xd0,0x12,0x22,0x32,0x56, // code info
     0x48,0x20, // SETUP_EXCEPT 32
-    0x12,0x84,0x12, // LOAD_GLOBAL 'open'
+    0x12,0x84,0x16, // LOAD_GLOBAL 'open'
     0xb0, // LOAD_FAST 0
     0x13,0x81,0x04, // LOAD_ATTR 'folder'
     0x23,0x81,0x01, // LOAD_CONST_OBJ 129
@@ -19653,7 +19756,7 @@ static const byte fun_data_scratch_Project_load_save[62] = {
     0x5d, // END_FINALLY
     0x4a,0x0c, // POP_EXCEPT_JUMP 12
     0x57, // DUP_TOP
-    0x12,0x84,0x13, // LOAD_GLOBAL 'OSError'
+    0x12,0x84,0x17, // LOAD_GLOBAL 'OSError'
     0xdf, // BINARY_OP 8 <exception match>
     0x44,0x44, // POP_JUMP_IF_FALSE 4
     0x59, // POP_TOP
@@ -19686,7 +19789,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_load_save = {
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 274,
+        .qstr_block_name_idx = 276,
         .line_info = fun_data_scratch_Project_load_save + 9,
         .line_info_top = fun_data_scratch_Project_load_save + 14,
         .opcodes = fun_data_scratch_Project_load_save + 14,
@@ -19702,11 +19805,11 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_load_save = {
 // frozen bytecode for file scratch.py, scope scratch_Project_show_toast
 static const byte fun_data_scratch_Project_show_toast[32] = {
     0x22,0x12, // prelude
-    0x82,0x11,0x84,0x06,0x81,0x5c, // names: show_toast, self, t
-    0xd0,0x12,0x2e, // code info
+    0x82,0x13,0x84,0x0a,0x81,0x5e, // names: show_toast, self, t
+    0xd0,0x19,0x2e, // code info
     0xb1, // LOAD_FAST 1
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x2f, // LOAD_ATTR 'now'
+    0x13,0x81,0x31, // LOAD_ATTR 'now'
     0x22,0x93,0x44, // LOAD_CONST_SMALL_INT 2500
     0xf2, // BINARY_OP 27 __add__
     0x2b,0x02, // BUILD_LIST 2
@@ -19714,7 +19817,7 @@ static const byte fun_data_scratch_Project_show_toast[32] = {
     0x18,0x38, // STORE_ATTR 'toast'
     0x52, // LOAD_CONST_TRUE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x33, // STORE_ATTR 'dirty_all'
+    0x18,0x81,0x35, // STORE_ATTR 'dirty_all'
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -19741,7 +19844,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_show_toast = {
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 273,
+        .qstr_block_name_idx = 275,
         .line_info = fun_data_scratch_Project_show_toast + 8,
         .line_info_top = fun_data_scratch_Project_show_toast + 11,
         .opcodes = fun_data_scratch_Project_show_toast + 11,
@@ -19757,23 +19860,23 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_show_toast = {
 // frozen bytecode for file scratch.py, scope scratch_Project_picker_box
 static const byte fun_data_scratch_Project_picker_box[67] = {
     0x51,0x10, // prelude
-    0x82,0x13,0x84,0x06, // names: picker_box, self
-    0xd0,0x16,0x1f,0x27, // code info
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x82,0x15,0x84,0x0a, // names: picker_box, self
+    0xd0,0x1d,0x1f,0x27, // code info
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x51, // LOAD_ATTR 'ox'
+    0x13,0x81,0x53, // LOAD_ATTR 'ox'
     0x34,0x01, // CALL_FUNCTION 1
     0x94, // LOAD_CONST_SMALL_INT 20
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x52, // LOAD_ATTR 'oy'
+    0x13,0x81,0x54, // LOAD_ATTR 'oy'
     0x34,0x01, // CALL_FUNCTION 1
     0x94, // LOAD_CONST_SMALL_INT 20
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x4f, // LOAD_ATTR 'sw'
+    0x13,0x81,0x51, // LOAD_ATTR 'sw'
     0x34,0x01, // CALL_FUNCTION 1
     0xa8, // LOAD_CONST_SMALL_INT 40
     0xf3, // BINARY_OP 28 __sub__
@@ -19787,9 +19890,9 @@ static const byte fun_data_scratch_Project_picker_box[67] = {
     0xb3, // LOAD_FAST 3
     0x9e, // LOAD_CONST_SMALL_INT 30
     0x8d, // LOAD_CONST_SMALL_INT 13
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x40, // LOAD_ATTR 'picker'
+    0x13,0x81,0x42, // LOAD_ATTR 'picker'
     0x34,0x01, // CALL_FUNCTION 1
     0xf4, // BINARY_OP 29 __mul__
     0xf2, // BINARY_OP 27 __add__
@@ -19819,7 +19922,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_picker_box = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 275,
+        .qstr_block_name_idx = 277,
         .line_info = fun_data_scratch_Project_picker_box + 6,
         .line_info_top = fun_data_scratch_Project_picker_box + 10,
         .opcodes = fun_data_scratch_Project_picker_box + 10,
@@ -19835,26 +19938,26 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_picker_box = {
 // frozen bytecode for file scratch.py, scope scratch_Project_mouse_screen
 static const byte fun_data_scratch_Project_mouse_screen[45] = {
     0x39,0x0e, // prelude
-    0x82,0x14,0x84,0x06, // names: mouse_screen, self
-    0xd0,0x1a,0x35, // code info
+    0x82,0x16,0x84,0x0a, // names: mouse_screen, self
+    0xd0,0x21,0x35, // code info
     0xb0, // LOAD_FAST 0
     0x14,0x6b, // LOAD_METHOD 'to_screen'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x38, // LOAD_ATTR 'mouse'
+    0x13,0x81,0x3a, // LOAD_ATTR 'mouse'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x38, // LOAD_ATTR 'mouse'
+    0x13,0x81,0x3a, // LOAD_ATTR 'mouse'
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
     0x36,0x02, // CALL_METHOD 2
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xc1, // STORE_FAST 1
     0xc2, // STORE_FAST 2
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb1, // LOAD_FAST 1
     0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb2, // LOAD_FAST 2
     0x34,0x01, // CALL_FUNCTION 1
     0x2a,0x02, // BUILD_TUPLE 2
@@ -19883,7 +19986,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_mouse_screen = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 276,
+        .qstr_block_name_idx = 278,
         .line_info = fun_data_scratch_Project_mouse_screen + 6,
         .line_info_top = fun_data_scratch_Project_mouse_screen + 9,
         .opcodes = fun_data_scratch_Project_mouse_screen + 9,
@@ -19899,18 +20002,18 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_mouse_screen = {
 // frozen bytecode for file scratch.py, scope scratch_Project_picker_hit
 static const byte fun_data_scratch_Project_picker_hit[123] = {
     0x69,0x20, // prelude
-    0x82,0x15,0x84,0x06, // names: picker_hit, self
-    0xd0,0x1e,0x20,0x2c,0x22,0x2c,0x2a,0x2e,0x28,0x1f,0x23,0x2b, // code info
+    0x82,0x17,0x84,0x0a, // names: picker_hit, self
+    0xd0,0x25,0x20,0x2c,0x22,0x2c,0x2a,0x2e,0x28,0x1f,0x23,0x2b, // code info
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x44, // LOAD_ATTR 'uses_mouse'
+    0x13,0x81,0x46, // LOAD_ATTR 'uses_mouse'
     0x44,0x46, // POP_JUMP_IF_FALSE 6
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x40, // LOAD_ATTR 'picker'
+    0x13,0x81,0x42, // LOAD_ATTR 'picker'
     0x43,0x42, // POP_JUMP_IF_TRUE 2
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x13, // LOAD_METHOD 'picker_box'
+    0x14,0x82,0x15, // LOAD_METHOD 'picker_box'
     0x36,0x00, // CALL_METHOD 0
     0x30,0x04, // UNPACK_SEQUENCE 4
     0xc1, // STORE_FAST 1
@@ -19918,14 +20021,14 @@ static const byte fun_data_scratch_Project_picker_hit[123] = {
     0xc3, // STORE_FAST 3
     0xc4, // STORE_FAST 4
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x14, // LOAD_METHOD 'mouse_screen'
+    0x14,0x82,0x16, // LOAD_METHOD 'mouse_screen'
     0x36,0x00, // CALL_METHOD 0
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xc5, // STORE_FAST 5
     0xc6, // STORE_FAST 6
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x40, // LOAD_ATTR 'picker'
+    0x13,0x81,0x42, // LOAD_ATTR 'picker'
     0x34,0x01, // CALL_FUNCTION 1
     0x80, // LOAD_CONST_SMALL_INT 0
     0x42,0x70, // JUMP 48
@@ -20003,7 +20106,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_picker_hit = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 277,
+        .qstr_block_name_idx = 279,
         .line_info = fun_data_scratch_Project_picker_hit + 6,
         .line_info_top = fun_data_scratch_Project_picker_hit + 18,
         .opcodes = fun_data_scratch_Project_picker_hit + 18,
@@ -20019,18 +20122,18 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_picker_hit = {
 // frozen bytecode for file scratch.py, scope scratch_Project_draw_picker
 static const byte fun_data_scratch_Project_draw_picker[222] = {
     0x99,0x10,0x22, // prelude
-    0x81,0x7b,0x84,0x06, // names: draw_picker, self
-    0xd0,0x2a,0x2c,0x32,0x32,0x36,0x2b,0x30,0x28,0x25,0x36,0x35,0x37, // code info
+    0x81,0x7d,0x84,0x0a, // names: draw_picker, self
+    0xd0,0x31,0x2c,0x32,0x32,0x36,0x2b,0x30,0x28,0x25,0x36,0x35,0x37, // code info
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x13, // LOAD_METHOD 'picker_box'
+    0x14,0x82,0x15, // LOAD_METHOD 'picker_box'
     0x36,0x00, // CALL_METHOD 0
     0x30,0x04, // UNPACK_SEQUENCE 4
     0xc1, // STORE_FAST 1
     0xc2, // STORE_FAST 2
     0xc3, // STORE_FAST 3
     0xc4, // STORE_FAST 4
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
-    0x14,0x81,0x7d, // LOAD_METHOD 'rect'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x7f, // LOAD_METHOD 'rect'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
@@ -20038,8 +20141,8 @@ static const byte fun_data_scratch_Project_draw_picker[222] = {
     0x22,0x87,0xff,0xff,0x7f, // LOAD_CONST_SMALL_INT 16777215
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
-    0x14,0x82,0x01, // LOAD_METHOD 'marco'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
+    0x14,0x82,0x03, // LOAD_METHOD 'marco'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
@@ -20047,7 +20150,7 @@ static const byte fun_data_scratch_Project_draw_picker[222] = {
     0x22,0x84,0x95,0xb9,0x56, // LOAD_CONST_SMALL_INT 8740054
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
     0x14,0x33, // LOAD_METHOD 'texto'
     0x23,0x81,0x04, // LOAD_CONST_OBJ 132
     0xb1, // LOAD_FAST 1
@@ -20059,15 +20162,15 @@ static const byte fun_data_scratch_Project_draw_picker[222] = {
     0x22,0x81,0x80,0xc0,0x20, // LOAD_CONST_SMALL_INT 2105376
     0x36,0x04, // CALL_METHOD 4
     0x59, // POP_TOP
-    0x12,0x84,0x0b, // LOAD_GLOBAL 'getattr'
+    0x12,0x84,0x0f, // LOAD_GLOBAL 'getattr'
     0xb0, // LOAD_FAST 0
-    0x10,0x82,0x16, // LOAD_CONST_STRING '_hover'
+    0x10,0x82,0x18, // LOAD_CONST_STRING '_hover'
     0x51, // LOAD_CONST_NONE
     0x34,0x03, // CALL_FUNCTION 3
     0xc5, // STORE_FAST 5
-    0x12,0x84,0x0d, // LOAD_GLOBAL 'enumerate'
+    0x12,0x84,0x11, // LOAD_GLOBAL 'enumerate'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x40, // LOAD_ATTR 'picker'
+    0x13,0x81,0x42, // LOAD_ATTR 'picker'
     0x34,0x01, // CALL_FUNCTION 1
     0x5f, // GET_ITER_STACK
     0x4b,0x53, // FOR_ITER 83
@@ -20086,8 +20189,8 @@ static const byte fun_data_scratch_Project_draw_picker[222] = {
     0xb5, // LOAD_FAST 5
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x56, // POP_JUMP_IF_FALSE 22
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
-    0x14,0x81,0x7d, // LOAD_METHOD 'rect'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x7f, // LOAD_METHOD 'rect'
     0xb1, // LOAD_FAST 1
     0x83, // LOAD_CONST_SMALL_INT 3
     0xf2, // BINARY_OP 27 __add__
@@ -20099,7 +20202,7 @@ static const byte fun_data_scratch_Project_draw_picker[222] = {
     0x22,0x84,0x95,0xb9,0x56, // LOAD_CONST_SMALL_INT 8740054
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
     0x14,0x33, // LOAD_METHOD 'texto'
     0x23,0x81,0x05, // LOAD_CONST_OBJ 133
     0xb6, // LOAD_FAST 6
@@ -20124,7 +20227,7 @@ static const byte fun_data_scratch_Project_draw_picker[222] = {
     0x36,0x04, // CALL_METHOD 4
     0x59, // POP_TOP
     0x42,0xab,0x7f, // JUMP -85
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
     0x14,0x33, // LOAD_METHOD 'texto'
     0x23,0x81,0x06, // LOAD_CONST_OBJ 134
     0xb1, // LOAD_FAST 1
@@ -20164,7 +20267,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_draw_picker = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 251,
+        .qstr_block_name_idx = 253,
         .line_info = fun_data_scratch_Project_draw_picker + 7,
         .line_info_top = fun_data_scratch_Project_draw_picker + 20,
         .opcodes = fun_data_scratch_Project_draw_picker + 20,
@@ -20180,8 +20283,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_draw_picker = {
 // frozen bytecode for file scratch.py, scope scratch_Project_menu_items
 static const byte fun_data_scratch_Project_menu_items[192] = {
     0x39,0x26, // prelude
-    0x82,0x17,0x84,0x06, // names: menu_items, self
-    0xd0,0x39,0x26,0x26,0x2a,0x2a,0x2a,0x25,0x3e,0x2a,0x1f,0x42,0x3d,0x2a,0x2a, // code info
+    0x82,0x19,0x84,0x0a, // names: menu_items, self
+    0xd0,0x40,0x26,0x26,0x2a,0x2a,0x2a,0x25,0x3e,0x2a,0x1f,0x42,0x3d,0x2a,0x2a, // code info
     0x23,0x81,0x07, // LOAD_CONST_OBJ 135
     0x2b,0x01, // BUILD_LIST 1
     0xc1, // STORE_FAST 1
@@ -20189,17 +20292,17 @@ static const byte fun_data_scratch_Project_menu_items[192] = {
     0x13,0x81,0x0a, // LOAD_ATTR 'save_key'
     0x44,0x4a, // POP_JUMP_IF_FALSE 10
     0xb1, // LOAD_FAST 1
-    0x14,0x81,0x68, // LOAD_METHOD 'append'
+    0x14,0x81,0x6a, // LOAD_METHOD 'append'
     0x23,0x81,0x08, // LOAD_CONST_OBJ 136
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
-    0x10,0x82,0x18, // LOAD_CONST_STRING 'p'
+    0x10,0x82,0x1a, // LOAD_CONST_STRING 'p'
     0xb0, // LOAD_FAST 0
     0x13,0x81,0x08, // LOAD_ATTR 'menu_scratch'
     0xdd, // BINARY_OP 6 <in>
     0x44,0x4a, // POP_JUMP_IF_FALSE 10
     0xb1, // LOAD_FAST 1
-    0x14,0x81,0x68, // LOAD_METHOD 'append'
+    0x14,0x81,0x6a, // LOAD_METHOD 'append'
     0x23,0x81,0x09, // LOAD_CONST_OBJ 137
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
@@ -20207,15 +20310,15 @@ static const byte fun_data_scratch_Project_menu_items[192] = {
     0x13,0x36, // LOAD_ATTR 'multi'
     0x44,0x68, // POP_JUMP_IF_FALSE 40
     0xb1, // LOAD_FAST 1
-    0x14,0x81,0x68, // LOAD_METHOD 'append'
+    0x14,0x81,0x6a, // LOAD_METHOD 'append'
     0xb0, // LOAD_FAST 0
     0x13,0x36, // LOAD_ATTR 'multi'
-    0x13,0x82,0x19, // LOAD_ATTR 'on'
+    0x13,0x82,0x1b, // LOAD_ATTR 'on'
     0x44,0x52, // POP_JUMP_IF_FALSE 18
     0x23,0x81,0x0a, // LOAD_CONST_OBJ 138
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x82,0x1a, // LOAD_METHOD 'jugadores'
+    0x14,0x82,0x1c, // LOAD_METHOD 'jugadores'
     0x36,0x00, // CALL_METHOD 0
     0x34,0x01, // CALL_FUNCTION 1
     0xf8, // BINARY_OP 33 __mod__
@@ -20226,14 +20329,14 @@ static const byte fun_data_scratch_Project_menu_items[192] = {
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0xb1, // LOAD_FAST 1
-    0x14,0x81,0x68, // LOAD_METHOD 'append'
-    0x10,0x82,0x1b, // LOAD_CONST_STRING 'Pantalla: '
+    0x14,0x81,0x6a, // LOAD_METHOD 'append'
+    0x10,0x82,0x1d, // LOAD_CONST_STRING 'Pantalla: '
     0xb0, // LOAD_FAST 0
     0x13,0x81,0x11, // LOAD_ATTR 'screen_mode'
     0x10,0x81,0x10, // LOAD_CONST_STRING 'estirar'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x45, // POP_JUMP_IF_FALSE 5
-    0x10,0x82,0x1c, // LOAD_CONST_STRING 'estirada'
+    0x10,0x82,0x1e, // LOAD_CONST_STRING 'estirada'
     0x42,0x43, // JUMP 3
     0x23,0x81,0x0c, // LOAD_CONST_OBJ 140
     0xf2, // BINARY_OP 27 __add__
@@ -20242,12 +20345,12 @@ static const byte fun_data_scratch_Project_menu_items[192] = {
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0xb1, // LOAD_FAST 1
-    0x14,0x81,0x68, // LOAD_METHOD 'append'
+    0x14,0x81,0x6a, // LOAD_METHOD 'append'
     0x23,0x81,0x0d, // LOAD_CONST_OBJ 141
     0xb0, // LOAD_FAST 0
     0x13,0x81,0x14, // LOAD_ATTR 'fast'
     0x44,0x45, // POP_JUMP_IF_FALSE 5
-    0x10,0x82,0x1d, // LOAD_CONST_STRING 'rápido'
+    0x10,0x82,0x1f, // LOAD_CONST_STRING 'rápido'
     0x42,0x43, // JUMP 3
     0x10,0x81,0x12, // LOAD_CONST_STRING 'normal'
     0xf2, // BINARY_OP 27 __add__
@@ -20256,12 +20359,12 @@ static const byte fun_data_scratch_Project_menu_items[192] = {
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0xb1, // LOAD_FAST 1
-    0x14,0x81,0x68, // LOAD_METHOD 'append'
+    0x14,0x81,0x6a, // LOAD_METHOD 'append'
     0x23,0x81,0x0e, // LOAD_CONST_OBJ 142
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0xb1, // LOAD_FAST 1
-    0x14,0x81,0x68, // LOAD_METHOD 'append'
+    0x14,0x81,0x6a, // LOAD_METHOD 'append'
     0x23,0x81,0x0f, // LOAD_CONST_OBJ 143
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
@@ -20291,7 +20394,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_menu_items = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 279,
+        .qstr_block_name_idx = 281,
         .line_info = fun_data_scratch_Project_menu_items + 6,
         .line_info_top = fun_data_scratch_Project_menu_items + 21,
         .opcodes = fun_data_scratch_Project_menu_items + 21,
@@ -20307,8 +20410,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_menu_items = {
 // frozen bytecode for file scratch.py, scope scratch_Project_menu_key
 static const byte fun_data_scratch_Project_menu_key[473] = {
     0x4a,0x6a, // prelude
-    0x82,0x1e,0x84,0x06,0x84,0x1f, // names: menu_key, self, k
-    0xd0,0x49,0x2b,0x28,0x22,0x27,0x28,0x27,0x32,0x2a,0x27,0x2c,0x25,0x22,0x22,0x27,0x2e,0x27,0x2e,0x1f,0x22,0x29,0x28,0x27,0x28,0x32,0x26,0x28,0x27,0x28,0x27,0x25,0x2e,0x27,0x25,0x2d,0x26,0x29,0x2c,0x26,0x3b,0x26,0x2b,0x27,0x2c,0x27,0x24, // code info
+    0x82,0x20,0x84,0x0a,0x84,0x24, // names: menu_key, self, k
+    0xd0,0x50,0x2b,0x28,0x22,0x27,0x28,0x27,0x32,0x2a,0x27,0x2c,0x25,0x22,0x22,0x27,0x2e,0x27,0x2e,0x1f,0x22,0x29,0x28,0x27,0x28,0x32,0x26,0x28,0x27,0x28,0x27,0x25,0x2e,0x27,0x25,0x2d,0x26,0x29,0x2c,0x26,0x3b,0x26,0x2b,0x27,0x2c,0x27,0x24, // code info
     0xb0, // LOAD_FAST 0
     0x13,0x81,0x07, // LOAD_ATTR 'menu'
     0x81, // LOAD_CONST_SMALL_INT 1
@@ -20317,14 +20420,14 @@ static const byte fun_data_scratch_Project_menu_key[473] = {
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x4a, // POP_JUMP_IF_FALSE 10
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x1f, // LOAD_METHOD 'menu_red_key'
+    0x14,0x82,0x21, // LOAD_METHOD 'menu_red_key'
     0xb1, // LOAD_FAST 1
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x17, // LOAD_METHOD 'menu_items'
+    0x14,0x82,0x19, // LOAD_METHOD 'menu_items'
     0x36,0x00, // CALL_METHOD 0
     0xc2, // STORE_FAST 2
     0xb0, // LOAD_FAST 0
@@ -20333,7 +20436,7 @@ static const byte fun_data_scratch_Project_menu_key[473] = {
     0xc3, // STORE_FAST 3
     0xc4, // STORE_FAST 4
     0xb4, // LOAD_FAST 4
-    0x10,0x82,0x20, // LOAD_CONST_STRING 'controles'
+    0x10,0x82,0x22, // LOAD_CONST_STRING 'controles'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x76, // POP_JUMP_IF_FALSE 54
     0xb1, // LOAD_FAST 1
@@ -20341,8 +20444,8 @@ static const byte fun_data_scratch_Project_menu_key[473] = {
     0xdd, // BINARY_OP 6 <in>
     0x43,0x4b, // POP_JUMP_IF_TRUE 11
     0xb1, // LOAD_FAST 1
-    0x14,0x81,0x1c, // LOAD_METHOD 'startswith'
-    0x10,0x82,0x21, // LOAD_CONST_STRING 'S:'
+    0x14,0x81,0x1e, // LOAD_METHOD 'startswith'
+    0x10,0x82,0x23, // LOAD_CONST_STRING 'S:'
     0x36,0x01, // CALL_METHOD 1
     0x44,0x4a, // POP_JUMP_IF_FALSE 10
     0xb3, // LOAD_FAST 3
@@ -20356,57 +20459,57 @@ static const byte fun_data_scratch_Project_menu_key[473] = {
     0xdd, // BINARY_OP 6 <in>
     0x44,0x4c, // POP_JUMP_IF_FALSE 12
     0xb3, // LOAD_FAST 3
-    0x10,0x82,0x20, // LOAD_CONST_STRING 'controles'
+    0x10,0x82,0x22, // LOAD_CONST_STRING 'controles'
     0x2b,0x02, // BUILD_LIST 2
     0xb0, // LOAD_FAST 0
     0x18,0x81,0x07, // STORE_ATTR 'menu'
     0x42,0x40, // JUMP 0
     0x52, // LOAD_CONST_TRUE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x33, // STORE_ATTR 'dirty_all'
+    0x18,0x81,0x35, // STORE_ATTR 'dirty_all'
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
     0x51, // LOAD_CONST_NONE
     0xc5, // STORE_FAST 5
     0xb1, // LOAD_FAST 1
-    0x10,0x82,0x22, // LOAD_CONST_STRING 'UP'
+    0x10,0x82,0x24, // LOAD_CONST_STRING 'UP'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x4e, // POP_JUMP_IF_FALSE 14
     0xb3, // LOAD_FAST 3
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf3, // BINARY_OP 28 __sub__
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xb2, // LOAD_FAST 2
     0x34,0x01, // CALL_FUNCTION 1
     0xf8, // BINARY_OP 33 __mod__
     0xc3, // STORE_FAST 3
     0x42,0xee,0x80, // JUMP 110
     0xb1, // LOAD_FAST 1
-    0x10,0x82,0x23, // LOAD_CONST_STRING 'DOWN'
+    0x10,0x82,0x25, // LOAD_CONST_STRING 'DOWN'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x4e, // POP_JUMP_IF_FALSE 14
     0xb3, // LOAD_FAST 3
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xb2, // LOAD_FAST 2
     0x34,0x01, // CALL_FUNCTION 1
     0xf8, // BINARY_OP 33 __mod__
     0xc3, // STORE_FAST 3
     0x42,0xd9,0x80, // JUMP 89
     0xb1, // LOAD_FAST 1
-    0x14,0x82,0x24, // LOAD_METHOD 'isdigit'
+    0x14,0x82,0x26, // LOAD_METHOD 'isdigit'
     0x36,0x00, // CALL_METHOD 0
     0x44,0x6a, // POP_JUMP_IF_FALSE 42
     0x81, // LOAD_CONST_SMALL_INT 1
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb1, // LOAD_FAST 1
     0x34,0x01, // CALL_FUNCTION 1
     0x57, // DUP_TOP
     0x5b, // ROT_THREE
     0xda, // BINARY_OP 3 __le__
     0x46,0x09, // JUMP_IF_FALSE_OR_POP 9
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xb2, // LOAD_FAST 2
     0x34,0x01, // CALL_FUNCTION 1
     0xda, // BINARY_OP 3 __le__
@@ -20414,7 +20517,7 @@ static const byte fun_data_scratch_Project_menu_key[473] = {
     0x5a, // ROT_TWO
     0x59, // POP_TOP
     0x44,0x51, // POP_JUMP_IF_FALSE 17
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb1, // LOAD_FAST 1
     0x34,0x01, // CALL_FUNCTION 1
     0x81, // LOAD_CONST_SMALL_INT 1
@@ -20428,7 +20531,7 @@ static const byte fun_data_scratch_Project_menu_key[473] = {
     0xc5, // STORE_FAST 5
     0x42,0x67, // JUMP 39
     0xb1, // LOAD_FAST 1
-    0x10,0x82,0x25, // LOAD_CONST_STRING 'EXE'
+    0x10,0x82,0x27, // LOAD_CONST_STRING 'EXE'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x48, // POP_JUMP_IF_FALSE 8
     0xb2, // LOAD_FAST 2
@@ -20439,15 +20542,15 @@ static const byte fun_data_scratch_Project_menu_key[473] = {
     0xc5, // STORE_FAST 5
     0x42,0x58, // JUMP 24
     0xb1, // LOAD_FAST 1
-    0x10,0x82,0x26, // LOAD_CONST_STRING 'DEL'
+    0x10,0x82,0x28, // LOAD_CONST_STRING 'DEL'
     0xd9, // BINARY_OP 2 __eq__
     0x43,0x4b, // POP_JUMP_IF_TRUE 11
     0xb1, // LOAD_FAST 1
-    0x14,0x81,0x1c, // LOAD_METHOD 'startswith'
-    0x10,0x82,0x21, // LOAD_CONST_STRING 'S:'
+    0x14,0x81,0x1e, // LOAD_METHOD 'startswith'
+    0x10,0x82,0x23, // LOAD_CONST_STRING 'S:'
     0x36,0x01, // CALL_METHOD 1
     0x44,0x46, // POP_JUMP_IF_FALSE 6
-    0x10,0x82,0x27, // LOAD_CONST_STRING 'seguir'
+    0x10,0x82,0x29, // LOAD_CONST_STRING 'seguir'
     0xc5, // STORE_FAST 5
     0x42,0x40, // JUMP 0
     0xb3, // LOAD_FAST 3
@@ -20456,7 +20559,7 @@ static const byte fun_data_scratch_Project_menu_key[473] = {
     0xb0, // LOAD_FAST 0
     0x18,0x81,0x07, // STORE_ATTR 'menu'
     0xb5, // LOAD_FAST 5
-    0x10,0x82,0x27, // LOAD_CONST_STRING 'seguir'
+    0x10,0x82,0x29, // LOAD_CONST_STRING 'seguir'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x48, // POP_JUMP_IF_FALSE 8
     0x51, // LOAD_CONST_NONE
@@ -20471,22 +20574,22 @@ static const byte fun_data_scratch_Project_menu_key[473] = {
     0xb0, // LOAD_FAST 0
     0x18,0x81,0x07, // STORE_ATTR 'menu'
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x28, // LOAD_METHOD 'inject'
+    0x14,0x82,0x2a, // LOAD_METHOD 'inject'
     0xb0, // LOAD_FAST 0
     0x13,0x81,0x0a, // LOAD_ATTR 'save_key'
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0x42,0x84,0x81, // JUMP 132
     0xb5, // LOAD_FAST 5
-    0x10,0x82,0x29, // LOAD_CONST_STRING 'pausa'
+    0x10,0x82,0x2b, // LOAD_CONST_STRING 'pausa'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x52, // POP_JUMP_IF_FALSE 18
     0x51, // LOAD_CONST_NONE
     0xb0, // LOAD_FAST 0
     0x18,0x81,0x07, // STORE_ATTR 'menu'
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x28, // LOAD_METHOD 'inject'
-    0x10,0x82,0x18, // LOAD_CONST_STRING 'p'
+    0x14,0x82,0x2a, // LOAD_METHOD 'inject'
+    0x10,0x82,0x1a, // LOAD_CONST_STRING 'p'
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0x42,0xeb,0x80, // JUMP 107
@@ -20496,7 +20599,7 @@ static const byte fun_data_scratch_Project_menu_key[473] = {
     0x44,0x55, // POP_JUMP_IF_FALSE 21
     0xb0, // LOAD_FAST 0
     0x13,0x36, // LOAD_ATTR 'multi'
-    0x14,0x82,0x2a, // LOAD_METHOD 'abrir_menu'
+    0x14,0x82,0x2c, // LOAD_METHOD 'abrir_menu'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0x80, // LOAD_CONST_SMALL_INT 0
@@ -20516,7 +20619,7 @@ static const byte fun_data_scratch_Project_menu_key[473] = {
     0x10,0x81,0x10, // LOAD_CONST_STRING 'estirar'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x45, // POP_JUMP_IF_FALSE 5
-    0x10,0x82,0x2b, // LOAD_CONST_STRING 'proporcion'
+    0x10,0x82,0x2d, // LOAD_CONST_STRING 'proporcion'
     0x42,0x43, // JUMP 3
     0x10,0x81,0x10, // LOAD_CONST_STRING 'estirar'
     0x36,0x01, // CALL_METHOD 1
@@ -20533,24 +20636,24 @@ static const byte fun_data_scratch_Project_menu_key[473] = {
     0x18,0x81,0x14, // STORE_ATTR 'fast'
     0x42,0x5e, // JUMP 30
     0xb5, // LOAD_FAST 5
-    0x10,0x82,0x20, // LOAD_CONST_STRING 'controles'
+    0x10,0x82,0x22, // LOAD_CONST_STRING 'controles'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x4c, // POP_JUMP_IF_FALSE 12
     0xb3, // LOAD_FAST 3
-    0x10,0x82,0x20, // LOAD_CONST_STRING 'controles'
+    0x10,0x82,0x22, // LOAD_CONST_STRING 'controles'
     0x2b,0x02, // BUILD_LIST 2
     0xb0, // LOAD_FAST 0
     0x18,0x81,0x07, // STORE_ATTR 'menu'
     0x42,0x4b, // JUMP 11
     0xb5, // LOAD_FAST 5
-    0x10,0x82,0x2c, // LOAD_CONST_STRING 'salir'
+    0x10,0x82,0x2e, // LOAD_CONST_STRING 'salir'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x44, // POP_JUMP_IF_FALSE 4
-    0x12,0x84,0x20, // LOAD_GLOBAL 'SystemExit'
+    0x12,0x84,0x25, // LOAD_GLOBAL 'SystemExit'
     0x65, // RAISE_OBJ
     0x52, // LOAD_CONST_TRUE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x33, // STORE_ATTR 'dirty_all'
+    0x18,0x81,0x35, // STORE_ATTR 'dirty_all'
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -20577,7 +20680,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_menu_key = {
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 286,
+        .qstr_block_name_idx = 288,
         .line_info = fun_data_scratch_Project_menu_key + 8,
         .line_info_top = fun_data_scratch_Project_menu_key + 55,
         .opcodes = fun_data_scratch_Project_menu_key + 55,
@@ -20593,8 +20696,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_menu_key = {
 // frozen bytecode for file scratch.py, scope scratch_Project_menu_red_key
 static const byte fun_data_scratch_Project_menu_red_key[252] = {
     0x4a,0x38, // prelude
-    0x82,0x1f,0x84,0x06,0x84,0x1f, // names: menu_red_key, self, k
-    0xd0,0x78,0x27,0x28,0x22,0x27,0x2e,0x27,0x2e,0x1f,0x22,0x29,0x28,0x27,0x28,0x32,0x29,0x29,0x23,0x24,0x31,0x3f, // code info
+    0x82,0x21,0x84,0x0a,0x84,0x24, // names: menu_red_key, self, k
+    0xd0,0x7f,0x27,0x28,0x22,0x27,0x2e,0x27,0x2e,0x1f,0x22,0x29,0x28,0x27,0x28,0x32,0x29,0x29,0x23,0x24,0x31,0x3f, // code info
     0xb0, // LOAD_FAST 0
     0x13,0x81,0x07, // LOAD_ATTR 'menu'
     0x80, // LOAD_CONST_SMALL_INT 0
@@ -20608,44 +20711,44 @@ static const byte fun_data_scratch_Project_menu_red_key[252] = {
     0x51, // LOAD_CONST_NONE
     0xc4, // STORE_FAST 4
     0xb1, // LOAD_FAST 1
-    0x10,0x82,0x22, // LOAD_CONST_STRING 'UP'
+    0x10,0x82,0x24, // LOAD_CONST_STRING 'UP'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x4e, // POP_JUMP_IF_FALSE 14
     0xb2, // LOAD_FAST 2
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf3, // BINARY_OP 28 __sub__
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xb3, // LOAD_FAST 3
     0x34,0x01, // CALL_FUNCTION 1
     0xf8, // BINARY_OP 33 __mod__
     0xc2, // STORE_FAST 2
     0x42,0xf1,0x80, // JUMP 113
     0xb1, // LOAD_FAST 1
-    0x10,0x82,0x23, // LOAD_CONST_STRING 'DOWN'
+    0x10,0x82,0x25, // LOAD_CONST_STRING 'DOWN'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x4e, // POP_JUMP_IF_FALSE 14
     0xb2, // LOAD_FAST 2
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xb3, // LOAD_FAST 3
     0x34,0x01, // CALL_FUNCTION 1
     0xf8, // BINARY_OP 33 __mod__
     0xc2, // STORE_FAST 2
     0x42,0xdc,0x80, // JUMP 92
     0xb1, // LOAD_FAST 1
-    0x14,0x82,0x24, // LOAD_METHOD 'isdigit'
+    0x14,0x82,0x26, // LOAD_METHOD 'isdigit'
     0x36,0x00, // CALL_METHOD 0
     0x44,0x6a, // POP_JUMP_IF_FALSE 42
     0x81, // LOAD_CONST_SMALL_INT 1
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb1, // LOAD_FAST 1
     0x34,0x01, // CALL_FUNCTION 1
     0x57, // DUP_TOP
     0x5b, // ROT_THREE
     0xda, // BINARY_OP 3 __le__
     0x46,0x09, // JUMP_IF_FALSE_OR_POP 9
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xb3, // LOAD_FAST 3
     0x34,0x01, // CALL_FUNCTION 1
     0xda, // BINARY_OP 3 __le__
@@ -20653,7 +20756,7 @@ static const byte fun_data_scratch_Project_menu_red_key[252] = {
     0x5a, // ROT_TWO
     0x59, // POP_TOP
     0x44,0x51, // POP_JUMP_IF_FALSE 17
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb1, // LOAD_FAST 1
     0x34,0x01, // CALL_FUNCTION 1
     0x81, // LOAD_CONST_SMALL_INT 1
@@ -20667,7 +20770,7 @@ static const byte fun_data_scratch_Project_menu_red_key[252] = {
     0xc4, // STORE_FAST 4
     0x42,0x6a, // JUMP 42
     0xb1, // LOAD_FAST 1
-    0x10,0x82,0x25, // LOAD_CONST_STRING 'EXE'
+    0x10,0x82,0x27, // LOAD_CONST_STRING 'EXE'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x48, // POP_JUMP_IF_FALSE 8
     0xb3, // LOAD_FAST 3
@@ -20678,17 +20781,17 @@ static const byte fun_data_scratch_Project_menu_red_key[252] = {
     0xc4, // STORE_FAST 4
     0x42,0x5b, // JUMP 27
     0xb1, // LOAD_FAST 1
-    0x10,0x82,0x26, // LOAD_CONST_STRING 'DEL'
+    0x10,0x82,0x28, // LOAD_CONST_STRING 'DEL'
     0xd9, // BINARY_OP 2 __eq__
     0x43,0x4b, // POP_JUMP_IF_TRUE 11
     0xb1, // LOAD_FAST 1
-    0x14,0x81,0x1c, // LOAD_METHOD 'startswith'
-    0x10,0x82,0x21, // LOAD_CONST_STRING 'S:'
+    0x14,0x81,0x1e, // LOAD_METHOD 'startswith'
+    0x10,0x82,0x23, // LOAD_CONST_STRING 'S:'
     0x36,0x01, // CALL_METHOD 1
     0x44,0x49, // POP_JUMP_IF_FALSE 9
     0xb0, // LOAD_FAST 0
     0x13,0x36, // LOAD_ATTR 'multi'
-    0x13,0x82,0x2d, // LOAD_ATTR 'atras'
+    0x13,0x82,0x2f, // LOAD_ATTR 'atras'
     0xc4, // STORE_FAST 4
     0x42,0x40, // JUMP 0
     0xb2, // LOAD_FAST 2
@@ -20711,12 +20814,12 @@ static const byte fun_data_scratch_Project_menu_red_key[252] = {
     0x10,0x09, // LOAD_CONST_STRING 'red'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x5f, // POP_JUMP_IF_FALSE 31
-    0x12,0x84,0x0f, // LOAD_GLOBAL 'min'
+    0x12,0x84,0x13, // LOAD_GLOBAL 'min'
     0xb0, // LOAD_FAST 0
     0x13,0x81,0x07, // LOAD_ATTR 'menu'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xb0, // LOAD_FAST 0
     0x13,0x36, // LOAD_ATTR 'multi'
     0x14,0x4f, // LOAD_METHOD 'items'
@@ -20731,7 +20834,7 @@ static const byte fun_data_scratch_Project_menu_red_key[252] = {
     0x56, // STORE_SUBSCR
     0x52, // LOAD_CONST_TRUE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x33, // STORE_ATTR 'dirty_all'
+    0x18,0x81,0x35, // STORE_ATTR 'dirty_all'
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -20758,7 +20861,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_menu_red_key = {
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 287,
+        .qstr_block_name_idx = 289,
         .line_info = fun_data_scratch_Project_menu_red_key + 8,
         .line_info_top = fun_data_scratch_Project_menu_red_key + 30,
         .opcodes = fun_data_scratch_Project_menu_red_key + 30,
@@ -20774,8 +20877,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_menu_red_key = {
 // frozen bytecode for file scratch.py, scope scratch_Project_preguntar
 static const byte fun_data_scratch_Project_preguntar[45] = {
     0xb0,0x04,0x20, // prelude
-    0x82,0x2e,0x84,0x06,0x84,0x21,0x84,0x22,0x84,0x23, // names: preguntar, self, pregunta, inicial, cb
-    0xd0,0x8e,0x20,0x25,0x29,0x25, // code info
+    0x82,0x30,0x84,0x0a,0x84,0x26,0x84,0x27,0x84,0x28, // names: preguntar, self, pregunta, inicial, cb
+    0xd0,0x95,0x20,0x25,0x29,0x25, // code info
     0x51, // LOAD_CONST_NONE
     0xb0, // LOAD_FAST 0
     0x18,0x81,0x07, // STORE_ATTR 'menu'
@@ -20784,13 +20887,13 @@ static const byte fun_data_scratch_Project_preguntar[45] = {
     0x50, // LOAD_CONST_FALSE
     0x2b,0x03, // BUILD_LIST 3
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x32, // STORE_ATTR 'asking'
+    0x18,0x81,0x34, // STORE_ATTR 'asking'
     0xb3, // LOAD_FAST 3
     0xb0, // LOAD_FAST 0
-    0x18,0x82,0x2f, // STORE_ATTR 'ask_cb'
+    0x18,0x82,0x31, // STORE_ATTR 'ask_cb'
     0x52, // LOAD_CONST_TRUE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x33, // STORE_ATTR 'dirty_all'
+    0x18,0x81,0x35, // STORE_ATTR 'dirty_all'
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -20817,7 +20920,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_preguntar = {
         .n_pos_args = 4,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 302,
+        .qstr_block_name_idx = 304,
         .line_info = fun_data_scratch_Project_preguntar + 13,
         .line_info_top = fun_data_scratch_Project_preguntar + 19,
         .opcodes = fun_data_scratch_Project_preguntar + 19,
@@ -20833,21 +20936,21 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_preguntar = {
 // frozen bytecode for file scratch.py, scope scratch_Project_inject
 static const byte fun_data_scratch_Project_inject[41] = {
     0x3a,0x14, // prelude
-    0x82,0x28,0x84,0x06,0x84,0x24, // names: inject, self, sk
-    0xd0,0x95,0x20,0x4c, // code info
+    0x82,0x2a,0x84,0x0a,0x84,0x29, // names: inject, self, sk
+    0xd0,0x9c,0x20,0x4c, // code info
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x41, // LOAD_ATTR 'frame'
+    0x13,0x81,0x43, // LOAD_ATTR 'frame'
     0x86, // LOAD_CONST_SMALL_INT 6
     0xf2, // BINARY_OP 27 __add__
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x3d, // LOAD_ATTR 'injected'
+    0x13,0x81,0x3f, // LOAD_ATTR 'injected'
     0xb1, // LOAD_FAST 1
     0x56, // STORE_SUBSCR
     0xb0, // LOAD_FAST 0
     0x14,0x39, // LOAD_METHOD 'start_hats'
     0x23,0x81,0x12, // LOAD_CONST_OBJ 146
     0xb1, // LOAD_FAST 1
-    0x10,0x82,0x30, // LOAD_CONST_STRING 'restart'
+    0x10,0x82,0x32, // LOAD_CONST_STRING 'restart'
     0x50, // LOAD_CONST_FALSE
     0x36,0x82,0x02, // CALL_METHOD 258
     0x59, // POP_TOP
@@ -20877,7 +20980,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_inject = {
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 296,
+        .qstr_block_name_idx = 298,
         .line_info = fun_data_scratch_Project_inject + 8,
         .line_info_top = fun_data_scratch_Project_inject + 12,
         .opcodes = fun_data_scratch_Project_inject + 12,
@@ -20893,28 +20996,28 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_inject = {
 // frozen bytecode for file scratch.py, scope scratch_Project_draw_menu
 static const byte fun_data_scratch_Project_draw_menu[567] = {
     0xe9,0x10,0x52, // prelude
-    0x81,0x7e,0x84,0x06, // names: draw_menu, self
-    0xd0,0x9b,0x28,0x1f,0x28,0x28,0x23,0x34,0x1f,0x22,0x29,0x2a,0x26,0x2a,0x2a,0x27,0x2b,0x32,0x32,0x36,0x2d,0x3a,0x22,0x26,0x2c,0x51,0x30,0x33,0x32,0x32,0x34,0x23,0x3b,0x31,0x29,0x25,0x39, // code info
+    0x82,0x00,0x84,0x0a, // names: draw_menu, self
+    0xd0,0xa2,0x28,0x1f,0x28,0x28,0x23,0x34,0x1f,0x22,0x29,0x2a,0x26,0x2a,0x2a,0x27,0x2b,0x32,0x32,0x36,0x2d,0x3a,0x22,0x26,0x2c,0x51,0x30,0x33,0x32,0x32,0x34,0x23,0x3b,0x31,0x29,0x25,0x39, // code info
     0xb0, // LOAD_FAST 0
     0x13,0x81,0x07, // LOAD_ATTR 'menu'
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xc1, // STORE_FAST 1
     0xc2, // STORE_FAST 2
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x51, // LOAD_ATTR 'ox'
+    0x13,0x81,0x53, // LOAD_ATTR 'ox'
     0x34,0x01, // CALL_FUNCTION 1
     0x9e, // LOAD_CONST_SMALL_INT 30
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x52, // LOAD_ATTR 'oy'
+    0x13,0x81,0x54, // LOAD_ATTR 'oy'
     0x34,0x01, // CALL_FUNCTION 1
     0x90, // LOAD_CONST_SMALL_INT 16
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x4f, // LOAD_ATTR 'sw'
+    0x13,0x81,0x51, // LOAD_ATTR 'sw'
     0x34,0x01, // CALL_FUNCTION 1
     0x22,0x3c, // LOAD_CONST_SMALL_INT 60
     0xf3, // BINARY_OP 28 __sub__
@@ -20924,12 +21027,12 @@ static const byte fun_data_scratch_Project_draw_menu[567] = {
     0xc4, // STORE_FAST 4
     0xc5, // STORE_FAST 5
     0xb2, // LOAD_FAST 2
-    0x10,0x82,0x20, // LOAD_CONST_STRING 'controles'
+    0x10,0x82,0x22, // LOAD_CONST_STRING 'controles'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0xda,0x81, // POP_JUMP_IF_FALSE 218
     0x2b,0x00, // BUILD_LIST 0
     0xc6, // STORE_FAST 6
-    0x12,0x84,0x05, // LOAD_GLOBAL 'sorted'
+    0x12,0x84,0x09, // LOAD_GLOBAL 'sorted'
     0xb0, // LOAD_FAST 0
     0x13,0x81,0x01, // LOAD_ATTR 'keymap'
     0x14,0x4f, // LOAD_METHOD 'items'
@@ -20941,8 +21044,8 @@ static const byte fun_data_scratch_Project_draw_menu[567] = {
     0xc7, // STORE_FAST 7
     0xc8, // STORE_FAST 8
     0xb6, // LOAD_FAST 6
-    0x14,0x81,0x68, // LOAD_METHOD 'append'
-    0x10,0x82,0x31, // LOAD_CONST_STRING '%-11s %s'
+    0x14,0x81,0x6a, // LOAD_METHOD 'append'
+    0x10,0x82,0x33, // LOAD_CONST_STRING '%-11s %s'
     0xb7, // LOAD_FAST 7
     0x51, // LOAD_CONST_NONE
     0x8b, // LOAD_CONST_SMALL_INT 11
@@ -20967,20 +21070,20 @@ static const byte fun_data_scratch_Project_draw_menu[567] = {
     0xd3, // UNARY_OP 3 <not>
     0x44,0x4a, // POP_JUMP_IF_FALSE 10
     0xb6, // LOAD_FAST 6
-    0x14,0x81,0x68, // LOAD_METHOD 'append'
+    0x14,0x81,0x6a, // LOAD_METHOD 'append'
     0x23,0x81,0x13, // LOAD_CONST_OBJ 147
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x44, // LOAD_ATTR 'uses_mouse'
+    0x13,0x81,0x46, // LOAD_ATTR 'uses_mouse'
     0x44,0x4a, // POP_JUMP_IF_FALSE 10
     0xb6, // LOAD_FAST 6
-    0x14,0x81,0x68, // LOAD_METHOD 'append'
+    0x14,0x81,0x6a, // LOAD_METHOD 'append'
     0x23,0x81,0x14, // LOAD_CONST_OBJ 148
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0xb6, // LOAD_FAST 6
-    0x14,0x81,0x68, // LOAD_METHOD 'append'
+    0x14,0x81,0x6a, // LOAD_METHOD 'append'
     0x23,0x81,0x15, // LOAD_CONST_OBJ 149
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
@@ -20992,14 +21095,14 @@ static const byte fun_data_scratch_Project_draw_menu[567] = {
     0xc6, // STORE_FAST 6
     0x96, // LOAD_CONST_SMALL_INT 22
     0x8b, // LOAD_CONST_SMALL_INT 11
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xb6, // LOAD_FAST 6
     0x34,0x01, // CALL_FUNCTION 1
     0xf4, // BINARY_OP 29 __mul__
     0xf2, // BINARY_OP 27 __add__
     0xc9, // STORE_FAST 9
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
-    0x14,0x81,0x7d, // LOAD_METHOD 'rect'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x7f, // LOAD_METHOD 'rect'
     0xb3, // LOAD_FAST 3
     0xb4, // LOAD_FAST 4
     0xb5, // LOAD_FAST 5
@@ -21007,8 +21110,8 @@ static const byte fun_data_scratch_Project_draw_menu[567] = {
     0x22,0x80,0xf8,0xc4,0x2c, // LOAD_CONST_SMALL_INT 1974828
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
-    0x14,0x82,0x01, // LOAD_METHOD 'marco'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
+    0x14,0x82,0x03, // LOAD_METHOD 'marco'
     0xb3, // LOAD_FAST 3
     0xb4, // LOAD_FAST 4
     0xb5, // LOAD_FAST 5
@@ -21016,7 +21119,7 @@ static const byte fun_data_scratch_Project_draw_menu[567] = {
     0x22,0x81,0xa2,0xd1,0x7a, // LOAD_CONST_SMALL_INT 2664698
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
     0x14,0x33, // LOAD_METHOD 'texto'
     0x23,0x81,0x16, // LOAD_CONST_OBJ 150
     0xb3, // LOAD_FAST 3
@@ -21028,7 +21131,7 @@ static const byte fun_data_scratch_Project_draw_menu[567] = {
     0x22,0x81,0xa2,0xd1,0x7a, // LOAD_CONST_SMALL_INT 2664698
     0x36,0x04, // CALL_METHOD 4
     0x59, // POP_TOP
-    0x12,0x84,0x0d, // LOAD_GLOBAL 'enumerate'
+    0x12,0x84,0x11, // LOAD_GLOBAL 'enumerate'
     0xb6, // LOAD_FAST 6
     0x34,0x01, // CALL_FUNCTION 1
     0x5f, // GET_ITER_STACK
@@ -21036,7 +21139,7 @@ static const byte fun_data_scratch_Project_draw_menu[567] = {
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xca, // STORE_FAST 10
     0xcb, // STORE_FAST 11
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
     0x14,0x33, // LOAD_METHOD 'texto'
     0xbb, // LOAD_FAST 11
     0xb3, // LOAD_FAST 3
@@ -21068,16 +21171,16 @@ static const byte fun_data_scratch_Project_draw_menu[567] = {
     0xcc, // STORE_FAST 12
     0xb0, // LOAD_FAST 0
     0x13,0x36, // LOAD_ATTR 'multi'
-    0x13,0x82,0x32, // LOAD_ATTR 'titulo'
+    0x13,0x82,0x34, // LOAD_ATTR 'titulo'
     0xb0, // LOAD_FAST 0
     0x13,0x36, // LOAD_ATTR 'multi'
-    0x13,0x82,0x33, // LOAD_ATTR 'nota'
+    0x13,0x82,0x35, // LOAD_ATTR 'nota'
     0x5a, // ROT_TWO
     0xcd, // STORE_FAST 13
     0xce, // STORE_FAST 14
     0x42,0x50, // JUMP 16
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x17, // LOAD_METHOD 'menu_items'
+    0x14,0x82,0x19, // LOAD_METHOD 'menu_items'
     0x36,0x00, // CALL_METHOD 0
     0x23,0x81,0x17, // LOAD_CONST_OBJ 151
     0x10,0x30, // LOAD_CONST_STRING ''
@@ -21088,7 +21191,7 @@ static const byte fun_data_scratch_Project_draw_menu[567] = {
     0xce, // STORE_FAST 14
     0x9a, // LOAD_CONST_SMALL_INT 26
     0x8e, // LOAD_CONST_SMALL_INT 14
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xbc, // LOAD_FAST 12
     0x34,0x01, // CALL_FUNCTION 1
     0xf4, // BINARY_OP 29 __mul__
@@ -21100,8 +21203,8 @@ static const byte fun_data_scratch_Project_draw_menu[567] = {
     0x80, // LOAD_CONST_SMALL_INT 0
     0xf2, // BINARY_OP 27 __add__
     0xc9, // STORE_FAST 9
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
-    0x14,0x81,0x7d, // LOAD_METHOD 'rect'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x7f, // LOAD_METHOD 'rect'
     0xb3, // LOAD_FAST 3
     0xb4, // LOAD_FAST 4
     0xb5, // LOAD_FAST 5
@@ -21109,8 +21212,8 @@ static const byte fun_data_scratch_Project_draw_menu[567] = {
     0x22,0x80,0xf8,0xc4,0x2c, // LOAD_CONST_SMALL_INT 1974828
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
-    0x14,0x82,0x01, // LOAD_METHOD 'marco'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
+    0x14,0x82,0x03, // LOAD_METHOD 'marco'
     0xb3, // LOAD_FAST 3
     0xb4, // LOAD_FAST 4
     0xb5, // LOAD_FAST 5
@@ -21118,7 +21221,7 @@ static const byte fun_data_scratch_Project_draw_menu[567] = {
     0x22,0x81,0xa2,0xd1,0x7a, // LOAD_CONST_SMALL_INT 2664698
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
     0x14,0x33, // LOAD_METHOD 'texto'
     0xbd, // LOAD_FAST 13
     0xb3, // LOAD_FAST 3
@@ -21132,7 +21235,7 @@ static const byte fun_data_scratch_Project_draw_menu[567] = {
     0x59, // POP_TOP
     0xbe, // LOAD_FAST 14
     0x44,0x5b, // POP_JUMP_IF_FALSE 27
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
     0x14,0x33, // LOAD_METHOD 'texto'
     0xbe, // LOAD_FAST 14
     0x51, // LOAD_CONST_NONE
@@ -21150,7 +21253,7 @@ static const byte fun_data_scratch_Project_draw_menu[567] = {
     0x22,0x84,0x9e,0x9d,0x1e, // LOAD_CONST_SMALL_INT 8883870
     0x36,0x04, // CALL_METHOD 4
     0x59, // POP_TOP
-    0x12,0x84,0x0d, // LOAD_GLOBAL 'enumerate'
+    0x12,0x84,0x11, // LOAD_GLOBAL 'enumerate'
     0xbc, // LOAD_FAST 12
     0x34,0x01, // CALL_FUNCTION 1
     0x5f, // GET_ITER_STACK
@@ -21172,8 +21275,8 @@ static const byte fun_data_scratch_Project_draw_menu[567] = {
     0xb1, // LOAD_FAST 1
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x59, // POP_JUMP_IF_FALSE 25
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
-    0x14,0x81,0x7d, // LOAD_METHOD 'rect'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x7f, // LOAD_METHOD 'rect'
     0xb3, // LOAD_FAST 3
     0x83, // LOAD_CONST_SMALL_INT 3
     0xf2, // BINARY_OP 27 __add__
@@ -21187,9 +21290,9 @@ static const byte fun_data_scratch_Project_draw_menu[567] = {
     0x22,0x81,0xa2,0xd1,0x7a, // LOAD_CONST_SMALL_INT 2664698
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
     0x14,0x33, // LOAD_METHOD 'texto'
-    0x10,0x82,0x34, // LOAD_CONST_STRING '%d  %s'
+    0x10,0x82,0x36, // LOAD_CONST_STRING '%d  %s'
     0xba, // LOAD_FAST 10
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
@@ -21215,8 +21318,8 @@ static const byte fun_data_scratch_Project_draw_menu[567] = {
 // frozen bytecode for file scratch.py, scope scratch_Project_draw_menu__lt_genexpr_gt_
 static const byte fun_data_scratch_Project_draw_menu__lt_genexpr_gt_[33] = {
     0xc9,0x40,0x0a, // prelude
-    0x82,0x4f,0x12, // names: <genexpr>, *
-    0xd0,0xa0, // code info
+    0x82,0x53,0x12, // names: <genexpr>, *
+    0xd0,0xa7, // code info
     0x53, // LOAD_NULL
     0xb0, // LOAD_FAST 0
     0x53, // LOAD_NULL
@@ -21224,9 +21327,9 @@ static const byte fun_data_scratch_Project_draw_menu__lt_genexpr_gt_[33] = {
     0x4b,0x11, // FOR_ITER 17
     0xc1, // STORE_FAST 1
     0xb1, // LOAD_FAST 1
-    0x14,0x81,0x1f, // LOAD_METHOD 'replace'
-    0x10,0x82,0x21, // LOAD_CONST_STRING 'S:'
-    0x10,0x83,0x69, // LOAD_CONST_STRING 'SHIFT+'
+    0x14,0x81,0x21, // LOAD_METHOD 'replace'
+    0x10,0x82,0x23, // LOAD_CONST_STRING 'S:'
+    0x10,0x83,0x6c, // LOAD_CONST_STRING 'SHIFT+'
     0x36,0x02, // CALL_METHOD 2
     0x67, // YIELD_VALUE
     0x59, // POP_TOP
@@ -21257,7 +21360,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_draw_menu__lt_gen
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 335,
+        .qstr_block_name_idx = 339,
         .line_info = fun_data_scratch_Project_draw_menu__lt_genexpr_gt_ + 6,
         .line_info_top = fun_data_scratch_Project_draw_menu__lt_genexpr_gt_ + 8,
         .opcodes = fun_data_scratch_Project_draw_menu__lt_genexpr_gt_ + 8,
@@ -21273,8 +21376,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_draw_menu__lt_gen
 // frozen bytecode for file scratch.py, scope scratch_Project_draw_menu__lt_listcomp_gt_
 static const byte fun_data_scratch_Project_draw_menu__lt_listcomp_gt_[26] = {
     0x49,0x0a, // prelude
-    0x82,0x4c,0x12, // names: <listcomp>, *
-    0xd0,0xaf, // code info
+    0x82,0x50,0x12, // names: <listcomp>, *
+    0xd0,0xb6, // code info
     0x2b,0x00, // BUILD_LIST 0
     0xb0, // LOAD_FAST 0
     0x5f, // GET_ITER_STACK
@@ -21312,7 +21415,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_draw_menu__lt_lis
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 332,
+        .qstr_block_name_idx = 336,
         .line_info = fun_data_scratch_Project_draw_menu__lt_listcomp_gt_ + 5,
         .line_info_top = fun_data_scratch_Project_draw_menu__lt_listcomp_gt_ + 7,
         .opcodes = fun_data_scratch_Project_draw_menu__lt_listcomp_gt_ + 7,
@@ -21351,7 +21454,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_draw_menu = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 254,
+        .qstr_block_name_idx = 256,
         .line_info = fun_data_scratch_Project_draw_menu + 7,
         .line_info_top = fun_data_scratch_Project_draw_menu + 44,
         .opcodes = fun_data_scratch_Project_draw_menu + 44,
@@ -21364,8 +21467,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_draw_menu = {
 // frozen bytecode for file scratch.py, scope scratch_Project_kb_layout
 static const byte fun_data_scratch_Project_kb_layout[86] = {
     0x51,0x16, // prelude
-    0x82,0x35,0x84,0x06, // names: kb_layout, self
-    0xd0,0xc0,0x27,0x26,0x2f,0x33,0x33, // code info
+    0x82,0x37,0x84,0x0a, // names: kb_layout, self
+    0xd0,0xc7,0x27,0x26,0x2f,0x33,0x33, // code info
     0x23,0x81,0x18, // LOAD_CONST_OBJ 152
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xc1, // STORE_FAST 1
@@ -21378,19 +21481,19 @@ static const byte fun_data_scratch_Project_kb_layout[86] = {
     0xc3, // STORE_FAST 3
     0xa0, // LOAD_CONST_SMALL_INT 32
     0xb2, // LOAD_FAST 2
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
-    0x12,0x83,0x73, // LOAD_GLOBAL 'KB_ROWS'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x76, // LOAD_GLOBAL 'KB_ROWS'
     0x34,0x01, // CALL_FUNCTION 1
     0xf4, // BINARY_OP 29 __mul__
     0xf2, // BINARY_OP 27 __add__
     0x8c, // LOAD_CONST_SMALL_INT 12
     0xf2, // BINARY_OP 27 __add__
     0xc4, // STORE_FAST 4
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x51, // LOAD_ATTR 'ox'
+    0x13,0x81,0x53, // LOAD_ATTR 'ox'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x4f, // LOAD_ATTR 'sw'
+    0x13,0x81,0x51, // LOAD_ATTR 'sw'
     0xb3, // LOAD_FAST 3
     0xf3, // BINARY_OP 28 __sub__
     0x82, // LOAD_CONST_SMALL_INT 2
@@ -21398,11 +21501,11 @@ static const byte fun_data_scratch_Project_kb_layout[86] = {
     0xf2, // BINARY_OP 27 __add__
     0x34,0x01, // CALL_FUNCTION 1
     0xc5, // STORE_FAST 5
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x52, // LOAD_ATTR 'oy'
+    0x13,0x81,0x54, // LOAD_ATTR 'oy'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x50, // LOAD_ATTR 'sh'
+    0x13,0x81,0x52, // LOAD_ATTR 'sh'
     0xf2, // BINARY_OP 27 __add__
     0x34,0x01, // CALL_FUNCTION 1
     0xb4, // LOAD_FAST 4
@@ -21440,7 +21543,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_kb_layout = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 309,
+        .qstr_block_name_idx = 311,
         .line_info = fun_data_scratch_Project_kb_layout + 6,
         .line_info_top = fun_data_scratch_Project_kb_layout + 13,
         .opcodes = fun_data_scratch_Project_kb_layout + 13,
@@ -21456,20 +21559,20 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_kb_layout = {
 // frozen bytecode for file scratch.py, scope scratch_Project_ask_key
 static const byte fun_data_scratch_Project_ask_key[371] = {
     0x5b,0x4e, // prelude
-    0x82,0x36,0x84,0x06,0x84,0x1f,0x84,0x25, // names: ask_key, self, k, shift
-    0xd0,0xc8,0x20,0x25,0x28,0x2a,0x27,0x27,0x37,0x36,0x27,0x3c,0x28,0x28,0x26,0x26,0x26,0x2d,0x2d,0x2d,0x27,0x25,0x4d,0x27,0x35,0x2a,0x33,0x2b,0x34,0x2c,0x28, // code info
+    0x82,0x38,0x84,0x0a,0x84,0x24,0x84,0x2a, // names: ask_key, self, k, shift
+    0xd0,0xcf,0x20,0x25,0x28,0x2a,0x27,0x27,0x37,0x36,0x27,0x3c,0x28,0x28,0x26,0x26,0x26,0x2d,0x2d,0x2d,0x27,0x25,0x4d,0x27,0x35,0x2a,0x33,0x2b,0x34,0x2c,0x28, // code info
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x32, // LOAD_ATTR 'asking'
+    0x13,0x81,0x34, // LOAD_ATTR 'asking'
     0xc3, // STORE_FAST 3
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x42, // LOAD_ATTR 'kb'
+    0x13,0x81,0x44, // LOAD_ATTR 'kb'
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xc4, // STORE_FAST 4
     0xc5, // STORE_FAST 5
     0xb2, // LOAD_FAST 2
     0x44,0x4e, // POP_JUMP_IF_FALSE 14
     0xb1, // LOAD_FAST 1
-    0x10,0x82,0x25, // LOAD_CONST_STRING 'EXE'
+    0x10,0x82,0x27, // LOAD_CONST_STRING 'EXE'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x47, // POP_JUMP_IF_FALSE 7
     0x52, // LOAD_CONST_TRUE
@@ -21483,22 +21586,22 @@ static const byte fun_data_scratch_Project_ask_key[371] = {
     0x44,0x6d, // POP_JUMP_IF_FALSE 45
     0xb4, // LOAD_FAST 4
     0xb1, // LOAD_FAST 1
-    0x10,0x82,0x23, // LOAD_CONST_STRING 'DOWN'
+    0x10,0x82,0x25, // LOAD_CONST_STRING 'DOWN'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x43, // POP_JUMP_IF_FALSE 3
     0x81, // LOAD_CONST_SMALL_INT 1
     0x42,0x41, // JUMP 1
     0x7f, // LOAD_CONST_SMALL_INT -1
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
-    0x12,0x83,0x73, // LOAD_GLOBAL 'KB_ROWS'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x76, // LOAD_GLOBAL 'KB_ROWS'
     0x34,0x01, // CALL_FUNCTION 1
     0xf8, // BINARY_OP 33 __mod__
     0xc4, // STORE_FAST 4
-    0x12,0x84,0x0f, // LOAD_GLOBAL 'min'
+    0x12,0x84,0x13, // LOAD_GLOBAL 'min'
     0xb5, // LOAD_FAST 5
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
-    0x12,0x83,0x73, // LOAD_GLOBAL 'KB_ROWS'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x76, // LOAD_GLOBAL 'KB_ROWS'
     0xb4, // LOAD_FAST 4
     0x55, // LOAD_SUBSCR
     0x34,0x01, // CALL_FUNCTION 1
@@ -21513,15 +21616,15 @@ static const byte fun_data_scratch_Project_ask_key[371] = {
     0x44,0x5c, // POP_JUMP_IF_FALSE 28
     0xb5, // LOAD_FAST 5
     0xb1, // LOAD_FAST 1
-    0x10,0x82,0x37, // LOAD_CONST_STRING 'RIGHT'
+    0x10,0x82,0x39, // LOAD_CONST_STRING 'RIGHT'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x43, // POP_JUMP_IF_FALSE 3
     0x81, // LOAD_CONST_SMALL_INT 1
     0x42,0x41, // JUMP 1
     0x7f, // LOAD_CONST_SMALL_INT -1
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
-    0x12,0x83,0x73, // LOAD_GLOBAL 'KB_ROWS'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x76, // LOAD_GLOBAL 'KB_ROWS'
     0xb4, // LOAD_FAST 4
     0x55, // LOAD_SUBSCR
     0x34,0x01, // CALL_FUNCTION 1
@@ -21529,10 +21632,10 @@ static const byte fun_data_scratch_Project_ask_key[371] = {
     0xc5, // STORE_FAST 5
     0x42,0xc6,0x81, // JUMP 198
     0xb1, // LOAD_FAST 1
-    0x10,0x82,0x25, // LOAD_CONST_STRING 'EXE'
+    0x10,0x82,0x27, // LOAD_CONST_STRING 'EXE'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0xc1,0x80, // POP_JUMP_IF_FALSE 65
-    0x12,0x83,0x73, // LOAD_GLOBAL 'KB_ROWS'
+    0x12,0x83,0x76, // LOAD_GLOBAL 'KB_ROWS'
     0xb4, // LOAD_FAST 4
     0x55, // LOAD_SUBSCR
     0xb5, // LOAD_FAST 5
@@ -21562,7 +21665,7 @@ static const byte fun_data_scratch_Project_ask_key[371] = {
     0x81, // LOAD_CONST_SMALL_INT 1
     0x56, // STORE_SUBSCR
     0x42,0x57, // JUMP 23
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xb3, // LOAD_FAST 3
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
@@ -21581,7 +21684,7 @@ static const byte fun_data_scratch_Project_ask_key[371] = {
     0x42,0x40, // JUMP 0
     0x42,0xfd,0x80, // JUMP 125
     0xb1, // LOAD_FAST 1
-    0x10,0x82,0x26, // LOAD_CONST_STRING 'DEL'
+    0x10,0x82,0x28, // LOAD_CONST_STRING 'DEL'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x59, // POP_JUMP_IF_FALSE 25
     0xb3, // LOAD_FAST 3
@@ -21605,10 +21708,10 @@ static const byte fun_data_scratch_Project_ask_key[371] = {
     0x56, // STORE_SUBSCR
     0x42,0xdd,0x80, // JUMP 93
     0xb1, // LOAD_FAST 1
-    0x14,0x82,0x24, // LOAD_METHOD 'isdigit'
+    0x14,0x82,0x26, // LOAD_METHOD 'isdigit'
     0x36,0x00, // CALL_METHOD 0
     0x44,0x57, // POP_JUMP_IF_FALSE 23
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xb3, // LOAD_FAST 3
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
@@ -21629,7 +21732,7 @@ static const byte fun_data_scratch_Project_ask_key[371] = {
     0x10,0x22, // LOAD_CONST_STRING '.'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x58, // POP_JUMP_IF_FALSE 24
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xb3, // LOAD_FAST 3
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
@@ -21647,10 +21750,10 @@ static const byte fun_data_scratch_Project_ask_key[371] = {
     0x56, // STORE_SUBSCR
     0x42,0x60, // JUMP 32
     0xb1, // LOAD_FAST 1
-    0x10,0x82,0x38, // LOAD_CONST_STRING 'SUB'
+    0x10,0x82,0x3a, // LOAD_CONST_STRING 'SUB'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x59, // POP_JUMP_IF_FALSE 25
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xb3, // LOAD_FAST 3
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
@@ -21662,7 +21765,7 @@ static const byte fun_data_scratch_Project_ask_key[371] = {
     0x81, // LOAD_CONST_SMALL_INT 1
     0x58, // DUP_TOP_TWO
     0x55, // LOAD_SUBSCR
-    0x10,0x82,0x39, // LOAD_CONST_STRING '-'
+    0x10,0x82,0x3b, // LOAD_CONST_STRING '-'
     0xe5, // BINARY_OP 14 __iadd__
     0x5b, // ROT_THREE
     0x56, // STORE_SUBSCR
@@ -21671,10 +21774,10 @@ static const byte fun_data_scratch_Project_ask_key[371] = {
     0xb5, // LOAD_FAST 5
     0x2b,0x02, // BUILD_LIST 2
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x42, // STORE_ATTR 'kb'
+    0x18,0x81,0x44, // STORE_ATTR 'kb'
     0x52, // LOAD_CONST_TRUE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x33, // STORE_ATTR 'dirty_all'
+    0x18,0x81,0x35, // STORE_ATTR 'dirty_all'
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -21701,7 +21804,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_ask_key = {
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 310,
+        .qstr_block_name_idx = 312,
         .line_info = fun_data_scratch_Project_ask_key + 10,
         .line_info_top = fun_data_scratch_Project_ask_key + 41,
         .opcodes = fun_data_scratch_Project_ask_key + 41,
@@ -21717,16 +21820,16 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_ask_key = {
 // frozen bytecode for file scratch.py, scope scratch_Project_draw_ask
 static const byte fun_data_scratch_Project_draw_ask[368] = {
     0x91,0x20,0x32, // prelude
-    0x81,0x7c,0x84,0x06, // names: draw_ask, self
-    0xd0,0xe9,0x29,0x2c,0x26,0x2f,0x32,0x32,0x39,0x1f,0x2c,0x28,0x30,0x2e,0x33,0x2a,0x24,0x3a,0x2e,0x1f,0x3a, // code info
+    0x81,0x7e,0x84,0x0a, // names: draw_ask, self
+    0xd0,0xf0,0x29,0x2c,0x26,0x2f,0x32,0x32,0x39,0x1f,0x2c,0x28,0x30,0x2e,0x33,0x2a,0x24,0x3a,0x2e,0x1f,0x3a, // code info
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x32, // LOAD_ATTR 'asking'
+    0x13,0x81,0x34, // LOAD_ATTR 'asking'
     0x30,0x03, // UNPACK_SEQUENCE 3
     0xc1, // STORE_FAST 1
     0xc2, // STORE_FAST 2
     0xc3, // STORE_FAST 3
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x35, // LOAD_METHOD 'kb_layout'
+    0x14,0x82,0x37, // LOAD_METHOD 'kb_layout'
     0x36,0x00, // CALL_METHOD 0
     0x30,0x04, // UNPACK_SEQUENCE 4
     0xc4, // STORE_FAST 4
@@ -21741,16 +21844,16 @@ static const byte fun_data_scratch_Project_draw_ask[368] = {
     0xc8, // STORE_FAST 8
     0xa0, // LOAD_CONST_SMALL_INT 32
     0xb7, // LOAD_FAST 7
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
-    0x12,0x83,0x73, // LOAD_GLOBAL 'KB_ROWS'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x76, // LOAD_GLOBAL 'KB_ROWS'
     0x34,0x01, // CALL_FUNCTION 1
     0xf4, // BINARY_OP 29 __mul__
     0xf2, // BINARY_OP 27 __add__
     0x8c, // LOAD_CONST_SMALL_INT 12
     0xf2, // BINARY_OP 27 __add__
     0xc9, // STORE_FAST 9
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
-    0x14,0x81,0x7d, // LOAD_METHOD 'rect'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x7f, // LOAD_METHOD 'rect'
     0xb4, // LOAD_FAST 4
     0xb5, // LOAD_FAST 5
     0xb8, // LOAD_FAST 8
@@ -21758,8 +21861,8 @@ static const byte fun_data_scratch_Project_draw_ask[368] = {
     0x22,0x87,0xff,0xff,0x7f, // LOAD_CONST_SMALL_INT 16777215
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
-    0x14,0x82,0x01, // LOAD_METHOD 'marco'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
+    0x14,0x82,0x03, // LOAD_METHOD 'marco'
     0xb4, // LOAD_FAST 4
     0xb5, // LOAD_FAST 5
     0xb8, // LOAD_FAST 8
@@ -21767,7 +21870,7 @@ static const byte fun_data_scratch_Project_draw_ask[368] = {
     0x22,0x84,0x95,0xb9,0x56, // LOAD_CONST_SMALL_INT 8740054
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
     0x14,0x33, // LOAD_METHOD 'texto'
     0xb1, // LOAD_FAST 1
     0x51, // LOAD_CONST_NONE
@@ -21783,9 +21886,9 @@ static const byte fun_data_scratch_Project_draw_ask[368] = {
     0x22,0x81,0x80,0xc0,0x20, // LOAD_CONST_SMALL_INT 2105376
     0x36,0x04, // CALL_METHOD 4
     0x59, // POP_TOP
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
     0x14,0x33, // LOAD_METHOD 'texto'
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xb2, // LOAD_FAST 2
     0x34,0x01, // CALL_FUNCTION 1
     0x96, // LOAD_CONST_SMALL_INT 22
@@ -21798,7 +21901,7 @@ static const byte fun_data_scratch_Project_draw_ask[368] = {
     0x55, // LOAD_SUBSCR
     0x42,0x41, // JUMP 1
     0xb2, // LOAD_FAST 2
-    0x10,0x82,0x3a, // LOAD_CONST_STRING '_'
+    0x10,0x82,0x3c, // LOAD_CONST_STRING '_'
     0xf2, // BINARY_OP 27 __add__
     0xb4, // LOAD_FAST 4
     0x85, // LOAD_CONST_SMALL_INT 5
@@ -21810,19 +21913,19 @@ static const byte fun_data_scratch_Project_draw_ask[368] = {
     0x36,0x04, // CALL_METHOD 4
     0x59, // POP_TOP
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x42, // LOAD_ATTR 'kb'
+    0x13,0x81,0x44, // LOAD_ATTR 'kb'
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xca, // STORE_FAST 10
     0xcb, // STORE_FAST 11
-    0x12,0x84,0x0d, // LOAD_GLOBAL 'enumerate'
-    0x12,0x83,0x73, // LOAD_GLOBAL 'KB_ROWS'
+    0x12,0x84,0x11, // LOAD_GLOBAL 'enumerate'
+    0x12,0x83,0x76, // LOAD_GLOBAL 'KB_ROWS'
     0x34,0x01, // CALL_FUNCTION 1
     0x5f, // GET_ITER_STACK
     0x4b,0x94,0x01, // FOR_ITER 148
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xcc, // STORE_FAST 12
     0xcd, // STORE_FAST 13
-    0x12,0x84,0x0d, // LOAD_GLOBAL 'enumerate'
+    0x12,0x84,0x11, // LOAD_GLOBAL 'enumerate'
     0xbd, // LOAD_FAST 13
     0x34,0x01, // CALL_FUNCTION 1
     0x5f, // GET_ITER_STACK
@@ -21857,8 +21960,8 @@ static const byte fun_data_scratch_Project_draw_ask[368] = {
     0x26,0x12, // STORE_FAST_N 18
     0x24,0x12, // LOAD_FAST_N 18
     0x44,0x5a, // POP_JUMP_IF_FALSE 26
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
-    0x14,0x81,0x7d, // LOAD_METHOD 'rect'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x7f, // LOAD_METHOD 'rect'
     0x24,0x10, // LOAD_FAST_N 16
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf3, // BINARY_OP 28 __sub__
@@ -21876,11 +21979,11 @@ static const byte fun_data_scratch_Project_draw_ask[368] = {
     0x10,0x0e, // LOAD_CONST_STRING ' '
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x45, // POP_JUMP_IF_FALSE 5
-    0x10,0x82,0x3a, // LOAD_CONST_STRING '_'
+    0x10,0x82,0x3c, // LOAD_CONST_STRING '_'
     0x42,0x41, // JUMP 1
     0xbf, // LOAD_FAST 15
     0x26,0x13, // STORE_FAST_N 19
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
     0x14,0x33, // LOAD_METHOD 'texto'
     0x24,0x13, // LOAD_FAST_N 19
     0x51, // LOAD_CONST_NONE
@@ -21888,7 +21991,7 @@ static const byte fun_data_scratch_Project_draw_ask[368] = {
     0x2e,0x02, // BUILD_SLICE 2
     0x55, // LOAD_SUBSCR
     0x24,0x10, // LOAD_FAST_N 16
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0x24,0x13, // LOAD_FAST_N 19
     0x34,0x01, // CALL_FUNCTION 1
     0x81, // LOAD_CONST_SMALL_INT 1
@@ -21908,7 +22011,7 @@ static const byte fun_data_scratch_Project_draw_ask[368] = {
     0x59, // POP_TOP
     0x42,0xfa,0x7e, // JUMP -134
     0x42,0xe9,0x7e, // JUMP -151
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
     0x14,0x33, // LOAD_METHOD 'texto'
     0x23,0x81,0x1a, // LOAD_CONST_OBJ 154
     0xb4, // LOAD_FAST 4
@@ -21948,7 +22051,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_draw_ask = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 252,
+        .qstr_block_name_idx = 254,
         .line_info = fun_data_scratch_Project_draw_ask + 7,
         .line_info_top = fun_data_scratch_Project_draw_ask + 28,
         .opcodes = fun_data_scratch_Project_draw_ask + 28,
@@ -21962,24 +22065,24 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_draw_ask = {
 
 // child of scratch_Project
 // frozen bytecode for file scratch.py, scope scratch_Project_render
-static const byte fun_data_scratch_Project_render[503] = {
-    0x91,0x10,0x5c, // prelude
-    0x82,0x3b,0x84,0x06, // names: render, self
-    0xd0,0xfe,0x2a,0x26,0x28,0x2c,0x24,0x26,0x25,0x2a,0x23,0x28,0x30,0x25,0x2b,0x27,0x27,0x3d,0x28,0x26,0x2d,0x27,0x28,0x29,0x27,0x2e,0x25,0x25,0x27,0x25,0x1f,0x2e,0x28,0x2a,0x22,0x23,0x22,0x3a,0x3a,0x3f,0x3f,0x2a, // code info
-    0x12,0x83,0x72, // LOAD_GLOBAL 'list'
+static const byte fun_data_scratch_Project_render[565] = {
+    0xd1,0x10,0x66, // prelude
+    0x82,0x3d,0x84,0x0a, // names: render, self
+    0xe0,0x05,0x2a,0x26,0x28,0x2c,0x24,0x26,0x25,0x2a,0x23,0x28,0x30,0x25,0x2b,0x27,0x27,0x3d,0x28,0x26,0x2d,0x27,0x28,0x29,0x27,0x2e,0x25,0x25,0x27,0x25,0x1f,0x2e,0x28,0x2a,0x22,0x23,0x62,0x28,0x2d,0x36,0x3b,0x35,0x3f,0x2a,0x1f,0x25,0x2a, // code info
+    0x12,0x83,0x75, // LOAD_GLOBAL 'list'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x34, // LOAD_ATTR 'dirty'
+    0x13,0x81,0x36, // LOAD_ATTR 'dirty'
     0x34,0x01, // CALL_FUNCTION 1
     0xc1, // STORE_FAST 1
     0x2b,0x00, // BUILD_LIST 0
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x34, // STORE_ATTR 'dirty'
+    0x18,0x81,0x36, // STORE_ATTR 'dirty'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x24, // LOAD_ATTR 'layers'
+    0x13,0x81,0x26, // LOAD_ATTR 'layers'
     0x5f, // GET_ITER_STACK
     0x4b,0x58, // FOR_ITER 88
     0xc2, // STORE_FAST 2
-    0x12,0x84,0x0b, // LOAD_GLOBAL 'getattr'
+    0x12,0x84,0x0f, // LOAD_GLOBAL 'getattr'
     0xb2, // LOAD_FAST 2
     0x10,0x3f, // LOAD_CONST_STRING 'changed'
     0x50, // LOAD_CONST_FALSE
@@ -21996,7 +22099,7 @@ static const byte fun_data_scratch_Project_render[503] = {
     0x13,0x61, // LOAD_ATTR 'drawn'
     0x44,0x4a, // POP_JUMP_IF_FALSE 10
     0xb1, // LOAD_FAST 1
-    0x14,0x81,0x68, // LOAD_METHOD 'append'
+    0x14,0x81,0x6a, // LOAD_METHOD 'append'
     0xb2, // LOAD_FAST 2
     0x13,0x61, // LOAD_ATTR 'drawn'
     0x36,0x01, // CALL_METHOD 1
@@ -22004,14 +22107,14 @@ static const byte fun_data_scratch_Project_render[503] = {
     0xb3, // LOAD_FAST 3
     0x44,0x48, // POP_JUMP_IF_FALSE 8
     0xb1, // LOAD_FAST 1
-    0x14,0x81,0x68, // LOAD_METHOD 'append'
+    0x14,0x81,0x6a, // LOAD_METHOD 'append'
     0xb3, // LOAD_FAST 3
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0xb2, // LOAD_FAST 2
     0x13,0x5d, // LOAD_ATTR 'say_text'
     0x43,0x4b, // POP_JUMP_IF_TRUE 11
-    0x12,0x84,0x0b, // LOAD_GLOBAL 'getattr'
+    0x12,0x84,0x0f, // LOAD_GLOBAL 'getattr'
     0xb2, // LOAD_FAST 2
     0x10,0x40, // LOAD_CONST_STRING 'had_bubble'
     0x50, // LOAD_CONST_FALSE
@@ -22019,8 +22122,8 @@ static const byte fun_data_scratch_Project_render[503] = {
     0x44,0x45, // POP_JUMP_IF_FALSE 5
     0x52, // LOAD_CONST_TRUE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x33, // STORE_ATTR 'dirty_all'
-    0x12,0x83,0x7a, // LOAD_GLOBAL 'bool'
+    0x18,0x81,0x35, // STORE_ATTR 'dirty_all'
+    0x12,0x83,0x7d, // LOAD_GLOBAL 'bool'
     0xb2, // LOAD_FAST 2
     0x13,0x5d, // LOAD_ATTR 'say_text'
     0x34,0x01, // CALL_FUNCTION 1
@@ -22031,46 +22134,46 @@ static const byte fun_data_scratch_Project_render[503] = {
     0x18,0x61, // STORE_ATTR 'drawn'
     0x42,0xa6,0x7f, // JUMP -90
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x44, // LOAD_ATTR 'uses_mouse'
+    0x13,0x81,0x46, // LOAD_ATTR 'uses_mouse'
     0x44,0xd0,0x80, // POP_JUMP_IF_FALSE 80
-    0x12,0x84,0x0e, // LOAD_GLOBAL 'round'
+    0x12,0x84,0x12, // LOAD_GLOBAL 'round'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x38, // LOAD_ATTR 'mouse'
+    0x13,0x81,0x3a, // LOAD_ATTR 'mouse'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
     0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x84,0x0e, // LOAD_GLOBAL 'round'
+    0x12,0x84,0x12, // LOAD_GLOBAL 'round'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x38, // LOAD_ATTR 'mouse'
+    0x13,0x81,0x3a, // LOAD_ATTR 'mouse'
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
     0x34,0x01, // CALL_FUNCTION 1
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x39, // LOAD_ATTR 'mouse_down'
+    0x13,0x81,0x3b, // LOAD_ATTR 'mouse_down'
     0x2a,0x03, // BUILD_TUPLE 3
     0xc4, // STORE_FAST 4
     0xb4, // LOAD_FAST 4
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x3b, // LOAD_ATTR 'mouse_drawn'
+    0x13,0x81,0x3d, // LOAD_ATTR 'mouse_drawn'
     0xdc, // BINARY_OP 5 __ne__
     0x44,0x6b, // POP_JUMP_IF_FALSE 43
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x3b, // LOAD_ATTR 'mouse_drawn'
+    0x13,0x81,0x3d, // LOAD_ATTR 'mouse_drawn'
     0x44,0x4d, // POP_JUMP_IF_FALSE 13
     0xb1, // LOAD_FAST 1
-    0x14,0x81,0x68, // LOAD_METHOD 'append'
+    0x14,0x81,0x6a, // LOAD_METHOD 'append'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x3b, // LOAD_ATTR 'mouse_drawn'
+    0x13,0x81,0x3d, // LOAD_ATTR 'mouse_drawn'
     0x83, // LOAD_CONST_SMALL_INT 3
     0x55, // LOAD_SUBSCR
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x05, // LOAD_METHOD 'cursor_rect'
+    0x14,0x82,0x07, // LOAD_METHOD 'cursor_rect'
     0x36,0x00, // CALL_METHOD 0
     0xc5, // STORE_FAST 5
     0xb1, // LOAD_FAST 1
-    0x14,0x81,0x68, // LOAD_METHOD 'append'
+    0x14,0x81,0x6a, // LOAD_METHOD 'append'
     0xb5, // LOAD_FAST 5
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
@@ -22079,54 +22182,54 @@ static const byte fun_data_scratch_Project_render[503] = {
     0x2a,0x01, // BUILD_TUPLE 1
     0xf2, // BINARY_OP 27 __add__
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x3b, // STORE_ATTR 'mouse_drawn'
+    0x18,0x81,0x3d, // STORE_ATTR 'mouse_drawn'
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x04, // LOAD_METHOD 'monitor_values'
+    0x14,0x82,0x06, // LOAD_METHOD 'monitor_values'
     0x36,0x00, // CALL_METHOD 0
     0xc6, // STORE_FAST 6
     0xb6, // LOAD_FAST 6
-    0x12,0x84,0x0b, // LOAD_GLOBAL 'getattr'
+    0x12,0x84,0x0f, // LOAD_GLOBAL 'getattr'
     0xb0, // LOAD_FAST 0
-    0x10,0x82,0x3c, // LOAD_CONST_STRING '_mon'
+    0x10,0x82,0x3e, // LOAD_CONST_STRING '_mon'
     0x51, // LOAD_CONST_NONE
     0x34,0x03, // CALL_FUNCTION 3
     0xdc, // BINARY_OP 5 __ne__
     0x44,0x4a, // POP_JUMP_IF_FALSE 10
     0xb6, // LOAD_FAST 6
     0xb0, // LOAD_FAST 0
-    0x18,0x82,0x3c, // STORE_ATTR '_mon'
+    0x18,0x82,0x3e, // STORE_ATTR '_mon'
     0x52, // LOAD_CONST_TRUE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x33, // STORE_ATTR 'dirty_all'
+    0x18,0x81,0x35, // STORE_ATTR 'dirty_all'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x33, // LOAD_ATTR 'dirty_all'
+    0x13,0x81,0x35, // LOAD_ATTR 'dirty_all'
     0x44,0xc6,0x80, // POP_JUMP_IF_FALSE 70
     0x50, // LOAD_CONST_FALSE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x33, // STORE_ATTR 'dirty_all'
+    0x18,0x81,0x35, // STORE_ATTR 'dirty_all'
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x77, // LOAD_METHOD 'draw_all'
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x14,0x81,0x79, // LOAD_METHOD 'draw_all'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x51, // LOAD_ATTR 'ox'
+    0x13,0x81,0x53, // LOAD_ATTR 'ox'
     0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x52, // LOAD_ATTR 'oy'
+    0x13,0x81,0x54, // LOAD_ATTR 'oy'
     0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x4f, // LOAD_ATTR 'sw'
+    0x13,0x81,0x51, // LOAD_ATTR 'sw'
     0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x50, // LOAD_ATTR 'sh'
+    0x13,0x81,0x52, // LOAD_ATTR 'sh'
     0x34,0x01, // CALL_FUNCTION 1
     0x2a,0x04, // BUILD_TUPLE 4
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x24, // LOAD_ATTR 'layers'
+    0x13,0x81,0x26, // LOAD_ATTR 'layers'
     0x5f, // GET_ITER_STACK
     0x4b,0x0b, // FOR_ITER 11
     0xc2, // STORE_FAST 2
@@ -22142,85 +22245,125 @@ static const byte fun_data_scratch_Project_render[503] = {
     0x43,0x42, // POP_JUMP_IF_TRUE 2
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
-    0x12,0x84,0x09, // LOAD_GLOBAL 'max'
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x51, // LOAD_ATTR 'ox'
-    0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x84,0x0f, // LOAD_GLOBAL 'min'
-    0x32,0x00, // MAKE_FUNCTION 0
+    0x14,0x82,0x3f, // LOAD_METHOD 'merge'
     0xb1, // LOAD_FAST 1
-    0x5e, // GET_ITER
-    0x34,0x01, // CALL_FUNCTION 1
-    0x34,0x01, // CALL_FUNCTION 1
-    0x34,0x02, // CALL_FUNCTION 2
+    0x36,0x01, // CALL_METHOD 1
     0xc7, // STORE_FAST 7
-    0x12,0x84,0x09, // LOAD_GLOBAL 'max'
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
-    0xb0, // LOAD_FAST 0
-    0x13,0x81,0x52, // LOAD_ATTR 'oy'
-    0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x84,0x0f, // LOAD_GLOBAL 'min'
-    0x32,0x01, // MAKE_FUNCTION 1
-    0xb1, // LOAD_FAST 1
-    0x5e, // GET_ITER
-    0x34,0x01, // CALL_FUNCTION 1
-    0x34,0x01, // CALL_FUNCTION 1
-    0x34,0x02, // CALL_FUNCTION 2
-    0xc8, // STORE_FAST 8
-    0x12,0x84,0x0f, // LOAD_GLOBAL 'min'
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
-    0xb0, // LOAD_FAST 0
-    0x13,0x81,0x51, // LOAD_ATTR 'ox'
-    0xb0, // LOAD_FAST 0
-    0x13,0x81,0x4f, // LOAD_ATTR 'sw'
-    0xf2, // BINARY_OP 27 __add__
-    0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x84,0x09, // LOAD_GLOBAL 'max'
-    0x32,0x02, // MAKE_FUNCTION 2
-    0xb1, // LOAD_FAST 1
-    0x5e, // GET_ITER
-    0x34,0x01, // CALL_FUNCTION 1
-    0x34,0x01, // CALL_FUNCTION 1
-    0x34,0x02, // CALL_FUNCTION 2
-    0xc9, // STORE_FAST 9
-    0x12,0x84,0x0f, // LOAD_GLOBAL 'min'
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
-    0xb0, // LOAD_FAST 0
-    0x13,0x81,0x52, // LOAD_ATTR 'oy'
-    0xb0, // LOAD_FAST 0
-    0x13,0x81,0x50, // LOAD_ATTR 'sh'
-    0xf2, // BINARY_OP 27 __add__
-    0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x84,0x09, // LOAD_GLOBAL 'max'
-    0x32,0x03, // MAKE_FUNCTION 3
-    0xb1, // LOAD_FAST 1
-    0x5e, // GET_ITER
-    0x34,0x01, // CALL_FUNCTION 1
-    0x34,0x01, // CALL_FUNCTION 1
-    0x34,0x02, // CALL_FUNCTION 2
-    0xca, // STORE_FAST 10
-    0xb9, // LOAD_FAST 9
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0xb7, // LOAD_FAST 7
+    0x34,0x01, // CALL_FUNCTION 1
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x17, // LOAD_ATTR 'max_pieces'
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x71, // POP_JUMP_IF_FALSE 49
+    0x12,0x84,0x13, // LOAD_GLOBAL 'min'
+    0x32,0x00, // MAKE_FUNCTION 0
+    0xb7, // LOAD_FAST 7
+    0x5e, // GET_ITER
+    0x34,0x01, // CALL_FUNCTION 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x84,0x13, // LOAD_GLOBAL 'min'
+    0x32,0x01, // MAKE_FUNCTION 1
+    0xb7, // LOAD_FAST 7
+    0x5e, // GET_ITER
+    0x34,0x01, // CALL_FUNCTION 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x84,0x0d, // LOAD_GLOBAL 'max'
+    0x32,0x02, // MAKE_FUNCTION 2
+    0xb7, // LOAD_FAST 7
+    0x5e, // GET_ITER
+    0x34,0x01, // CALL_FUNCTION 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x84,0x0d, // LOAD_GLOBAL 'max'
+    0x32,0x03, // MAKE_FUNCTION 3
+    0xb7, // LOAD_FAST 7
+    0x5e, // GET_ITER
+    0x34,0x01, // CALL_FUNCTION 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x2b,0x01, // BUILD_LIST 1
+    0xc7, // STORE_FAST 7
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x53, // LOAD_ATTR 'ox'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x54, // LOAD_ATTR 'oy'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x5a, // ROT_TWO
+    0xc8, // STORE_FAST 8
+    0xc9, // STORE_FAST 9
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x53, // LOAD_ATTR 'ox'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x51, // LOAD_ATTR 'sw'
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x54, // LOAD_ATTR 'oy'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x52, // LOAD_ATTR 'sh'
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x5a, // ROT_TWO
+    0xca, // STORE_FAST 10
+    0xcb, // STORE_FAST 11
+    0xb7, // LOAD_FAST 7
+    0x5f, // GET_ITER_STACK
+    0x4b,0x48, // FOR_ITER 72
+    0x30,0x04, // UNPACK_SEQUENCE 4
+    0xcc, // STORE_FAST 12
+    0xcd, // STORE_FAST 13
+    0xce, // STORE_FAST 14
+    0xcf, // STORE_FAST 15
+    0x12,0x84,0x0d, // LOAD_GLOBAL 'max'
+    0xb8, // LOAD_FAST 8
+    0xbc, // LOAD_FAST 12
+    0x34,0x02, // CALL_FUNCTION 2
+    0x12,0x84,0x0d, // LOAD_GLOBAL 'max'
+    0xb9, // LOAD_FAST 9
+    0xbd, // LOAD_FAST 13
+    0x34,0x02, // CALL_FUNCTION 2
+    0x12,0x84,0x13, // LOAD_GLOBAL 'min'
+    0xba, // LOAD_FAST 10
+    0xbe, // LOAD_FAST 14
+    0x34,0x02, // CALL_FUNCTION 2
+    0x12,0x84,0x13, // LOAD_GLOBAL 'min'
+    0xbb, // LOAD_FAST 11
+    0xbf, // LOAD_FAST 15
+    0x34,0x02, // CALL_FUNCTION 2
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x30,0x04, // UNPACK_SEQUENCE 4
+    0xcc, // STORE_FAST 12
+    0xcd, // STORE_FAST 13
+    0xce, // STORE_FAST 14
+    0xcf, // STORE_FAST 15
+    0xbe, // LOAD_FAST 14
+    0xbc, // LOAD_FAST 12
     0xd8, // BINARY_OP 1 __gt__
     0x44,0x56, // POP_JUMP_IF_FALSE 22
-    0xba, // LOAD_FAST 10
-    0xb8, // LOAD_FAST 8
+    0xbf, // LOAD_FAST 15
+    0xbd, // LOAD_FAST 13
     0xd8, // BINARY_OP 1 __gt__
     0x44,0x51, // POP_JUMP_IF_FALSE 17
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x77, // LOAD_METHOD 'draw_all'
-    0xb7, // LOAD_FAST 7
-    0xb8, // LOAD_FAST 8
-    0xb9, // LOAD_FAST 9
-    0xb7, // LOAD_FAST 7
+    0x14,0x81,0x79, // LOAD_METHOD 'draw_all'
+    0xbc, // LOAD_FAST 12
+    0xbd, // LOAD_FAST 13
+    0xbe, // LOAD_FAST 14
+    0xbc, // LOAD_FAST 12
     0xf3, // BINARY_OP 28 __sub__
-    0xba, // LOAD_FAST 10
-    0xb8, // LOAD_FAST 8
+    0xbf, // LOAD_FAST 15
+    0xbd, // LOAD_FAST 13
     0xf3, // BINARY_OP 28 __sub__
     0x2a,0x04, // BUILD_TUPLE 4
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
+    0x42,0xb6,0x7f, // JUMP -74
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -22228,8 +22371,8 @@ static const byte fun_data_scratch_Project_render[503] = {
 // frozen bytecode for file scratch.py, scope scratch_Project_render__lt_genexpr_gt_
 static const byte fun_data_scratch_Project_render__lt_genexpr_gt_[24] = {
     0xb9,0x40,0x0a, // prelude
-    0x82,0x4f,0x12, // names: <genexpr>, *
-    0xe0,0x20, // code info
+    0x82,0x53,0x12, // names: <genexpr>, *
+    0xe0,0x2b, // code info
     0x53, // LOAD_NULL
     0xb0, // LOAD_FAST 0
     0x53, // LOAD_NULL
@@ -22268,7 +22411,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_render__lt_genexp
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 335,
+        .qstr_block_name_idx = 339,
         .line_info = fun_data_scratch_Project_render__lt_genexpr_gt_ + 6,
         .line_info_top = fun_data_scratch_Project_render__lt_genexpr_gt_ + 8,
         .opcodes = fun_data_scratch_Project_render__lt_genexpr_gt_ + 8,
@@ -22284,8 +22427,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_render__lt_genexp
 // frozen bytecode for file scratch.py, scope scratch_Project_render__lt_genexpr_gt_2
 static const byte fun_data_scratch_Project_render__lt_genexpr_gt_2[24] = {
     0xb9,0x40,0x0a, // prelude
-    0x82,0x4f,0x12, // names: <genexpr>, *
-    0xe0,0x21, // code info
+    0x82,0x53,0x12, // names: <genexpr>, *
+    0xe0,0x2b, // code info
     0x53, // LOAD_NULL
     0xb0, // LOAD_FAST 0
     0x53, // LOAD_NULL
@@ -22324,7 +22467,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_render__lt_genexp
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 335,
+        .qstr_block_name_idx = 339,
         .line_info = fun_data_scratch_Project_render__lt_genexpr_gt_2 + 6,
         .line_info_top = fun_data_scratch_Project_render__lt_genexpr_gt_2 + 8,
         .opcodes = fun_data_scratch_Project_render__lt_genexpr_gt_2 + 8,
@@ -22338,26 +22481,22 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_render__lt_genexp
 
 // child of scratch_Project_render
 // frozen bytecode for file scratch.py, scope scratch_Project_render__lt_genexpr_gt_3
-static const byte fun_data_scratch_Project_render__lt_genexpr_gt_3[28] = {
-    0xc1,0x40,0x0a, // prelude
-    0x82,0x4f,0x12, // names: <genexpr>, *
-    0xe0,0x22, // code info
+static const byte fun_data_scratch_Project_render__lt_genexpr_gt_3[24] = {
+    0xb9,0x40,0x0a, // prelude
+    0x82,0x53,0x12, // names: <genexpr>, *
+    0xe0,0x2c, // code info
     0x53, // LOAD_NULL
     0xb0, // LOAD_FAST 0
     0x53, // LOAD_NULL
     0x53, // LOAD_NULL
-    0x4b,0x0c, // FOR_ITER 12
+    0x4b,0x08, // FOR_ITER 8
     0xc1, // STORE_FAST 1
-    0xb1, // LOAD_FAST 1
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0x55, // LOAD_SUBSCR
     0xb1, // LOAD_FAST 1
     0x82, // LOAD_CONST_SMALL_INT 2
     0x55, // LOAD_SUBSCR
-    0xf2, // BINARY_OP 27 __add__
     0x67, // YIELD_VALUE
     0x59, // POP_TOP
-    0x42,0x32, // JUMP -14
+    0x42,0x36, // JUMP -10
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -22370,7 +22509,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_render__lt_genexp
     .fun_data = fun_data_scratch_Project_render__lt_genexpr_gt_3,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 28,
+    .fun_data_len = 24,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -22378,13 +22517,13 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_render__lt_genexp
     #if MICROPY_PY_SYS_SETTRACE
     .line_of_definition = 0,
     .prelude = {
-        .n_state = 9,
+        .n_state = 8,
         .n_exc_stack = 0,
         .scope_flags = 1,
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 335,
+        .qstr_block_name_idx = 339,
         .line_info = fun_data_scratch_Project_render__lt_genexpr_gt_3 + 6,
         .line_info_top = fun_data_scratch_Project_render__lt_genexpr_gt_3 + 8,
         .opcodes = fun_data_scratch_Project_render__lt_genexpr_gt_3 + 8,
@@ -22398,26 +22537,22 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_render__lt_genexp
 
 // child of scratch_Project_render
 // frozen bytecode for file scratch.py, scope scratch_Project_render__lt_genexpr_gt_4
-static const byte fun_data_scratch_Project_render__lt_genexpr_gt_4[28] = {
-    0xc1,0x40,0x0a, // prelude
-    0x82,0x4f,0x12, // names: <genexpr>, *
-    0xe0,0x23, // code info
+static const byte fun_data_scratch_Project_render__lt_genexpr_gt_4[24] = {
+    0xb9,0x40,0x0a, // prelude
+    0x82,0x53,0x12, // names: <genexpr>, *
+    0xe0,0x2c, // code info
     0x53, // LOAD_NULL
     0xb0, // LOAD_FAST 0
     0x53, // LOAD_NULL
     0x53, // LOAD_NULL
-    0x4b,0x0c, // FOR_ITER 12
+    0x4b,0x08, // FOR_ITER 8
     0xc1, // STORE_FAST 1
-    0xb1, // LOAD_FAST 1
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x55, // LOAD_SUBSCR
     0xb1, // LOAD_FAST 1
     0x83, // LOAD_CONST_SMALL_INT 3
     0x55, // LOAD_SUBSCR
-    0xf2, // BINARY_OP 27 __add__
     0x67, // YIELD_VALUE
     0x59, // POP_TOP
-    0x42,0x32, // JUMP -14
+    0x42,0x36, // JUMP -10
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -22430,7 +22565,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_render__lt_genexp
     .fun_data = fun_data_scratch_Project_render__lt_genexpr_gt_4,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 28,
+    .fun_data_len = 24,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -22438,13 +22573,13 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_render__lt_genexp
     #if MICROPY_PY_SYS_SETTRACE
     .line_of_definition = 0,
     .prelude = {
-        .n_state = 9,
+        .n_state = 8,
         .n_exc_stack = 0,
         .scope_flags = 1,
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 335,
+        .qstr_block_name_idx = 339,
         .line_info = fun_data_scratch_Project_render__lt_genexpr_gt_4 + 6,
         .line_info_top = fun_data_scratch_Project_render__lt_genexpr_gt_4 + 8,
         .opcodes = fun_data_scratch_Project_render__lt_genexpr_gt_4 + 8,
@@ -22471,7 +22606,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_render = {
     .fun_data = fun_data_scratch_Project_render,
     .children = (void *)&children_scratch_Project_render,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 503,
+    .fun_data_len = 565,
     .n_children = 4,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -22479,38 +22614,215 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_render = {
     #if MICROPY_PY_SYS_SETTRACE
     .line_of_definition = 0,
     .prelude = {
-        .n_state = 19,
+        .n_state = 27,
         .n_exc_stack = 0,
         .scope_flags = 0,
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 315,
+        .qstr_block_name_idx = 317,
         .line_info = fun_data_scratch_Project_render + 7,
-        .line_info_top = fun_data_scratch_Project_render + 49,
-        .opcodes = fun_data_scratch_Project_render + 49,
+        .line_info_top = fun_data_scratch_Project_render + 54,
+        .opcodes = fun_data_scratch_Project_render + 54,
     },
     #endif
     #endif
 };
 
 // child of scratch_Project
+// frozen bytecode for file scratch.py, scope scratch_Project_merge
+static const byte fun_data_scratch_Project_merge[207] = {
+    0xb9,0x10,0x30, // prelude
+    0x82,0x3f,0x84,0x2b, // names: merge, rects
+    0xe0,0x36,0x20,0x23,0x2b,0x2a,0x22,0x2b,0x22,0x23,0x22,0x25,0x1f,0x31,0x1f,0x30,0x28,0x22,0x2d,0x2b, // code info
+    0x2b,0x00, // BUILD_LIST 0
+    0xc1, // STORE_FAST 1
+    0xb0, // LOAD_FAST 0
+    0x5f, // GET_ITER_STACK
+    0x4b,0xaa,0x01, // FOR_ITER 170
+    0x30,0x04, // UNPACK_SEQUENCE 4
+    0xc2, // STORE_FAST 2
+    0xc3, // STORE_FAST 3
+    0xc4, // STORE_FAST 4
+    0xc5, // STORE_FAST 5
+    0xb4, // LOAD_FAST 4
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xda, // BINARY_OP 3 __le__
+    0x43,0x45, // POP_JUMP_IF_TRUE 5
+    0xb5, // LOAD_FAST 5
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xda, // BINARY_OP 3 __le__
+    0x44,0x42, // POP_JUMP_IF_FALSE 2
+    0x42,0x2b, // JUMP -21
+    0xb2, // LOAD_FAST 2
+    0xb3, // LOAD_FAST 3
+    0xb2, // LOAD_FAST 2
+    0xb4, // LOAD_FAST 4
+    0xf2, // BINARY_OP 27 __add__
+    0xb3, // LOAD_FAST 3
+    0xb5, // LOAD_FAST 5
+    0xf2, // BINARY_OP 27 __add__
+    0x2a,0x04, // BUILD_TUPLE 4
+    0xc6, // STORE_FAST 6
+    0x52, // LOAD_CONST_TRUE
+    0xc7, // STORE_FAST 7
+    0x42,0xf9,0x80, // JUMP 121
+    0x50, // LOAD_CONST_FALSE
+    0xc7, // STORE_FAST 7
+    0xb1, // LOAD_FAST 1
+    0x5f, // GET_ITER_STACK
+    0x4b,0x73, // FOR_ITER 115
+    0xc8, // STORE_FAST 8
+    0xb6, // LOAD_FAST 6
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0xb8, // LOAD_FAST 8
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf2, // BINARY_OP 27 __add__
+    0xda, // BINARY_OP 3 __le__
+    0x44,0xe3,0x80, // POP_JUMP_IF_FALSE 99
+    0xb8, // LOAD_FAST 8
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0xb6, // LOAD_FAST 6
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf2, // BINARY_OP 27 __add__
+    0xda, // BINARY_OP 3 __le__
+    0x44,0xd7,0x80, // POP_JUMP_IF_FALSE 87
+    0xb6, // LOAD_FAST 6
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0xb8, // LOAD_FAST 8
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x55, // LOAD_SUBSCR
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf2, // BINARY_OP 27 __add__
+    0xda, // BINARY_OP 3 __le__
+    0x44,0xcb,0x80, // POP_JUMP_IF_FALSE 75
+    0xb8, // LOAD_FAST 8
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0xb6, // LOAD_FAST 6
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x55, // LOAD_SUBSCR
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf2, // BINARY_OP 27 __add__
+    0xda, // BINARY_OP 3 __le__
+    0x44,0xbf,0x80, // POP_JUMP_IF_FALSE 63
+    0x12,0x84,0x13, // LOAD_GLOBAL 'min'
+    0xb6, // LOAD_FAST 6
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0xb8, // LOAD_FAST 8
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0x34,0x02, // CALL_FUNCTION 2
+    0x12,0x84,0x13, // LOAD_GLOBAL 'min'
+    0xb6, // LOAD_FAST 6
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0xb8, // LOAD_FAST 8
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0x34,0x02, // CALL_FUNCTION 2
+    0x12,0x84,0x0d, // LOAD_GLOBAL 'max'
+    0xb6, // LOAD_FAST 6
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0xb8, // LOAD_FAST 8
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0x34,0x02, // CALL_FUNCTION 2
+    0x12,0x84,0x0d, // LOAD_GLOBAL 'max'
+    0xb6, // LOAD_FAST 6
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x55, // LOAD_SUBSCR
+    0xb8, // LOAD_FAST 8
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x55, // LOAD_SUBSCR
+    0x34,0x02, // CALL_FUNCTION 2
+    0x2a,0x04, // BUILD_TUPLE 4
+    0xc6, // STORE_FAST 6
+    0xb1, // LOAD_FAST 1
+    0x14,0x82,0x40, // LOAD_METHOD 'remove'
+    0xb8, // LOAD_FAST 8
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x52, // LOAD_CONST_TRUE
+    0xc7, // STORE_FAST 7
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x42,0x43, // JUMP 3
+    0x42,0x8b,0x7f, // JUMP -117
+    0xb7, // LOAD_FAST 7
+    0x43,0x83,0x7f, // POP_JUMP_IF_TRUE -125
+    0xb1, // LOAD_FAST 1
+    0x14,0x81,0x6a, // LOAD_METHOD 'append'
+    0xb6, // LOAD_FAST 6
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x42,0xd3,0x7e, // JUMP -173
+    0xb1, // LOAD_FAST 1
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_scratch_Project_merge = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_scratch_Project_merge,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 207,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 24,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 319,
+        .line_info = fun_data_scratch_Project_merge + 7,
+        .line_info_top = fun_data_scratch_Project_merge + 27,
+        .opcodes = fun_data_scratch_Project_merge + 27,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_scratch_Project_merge fun_data_scratch_Project_merge[0]
+#endif
+
+// child of scratch_Project
 // frozen bytecode for file scratch.py, scope scratch_Project_mouse_keys
 static const byte fun_data_scratch_Project_mouse_keys[38] = {
     0x29,0x0c, // prelude
-    0x82,0x3d,0x84,0x06, // names: mouse_keys, self
-    0xe0,0x2b, // code info
+    0x82,0x41,0x84,0x0a, // names: mouse_keys, self
+    0xe0,0x4c, // code info
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x44, // LOAD_ATTR 'uses_mouse'
+    0x13,0x81,0x46, // LOAD_ATTR 'uses_mouse'
     0x44,0x52, // POP_JUMP_IF_FALSE 18
-    0x10,0x82,0x3e, // LOAD_CONST_STRING '8'
-    0x10,0x82,0x3f, // LOAD_CONST_STRING '4'
-    0x10,0x82,0x40, // LOAD_CONST_STRING '6'
-    0x10,0x82,0x41, // LOAD_CONST_STRING '2'
-    0x10,0x82,0x42, // LOAD_CONST_STRING '5'
+    0x10,0x82,0x42, // LOAD_CONST_STRING '8'
+    0x10,0x82,0x43, // LOAD_CONST_STRING '4'
+    0x10,0x82,0x44, // LOAD_CONST_STRING '6'
+    0x10,0x82,0x45, // LOAD_CONST_STRING '2'
+    0x10,0x82,0x46, // LOAD_CONST_STRING '5'
     0x2d,0x05, // BUILD_SET 5
     0x63, // RETURN_VALUE
-    0x12,0x84,0x14, // LOAD_GLOBAL 'set'
+    0x12,0x84,0x19, // LOAD_GLOBAL 'set'
     0x34,0x00, // CALL_FUNCTION 0
     0x63, // RETURN_VALUE
 };
@@ -22537,7 +22849,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_mouse_keys = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 317,
+        .qstr_block_name_idx = 321,
         .line_info = fun_data_scratch_Project_mouse_keys + 6,
         .line_info_top = fun_data_scratch_Project_mouse_keys + 8,
         .opcodes = fun_data_scratch_Project_mouse_keys + 8,
@@ -22553,19 +22865,19 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_mouse_keys = {
 // frozen bytecode for file scratch.py, scope scratch_Project_move_mouse
 static const byte fun_data_scratch_Project_move_mouse[256] = {
     0xeb,0x01,0x30, // prelude
-    0x82,0x43,0x84,0x06,0x84,0x26,0x82,0x45, // names: move_mouse, self, events, click
-    0xe0,0x2e,0x25,0x38,0x38,0x27,0x4b,0x1f,0x23,0x1f,0x22,0x1f,0x44,0x25,0x3a,0x30, // code info
+    0x82,0x47,0x84,0x0a,0x84,0x2c,0x82,0x49, // names: move_mouse, self, events, click
+    0xe0,0x4f,0x25,0x38,0x38,0x27,0x4b,0x1f,0x23,0x1f,0x22,0x1f,0x44,0x25,0x3a,0x30, // code info
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x36, // LOAD_ATTR 'held'
+    0x13,0x81,0x38, // LOAD_ATTR 'held'
     0xc3, // STORE_FAST 3
-    0x10,0x82,0x40, // LOAD_CONST_STRING '6'
+    0x10,0x82,0x44, // LOAD_CONST_STRING '6'
     0xb3, // LOAD_FAST 3
     0xdd, // BINARY_OP 6 <in>
     0x44,0x43, // POP_JUMP_IF_FALSE 3
     0x81, // LOAD_CONST_SMALL_INT 1
     0x42,0x41, // JUMP 1
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x10,0x82,0x3f, // LOAD_CONST_STRING '4'
+    0x10,0x82,0x43, // LOAD_CONST_STRING '4'
     0xb3, // LOAD_FAST 3
     0xdd, // BINARY_OP 6 <in>
     0x44,0x43, // POP_JUMP_IF_FALSE 3
@@ -22574,14 +22886,14 @@ static const byte fun_data_scratch_Project_move_mouse[256] = {
     0x80, // LOAD_CONST_SMALL_INT 0
     0xf3, // BINARY_OP 28 __sub__
     0xc4, // STORE_FAST 4
-    0x10,0x82,0x3e, // LOAD_CONST_STRING '8'
+    0x10,0x82,0x42, // LOAD_CONST_STRING '8'
     0xb3, // LOAD_FAST 3
     0xdd, // BINARY_OP 6 <in>
     0x44,0x43, // POP_JUMP_IF_FALSE 3
     0x81, // LOAD_CONST_SMALL_INT 1
     0x42,0x41, // JUMP 1
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x10,0x82,0x41, // LOAD_CONST_STRING '2'
+    0x10,0x82,0x45, // LOAD_CONST_STRING '2'
     0xb3, // LOAD_FAST 3
     0xdd, // BINARY_OP 6 <in>
     0x44,0x43, // POP_JUMP_IF_FALSE 3
@@ -22596,23 +22908,23 @@ static const byte fun_data_scratch_Project_move_mouse[256] = {
     0x44,0xf1,0x80, // POP_JUMP_IF_FALSE 113
     0xb0, // LOAD_FAST 0
     0x57, // DUP_TOP
-    0x13,0x81,0x3a, // LOAD_ATTR 'mouse_t'
+    0x13,0x81,0x3c, // LOAD_ATTR 'mouse_t'
     0xa1, // LOAD_CONST_SMALL_INT 33
     0xe5, // BINARY_OP 14 __iadd__
     0x5a, // ROT_TWO
-    0x18,0x81,0x3a, // STORE_ATTR 'mouse_t'
+    0x18,0x81,0x3c, // STORE_ATTR 'mouse_t'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x3a, // LOAD_ATTR 'mouse_t'
+    0x13,0x81,0x3c, // LOAD_ATTR 'mouse_t'
     0x22,0x83,0x74, // LOAD_CONST_SMALL_INT 500
     0xd7, // BINARY_OP 0 __lt__
     0x44,0x43, // POP_JUMP_IF_FALSE 3
     0x84, // LOAD_CONST_SMALL_INT 4
     0x42,0x54, // JUMP 20
-    0x12,0x84,0x0f, // LOAD_GLOBAL 'min'
+    0x12,0x84,0x13, // LOAD_GLOBAL 'min'
     0x8a, // LOAD_CONST_SMALL_INT 10
     0x84, // LOAD_CONST_SMALL_INT 4
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x3a, // LOAD_ATTR 'mouse_t'
+    0x13,0x81,0x3c, // LOAD_ATTR 'mouse_t'
     0x22,0x83,0x74, // LOAD_CONST_SMALL_INT 500
     0xf3, // BINARY_OP 28 __sub__
     0x22,0x80,0x64, // LOAD_CONST_SMALL_INT 100
@@ -22620,13 +22932,13 @@ static const byte fun_data_scratch_Project_move_mouse[256] = {
     0xf2, // BINARY_OP 27 __add__
     0x34,0x02, // CALL_FUNCTION 2
     0xc6, // STORE_FAST 6
-    0x12,0x84,0x09, // LOAD_GLOBAL 'max'
+    0x12,0x84,0x0d, // LOAD_GLOBAL 'max'
     0x23,0x81,0x1b, // LOAD_CONST_OBJ 155
     0xd1, // UNARY_OP 1 __neg__
-    0x12,0x84,0x0f, // LOAD_GLOBAL 'min'
+    0x12,0x84,0x13, // LOAD_GLOBAL 'min'
     0x23,0x81,0x1b, // LOAD_CONST_OBJ 155
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x38, // LOAD_ATTR 'mouse'
+    0x13,0x81,0x3a, // LOAD_ATTR 'mouse'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
     0xb4, // LOAD_FAST 4
@@ -22636,16 +22948,16 @@ static const byte fun_data_scratch_Project_move_mouse[256] = {
     0x34,0x02, // CALL_FUNCTION 2
     0x34,0x02, // CALL_FUNCTION 2
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x38, // LOAD_ATTR 'mouse'
+    0x13,0x81,0x3a, // LOAD_ATTR 'mouse'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x56, // STORE_SUBSCR
-    0x12,0x84,0x09, // LOAD_GLOBAL 'max'
+    0x12,0x84,0x0d, // LOAD_GLOBAL 'max'
     0x23,0x81,0x1c, // LOAD_CONST_OBJ 156
     0xd1, // UNARY_OP 1 __neg__
-    0x12,0x84,0x0f, // LOAD_GLOBAL 'min'
+    0x12,0x84,0x13, // LOAD_GLOBAL 'min'
     0x23,0x81,0x1c, // LOAD_CONST_OBJ 156
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x38, // LOAD_ATTR 'mouse'
+    0x13,0x81,0x3a, // LOAD_ATTR 'mouse'
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
     0xb5, // LOAD_FAST 5
@@ -22655,30 +22967,30 @@ static const byte fun_data_scratch_Project_move_mouse[256] = {
     0x34,0x02, // CALL_FUNCTION 2
     0x34,0x02, // CALL_FUNCTION 2
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x38, // LOAD_ATTR 'mouse'
+    0x13,0x81,0x3a, // LOAD_ATTR 'mouse'
     0x81, // LOAD_CONST_SMALL_INT 1
     0x56, // STORE_SUBSCR
     0x42,0x45, // JUMP 5
     0x80, // LOAD_CONST_SMALL_INT 0
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x3a, // STORE_ATTR 'mouse_t'
-    0x10,0x82,0x42, // LOAD_CONST_STRING '5'
+    0x18,0x81,0x3c, // STORE_ATTR 'mouse_t'
+    0x10,0x82,0x46, // LOAD_CONST_STRING '5'
     0xb3, // LOAD_FAST 3
     0xdd, // BINARY_OP 6 <in>
     0x45,0x0f, // JUMP_IF_TRUE_OR_POP 15
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x41, // LOAD_ATTR 'frame'
-    0x12,0x84,0x0b, // LOAD_GLOBAL 'getattr'
+    0x13,0x81,0x43, // LOAD_ATTR 'frame'
+    0x12,0x84,0x0f, // LOAD_GLOBAL 'getattr'
     0xb0, // LOAD_FAST 0
-    0x10,0x82,0x44, // LOAD_CONST_STRING 'clic_hasta'
+    0x10,0x82,0x48, // LOAD_CONST_STRING 'clic_hasta'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x34,0x03, // CALL_FUNCTION 3
     0xd7, // BINARY_OP 0 __lt__
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x39, // STORE_ATTR 'mouse_down'
+    0x18,0x81,0x3b, // STORE_ATTR 'mouse_down'
     0xb2, // LOAD_FAST 2
     0x44,0x54, // POP_JUMP_IF_FALSE 20
-    0x12,0x82,0x49, // LOAD_GLOBAL 'any'
+    0x12,0x82,0x4d, // LOAD_GLOBAL 'any'
     0x32,0x00, // MAKE_FUNCTION 0
     0xb1, // LOAD_FAST 1
     0x5e, // GET_ITER
@@ -22686,7 +22998,7 @@ static const byte fun_data_scratch_Project_move_mouse[256] = {
     0x34,0x01, // CALL_FUNCTION 1
     0x44,0x47, // POP_JUMP_IF_FALSE 7
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x45, // LOAD_METHOD 'click'
+    0x14,0x82,0x49, // LOAD_METHOD 'click'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0x51, // LOAD_CONST_NONE
@@ -22696,8 +23008,8 @@ static const byte fun_data_scratch_Project_move_mouse[256] = {
 // frozen bytecode for file scratch.py, scope scratch_Project_move_mouse__lt_genexpr_gt_
 static const byte fun_data_scratch_Project_move_mouse__lt_genexpr_gt_[33] = {
     0xc1,0x40,0x0a, // prelude
-    0x82,0x4f,0x12, // names: <genexpr>, *
-    0xe0,0x3a, // code info
+    0x82,0x53,0x12, // names: <genexpr>, *
+    0xe0,0x5b, // code info
     0x53, // LOAD_NULL
     0xb0, // LOAD_FAST 0
     0x53, // LOAD_NULL
@@ -22707,7 +23019,7 @@ static const byte fun_data_scratch_Project_move_mouse__lt_genexpr_gt_[33] = {
     0xc1, // STORE_FAST 1
     0xc2, // STORE_FAST 2
     0xb1, // LOAD_FAST 1
-    0x10,0x82,0x42, // LOAD_CONST_STRING '5'
+    0x10,0x82,0x46, // LOAD_CONST_STRING '5'
     0xd9, // BINARY_OP 2 __eq__
     0x46,0x02, // JUMP_IF_FALSE_OR_POP 2
     0xb2, // LOAD_FAST 2
@@ -22741,7 +23053,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_move_mouse__lt_ge
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 335,
+        .qstr_block_name_idx = 339,
         .line_info = fun_data_scratch_Project_move_mouse__lt_genexpr_gt_ + 6,
         .line_info_top = fun_data_scratch_Project_move_mouse__lt_genexpr_gt_ + 8,
         .opcodes = fun_data_scratch_Project_move_mouse__lt_genexpr_gt_ + 8,
@@ -22779,7 +23091,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_move_mouse = {
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 1,
-        .qstr_block_name_idx = 323,
+        .qstr_block_name_idx = 327,
         .line_info = fun_data_scratch_Project_move_mouse + 11,
         .line_info_top = fun_data_scratch_Project_move_mouse + 27,
         .opcodes = fun_data_scratch_Project_move_mouse + 27,
@@ -22792,16 +23104,16 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_move_mouse = {
 // frozen bytecode for file scratch.py, scope scratch_Project_click
 static const byte fun_data_scratch_Project_click[134] = {
     0x81,0x10,0x1a, // prelude
-    0x82,0x45,0x84,0x06, // names: click, self
-    0xe0,0x3e,0x28,0x2d,0x2f,0x2b,0x3e,0x30,0x25, // code info
+    0x82,0x49,0x84,0x0a, // names: click, self
+    0xe0,0x5f,0x28,0x2d,0x2f,0x2b,0x3e,0x30,0x25, // code info
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x38, // LOAD_ATTR 'mouse'
+    0x13,0x81,0x3a, // LOAD_ATTR 'mouse'
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xc1, // STORE_FAST 1
     0xc2, // STORE_FAST 2
-    0x12,0x84,0x27, // LOAD_GLOBAL 'reversed'
+    0x12,0x84,0x2d, // LOAD_GLOBAL 'reversed'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x24, // LOAD_ATTR 'layers'
+    0x13,0x81,0x26, // LOAD_ATTR 'layers'
     0x34,0x01, // CALL_FUNCTION 1
     0x5f, // GET_ITER_STACK
     0x4b,0x4e, // FOR_ITER 78
@@ -22849,7 +23161,7 @@ static const byte fun_data_scratch_Project_click[134] = {
     0xb0, // LOAD_FAST 0
     0x14,0x39, // LOAD_METHOD 'start_hats'
     0x23,0x81,0x1d, // LOAD_CONST_OBJ 157
-    0x10,0x81,0x17, // LOAD_CONST_STRING 'sprites'
+    0x10,0x81,0x19, // LOAD_CONST_STRING 'sprites'
     0xb3, // LOAD_FAST 3
     0x2b,0x01, // BUILD_LIST 1
     0x36,0x82,0x01, // CALL_METHOD 257
@@ -22860,7 +23172,7 @@ static const byte fun_data_scratch_Project_click[134] = {
     0xb0, // LOAD_FAST 0
     0x14,0x39, // LOAD_METHOD 'start_hats'
     0x23,0x81,0x1e, // LOAD_CONST_OBJ 158
-    0x10,0x81,0x17, // LOAD_CONST_STRING 'sprites'
+    0x10,0x81,0x19, // LOAD_CONST_STRING 'sprites'
     0xb0, // LOAD_FAST 0
     0x13,0x45, // LOAD_ATTR 'stage'
     0x2b,0x01, // BUILD_LIST 1
@@ -22892,7 +23204,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_click = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 325,
+        .qstr_block_name_idx = 329,
         .line_info = fun_data_scratch_Project_click + 7,
         .line_info_top = fun_data_scratch_Project_click + 16,
         .opcodes = fun_data_scratch_Project_click + 16,
@@ -22908,19 +23220,19 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_click = {
 // frozen bytecode for file scratch.py, scope scratch_Project_input
 static const byte fun_data_scratch_Project_input[737] = {
     0xb9,0x10,0x87,0x02, // prelude
-    0x82,0x46,0x84,0x06, // names: input, self
-    0xe0,0x48,0x29,0x52,0x27,0x28,0x33,0x27,0x28,0x22,0x28,0x2c,0x30,0x29,0x26,0x24,0x28,0x23,0x54,0x2e,0x35,0x53,0x28,0x28,0x2f,0x26,0x26,0x29,0x37,0x35,0x28,0x22,0x2b,0x23,0x1f,0x27,0x3c,0x28,0x22,0x27,0x26,0x26,0x25,0x42,0x28,0x2a,0x29,0x32,0x26,0x2f,0x35,0x2f,0x26,0x28,0x27,0x2a,0x22,0x2c,0x2e,0x22,0x30,0x25,0x32,0x00, // code info
-    0x12,0x83,0x6d, // LOAD_GLOBAL 'K'
-    0x14,0x82,0x47, // LOAD_METHOD 'eventos'
+    0x82,0x4a,0x84,0x0a, // names: input, self
+    0xe0,0x69,0x29,0x52,0x27,0x28,0x33,0x27,0x28,0x22,0x28,0x2c,0x30,0x29,0x26,0x24,0x28,0x23,0x54,0x2e,0x35,0x53,0x28,0x28,0x2f,0x26,0x26,0x29,0x37,0x35,0x28,0x22,0x2b,0x23,0x1f,0x27,0x3c,0x28,0x22,0x27,0x26,0x26,0x25,0x42,0x28,0x2a,0x29,0x32,0x26,0x2f,0x35,0x2f,0x26,0x28,0x27,0x2a,0x22,0x2c,0x2e,0x22,0x30,0x25,0x32,0x00, // code info
+    0x12,0x83,0x70, // LOAD_GLOBAL 'K'
+    0x14,0x82,0x4b, // LOAD_METHOD 'eventos'
     0x36,0x00, // CALL_METHOD 0
     0xc1, // STORE_FAST 1
-    0x12,0x84,0x14, // LOAD_GLOBAL 'set'
-    0x12,0x83,0x6d, // LOAD_GLOBAL 'K'
-    0x14,0x82,0x48, // LOAD_METHOD 'pulsadas'
+    0x12,0x84,0x19, // LOAD_GLOBAL 'set'
+    0x12,0x83,0x70, // LOAD_GLOBAL 'K'
+    0x14,0x82,0x4c, // LOAD_METHOD 'pulsadas'
     0x36,0x00, // CALL_METHOD 0
     0x34,0x01, // CALL_FUNCTION 1
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x36, // STORE_ATTR 'held'
+    0x18,0x81,0x38, // STORE_ATTR 'held'
     0x25,0x00, // LOAD_DEREF 0
     0x13,0x81,0x07, // LOAD_ATTR 'menu'
     0x44,0x6c, // POP_JUMP_IF_FALSE 44
@@ -22931,10 +23243,10 @@ static const byte fun_data_scratch_Project_input[737] = {
     0xc2, // STORE_FAST 2
     0xc3, // STORE_FAST 3
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x82,0x1e, // LOAD_METHOD 'menu_key'
+    0x14,0x82,0x20, // LOAD_METHOD 'menu_key'
     0xb3, // LOAD_FAST 3
     0x44,0x47, // POP_JUMP_IF_FALSE 7
-    0x10,0x82,0x21, // LOAD_CONST_STRING 'S:'
+    0x10,0x82,0x23, // LOAD_CONST_STRING 'S:'
     0xb2, // LOAD_FAST 2
     0xf2, // BINARY_OP 27 __add__
     0x42,0x41, // JUMP 1
@@ -22960,7 +23272,7 @@ static const byte fun_data_scratch_Project_input[737] = {
     0xc3, // STORE_FAST 3
     0xb3, // LOAD_FAST 3
     0x44,0x47, // POP_JUMP_IF_FALSE 7
-    0x10,0x82,0x21, // LOAD_CONST_STRING 'S:'
+    0x10,0x82,0x23, // LOAD_CONST_STRING 'S:'
     0xb2, // LOAD_FAST 2
     0xf2, // BINARY_OP 27 __add__
     0x42,0x41, // JUMP 1
@@ -22972,7 +23284,7 @@ static const byte fun_data_scratch_Project_input[737] = {
     0xdd, // BINARY_OP 6 <in>
     0x44,0x58, // POP_JUMP_IF_FALSE 24
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x32, // LOAD_ATTR 'asking'
+    0x13,0x81,0x34, // LOAD_ATTR 'asking'
     0x43,0x51, // POP_JUMP_IF_TRUE 17
     0x80, // LOAD_CONST_SMALL_INT 0
     0x51, // LOAD_CONST_NONE
@@ -22981,7 +23293,7 @@ static const byte fun_data_scratch_Project_input[737] = {
     0x18,0x81,0x07, // STORE_ATTR 'menu'
     0x52, // LOAD_CONST_TRUE
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x33, // STORE_ATTR 'dirty_all'
+    0x18,0x81,0x35, // STORE_ATTR 'dirty_all'
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
     0x42,0x0b, // JUMP -53
@@ -22994,62 +23306,62 @@ static const byte fun_data_scratch_Project_input[737] = {
     0xb3, // LOAD_FAST 3
     0x44,0x54, // POP_JUMP_IF_FALSE 20
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x41, // LOAD_ATTR 'frame'
+    0x13,0x81,0x43, // LOAD_ATTR 'frame'
     0x83, // LOAD_CONST_SMALL_INT 3
     0xf2, // BINARY_OP 27 __add__
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x3c, // LOAD_ATTR 'taps'
-    0x10,0x82,0x21, // LOAD_CONST_STRING 'S:'
+    0x13,0x81,0x3e, // LOAD_ATTR 'taps'
+    0x10,0x82,0x23, // LOAD_CONST_STRING 'S:'
     0xb2, // LOAD_FAST 2
     0xf2, // BINARY_OP 27 __add__
     0x56, // STORE_SUBSCR
     0x42,0x4c, // JUMP 12
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x36, // LOAD_ATTR 'held'
-    0x14,0x81,0x65, // LOAD_METHOD 'add'
+    0x13,0x81,0x38, // LOAD_ATTR 'held'
+    0x14,0x81,0x67, // LOAD_METHOD 'add'
     0xb2, // LOAD_FAST 2
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0x42,0x15, // JUMP -43
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x44, // LOAD_ATTR 'uses_mouse'
+    0x13,0x81,0x46, // LOAD_ATTR 'uses_mouse'
     0x44,0x61, // POP_JUMP_IF_FALSE 33
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x32, // LOAD_ATTR 'asking'
+    0x13,0x81,0x34, // LOAD_ATTR 'asking'
     0x44,0x47, // POP_JUMP_IF_FALSE 7
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x40, // LOAD_ATTR 'picker'
+    0x13,0x81,0x42, // LOAD_ATTR 'picker'
     0x44,0x53, // POP_JUMP_IF_FALSE 19
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x82,0x43, // LOAD_METHOD 'move_mouse'
+    0x14,0x82,0x47, // LOAD_METHOD 'move_mouse'
     0xb1, // LOAD_FAST 1
-    0x10,0x82,0x45, // LOAD_CONST_STRING 'click'
+    0x10,0x82,0x49, // LOAD_CONST_STRING 'click'
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x32, // LOAD_ATTR 'asking'
+    0x13,0x81,0x34, // LOAD_ATTR 'asking'
     0xd3, // UNARY_OP 3 <not>
     0x36,0x82,0x01, // CALL_METHOD 257
     0x59, // POP_TOP
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x40, // LOAD_ATTR 'picker'
+    0x13,0x81,0x42, // LOAD_ATTR 'picker'
     0x44,0xd6,0x81, // POP_JUMP_IF_FALSE 214
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x82,0x15, // LOAD_METHOD 'picker_hit'
+    0x14,0x82,0x17, // LOAD_METHOD 'picker_hit'
     0x36,0x00, // CALL_METHOD 0
     0xc5, // STORE_FAST 5
     0xb5, // LOAD_FAST 5
-    0x12,0x84,0x0b, // LOAD_GLOBAL 'getattr'
+    0x12,0x84,0x0f, // LOAD_GLOBAL 'getattr'
     0x25,0x00, // LOAD_DEREF 0
-    0x10,0x82,0x16, // LOAD_CONST_STRING '_hover'
+    0x10,0x82,0x18, // LOAD_CONST_STRING '_hover'
     0x51, // LOAD_CONST_NONE
     0x34,0x03, // CALL_FUNCTION 3
     0xdc, // BINARY_OP 5 __ne__
     0x44,0x4c, // POP_JUMP_IF_FALSE 12
     0xb5, // LOAD_FAST 5
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x82,0x16, // STORE_ATTR '_hover'
+    0x18,0x82,0x18, // STORE_ATTR '_hover'
     0x52, // LOAD_CONST_TRUE
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x33, // STORE_ATTR 'dirty_all'
+    0x18,0x81,0x35, // STORE_ATTR 'dirty_all'
     0xb1, // LOAD_FAST 1
     0x5f, // GET_ITER_STACK
     0x4b,0xac,0x01, // FOR_ITER 172
@@ -23057,13 +23369,13 @@ static const byte fun_data_scratch_Project_input[737] = {
     0xc2, // STORE_FAST 2
     0xc3, // STORE_FAST 3
     0xb2, // LOAD_FAST 2
-    0x10,0x82,0x42, // LOAD_CONST_STRING '5'
+    0x10,0x82,0x46, // LOAD_CONST_STRING '5'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x6f, // POP_JUMP_IF_FALSE 47
     0xb3, // LOAD_FAST 3
     0x43,0x6c, // POP_JUMP_IF_TRUE 44
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x44, // LOAD_ATTR 'uses_mouse'
+    0x13,0x81,0x46, // LOAD_ATTR 'uses_mouse'
     0x44,0x65, // POP_JUMP_IF_FALSE 37
     0xb5, // LOAD_FAST 5
     0x51, // LOAD_CONST_NONE
@@ -23071,45 +23383,45 @@ static const byte fun_data_scratch_Project_input[737] = {
     0xd3, // UNARY_OP 3 <not>
     0x44,0x5f, // POP_JUMP_IF_FALSE 31
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x82,0x12, // LOAD_METHOD 'load_save'
+    0x14,0x82,0x14, // LOAD_METHOD 'load_save'
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x40, // LOAD_ATTR 'picker'
+    0x13,0x81,0x42, // LOAD_ATTR 'picker'
     0xb5, // LOAD_FAST 5
     0x55, // LOAD_SUBSCR
     0x36,0x01, // CALL_METHOD 1
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x32, // LOAD_ATTR 'asking'
+    0x13,0x81,0x34, // LOAD_ATTR 'asking'
     0x81, // LOAD_CONST_SMALL_INT 1
     0x56, // STORE_SUBSCR
     0x52, // LOAD_CONST_TRUE
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x32, // LOAD_ATTR 'asking'
+    0x13,0x81,0x34, // LOAD_ATTR 'asking'
     0x82, // LOAD_CONST_SMALL_INT 2
     0x56, // STORE_SUBSCR
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
     0xb2, // LOAD_FAST 2
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x82,0x3d, // LOAD_METHOD 'mouse_keys'
+    0x14,0x82,0x41, // LOAD_METHOD 'mouse_keys'
     0x36,0x00, // CALL_METHOD 0
     0xdd, // BINARY_OP 6 <in>
     0x44,0x43, // POP_JUMP_IF_FALSE 3
     0x42,0xb5,0x7f, // JUMP -75
     0xb2, // LOAD_FAST 2
-    0x14,0x82,0x24, // LOAD_METHOD 'isdigit'
+    0x14,0x82,0x26, // LOAD_METHOD 'isdigit'
     0x36,0x00, // CALL_METHOD 0
     0x44,0xc3,0x80, // POP_JUMP_IF_FALSE 67
     0x81, // LOAD_CONST_SMALL_INT 1
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb2, // LOAD_FAST 2
     0x34,0x01, // CALL_FUNCTION 1
     0x57, // DUP_TOP
     0x5b, // ROT_THREE
     0xda, // BINARY_OP 3 __le__
     0x46,0x0d, // JUMP_IF_FALSE_OR_POP 13
-    0x12,0x84,0x08, // LOAD_GLOBAL 'len'
+    0x12,0x84,0x0c, // LOAD_GLOBAL 'len'
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x40, // LOAD_ATTR 'picker'
+    0x13,0x81,0x42, // LOAD_ATTR 'picker'
     0x34,0x01, // CALL_FUNCTION 1
     0xda, // BINARY_OP 3 __le__
     0x42,0x42, // JUMP 2
@@ -23117,10 +23429,10 @@ static const byte fun_data_scratch_Project_input[737] = {
     0x59, // POP_TOP
     0x44,0x66, // POP_JUMP_IF_FALSE 38
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x82,0x12, // LOAD_METHOD 'load_save'
+    0x14,0x82,0x14, // LOAD_METHOD 'load_save'
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x40, // LOAD_ATTR 'picker'
-    0x12,0x83,0x7b, // LOAD_GLOBAL 'int'
+    0x13,0x81,0x42, // LOAD_ATTR 'picker'
+    0x12,0x83,0x7e, // LOAD_GLOBAL 'int'
     0xb2, // LOAD_FAST 2
     0x34,0x01, // CALL_FUNCTION 1
     0x81, // LOAD_CONST_SMALL_INT 1
@@ -23128,26 +23440,26 @@ static const byte fun_data_scratch_Project_input[737] = {
     0x55, // LOAD_SUBSCR
     0x36,0x01, // CALL_METHOD 1
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x32, // LOAD_ATTR 'asking'
+    0x13,0x81,0x34, // LOAD_ATTR 'asking'
     0x81, // LOAD_CONST_SMALL_INT 1
     0x56, // STORE_SUBSCR
     0x52, // LOAD_CONST_TRUE
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x32, // LOAD_ATTR 'asking'
+    0x13,0x81,0x34, // LOAD_ATTR 'asking'
     0x82, // LOAD_CONST_SMALL_INT 2
     0x56, // STORE_SUBSCR
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
     0xb2, // LOAD_FAST 2
-    0x10,0x82,0x26, // LOAD_CONST_STRING 'DEL'
+    0x10,0x82,0x28, // LOAD_CONST_STRING 'DEL'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x4e, // POP_JUMP_IF_FALSE 14
     0x51, // LOAD_CONST_NONE
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x40, // STORE_ATTR 'picker'
+    0x18,0x81,0x42, // STORE_ATTR 'picker'
     0x52, // LOAD_CONST_TRUE
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x33, // STORE_ATTR 'dirty_all'
+    0x18,0x81,0x35, // STORE_ATTR 'dirty_all'
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
     0x42,0xd1,0x7e, // JUMP -175
@@ -23166,7 +23478,7 @@ static const byte fun_data_scratch_Project_input[737] = {
     0xb3, // LOAD_FAST 3
     0x43,0x6e, // POP_JUMP_IF_TRUE 46
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x3e, // LOAD_ATTR 'last_tap'
+    0x13,0x81,0x40, // LOAD_ATTR 'last_tap'
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xc6, // STORE_FAST 6
     0xc7, // STORE_FAST 7
@@ -23175,7 +23487,7 @@ static const byte fun_data_scratch_Project_input[737] = {
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x53, // POP_JUMP_IF_FALSE 19
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x2f, // LOAD_ATTR 'now'
+    0x13,0x81,0x31, // LOAD_ATTR 'now'
     0xb7, // LOAD_FAST 7
     0xf3, // BINARY_OP 28 __sub__
     0x22,0x82,0x5e, // LOAD_CONST_SMALL_INT 350
@@ -23183,25 +23495,25 @@ static const byte fun_data_scratch_Project_input[737] = {
     0x44,0x46, // POP_JUMP_IF_FALSE 6
     0xb2, // LOAD_FAST 2
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x3f, // STORE_ATTR 'sprint'
+    0x18,0x81,0x41, // STORE_ATTR 'sprint'
     0xb2, // LOAD_FAST 2
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x2f, // LOAD_ATTR 'now'
+    0x13,0x81,0x31, // LOAD_ATTR 'now'
     0x2a,0x02, // BUILD_TUPLE 2
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x3e, // STORE_ATTR 'last_tap'
+    0x18,0x81,0x40, // STORE_ATTR 'last_tap'
     0x42,0x00, // JUMP -64
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x3f, // LOAD_ATTR 'sprint'
+    0x13,0x81,0x41, // LOAD_ATTR 'sprint'
     0x44,0x63, // POP_JUMP_IF_FALSE 35
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x3f, // LOAD_ATTR 'sprint'
+    0x13,0x81,0x41, // LOAD_ATTR 'sprint'
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x36, // LOAD_ATTR 'held'
+    0x13,0x81,0x38, // LOAD_ATTR 'held'
     0xdd, // BINARY_OP 6 <in>
     0xd3, // UNARY_OP 3 <not>
     0x44,0x55, // POP_JUMP_IF_FALSE 21
-    0x12,0x82,0x49, // LOAD_GLOBAL 'any'
+    0x12,0x82,0x4d, // LOAD_GLOBAL 'any'
     0xb0, // LOAD_FAST 0
     0x20,0x00,0x01, // MAKE_CLOSURE 0
     0xb1, // LOAD_FAST 1
@@ -23211,7 +23523,7 @@ static const byte fun_data_scratch_Project_input[737] = {
     0x43,0x46, // POP_JUMP_IF_TRUE 6
     0x51, // LOAD_CONST_NONE
     0x25,0x00, // LOAD_DEREF 0
-    0x18,0x81,0x3f, // STORE_ATTR 'sprint'
+    0x18,0x81,0x41, // STORE_ATTR 'sprint'
     0xb1, // LOAD_FAST 1
     0x5f, // GET_ITER_STACK
     0x4b,0x6f, // FOR_ITER 111
@@ -23219,10 +23531,10 @@ static const byte fun_data_scratch_Project_input[737] = {
     0xc2, // STORE_FAST 2
     0xc3, // STORE_FAST 3
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x32, // LOAD_ATTR 'asking'
+    0x13,0x81,0x34, // LOAD_ATTR 'asking'
     0x44,0x4c, // POP_JUMP_IF_FALSE 12
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x82,0x36, // LOAD_METHOD 'ask_key'
+    0x14,0x82,0x38, // LOAD_METHOD 'ask_key'
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
     0x36,0x02, // CALL_METHOD 2
@@ -23230,7 +23542,7 @@ static const byte fun_data_scratch_Project_input[737] = {
     0x42,0x27, // JUMP -25
     0xb3, // LOAD_FAST 3
     0x44,0x47, // POP_JUMP_IF_FALSE 7
-    0x10,0x82,0x21, // LOAD_CONST_STRING 'S:'
+    0x10,0x82,0x23, // LOAD_CONST_STRING 'S:'
     0xb2, // LOAD_FAST 2
     0xf2, // BINARY_OP 27 __add__
     0x42,0x41, // JUMP 1
@@ -23240,7 +23552,7 @@ static const byte fun_data_scratch_Project_input[737] = {
     0x43,0x4d, // POP_JUMP_IF_TRUE 13
     0xb2, // LOAD_FAST 2
     0x25,0x00, // LOAD_DEREF 0
-    0x14,0x82,0x3d, // LOAD_METHOD 'mouse_keys'
+    0x14,0x82,0x41, // LOAD_METHOD 'mouse_keys'
     0x36,0x00, // CALL_METHOD 0
     0xdd, // BINARY_OP 6 <in>
     0x44,0x42, // POP_JUMP_IF_FALSE 2
@@ -23262,7 +23574,7 @@ static const byte fun_data_scratch_Project_input[737] = {
     0x14,0x39, // LOAD_METHOD 'start_hats'
     0x23,0x81,0x12, // LOAD_CONST_OBJ 146
     0xb8, // LOAD_FAST 8
-    0x10,0x82,0x30, // LOAD_CONST_STRING 'restart'
+    0x10,0x82,0x32, // LOAD_CONST_STRING 'restart'
     0x50, // LOAD_CONST_FALSE
     0x36,0x82,0x02, // CALL_METHOD 258
     0x59, // POP_TOP
@@ -23270,8 +23582,8 @@ static const byte fun_data_scratch_Project_input[737] = {
     0x25,0x00, // LOAD_DEREF 0
     0x14,0x39, // LOAD_METHOD 'start_hats'
     0x23,0x81,0x12, // LOAD_CONST_OBJ 146
-    0x10,0x82,0x49, // LOAD_CONST_STRING 'any'
-    0x10,0x82,0x30, // LOAD_CONST_STRING 'restart'
+    0x10,0x82,0x4d, // LOAD_CONST_STRING 'any'
+    0x10,0x82,0x32, // LOAD_CONST_STRING 'restart'
     0x50, // LOAD_CONST_FALSE
     0x36,0x82,0x02, // CALL_METHOD 258
     0x59, // POP_TOP
@@ -23283,8 +23595,8 @@ static const byte fun_data_scratch_Project_input[737] = {
 // frozen bytecode for file scratch.py, scope scratch_Project_input__lt_genexpr_gt_
 static const byte fun_data_scratch_Project_input__lt_genexpr_gt_[32] = {
     0xca,0x40,0x0c, // prelude
-    0x82,0x4f,0x12,0x12, // names: <genexpr>, *, *
-    0xe0,0x7c, // code info
+    0x82,0x53,0x12,0x12, // names: <genexpr>, *, *
+    0xe0,0x9d, // code info
     0x53, // LOAD_NULL
     0xb1, // LOAD_FAST 1
     0x53, // LOAD_NULL
@@ -23295,7 +23607,7 @@ static const byte fun_data_scratch_Project_input__lt_genexpr_gt_[32] = {
     0xc3, // STORE_FAST 3
     0xb2, // LOAD_FAST 2
     0x25,0x00, // LOAD_DEREF 0
-    0x13,0x81,0x3f, // LOAD_ATTR 'sprint'
+    0x13,0x81,0x41, // LOAD_ATTR 'sprint'
     0xd9, // BINARY_OP 2 __eq__
     0x67, // YIELD_VALUE
     0x59, // POP_TOP
@@ -23326,7 +23638,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_input__lt_genexpr
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 335,
+        .qstr_block_name_idx = 339,
         .line_info = fun_data_scratch_Project_input__lt_genexpr_gt_ + 7,
         .line_info_top = fun_data_scratch_Project_input__lt_genexpr_gt_ + 9,
         .opcodes = fun_data_scratch_Project_input__lt_genexpr_gt_ + 9,
@@ -23364,7 +23676,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_input = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 326,
+        .qstr_block_name_idx = 330,
         .line_info = fun_data_scratch_Project_input + 8,
         .line_info_top = fun_data_scratch_Project_input + 71,
         .opcodes = fun_data_scratch_Project_input + 72,
@@ -23377,19 +23689,19 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_input = {
 // frozen bytecode for file scratch.py, scope scratch_Project_step
 static const byte fun_data_scratch_Project_step[438] = {
     0x7d,0x58, // prelude
-    0x3a,0x84,0x06, // names: step, self
-    0xe0,0x8e,0x2b,0x27,0x27,0x25,0x29,0x33,0x2d,0x25,0x31,0x24,0x25,0x3a,0x2d,0x2d,0x25,0x25,0x34,0x27,0x28,0x22,0x28,0x20,0x25,0x2d,0x25,0x22,0x22,0x53,0x27,0x2a,0x29,0x2c,0x1f,0x22,0x22,0x2e,0x2b,0x36,0x27, // code info
-    0x12,0x83,0x6d, // LOAD_GLOBAL 'K'
+    0x3a,0x84,0x0a, // names: step, self
+    0xe0,0xaf,0x2b,0x27,0x27,0x25,0x29,0x33,0x2d,0x25,0x31,0x24,0x25,0x3a,0x2d,0x2d,0x25,0x25,0x34,0x27,0x28,0x22,0x28,0x20,0x25,0x2d,0x25,0x22,0x22,0x53,0x27,0x2a,0x29,0x2c,0x1f,0x22,0x22,0x2e,0x2b,0x36,0x27, // code info
+    0x12,0x83,0x70, // LOAD_GLOBAL 'K'
     0x14,0x37, // LOAD_METHOD 'ms'
     0x36,0x00, // CALL_METHOD 0
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x2f, // STORE_ATTR 'now'
+    0x18,0x81,0x31, // STORE_ATTR 'now'
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x46, // LOAD_METHOD 'input'
+    0x14,0x82,0x4a, // LOAD_METHOD 'input'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x5a, // LOAD_METHOD 'cloud_poll'
+    0x14,0x81,0x5c, // LOAD_METHOD 'cloud_poll'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0xb0, // LOAD_FAST 0
@@ -23397,14 +23709,14 @@ static const byte fun_data_scratch_Project_step[438] = {
     0x44,0x49, // POP_JUMP_IF_FALSE 9
     0xb0, // LOAD_FAST 0
     0x13,0x36, // LOAD_ATTR 'multi'
-    0x14,0x82,0x4a, // LOAD_METHOD 'paso'
+    0x14,0x82,0x4e, // LOAD_METHOD 'paso'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0xb0, // LOAD_FAST 0
     0x13,0x81,0x0c, // LOAD_ATTR 'pending'
     0x44,0x5f, // POP_JUMP_IF_FALSE 31
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x2f, // LOAD_ATTR 'now'
+    0x13,0x81,0x31, // LOAD_ATTR 'now'
     0xb0, // LOAD_FAST 0
     0x13,0x81,0x0c, // LOAD_ATTR 'pending'
     0x81, // LOAD_CONST_SMALL_INT 1
@@ -23412,7 +23724,7 @@ static const byte fun_data_scratch_Project_step[438] = {
     0xdb, // BINARY_OP 4 __ge__
     0x44,0x52, // POP_JUMP_IF_FALSE 18
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x28, // LOAD_METHOD 'inject'
+    0x14,0x82,0x2a, // LOAD_METHOD 'inject'
     0xb0, // LOAD_FAST 0
     0x13,0x81,0x0c, // LOAD_ATTR 'pending'
     0x80, // LOAD_CONST_SMALL_INT 0
@@ -23426,7 +23738,7 @@ static const byte fun_data_scratch_Project_step[438] = {
     0x13,0x38, // LOAD_ATTR 'toast'
     0x44,0x55, // POP_JUMP_IF_FALSE 21
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x2f, // LOAD_ATTR 'now'
+    0x13,0x81,0x31, // LOAD_ATTR 'now'
     0xb0, // LOAD_FAST 0
     0x13,0x38, // LOAD_ATTR 'toast'
     0x81, // LOAD_CONST_SMALL_INT 1
@@ -23438,25 +23750,25 @@ static const byte fun_data_scratch_Project_step[438] = {
     0x18,0x38, // STORE_ATTR 'toast'
     0x52, // LOAD_CONST_TRUE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x33, // STORE_ATTR 'dirty_all'
+    0x18,0x81,0x35, // STORE_ATTR 'dirty_all'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x32, // LOAD_ATTR 'asking'
+    0x13,0x81,0x34, // LOAD_ATTR 'asking'
     0x44,0x78, // POP_JUMP_IF_FALSE 56
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x32, // LOAD_ATTR 'asking'
+    0x13,0x81,0x34, // LOAD_ATTR 'asking'
     0x82, // LOAD_CONST_SMALL_INT 2
     0x55, // LOAD_SUBSCR
     0x44,0x70, // POP_JUMP_IF_FALSE 48
-    0x12,0x84,0x0b, // LOAD_GLOBAL 'getattr'
+    0x12,0x84,0x0f, // LOAD_GLOBAL 'getattr'
     0xb0, // LOAD_FAST 0
-    0x10,0x82,0x2f, // LOAD_CONST_STRING 'ask_cb'
+    0x10,0x82,0x31, // LOAD_CONST_STRING 'ask_cb'
     0x51, // LOAD_CONST_NONE
     0x34,0x03, // CALL_FUNCTION 3
     0x44,0x64, // POP_JUMP_IF_FALSE 36
     0xb0, // LOAD_FAST 0
-    0x13,0x82,0x2f, // LOAD_ATTR 'ask_cb'
+    0x13,0x82,0x31, // LOAD_ATTR 'ask_cb'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x32, // LOAD_ATTR 'asking'
+    0x13,0x81,0x34, // LOAD_ATTR 'asking'
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
     0x5a, // ROT_TWO
@@ -23465,12 +23777,12 @@ static const byte fun_data_scratch_Project_step[438] = {
     0x23,0x81,0x1f, // LOAD_CONST_OBJ 159
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xb0, // LOAD_FAST 0
-    0x18,0x82,0x2f, // STORE_ATTR 'ask_cb'
+    0x18,0x82,0x31, // STORE_ATTR 'ask_cb'
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x32, // STORE_ATTR 'asking'
+    0x18,0x81,0x34, // STORE_ATTR 'asking'
     0x52, // LOAD_CONST_TRUE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x33, // STORE_ATTR 'dirty_all'
+    0x18,0x81,0x35, // STORE_ATTR 'dirty_all'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0x34,0x01, // CALL_FUNCTION 1
@@ -23479,33 +23791,33 @@ static const byte fun_data_scratch_Project_step[438] = {
     0x13,0x81,0x07, // LOAD_ATTR 'menu'
     0x43,0x4e, // POP_JUMP_IF_TRUE 14
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x32, // LOAD_ATTR 'asking'
+    0x13,0x81,0x34, // LOAD_ATTR 'asking'
     0x44,0x59, // POP_JUMP_IF_FALSE 25
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x32, // LOAD_ATTR 'asking'
+    0x13,0x81,0x34, // LOAD_ATTR 'asking'
     0x82, // LOAD_CONST_SMALL_INT 2
     0x55, // LOAD_SUBSCR
     0x43,0x51, // POP_JUMP_IF_TRUE 17
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x3b, // LOAD_METHOD 'render'
+    0x14,0x82,0x3d, // LOAD_METHOD 'render'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
     0x14,0x34, // LOAD_METHOD 'mostrar'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
-    0x12,0x83,0x6d, // LOAD_GLOBAL 'K'
+    0x12,0x83,0x70, // LOAD_GLOBAL 'K'
     0x14,0x37, // LOAD_METHOD 'ms'
     0x36,0x00, // CALL_METHOD 0
     0xc3, // STORE_FAST 3
     0x50, // LOAD_CONST_FALSE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x37, // STORE_ATTR 'redraw'
-    0x12,0x83,0x72, // LOAD_GLOBAL 'list'
+    0x18,0x81,0x39, // STORE_ATTR 'redraw'
+    0x12,0x83,0x75, // LOAD_GLOBAL 'list'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x2d, // LOAD_ATTR 'threads'
+    0x13,0x81,0x2f, // LOAD_ATTR 'threads'
     0x34,0x01, // CALL_FUNCTION 1
     0x5f, // GET_ITER_STACK
     0x4b,0x37, // FOR_ITER 55
@@ -23515,14 +23827,14 @@ static const byte fun_data_scratch_Project_step[438] = {
     0x44,0x42, // POP_JUMP_IF_FALSE 2
     0x42,0x36, // JUMP -10
     0x48,0x0b, // SETUP_EXCEPT 11
-    0x12,0x84,0x28, // LOAD_GLOBAL 'next'
+    0x12,0x84,0x2e, // LOAD_GLOBAL 'next'
     0xb4, // LOAD_FAST 4
     0x13,0x7c, // LOAD_ATTR 'gen'
     0x34,0x01, // CALL_FUNCTION 1
     0x59, // POP_TOP
     0x4a,0x20, // POP_EXCEPT_JUMP 32
     0x57, // DUP_TOP
-    0x12,0x84,0x29, // LOAD_GLOBAL 'StopIteration'
+    0x12,0x84,0x2f, // LOAD_GLOBAL 'StopIteration'
     0xdf, // BINARY_OP 8 <exception match>
     0x44,0x47, // POP_JUMP_IF_FALSE 7
     0x59, // POP_TOP
@@ -23545,59 +23857,59 @@ static const byte fun_data_scratch_Project_step[438] = {
     0x42,0x07, // JUMP -57
     0x32,0x00, // MAKE_FUNCTION 0
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x2d, // LOAD_ATTR 'threads'
+    0x13,0x81,0x2f, // LOAD_ATTR 'threads'
     0x34,0x01, // CALL_FUNCTION 1
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x2d, // STORE_ATTR 'threads'
+    0x18,0x81,0x2f, // STORE_ATTR 'threads'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x37, // LOAD_ATTR 'redraw'
+    0x13,0x81,0x39, // LOAD_ATTR 'redraw'
     0x43,0x5b, // POP_JUMP_IF_TRUE 27
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x33, // LOAD_ATTR 'dirty_all'
+    0x13,0x81,0x35, // LOAD_ATTR 'dirty_all'
     0x43,0x55, // POP_JUMP_IF_TRUE 21
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x2d, // LOAD_ATTR 'threads'
+    0x13,0x81,0x2f, // LOAD_ATTR 'threads'
     0x44,0x4f, // POP_JUMP_IF_FALSE 15
-    0x12,0x83,0x6d, // LOAD_GLOBAL 'K'
+    0x12,0x83,0x70, // LOAD_GLOBAL 'K'
     0x14,0x37, // LOAD_METHOD 'ms'
     0x36,0x00, // CALL_METHOD 0
     0xb3, // LOAD_FAST 3
     0xf3, // BINARY_OP 28 __sub__
-    0x12,0x83,0x74, // LOAD_GLOBAL 'WORK_MS'
+    0x12,0x83,0x77, // LOAD_GLOBAL 'WORK_MS'
     0xdb, // BINARY_OP 4 __ge__
     0x44,0x42, // POP_JUMP_IF_FALSE 2
     0x42,0x4e, // JUMP 14
-    0x12,0x83,0x6d, // LOAD_GLOBAL 'K'
+    0x12,0x83,0x70, // LOAD_GLOBAL 'K'
     0x14,0x37, // LOAD_METHOD 'ms'
     0x36,0x00, // CALL_METHOD 0
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x2f, // STORE_ATTR 'now'
+    0x18,0x81,0x31, // STORE_ATTR 'now'
     0x42,0xfb,0x7e, // JUMP -133
     0xb0, // LOAD_FAST 0
     0x57, // DUP_TOP
-    0x13,0x81,0x41, // LOAD_ATTR 'frame'
+    0x13,0x81,0x43, // LOAD_ATTR 'frame'
     0x81, // LOAD_CONST_SMALL_INT 1
     0xe5, // BINARY_OP 14 __iadd__
     0x5a, // ROT_TWO
-    0x18,0x81,0x41, // STORE_ATTR 'frame'
+    0x18,0x81,0x43, // STORE_ATTR 'frame'
     0xb0, // LOAD_FAST 0
     0x13,0x81,0x14, // LOAD_ATTR 'fast'
     0x44,0x50, // POP_JUMP_IF_FALSE 16
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x41, // LOAD_ATTR 'frame'
+    0x13,0x81,0x43, // LOAD_ATTR 'frame'
     0x82, // LOAD_CONST_SMALL_INT 2
     0xf8, // BINARY_OP 33 __mod__
     0x80, // LOAD_CONST_SMALL_INT 0
     0xd9, // BINARY_OP 2 __eq__
     0x43,0x46, // POP_JUMP_IF_TRUE 6
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x33, // LOAD_ATTR 'dirty_all'
+    0x13,0x81,0x35, // LOAD_ATTR 'dirty_all'
     0x44,0x47, // POP_JUMP_IF_FALSE 7
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x3b, // LOAD_METHOD 'render'
+    0x14,0x82,0x3d, // LOAD_METHOD 'render'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
     0x14,0x34, // LOAD_METHOD 'mostrar'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
@@ -23608,8 +23920,8 @@ static const byte fun_data_scratch_Project_step[438] = {
 // frozen bytecode for file scratch.py, scope scratch_Project_step__lt_listcomp_gt_
 static const byte fun_data_scratch_Project_step__lt_listcomp_gt_[25] = {
     0x39,0x0a, // prelude
-    0x82,0x4c,0x12, // names: <listcomp>, *
-    0xe0,0xae, // code info
+    0x82,0x50,0x12, // names: <listcomp>, *
+    0xe0,0xcf, // code info
     0x2b,0x00, // BUILD_LIST 0
     0xb0, // LOAD_FAST 0
     0x5f, // GET_ITER_STACK
@@ -23646,7 +23958,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project_step__lt_listcomp
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 332,
+        .qstr_block_name_idx = 336,
         .line_info = fun_data_scratch_Project_step__lt_listcomp_gt_ + 5,
         .line_info_top = fun_data_scratch_Project_step__lt_listcomp_gt_ + 7,
         .opcodes = fun_data_scratch_Project_step__lt_listcomp_gt_ + 7,
@@ -23739,6 +24051,7 @@ static const mp_raw_code_t *const children_scratch_Project[] = {
     (const mp_raw_code_t *)&proto_fun_scratch_Project_ask_key,
     (const mp_raw_code_t *)&proto_fun_scratch_Project_draw_ask,
     (const mp_raw_code_t *)&proto_fun_scratch_Project_render,
+    (const mp_raw_code_t *)&proto_fun_scratch_Project_merge,
     (const mp_raw_code_t *)&proto_fun_scratch_Project_mouse_keys,
     (const mp_raw_code_t *)&proto_fun_scratch_Project_move_mouse,
     (const mp_raw_code_t *)&proto_fun_scratch_Project_click,
@@ -23754,8 +24067,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project = {
     .fun_data = fun_data_scratch_Project,
     .children = (void *)&children_scratch_Project,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 382,
-    .n_children = 50,
+    .fun_data_len = 394,
+    .n_children = 51,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
     #endif
@@ -23770,8 +24083,8 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project = {
         .n_def_pos_args = 0,
         .qstr_block_name_idx = 31,
         .line_info = fun_data_scratch_Project + 4,
-        .line_info_top = fun_data_scratch_Project + 102,
-        .opcodes = fun_data_scratch_Project + 102,
+        .line_info_top = fun_data_scratch_Project + 104,
+        .opcodes = fun_data_scratch_Project + 104,
     },
     #endif
     #endif
@@ -23781,14 +24094,14 @@ static const mp_raw_code_truncated_t proto_fun_scratch_Project = {
 // frozen bytecode for file scratch.py, scope scratch_ejecutar
 static const byte fun_data_scratch_ejecutar[197] = {
     0x45,0x2c, // prelude
-    0x31,0x84,0x03, // names: ejecutar, ruta
-    0xe0,0xb9,0x29,0x35,0x28,0x26,0x26,0x25,0x32,0x29,0x28,0x22,0x20,0x51,0x23,0x25,0x36,0x36,0x20, // code info
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
+    0x31,0x84,0x07, // names: ejecutar, ruta
+    0xe0,0xda,0x29,0x35,0x28,0x26,0x26,0x25,0x32,0x29,0x28,0x22,0x20,0x51,0x23,0x25,0x36,0x36,0x20, // code info
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
     0x14,0x32, // LOAD_METHOD 'limpiar'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
     0x14,0x33, // LOAD_METHOD 'texto'
     0x23,0x05, // LOAD_CONST_OBJ 5
     0x22,0x80,0x46, // LOAD_CONST_SMALL_INT 70
@@ -23796,7 +24109,7 @@ static const byte fun_data_scratch_ejecutar[197] = {
     0x22,0x87,0xff,0xff,0x7f, // LOAD_CONST_SMALL_INT 16777215
     0x36,0x04, // CALL_METHOD 4
     0x59, // POP_TOP
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
     0x14,0x34, // LOAD_METHOD 'mostrar'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
@@ -23812,7 +24125,7 @@ static const byte fun_data_scratch_ejecutar[197] = {
     0x13,0x36, // LOAD_ATTR 'multi'
     0x44,0x52, // POP_JUMP_IF_FALSE 18
     0x23,0x06, // LOAD_CONST_OBJ 6
-    0x12,0x83,0x6d, // LOAD_GLOBAL 'K'
+    0x12,0x83,0x70, // LOAD_GLOBAL 'K'
     0x14,0x37, // LOAD_METHOD 'ms'
     0x36,0x00, // CALL_METHOD 0
     0x22,0xae,0x70, // LOAD_CONST_SMALL_INT 6000
@@ -23820,7 +24133,7 @@ static const byte fun_data_scratch_ejecutar[197] = {
     0x2b,0x02, // BUILD_LIST 2
     0xb1, // LOAD_FAST 1
     0x18,0x38, // STORE_ATTR 'toast'
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
     0x14,0x32, // LOAD_METHOD 'limpiar'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x36,0x01, // CALL_METHOD 1
@@ -23847,18 +24160,18 @@ static const byte fun_data_scratch_ejecutar[197] = {
     0xb1, // LOAD_FAST 1
     0x13,0x3b, // LOAD_ATTR 'unsupported'
     0x44,0x56, // POP_JUMP_IF_FALSE 22
-    0x12,0x84,0x04, // LOAD_GLOBAL 'print'
+    0x12,0x84,0x08, // LOAD_GLOBAL 'print'
     0x23,0x08, // LOAD_CONST_OBJ 8
     0x10,0x3c, // LOAD_CONST_STRING ', '
     0x14,0x3d, // LOAD_METHOD 'join'
-    0x12,0x84,0x05, // LOAD_GLOBAL 'sorted'
+    0x12,0x84,0x09, // LOAD_GLOBAL 'sorted'
     0xb1, // LOAD_FAST 1
     0x13,0x3b, // LOAD_ATTR 'unsupported'
     0x34,0x01, // CALL_FUNCTION 1
     0x36,0x01, // CALL_METHOD 1
     0x34,0x02, // CALL_FUNCTION 2
     0x59, // POP_TOP
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
     0x14,0x33, // LOAD_METHOD 'texto'
     0x23,0x09, // LOAD_CONST_OBJ 9
     0x22,0x80,0x46, // LOAD_CONST_SMALL_INT 70
@@ -23867,7 +24180,7 @@ static const byte fun_data_scratch_ejecutar[197] = {
     0x80, // LOAD_CONST_SMALL_INT 0
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x83,0x6c, // LOAD_GLOBAL 'P'
+    0x12,0x83,0x6f, // LOAD_GLOBAL 'P'
     0x14,0x34, // LOAD_METHOD 'mostrar'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
@@ -23959,7 +24272,7 @@ static const mp_raw_code_truncated_t proto_fun_scratch__lt_module_gt_ = {
     #endif
 };
 
-static const qstr_short_t const_qstr_table_data_scratch[567] = {
+static const qstr_short_t const_qstr_table_data_scratch[572] = {
     MP_QSTR_scratch_dot_py,
     MP_QSTR__lt_module_gt_,
     MP_QSTR_json,
@@ -24110,6 +24423,8 @@ static const qstr_short_t const_qstr_table_data_scratch[567] = {
     MP_QSTR_rapido,
     MP_QSTR_fast,
     MP_QSTR_set_screen,
+    MP_QSTR_trozos,
+    MP_QSTR_max_pieces,
     MP_QSTR_objetos,
     MP_QSTR_sprites,
     MP_QSTR_names,
@@ -24277,6 +24592,8 @@ static const qstr_short_t const_qstr_table_data_scratch[567] = {
     MP_QSTR__,
     MP_QSTR_render,
     MP_QSTR__mon,
+    MP_QSTR_merge,
+    MP_QSTR_remove,
     MP_QSTR_mouse_keys,
     MP_QSTR_8,
     MP_QSTR_4,
@@ -24343,7 +24660,6 @@ static const qstr_short_t const_qstr_table_data_scratch[567] = {
     MP_QSTR_clear_fx,
     MP_QSTR_show,
     MP_QSTR_front_back,
-    MP_QSTR_remove,
     MP_QSTR_FRONT_BACK,
     MP_QSTR_front,
     MP_QSTR_insert,
@@ -24475,6 +24791,7 @@ static const qstr_short_t const_qstr_table_data_scratch[567] = {
     MP_QSTR___name__,
     MP_QSTR___module__,
     MP_QSTR___qualname__,
+    MP_QSTR_staticmethod,
     MP_QSTR_ruta,
     MP_QSTR_print,
     MP_QSTR_sorted,
@@ -24492,6 +24809,7 @@ static const qstr_short_t const_qstr_table_data_scratch[567] = {
     MP_QSTR_path,
     MP_QSTR_open,
     MP_QSTR_OSError,
+    MP_QSTR_hasattr,
     MP_QSTR_set,
     MP_QSTR_mode,
     MP_QSTR_vid,
@@ -24510,6 +24828,7 @@ static const qstr_short_t const_qstr_table_data_scratch[567] = {
     MP_QSTR_cb,
     MP_QSTR_sk,
     MP_QSTR_shift,
+    MP_QSTR_rects,
     MP_QSTR_events,
     MP_QSTR_reversed,
     MP_QSTR_next,
@@ -24523,7 +24842,6 @@ static const qstr_short_t const_qstr_table_data_scratch[567] = {
     MP_QSTR_secs_name,
     MP_QSTR_until,
     MP_QSTR_c,
-    MP_QSTR_hasattr,
     MP_QSTR_fn,
     MP_QSTR_OverflowError,
     MP_QSTR_zip,
@@ -31142,15 +31460,15 @@ MICROPY_FROZEN_LIST_ITEM("t9", "t9.py")
 
 /*
 byte sizes:
-qstr content: 718 unique, 8893 bytes
-bc content: 28041
+qstr content: 720 unique, 8916 bytes
+bc content: 28449
 const str content: 909
 const int content: 0
 const obj content: 624
 const table qstr content: 0 entries, 0 bytes
 const table ptr content: 217 entries, 868 bytes
-raw code content: 299 * 4 = 4784
+raw code content: 300 * 4 = 4800
 mp_frozen_mpy_names_content: 33
 mp_frozen_mpy_content_size: 12
-total: 44164
+total: 44611
 */

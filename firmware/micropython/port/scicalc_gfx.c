@@ -245,6 +245,13 @@ static mp_obj_t p_mostrar(void) {
 }
 static MP_DEFINE_CONST_FUN_OBJ_0(p_mostrar_obj, p_mostrar);
 
+// trozos(): cuántos rectángulos sueltos conviene redibujar por fotograma (si
+// hay más, mejor uno que los abarque todos)
+static mp_obj_t p_trozos(void) {
+    return MP_OBJ_NEW_SMALL_INT(scpy_gfx_pieces());
+}
+static MP_DEFINE_CONST_FUN_OBJ_0(p_trozos_obj, p_trozos);
+
 static const mp_rom_map_elem_t p_globals_table[] = {
     { MP_ROM_QSTR(MP_QSTR___name__), MP_ROM_QSTR(MP_QSTR_pantalla) },
     { MP_ROM_QSTR(MP_QSTR_ANCHO), MP_ROM_INT(320) },
@@ -265,6 +272,7 @@ static const mp_rom_map_elem_t p_globals_table[] = {
     { MP_ROM_QSTR(MP_QSTR_dibujar), MP_ROM_PTR(&p_dibujar_obj) },
     { MP_ROM_QSTR(MP_QSTR_recorte), MP_ROM_PTR(&p_recorte_obj) },
     { MP_ROM_QSTR(MP_QSTR_mostrar), MP_ROM_PTR(&p_mostrar_obj) },
+    { MP_ROM_QSTR(MP_QSTR_trozos), MP_ROM_PTR(&p_trozos_obj) },
     { MP_ROM_QSTR(MP_QSTR_Sprite), MP_ROM_PTR(&sc_sprite_type) },
 };
 static MP_DEFINE_CONST_DICT(p_globals, p_globals_table);

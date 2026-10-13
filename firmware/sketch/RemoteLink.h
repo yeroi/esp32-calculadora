@@ -46,6 +46,11 @@ enum : uint8_t {
   PIXELS_RLE = 0x16,   // i16 x, y, w, h, {u8 n, u16 color}...
   GLYPH      = 0x17,   // u16 id, u8[5] columnas (bit 0 = fila de arriba)
   TEXT       = 0x18,   // i16 x, y, u8 size, u16 fg, u16 bg, u8 bold, u8 n, u16 id[n]
+  // Sprites de los juegos: el PC tiene los mismos PNG (su carpeta es la "SD"),
+  // así que los dibuja él y por el cable no van píxeles (modo PC con SD del PC)
+  SPR_DEF    = 0x19,   // u16 id, ruta (en la SD)
+  SPR_DRAW   = 0x1A,   // u16 id, u8 flags (1 espejo, 2 centro), f32 x, y, sx, sy, ángulo, cx, cy,
+                       // i16 recorte x0, y0, x1, y1   (coordenadas de pantalla)
   TONE       = 0x20,   // u16 Hz (0 = silencio), u16 ms. Se reproducen en orden.
   FS_REQ     = 0x40,   // u8 id, u8 op, datos de la operación
 };

@@ -13,6 +13,9 @@
 //              y limita a ~30 fps            script (320 x 218, bajo la barra)
 //
 //  Sprites (PNG de la SD):
+//    * MODO PC (con la SD en el PC): los dibuja el propio PC, que tiene los
+//      mismos archivos. Por el USB solo va "sprite 3 en (x, y), escala..."
+//      (~40 bytes) en vez de los píxeles: muchísimo más rápido.
 //    * pequeños (<= 24 KB decodificados): se guardan decodificados en RAM
 //      (RGB565 + máscara de 1 bit), hasta 48 KB entre todos (se expulsa el
 //      que lleva más tiempo sin usarse).
@@ -75,6 +78,7 @@ class PyGfx {
     uint8_t* mask = nullptr;                  // 1 bit por píxel (bit alto primero)
     bool big = false, bad = false;
     uint32_t used = 0;
+    uint32_t defSession = 0;                  // sesión del PC en la que se le dio la ruta
   };
 
   // dibujo con recorte (coordenadas de pantalla)
@@ -87,6 +91,7 @@ class PyGfx {
   void freeSprite(Sprite& s);
   void makeRoom(size_t bytes);
   void pushRun(int16_t x, int16_t y, int16_t n);
+  bool remoteSprite(Sprite& s, const Op& op);
 
   Display* d_ = nullptr;
   Storage* sd_ = nullptr;

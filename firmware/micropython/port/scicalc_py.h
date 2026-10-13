@@ -54,6 +54,7 @@ void scpy_gfx_draw(int id, float x, float y, float sx, float sy, int flip, float
                    int hasCenter, float cx, float cy);
 void scpy_gfx_clip(int x, int y, int w, int h);              // w < 0: sin recorte
 int  scpy_gfx_show(void);                                    // 1 si hay que parar
+int  scpy_gfx_pieces(void);       // cuántos trozos conviene redibujar por fotograma
 uint64_t scpy_keys_held(void);                               // bit = tecla del firmware
 int  scpy_key_event(int* key, int* shift);                   // 1 si había una
 

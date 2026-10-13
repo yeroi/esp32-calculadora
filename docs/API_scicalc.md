@@ -26,6 +26,7 @@ a dibujar se queda en pantalla, así que **redibuja solo lo que cambia**.
 | `sprite(ruta)` | carga un PNG (relativo a la carpeta del script); devuelve un objeto con `ancho` y `alto` |
 | `dibujar(spr, x, y, escala=1, espejo=False, angulo=0, centro=None)` | dibuja el sprite (con transparencia). `escala` admite decimales; `angulo` en grados, sentido horario. Sin `centro`, (x, y) es la esquina y gira sobre el centro; con `centro=(cx, cy)` ese píxel del sprite cae en (x, y) y es el punto de giro |
 | `recorte(x, y, w, h)` / `recorte()` | limita el dibujo a un rectángulo (redibujado por zonas) / quita el límite |
+| `trozos()` | cuántos rectángulos sueltos conviene redibujar por fotograma (8 en el simulador, 12 en el modo PC del ESP32, 1 con pantalla real: ahí mejor uno que los abarque todos) |
 | `mostrar()` | envía el fotograma, limita a 30 fps y **mantiene vivo el watchdog** |
 
 ## teclas

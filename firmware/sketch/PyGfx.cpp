@@ -361,10 +361,43 @@ void PyGfx::pushRun(int16_t x, int16_t y, int16_t n) {
   if (n > 0) d_->pushPixels(x, y, n, 1, row_ + x);
 }
 
+// Modo PC con la SD en el PC: el PC dibuja el sprite con su copia del PNG
+bool PyGfx::remoteSprite(Sprite& s, const Op& o) {
+#if SCICALC_REMOTE && SCICALC_REMOTE_SD
+  if (!remoteLink.connected()) return true;  // no hay a quién dibujar
+  if (s.defSession != remoteLink.session()) {   // (re)conectado: darle la ruta
+    uint8_t b[2 + 200];
+    size_t n = min<size_t>(s.path.length(), 200);
+    b[0] = o.id & 0xFF;
+    b[1] = o.id >> 8;
+    memcpy(b + 2, s.path.c_str(), n);
+    remoteLink.send(Proto::SPR_DEF, b, 2 + n);
+    s.defSession = remoteLink.session();
+  }
+  uint8_t b[3 + 7 * 4 + 8];
+  uint8_t* p = b;
+  *p++ = o.id & 0xFF;
+  *p++ = o.id >> 8;
+  *p++ = o.flags;
+  const float f[7] = {o.fx, o.fy + AREA_Y, o.sx, o.sy, o.ang, o.cx, o.cy};
+  memcpy(p, f, sizeof f);                     // el ESP32 y el PC son little-endian
+  p += sizeof f;
+  const int16_t c[4] = {clipX0_, clipY0_, clipX1_, clipY1_};
+  memcpy(p, c, sizeof c);
+  p += sizeof c;
+  remoteLink.send(Proto::SPR_DRAW, b, p - b);
+  return true;
+#else
+  (void)s; (void)o;
+  return false;
+#endif
+}
+
 void PyGfx::drawSprite(const Op& o) {
   if (o.id >= sprites_.size()) return;
   Sprite& s = sprites_[o.id];
   if (s.bad) return;
+  if (remoteSprite(s, o)) return;
   if (!s.px && !s.big && !load(s)) return;
   s.used = millis();
   float sx = o.sx, sy = o.sy;
@@ -537,6 +570,17 @@ void scpy_gfx_clip(int x, int y, int w, int h) {
 }
 
 int scpy_gfx_show(void) { return pyGfx.show(); }
+
+// Con la SD en el PC dibujar un sprite cuesta casi nada (lo hace el PC): mejor
+// muchos trozos pequeños. Con la pantalla de verdad, un fondo grande se
+// decodifica una vez por trozo: mejor uno solo.
+int scpy_gfx_pieces(void) {
+#if SCICALC_REMOTE && SCICALC_REMOTE_SD
+  return 12;
+#else
+  return 1;
+#endif
+}
 uint64_t scpy_keys_held(void) { return pyGfx.held(); }
 
 int scpy_key_event(int* key, int* shift) {

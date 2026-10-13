@@ -306,6 +306,8 @@ class Project:
         self.screen_mode = cfg.get("pantalla", "estirar")
         self.fast = cfg.get("rendimiento", "normal") == "rapido"
         self.set_screen(self.screen_mode)
+        # Trozos que conviene redibujar sueltos (ver render); el ESP32 lo dice
+        self.max_pieces = P.trozos() if hasattr(P, "trozos") else 1
         self.sprites = [Sprite(d, self) for d in data["objetos"]]
         self.names = {}                          # id de variable -> nombre
         for d in data["objetos"]:
@@ -1193,8 +1195,13 @@ class Project:
         sx, sy = self.to_screen(0, 0)
         _, _, w, h, cx, cy = st.costumes[st.costume]
         P.dibujar(st.img(), sx, sy, (self.kx, self.ky), False, 0, (cx, cy))
+        cx0 = cy0 = cx1 = cy1 = None
+        if clip:
+            cx0, cy0, cx1, cy1 = clip[0], clip[1], clip[0] + clip[2], clip[1] + clip[3]
         for i, sp in enumerate(self.layers):
-            sp.draw()
+            r = sp.drawn if clip else None
+            if r is None or (r[0] < cx1 and cx0 < r[0] + r[2] and r[1] < cy1 and cy0 < r[1] + r[3]):
+                sp.draw()                             # (los que no tocan el trozo, no)
             if self.multi and i == self.multi_layer:
                 self.multi.dibujar()                  # los demás jugadores, a la altura del mío
         for sp in self.layers:
@@ -1566,12 +1573,38 @@ class Project:
             return
         if not rects:
             return
-        x0 = max(int(self.ox), min(r[0] for r in rects))
-        y0 = max(int(self.oy), min(r[1] for r in rects))
-        x1 = min(int(self.ox + self.sw), max(r[0] + r[2] for r in rects))
-        y1 = min(int(self.oy + self.sh), max(r[1] + r[3] for r in rects))
-        if x1 > x0 and y1 > y0:
-            self.draw_all((x0, y0, x1 - x0, y1 - y0))
+        # Varios trozos pequeños (los que se tocan se juntan) si la pantalla lo
+        # agradece (modo PC: dibujar es casi gratis); si no, uno que los abarque
+        trozos = self.merge(rects)
+        if len(trozos) > self.max_pieces:
+            trozos = [(min(r[0] for r in trozos), min(r[1] for r in trozos),
+                       max(r[2] for r in trozos), max(r[3] for r in trozos))]
+        sx0, sy0 = int(self.ox), int(self.oy)
+        sx1, sy1 = int(self.ox + self.sw), int(self.oy + self.sh)
+        for x0, y0, x1, y1 in trozos:
+            x0, y0, x1, y1 = max(sx0, x0), max(sy0, y0), min(sx1, x1), min(sy1, y1)
+            if x1 > x0 and y1 > y0:
+                self.draw_all((x0, y0, x1 - x0, y1 - y0))
+
+    @staticmethod
+    def merge(rects):
+        """Rectángulos (x, y, w, h) -> (x0, y0, x1, y1) sin solapes (se juntan los que se tocan)."""
+        out = []
+        for x, y, w, h in rects:
+            if w <= 0 or h <= 0:
+                continue
+            r = (x, y, x + w, y + h)
+            junto = True
+            while junto:
+                junto = False
+                for o in out:
+                    if r[0] <= o[2] + 2 and o[0] <= r[2] + 2 and r[1] <= o[3] + 2 and o[1] <= r[3] + 2:
+                        r = (min(r[0], o[0]), min(r[1], o[1]), max(r[2], o[2]), max(r[3], o[3]))
+                        out.remove(o)
+                        junto = True
+                        break
+            out.append(r)
+        return out
 
     # =============================================================================
     #  Bucle principal

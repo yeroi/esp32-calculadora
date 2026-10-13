@@ -796,6 +796,7 @@ def _mostrar():
     _last[0] = _time.time()
 
 _pant.sprite, _pant.dibujar, _pant.mostrar, _pant.recorte = _sprite, _dibujar, _mostrar, _recorte
+_pant.trozos = lambda: 8          # trozos a redibujar sueltos (en el PC dibujar es barato)
 
 _tecl = types.ModuleType("scicalc.teclas")
 def _pulsadas():
