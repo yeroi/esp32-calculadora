@@ -4069,6 +4069,7 @@ PC_CHARS = {
 
 
 def main():
+    print("Arrancando el simulador...", flush=True)
     pygame.init()
     ensure_sd()
     pygame.display.set_caption("ESP32 SciCalc — simulador")
@@ -4076,6 +4077,9 @@ def main():
     scale = min(1.0, (info.current_h - 100) / BASE_H, (info.current_w - 40) / BASE_W)
     win = pygame.display.set_mode((int(BASE_W * scale), int(BASE_H * scale)), pygame.RESIZABLE)
     sim = Simulator()
+    print("Simulador abierto: busca la ventana \"ESP32 SciCalc\" (barra de tareas).", flush=True)
+    print("Si Windows pregunta por el Firewall, pulsa Permitir (multijugador / SciCalc Link).", flush=True)
+    print("Para cerrar: cierra la ventana o pulsa Ctrl+C aquí.", flush=True)
     clock = pygame.time.Clock()
     mouse_key = None
     pc_held = {}                     # tecla del PC -> tecla de la calculadora

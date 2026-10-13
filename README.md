@@ -12,6 +12,18 @@ El simulador de escritorio [`simulador/scicalc_sim.py`](simulador/scicalc_sim.py
 Doble clic en **`instalar_windows.bat`**: instala Python 3.12, las librerías
 (`requirements.txt`), Git, VS Code y la extensión PlatformIO con `winget`.
 
+Luego, un `.bat` para cada cosa (doble clic):
+
+| Archivo | Qué hace |
+|---|---|
+| `simulador.bat` | abre el simulador |
+| `modo_pc.bat` | modo PC: la pantalla del ESP32 (por USB) en el PC |
+| `servidor_multijugador.bat` | servidor dedicado del multijugador |
+| `scicalc_link.bat` | pasar archivos PC ⇄ calculadora |
+| `convertir_scratch.bat` | arrastra un `.sb3` encima para convertirlo |
+| `compilar_mpy.bat` | arrastra un juego `.py` encima para hacer el `.mpy` |
+| `instalar_librerias.bat` | solo las librerías de Python |
+
 ## Python en el ESP32 (Paso 5)
 
 El firmware lleva **MicroPython 1.24.1** dentro (`firmware/sketch/src/mpy/`, lo compila el IDE de Arduino sin instalar nada más). En el modo **Python**: EXE ejecuta el script, SHIFT+EXE muestra el código.
