@@ -52,6 +52,8 @@ except ImportError:
 
 TROZO = 2000           # elementos de lista por variable (mensajes de ~10 KB)
 POS_CADA = 3           # enviar la posición cada 3 fotogramas (~10 por segundo)
+GIROS = {"all around": 0, "left-right": 1, "don't rotate": 2}   # estilo de giro -> número
+GIROS_INV = ("all around", "left-right", "don't rotate")
 ESPERA_MUNDO = 10000   # ms esperando a que el anfitrión suba el mundo
 
 
@@ -67,6 +69,16 @@ class Multijugador:
             return None
         self.listas = {n: var(n, st.lists) for n in cfg.get("mundo", [])}
         self.bloques = var(cfg.get("bloques"), st.lists)
+        # variables del mundo que se copian al unirse (hora del día...)
+        self.mundo_vars = {n: var(n, st.vars) for n in cfg.get("mundo_vars", [])}
+        # el que se une NO simula su propio mundo: fuera sus mobs (aldeanos que solo
+        # existían en su mundo generado), sin generar más; ve los del anfitrión
+        inv = cfg.get("invitado") or {}
+        self.inv_borrar = inv.get("borrar_clones", [])
+        self.inv_vaciar = [var(n, st.lists) for n in inv.get("vaciar", [])]
+        self.inv_poner = [(var(n, st.vars), v) for n, v in (inv.get("poner") or {}).items()]
+        self.invitado = False       # me he unido a la partida de otro
+        self.inv_t = 0
         self.vx, self.vy = var(cfg.get("x"), st.vars), var(cfg.get("y"), st.vars)
         cam = cfg.get("camara") or [None, None]
         self.cx, self.cy = var(cam[0], st.vars), var(cam[1], st.vars)
@@ -259,8 +271,8 @@ class Multijugador:
     def salir(self):
         self.p.menu = None
         red.desconectar()
-        self.on = self.listo = False
-        self.otros, self.rects = {}, {}
+        self.on = self.listo = self.invitado = False
+        self.otros = {}                             # (zonas() borra lo que se dibujó)
         self.aviso("Multijugador desconectado")
 
     def publicar(self):
@@ -274,7 +286,8 @@ class Multijugador:
                 red.var("m:%s:%d" % (nombre, i), items[i * TROZO:(i + 1) * TROZO])
                 P.mostrar()
             info[nombre] = n
-        red.var("mundo", {"listas": info})          # al final: el mundo ya está completo
+        vs = {n: st.vars.get(vid) for n, vid in self.mundo_vars.items() if vid}
+        red.var("mundo", {"listas": info, "vars": vs})   # al final: el mundo ya está completo
         self.aviso("Partida abierta: ya se pueden unir")
 
     def descargar(self, vs):
@@ -288,6 +301,12 @@ class Multijugador:
             for i in range(n):
                 items.extend(vs.get("m:%s:%d" % (nombre, i)) or [])
             st.lists[lid][:] = items
+        for nombre, v in (vs["mundo"].get("vars") or {}).items():
+            vid = self.mundo_vars.get(nombre)
+            if vid:
+                st.vars[vid] = v
+        self.invitado = True
+        self.solo_anfitrion()
         # aparecer junto al anfitrión (su posición llega en unos instantes)
         anf = red.anfitrion()
         fin = K.ms() + 1500
@@ -300,6 +319,26 @@ class Multijugador:
             self.ir_a(pos["x"] - 1.5, pos["y"] + 1)      # a su lado (cae al suelo)
         nombre = red.jugadores().get(anf, "anfitrión")
         self.aviso("Unido a la partida de %s" % nombre)
+
+    def solo_anfitrion(self):
+        """Invitado: borra mis mobs y no deja generar más (los simula el anfitrión)."""
+        st = self.p.stage
+        for sp in list(self.p.layers):
+            if sp.is_clone and sp.name in self.inv_borrar:
+                if sp.drawn:
+                    self.p.dirty.append(sp.drawn)
+                self.p.layers.remove(sp)
+                sp.alive = False
+                self.p.clones -= 1
+                for t in self.p.threads:
+                    if t.sp is sp:
+                        t.done = True
+        for lid in self.inv_vaciar:
+            if lid:
+                st.lists[lid][:] = []
+        for vid, v in self.inv_poner:
+            if vid:
+                st.vars[vid] = v
 
     def aplicar_bloques(self, vs):
         lst = self.p.stage.lists.get(self.bloques)
@@ -357,6 +396,9 @@ class Multijugador:
         self.leer()
         if not self.listo:
             return
+        if self.invitado and K.ms() - self.inv_t > 1000:   # por si el juego genera otro
+            self.inv_t = K.ms()
+            self.solo_anfitrion()
         # mi posición y la pose de cada parte (relativa al jugador)
         self.frame += 1
         visible = any(sp.visible for sp in self.partes)
@@ -366,10 +408,14 @@ class Multijugador:
             if d != self.enviado:
                 red.enviar(d)
                 self.enviado = d
-        # zonas de pantalla que cambian (los demás se mueven o se mueve la cámara)
+
+    def zonas(self):
+        """Zonas de pantalla que cambian (los demás se mueven o se mueve la cámara).
+        Se llama justo antes de dibujar: la cámara ya está donde se va a dibujar."""
         nuevos = {}
-        for pid in self.otros:
-            nuevos[pid] = self.rect(pid)
+        if self.listo and any(sp.visible for sp in self.partes):
+            for pid in self.otros:
+                nuevos[pid] = self.rect(pid)
         for pid in set(self.rects) | set(nuevos):
             a, b = self.rects.get(pid) or [], nuevos.get(pid) or []
             if a != b:
@@ -379,6 +425,8 @@ class Multijugador:
 
     # ---- el espejo: lo que los demás ven de mí ---------------------------------------
     def coincide(self, sp, r):
+        if r.get("clon") and not sp.is_clone:
+            return False
         if r.get("prefijo") and not sp.costumes[sp.costume][0].startswith(r["prefijo"]):
             return False
         if r.get("vid"):
@@ -400,15 +448,19 @@ class Multijugador:
             if not idx or not sp.visible or sp.ghost >= 100:
                 continue
             for i in idx:
-                if self.coincide(sp, self.reglas[i]):
+                r = self.reglas[i]
+                if r.get("cerca") and max(abs(sp.x - bx), abs(sp.y - by)) > r["cerca"]:
+                    continue                      # (p. ej. iconos del inventario, lejos de mí)
+                if self.coincide(sp, r):
                     out.append([i, sp.costume, round(sp.x - bx, 1), round(sp.y - by, 1),
-                                round(sp.dir), round(sp.size)])
+                                round(sp.dir), round(sp.size), GIROS.get(sp.rot, 0)])
                     break
         return out
 
     # ---- dibujar a los demás --------------------------------------------------------
     def poses(self, pid):
-        """(objeto, disfraz, x, y, dirección, tamaño, ¿cuerpo?) de lo que se ve de otro."""
+        """(objeto, disfraz, x, y, dirección, tamaño, ¿cuerpo?, estilo de giro) de lo
+        que se ve de otro."""
         d = self.otros[pid]
         bx, by = self.base(d["x"], d["y"])
         out = []
@@ -418,17 +470,19 @@ class Multijugador:
             r = self.reglas[e[0]]
             sp = self.p.by_name.get(r["objeto"])
             if sp and 0 <= e[1] < len(sp.costumes):
-                out.append((sp, e[1], bx + e[2], by + e[3], e[4], e[5], r.get("cuerpo", False)))
+                rot = GIROS_INV[e[6]] if len(e) > 6 and 0 <= e[6] < 3 else sp.rot
+                out.append((sp, e[1], bx + e[2], by + e[3], e[4], e[5], r.get("cuerpo", False), rot))
         return out
 
-    def con_pose(self, sp, c, x, y, dr, tam, fn):
+    def con_pose(self, sp, c, x, y, dr, tam, rot, fn):
         # Pone el objeto en la pose del otro jugador, llama a fn y lo deja como estaba
-        old = (sp.costume, sp.x, sp.y, sp.dir, sp.size, sp.visible, sp.ghost)
-        sp.costume, sp.x, sp.y, sp.dir, sp.size, sp.visible, sp.ghost = c, x, y, dr, tam, True, 0
+        # (el estilo de giro también: un clon puede tener otro distinto al original)
+        old = (sp.costume, sp.x, sp.y, sp.dir, sp.size, sp.visible, sp.ghost, sp.rot)
+        sp.costume, sp.x, sp.y, sp.dir, sp.size, sp.visible, sp.ghost, sp.rot = c, x, y, dr, tam, True, 0, rot
         try:
             return fn()
         finally:
-            sp.costume, sp.x, sp.y, sp.dir, sp.size, sp.visible, sp.ghost = old
+            sp.costume, sp.x, sp.y, sp.dir, sp.size, sp.visible, sp.ghost, sp.rot = old
 
     def rect(self, pid):
         """Rectángulos de pantalla que ocupa otro jugador (cuerpo + etiqueta, y cada
@@ -436,8 +490,8 @@ class Multijugador:
         rects = []
         x0 = y0 = 9999
         x1 = y1 = -9999
-        for sp, c, x, y, dr, tam, cuerpo in self.poses(pid):
-            r = self.con_pose(sp, c, x, y, dr, tam, sp.screen_rect)
+        for sp, c, x, y, dr, tam, cuerpo, rot in self.poses(pid):
+            r = self.con_pose(sp, c, x, y, dr, tam, rot, sp.screen_rect)
             if not r:
                 continue
             if cuerpo:
@@ -461,8 +515,8 @@ class Multijugador:
         if not self.listo or not any(sp.visible for sp in self.partes):
             return                                # en menús del juego: no se dibuja a nadie
         for pid in list(self.otros):
-            for sp, c, x, y, dr, tam, _ in self.poses(pid):
-                self.con_pose(sp, c, x, y, dr, tam, sp.draw)
+            for sp, c, x, y, dr, tam, _, rot in self.poses(pid):
+                self.con_pose(sp, c, x, y, dr, tam, rot, sp.draw)
 
     def dibujar_nombres(self):
         """Etiqueta con el nombre encima de cada jugador, por delante de todo."""

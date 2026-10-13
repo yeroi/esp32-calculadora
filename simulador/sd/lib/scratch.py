@@ -1527,6 +1527,8 @@ class Project:
 
     def render(self):
         # Zonas que cambian: rectángulo anterior y nuevo de cada objeto cambiado
+        if self.multi:
+            self.multi.zonas()                        # los demás jugadores
         rects = list(self.dirty)
         self.dirty = []
         for sp in self.layers:
