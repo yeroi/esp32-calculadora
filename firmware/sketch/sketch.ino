@@ -34,6 +34,8 @@
 #include "PythonApp.h"
 #include "SettingsApp.h"
 #include "Buzzer.h"
+#include "LinkService.h"
+#include "WifiService.h"
 #include "PySandbox.h"
 #if SCICALC_REMOTE
 #include "RemoteLink.h"
@@ -96,6 +98,9 @@ void setup() {
   dialogs.begin();
   pySandbox.begin(storage, dialogs);
   boot.check("Sandbox Python", "MicroPython 1.24", Theme::OK);
+  // Wi-Fi (se conecta solo si estaba encendido) y SciCalc Link / Bluetooth
+  wifi.begin(sysState);
+  linkService.begin(storage, dialogs, sysState);
   boot.finish();
 
   // ---- Menú principal (teclas 1-6) ---------------------------------------------
@@ -141,5 +146,8 @@ void loop() {
   sysState.charging = remoteLink.charging();
   sendState();
 #endif
+  wifi.update();                  // búsquedas y estado de la conexión
+  String ssid, pass;              // red Wi-Fi enviada desde el PC con SciCalc Link
+  if (linkService.takeWifi(ssid, pass)) wifi.connect(ssid, pass);
   apps.update();                  // diálogos -> teclas -> app activa -> dibujo
 }

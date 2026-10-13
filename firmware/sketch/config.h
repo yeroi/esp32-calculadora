@@ -28,6 +28,12 @@
 #ifndef SCICALC_REMOTE_SD
 #define SCICALC_REMOTE_SD SCICALC_REMOTE
 #endif
+// Bluetooth Classic (SPP): SciCalc Link por Bluetooth y conectarse a otros.
+// Su pila reserva ~37 KB de RAM aunque esté apagado, y esa RAM es la que usa
+// Python para los juegos. Con 0 hay más memoria para Python y no hay Bluetooth.
+#ifndef SCICALC_BT
+#define SCICALC_BT 1
+#endif
 // Velocidad del USB-serie con el PC. 921600 va bien con CP2102 y CH340.
 // Si ves la pantalla con fallos, baja a 460800 (y pon lo mismo en el PC).
 constexpr uint32_t REMOTE_BAUD = 921600;
