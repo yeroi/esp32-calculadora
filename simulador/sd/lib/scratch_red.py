@@ -9,16 +9,23 @@
 #      "x", "y":  "_x", "_y"             posición del jugador (variables del escenario)
 #      "camara":  ["_ScrX", "_ScrY"]     desplazamiento de la cámara (si lo hay)
 #      "casilla": 40                     unidades de Scratch por casilla
-#      "partes":  ["Steve Legs2", ...]   objetos que forman al jugador
+#      "partes":  ["Steve Legs2", ...]   objetos que forman al jugador (y sus clones:
+#                                         el brazo y la pierna de detrás lo son)
+#      "espejo":  [{"objeto": "Cursor", "prefijo": "dig"},
+#                  {"objeto": "Tiles", "var": "CloneAsID", "valores": [-1], "mayor": 0}]
+#                 más cosas que los demás ven "como en Minecraft": la grieta al
+#                 picar, el bloque en la mano (-1) y los objetos tirados (> 0)
 #      "nueva_partida": [{"si": "Objeto:disfraz", "clic": [x, y]}, ...]
 #                     clics (ratón virtual) que empiezan un mundo desde el título:
 #                     cada uno cuando se ve ese objeto con ese disfraz (el botón)
 #
-#  En el juego: menú SciCalc (SHIFT+EXE) > Multijugador...
-#    Buscar partidas en la red · Hostear este mundo · servidores añadidos por IP
-#    (con sus partidas, o "Nueva partida aquí") · + Añadir servidor · Tu nombre
-#  Si te unes desde el título, el juego empieza un mundo cualquiera y se cambia
-#  por el de la partida al terminar.
+#      "boton_titulo": {"si": "Objeto:disfraz", "x", "y", "w", "h"}
+#                 botón "Multijugador" en el título del juego (coordenadas de Scratch)
+#      "icono": ["Tiles", "grass", "soil"]   disfraces para la pantalla (icono, fondo)
+#
+#  En el juego: botón "Multijugador" del título, o menú SciCalc > Multijugador:
+#  pantalla al estilo de Minecraft (scratch_red_ui.py). Si te unes desde el
+#  título, el juego empieza un mundo cualquiera y se cambia por el de la partida.
 #
 #  Cómo funciona (todo con scicalc.red, en la sala del juego):
 #    * El primero que se conecta ABRE la partida: sube las listas del mundo
@@ -27,10 +34,14 @@
 #      y aparecen donde está él.
 #    * Cada cambio en la lista de bloques es la variable "b:índice" (el
 #      servidor la guarda: quien entra tarde también la recibe).
-#    * La posición y el disfraz de cada parte del jugador van ~10 veces por
-#      segundo; los demás jugadores se dibujan con su nombre encima.
-#  Lo que NO se comparte: criaturas, objetos tirados, inventario, luz de los
-#  cambios en directo (cada uno ve la luz que calcula su juego).
+#    * ~10 veces por segundo cada uno manda su "espejo": la pose de cada objeto
+#      que forma su personaje (también los clones, en su orden de capas y con
+#      su tamaño), el bloque que lleva en la mano, sus objetos tirados y la
+#      grieta del bloque que pica, todo relativo a su posición. Los demás lo
+#      dibujan igual, con su nombre encima.
+#  Lo que NO se comparte: criaturas, inventario, luz de los cambios en directo.
+#  Los objetos tirados se ven en todas las pantallas, pero solo los recoge
+#  quien rompió el bloque.
 # =============================================================================
 import math
 from scicalc import pantalla as P, teclas as K
@@ -61,6 +72,17 @@ class Multijugador:
         self.cx, self.cy = var(cam[0], st.vars), var(cam[1], st.vars)
         self.k = float(cfg.get("casilla", 1))
         self.partes = [proj.by_name[n] for n in cfg.get("partes", []) if n in proj.by_name]
+        # Reglas del espejo: qué objetos (y clones) se mandan a los demás
+        self.reglas = [{"objeto": sp.name, "cuerpo": True} for sp in self.partes]
+        for r in cfg.get("espejo", []):
+            if r.get("objeto") in proj.by_name:
+                r = dict(r)
+                if r.get("var"):
+                    r["vid"] = var(r["var"], proj.by_name[r["objeto"]].vars)
+                self.reglas.append(r)
+        self.regla_de = {}
+        for i, r in enumerate(self.reglas):
+            self.regla_de.setdefault(r["objeto"], []).append(i)
         self.on = False          # conectado a la sala
         self.listo = False       # mundo compartido (ya se sincronizan los bloques)
         self.otros = {}          # id -> último mensaje de posición
@@ -73,10 +95,11 @@ class Multijugador:
         self.pasos = []          # clics pendientes para empezar un mundo
         self.clic_t = 0
         self.largo, self.largo_t = -1, 0
-        # submenú Multijugador
-        self.pagina, self.titulo, self.nota = "red", "Multijugador", ""
-        self.encontradas, self.servidores, self.srv_sel = [], [], None
+        # pantalla Multijugador (scratch_red_ui.py) y botón del título
+        self.ui = None
         self.nombre_cfg = "Jugador"
+        self.cfg_icono = cfg.get("icono")
+        self.btn_titulo = cfg.get("boton_titulo")
 
     def disponible(self):
         return (red is not None and self.vx is not None and self.vy is not None
@@ -173,113 +196,49 @@ class Multijugador:
         self.listo = True
         self.p.dirty_all = True
 
-    # ---- submenú Multijugador (menú SciCalc del juego) -----------------------------------
-    def items(self):
-        """[(texto, función)] de la página actual del submenú."""
-        if self.pagina == "lista":
-            out = []
-            for ip, puerto, srv, sala in self.encontradas:
-                out.append(("Unirse: %s · %d jug." % (srv[:16], len(sala.get("jugadores", []))),
-                            lambda d={"host": ip, "puerto": puerto}: self.unirse(d)))
-            out.append(("Volver", self.atras))
-            return out
-        if self.pagina == "servidor":
-            sv = self.servidores[self.srv_sel]
-            d = {"host": sv["ip"], "puerto": sv["puerto"]}
-            out = [(t, f) for t, f in self.salas_servidor]
-            out += [("Nueva partida aquí (sube tu mundo)",
-                     lambda: self.hostear(dict(d, subir=True))),
-                    ("Quitar este servidor", self.quitar), ("Volver", self.atras)]
-            return out
-        if self.on:
-            return [("Jugadores: " + ", ".join(red.jugadores().values())[:30], lambda: None),
-                    ("Salir de la partida", self.salir), ("Volver", self.atras)]
-        out = [("Buscar partidas en la red", self.buscar),
-               ("Hostear este mundo", lambda: self.hostear({"hostear": True, "subir": True}))]
-        for i, sv in enumerate(self.servidores):
-            out.append(("Servidor: %s" % sv.get("nombre", sv["ip"])[:22], lambda i=i: self.ver_servidor(i)))
-        out += [("+ Añadir servidor (IP)", self.anadir),
-                ("Tu nombre: " + self.nombre_cfg, self.cambiar_nombre),
-                ("Volver", self.atras)]
-        return out
-
+    # ---- pantalla Multijugador y botón del título -------------------------------------
     def abrir_menu(self):
-        self.pagina, self.titulo, self.nota = "red", "Multijugador", ""
-        r = red.servidores()
-        self.servidores = r if isinstance(r, list) else []
+        if self.ui is None:
+            from scratch_red_ui import PantallaRed
+            self.ui = PantallaRed(self)
         c = red.config()
         if isinstance(c, dict) and "nombre" in c:
             self.nombre_cfg = c["nombre"]
-        if self.on:
-            self.nota = "Conectado a la partida"
-
-    def atras(self):
-        if self.pagina != "red":
-            self.abrir_menu()
-            self.p.menu = [0, "red"]
-        else:
-            self.p.menu = [0, None]               # vuelve al menú SciCalc
-
-    def buscar(self):
-        self.nota = "Buscando..."
-        self.p.render()
-        P.mostrar()
-        r = red.buscar()
-        self.encontradas = []
-        if isinstance(r, dict):
-            self.nota = r.get("error", "")
-            return
-        for srv in r:
-            for sala in srv.get("salas", []):
-                if sala.get("sala") == self.p.room:          # partidas de ESTE juego
-                    self.encontradas.append((srv["ip"], srv["puerto"], srv.get("nombre", srv["ip"]), sala))
-        self.pagina, self.titulo = "lista", "Partidas en tu red"
-        self.nota = "" if self.encontradas else "No hay partidas abiertas de este juego"
         self.p.menu = [0, "red"]
+        self.ui.abrir()
 
-    def ver_servidor(self, i):
-        self.srv_sel = i
-        sv = self.servidores[i]
-        self.pagina, self.titulo = "servidor", "Servidor " + sv.get("nombre", sv["ip"])[:20]
-        self.nota = "Preguntando..."
-        self.salas_servidor = []
-        self.p.render()
-        P.mostrar()
-        r = red.salas(sv["ip"], sv["puerto"])
-        if not isinstance(r, dict) or "error" in r:
-            self.nota = "No responde: %s" % (r.get("error", "") if isinstance(r, dict) else "")
-            return
-        d = {"host": sv["ip"], "puerto": sv["puerto"]}
-        for sala in r.get("salas", []):
-            if sala.get("sala") == self.p.room:
-                n = len(sala.get("jugadores", []))
-                self.salas_servidor.append(("Unirse a la partida · %d jug." % n, lambda: self.unirse(d)))
-        self.nota = "%s:%d" % (sv["ip"], sv["puerto"])
-        self.p.menu = [0, "red"]
+    def titulo_rect(self):
+        """Rectángulo de pantalla del botón "Multijugador" (o None si no hay título)."""
+        b = self.btn_titulo
+        if not b or self.p.menu or self.on or self.modo_auto or not self.visible(b["si"]):
+            return None
+        x, y = self.p.to_screen(b["x"], b["y"])
+        w, h = b["w"] * self.p.fx, b["h"] * self.p.fy
+        return (int(x - w / 2), int(y - h / 2), int(w), int(h))
 
-    def anadir(self):
-        def hecho(t):
-            t = t.strip()
-            if t:
-                ip, _, puerto = t.partition(":")
-                red.guardar_servidor(ip, int(puerto) if puerto.isdigit() else 8267)
-                self.aviso("Servidor %s añadido" % ip)
+    def dibujar_titulo(self):
+        r = self.titulo_rect()
+        if r:
+            x, y, w, h = r
+            P.rect(x, y, w, h, 0x000000)
+            P.rect(x + 1, y + 1, w - 2, h - 2, 0x6E6E6E)
+            P.rect(x + 1, y + 1, w - 2, 1, 0xA9A9A9)
+            P.rect(x + 1, y + h - 2, w - 2, 1, 0x373737)
+            t = "Multijugador"
+            P.texto(t, x + (w - len(t) * 6) // 2 + 1, y + (h - 8) // 2 + 1, 0x2A2A2A)
+            P.texto(t, x + (w - len(t) * 6) // 2, y + (h - 8) // 2, 0xE0E0E0)
+
+    def clic_titulo(self):
+        """True si el clic del ratón fue en el botón "Multijugador" del título."""
+        r = self.titulo_rect()
+        if not r:
+            return False
+        mx, my = self.p.mouse_screen()
+        if r[0] <= mx < r[0] + r[2] and r[1] <= my < r[1] + r[3]:
             self.abrir_menu()
-            self.p.menu = [0, "red"]
-        self.p.preguntar("IP del servidor (:puerto)", "", hecho)
-
-    def cambiar_nombre(self):
-        def hecho(t):
-            if t.strip():
-                self.nombre_cfg = red.poner_nombre(t.strip()) or self.nombre_cfg
-            self.abrir_menu()
-            self.p.menu = [0, "red"]
-        self.p.preguntar("Tu nombre", self.nombre_cfg, hecho)
-
-    def quitar(self):
-        red.quitar_servidor(self.srv_sel)
-        self.abrir_menu()
-        self.p.menu = [0, "red"]
+            self.p.dirty_all = True
+            return True
+        return False
 
     def unirse(self, destino):
         self.p.menu = None
@@ -403,10 +362,7 @@ class Multijugador:
         visible = any(sp.visible for sp in self.partes)
         if self.frame % POS_CADA == 0 and visible:
             x, y = self.num(self.vx), self.num(self.vy)
-            bx, by = self.base(x, y)
-            partes = [[sp.costume, round(sp.x - bx, 1), round(sp.y - by, 1), round(sp.dir), sp.visible]
-                      for sp in self.partes]
-            d = {"x": round(x, 3), "y": round(y, 3), "p": partes}
+            d = {"x": round(x, 3), "y": round(y, 3), "e": self.espejo(x, y)}
             if d != self.enviado:
                 red.enviar(d)
                 self.enviado = d
@@ -415,62 +371,107 @@ class Multijugador:
         for pid in self.otros:
             nuevos[pid] = self.rect(pid)
         for pid in set(self.rects) | set(nuevos):
-            a, b = self.rects.get(pid), nuevos.get(pid)
+            a, b = self.rects.get(pid) or [], nuevos.get(pid) or []
             if a != b:
-                if a:
-                    self.p.dirty.append(a)
-                if b:
-                    self.p.dirty.append(b)
+                self.p.dirty.extend(a)
+                self.p.dirty.extend(b)
         self.rects = nuevos
+
+    # ---- el espejo: lo que los demás ven de mí ---------------------------------------
+    def coincide(self, sp, r):
+        if r.get("prefijo") and not sp.costumes[sp.costume][0].startswith(r["prefijo"]):
+            return False
+        if r.get("vid"):
+            try:
+                v = float(sp.vars.get(r["vid"], 0))
+            except (TypeError, ValueError):
+                return False
+            if v not in r.get("valores", ()) and not ("mayor" in r and v > r["mayor"]):
+                return False
+        return True
+
+    def espejo(self, x, y):
+        """[regla, disfraz, dx, dy, dirección, tamaño] de lo que se ve de mí, en orden
+        de capas (de atrás adelante) y relativo a mi posición."""
+        bx, by = self.base(x, y)
+        out = []
+        for sp in self.p.layers:
+            idx = self.regla_de.get(sp.name)
+            if not idx or not sp.visible or sp.ghost >= 100:
+                continue
+            for i in idx:
+                if self.coincide(sp, self.reglas[i]):
+                    out.append([i, sp.costume, round(sp.x - bx, 1), round(sp.y - by, 1),
+                                round(sp.dir), round(sp.size)])
+                    break
+        return out
 
     # ---- dibujar a los demás --------------------------------------------------------
     def poses(self, pid):
-        """(objeto, disfraz, x, y, dirección) de cada parte de otro jugador."""
+        """(objeto, disfraz, x, y, dirección, tamaño, ¿cuerpo?) de lo que se ve de otro."""
         d = self.otros[pid]
         bx, by = self.base(d["x"], d["y"])
         out = []
-        for sp, pp in zip(self.partes, d.get("p", [])):
-            c, dx, dy, dr, vis = pp
-            if vis and 0 <= c < len(sp.costumes):
-                out.append((sp, c, bx + dx, by + dy, dr))
+        for e in d.get("e", []):
+            if len(e) < 6 or not (0 <= e[0] < len(self.reglas)):
+                continue
+            r = self.reglas[e[0]]
+            sp = self.p.by_name.get(r["objeto"])
+            if sp and 0 <= e[1] < len(sp.costumes):
+                out.append((sp, e[1], bx + e[2], by + e[3], e[4], e[5], r.get("cuerpo", False)))
         return out
 
-    def con_pose(self, sp, c, x, y, dr, fn):
-        # Pone la parte en la pose del otro jugador, llama a fn y la deja como estaba
-        old = (sp.costume, sp.x, sp.y, sp.dir, sp.visible)
-        sp.costume, sp.x, sp.y, sp.dir, sp.visible = c, x, y, dr, True
+    def con_pose(self, sp, c, x, y, dr, tam, fn):
+        # Pone el objeto en la pose del otro jugador, llama a fn y lo deja como estaba
+        old = (sp.costume, sp.x, sp.y, sp.dir, sp.size, sp.visible, sp.ghost)
+        sp.costume, sp.x, sp.y, sp.dir, sp.size, sp.visible, sp.ghost = c, x, y, dr, tam, True, 0
         try:
             return fn()
         finally:
-            sp.costume, sp.x, sp.y, sp.dir, sp.visible = old
+            sp.costume, sp.x, sp.y, sp.dir, sp.size, sp.visible, sp.ghost = old
 
     def rect(self, pid):
+        """Rectángulos de pantalla que ocupa otro jugador (cuerpo + etiqueta, y cada
+        objeto suelto por separado: un objeto tirado puede estar lejos)."""
+        rects = []
         x0 = y0 = 9999
         x1 = y1 = -9999
-        for sp, c, x, y, dr in self.poses(pid):
-            r = self.con_pose(sp, c, x, y, dr, sp.screen_rect)
-            if r:
+        for sp, c, x, y, dr, tam, cuerpo in self.poses(pid):
+            r = self.con_pose(sp, c, x, y, dr, tam, sp.screen_rect)
+            if not r:
+                continue
+            if cuerpo:
                 x0, y0 = min(x0, r[0]), min(y0, r[1])
                 x1, y1 = max(x1, r[0] + r[2]), max(y1, r[1] + r[3])
-        if x1 < x0:
-            return None
-        w = len(self.nombre(pid)) * 6 + 6
-        cx = (x0 + x1) // 2
-        x0, x1 = min(x0, cx - w // 2), max(x1, cx + w // 2)
-        return (x0, y0 - 14, x1 - x0, y1 - y0 + 14)          # con la etiqueta del nombre
+            else:
+                rects.append(r)
+        if x1 >= x0:
+            w = len(self.nombre(pid)) * 6 + 6
+            cx = (x0 + x1) // 2
+            x0, x1 = min(x0, cx - w // 2), max(x1, cx + w // 2)
+            rects.insert(0, (x0, y0 - 14, x1 - x0, y1 - y0 + 14))   # con la etiqueta del nombre
+        return rects
 
     def nombre(self, pid):
         return str(red.jugadores().get(pid, "?"))[:12]
 
     def dibujar(self):
+        """Cuerpo, objeto en la mano, grieta y objetos soltados de los demás (a la
+        altura de mi jugador: delante de troncos y hojas, como en Minecraft)."""
         if not self.listo or not any(sp.visible for sp in self.partes):
             return                                # en menús del juego: no se dibuja a nadie
         for pid in list(self.otros):
-            poses = self.poses(pid)
-            for sp, c, x, y, dr in poses:
-                self.con_pose(sp, c, x, y, dr, sp.draw)
-            r = self.rects.get(pid)
-            if r and poses:
+            for sp, c, x, y, dr, tam, _ in self.poses(pid):
+                self.con_pose(sp, c, x, y, dr, tam, sp.draw)
+
+    def dibujar_nombres(self):
+        """Etiqueta con el nombre encima de cada jugador, por delante de todo."""
+        if not self.listo or not any(sp.visible for sp in self.partes):
+            return
+        for pid in list(self.otros):
+            rs = self.rects.get(pid)
+            r = rs[0] if rs else None
+            if r and any(e[6] for e in self.poses(pid)):
                 n = self.nombre(pid)
                 tx = r[0] + (r[2] - len(n) * 6) // 2
                 P.rect(tx - 2, r[1], len(n) * 6 + 4, 11, 0x202020)

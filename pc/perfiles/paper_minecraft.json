@@ -55,7 +55,7 @@
     "doble_toque": true
   },
   "multijugador": {
-    "_comentario": "Mundo compartido: listas que se envían al unirse, lista sincronizada bloque a bloque, posición del jugador (variables del escenario, en casillas), cámara y tamaño de casilla, y objetos que forman al jugador (se dibujan para los demás).",
+    "_comentario": "Mundo compartido: listas que se envían al unirse, lista sincronizada bloque a bloque, posición del jugador (variables del escenario, en casillas), cámara y tamaño de casilla, objetos que forman al jugador (con sus clones) y 'espejo': la grieta al picar (Cursor digN), el bloque en la mano (Tiles con CloneAsID -1) y los objetos tirados (CloneAsID > 0).",
     "mundo": [
       "_Level",
       "_Light"
@@ -89,7 +89,33 @@
           -135
         ]
       }
-    ]
+    ],
+    "espejo": [
+      {
+        "objeto": "Cursor",
+        "prefijo": "dig"
+      },
+      {
+        "objeto": "Tiles",
+        "var": "CloneAsID",
+        "valores": [
+          -1
+        ],
+        "mayor": 0
+      }
+    ],
+    "icono": [
+      "Tiles",
+      "grass",
+      "soil"
+    ],
+    "boton_titulo": {
+      "si": "Stage Sprite:Spl1b-New Game",
+      "x": 43,
+      "y": 30,
+      "w": 112,
+      "h": 28
+    }
   },
   "parches": [
     {

@@ -234,16 +234,24 @@ pc/                     scicalc_pantalla.py (modo PC: pantalla, teclado, SD
 
 ## Compilar y probar
 
-**PlatformIO** (recomendado):
+**Recomendado: VS Code + extensión PlatformIO** (gratis). Descarga sola el núcleo del ESP32 y las librerías exactas de `platformio.ini`, cambia entre modo PC y hardware sin tocar `config.h`, y recompila solo lo que cambias (la 1.ª vez tarda unos minutos por MicroPython; después, segundos).
+
+1. Instala [VS Code](https://code.visualstudio.com/) y, dentro, la extensión **PlatformIO IDE**.
+2. *File › Open Folder* → la carpeta `firmware/` (la que tiene `platformio.ini`).
+3. Abajo, en la barra de PlatformIO, elige el entorno y pulsa → (Upload):
+   - `env:esp32dev` — **modo PC** (pantalla, teclado, SD y sonido en el PC). Después, en una terminal: `python pc/scicalc_pantalla.py`. No abras el monitor serie: el cable lo usa ese programa.
+   - `env:esp32dev-hw` — hardware real (ILI9341, teclado y MicroSD cableados) o Wokwi.
+
+Desde la terminal es lo mismo:
 
 ```bash
 cd firmware
-pio run                     # compilar
-pio run -t upload           # grabar el ESP32
-pio device monitor          # monitor serie a 115200 (DTR/RTS desactivados)
+pio run -e esp32dev -t upload       # modo PC
+pio run -e esp32dev-hw -t upload    # hardware real
+pio device monitor                  # monitor serie (solo en hardware real)
 ```
 
-**Arduino IDE**: abre `firmware/sketch/sketch.ino`, instala las librerías de `libraries.txt`, placa *ESP32 Dev Module* y esquema de particiones *Huge APP (3MB No OTA)*.
+**Arduino IDE 2** también vale: abre `firmware/sketch/sketch.ino`, instala las librerías de `libraries.txt`, placa *ESP32 Dev Module*, esquema de particiones *Huge APP (3MB No OTA)*, núcleo *esp32 de Espressif* 2.0.17. Para hardware real cambia `SCICALC_REMOTE` a 0 en `config.h`. Es más lento al recompilar.
 
 **Wokwi (web)**: crea un proyecto ESP32 y sube todos los archivos de `firmware/sketch/` (incluidos `diagram.json` y `libraries.txt`). Los archivos que añadas al proyecto aparecen en la raíz de la MicroSD simulada.
 

@@ -336,7 +336,7 @@ class Project:
             m = Multijugador(self, cfg["multijugador"])
             if m.disponible():
                 self.multi = m
-                self.multi_layer = min(self.layers.index(sp) for sp in m.partes) if m.partes else -1
+                self.multi_layer = -1             # se calcula al dibujar (las capas cambian)
         self.monitors = data.get("monitores", [])
         self.threads = []
         self.timer0 = K.ms()
@@ -1198,12 +1198,24 @@ class Project:
         cx0 = cy0 = cx1 = cy1 = None
         if clip:
             cx0, cy0, cx1, cy1 = clip[0], clip[1], clip[0] + clip[2], clip[1] + clip[3]
+        if self.multi:
+            # Los demás jugadores van justo detrás de mi cuerpo, en su capa ACTUAL: el
+            # juego trae a Steve al frente al empezar, por delante de troncos y hojas.
+            partes = self.multi.partes
+            self.multi_layer = -1
+            for i, sp in enumerate(self.layers):
+                if sp in partes:
+                    self.multi_layer = max(i - 1, 0)
+                    break
         for i, sp in enumerate(self.layers):
             r = sp.drawn if clip else None
             if r is None or (r[0] < cx1 and cx0 < r[0] + r[2] and r[1] < cy1 and cy0 < r[1] + r[3]):
                 sp.draw()                             # (los que no tocan el trozo, no)
             if self.multi and i == self.multi_layer:
                 self.multi.dibujar()                  # los demás jugadores, a la altura del mío
+        if self.multi:
+            self.multi.dibujar_nombres()              # nombres encima de todo
+            self.multi.dibujar_titulo()               # botón "Multijugador" del título
         for sp in self.layers:
             if sp.say_text and sp.visible:
                 self.draw_bubble(sp)
@@ -1358,8 +1370,8 @@ class Project:
         return items
 
     def menu_key(self, k):
-        if self.menu[1] == "red":                    # submenú Multijugador (scratch_red.py)
-            self.menu_red_key(k)
+        if self.menu[1] == "red":                    # pantalla Multijugador (scratch_red_ui.py)
+            self.multi.ui.tecla(k)
             return
         items = self.menu_items()
         sel, page = self.menu
@@ -1393,7 +1405,6 @@ class Project:
             self.inject("p")
         elif action == "red":
             self.multi.abrir_menu()
-            self.menu = [0, "red"]
         elif action == "pantalla":
             self.set_screen("proporcion" if self.screen_mode == "estirar" else "estirar")
         elif action == "rendimiento":
@@ -1402,28 +1413,6 @@ class Project:
             self.menu = [sel, "controles"]
         elif action == "salir":
             raise SystemExit
-        self.dirty_all = True
-
-    def menu_red_key(self, k):
-        sel = self.menu[0]
-        items = self.multi.items()
-        fn = None
-        if k == "UP":
-            sel = (sel - 1) % len(items)
-        elif k == "DOWN":
-            sel = (sel + 1) % len(items)
-        elif k.isdigit() and 1 <= int(k) <= len(items):
-            sel = int(k) - 1
-            fn = items[sel][1]
-        elif k == "EXE":
-            fn = items[sel][1]
-        elif k == "DEL" or k.startswith("S:"):
-            fn = self.multi.atras
-        self.menu = [sel, "red"]
-        if fn:
-            fn()                       # puede cambiar de página, cerrar el menú o preguntar
-            if self.menu and self.menu[1] == "red":
-                self.menu[0] = min(self.menu[0], len(self.multi.items()) - 1)
         self.dirty_all = True
 
     def preguntar(self, pregunta, inicial, cb):
@@ -1460,10 +1449,9 @@ class Project:
                 P.texto(ln, x + 6, y + 18 + i * 11, 0xEEEEEE)
             return
         if page == "red":
-            items = [(t, None) for t, _ in self.multi.items()]
-            titulo, nota = self.multi.titulo, self.multi.nota
-        else:
-            items, titulo, nota = self.menu_items(), "Menú SciCalc  (juego en pausa)", ""
+            self.multi.ui.dibujar()                  # pantalla completa, estilo Minecraft
+            return
+        items, titulo, nota = self.menu_items(), "Menú SciCalc  (juego en pausa)", ""
         h = 26 + 14 * len(items) + (12 if nota else 0)
         P.rect(x, y, w, h, 0x1E222C)
         P.marco(x, y, w, h, 0x28A8FA)
@@ -1629,6 +1617,8 @@ class Project:
             self.click()
 
     def click(self):
+        if self.multi and self.multi.clic_titulo():   # botón "Multijugador" del título
+            return
         mx, my = self.mouse
         for sp in reversed(self.layers):              # el de más arriba primero
             if sp.visible and sp.ghost < 100:
@@ -1643,7 +1633,16 @@ class Project:
         self.held = set(K.pulsadas())
         # Menú propio abierto: se queda con todas las teclas
         if self.menu:
+            red_ui = self.menu[1] == "red"
+            if red_ui and self.uses_mouse:            # la pantalla Multijugador va con ratón
+                self.move_mouse(events, click=False)
             for k, shift in events:
+                if red_ui and not shift and k in self.mouse_keys():
+                    if k == "5":
+                        self.multi.ui.clic(*self.mouse_screen())
+                    if not self.menu:
+                        break
+                    continue
                 self.menu_key(("S:" + k) if shift else k)
                 if not self.menu:
                     break
@@ -1758,7 +1757,7 @@ def ejecutar(ruta):
     proj = Project(ruta)
     proj.cloud_connect()
     if proj.multi:                                   # que se sepa que se puede desde el título
-        proj.toast = ["En red: SHIFT+EXE > Multijugador (ya aquí)", K.ms() + 6000]
+        proj.toast = ["En red: botón Multijugador (o SHIFT+EXE)", K.ms() + 6000]
     P.limpiar(0)
     proj.start_hats("event_whenflagclicked")
     try:
