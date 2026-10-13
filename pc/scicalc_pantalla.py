@@ -76,6 +76,7 @@ TONE = 0x20
 FS_REQ = 0x40
 # PC -> ESP32
 PC_HELLO, PC_KEY, PC_SET, PC_PING, FS_RESP = 0x81, 0x82, 0x83, 0x84, 0xC0
+PC_TASK, PC_TASK_STOP, PC_TASK_END = 0x30, 0x31, 0x85   # vídeo/audio y juegos que hace el PC
 # Archivos
 FS_STAT, FS_LIST, FS_READ, FS_INFO = 1, 2, 3, 4
 FS_WRITE, FS_REMOVE, FS_RENAME, FS_MKDIR, FS_RMDIR = 5, 6, 7, 8, 9   # solo tras el permiso en la calculadora
@@ -392,7 +393,7 @@ class Link(threading.Thread):
             self.handle(t, payload)
 
     def handle(self, t, p):
-        if t in DRAW_TYPES or t == TONE:
+        if t in DRAW_TYPES or t in (TONE, PC_TASK, PC_TASK_STOP):
             self.draw.put((t, p))
         elif t == FS_REQ and len(p) >= 2:
             rid, op = p[0], p[1]
@@ -606,6 +607,124 @@ class Sound:
 
 
 # =============================================================================
+#  Tareas que hace el PC: vídeo/audio (ffmpeg) y juegos que no caben en el ESP32
+# -----------------------------------------------------------------------------
+#  El ESP32 manda PC_TASK con la ruta; mientras dura, la zona de la app (bajo la
+#  barra de estado) la dibuja el PC a 2x y las teclas se quedan aquí. Al acabar
+#  se manda PC_TASK_END y el ESP32 vuelve a su app.
+#  Se reutiliza el código del simulador: scicalc_media.py y el ScriptRunner.
+# =============================================================================
+SIM_DIR = Path(__file__).resolve().parent.parent / "simulador"
+TASK_W, TASK_H = 640, 436                    # 320x218 a 2x
+
+
+class PcTask:
+    def __init__(self, kind, path, sd):
+        if str(SIM_DIR) not in sys.path:
+            sys.path.insert(0, str(SIM_DIR))
+        self.kind, self.path = kind, path
+        self.surf = pygame.Surface((TASK_W, TASK_H))
+        self.player = self.runner = None
+        self.shift = False
+        self.result = None                    # (estado, mensaje) al acabar
+        self.err_lines = None                 # error del script: se enseña hasta una tecla
+        real = sd.real(path)
+        try:
+            if kind == 1:
+                import scicalc_media
+                self.player = scicalc_media.MediaPlayer(real, (TASK_W, TASK_H))
+            else:
+                import scicalc_sim as sim
+                sim.SD_DIR = sd.root.resolve()        # la "SD" del modo PC
+                self.sim = sim
+                self.runner = sim.ScriptRunner(real)
+            print(f"[PC] Tarea en el PC: {path}", flush=True)
+        except Exception as e:
+            self.result = (1, f"No se pudo empezar: {e}")
+
+    def key(self, k):
+        if k == "SHIFT":
+            self.shift = not self.shift
+            return
+        sh, self.shift = self.shift, False
+        if self.player:
+            if self.player.tecla(k, sh):
+                self.finish(0, "")
+        elif self.runner:
+            if self.err_lines is not None:
+                self.finish(1, self.err_lines[-1] if self.err_lines else "")
+            elif self.runner.state == "asking":
+                if k == "EXE":
+                    self.runner.answer("y")
+                elif k in ("AC", "DEL"):
+                    self.runner.answer("n")
+            elif k in ("AC", "MENU"):
+                self.runner.stop()
+                self.finish(2, "")
+            else:
+                self.runner.send_key(k, sh)
+
+    def finish(self, status, msg):
+        if self.result is None:
+            self.result = (status, msg)
+        self.close()
+
+    def close(self):
+        if self.player:
+            self.player.close()
+        if self.runner:
+            self.runner.stop()
+
+    def update(self, held):
+        if self.result:
+            return
+        if self.player:
+            self.player.update()
+            return
+        r = self.runner
+        r.poll()
+        if r.state in ("running", "asking"):
+            r.send_held(set(held) - {"AC", "MENU", "SHIFT"})
+        elif self.err_lines is None:
+            if r.state == "ok":
+                self.finish(0, "")
+            else:                              # error: se enseña hasta pulsar una tecla
+                self.err_lines = [ln.lstrip("\x01\x03\x04\x05") for ln in r.lines[-14:]] or ["(sin salida)"]
+
+    def draw(self):
+        s = self.surf
+        if self.player:
+            self.player.draw(s, font)
+            return s
+        r = self.runner
+        if self.err_lines is not None:
+            s.fill((10, 12, 18))
+            draw_text(s, "El script terminó con un error", font(20, True), ERR_C, (14, 10))
+            y = 44
+            for ln in self.err_lines:
+                draw_text(s, ln[:70], font(15), TEXT_C, (14, y))
+                y += 22
+            draw_text(s, "Cualquier tecla: volver", font(15), MUTED_C, (14, TASK_H - 26))
+        elif r.canvas is not None:
+            s.blit(r.canvas, (0, 0))
+        else:                                  # script de texto: consola sencilla
+            s.fill((10, 12, 18))
+            y = 8
+            for ln in r.lines[-18:]:
+                draw_text(s, ln.lstrip("\x01\x03\x04\x05")[:70], font(16), TEXT_C, (10, y))
+                y += 23
+        if r.state == "asking":
+            p = r.perm_request or {}
+            box = pygame.Rect(40, 120, TASK_W - 80, 150)
+            pygame.draw.rect(s, (22, 25, 33), box, border_radius=10)
+            pygame.draw.rect(s, SHIFT_C, box, 2, border_radius=10)
+            draw_text(s, "PERMISO", font(20, True), SHIFT_C, (box.x + 16, box.y + 12))
+            draw_text(s, f"{p.get('op', '?')} {p.get('path', '')}"[:48], font(16), TEXT_C, (box.x + 16, box.y + 50))
+            draw_text(s, "EXE sí    AC no", font(16, True), TEXT_C, (box.x + 16, box.y + 110))
+        return s
+
+
+# =============================================================================
 #  Carcasa y teclas (mismo aspecto que simulador/scicalc_sim.py)
 # =============================================================================
 BASE_W, BASE_H = 720, 1372
@@ -804,11 +923,13 @@ class Case:
         pygame.draw.circle(surf, (40, 44, 51), (cx, cy), DPAD_R_IN)
         pygame.draw.circle(surf, (90, 96, 108), (cx, cy), DPAD_R_IN, 2)
 
-    def render(self, tft_surf, link, sound, battery):
+    def render(self, tft_surf, link, sound, battery, task_surf=None):
         base = pygame.Surface((BASE_W, BASE_H), pygame.SRCALPHA)
         base.blit(self.body, (0, 0))
         # pantalla: píxeles nítidos a x2
         base.blit(pygame.transform.scale(tft_surf, (SCR_W, SCR_H)), (SCR_X, SCR_Y))
+        if task_surf is not None:          # tarea del PC: bajo la barra de estado, ya a 2x
+            base.blit(task_surf, (SCR_X, SCR_Y + SCR_H - task_surf.get_height()))
         if not link.connected:
             veil = pygame.Surface((SCR_W, SCR_H), pygame.SRCALPHA)
             veil.fill((0, 0, 0, 170))
@@ -882,6 +1003,15 @@ def main():
         ox, oy = (w - BASE_W * sc) / 2, (h - BASE_H * sc) / 2
         return ((pos[0] - ox) / sc, (pos[1] - oy) / sc)
 
+    task = [None]                    # PcTask en curso (vídeo/audio o juego en el PC)
+
+    def end_task():
+        t = task[0]
+        st, msg = t.result or (2, "")
+        link.send(PC_TASK_END, bytes((st,)) + msg.encode("utf-8")[:150])
+        print(f"[PC] Tarea terminada ({st}) {msg}", flush=True)
+        task[0] = None
+
     def press(k, down):
         if k not in KEY_ID:
             return
@@ -889,6 +1019,10 @@ def main():
             case.held.add(k)
         else:
             case.held.discard(k)
+        if task[0]:                  # las teclas son de la tarea del PC
+            if down:
+                task[0].key(k)
+            return
         link.key(KEY_ID[k], down)
 
     clock = pygame.time.Clock()
@@ -962,7 +1096,18 @@ def main():
                 break
             if t is None:
                 continue
-            if t == HELLO:
+            if t == PC_TASK:
+                if task[0]:
+                    task[0].close()
+                task[0] = PcTask(p[0], p[1:].decode("utf-8", "replace"), sd)
+            elif t == PC_TASK_STOP:
+                if task[0]:
+                    task[0].close()
+                    task[0] = None
+            elif t == HELLO:
+                if task[0]:                  # el ESP32 se reinició: fuera la tarea
+                    task[0].close()
+                    task[0] = None
                 tft.reset()                  # el ESP32 reenviará glifos y lo repinta todo
             elif t == TONE:
                 hz, ms = struct.unpack_from("<HH", p)
@@ -973,8 +1118,15 @@ def main():
                 except (struct.error, ValueError) as e:
                     print(f"[PC] Trama 0x{t:02X} mal formada: {e}")
         sound.pump()
+        task_surf = None
+        if task[0]:
+            task[0].update(case.held)
+            if task[0].result:
+                end_task()
+            else:
+                task_surf = task[0].draw()
 
-        frame_img = case.render(tft.surf, link, sound, battery)
+        frame_img = case.render(tft.surf, link, sound, battery, task_surf)
         w, h = win.get_size()
         sc = min(w / BASE_W, h / BASE_H)
         img = pygame.transform.smoothscale(frame_img, (int(BASE_W * sc), int(BASE_H * sc)))

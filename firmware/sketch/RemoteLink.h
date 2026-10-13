@@ -52,6 +52,11 @@ enum : uint8_t {
   SPR_DRAW   = 0x1A,   // u16 id, u8 flags (1 espejo, 2 centro), f32 x, y, sx, sy, ángulo, cx, cy,
                        // i16 recorte x0, y0, x1, y1   (coordenadas de pantalla)
   TONE       = 0x20,   // u16 Hz (0 = silencio), u16 ms. Se reproducen en orden.
+  // "Que lo haga el PC": vídeo/audio (ffmpeg) o un juego que no cabe en el ESP32.
+  // Mientras dura, el PC dibuja la zona de la app (bajo la barra de estado) y
+  // se queda las teclas; al acabar manda PC_TASK_END.
+  PC_TASK    = 0x30,   // u8 tipo (1 = vídeo/audio, 2 = script), ruta en la SD
+  PC_TASK_STOP = 0x31, // (nada): cancelar la tarea del PC
   FS_REQ     = 0x40,   // u8 id, u8 op, datos de la operación
 };
 // ---- PC -> ESP32 --------------------------------------------------------------
@@ -60,6 +65,7 @@ enum : uint8_t {
   PC_KEY   = 0x82,     // u8 tecla (valor del enum Key), u8 1 = pulsada / 0 = soltada
   PC_SET   = 0x83,     // i8 batería % (-1 = ?), u8 cargando
   PC_PING  = 0x84,     // latido (1 por segundo)
+  PC_TASK_END = 0x85,  // u8 estado (0 bien, 1 error, 2 cancelada), texto
   FS_RESP  = 0xC0,     // u8 id, u8 estado (0 = OK, si no errno), datos
 };
 // ---- Operaciones de archivos ----------------------------------------------------
@@ -101,6 +107,11 @@ class RemoteLink {
   void flushKeys();
   bool isDown(Key k) const;              // tecla mantenida (para juegos)
 
+  // ---- Tareas que hace el PC (vídeo, audio, juegos grandes) ---------------
+  void startPcTask(uint8_t kind, const String& path);
+  void stopPcTask();
+  bool takeTaskEnd(uint8_t& status, String& msg);
+
   // ---- Parámetros que manda el PC ------------------------------------------
   int8_t batteryPct() const { return battery_; }
   bool charging() const { return charging_; }
@@ -133,6 +144,9 @@ class RemoteLink {
   uint8_t rxSum_ = 0;
   uint8_t* rx_ = nullptr;
 
+  volatile bool taskEnd_ = false;
+  uint8_t taskStatus_ = 0;
+  char taskMsg_[160] = "";
   volatile bool hello_ = false;
   volatile uint32_t lastRxMs_ = 0;
   volatile uint32_t session_ = 0;

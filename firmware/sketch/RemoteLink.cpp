@@ -159,6 +159,15 @@ void RemoteLink::handleFrame(uint8_t type, const uint8_t* p, size_t n) {
     case Proto::PC_KEY:
       if (n >= 2) onKey(p[0], p[1] != 0);
       break;
+    case Proto::PC_TASK_END:
+      if (n >= 1) {
+        taskStatus_ = p[0];
+        size_t m = n - 1 < sizeof(taskMsg_) - 1 ? n - 1 : sizeof(taskMsg_) - 1;
+        memcpy(taskMsg_, p + 1, m);
+        taskMsg_[m] = 0;
+        taskEnd_ = true;
+      }
+      break;
     case Proto::PC_SET:
       if (n >= 2) { battery_ = (int8_t)p[0]; charging_ = p[1] != 0; }
       break;
@@ -263,4 +272,28 @@ void RemoteLink::flushKeys() {
 
 bool RemoteLink::isDown(Key k) const {
   return (held_ >> static_cast<uint8_t>(k)) & 1;
+}
+
+// ---- Tareas que hace el PC ---------------------------------------------------------------
+void RemoteLink::startPcTask(uint8_t kind, const String& path) {
+  taskEnd_ = false;
+  uint8_t buf[260];
+  size_t n = path.length() < sizeof(buf) - 1 ? path.length() : sizeof(buf) - 1;
+  buf[0] = kind;
+  memcpy(buf + 1, path.c_str(), n);
+  send(Proto::PC_TASK, buf, n + 1);
+  flush();
+}
+
+void RemoteLink::stopPcTask() {
+  send(Proto::PC_TASK_STOP, nullptr, 0);
+  flush();
+}
+
+bool RemoteLink::takeTaskEnd(uint8_t& status, String& msg) {
+  if (!taskEnd_) return false;
+  status = taskStatus_;
+  msg = taskMsg_;
+  taskEnd_ = false;
+  return true;
 }

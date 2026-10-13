@@ -2,9 +2,14 @@
 //  PythonApp.cpp
 // =============================================================================
 #include "PythonApp.h"
+#include "PcTaskApp.h"
 #include "PyGfx.h"
 
 namespace {
+// proyecto.json más grande que esto no cabe en el heap de Python del ESP32
+// (se lee entero y luego se convierte en objetos: varias veces su tamaño)
+constexpr uint32_t BIG_PROJECT = 48 * 1024;
+
 uint16_t colorFor(char c) {
   switch (c) {
     case '\x01': return Theme::ERR;
@@ -97,6 +102,24 @@ void PythonApp::start(const String& path) {
     dialogs().info("Python", {"Todavía se está cerrando el", "script anterior. Espera un", "momento."});
     return;
   }
+#if SCICALC_REMOTE
+  // Juegos de Scratch enormes (Paper Minecraft: 1,6 MB): no caben en los ~70 KB
+  // de Python del ESP32. En modo PC se pueden ejecutar en el PC.
+  uint32_t pj = 0;
+  if (remoteLink.connected() && sd().stat(Path::join(Path::parent(path), "proyecto.json"), pj) == 1 &&
+      pj > BIG_PROJECT) {
+    String p = path;
+    dialogs().ask("Juego muy grande",
+                  {Path::name(path), "pesa " + humanSize(pj) + ": no cabe en la", "memoria del ESP32 (~70 KB).", "",
+                   "¿Ejecutarlo en el PC? (el PC hace", "de procesador; tú juegas igual)"},
+                  [this, p](DlgAnswer a) {
+                    if (a == DlgAnswer::No) return;
+                    pcTaskApp.prepare(PcTaskApp::Script, p, this);
+                    mgr().launch(&pcTaskApp);
+                  });
+    return;
+  }
+#endif
   if (pyGfx.active()) pyGfx.end();
   script_ = path;
   scroll_ = 0;

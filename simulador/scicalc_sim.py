@@ -50,6 +50,9 @@ import time
 from datetime import datetime
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import scicalc_media                   # reproductor de vídeo y audio (ffmpeg)
+
 try:
     import pygame
 except ImportError:
@@ -1815,6 +1818,8 @@ def file_kind(p):
         return "img"
     if e in TXT_EXT:
         return "txt"
+    if scicalc_media.es_medio(p.name):
+        return "media"
     return "bin"
 
 
@@ -1938,7 +1943,7 @@ def draw_icon(s, kind, x, y):
             pygame.draw.polygon(s, BG, [(x + 15, y + 8), (x + 8, y + 17), (x + 22, y + 17)])
         return
     col, tag = {"py": ((70, 140, 230), "PY"), "img": ((60, 190, 120), "IMG"),
-                "txt": ((150, 155, 170), "TXT")}.get(kind, ((120, 110, 160), "BIN"))
+                "txt": ((150, 155, 170), "TXT"), "media": ((230, 90, 140), "AV")}.get(kind, ((120, 110, 160), "BIN"))
     pygame.draw.rect(s, col, (x + 2, y, 26, 26), border_radius=4)
     draw_text(s, tag, font(11, True), (255, 255, 255), (x + 2, y + 7), "center", 26)
 
@@ -2101,17 +2106,34 @@ class FilesApp(App):
     def __init__(self, sim):
         super().__init__(sim)
         self.browser = Browser()
-        self.view, self.file = None, None          # None | "text" | "img" | "bin"
+        self.view, self.file = None, None          # None | "text" | "img" | "bin" | "media"
         self.lines, self.vtop, self.img, self.raw = None, 0, None, b""
+        self.player = None                         # scicalc_media.MediaPlayer
 
     def on_enter(self):
         self.browser.refresh()
         self.view = None
 
+    def on_exit(self):
+        self.close_player()
+
+    def close_player(self):
+        if self.player:
+            self.player.close()
+            self.player = None
+
+    def update(self, dt):
+        if self.player:
+            self.player.update()
+
     def open(self, p):
         self.file, self.vtop = p, 0
         kind = file_kind(p)
         self.sim.set_title(p.name)
+        if kind == "media":                        # vídeo o audio: el reproductor
+            self.player = scicalc_media.MediaPlayer(p, (SCR_W, SCR_H - HEADER_H))
+            self.view = "media"
+            return
         if kind == "img":
             try:
                 self.img = pygame.image.load(str(p))
@@ -2133,6 +2155,13 @@ class FilesApp(App):
             self.raw, self.view = raw[:16 * 18], "bin"
 
     def on_key(self, key, shift):
+        if self.view == "media":
+            if self.player.tecla(key, shift):
+                self.close_player()
+                self.view = None
+                self.sim.set_title(self.title)
+                self.browser.refresh()
+            return
         if self.view:
             if self.view == "text":
                 maxtop = max(0, len(self.lines) - 18)
@@ -2161,6 +2190,9 @@ class FilesApp(App):
         if not self.view:
             self.browser.draw(s)
             self.footer(s, "↑↓ mover   EXE abrir   ◄ subir carpeta   SHIFT+EXE recargar")
+            return
+        if self.view == "media":
+            self.player.draw(s.subsurface((0, HEADER_H, SCR_W, SCR_H - HEADER_H)), font)
             return
         if self.view == "img":
             area = pygame.Rect(10, HEADER_H + 8, SCR_W - 20, SCR_H - HEADER_H - 40)

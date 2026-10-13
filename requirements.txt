@@ -3,3 +3,4 @@ pygame-ce
 pyserial
 resvg-py
 mpy-cross==1.24.1.post3
+imageio-ffmpeg

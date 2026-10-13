@@ -30,6 +30,7 @@
 #include "DiagApp.h"
 #include "FilesApp.h"
 #include "MenuApp.h"
+#include "PcTaskApp.h"
 #include "PlaceholderApp.h"
 #include "PythonApp.h"
 #include "SettingsApp.h"
@@ -64,6 +65,7 @@ PlaceholderApp consoleApp(apps, "Consola", "Consola tipo cmd",
                           "Necesita la tecla ALPHA para escribir letras");
 SettingsApp    settingsApp(apps);
 DiagApp        diagApp(apps);
+PcTaskApp      pcTaskApp(apps);   // vídeo/audio y juegos grandes: los hace el PC
 
 #if SCICALC_REMOTE
 static void sendState();          // declarada aquí: algunas versiones del preprocesador de

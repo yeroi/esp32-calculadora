@@ -79,7 +79,7 @@ Viene **activado por defecto** (`SCICALC_REMOTE 1` en `config.h`).
 3. En el PC:
 
    ```bash
-   pip install pygame-ce pyserial
+   pip install -r requirements.txt                # pygame-ce, pyserial, imageio-ffmpeg...
    python pc/scicalc_pantalla.py                  # busca el puerto solo
    python pc/scicalc_pantalla.py --puerto COM5    # o dile cuál
    python pc/scicalc_pantalla.py --lista          # ver puertos
@@ -99,6 +99,23 @@ Detalles:
 - Si la imagen sale con fallos, baja la velocidad: `REMOTE_BAUD = 460800` en `config.h` y `--baudios 460800` en el PC.
 - Con el cable ocupado por el modo PC, *SciCalc Link* por USB no se puede usar a la vez.
 
+### Lo que hace el PC (vídeo, audio y juegos grandes)
+
+El ESP32 sin PSRAM no puede decodificar un mp4 ni meter Paper Minecraft (1,6 MB) en sus ~70 KB de Python. En modo PC se lo pide al PC, que tiene la misma "SD":
+
+- **Archivos SD → un vídeo o audio** (mp4, mkv, webm, avi, mov, mp3, wav, ogg, m4a, aac, flac, opus…): lo reproduce el PC con ffmpeg (`pip install imageio-ffmpeg`, ya en `requirements.txt`) dentro de la pantalla de la calculadora y por sus altavoces. **EXE** pausa, **◄ ►** ±10 s (SHIFT: ±1 min), **▲ ▼** volumen, **AC** salir.
+- **Python → un juego de Scratch enorme**: la calculadora avisa de que no cabe y pregunta *¿Ejecutarlo en el PC?*. El PC lo ejecuta con el mismo intérprete que el simulador y tú juegas igual con las teclas de la calculadora (multijugador incluido).
+- La barra de estado la sigue dibujando el ESP32; al terminar, vuelve a su app.
+
+El simulador reproduce los mismos archivos desde **Archivos SD**.
+
+### Wi-Fi y Bluetooth en el ESP32
+
+- **Ajustes › Wi-Fi**: redes cercanas reales con barras de señal y candado; EXE en una red pide la contraseña (teclado T9: 2=abc… 9=wxyz, 0=espacio, SHIFT=mayúscula) y la recuerda. Se conecta sola al encender. **Conexión**: IP, máscara, puerta de enlace, DNS, MAC, señal, canal, probar DNS. **IP y DNS**: automática o fija.
+- **Ajustes › Bluetooth**: encendido = visible como `SciCalc-XXXX` (en el PC: Agregar dispositivo → puerto COM → SciCalc Link). **Buscar dispositivos** y conectarte a otro; con otra calculadora puedes **enviarle archivos**.
+- **SciCalc Link** funciona por Wi-Fi (TCP 8266) y por Bluetooth, igual que con el simulador.
+- La pila de Bluetooth reserva RAM aunque esté apagado. Si un juego dice *sin memoria*, usa los entornos `esp32dev-sinbt` / `esp32dev-hw-sinbt` (o `#define SCICALC_BT 0`).
+
 **Volver al hardware real** (pantalla ILI9341, teclado y MicroSD cableados, o Wokwi): pon `#define SCICALC_REMOTE 0` en `config.h` (en PlatformIO, entorno `esp32dev-hw`). Con `SCICALC_REMOTE_SD 0` puedes usar la MicroSD física y seguir con la pantalla en el PC.
 
 ## Estado
@@ -109,9 +126,11 @@ Detalles:
 | 2 | Firmware base (Display, Keyboard, Storage, AppManager) | ✅ |
 | 3 | Menú e interfaz completos: 6 modos, diálogos, barra de estado, explorador, visores | ✅ |
 | – | Modo PC: pantalla, teclado, SD y sonido en el PC (`pc/scicalc_pantalla.py`) | ✅ |
-| 4 | Calculadora nativa (parser C++) | pendiente |
+| 4 | Calculadora nativa (parser C++, mismos resultados que el simulador) | ✅ |
 | **5** | **MicroPython: tarea con heap propio, watchdog, archivos con permisos, import desde la SD** | ✅ **este paso**: también los juegos (módulo `scicalc`, intérprete de Scratch congelado) |
-| – | Consola con ALPHA + editor de código + `pip` por Wi-Fi · Ajustes reales (WiFi.h, BT SPP, NVS) · LinkService · buzzer · batería | pendiente (ya especificado en el simulador v0.4) |
+| – | Ajustes reales: Wi-Fi (buscar, conectar, NVS, IP fija, DNS), Bluetooth SPP (visible y conectarse a otros), SciCalc Link por Wi-Fi y Bluetooth | ✅ (sin probar aún en placa) |
+| – | Vídeo y audio, y juegos que no caben: los hace el PC en modo PC | ✅ |
+| – | Consola con ALPHA + editor de código + `pip` por Wi-Fi · batería | pendiente |
 | 9–10 | Hardware real (TFT_eSPI + DMA, MCP23017) · PCB | pendiente |
 
 ## Simulador (v0.6)
