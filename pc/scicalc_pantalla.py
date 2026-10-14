@@ -637,6 +637,7 @@ class PcTask:
             else:
                 import scicalc_sim as sim
                 sim.SD_DIR = sd.root.resolve()        # la "SD" del modo PC
+                sim.NET_STATE["wifi"] = True          # la red es la del PC (multijugador)
                 self.sim = sim
                 self.runner = sim.ScriptRunner(real)
             print(f"[PC] Tarea en el PC: {path}", flush=True)
@@ -948,6 +949,8 @@ class Case:
         if link.connected and st:
             bits.append(f"heap {st.get('heap', 0) // 1024} KB")
             bits.append(f"encendido {st.get('up', 0)} s")
+            if st.get("ip"):
+                bits.append(f"IP {st['ip']}")       # la IP del ESP32 en tu Wi-Fi
         bits.append(f"batería {battery[0]}%{'+' if battery[1] else ''}")
         bits.append("sonido" if sound.on else "SILENCIO")
         draw_text(base, "  ·  ".join(bits), font(14), (120, 128, 142), (0, 598), "center", BASE_W)

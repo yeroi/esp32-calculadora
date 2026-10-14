@@ -253,6 +253,22 @@ class Multijugador:
         return False
 
     def unirse(self, destino):
+        # Antes de crear el mundo: ¿el servidor contesta? (si no, se dice aquí mismo)
+        host = destino.get("host")
+        if host and not destino.get("hostear"):
+            info = red.salas(host, destino.get("puerto") or 8267)
+            if not isinstance(info, dict) or "error" in info:
+                err = info.get("error", "") if isinstance(info, dict) else ""
+                if "Wi-Fi" in err:
+                    msg = "Sin Wi-Fi: conéctate en Ajustes"
+                else:
+                    msg = "%s no responde (¿servidor apagado?)" % host
+                if self.ui and self.p.menu:
+                    self.ui.nota = msg
+                    self.p.dirty_all = True
+                else:
+                    self.aviso(msg)
+                return
         self.p.menu = None
         if self.en_mundo():
             self.destino = destino

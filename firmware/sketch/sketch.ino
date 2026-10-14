@@ -129,14 +129,16 @@ static void sendState() {
   uint32_t now = millis();
   if ((int32_t)(now - next) < 0) return;
   next = now + 1000;
-  char js[320];
+  char js[360];
   int n = snprintf(js, sizeof js,
       "{\"heap\":%u,\"maxblk\":%u,\"minheap\":%u,\"up\":%lu,\"app\":\"%s\","
-      "\"deg\":%d,\"exam\":%d,\"wifi\":%d,\"bt\":%d,\"sd\":%d,\"cpu\":%lu,\"chip\":\"%s\"}",
+      "\"deg\":%d,\"exam\":%d,\"wifi\":%d,\"bt\":%d,\"sd\":%d,\"cpu\":%lu,\"chip\":\"%s\","
+      "\"ip\":\"%s\"}",
       (unsigned)ESP.getFreeHeap(), (unsigned)ESP.getMaxAllocHeap(), (unsigned)ESP.getMinFreeHeap(),
       (unsigned long)(now / 1000), statusBar.title(), sysState.degrees, sysState.exam,
       sysState.wifiConnected, sysState.btOn, sysState.sdMounted,
-      (unsigned long)getCpuFrequencyMhz(), ESP.getChipModel());
+      (unsigned long)getCpuFrequencyMhz(), ESP.getChipModel(),
+      sysState.wifiConnected ? wifi.localIp().c_str() : "");
   if (n > 0 && n < (int)sizeof js) remoteLink.send(Proto::STATE, (const uint8_t*)js, n);
 }
 #endif
