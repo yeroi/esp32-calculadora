@@ -1155,6 +1155,28 @@ class Project:
             if self.multi and self.multi.soltar_remoto(ctx):
                 raise StopScript()
         S["scicalc_soltar"] = soltar
+
+        # scicalc_flecha (al principio del vuelo de una flecha): si toca a otro
+        # jugador, le hace el daño a él y la flecha se acaba.
+        def flecha(ctx, b):
+            if self.multi and self.multi.flecha(ctx):
+                sp = ctx.sp
+                for vid in sp.vars:
+                    if self.names.get(vid) == "StuckIn":
+                        sp.vars[vid] = -1
+                cuenta = self.var_id("_SpriteCount")
+                if cuenta:
+                    self.stage.vars[cuenta] = num(self.stage.vars.get(cuenta)) - 1
+                raise StopScript()
+        S["scicalc_flecha"] = flecha
+
+        # scicalc_explosion (al principio de una explosión): los demás jugadores
+        # calculan su daño (cada uno con su armadura)
+        def explosion(ctx, b):
+            if self.multi:
+                a = ctx.args[-1]
+                self.multi.explosion(a.get("x"), a.get("y"), a.get("r"))
+        S["scicalc_explosion"] = explosion
         S["data_showvariable"] = lambda ctx, b: None
         S["data_hidevariable"] = lambda ctx, b: None
 

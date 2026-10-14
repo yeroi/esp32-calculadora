@@ -279,6 +279,24 @@
         {}
       ],
       "motivo": "multijugador: el botín de un mob que mata otro jugador le aparece a él"
+    },
+    {
+      "objeto": "Tiles",
+      "al_principio_de": "Do Arrow In Flight",
+      "bloque": [
+        "scicalc_flecha",
+        {}
+      ],
+      "motivo": "multijugador: las flechas (esqueletos) también dan a los otros jugadores"
+    },
+    {
+      "objeto": "Processor",
+      "al_principio_de": "Explode Circle_pr %n %n %n %s",
+      "bloque": [
+        "scicalc_explosion",
+        {}
+      ],
+      "motivo": "multijugador: las explosiones (creeper, TNT) también dañan a los otros jugadores"
     }
   ]
 }

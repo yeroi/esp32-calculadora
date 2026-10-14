@@ -762,9 +762,12 @@ class Multijugador:
             elif t == "de" and isinstance(m.get("d"), dict) and "sistema" in m["d"]:
                 self.mensaje(str(m["d"]["sistema"]), 0xFFFF55)
             elif t == "de" and isinstance(m.get("d"), dict) and "cambia" in m["d"]:
-                pid, nombre, v = m["d"]["cambia"]
-                if pid == red.mi_id() and self.listo:
-                    self.recibir_cambio(nombre, v)
+                c = m["d"]["cambia"]
+                if c[0] == red.mi_id() and self.listo:
+                    self.recibir_cambio(c[1], c[2], len(c) > 3 and c[3])
+            elif t == "de" and isinstance(m.get("d"), dict) and "explota" in m["d"]:
+                if self.listo and m["d"].get("c", self.chunk()) == self.chunk():
+                    self.me_explota(*m["d"]["explota"][:3])
             elif t == "de" and isinstance(m.get("d"), dict) and "golpe" in m["d"]:
                 if self.listo and red.anfitrion() == red.mi_id() and self.mob_sp:
                     self.aplicar_golpe(*m["d"]["golpe"][:3], quien=m.get("id"))
@@ -945,17 +948,20 @@ class Multijugador:
         if ox:
             self.p.stage.vars[ox], self.p.stage.vars[oy] = elegido[1], elegido[2]
 
-    def cambio_remoto(self, nombre, v):
+    def cambio_remoto(self, nombre, v, pid=None, armadura=False):
         """Un mob le hace algo (daño, desgaste de armadura, empujón) a otro jugador."""
         if nombre and v:
-            red.enviar({"cambia": [self.obj_pid, nombre, v]})
+            red.enviar({"cambia": [self.obj_pid if pid is None else pid, nombre, v, armadura]})
 
-    def recibir_cambio(self, nombre, v):
+    def recibir_cambio(self, nombre, v, armadura=False):
         st = self.p.stage
         vid = self.p.var_id(nombre)
         if not vid:
             return
-        st.vars[vid] = self.num_de(st.vars.get(vid)) + self.num_de(v)
+        v = self.num_de(v)
+        if armadura:                                # daño "en bruto": con MI armadura
+            v = math.floor(v * (self.num(self.p.var_id("_DefenseMul")) or 1))
+        st.vars[vid] = self.num_de(st.vars.get(vid)) + v
         if nombre == "_Health_s":                   # como si te hubiera dado en tu juego
             self.p.start_hats("event_whenbroadcastreceived", "update health")
 
@@ -1008,6 +1014,38 @@ class Multijugador:
             return False
         red.enviar({"botin": [quien[0], x, y, a.get("blockID"), a.get("quantity")]})
         return True
+
+    def flecha(self, ctx):
+        """Anfitrión: ¿la flecha (clon de Tiles) toca a otro jugador? Como en el juego:
+        a menos de 0.5 en x y 0.9 en y, daño según su velocidad."""
+        if not (self.on and self.listo):
+            return False
+        sp = ctx.sp
+        v = {self.p.names.get(k): k for k in sp.vars}
+        try:
+            x, y = float(sp.vars[v["x"]]), float(sp.vars[v["y"]])
+            sx, sy = float(sp.vars[v["sx"]]), float(sp.vars[v["sy"]])
+        except (KeyError, TypeError, ValueError):
+            return False
+        for pid, px, py in self.jugadores()[1:]:
+            if abs(x - px) < 0.5 and abs(y - py) < 0.9:
+                dano = math.ceil(-9 * math.sqrt(sx * sx + sy * sy))
+                self.cambio_remoto("_Health_s", dano, pid, True)
+                return True
+        return False
+
+    def explosion(self, x, y, r):
+        """Una explosión en mi juego (creeper, TNT): los demás calculan su daño."""
+        if self.on and self.listo:
+            red.enviar({"explota": [self.num_de(x), self.num_de(y), self.num_de(r)], "c": self.chunk()})
+
+    def me_explota(self, x, y, r):
+        """La misma cuenta que 'Explode Circle_pr' del juego, para mí."""
+        dx, dy = x - self.num(self.vx), y - self.num(self.vy)
+        dist = max(math.sqrt(dx * dx + dy * dy), 1)
+        if dist < r:
+            self.recibir_cambio("_Health_s", (r - dist) * -16, True)
+            self.recibir_cambio("_DamageArmor", 1)
 
     def recibir_botin(self, x, y, item, n):
         lst = self.p.stage.lists.get(self.lbotin)
