@@ -23,6 +23,7 @@ Luego, un `.bat` para cada cosa (doble clic):
 | `convertir_scratch.bat` | arrastra un `.sb3` encima para convertirlo |
 | `compilar_mpy.bat` | arrastra un juego `.py` encima para hacer el `.mpy` |
 | `instalar_librerias.bat` | solo las librerías de Python |
+| `subir_esp32.bat` | compila el firmware y lo sube al ESP32 (PlatformIO, sin VS Code) |
 
 ## Python en el ESP32 (Paso 5)
 
