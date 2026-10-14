@@ -66,6 +66,7 @@ enum : uint8_t {
   PC_SET   = 0x83,     // i8 batería % (-1 = ?), u8 cargando
   PC_PING  = 0x84,     // latido (1 por segundo)
   PC_TASK_END = 0x85,  // u8 estado (0 bien, 1 error, 2 cancelada), texto
+  PC_CHAR  = 0x86,     // una letra escrita con el teclado del PC (UTF-8)
   FS_RESP  = 0xC0,     // u8 id, u8 estado (0 = OK, si no errno), datos
 };
 // ---- Operaciones de archivos ----------------------------------------------------

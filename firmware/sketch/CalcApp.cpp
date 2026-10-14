@@ -133,8 +133,34 @@ void CalcApp::run() {
   recall_ = -1;
 }
 
+// Teclado del PC (modo PC): "2+sin(30)" escrito tal cual
+static const char* tokenOfChar(uint32_t c) {
+  if (c >= '0' && c <= '9') return DIGITS[c - '0'];
+  switch (c) {
+    case '+': return "+";
+    case '-': return "−";
+    case '*': case 'x': return "×";
+    case '/': return "÷";
+    case '^': return "^";
+    case '(': return "(";
+    case ')': return ")";
+    case '.': case ',': return ".";
+    case '!': return "!";
+    case 's': return "sin(";
+    case 'c': return "cos(";
+    case 't': return "tan(";
+    case 'l': return "ln(";
+    case 'r': return "√(";
+    case 'p': return "π";
+    case 'e': return "e";
+    case 'a': return "Ans";
+    default: return nullptr;
+  }
+}
+
 void CalcApp::onKey(const KeyEvent& ev) {
-  const char* d = digitOf(ev.key);
+  const char* d = ev.ch ? tokenOfChar(ev.ch) : digitOf(ev.key);
+  if (ev.ch && !d) return;
   if (d) {
     insert(d);
   } else if (ev.shift && ev.key == Key::AC) {

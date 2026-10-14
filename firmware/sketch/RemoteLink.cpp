@@ -159,6 +159,20 @@ void RemoteLink::handleFrame(uint8_t type, const uint8_t* p, size_t n) {
     case Proto::PC_KEY:
       if (n >= 2) onKey(p[0], p[1] != 0);
       break;
+    case Proto::PC_CHAR: {
+      // UTF-8 -> código Unicode; llega como tecla "None" con la letra en ch
+      uint32_t cp = 0;
+      if (n >= 1 && p[0] < 0x80) cp = p[0];
+      else if (n >= 2 && (p[0] & 0xE0) == 0xC0) cp = ((p[0] & 0x1F) << 6) | (p[1] & 0x3F);
+      else if (n >= 3 && (p[0] & 0xF0) == 0xE0)
+        cp = ((p[0] & 0x0F) << 12) | ((p[1] & 0x3F) << 6) | (p[2] & 0x3F);
+      if (cp >= 0x20) {
+        KeyEvent ev;
+        ev.ch = cp;
+        xQueueSend(keys_, &ev, 0);
+      }
+      break;
+    }
     case Proto::PC_TASK_END:
       if (n >= 1) {
         taskStatus_ = p[0];

@@ -1695,6 +1695,17 @@ class Project:
                 not any(k == self.sprint for k, _ in events):
             self.sprint = None
         for k, shift in events:
+            if k.startswith("CH:"):                    # letra escrita con el teclado del PC
+                ch = k[3:]
+                if self.asking:
+                    self.asking[1] += ch
+                    self.dirty_all = True
+                else:                                  # la tecla de Scratch de esa letra
+                    key = "space" if ch == " " else ch.lower()
+                    self.injected[key] = self.frame + 3
+                    self.start_hats("event_whenkeypressed", key, restart=False)
+                    self.start_hats("event_whenkeypressed", "any", restart=False)
+                continue
             if self.asking:
                 self.ask_key(k, shift)
                 continue

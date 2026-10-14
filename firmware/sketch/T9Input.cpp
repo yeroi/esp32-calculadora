@@ -33,6 +33,22 @@ void T9Input::begin(const String& text, Mode mode, uint8_t maxLen) {
 
 T9Input::Result T9Input::key(const KeyEvent& ev) {
   uint32_t now = millis();
+  if (ev.ch) {                                                 // teclado del PC: tal cual
+    bool ok = mode_ != Mode::Ip || (ev.ch >= '0' && ev.ch <= '9') || ev.ch == '.';
+    if (ok && text_.length() < max_) {
+      if (ev.ch < 0x80) {
+        text_ += (char)ev.ch;
+      } else {                                                 // ñ, á... en UTF-8
+        char u[4] = {0};
+        if (ev.ch < 0x800) { u[0] = 0xC0 | (ev.ch >> 6); u[1] = 0x80 | (ev.ch & 0x3F); }
+        else { u[0] = 0xE0 | (ev.ch >> 12); u[1] = 0x80 | ((ev.ch >> 6) & 0x3F); u[2] = 0x80 | (ev.ch & 0x3F); }
+        text_ += u;
+      }
+    }
+    last_ = Key::None;
+    pending_ = false;
+    return Result::Editing;
+  }
   switch (ev.key) {
     case Key::Exe: return Result::Ok;
     case Key::AC:  return Result::Cancel;

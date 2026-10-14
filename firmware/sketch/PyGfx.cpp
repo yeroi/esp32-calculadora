@@ -181,7 +181,7 @@ uint64_t PyGfx::held() {
 //  UI
 // =============================================================================
 void PyGfx::onKey(const KeyEvent& ev) {
-  if (!active_ || !keys_) return;
+  if (!active_ || !keys_ || ev.key == Key::None) return;   // (letras del PC: no son teclas)
   uint8_t k = static_cast<uint8_t>(ev.key);
   if (k >= 1 && k <= KEY_COUNT) {
     // Con la matriz física solo hay pulsaciones: cuenta como mantenida hasta

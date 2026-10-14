@@ -9,6 +9,7 @@
 #      from t9 import T9
 #      t = T9("hola")                 # modo "texto"; también "url" y "numero"
 #      r = t.tecla(nombre, shift)     # 'ok', 'cancelar' (DEL con todo borrado) o None
+#  Con teclado de PC llegan también "CH:x" (la letra x tal cual).
 #      t.texto, t.mostrar()
 # =============================================================================
 from scicalc import teclas as K
@@ -26,6 +27,12 @@ class T9:
 
     def tecla(self, k, shift=False):
         ahora = K.ms()
+        if k.startswith("CH:"):                  # letra escrita con el teclado del PC
+            c = k[3:]
+            if (self.modo != "numero" or c.isdigit()) and len(self.texto) < self.maximo:
+                self.texto += c
+            self.ultima = None
+            return None
         if k == "EXE":
             return "ok"
         if k == "DEL":

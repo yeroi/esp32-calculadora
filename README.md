@@ -88,7 +88,7 @@ Viene **activado por defecto** (`SCICALC_REMOTE 1` en `config.h`).
 
 Al conectar, el programa **reinicia el ESP32** (como hace el IDE al subir) y verás el arranque. Si cierras y vuelves a abrir el programa con `--sin-reset`, el ESP32 sigue donde estaba y repinta la pantalla entera.
 
-Teclas del PC: las mismas que el simulador (Enter = EXE, Retroceso = DEL, Esc = AC, Tab = SHIFT, M = MENU, flechas, números...). Además: **F2** sonido sí/no, **F5/F6** batería −/+ (el ESP32 la muestra en su barra), **F7** cargando, **F9** reiniciar el ESP32, **F12** captura de la pantalla.
+Teclas del PC (igual en el simulador): **Enter** = EXE, **flechas** = flechas, **teclado numérico** = números y + − × ÷ de la calculadora, **Retroceso** = DEL, **Esc** = AC, **Tab** = SHIFT, **F1/Inicio** = MENU. Las **letras y los números de arriba escriben**: contraseñas y nombres (T9), la calculadora (`2+s30)` = 2+sin(30)), preguntas de Scratch y teclas de los juegos (W, A, S, D, 1-9...). Además: **F2** sonido sí/no, **F5/F6** batería −/+ (el ESP32 la muestra en su barra), **F7** cargando, **F9** reiniciar el ESP32, **F12** captura de la pantalla.
 
 Detalles:
 

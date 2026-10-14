@@ -77,6 +77,7 @@ FS_REQ = 0x40
 # PC -> ESP32
 PC_HELLO, PC_KEY, PC_SET, PC_PING, FS_RESP = 0x81, 0x82, 0x83, 0x84, 0xC0
 PC_TASK, PC_TASK_STOP, PC_TASK_END = 0x30, 0x31, 0x85   # vídeo/audio y juegos que hace el PC
+PC_CHAR = 0x86                                          # letra escrita con el teclado del PC (UTF-8)
 # Archivos
 FS_STAT, FS_LIST, FS_READ, FS_INFO = 1, 2, 3, 4
 FS_WRITE, FS_REMOVE, FS_RENAME, FS_MKDIR, FS_RMDIR = 5, 6, 7, 8, 9   # solo tras el permiso en la calculadora
@@ -785,20 +786,21 @@ KEY_STYLE = {
 }
 DPAD_C, DPAD_R, DPAD_R_IN = (360, 696), 80, 28
 
+# Teclado del PC: Enter = EXE, flechas = flechas, el teclado NUMÉRICO = las
+# teclas numéricas de la calculadora. Las letras (y los números de arriba)
+# ESCRIBEN: se mandan al ESP32 como texto (contraseñas, nombres, calculadora...).
 PC_KEYS = {
     pygame.K_RETURN: ("EXE", None), pygame.K_KP_ENTER: ("EXE", None),
     pygame.K_BACKSPACE: ("DEL", None), pygame.K_ESCAPE: ("AC", None),
-    pygame.K_TAB: ("SHIFT", None), pygame.K_HOME: ("MENU", None),
+    pygame.K_TAB: ("SHIFT", None), pygame.K_HOME: ("MENU", None), pygame.K_F1: ("MENU", None),
     pygame.K_UP: ("UP", None), pygame.K_DOWN: ("DOWN", None),
     pygame.K_LEFT: ("LEFT", None), pygame.K_RIGHT: ("RIGHT", None),
-}
-PC_CHARS = {
-    "+": ("ADD", None), "-": ("SUB", None), "*": ("MUL", None), "x": ("MUL", None),
-    "/": ("DIV", None), "^": ("POW", None), "(": ("LP", None), ")": ("RP", None),
-    ".": (".", None), ",": (".", None), "s": ("SIN", None), "c": ("COS", None),
-    "t": ("TAN", None), "l": ("LN", None), "r": ("SQRT", None), "m": ("MENU", None),
-    "p": ("SQRT", True), "e": ("LP", True), "a": ("RP", True), "!": ("DIV", True),
-    "d": ("AC", True),
+    pygame.K_KP0: ("0", None), pygame.K_KP1: ("1", None), pygame.K_KP2: ("2", None),
+    pygame.K_KP3: ("3", None), pygame.K_KP4: ("4", None), pygame.K_KP5: ("5", None),
+    pygame.K_KP6: ("6", None), pygame.K_KP7: ("7", None), pygame.K_KP8: ("8", None),
+    pygame.K_KP9: ("9", None), pygame.K_KP_PERIOD: (".", None),
+    pygame.K_KP_PLUS: ("ADD", None), pygame.K_KP_MINUS: ("SUB", None),
+    pygame.K_KP_MULTIPLY: ("MUL", None), pygame.K_KP_DIVIDE: ("DIV", None),
 }
 
 
@@ -853,7 +855,7 @@ class Case:
         pygame.draw.rect(surf, (70, 76, 88), bez, 2, border_radius=20)
         pygame.draw.line(surf, (24, 26, 31), (40, 790), (BASE_W - 40, 790), 2)
         pygame.draw.line(surf, (24, 26, 31), (40, 972), (BASE_W - 40, 972), 2)
-        draw_text(surf, "Enter=EXE · Retroceso=DEL · Esc=AC · Tab=SHIFT · M=MENU · F2 sonido · "
+        draw_text(surf, "Enter=EXE · flechas · numérico=números · letras escriben · Esc=AC · Tab=SHIFT · F1=MENU · F2 sonido · "
                   "F5/F6 batería · F9 reiniciar · F12 captura", font(13), (110, 118, 132), (0, 1326),
                   "center", BASE_W)
         return surf
@@ -1072,9 +1074,12 @@ def main():
                     print(f"[PC] Captura guardada: {name}")
                     continue
                 hit = PC_KEYS.get(ev.key)
-                if not hit and ev.unicode:
-                    ch = ev.unicode.lower() if ev.unicode != "!" else ev.unicode
-                    hit = (ch, None) if ch.isdigit() else PC_CHARS.get(ch)
+                if not hit and ev.unicode and ev.unicode.isprintable():
+                    if task[0]:                 # tarea del PC (juego): la letra tal cual
+                        task[0].key("CH:" + ev.unicode)
+                    else:                       # al ESP32: escribe donde se pueda escribir
+                        link.send(PC_CHAR, ev.unicode.encode("utf-8"))
+                    continue
                 if hit and ev.key not in pc_held:
                     k, sh = hit
                     if sh:                      # atajo con SHIFT: SHIFT y luego la tecla

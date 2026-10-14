@@ -3196,6 +3196,14 @@ class T9:
         self.ultima, self.t = k, ahora
         return None
 
+    def escribir(self, ch):
+        """Letra escrita con el teclado del PC (tal cual, sin T9)."""
+        if self.modo in ("num", "ip") and not (ch.isdigit() or (ch == "." and self.modo == "ip")):
+            return
+        if len(self.texto) < self.maximo:
+            self.texto += ch
+        self.ultima = None
+
     def mostrar(self):
         pendiente = self.ultima and time.time() - self.t < self.ESPERA
         return self.texto + ("" if pendiente else "_")
@@ -3216,6 +3224,14 @@ class T9:
 # =============================================================================
 class SettingsApp(App):
     title = "Ajustes"
+
+    @property
+    def accepts_text(self):              # mientras se escribe un valor: teclado del PC
+        return self.edit is not None
+
+    def type_char(self, ch):
+        if self.edit:
+            self.edit[1].escribir(ch)
 
     def __init__(self, sim):
         super().__init__(sim)
@@ -3656,6 +3672,24 @@ class Simulator:
         self.wifi_net = None
         return True
 
+    def type_char(self, ch):
+        """Letra/número escrito con el teclado del PC (no el numérico): a quien
+        sepa usarlo. Las teclas de la calculadora van solo por sus teclas."""
+        if self.booting or self.modals:
+            return
+        cur = self.current
+        if getattr(cur, "accepts_text", False):
+            cur.type_char(ch)
+        elif isinstance(cur, PythonApp) and cur.runner and cur.runner.state == "running" \
+                and cur.runner.canvas is not None:
+            cur.runner.send_key("CH:" + ch, False)      # juegos: la letra tal cual
+        elif isinstance(cur, CalcApp):
+            hit = (ch, None) if ch.isdigit() else CALC_CHARS.get(ch.lower() if ch != "!" else ch)
+            if hit:
+                self.press(hit[0], force_shift=bool(hit[1]))
+        elif ch.isdigit():                              # menús: accesos 1-6
+            self.press(ch)
+
     def press(self, key, force_shift=None):
         self.pressed[key] = time.time()
         if self.booting:
@@ -3830,8 +3864,8 @@ class Simulator:
         # zona del teclado
         pygame.draw.line(surf, (24, 26, 31), (40, 790), (BASE_W - 40, 790), 2)
         pygame.draw.line(surf, (24, 26, 31), (40, 972), (BASE_W - 40, 972), 2)
-        draw_text(surf, "PC:  0-9 + - * / ^ ( )  ·  Enter=EXE  ·  Retroceso=DEL  ·  Esc=AC  ·  "
-                  "Tab=SHIFT  ·  M=MENU", font(13, False, False), (110, 118, 132), (0, 1326),
+        draw_text(surf, "PC:  Enter=EXE · flechas · teclado numérico = números · letras: escribir · "
+                  "Retroceso=DEL · Esc=AC · Tab=SHIFT · F1=MENU", font(13, False, False), (110, 118, 132), (0, 1326),
                   "center", BASE_W)
         return surf
 
@@ -4083,20 +4117,29 @@ print("x2 =", (-b - d) / (2 * a))
 # =============================================================================
 #  Bucle principal
 # =============================================================================
+# Teclado del PC: Enter = EXE, flechas = flechas, el teclado NUMÉRICO = las
+# teclas numéricas de la calculadora. Las letras (y los números de arriba)
+# ESCRIBEN: en la calculadora, en los campos de texto, en los juegos...
 PC_KEYS = {
     pygame.K_RETURN: ("EXE", None), pygame.K_KP_ENTER: ("EXE", None),
     pygame.K_BACKSPACE: ("DEL", None), pygame.K_ESCAPE: ("AC", None),
-    pygame.K_TAB: ("SHIFT", None), pygame.K_HOME: ("MENU", None),
+    pygame.K_TAB: ("SHIFT", None), pygame.K_HOME: ("MENU", None), pygame.K_F1: ("MENU", None),
     pygame.K_UP: ("UP", None), pygame.K_DOWN: ("DOWN", None),
     pygame.K_LEFT: ("LEFT", None), pygame.K_RIGHT: ("RIGHT", None),
+    pygame.K_KP0: ("0", None), pygame.K_KP1: ("1", None), pygame.K_KP2: ("2", None),
+    pygame.K_KP3: ("3", None), pygame.K_KP4: ("4", None), pygame.K_KP5: ("5", None),
+    pygame.K_KP6: ("6", None), pygame.K_KP7: ("7", None), pygame.K_KP8: ("8", None),
+    pygame.K_KP9: ("9", None), pygame.K_KP_PERIOD: (".", None),
+    pygame.K_KP_PLUS: ("ADD", None), pygame.K_KP_MINUS: ("SUB", None),
+    pygame.K_KP_MULTIPLY: ("MUL", None), pygame.K_KP_DIVIDE: ("DIV", None),
 }
-PC_CHARS = {
+# En la calculadora, escribir "2+sin(30)" con el teclado normal también vale
+CALC_CHARS = {
     "+": ("ADD", None), "-": ("SUB", None), "*": ("MUL", None), "x": ("MUL", None),
     "/": ("DIV", None), "^": ("POW", None), "(": ("LP", None), ")": ("RP", None),
     ".": (".", None), ",": (".", None), "s": ("SIN", None), "c": ("COS", None),
-    "t": ("TAN", None), "l": ("LN", None), "r": ("SQRT", None), "m": ("MENU", None),
+    "t": ("TAN", None), "l": ("LN", None), "r": ("SQRT", None),
     "p": ("SQRT", True), "e": ("LP", True), "a": ("RP", True), "!": ("DIV", True),
-    "d": ("AC", True),
 }
 
 
@@ -4146,14 +4189,9 @@ def main():
                     sim.held.discard(k)
             elif ev.type == pygame.KEYDOWN:
                 hit = PC_KEYS.get(ev.key)
-                # La consola recibe letras del teclado del PC directamente
-                if (not hit and getattr(sim.current, "accepts_text", False) and not sim.modals
-                        and not sim.booting and ev.unicode and ev.unicode.isprintable()):
-                    sim.current.type_char(ev.unicode)
+                if not hit and ev.unicode and ev.unicode.isprintable():
+                    sim.type_char(ev.unicode)            # letras y números de arriba: escriben
                     continue
-                if not hit and ev.unicode:
-                    ch = ev.unicode.lower() if ev.unicode not in "!" else ev.unicode
-                    hit = (ch, None) if ch.isdigit() else PC_CHARS.get(ch)
                 if hit:
                     k, sh = hit
                     pc_held[ev.key] = k
