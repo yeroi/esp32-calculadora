@@ -1142,11 +1142,15 @@ class Project:
         # scicalc_cambiar_jugador: "cambiar variable" del jugador objetivo (vida,
         # armadura, retroceso). Si es otro jugador, se le manda a él.
         def cambiar_jugador(ctx, b):
-            if self.multi and self.multi.obj_pid is not None:
+            if self.multi:
                 vid = self.field(b, "VARIABLE")
-                self.multi.cambio_remoto(self.names.get(vid, ""), num(self.ev(ctx, b, "VALUE")))
-            else:
-                changevar(ctx, b)
+                nombre, v = self.names.get(vid, ""), num(self.ev(ctx, b, "VALUE"))
+                if not self.multi.puede_danar(nombre, v):
+                    return                          # aún invulnerable (0,5 s, como Minecraft)
+                if self.multi.obj_pid is not None:
+                    self.multi.cambio_remoto(nombre, v)
+                    return
+            changevar(ctx, b)
         S["scicalc_cambiar_jugador"] = cambiar_jugador
 
         # scicalc_soltar (al principio de "Drop Item"): si al mob lo ha matado otro

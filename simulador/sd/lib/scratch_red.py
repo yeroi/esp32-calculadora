@@ -160,6 +160,8 @@ class Multijugador:
         self.lbotin = var(cfg.get("botin"), st.lists)   # lista donde el juego pone lo que cae
         self.golpeado = {}                   # anfitrión: mob -> (quién le pegó, cuándo)
         self.objs_vistos = {}                # objeto del suelo -> cuándo lo vi por primera vez
+        self.ult_dano = {}                   # jugador -> cuándo le hicieron daño por última vez
+        self.saltado = (None, -1)            # (jugador, cuándo) golpe ignorado por invulnerable
         self.chat = []                       # [(texto, color, hasta)] últimos mensajes
         self.bocadillo = {}                  # id -> (texto, hasta): lo que acaba de decir
         self.suave = {}                      # id o (id, mob) -> [x, y] dibujados (interpolados)
@@ -869,7 +871,10 @@ class Multijugador:
         if self.vchunk:
             d["c"] = self.chunk()
         if self.mob_sp and red.anfitrion() == red.mi_id() and self.otros:
-            d["mobs"] = self.mobs()
+            # rango de seguimiento (como Minecraft): solo los mobs cerca de algún otro
+            otros = self.jugadores()[1:]
+            d["mobs"] = [e for e in self.mobs()
+                         if any(abs(e[1] - px) < 24 and abs(e[8] - py) < 16 for _, px, py in otros)]
         if d != self.enviado:
             red.enviar(d)
             self.enviado = d
@@ -956,6 +961,21 @@ class Multijugador:
         ox, oy = self.vobj
         if ox:
             self.p.stage.vars[ox], self.p.stage.vars[oy] = elegido[1], elegido[2]
+
+    def puede_danar(self, nombre, v):
+        """Invulnerabilidad de 0,5 s tras recibir daño (10 ticks en Minecraft): un golpe
+        dentro de ese tiempo no cuenta, ni su desgaste de armadura ni su empujón."""
+        pid, ahora = self.obj_pid, K.ms()
+        if nombre == "_Health_s" and v < 0:
+            if ahora - self.ult_dano.get(pid, -9999) < 500:
+                self.saltado = (pid, ahora)
+                return False
+            self.ult_dano[pid] = ahora
+            return True
+        if nombre in ("_DamageArmor", "_KnockBack") and self.saltado[0] == pid and \
+                ahora - self.saltado[1] < 100:
+            return False
+        return True
 
     def cambio_remoto(self, nombre, v, pid=None, armadura=False):
         """Un mob le hace algo (daño, desgaste de armadura, empujón) a otro jugador."""

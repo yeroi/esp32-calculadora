@@ -388,6 +388,7 @@ class Juego:
         self.mobs = []                            # [tipo, x, y, vx, vy, vida, cara, t, id]
         self.mob_id = 0
         self.muerto = False
+        self.era_cliente = False
         self.otros = {}                           # id -> [x, y, cara, anim, objeto, nombre]
         self.enviado = None
         self.cuadro = 0
@@ -780,11 +781,12 @@ class Juego:
             self.herir(20, "hurt")
 
     def herir(self, n, sonido="hurt"):
-        if n <= 0:
-            return
+        if n <= 0 or self.dano_t > 0:             # invulnerable 0,5 s tras un golpe
+            return False
         self.vida = max(0, self.vida - n)
         self.dano_t = 0.5
         sonar(sonido, 0.8)
+        return True
 
     # ---- mobs ---------------------------------------------------------------------
     def es_noche(self):
@@ -804,8 +806,8 @@ class Juego:
 
     def herir_a(self, pid, n, cara):
         if pid is None:
-            self.herir(n)
-            self.vx = 6.0 * cara
+            if self.herir(n):
+                self.vx = 6.0 * cara
         else:                                     # otro jugador: se lo digo a él
             red.enviar({"dano": [pid, n, cara]})
 
@@ -821,10 +823,18 @@ class Juego:
             sonar("pig%d" % random.randint(1, 3), 0.3)
 
     def mobs_paso(self, dt):
+        for o in self.otros.values():             # los demás, moviéndose suave
+            o[0], o[1] = acercar(o[0], o[7]), acercar(o[1], o[8])
         if not self.manda_mobs():                 # los mobs llegan del anfitrión
             for m in self.mobs:
                 self.ruido_mob(m, dt)
+                m[1], m[2] = acercar(m[1], m[3]), acercar(m[2], m[4])
+            self.era_cliente = True
             return
+        if self.era_cliente:                      # el anfitrión se fue y ahora mando yo:
+            self.era_cliente = False              # [3], [4] vuelven a ser velocidades
+            for m in self.mobs:
+                m[3] = m[4] = 0.0
         jug = self.jugadores()
         if not jug:
             return
@@ -928,11 +938,20 @@ class Juego:
             if t == "de" and "p" in d:
                 p = d["p"]
                 nombre = str(red.jugadores().get(m["id"], "?"))[:10]
-                self.otros[m["id"]] = [p[0], p[1], p[2], p[3], p[4], nombre,
-                                       p[5] if len(p) > 5 else 0]
+                o = self.otros.get(m["id"])
+                x, y = (o[0], o[1]) if o else (p[0], p[1])   # se dibuja yendo hacia p
+                self.otros[m["id"]] = [x, y, p[2], p[3], p[4], nombre,
+                                       p[5] if len(p) > 5 else 0, p[0], p[1]]
             elif t == "de" and "m" in d and not self.manda_mobs():
-                # mobs del anfitrión: [id, tipo, x, y, cara]
-                self.mobs = [[e[1], e[2], e[3], 0.0, 0.0, 10, e[4], 0.0, e[0]] for e in d["m"]]
+                # mobs del anfitrión: [id, tipo, x, y, cara]. En [3], [4] va adónde
+                # van: se dibujan acercándose poco a poco (como Minecraft)
+                antes = {m2[8]: m2 for m2 in self.mobs}
+                nuevos = []
+                for e in d["m"]:
+                    v = antes.get(e[0])
+                    x, y = (v[1], v[2]) if v else (e[2], e[3])
+                    nuevos.append([e[1], x, y, e[2], e[3], 10, e[4], 0.0, e[0]])
+                self.mobs = nuevos
                 if "t" in d:                      # la hora del día es la del anfitrión
                     self.tiempo = d["t"]
             elif t == "de" and "golpe" in d and self.manda_mobs():
@@ -942,8 +961,8 @@ class Juego:
                         self.dano_mob(mob, dano, cara, m["id"])
                         break
             elif t == "de" and "dano" in d and d["dano"][0] == yo and not self.muerto:
-                self.herir(d["dano"][1])
-                self.vx = 6.0 * d["dano"][2]
+                if self.herir(d["dano"][1]):
+                    self.vx = 6.0 * d["dano"][2]
             elif t == "de" and "dar" in d and d["dar"][0] == yo:
                 dar(d["dar"][1], d["dar"][2])
             elif t == "var" and str(m.get("n", "")).startswith("b:"):
@@ -1152,6 +1171,7 @@ class Juego:
         self.mobs_paso(dt)
         self.red_paso()
         self.golpe_t = max(0.0, self.golpe_t - dt)
+        self.dano_t = max(0.0, self.dano_t - dt)
         self.tiempo += dt
         # hambre y vida
         self.hambre_t += dt * (1.5 if abs(self.vx) > 0.1 else 1.0)
@@ -1208,6 +1228,11 @@ class Juego:
                     self.hud = None
                     return
             P.mostrar()
+
+
+def acercar(a, b):
+    """Interpolación: un poco más cerca de b (de golpe si está lejos)."""
+    return b if abs(b - a) > 3 else a + (b - a) * 0.45
 
 
 def medio(valor, i):
