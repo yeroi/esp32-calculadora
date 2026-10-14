@@ -33,18 +33,30 @@ if "%OP%"=="3" set ENV=esp32dev-hw
 if "%OP%"=="4" set ENV=esp32dev-hw-sinbt
 if "%OP%"=="5" set TGT=
 
+set PORT=
+if not "%OP%"=="5" (
+  echo.
+  echo  Puertos COM que ve Windows:
+  %PY% -m platformio device list --serial
+  echo  ^(el ESP32 suele ser el que pone CP210x, CH340 o USB-SERIAL^)
+  set /p PORT= Escribe el puerto, p. ej. COM5 ^(Enter = buscarlo solo^): 
+)
+if not "%PORT%"=="" set TGT=%TGT% --upload-port %PORT%
+
 echo.
 echo  Compilando %ENV% ...  (si se queda en "Connecting...", manten pulsado BOOT)
 %PY% -m platformio run -d firmware -e %ENV% %TGT%
 if errorlevel 1 (
   echo.
-  echo  FALLO. Si no encuentra el puerto: revisa el cable USB ^(que sea de datos^),
-  echo  el driver CP2102/CH340 y que scicalc_pantalla.py este cerrado.
+  echo  FALLO. Si es el puerto ^("could not open COMx"^):
+  echo   - Abre el Administrador de dispositivos ^> Puertos ^(COM y LPT^) y mira
+  echo     que COM aparece al enchufar el ESP32. Si no aparece ninguno nuevo,
+  echo     falta el driver ^(CP2102 o CH340^) o el cable solo carga.
+  echo   - Cierra modo_pc.bat y el Monitor Serie del Arduino IDE.
+  echo   - Vuelve a ejecutar esto y escribe ese COM a mano.
   pause
   exit /b 1
 )
 echo.
-if "%OP%"=="1" echo  Listo. Ahora abre modo_pc.bat
-if "%OP%"=="2" echo  Listo. Ahora abre modo_pc.bat
-echo  Listo.
+if "%OP%"=="5" (echo  Compilado.) else (echo  Listo. Ahora abre modo_pc.bat)
 pause
