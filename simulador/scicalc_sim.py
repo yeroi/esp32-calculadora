@@ -1012,6 +1012,7 @@ PUERTO = 8267
 PUERTO_BUSCAR = 8268         # UDP: búsqueda de servidores en la red local
 MAX_LINEA = 64 * 1024        # bytes por mensaje
 MAX_VARS = 60000             # variables por sala (un mundo de Paper Minecraft usa ~25 600)
+SIN_RESPUESTA = 30           # s sin saber nada de un jugador: se le da por ido
 MAX_JUGADORES = 16           # por sala
 
 
@@ -1143,6 +1144,7 @@ class Servidor:
         cli = {"conn": conn, "wlock": threading.Lock(), "id": None, "sala": None, "nombre": "?"}
         buf = b""
         try:
+            conn.settimeout(SIN_RESPUESTA)                # como Minecraft: quien calla, fuera
             while True:
                 chunk = conn.recv(4096)
                 if not chunk:
@@ -1169,6 +1171,9 @@ class Servidor:
 
     def _mensaje(self, cli, msg, addr):
         t = msg.get("t")
+        if t == "ping":                              # "sigo aquí" (cada 5 s)
+            self._enviar(cli, {"t": "pong"})
+            return
         if t == "salas":                             # consulta sin entrar en ninguna sala
             self._enviar(cli, self.info())
             return
@@ -1347,7 +1352,10 @@ class NetClient:
             self.status("error", f"no se puede conectar a {self.addr[0]}:{self.addr[1]} ({e})")
             return
         self.send(self.hello)
+        threading.Thread(target=self._latido, daemon=True).start()
+        self.sock.settimeout(20)                       # sin nada del servidor en 20 s: caído
         buf = b""
+        motivo = "se perdió la conexión"
         try:
             while not self.closed:
                 chunk = self.sock.recv(4096)
@@ -1356,12 +1364,20 @@ class NetClient:
                 buf += chunk
                 while b"\n" in buf:
                     line, buf = buf.split(b"\n", 1)
-                    if line.strip():
+                    if line.strip() and line.strip() not in (b'{"t":"pong"}', b'{"t": "pong"}'):
                         self.write("n " + line.decode("utf-8", "replace"))
+        except socket.timeout:
+            motivo = "el servidor no responde"
         except OSError:
             pass
         if not self.closed:
-            self.status("desconectado", "se perdió la conexión")
+            self.status("desconectado", motivo)
+
+    def _latido(self):
+        """Como el keep-alive de Minecraft: "sigo aquí" cada 5 s."""
+        while not self.closed and self.sock:
+            time.sleep(5)
+            self.send({"t": "ping"})
 
     def send(self, obj):
         if self.sock and not self.closed:

@@ -92,11 +92,11 @@ En **Minecraft 2D** (nuestro juego de MicroPython) ya hay:
 - [ ] Aparición alrededor de cada jugador y desaparición respecto al más cercano. Animales persistentes.
 
 ### Fase 3: red "de verdad"
-- [ ] Interpolación de jugadores y mobs.
+- [x] Interpolación de jugadores y mobs (se acercan poco a poco a la posición recibida).
 - [ ] Mobs por eventos (aparecer / mover / quitar) y rango de seguimiento por jugador, en vez de la lista entera.
 - [ ] Confirmación de bloques con número de secuencia.
 - [ ] Objetos soltados como entidades del anfitrión: los recoge el primero que los toca.
-- [ ] Keep-alive y expulsión con motivo.
+- [x] Keep-alive: ping cada 5 s. El servidor echa a quien no responde en 30 s y el cliente se da por desconectado si el servidor calla 20 s.
 
 ### Fase 4: funciones online
 - [x] Chat con la tecla T (LN en la calculadora; enviar con SHIFT+EXE): lo que no empieza por "/" va a todos. Se muestra abajo a la izquierda como en Minecraft y en un bocadillo encima del jugador. Mensajes de sistema: entra, sale, muere.
