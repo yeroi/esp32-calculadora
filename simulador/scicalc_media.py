@@ -20,7 +20,7 @@
    ▲ (o EXE) pausa/sigue · ▼ velocidad x2 (otra vez: normal)
    ▼ mantenida + ► : el doble de rápido hacia delante (x2, x4, x8, x16)
    ▼ mantenida + ◄ : rebobinar, cada vez el doble (x2, x4, x8, x16)
-   ◄ ► solas: -10 s / +10 s (SHIFT: 1 min) · + − volumen · AC/DEL salir
+   ◄ ► solas: -5 s / +5 s (SHIFT: 1 min) · + − volumen · AC/DEL salir
 ===============================================================================
 """
 import os
@@ -320,7 +320,7 @@ class MediaPlayer:
         elif k == "LEFT" and "DOWN" in held:             # ▼ + ◄: rebobinar, el doble cada vez
             self.set_speed(-2 if self.speed >= 1 else max(-16, self.speed * 2))
         elif k in ("LEFT", "RIGHT"):
-            self.seek((60 if shift else 10) * (1 if k == "RIGHT" else -1))
+            self.seek((60 if shift else 5) * (1 if k == "RIGHT" else -1))
         elif k in ("ADD", "SUB"):
             self.volume(0.1 if k == "ADD" else -0.1)
         return False
