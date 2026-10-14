@@ -63,7 +63,7 @@ Lo que se ha hecho ya, comparado con Minecraft real (referencia: el cliente libr
 | Nombres sobre los jugadores | ✅ | |
 | Chat | ⬜ | El juego tiene comandos con la tecla **T** (objeto Commands), pero son solo locales. |
 | Entrar, salir, desconexiones | 🟡 | Hay avisos de entrada y salida.<br>**Falta** keep-alive: expulsar a quien no responde en unos 15 s, como Minecraft. |
-| Guardado compartido | 🟡 | El anfitrión guarda su mundo y el servidor dedicado guarda la sala.<br>**Falta** guardar la posición y el inventario de cada invitado (Minecraft: `playerdata/<uuid>`). |
+| Guardado compartido | ✅ | El anfitrión guarda su mundo y el servidor dedicado guarda la sala. Cada invitado guarda posición, vida e inventario con su nombre. |
 | Pruebas de latencia y reconexión | 🧪 | Solo probado en el mismo PC con dos simuladores. |
 
 En **Minecraft 2D** (nuestro juego de MicroPython) ya hay:
@@ -101,7 +101,7 @@ En **Minecraft 2D** (nuestro juego de MicroPython) ya hay:
 ### Fase 4: funciones online
 - [x] Chat con la tecla T (LN en la calculadora; enviar con SHIFT+EXE): lo que no empieza por "/" va a todos. Se muestra abajo a la izquierda como en Minecraft y en un bocadillo encima del jugador. Mensajes de sistema: entra, sale, muere.
 - [ ] Lista de jugadores.
-- [ ] Datos de cada jugador guardados en el anfitrión y el servidor: reconectar y seguir donde estabas.
+- [x] Datos de cada jugador (posición, vida, inventario) guardados en la sala con su nombre cada 10 s y al salir (`j:<nombre>`). Al volver a entrar, sigues donde estabas.
 
 ### Supervivencia, más adelante
 Experiencia, encantamientos, logros y el End no existen en v11.7. Se podrían añadir parcheando, pero son proyectos grandes. Antes conviene terminar las fases 1-3.

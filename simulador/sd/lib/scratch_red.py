@@ -163,6 +163,7 @@ class Multijugador:
         self.bocadillo = {}                  # id -> (texto, hasta): lo que acaba de decir
         self.suave = {}                      # id o (id, mob) -> [x, y] dibujados (interpolados)
         self.vvida = var(cfg.get("vida"), st.vars)
+        self.datos_t = 0                     # invitado: cuándo guardé mis datos en el servidor
         self.vivo = True
         self.vid_clon = None
         mb = cfg.get("mobs") or {}
@@ -479,6 +480,8 @@ class Multijugador:
 
     def salir(self):
         self.p.menu = None
+        if self.invitado and self.on and self.vivo:
+            self.guardar_jugador()
         red.desconectar()
         if self.invitado:                           # vuelves a jugar solo: tus mobs, otra vez
             for vid, v in self.inv_poner:
@@ -546,6 +549,36 @@ class Multijugador:
                 st.vars[vid] = v
         self.unido()
 
+    def clave_jugador(self):
+        return "j:" + self.nombre(red.mi_id())
+
+    def guardar_jugador(self):
+        """Invitado: mi posición, vida e inventario, guardados en el servidor por mi
+        nombre (como el playerdata de Minecraft): al volver, sigo donde estaba."""
+        st = self.p.stage
+        d = {"x": self.num(self.vx), "y": self.num(self.vy), "c": self.chunk()}
+        if self.vvida:
+            d["vida"] = self.num(self.vvida)
+        inv = st.lists.get(self.linv) if self.linv else None
+        if inv is not None:
+            d["inv"] = list(inv[:80])
+        red.var(self.clave_jugador(), d)
+
+    def recuperar_jugador(self, vs):
+        d = vs.get(self.clave_jugador())
+        if not isinstance(d, dict):
+            return False
+        st = self.p.stage
+        inv = st.lists.get(self.linv) if self.linv else None
+        if inv is not None and isinstance(d.get("inv"), list):
+            inv[:len(d["inv"])] = d["inv"]
+        if self.vvida and d.get("vida", 0) > 0:
+            st.vars[self.vvida] = d["vida"]
+        if d.get("c", self.chunk()) == self.chunk():
+            self.ir_a(d["x"], d["y"])
+            return True
+        return False
+
     def unido(self):
         """Ya estoy en el mundo del anfitrión: sin mis mobs, junto a él."""
         self.invitado = True
@@ -561,10 +594,13 @@ class Multijugador:
         if self.lcofres:
             self.aplicar_cofres(red.vars())
         self.cofres_vistos = None
+        nombre = red.jugadores().get(anf, "anfitrión")
+        if self.recuperar_jugador(red.vars()):       # ya había jugado aquí: donde lo dejé
+            self.aviso("De vuelta en la partida de %s" % nombre)
+            return
         pos = self.otros.get(anf)
         if pos:
             self.ir_a(pos["x"], pos["y"] + 0.1)      # justo donde está él (sobre suelo libre)
-        nombre = red.jugadores().get(anf, "anfitrión")
         self.aviso("Unido a la partida de %s" % nombre)
 
     def solo_anfitrion(self):
@@ -783,6 +819,9 @@ class Multijugador:
         if self.sinc and self.otros and red.anfitrion() == red.mi_id() and K.ms() > self.sinc_t:
             self.sinc_t = K.ms() + 2000
             red.enviar({"sinc": {nombre: dueno.vars.get(vid) for dueno, vid, nombre in self.sinc}})
+        if self.invitado and K.ms() > self.datos_t and self.vivo:
+            self.datos_t = K.ms() + 10000           # cada 10 s
+            self.guardar_jugador()
         if self.vvida:                              # "Ana ha muerto"
             vivo = self.num(self.vvida) > 0
             if self.vivo and not vivo:
