@@ -412,6 +412,13 @@ class Project:
             ids = self._ids = {n: v for v, n in self.names.items() if v in self.stage.vars}
         return ids.get(nombre)
 
+    def var_id_lista(self, nombre):
+        """Id de la lista del escenario con ese nombre (o None)."""
+        for v, n in self.names.items():
+            if n == nombre and v in self.stage.lists:
+                return v
+        return None
+
     def var_get(self, sp, vid):
         if vid in sp.vars:
             return sp.vars[vid]

@@ -36,11 +36,11 @@ El intérprete de la calculadora implementa **todos** los tipos de bloque de Scr
 | Cofres | ✅ | Lista `_Inside`; se guardan en la partida (registro 301). |
 | Mobs | ✅ | 12 tipos:<br>• Pasivos: cerdo, oveja, vaca, gallina, aldeano.<br>• Lobo / perro domable.<br>• Hostiles: zombi, creeper, araña, esqueleto, enderman, pigman.<br>IA: deambular, saltar, trepar (araña), perseguir con línea de visión, flechas, explosión, quemarse al sol. |
 | Vida, hambre, oxígeno, armadura | ✅ | Regeneración con hambre > 17.5, inanición, caída, lava, ahogo, armadura con durabilidad. |
-| Invulnerabilidad del jugador | ⬜ | Solo existe la recarga de 1.5 s de cada mob. Los mobs sí tienen 0.8 s de invulnerabilidad. |
+| Invulnerabilidad del jugador | ✅ | No existía en el juego (solo la recarga de 1.5 s de cada mob). Añadida: 0,5 s, como Minecraft. |
 | Muerte y reaparición | ✅ | Se tira todo el inventario. Se reaparece en la cama o en el punto inicial, incluso en otro chunk. |
 | Día y noche | ✅ | Unos 20 minutos por día; dormir lo acelera. |
 | Iluminación | ✅ | `_Light`: luz de cielo y de bloques, propagada. |
-| Clima | 🔴 | Objeto snow #18: compara `weather time = 1`, que nunca se cumple. Nunca hay clima aleatorio; solo nieve en el bioma nevado o con comandos. |
+| Clima | ✅ | Estaba roto (objeto snow #18 comparaba `weather time = 1`, que nunca se cumple). Arreglado con un parche: ya llueve y nieva a veces. |
 | Guardar / cargar | 🟡 | Se guardan el nivel por chunks, el jugador, el inventario, los cofres y los mobs.<br>**No se guardan** el hambre, la saturación, el oxígeno, la vida exacta de cada mob ni el clima. |
 | Experiencia, encantamientos, logros, jefes, End | ⬜ | No existen en esta versión. Las capturas con número verde de nivel son de versiones más nuevas de Paper Minecraft. |
 
@@ -52,19 +52,20 @@ Lo que se ha hecho ya, comparado con Minecraft real (referencia: el cliente libr
 |---|---|---|
 | Local, directo o servidor | ✅ | Partidas en la Wi-Fi (buscar), por IP directa o con un servidor dedicado (`pc/scicalc_servidor.py`). En el ESP32 real, también por Bluetooth. |
 | Identidad de cada jugador | ✅ | Id de la sala y nombre (Ajustes o `red.json`). |
-| Posición y animaciones | 🟡 | El "espejo" manda unas 10 veces por segundo cuerpo, objeto en mano, grieta y objetos tirados.<br>**Falta** interpolar (Minecraft suaviza 3 ticks). |
-| Bloques rotos y puestos | ✅ | `b:chunk:i`, separado por chunk como en Minecraft (arreglado hoy). Lo que se cambió antes de entrar también llega.<br>**Falta** que el anfitrión confirme los cambios (número de secuencia) para evitar conflictos. |
+| Posición y animaciones | ✅ | El "espejo" manda unas 10 veces por segundo cuerpo, objeto en mano, grieta y objetos tirados, con **interpolación** como Minecraft. |
+| Bloques rotos y puestos | ✅ | `b:chunk:i`, por chunk. El **servidor confirma** cada cambio (`red.var(n, v, antes)`): si dos cambian el mismo bloque, gana el primero y al otro se le corrige. |
 | Unirse sin crear mundo | ✅ | El anfitrión guarda con el **Save Game** del propio juego. El invitado lo abre con **Load Game** (sin generar nada) y con el inventario vacío. |
-| Mobs | 🟡 | Los simula **solo el anfitrión**: parche al guion `animate` de Mob con `_RedInvitado`.<br>El invitado los ve estén donde estén: se leen de la lista `_Mob`, no de lo que hay en la pantalla del anfitrión.<br>No desaparecen si están cerca de otro jugador (se agranda `_SpawnArea`).<br>**Falta**: que persigan y hagan daño al invitado, y que el invitado pueda pegarles. |
-| Inventarios | ✅ | Cada uno el suyo, local. |
-| Objetos soltados | 🟡 | Se ven en todas las pantallas, pero solo los recoge quien los soltó: no se duplican, pero tampoco los coge otro. |
-| Cofres | 🔴 | `_Inside` **no se sincroniza**: cada jugador ve su propio contenido, lo que permite **duplicar objetos**. |
-| Vida, daño, muerte | 🟡 | Cada uno la suya. No hay PvP. Los mobs no dañan al invitado. |
-| Nombres sobre los jugadores | ✅ | |
-| Chat | ⬜ | El juego tiene comandos con la tecla **T** (objeto Commands), pero son solo locales. |
-| Entrar, salir, desconexiones | 🟡 | Hay avisos de entrada y salida.<br>**Falta** keep-alive: expulsar a quien no responde en unos 15 s, como Minecraft. |
-| Guardado compartido | ✅ | El anfitrión guarda su mundo y el servidor dedicado guarda la sala. Cada invitado guarda posición, vida e inventario con su nombre. |
-| Pruebas de latencia y reconexión | 🧪 | Solo probado en el mismo PC con dos simuladores. |
+| Mobs | ✅ | Los simula **solo el anfitrión** (parche `_RedInvitado`) y manda los que están cerca de algún jugador (rango de seguimiento).<br>Cada mob va a por el **jugador más cercano** (`_ObjX`/`_ObjY`), aparece alrededor de cualquiera y desaparece según el más cercano.<br>El invitado los ve y les pega; el botín se lo lleva quien mata. |
+| Inventarios | ✅ | Cada uno el suyo. Se guarda en la sala con tu nombre. |
+| Objetos soltados | ✅ | Los coge **el primero que los toca** (pasado 1,5 s). |
+| Cofres | ✅ | Compartidos: cada cofre se manda entero al cambiar. Ya no se duplican objetos. |
+| Vida, daño, muerte | ✅ | Los mobs, las flechas y las explosiones dañan a cualquier jugador, con su armadura.<br>**PvP**: clic sobre otro jugador a menos de 3 casillas.<br>Invulnerabilidad de 0,5 s. Mensaje "X ha muerto". |
+| Nombres sobre los jugadores | ✅ | Con bocadillo cuando hablan. |
+| Chat | ✅ | Tecla T: lo que no empieza por "/" va a todos. Abajo a la izquierda, como Minecraft. |
+| Entrar, salir, desconexiones | ✅ | Mensajes de sistema. **Keep-alive**: ping cada 5 s; el servidor echa a quien calla 30 s. |
+| Guardado compartido | ✅ | El anfitrión guarda su mundo y el servidor dedicado guarda la sala. Cada invitado guarda posición, vida e inventario con su nombre; al volver, sigue donde estaba. |
+| Clima y hora | ✅ | Los manda el anfitrión. El clima del juego estaba roto y está arreglado con un parche. |
+| Pruebas de latencia y reconexión | 🧪 | Probado con dos simuladores en el mismo PC: cofres, flechas, explosiones, recoger objetos y PvP con pruebas sueltas del código. **Falta** probar en dos calculadoras por Wi-Fi real. |
 
 En **Minecraft 2D** (nuestro juego de MicroPython) ya hay:
 - mobs del anfitrión que persiguen a cualquier jugador;
@@ -88,19 +89,19 @@ En **Minecraft 2D** (nuestro juego de MicroPython) ya hay:
 - [x] Daño a otro jugador: el bloque `scicalc_cambiar_jugador` manda la vida, el desgaste de la armadura y el empujón al jugador atacado.
 - [x] El invitado pega a un mob: tiene una copia de los mobs en su `_Mob` y su propio *Hit Mob* los encuentra. El golpe (`+9`, `+18`) se le manda al anfitrión, que lo aplica si el mob no es invulnerable. Es como `EntityAttackC2SP`.
 - [x] Botín para quien mata: el bloque `scicalc_soltar` (al principio de *Drop Item*) hace que, si al mob le ha pegado otro jugador en los últimos 3 s, el botín aparezca en su mundo y lo recoja él.
-- [ ] Invulnerabilidad del jugador de 0.5 s (10 ticks), retroceso y PvP opcional.
-- [ ] Aparición alrededor de cada jugador y desaparición respecto al más cercano. Animales persistentes.
+- [x] Invulnerabilidad del jugador de 0,5 s (10 ticks), retroceso y PvP (`"pvp": false` en el perfil para quitarlo).
+- [x] Aparición alrededor de cada jugador y desaparición respecto al más cercano.
 
 ### Fase 3: red "de verdad"
 - [x] Interpolación de jugadores y mobs (se acercan poco a poco a la posición recibida).
-- [ ] Mobs por eventos (aparecer / mover / quitar) y rango de seguimiento por jugador, en vez de la lista entera.
-- [ ] Confirmación de bloques con número de secuencia.
-- [ ] Objetos soltados como entidades del anfitrión: los recoge el primero que los toca.
+- [x] Rango de seguimiento: el anfitrión solo manda los mobs que están cerca de algún otro jugador.
+- [x] Confirmación de bloques: `red.var(n, v, antes)`; el servidor acepta el primero y corrige al que llega tarde.
+- [x] Objetos soltados: los recoge el primero que los toca (parche `scicalc_recoger` en *Do Suck*).
 - [x] Keep-alive: ping cada 5 s. El servidor echa a quien no responde en 30 s y el cliente se da por desconectado si el servidor calla 20 s.
 
 ### Fase 4: funciones online
 - [x] Chat con la tecla T (LN en la calculadora; enviar con SHIFT+EXE): lo que no empieza por "/" va a todos. Se muestra abajo a la izquierda como en Minecraft y en un bocadillo encima del jugador. Mensajes de sistema: entra, sale, muere.
-- [ ] Lista de jugadores.
+- [x] Lista de jugadores: en el menú Multijugador (y el número en el menú SciCalc).
 - [x] Datos de cada jugador (posición, vida, inventario) guardados en la sala con su nombre cada 10 s y al salir (`j:<nombre>`). Al volver a entrar, sigues donde estabas.
 
 ### Supervivencia, más adelante

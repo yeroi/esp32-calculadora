@@ -162,6 +162,9 @@ class Multijugador:
         self.objs_vistos = {}                # objeto del suelo -> cuándo lo vi por primera vez
         self.ult_dano = {}                   # jugador -> cuándo le hicieron daño por última vez
         self.saltado = (None, -1)            # (jugador, cuándo) golpe ignorado por invulnerable
+        self.pvp = cfg.get("pvp", True)      # pegar a otros jugadores (como pvp=true)
+        self.raton_antes = False
+        self.pvp_t = 0
         self.chat = []                       # [(texto, color, hasta)] últimos mensajes
         self.bocadillo = {}                  # id -> (texto, hasta): lo que acaba de decir
         self.suave = {}                      # id o (id, mob) -> [x, y] dibujados (interpolados)
@@ -843,6 +846,8 @@ class Multijugador:
                 red.enviar({"sistema": texto})
                 self.mensaje(texto, 0xFFFF55)
             self.vivo = vivo
+        if self.pvp and self.otros:
+            self.pvp_paso()
         if self.mob_sp and self.otros:
             self.area_mobs()
         if self.invitado and K.ms() - self.inv_t > 1000:   # por si el juego genera otro
@@ -961,6 +966,35 @@ class Multijugador:
         ox, oy = self.vobj
         if ox:
             self.p.stage.vars[ox], self.p.stage.vars[oy] = elegido[1], elegido[2]
+
+    def pvp_paso(self):
+        """Clic sobre otro jugador cerca: le pego con lo que llevo en la mano (el mismo
+        daño que el juego hace a los mobs: columna 14 de _BLOCK_DATA si es arma)."""
+        abajo = bool(self.p.mouse_down)
+        clic, self.raton_antes = abajo and not self.raton_antes, abajo
+        if not clic or K.ms() < self.pvp_t:
+            return
+        mx, my = self.p.mouse_screen()
+        yo_x, yo_y = self.num(self.vx), self.num(self.vy)
+        for pid, px, py in self.jugadores()[1:]:
+            r = (self.rects.get(pid) or [None])[0]
+            if not r or not (r[0] <= mx < r[0] + r[2] and r[1] + 14 <= my < r[1] + r[3]):
+                continue
+            if abs(px - yo_x) > 3.5 or abs(py - yo_y) > 3:
+                return                              # demasiado lejos
+            self.pvp_t = K.ms() + 500                # recarga del golpe
+            dano = 1
+            try:
+                st = self.p.stage
+                tabla = st.lists.get(self.p.var_id_lista("_BLOCK_DATA")) or []
+                base = int(self.num(self.p.var_id("_HeldC"))) * int(self.num(self.p.var_id("_DMUL")))
+                if str(tabla[base + 9]) == "1":     # es una herramienta/arma
+                    dano = max(1, int(float(tabla[base + 13])))
+            except (ValueError, IndexError, TypeError):
+                pass
+            self.cambio_remoto("_Health_s", -dano, pid, True)
+            self.cambio_remoto("_KnockBack", 0.18 if px > yo_x else -0.18, pid)
+            return
 
     def puede_danar(self, nombre, v):
         """Invulnerabilidad de 0,5 s tras recibir daño (10 ticks en Minecraft): un golpe
