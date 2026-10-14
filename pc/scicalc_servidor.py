@@ -21,6 +21,8 @@
      {"t":"hola", "sala":"clonaria", "nombre":"Yerai"}   entrar en una sala
      {"t":"todos", "d":{...}}                            mensaje a los demás de la sala
      {"t":"var", "n":"nombre", "v":valor}                variable compartida (se guarda)
+     {"t":"var", "n":..., "v":..., "antes":viejo}        solo si nadie la cambió antes; si no,
+                                                         se le devuelve el valor bueno
      {"t":"vaciar"}                                      borra las variables (mundo nuevo)
      {"t":"salas"}                                       (sin entrar) lista de salas
    Servidor -> calculadora
@@ -242,6 +244,12 @@ class Servidor:
                 self.cambios = True
             elif t == "var":
                 n = str(msg.get("n", ""))[:64]
+                if "antes" in msg and n in sala["vars"] and \
+                        str(sala["vars"][n]) != str(msg.get("antes")):
+                    # Otro lo cambió antes (dos rompen el mismo bloque a la vez): gana
+                    # el primero y al que llega tarde se le corrige, como en Minecraft
+                    self._enviar(cli, {"t": "var", "id": 0, "n": n, "v": sala["vars"][n]})
+                    return
                 if n in sala["vars"] or len(sala["vars"]) < MAX_VARS:
                     sala["vars"][n] = msg.get("v")
                     self.cambios = True

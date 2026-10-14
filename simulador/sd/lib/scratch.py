@@ -1248,9 +1248,10 @@ class Project:
             i = index(ctx, b, items)
             if 0 <= i < len(items):
                 v = self.ev(ctx, b, "ITEM", "")
+                antes = items[i]
                 items[i] = v
                 if self.multi:
-                    self.multi.bloque(self.field(b, "LIST"), i, v, ctx)
+                    self.multi.bloque(self.field(b, "LIST"), i, v, ctx, antes)
         S["data_replaceitemoflist"] = replace
 
         def item(ctx, b):

@@ -58,6 +58,7 @@ El script no abre sockets: le pide la conexión al núcleo, que la lleva por él
 | `jugadores()` | `{id: nombre}` de la sala, tú incluido |
 | `enviar(d)` | manda el diccionario `d` a los demás (no se guarda) |
 | `var(nombre, valor)` | variable compartida: la reciben todos y **se guarda en la sala** |
+| `var(nombre, valor, antes)` | igual, pero solo si nadie la ha cambiado: si en la sala ya no vale `antes`, no se acepta y te llega la buena como `{"t":"var","id":0,...}` (dos jugadores rompiendo el mismo bloque a la vez) |
 | `vars()` | todas las variables de la sala (también las de antes de entrar) |
 | `recibir()` | lista de mensajes llegados desde la última llamada |
 | `desconectar()` | sale de la sala |

@@ -558,13 +558,17 @@ class Juego:
     def poner(self, x, y, b, red_tambien=True):
         if not (0 <= x < W and 0 <= y < H):
             return
+        antes = g(x, y)
         sp(x, y, b)
         calc_alto(x)
         for dx in (-1, 0, 1):                       # los vecinos pueden pasar a verse
             for dy in (-1, 0, 1):
                 self.sucios.append((x + dx, y + dy))
         if red_tambien and self.online:
-            red.var("b:%d" % (x + y * W), b)
+            try:                                    # si otro lo cambió antes, me corrigen
+                red.var("b:%d" % (x + y * W), b, antes)
+            except TypeError:
+                red.var("b:%d" % (x + y * W), b)
 
     def asentar(self, x, y):
         while y < H and g(x, y) in CAEN:

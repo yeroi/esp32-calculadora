@@ -726,17 +726,21 @@ class Multijugador:
         st[self.vx], st[self.vy] = x, y
 
     # ---- durante el juego ---------------------------------------------------------
-    def bloque(self, lid, i, v, ctx=None):
+    def bloque(self, lid, i, v, ctx=None, antes=None):
         """Lo llama el intérprete al cambiar un elemento de una lista."""
         if not (self.listo and lid == self.bloques):
             return
         if ctx is not None and self.sin_enviar and \
                 str(ctx.thread.hat[1]).lower() in self.sin_enviar:
             return                                  # el juego cargando/generando un chunk
-        if self.vchunk:
-            red.var("b:%d:%d" % (self.chunk(), i), v)
+        n = "b:%d:%d" % (self.chunk(), i) if self.vchunk else "b:%d" % i
+        if antes is None or antes == v:
+            red.var(n, v)
         else:
-            red.var("b:%d" % i, v)
+            try:
+                red.var(n, v, antes)                # si otro lo cambió antes, me corrigen
+            except TypeError:                       # (scicalc.red antiguo)
+                red.var(n, v)
 
     def leer(self):
         """Procesa lo recibido. Devuelve False si no llegó nada."""

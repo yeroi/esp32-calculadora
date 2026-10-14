@@ -880,10 +880,16 @@ def _red_recibir():
         _net["cola"] = []
     return cola
 
-def _red_var(n, v):
+def _red_var(n, v, *antes):
+    # antes (opcional): el valor que yo creía que tenía. Si otro ya la cambió, el
+    # servidor no la acepta y me manda la buena (como la confirmación de bloques
+    # de Minecraft)
     with _klock:
         _net["vars"][str(n)] = v
-    _net_out({"op": "var", "n": str(n), "v": v})
+    m = {"op": "var", "n": str(n), "v": v}
+    if antes:
+        m["antes"] = antes[0]
+    _net_out(m)
 
 _red.conectar, _red.esperar, _red.recibir = _red_conectar, _red_esperar, _red_recibir
 _red.enviar = lambda d: _net_out({"op": "todos", "d": d})
@@ -1208,6 +1214,12 @@ class Servidor:
                 self.cambios = True
             elif t == "var":
                 n = str(msg.get("n", ""))[:64]
+                if "antes" in msg and n in sala["vars"] and \
+                        str(sala["vars"][n]) != str(msg.get("antes")):
+                    # Otro lo cambió antes (dos rompen el mismo bloque a la vez): gana
+                    # el primero y al que llega tarde se le corrige, como en Minecraft
+                    self._enviar(cli, {"t": "var", "id": 0, "n": n, "v": sala["vars"][n]})
+                    return
                 if n in sala["vars"] or len(sala["vars"]) < MAX_VARS:
                     sala["vars"][n] = msg.get("v")
                     self.cambios = True
