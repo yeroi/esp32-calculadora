@@ -297,6 +297,15 @@
         {}
       ],
       "motivo": "multijugador: las explosiones (creeper, TNT) también dañan a los otros jugadores"
+    },
+    {
+      "objeto": "Tiles",
+      "al_principio_de": "Do Suck %n %n",
+      "bloque": [
+        "scicalc_recoger",
+        {}
+      ],
+      "motivo": "multijugador: los objetos del suelo los coge el primer jugador que los toca, no solo quien los tiró"
     }
   ]
 }

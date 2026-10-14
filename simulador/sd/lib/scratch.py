@@ -1177,6 +1177,16 @@ class Project:
                 a = ctx.args[-1]
                 self.multi.explosion(a.get("x"), a.get("y"), a.get("r"))
         S["scicalc_explosion"] = explosion
+
+        # scicalc_recoger (al principio de "Do Suck" de un objeto del suelo): si lo
+        # toca otro jugador, se lo queda él (como en Minecraft: el primero que llega)
+        def recoger(ctx, b):
+            if self.multi and self.multi.recoger_remoto(ctx):
+                cuenta = self.var_id("_SpriteCount")
+                if cuenta:
+                    self.stage.vars[cuenta] = num(self.stage.vars.get(cuenta)) - 1
+                delete_clone(ctx, b)
+        S["scicalc_recoger"] = recoger
         S["data_showvariable"] = lambda ctx, b: None
         S["data_hidevariable"] = lambda ctx, b: None
 

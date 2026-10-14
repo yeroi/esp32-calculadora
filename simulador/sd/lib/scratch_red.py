@@ -159,6 +159,7 @@ class Multijugador:
         self.vtiempo = var("_TimeReal", st.vars)
         self.lbotin = var(cfg.get("botin"), st.lists)   # lista donde el juego pone lo que cae
         self.golpeado = {}                   # anfitrión: mob -> (quién le pegó, cuándo)
+        self.objs_vistos = {}                # objeto del suelo -> cuándo lo vi por primera vez
         self.chat = []                       # [(texto, color, hasta)] últimos mensajes
         self.bocadillo = {}                  # id -> (texto, hasta): lo que acaba de decir
         self.suave = {}                      # id o (id, mob) -> [x, y] dibujados (interpolados)
@@ -771,6 +772,10 @@ class Multijugador:
             elif t == "de" and isinstance(m.get("d"), dict) and "golpe" in m["d"]:
                 if self.listo and red.anfitrion() == red.mi_id() and self.mob_sp:
                     self.aplicar_golpe(*m["d"]["golpe"][:3], quien=m.get("id"))
+            elif t == "de" and isinstance(m.get("d"), dict) and "dar_obj" in m["d"]:
+                pid, item, n = m["d"]["dar_obj"]
+                if pid == red.mi_id() and self.listo:   # me lo he quedado: a mis pies
+                    self.recibir_botin(self.num(self.vx), self.num(self.vy), item, n)
             elif t == "de" and isinstance(m.get("d"), dict) and "botin" in m["d"]:
                 pid, x, y, item, n = m["d"]["botin"]
                 if pid == red.mi_id() and self.listo:
@@ -1046,6 +1051,32 @@ class Multijugador:
         if dist < r:
             self.recibir_cambio("_Health_s", (r - dist) * -16, True)
             self.recibir_cambio("_DamageArmor", 1)
+
+    def recoger_remoto(self, ctx):
+        """¿Toca otro jugador este objeto del suelo (clon de Tiles)? Entonces es suyo:
+        le aparece a sus pies y aquí desaparece."""
+        if not (self.on and self.listo):
+            return False
+        sp = ctx.sp
+        v = {self.p.names.get(k): k for k in sp.vars}
+        try:
+            x, y = float(sp.vars[v["x"]]), float(sp.vars[v["y"]])
+            c, n = sp.vars[v["c"]], sp.vars[v["count"]]
+        except (KeyError, TypeError, ValueError):
+            return False
+        visto = self.objs_vistos.setdefault(id(sp), K.ms())
+        if K.ms() - visto < 1500:                   # recién tirado: aún no (como Minecraft)
+            return False
+        if len(self.objs_vistos) > 400:
+            self.objs_vistos.clear()
+        mx, my = self.num(self.vx), self.num(self.vy)
+        if abs(mx - x) + abs(my - y) < 1:
+            return False                            # yo también lo toco: para mí
+        for pid, px, py in self.jugadores()[1:]:
+            if abs(px - x) + abs(py - y) < 1:
+                red.enviar({"dar_obj": [pid, c, n]})
+                return True
+        return False
 
     def recibir_botin(self, x, y, item, n):
         lst = self.p.stage.lists.get(self.lbotin)
