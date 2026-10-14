@@ -40,6 +40,8 @@ class PantallaRed:
         self.foco = ("lista", 0)
         self.scroll = 0
         self.nota = ""
+        self.eleccion = None     # (título, [(texto, acción)]): pantalla de elegir (Hostear)
+        self.sel_e = 0
         self.tierra = None       # sprite del bloque de tierra (fondo)
         self.icono = None        # sprite del bloque de hierba (icono de servidor)
         tiles = self.p.by_name.get(multi.cfg_icono[0]) if multi.cfg_icono else None
@@ -165,7 +167,26 @@ class PantallaRed:
         self.p.preguntar("Añadir servidor: IP(:puerto)", "", hecho)
 
     def hostear(self):
-        self.m.hostear({"hostear": True, "subir": True})
+        if self.m.en_mundo():                      # ya estás en un mundo: se abre ese
+            self.m.hostear({"hostear": True, "subir": True})
+            return
+        opciones = [("Mundo nuevo", lambda: self.m.hostear({"hostear": True, "subir": True}))]
+        if self.m.cargar:
+            opciones.append(("Cargar mundo guardado",
+                             lambda: self.m.hostear({"hostear": True, "subir": True, "cargar": True})))
+        opciones.append(("Cancelar", self.cancelar))
+        self.eleccion, self.sel_e = ("Hostear partida", opciones), 0
+        self.p.dirty_all = True
+
+    def cancelar(self):
+        self.eleccion = None
+        self.p.dirty_all = True
+
+    def botones_e(self):
+        """Botones grandes uno debajo de otro, como 'Crear mundo' de Minecraft."""
+        ops = self.eleccion[1]
+        y0 = 70 if len(ops) < 3 else 56
+        return [(t, f, 60, y0 + i * 30, 200) for i, (t, f) in enumerate(ops)]
 
     def borrar(self):
         f = self.fila_sel()
@@ -193,6 +214,18 @@ class PantallaRed:
 
     # ---- teclas y ratón -----------------------------------------------------------
     def tecla(self, k):
+        if self.eleccion:
+            bot = self.botones_e()
+            if k in ("UP", "DOWN"):
+                self.sel_e = (self.sel_e + (1 if k == "DOWN" else -1)) % len(bot)
+            elif k == "EXE":
+                f = bot[self.sel_e][1]
+                self.eleccion = None
+                f()
+            elif k in ("DEL", "S:EXE", "AC"):
+                self.cancelar()
+            self.p.dirty_all = True
+            return
         bot = self.botones()
         tipo, i = self.foco
         if k in ("DEL", "S:EXE"):
@@ -229,6 +262,14 @@ class PantallaRed:
         self.p.dirty_all = True
 
     def clic(self, mx, my):
+        if self.eleccion:
+            for i, (t, f, x, y, w) in enumerate(self.botones_e()):
+                if x <= mx < x + w and y <= my < y + BTN_H:
+                    self.eleccion = None
+                    f()
+                    break
+            self.p.dirty_all = True
+            return
         for i, b in enumerate(self.botones()):
             if b[2] <= mx < b[2] + b[4] and b[3] <= my < b[3] + BTN_H:
                 self.foco = ("boton", i)
@@ -284,6 +325,14 @@ class PantallaRed:
             P.texto("x", x + 4, y + 1, 0xFF5050)
 
     def dibujar(self):
+        if self.eleccion:
+            self.fondo()
+            P.rect(8, LIST_Y - 2, W - 16, LIST_H + 4, 0x120D09)
+            self.sombra(self.eleccion[0], W // 2, 7, 0xFFFFFF, True)
+            self.sombra("Los demás se unirán a este mundo", W // 2, 32, TXT_GRIS, True)
+            for i, (t, f, x, y, w) in enumerate(self.botones_e()):
+                self.boton(t, x, y, w, i == self.sel_e, True)
+            return
         self.fondo()
         titulo = "Jugadores" if self.m.on else "Multijugador"
         self.sombra(titulo, W // 2, 7, 0xFFFFFF, True)

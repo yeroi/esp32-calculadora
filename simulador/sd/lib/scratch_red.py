@@ -102,6 +102,7 @@ class Multijugador:
         self.frame = 0
         self.enviado = None
         self.nueva = cfg.get("nueva_partida") or []
+        self.cargar = cfg.get("cargar_partida") or []   # clics para cargar un mundo guardado
         self.modo_auto = None    # "unirse" / "hostear": esperando a estar en un mundo
         self.destino = {}        # {"host", "puerto", "hostear"} de la partida elegida
         self.pasos = []          # clics pendientes para empezar un mundo
@@ -158,7 +159,8 @@ class Multijugador:
         """Entrar en la partida en cuanto el jugador esté en un mundo."""
         self.modo_auto, self.destino = modo, destino or {}
         if not self.en_mundo():        # desde el título: el juego empieza un mundo nuevo
-            self.pasos = [dict(p) for p in self.nueva]
+            pasos = self.cargar if self.destino.get("cargar") and self.cargar else self.nueva
+            self.pasos = [dict(p) for p in pasos]     # (o abre "Load Game": tú eliges cuál)
 
     def visible(self, cond):
         nombre, _, disfraz = cond.partition(":")
@@ -184,7 +186,8 @@ class Multijugador:
             self.modo_auto = None
             self.conectar()
         elif self.p.toast is None or ahora > self.p.toast[1] - 500:
-            self.aviso("Creando el mundo para hostear..." if self.modo_auto == "hostear"
+            self.aviso("Elige el mundo guardado..." if self.destino.get("cargar") else
+                       "Creando el mundo para hostear..." if self.modo_auto == "hostear"
                        else "Entrando en la partida...")
 
     # ---- conectar / salir --------------------------------------------------------
@@ -335,7 +338,7 @@ class Multijugador:
         self.aplicar_bloques(red.vars())            # también lo cambiado mientras tanto
         pos = self.otros.get(anf)
         if pos:
-            self.ir_a(pos["x"] - 1.5, pos["y"] + 1)      # a su lado (cae al suelo)
+            self.ir_a(pos["x"], pos["y"] + 0.1)      # justo donde está él (sobre suelo libre)
         nombre = red.jugadores().get(anf, "anfitrión")
         self.aviso("Unido a la partida de %s" % nombre)
 
@@ -418,19 +421,38 @@ class Multijugador:
         if self.invitado and K.ms() - self.inv_t > 1000:   # por si el juego genera otro
             self.inv_t = K.ms()
             self.solo_anfitrion()
-        # mi posición y la pose de cada parte (relativa al jugador)
+
+    def enviar_pose(self):
+        """Mi posición y la pose de cada parte, relativa al jugador. Se toma justo
+        antes de dibujar: todas las piezas ya están en el mismo fotograma (si no,
+        al mover el ratón cada pieza iba de un fotograma distinto)."""
+        if not (self.on and self.listo):
+            return
         self.frame += 1
-        visible = any(sp.visible for sp in self.partes)
-        if self.frame % POS_CADA == 0 and visible:
-            x, y = self.num(self.vx), self.num(self.vy)
-            d = {"x": round(x, 3), "y": round(y, 3), "e": self.espejo(x, y)}
-            if d != self.enviado:
-                red.enviar(d)
-                self.enviado = d
+        if self.frame % POS_CADA:
+            return
+        x, y = self.num(self.vx), self.num(self.vy)
+        e = self.espejo(x, y)
+        cuerpo = [p for p in e if self.reglas[p[0]].get("cuerpo")]
+        if cuerpo:
+            self.cuerpo_visto = cuerpo
+        elif getattr(self, "cuerpo_visto", None) and self.en_partida():
+            e = self.cuerpo_visto + e              # inventario abierto: sigo ahí para los demás
+        else:
+            return                                 # en menús del juego: nada que mandar
+        d = {"x": round(x, 3), "y": round(y, 3), "e": e}
+        if d != self.enviado:
+            red.enviar(d)
+            self.enviado = d
+
+    def en_partida(self):
+        lst = self.p.stage.lists.get(self.bloques)
+        return bool(lst)
 
     def zonas(self):
         """Zonas de pantalla que cambian (los demás se mueven o se mueve la cámara).
         Se llama justo antes de dibujar: la cámara ya está donde se va a dibujar."""
+        self.enviar_pose()
         nuevos = {}
         if self.listo and any(sp.visible for sp in self.partes):
             for pid in self.otros:

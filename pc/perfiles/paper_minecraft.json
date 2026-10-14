@@ -142,7 +142,16 @@
         "_MaxMobs": 0,
         "_MaxMobsBad": 0
       }
-    }
+    },
+    "cargar_partida": [
+      {
+        "si": "Stage Sprite:Spl1b-Load Game",
+        "clic": [
+          -114,
+          -15
+        ]
+      }
+    ]
   },
   "parches": [
     {
