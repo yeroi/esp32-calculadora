@@ -29,6 +29,12 @@
 #                 estén; además no borra los que están lejos de él pero cerca de
 #                 otro jugador ("area": variable de la distancia a la que los borra)
 #
+#      "chunk": "_CHUNK_SEED"   variable con el chunk en el que está el jugador (mundos
+#                 infinitos por trozos): los cambios de bloque van como "b:chunk:i"
+#                 y solo se aplican en ese chunk; a quien está en otro no se le dibuja
+#      "sin_enviar": ["load chunk", ...]   mensajes de Scratch cuyos guiones cambian la
+#                 lista de bloques sin ser el jugador (cargar/generar un chunk)
+#
 #      "unirse_con_partida": true
 #                 el que se une no crea ningún mundo: el anfitrión guarda su partida
 #                 con el propio guardado del juego (tecla "guardar") y el invitado
@@ -123,6 +129,9 @@ class Multijugador:
         self.bloques = var(cfg.get("bloques"), st.lists)
         # variables del mundo que se copian al unirse (hora del día...)
         self.mundo_vars = {n: var(n, st.vars) for n in cfg.get("mundo_vars", [])}
+        self.vchunk = var(cfg.get("chunk"), st.vars)
+        self.sin_enviar = set(str(n).lower() for n in cfg.get("sin_enviar", []))
+        self.chunk_visto, self.chunk_t = None, 0
         mb = cfg.get("mobs") or {}
         self.mob_sp = proj.by_name.get(mb.get("objeto"))
         if self.mob_sp:
@@ -519,14 +528,27 @@ class Multijugador:
             if vid:
                 st.vars[vid] = v
 
+    def chunk(self):
+        return int(self.num(self.vchunk)) if self.vchunk else 0
+
+    def clave_bloque(self, n):
+        """"b:chunk:i" (o "b:i") -> índice si es de MI chunk, si no None."""
+        partes = n.split(":")
+        try:
+            if len(partes) == 3:
+                return int(partes[2]) if int(partes[1]) == self.chunk() else None
+            return int(partes[1])
+        except ValueError:
+            return None
+
     def aplicar_bloques(self, vs):
         lst = self.p.stage.lists.get(self.bloques)
         if lst is None:
             return
         for n, v in vs.items():
             if n.startswith("b:"):
-                i = int(n[2:])
-                if 0 <= i < len(lst):
+                i = self.clave_bloque(n)
+                if i is not None and 0 <= i < len(lst):
                     lst[i] = v
 
     def ir_a(self, x, y):
@@ -537,9 +559,16 @@ class Multijugador:
         st[self.vx], st[self.vy] = x, y
 
     # ---- durante el juego ---------------------------------------------------------
-    def bloque(self, lid, i, v):
+    def bloque(self, lid, i, v, ctx=None):
         """Lo llama el intérprete al cambiar un elemento de una lista."""
-        if self.listo and lid == self.bloques:
+        if not (self.listo and lid == self.bloques):
+            return
+        if ctx is not None and self.sin_enviar and \
+                str(ctx.thread.hat[1]).lower() in self.sin_enviar:
+            return                                  # el juego cargando/generando un chunk
+        if self.vchunk:
+            red.var("b:%d:%d" % (self.chunk(), i), v)
+        else:
             red.var("b:%d" % i, v)
 
     def leer(self):
@@ -549,8 +578,8 @@ class Multijugador:
         for m in msgs:
             t = m.get("t")
             if t == "var" and self.listo and str(m.get("n", "")).startswith("b:") and lst is not None:
-                i = int(m["n"][2:])
-                if 0 <= i < len(lst):
+                i = self.clave_bloque(m["n"])
+                if i is not None and 0 <= i < len(lst):
                     lst[i] = m.get("v")
             elif t == "de" and isinstance(m.get("d"), dict) and "x" in m["d"]:
                 self.otros[m.get("id")] = m["d"]
@@ -579,6 +608,13 @@ class Multijugador:
         self.leer()
         if not self.listo:
             return
+        if self.vchunk:
+            c = self.chunk()
+            if c != self.chunk_visto:               # he cambiado de chunk: cuando acabe
+                self.chunk_visto, self.chunk_t = c, K.ms() + 1000   # de cargar, lo de los demás
+            elif self.chunk_t and K.ms() > self.chunk_t:
+                self.chunk_t = 0
+                self.aplicar_bloques(red.vars())
         if self.mob_sp and self.otros:
             self.area_mobs()
         if self.invitado and K.ms() - self.inv_t > 1000:   # por si el juego genera otro
@@ -604,6 +640,8 @@ class Multijugador:
         else:
             return                                 # en menús del juego: nada que mandar
         d = {"x": round(x, 3), "y": round(y, 3), "e": e}
+        if self.vchunk:
+            d["c"] = self.chunk()
         if self.mob_sp and red.anfitrion() == red.mi_id() and self.otros:
             d["mobs"] = self.mobs()
         if d != self.enviado:
@@ -662,7 +700,9 @@ class Multijugador:
         if not vid or red.anfitrion() != red.mi_id():
             return
         x = self.num(self.vx)
-        lejos = max([abs(self.num_de(d.get("x")) - x) for d in self.otros.values()] or [0])
+        c = self.chunk()
+        lejos = max([abs(self.num_de(d.get("x")) - x) for d in self.otros.values()
+                     if d.get("c", c) == c] or [0])
         self.p.stage.vars[vid] = self.mob_area + math.ceil(lejos)
 
     def en_partida(self):
@@ -733,6 +773,8 @@ class Multijugador:
         d = self.otros[pid]
         bx, by = self.base(d["x"], d["y"])
         out = []
+        if self.vchunk and d.get("c", self.chunk()) != self.chunk():
+            return out                              # está en otro trozo del mundo
         for e in d.get("e", []):
             if len(e) < 6 or not (0 <= e[0] < len(self.reglas)):
                 continue
