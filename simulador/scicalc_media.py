@@ -17,7 +17,10 @@
      que llegan tarde. Avanzar/retroceder = volver a lanzar ffmpeg con -ss.
 
  Teclas (las aplica quien lo usa, con tecla()):
-   EXE pausa/sigue · ◄ ► -10 s / +10 s (SHIFT: 1 min) · ▲ ▼ volumen · AC/DEL salir
+   ▲ (o EXE) pausa/sigue · ▼ velocidad x2 (otra vez: normal)
+   ▼ mantenida + ► : el doble de rápido hacia delante (x2, x4, x8, x16)
+   ▼ mantenida + ◄ : rebobinar, cada vez el doble (x2, x4, x8, x16)
+   ◄ ► solas: -10 s / +10 s (SHIFT: 1 min) · + − volumen · AC/DEL salir
 ===============================================================================
 """
 import os
@@ -64,6 +67,9 @@ class MediaPlayer:
         self.error = None
         self.dur, self.has_video, self.has_audio, self.meta = 0.0, False, False, {}
         self.vol = 0.8
+        self.speed = 1                                  # >1 rápido, <0 rebobinando
+        self.rew_t = 0.0                                # último fotograma al rebobinar
+        self.rew_busy = False
         self.paused = False
         self.pos0, self.t0, self.paused_at = 0.0, 0.0, 0.0
         self.frame = None                               # último fotograma (Surface)
@@ -133,16 +139,25 @@ class MediaPlayer:
         self.ended = False
         if self.chan:
             self.chan.stop()
+        self.t0 = time.monotonic()
+        if self.speed < 0:                              # rebobinando: lo hace update()
+            self.rew_t = 0.0
+            if self.paused:
+                self.paused_at = self.t0
+            return
+        sp = self.speed
         if self.has_audio:
+            af = ["-af", f"atempo={sp}"] if sp != 1 else []      # más rápido sin voz de pito
             p = subprocess.Popen([self.exe, "-v", "error", "-ss", f"{self.pos0:.2f}", "-i", self.path,
-                                  "-vn", "-f", "s16le", "-ac", str(self.ch), "-ar", str(self.rate), "-"],
+                                  "-vn", *af, "-f", "s16le", "-ac", str(self.ch), "-ar", str(self.rate), "-"],
                                  stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, **_NOWIN)
             self.procs.append(p)
             t = threading.Thread(target=self._audio_reader, args=(p, gen, self.aq), daemon=True)
             t.start()
         if self.has_video:
             w, h = self.size
-            vf = f"scale={w}:{h}:force_original_aspect_ratio=decrease,pad={w}:{h}:(ow-iw)/2:(oh-ih)/2,fps={FPS}"
+            vf = (f"setpts=PTS/{sp}," if sp != 1 else "") + \
+                f"scale={w}:{h}:force_original_aspect_ratio=decrease,pad={w}:{h}:(ow-iw)/2:(oh-ih)/2,fps={FPS}"
             p = subprocess.Popen([self.exe, "-v", "error", "-ss", f"{self.pos0:.2f}", "-i", self.path,
                                   "-an", "-vf", vf, "-f", "rawvideo", "-pix_fmt", "rgb24", "-"],
                                  stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, **_NOWIN)
@@ -180,18 +195,28 @@ class MediaPlayer:
             if len(data) < n:
                 q.put(None)
                 return
-            q.put((self.pos0 + i / FPS, data))
+            q.put((self.pos0 + i / FPS * self.speed, data))   # tiempo del archivo
             i += 1
 
     # ---- reloj -------------------------------------------------------------------------
     def now(self):
         t = (self.paused_at if self.paused else time.monotonic()) - self.t0
-        t = self.pos0 + max(0.0, t)
+        t = self.pos0 + max(0.0, t) * self.speed
+        t = max(0.0, t)
         return min(t, self.dur) if self.dur else t
 
     def update(self):
         """Llamar en cada fotograma. Devuelve True si hay un fotograma nuevo."""
         if self.error or self.paused:
+            return False
+        if self.speed < 0:                              # rebobinando: un fotograma cada poco
+            if self.now() <= 0.0:
+                self.set_speed(1)
+                return False
+            if self.has_video and not self.rew_busy and time.monotonic() - self.rew_t > 0.15:
+                self.rew_t = time.monotonic()
+                self.rew_busy = True
+                threading.Thread(target=self._grab, args=(self.now(), self.gen), daemon=True).start()
             return False
         # audio: que siempre haya uno sonando y otro en cola
         if self.chan:
@@ -234,6 +259,26 @@ class MediaPlayer:
                     nuevo = True
         return nuevo
 
+    def _grab(self, pos, gen):
+        """Un solo fotograma en 'pos' (para rebobinar)."""
+        try:
+            w, h = self.size
+            vf = f"scale={w}:{h}:force_original_aspect_ratio=decrease,pad={w}:{h}:(ow-iw)/2:(oh-ih)/2"
+            r = subprocess.run([self.exe, "-v", "error", "-ss", f"{pos:.2f}", "-i", self.path, "-an",
+                                "-frames:v", "1", "-vf", vf, "-f", "rawvideo", "-pix_fmt", "rgb24", "-"],
+                               capture_output=True, timeout=5, **_NOWIN)
+            if gen == self.gen and len(r.stdout) >= w * h * 3:
+                self.frame = pygame.image.frombuffer(r.stdout[:w * h * 3], self.size, "RGB")
+                self.frame_t = pos
+        except (OSError, subprocess.TimeoutExpired):
+            pass
+        self.rew_busy = False
+
+    def set_speed(self, s):
+        pos = self.now()
+        self.speed = s
+        self._start(pos)
+
     # ---- mandos ------------------------------------------------------------------------
     def toggle(self):
         if self.paused:
@@ -257,20 +302,27 @@ class MediaPlayer:
         if self.chan:
             self.chan.set_volume(self.vol)
 
-    def tecla(self, k, shift=False):
-        """Devuelve True si hay que salir."""
+    def tecla(self, k, shift=False, held=()):
+        """Devuelve True si hay que salir. 'held' = teclas mantenidas (para ▼ + ◄/►)."""
         if k in ("AC", "DEL", "MENU"):
             return True
-        if k == "EXE":
+        if k in ("UP", "EXE"):
             if self.ended:                               # al acabar: otra vez desde el principio
                 self.paused = False
+                self.speed = 1
                 self._start(0.0)
             else:
                 self.toggle()
+        elif k == "DOWN":
+            self.set_speed(2 if self.speed == 1 else 1)  # x2 / normal
+        elif k == "RIGHT" and "DOWN" in held:            # ▼ + ►: el doble hacia delante
+            self.set_speed(2 if self.speed <= 1 else min(16, self.speed * 2))
+        elif k == "LEFT" and "DOWN" in held:             # ▼ + ◄: rebobinar, el doble cada vez
+            self.set_speed(-2 if self.speed >= 1 else max(-16, self.speed * 2))
         elif k in ("LEFT", "RIGHT"):
             self.seek((60 if shift else 10) * (1 if k == "RIGHT" else -1))
-        elif k in ("UP", "DOWN"):
-            self.volume(0.1 if k == "UP" else -0.1)
+        elif k in ("ADD", "SUB"):
+            self.volume(0.1 if k == "ADD" else -0.1)
         return False
 
     def close(self):
@@ -335,7 +387,7 @@ class MediaPlayer:
         surf.blit(ov, (0, H - bar_h))
         y = H - bar_h
         f = font_fn(int(8 * k), True)
-        icon = "II" if not self.paused else ">"
+        icon = ">" if self.paused else ("<<" if self.speed < 0 else (">>" if self.speed > 1 else "II"))
         surf.blit(f.render(icon, True, (255, 255, 255)), (int(5 * k), y + int(8 * k)))
         now = self.now()
         tt = f.render(f"{fmt_t(now)} / {fmt_t(self.dur)}", True, (238, 241, 245))
@@ -347,10 +399,17 @@ class MediaPlayer:
             fx = x0 + int((x1 - x0) * min(1.0, now / self.dur))
             surf.fill((40, 168, 250), (x0, y + int(11 * k), fx - x0, max(2, int(3 * k))))
             pygame.draw.circle(surf, (255, 255, 255), (fx, y + int(12 * k)), max(2, int(3 * k)))
+        if self.speed != 1:                              # velocidad, arriba a la derecha
+            txt = ("◄◄ x" if self.speed < 0 else "►► x") + str(abs(self.speed))
+            b = font_fn(int(10 * k), True).render(txt, True, (255, 255, 255))
+            box = pygame.Rect(W - b.get_width() - int(14 * k), int(6 * k), b.get_width() + int(8 * k),
+                              b.get_height() + int(2 * k))
+            pygame.draw.rect(surf, (40, 168, 250), box, border_radius=int(4 * k))
+            surf.blit(b, (box.x + int(4 * k), box.y + int(1 * k)))
         v = f.render(f"{int(self.vol * 100)}%", True, (135, 142, 158))
         surf.blit(v, (W - v.get_width() - int(5 * k), y + int(8 * k)))
         if self.ended:
-            e = font_fn(int(9 * k), True).render("Fin · EXE repetir · AC salir", True, (255, 200, 40))
+            e = font_fn(int(9 * k), True).render("Fin · ▲ repetir · AC salir", True, (255, 200, 40))
             surf.blit(e, (W // 2 - e.get_width() // 2, int(6 * k)))
 
 

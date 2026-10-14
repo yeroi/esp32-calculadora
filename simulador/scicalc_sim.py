@@ -2156,7 +2156,7 @@ class FilesApp(App):
 
     def on_key(self, key, shift):
         if self.view == "media":
-            if self.player.tecla(key, shift):
+            if self.player.tecla(key, shift, self.sim.held):
                 self.close_player()
                 self.view = None
                 self.sim.set_title(self.title)

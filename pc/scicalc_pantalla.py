@@ -642,13 +642,13 @@ class PcTask:
         except Exception as e:
             self.result = (1, f"No se pudo empezar: {e}")
 
-    def key(self, k):
+    def key(self, k, held=()):
         if k == "SHIFT":
             self.shift = not self.shift
             return
         sh, self.shift = self.shift, False
         if self.player:
-            if self.player.tecla(k, sh):
+            if self.player.tecla(k, sh, held):
                 self.finish(0, "")
         elif self.runner:
             if self.err_lines is not None:
@@ -1021,7 +1021,7 @@ def main():
             case.held.discard(k)
         if task[0]:                  # las teclas son de la tarea del PC
             if down:
-                task[0].key(k)
+                task[0].key(k, case.held)
             return
         link.key(KEY_ID[k], down)
 

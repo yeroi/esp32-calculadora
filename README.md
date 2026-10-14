@@ -104,7 +104,7 @@ Detalles:
 
 El ESP32 sin PSRAM no puede decodificar un mp4 ni meter Paper Minecraft (1,6 MB) en sus ~70 KB de Python. En modo PC se lo pide al PC, que tiene la misma "SD":
 
-- **Archivos SD → un vídeo o audio** (mp4, mkv, webm, avi, mov, mp3, wav, ogg, m4a, aac, flac, opus…): lo reproduce el PC con ffmpeg (`pip install imageio-ffmpeg`, ya en `requirements.txt`) dentro de la pantalla de la calculadora y por sus altavoces. **EXE** pausa, **◄ ►** ±10 s (SHIFT: ±1 min), **▲ ▼** volumen, **AC** salir.
+- **Archivos SD → un vídeo o audio** (mp4, mkv, webm, avi, mov, mp3, wav, ogg, m4a, aac, flac, opus…): lo reproduce el PC con ffmpeg (`pip install imageio-ffmpeg`, ya en `requirements.txt`) dentro de la pantalla de la calculadora y por sus altavoces. **▲** (o EXE) pausa · **▼** velocidad ×2 (otra vez: normal) · **▼ mantenida + ►** el doble de rápido (×2, ×4, ×8, ×16) · **▼ mantenida + ◄** rebobinar, cada vez el doble · **◄ ►** solas ±10 s (SHIFT: ±1 min) · **+ −** volumen · **AC** salir.
 - **Python → un juego de Scratch enorme**: la calculadora avisa de que no cabe y pregunta *¿Ejecutarlo en el PC?*. El PC lo ejecuta con el mismo intérprete que el simulador y tú juegas igual con las teclas de la calculadora (multijugador incluido).
 - La barra de estado la sigue dibujando el ESP32; al terminar, vuelve a su app.
 
