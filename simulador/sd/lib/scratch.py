@@ -1032,6 +1032,8 @@ class Project:
                 while not self.asking[2]:
                     yield
                 self.answer = self.asking[1]
+                if self.multi and not q and not str(self.answer).startswith("/"):
+                    self.multi.chat_local(str(self.answer))   # cuadro de texto del juego: chat
                 self.asking = None
                 self.picker = None
                 self.dirty_all = True
@@ -1146,6 +1148,13 @@ class Project:
             else:
                 changevar(ctx, b)
         S["scicalc_cambiar_jugador"] = cambiar_jugador
+
+        # scicalc_soltar (al principio de "Drop Item"): si al mob lo ha matado otro
+        # jugador, el botín le aparece a él y aquí se sale del bloque propio.
+        def soltar(ctx, b):
+            if self.multi and self.multi.soltar_remoto(ctx):
+                raise StopScript()
+        S["scicalc_soltar"] = soltar
         S["data_showvariable"] = lambda ctx, b: None
         S["data_hidevariable"] = lambda ctx, b: None
 
@@ -1795,7 +1804,8 @@ class Project:
                     self.dirty_all = True
                 else:                                  # la tecla de Scratch de esa letra
                     key = "space" if ch == " " else ch.lower()
-                    self.injected[key] = self.frame + 3
+                    self.injected[key] = self.frame + 300   # hasta que el juego la lea
+                    self.inj_leida.discard(key)
                     self.start_hats("event_whenkeypressed", key, restart=False)
                     self.start_hats("event_whenkeypressed", "any", restart=False)
                 continue

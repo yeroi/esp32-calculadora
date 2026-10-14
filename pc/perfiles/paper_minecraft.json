@@ -188,7 +188,9 @@
         "_Time"
       ]
     ],
-    "_comentario_cofres": "cofres: _Inside son registros [casilla, huecos, nombre, (id, n)...]; se manda el registro entero al cambiar (c:chunk:casilla), así dos jugadores ven el mismo cofre y no se duplican objetos. sincronizar: el clima y la hora los manda el anfitrión."
+    "_comentario_cofres": "cofres: _Inside son registros [casilla, huecos, nombre, (id, n)...]; se manda el registro entero al cambiar (c:chunk:casilla), así dos jugadores ven el mismo cofre y no se duplican objetos. sincronizar: el clima y la hora los manda el anfitrión.",
+    "botin": "_Harvest",
+    "vida": "_Health_s"
   },
   "parches": [
     {
@@ -268,6 +270,15 @@
         "_KnockBack"
       ],
       "motivo": "multijugador: el daño, el desgaste de armadura y el empujón de un mob van al jugador al que ataca"
+    },
+    {
+      "objeto": "Mob",
+      "al_principio_de": "Drop Item %n %n %n",
+      "bloque": [
+        "scicalc_soltar",
+        {}
+      ],
+      "motivo": "multijugador: el botín de un mob que mata otro jugador le aparece a él"
     }
   ]
 }

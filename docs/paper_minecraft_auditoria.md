@@ -87,7 +87,7 @@ En **Minecraft 2D** (nuestro juego de MicroPython) ya hay:
 - [x] La IA usa el **jugador más cercano**: en Mob, `_x`/`_y` pasan a `_ObjX`/`_ObjY`, que rellena el bloque nuevo `scicalc_objetivo` al principio de *Process Mob*. Los mobs aparecen alrededor de cualquier jugador.
 - [x] Daño a otro jugador: el bloque `scicalc_cambiar_jugador` manda la vida, el desgaste de la armadura y el empujón al jugador atacado.
 - [x] El invitado pega a un mob: tiene una copia de los mobs en su `_Mob` y su propio *Hit Mob* los encuentra. El golpe (`+9`, `+18`) se le manda al anfitrión, que lo aplica si el mob no es invulnerable. Es como `EntityAttackC2SP`.
-- [ ] Botín para el invitado: lo que suelta un mob que mata él aparece en el mundo del anfitrión.
+- [x] Botín para quien mata: el bloque `scicalc_soltar` (al principio de *Drop Item*) hace que, si al mob le ha pegado otro jugador en los últimos 3 s, el botín aparezca en su mundo y lo recoja él.
 - [ ] Invulnerabilidad del jugador de 0.5 s (10 ticks), retroceso y PvP opcional.
 - [ ] Aparición alrededor de cada jugador y desaparición respecto al más cercano. Animales persistentes.
 
@@ -99,7 +99,7 @@ En **Minecraft 2D** (nuestro juego de MicroPython) ya hay:
 - [ ] Keep-alive y expulsión con motivo.
 
 ### Fase 4: funciones online
-- [ ] Chat (tecla T) y mensajes de sistema: entra, sale, muere.
+- [x] Chat con la tecla T (LN en la calculadora; enviar con SHIFT+EXE): lo que no empieza por "/" va a todos. Se muestra abajo a la izquierda como en Minecraft y en un bocadillo encima del jugador. Mensajes de sistema: entra, sale, muere.
 - [ ] Lista de jugadores.
 - [ ] Datos de cada jugador guardados en el anfitrión y el servidor: reconectar y seguir donde estabas.
 

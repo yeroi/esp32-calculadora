@@ -157,6 +157,12 @@ class Multijugador:
         self.obj_pid = None                  # a quién va el mob que se está procesando
         self.vobj = (var("_ObjX", st.vars), var("_ObjY", st.vars))
         self.vtiempo = var("_TimeReal", st.vars)
+        self.lbotin = var(cfg.get("botin"), st.lists)   # lista donde el juego pone lo que cae
+        self.golpeado = {}                   # anfitrión: mob -> (quién le pegó, cuándo)
+        self.chat = []                       # [(texto, color, hasta)] últimos mensajes
+        self.bocadillo = {}                  # id -> (texto, hasta): lo que acaba de decir
+        self.vvida = var(cfg.get("vida"), st.vars)
+        self.vivo = True
         self.vid_clon = None
         mb = cfg.get("mobs") or {}
         self.mob_sp = proj.by_name.get(mb.get("objeto"))
@@ -237,6 +243,29 @@ class Multijugador:
         while not cond(red.vars()) and K.ms() < fin:
             P.mostrar()                      # mantiene vivo el watchdog
         return red.vars()
+
+    # ---- chat y mensajes de sistema (como en Minecraft) ------------------------------
+    def mensaje(self, texto, color=0xFFFFFF):
+        self.chat.append((texto[:52], color, K.ms() + 10000))
+        del self.chat[:-5]
+        self.p.dirty_all = True
+
+    def chat_local(self, texto):
+        """Lo que escribo en el cuadro de texto del juego (sin "/"): a todos."""
+        if self.on and self.listo and texto:
+            red.enviar({"chat": texto[:80]})
+            self.mensaje("<%s> %s" % (self.nombre(red.mi_id()), texto))
+
+    def dibujar_chat(self):
+        ahora = K.ms()
+        if self.chat and self.chat[0][2] < ahora:
+            self.chat = [c for c in self.chat if c[2] >= ahora]
+            self.p.dirty_all = True
+        x, y = int(self.p.ox) + 4, int(self.p.oy + self.p.sh) - 60 - 11 * len(self.chat)
+        for texto, color, _ in self.chat:
+            P.rect(x, y, len(texto) * 6 + 6, 11, 0x202020)
+            P.texto(texto, x + 3, y + 2, color)
+            y += 11
 
     def aviso(self, texto):
         self.p.toast = [texto[:48], K.ms() + 3500]
@@ -690,23 +719,33 @@ class Multijugador:
                     for dueno, vid, nombre in self.sinc:
                         if nombre in m["d"]["sinc"]:
                             dueno.vars[vid] = m["d"]["sinc"][nombre]
+            elif t == "de" and isinstance(m.get("d"), dict) and "chat" in m["d"]:
+                self.mensaje("<%s> %s" % (self.nombre(m.get("id")), m["d"]["chat"]))
+                self.bocadillo[m.get("id")] = (str(m["d"]["chat"])[:30], K.ms() + 5000)
+            elif t == "de" and isinstance(m.get("d"), dict) and "sistema" in m["d"]:
+                self.mensaje(str(m["d"]["sistema"]), 0xFFFF55)
             elif t == "de" and isinstance(m.get("d"), dict) and "cambia" in m["d"]:
                 pid, nombre, v = m["d"]["cambia"]
                 if pid == red.mi_id() and self.listo:
                     self.recibir_cambio(nombre, v)
             elif t == "de" and isinstance(m.get("d"), dict) and "golpe" in m["d"]:
                 if self.listo and red.anfitrion() == red.mi_id() and self.mob_sp:
-                    self.aplicar_golpe(*m["d"]["golpe"][:3])
+                    self.aplicar_golpe(*m["d"]["golpe"][:3], quien=m.get("id"))
+            elif t == "de" and isinstance(m.get("d"), dict) and "botin" in m["d"]:
+                pid, x, y, item, n = m["d"]["botin"]
+                if pid == red.mi_id() and self.listo:
+                    self.recibir_botin(x, y, item, n)
             elif t == "de" and isinstance(m.get("d"), dict) and "x" in m["d"]:
                 self.otros[m.get("id")] = m["d"]
                 if self.invitado and self.mob_sp and "mobs" in m["d"] and m.get("id") == red.anfitrion():
                     self.copiar_mobs(m["d"]["mobs"])
             elif t == "entra":
                 self.enviado = None                 # que el nuevo reciba ya mi posición
-                self.aviso("%s se ha unido" % m.get("nombre", "?"))
+                self.mensaje("%s se ha unido a la partida" % m.get("nombre", "?"), 0xFFFF55)
             elif t == "sale":
                 self.otros.pop(m.get("id"), None)
-                self.aviso("%s se ha ido" % red.jugadores().get(m.get("id"), "Un jugador"))
+                self.mensaje("%s ha salido de la partida" % red.jugadores().get(m.get("id"), "Un jugador"),
+                             0xFFFF55)
             elif t == "estado" and m.get("e") != "conectado":
                 self.on = self.listo = False
                 self.otros = {}
@@ -743,6 +782,13 @@ class Multijugador:
         if self.sinc and self.otros and red.anfitrion() == red.mi_id() and K.ms() > self.sinc_t:
             self.sinc_t = K.ms() + 2000
             red.enviar({"sinc": {nombre: dueno.vars.get(vid) for dueno, vid, nombre in self.sinc}})
+        if self.vvida:                              # "Ana ha muerto"
+            vivo = self.num(self.vvida) > 0
+            if self.vivo and not vivo:
+                texto = "%s ha muerto" % self.nombre(red.mi_id())
+                red.enviar({"sistema": texto})
+                self.mensaje(texto, 0xFFFF55)
+            self.vivo = vivo
         if self.mob_sp and self.otros:
             self.area_mobs()
         if self.invitado and K.ms() - self.inv_t > 1000:   # por si el juego genera otro
@@ -904,7 +950,31 @@ class Multijugador:
                 red.enviar({"golpe": [i + 1, dano, lst[i + 18]]})
                 lst[i + 9] = 0
 
-    def aplicar_golpe(self, idx, dano, cara):
+    def soltar_remoto(self, ctx):
+        """Anfitrión: el mob que suelta botín lo ha matado otro jugador hace poco? Se
+        lo mando a él (aparece en su mundo y lo recoge él, como en Minecraft)."""
+        a = ctx.args[-1]
+        try:
+            mid = int(float(a.get("mobID", 0)))
+        except (TypeError, ValueError):
+            return False
+        quien = self.golpeado.get(mid)
+        if not quien or K.ms() - quien[1] > 3000 or not self.on:
+            return False
+        lst = self.p.stage.lists.get(self.mob_lista) or []
+        try:
+            x, y = lst[mid + 2], lst[mid + 3]
+        except IndexError:
+            return False
+        red.enviar({"botin": [quien[0], x, y, a.get("blockID"), a.get("quantity")]})
+        return True
+
+    def recibir_botin(self, x, y, item, n):
+        lst = self.p.stage.lists.get(self.lbotin)
+        if lst is not None:
+            lst.extend([x, y, item, n, round(random.uniform(-0.1, 0.1), 3), "-999"])
+
+    def aplicar_golpe(self, idx, dano, cara, quien=None):
         """Anfitrión: otro jugador ha pegado al mob idx (como si fuera yo, con su daño)."""
         lst = self.p.stage.lists.get(self.mob_lista) or []
         i = int(idx) - 1
@@ -915,6 +985,7 @@ class Multijugador:
             return
         lst[i + 9] = dano
         lst[i + 18] = cara
+        self.golpeado[int(idx)] = (quien, K.ms())
 
     def num_de(self, v):
         try:
@@ -1051,6 +1122,9 @@ class Multijugador:
             cx = (x0 + x1) // 2
             x0, x1 = min(x0, cx - w // 2), max(x1, cx + w // 2)
             rects.insert(0, (x0, y0 - 14, x1 - x0, y1 - y0 + 14))   # con la etiqueta del nombre
+            b = self.bocadillo.get(pid)
+            if b:                                   # y su bocadillo, si acaba de hablar
+                rects.append(((x0 + x1) // 2 + 4, y0 - 28, len(b[0]) * 6 + 8, 13))
         return rects
 
     def nombre(self, pid):
@@ -1069,7 +1143,9 @@ class Multijugador:
                 self.con_pose(sp, c, x, y, dr, tam, rot, sp.draw)
 
     def dibujar_nombres(self):
-        """Etiqueta con el nombre encima de cada jugador, por delante de todo."""
+        """Etiqueta con el nombre encima de cada jugador, por delante de todo (y el chat)."""
+        if self.chat:
+            self.dibujar_chat()
         if not self.listo or not any(sp.visible for sp in self.partes):
             return
         for pid in list(self.otros):
@@ -1080,3 +1156,12 @@ class Multijugador:
                 tx = r[0] + (r[2] - len(n) * 6) // 2
                 P.rect(tx - 2, r[1], len(n) * 6 + 4, 11, 0x202020)
                 P.texto(n, tx, r[1] + 2, 0xFFFFFF)
+                b = self.bocadillo.get(pid)
+                if b and b[1] > K.ms():               # lo que acaba de decir, como el del juego
+                    bx = r[0] + r[2] // 2 + 4
+                    P.rect(bx, r[1] - 14, len(b[0]) * 6 + 8, 13, 0x808080)
+                    P.rect(bx + 1, r[1] - 13, len(b[0]) * 6 + 6, 11, 0xFFFFFF)
+                    P.texto(b[0], bx + 4, r[1] - 11, 0x000000)
+                elif b:
+                    del self.bocadillo[pid]
+                    self.p.dirty_all = True
