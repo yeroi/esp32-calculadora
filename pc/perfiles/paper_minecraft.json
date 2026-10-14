@@ -107,11 +107,6 @@
         "menor": 0,
         "tam_max": 50,
         "cerca": 400
-      },
-      {
-        "objeto": "Mob",
-        "clon": true,
-        "cerca": 400
       }
     ],
     "icono": [
@@ -154,7 +149,18 @@
       }
     ],
     "unirse_con_partida": true,
-    "_comentario_unirse": "unirse_con_partida: el que se une NO crea un mundo: el anfitrión guarda su partida con el propio 'Save Game' del juego y el invitado la abre con 'Load Game' (botón de cargar_partida); el juego arranca por 'start after loaded', sin generar nada. _RedInvitado (ver parches) apaga sus mobs."
+    "_comentario_unirse": "unirse_con_partida: el que se une NO crea un mundo: el anfitrión guarda su partida con el propio 'Save Game' del juego y el invitado la abre con 'Load Game' (botón de cargar_partida); el juego arranca por 'start after loaded', sin generar nada. _RedInvitado (ver parches) apaga sus mobs.",
+    "mobs": {
+      "objeto": "Mob",
+      "lista": "_Mob",
+      "datos": "_MOB_DATA",
+      "paso": "_MobMul",
+      "mdmul": "_MDMUL",
+      "mob100": "_Mob100",
+      "area": "_SpawnArea",
+      "area_base": 45
+    },
+    "_comentario_mobs": "mobs: el anfitrión manda sus mobs leyendo la lista _Mob del juego (el juego solo crea el objeto de los que caben en la pantalla del anfitrión) y agranda _SpawnArea para que no borre los que están cerca de los demás jugadores."
   },
   "parches": [
     {

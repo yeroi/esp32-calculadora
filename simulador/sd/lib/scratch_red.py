@@ -23,6 +23,12 @@
 #                 botón "Multijugador" en el título del juego (coordenadas de Scratch)
 #      "icono": ["Tiles", "grass", "soil"]   disfraces para la pantalla (icono, fondo)
 #
+#      "mobs": {"objeto": "Mob", "lista": "_Mob", "datos": "_MOB_DATA", ...}
+#                 el anfitrión manda sus mobs desde la lista del juego (todos, no
+#                 solo los que tiene en pantalla) y los demás los dibujan donde
+#                 estén; además no borra los que están lejos de él pero cerca de
+#                 otro jugador ("area": variable de la distancia a la que los borra)
+#
 #      "unirse_con_partida": true
 #                 el que se une no crea ningún mundo: el anfitrión guarda su partida
 #                 con el propio guardado del juego (tecla "guardar") y el invitado
@@ -117,6 +123,13 @@ class Multijugador:
         self.bloques = var(cfg.get("bloques"), st.lists)
         # variables del mundo que se copian al unirse (hora del día...)
         self.mundo_vars = {n: var(n, st.vars) for n in cfg.get("mundo_vars", [])}
+        mb = cfg.get("mobs") or {}
+        self.mob_sp = proj.by_name.get(mb.get("objeto"))
+        if self.mob_sp:
+            self.mob_lista = var(mb.get("lista"), st.lists)
+            self.mob_datos = var(mb.get("datos"), st.lists)
+            self.mob_vars = [var(mb.get(k), st.vars) for k in ("paso", "mdmul", "mob100", "area")]
+            self.mob_area = mb.get("area_base", 45)
         # el que se une NO simula su propio mundo: fuera sus mobs (aldeanos que solo
         # existían en su mundo generado), sin generar más; ve los del anfitrión
         inv = cfg.get("invitado") or {}
@@ -408,6 +421,8 @@ class Multijugador:
                     self.p.stage.vars[vid] = 0
         self.on = self.listo = self.invitado = False
         self.capturar, self.partida_txt = False, None
+        if self.mob_sp and self.mob_vars[3]:
+            self.p.stage.vars[self.mob_vars[3]] = self.mob_area
         self.otros = {}                             # (zonas() borra lo que se dibujó)
         self.aviso("Multijugador desconectado")
 
@@ -564,6 +579,8 @@ class Multijugador:
         self.leer()
         if not self.listo:
             return
+        if self.mob_sp and self.otros:
+            self.area_mobs()
         if self.invitado and K.ms() - self.inv_t > 1000:   # por si el juego genera otro
             self.inv_t = K.ms()
             self.solo_anfitrion()
@@ -587,9 +604,66 @@ class Multijugador:
         else:
             return                                 # en menús del juego: nada que mandar
         d = {"x": round(x, 3), "y": round(y, 3), "e": e}
+        if self.mob_sp and red.anfitrion() == red.mi_id() and self.otros:
+            d["mobs"] = self.mobs()
         if d != self.enviado:
             red.enviar(d)
             self.enviado = d
+
+    def mobs(self):
+        """Anfitrión: [disfraz, x, y, dirección, tamaño] de cada mob (casillas del
+        mundo, y ya con su desplazamiento de dibujo). De la lista del juego: el juego
+        solo tiene el objeto (clon) de los que caben en MI pantalla."""
+        st = self.p.stage
+        lst = st.lists.get(self.mob_lista) or []
+        dat = st.lists.get(self.mob_datos) or []
+        paso, mdmul, m100, _ = [self.num(v) for v in self.mob_vars]
+        paso = int(paso) or 20
+        clones = {}
+        for sp in self.p.layers:                    # los que tienen clon: su disfraz real
+            if sp.is_clone and sp is not self.mob_sp and sp.name == self.mob_sp.name and sp.visible:
+                for vid, v in sp.vars.items():
+                    if self.p.names.get(vid) == "cloneAsID":
+                        clones[int(self.num_de(v))] = sp
+        out = []
+        for i in range(0, len(lst) - paso + 1, paso):
+            try:
+                typ = int(float(lst[i]))
+                if typ <= 0:
+                    continue
+                mx, my = float(lst[i + 3]), float(lst[i + 4])
+                cara = float(lst[i + 5])
+                estado = float(lst[i + 6])
+                off = int(mdmul * typ - (m100 if typ >= 100 else 0))
+                tam = float(dat[off + 2])
+                ofy = float(dat[off + 4])
+                raiz = int(float(dat[off + 5]))
+                andar = int(float(dat[off + 6]))
+            except (ValueError, IndexError, TypeError):
+                continue
+            sp = clones.get(i + 1)
+            if sp is not None:
+                c = sp.costume
+            else:                                   # sin clon: de pie o andando
+                c = raiz - 1 + (int(round(andar / 2)) if estado == 1 else 0)
+            out.append([c, round(mx, 2), round(my + ofy / self.k, 2), round(90 * cara), round(tam)])
+        return out
+
+    def num_de(self, v):
+        try:
+            return float(v)
+        except (TypeError, ValueError):
+            return 0.0
+
+    def area_mobs(self):
+        """Anfitrión: que el juego no borre los mobs cerca de los demás jugadores
+        (los borra a más de "area" casillas de MI posición)."""
+        vid = self.mob_vars[3]
+        if not vid or red.anfitrion() != red.mi_id():
+            return
+        x = self.num(self.vx)
+        lejos = max([abs(self.num_de(d.get("x")) - x) for d in self.otros.values()] or [0])
+        self.p.stage.vars[vid] = self.mob_area + math.ceil(lejos)
 
     def en_partida(self):
         lst = self.p.stage.lists.get(self.bloques)
@@ -667,6 +741,12 @@ class Multijugador:
             if sp and 0 <= e[1] < len(sp.costumes):
                 rot = GIROS_INV[e[6]] if len(e) > 6 and 0 <= e[6] < 3 else sp.rot
                 out.append((sp, e[1], bx + e[2], by + e[3], e[4], e[5], r.get("cuerpo", False), rot))
+        if self.mob_sp and d.get("mobs"):           # mobs del anfitrión, donde estén
+            sp = self.mob_sp
+            for c, mx, my, dr, tam in d["mobs"]:
+                sx, sy = self.base(mx, my)
+                if abs(sx) < 300 and abs(sy) < 240 and 0 <= c < len(sp.costumes):
+                    out.append((sp, c, sx, sy, dr, tam, False, sp.rot))
         return out
 
     def con_pose(self, sp, c, x, y, dr, tam, rot, fn):
