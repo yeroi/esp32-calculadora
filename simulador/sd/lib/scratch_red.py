@@ -35,6 +35,12 @@
 #      "sin_enviar": ["load chunk", ...]   mensajes de Scratch cuyos guiones cambian la
 #                 lista de bloques sin ser el jugador (cargar/generar un chunk)
 #
+#      "cofres": {"lista": "_Inside", "abierto": "_InsideIdx", "inv": "_Inv", "inv_base": 80}
+#                 contenedores compartidos: registros [casilla, huecos, nombre, (id, n)...]
+#                 que se mandan enteros ("c:chunk:casilla") cuando cambian
+#      "sincronizar": [["snow", "Weather Type"], ["", "_Time"], ...]
+#                 variables (objeto, o "" = escenario) que manda el anfitrión cada 2 s
+#
 #      "unirse_con_partida": true
 #                 el que se une no crea ningún mundo: el anfitrión guarda su partida
 #                 con el propio guardado del juego (tecla "guardar") y el invitado
@@ -62,6 +68,7 @@
 #  quien rompió el bloque.
 # =============================================================================
 import math
+import random
 from scicalc import pantalla as P, teclas as K
 try:
     from scicalc import red
@@ -130,8 +137,27 @@ class Multijugador:
         # variables del mundo que se copian al unirse (hora del día...)
         self.mundo_vars = {n: var(n, st.vars) for n in cfg.get("mundo_vars", [])}
         self.vchunk = var(cfg.get("chunk"), st.vars)
+        cf = cfg.get("cofres") or {}
+        self.lcofres = var(cf.get("lista"), st.lists)
+        self.vabierto = var(cf.get("abierto"), st.vars)
+        self.linv = var(cf.get("inv"), st.lists)
+        self.inv_base = int(cf.get("inv_base", 80))
+        self.cofres_vistos = None            # {casilla: registro} ya mandado/recibido
+        self.cofres_t = 0
+        self.sinc = []                       # [(objeto, id de variable, nombre)]
+        for obj, nombre in cfg.get("sincronizar", []):
+            dueno = proj.by_name.get(obj) if obj else st
+            if dueno is not None:
+                vid = var(nombre, dueno.vars)
+                if vid:
+                    self.sinc.append((dueno, vid, nombre))
+        self.sinc_t = 0
         self.sin_enviar = set(str(n).lower() for n in cfg.get("sin_enviar", []))
         self.chunk_visto, self.chunk_t = None, 0
+        self.obj_pid = None                  # a quién va el mob que se está procesando
+        self.vobj = (var("_ObjX", st.vars), var("_ObjY", st.vars))
+        self.vtiempo = var("_TimeReal", st.vars)
+        self.vid_clon = None
         mb = cfg.get("mobs") or {}
         self.mob_sp = proj.by_name.get(mb.get("objeto"))
         if self.mob_sp:
@@ -502,6 +528,9 @@ class Multijugador:
             self.leer()
             P.mostrar()
         self.aplicar_bloques(red.vars())            # también lo cambiado mientras tanto
+        if self.lcofres:
+            self.aplicar_cofres(red.vars())
+        self.cofres_vistos = None
         pos = self.otros.get(anf)
         if pos:
             self.ir_a(pos["x"], pos["y"] + 0.1)      # justo donde está él (sobre suelo libre)
@@ -551,6 +580,77 @@ class Multijugador:
                 if i is not None and 0 <= i < len(lst):
                     lst[i] = v
 
+    # ---- cofres compartidos -------------------------------------------------------
+    def registros(self):
+        """{casilla: registro} de la lista de contenedores, y su orden."""
+        lst = self.p.stage.lists.get(self.lcofres) or []
+        out, orden, i = {}, [], 0
+        while i + 2 < len(lst):
+            try:
+                n = 3 + 2 * int(float(lst[i + 1]))
+            except (TypeError, ValueError):
+                break
+            k = str(lst[i])
+            out[k] = list(lst[i:i + n])
+            orden.append(k)
+            i += n
+        return out, orden
+
+    def mandar_cofres(self):
+        """Manda los cofres que han cambiado desde la última vez."""
+        regs, _ = self.registros()
+        if self.cofres_vistos is None:
+            self.cofres_vistos = regs
+            return
+        c = self.chunk()
+        for k, r in regs.items():
+            if self.cofres_vistos.get(k) != r:
+                red.var("c:%d:%s" % (c, k), r)
+        for k in self.cofres_vistos:
+            if k not in regs:
+                red.var("c:%d:%s" % (c, k), None)     # roto
+        self.cofres_vistos = regs
+
+    def poner_cofre(self, k, r):
+        """Cambio de otro jugador en el contenedor de la casilla k (r None = roto)."""
+        lst = self.p.stage.lists.get(self.lcofres)
+        if lst is None:
+            return
+        regs, orden = self.registros()
+        st = self.p.stage.vars
+        abierto = None                              # el que tengo abierto (si lo hay)
+        idx = int(self.num(self.vabierto)) if self.vabierto else 0
+        if idx > 0 and idx <= len(lst):
+            abierto = str(lst[idx - 1])
+        if r is None:
+            regs.pop(k, None)
+        else:
+            if k not in regs:
+                orden.append(k)
+            regs[k] = list(r)
+        nueva = []
+        for kk in orden:
+            if kk in regs:
+                if kk == abierto:
+                    st[self.vabierto] = len(nueva) + 1
+                nueva.extend(regs[kk])
+        lst[:] = nueva
+        if abierto is not None and abierto not in regs:
+            st[self.vabierto] = 0
+        if r is not None and k == abierto and self.linv:   # lo tengo abierto: lo veo cambiar
+            inv = self.p.stage.lists.get(self.linv)
+            for j in range(len(r) - 3):
+                if 0 <= self.inv_base + j < len(inv):
+                    inv[self.inv_base + j] = r[3 + j]
+        if self.cofres_vistos is not None:
+            self.cofres_vistos = regs
+
+    def aplicar_cofres(self, vs):
+        c = "c:%d:" % self.chunk()
+        for n, v in vs.items():
+            if n.startswith(c):
+                self.poner_cofre(n[len(c):], v)
+
     def ir_a(self, x, y):
         st = self.p.stage.vars
         if self.cx is not None:                     # la cámara se mueve con el jugador
@@ -581,8 +681,26 @@ class Multijugador:
                 i = self.clave_bloque(m["n"])
                 if i is not None and 0 <= i < len(lst):
                     lst[i] = m.get("v")
+            elif t == "var" and self.listo and self.lcofres and str(m.get("n", "")).startswith("c:"):
+                partes = m["n"].split(":", 2)
+                if len(partes) == 3 and partes[1] == str(self.chunk()):
+                    self.poner_cofre(partes[2], m.get("v"))
+            elif t == "de" and isinstance(m.get("d"), dict) and "sinc" in m["d"]:
+                if m.get("id") == red.anfitrion():
+                    for dueno, vid, nombre in self.sinc:
+                        if nombre in m["d"]["sinc"]:
+                            dueno.vars[vid] = m["d"]["sinc"][nombre]
+            elif t == "de" and isinstance(m.get("d"), dict) and "cambia" in m["d"]:
+                pid, nombre, v = m["d"]["cambia"]
+                if pid == red.mi_id() and self.listo:
+                    self.recibir_cambio(nombre, v)
+            elif t == "de" and isinstance(m.get("d"), dict) and "golpe" in m["d"]:
+                if self.listo and red.anfitrion() == red.mi_id() and self.mob_sp:
+                    self.aplicar_golpe(*m["d"]["golpe"][:3])
             elif t == "de" and isinstance(m.get("d"), dict) and "x" in m["d"]:
                 self.otros[m.get("id")] = m["d"]
+                if self.invitado and self.mob_sp and "mobs" in m["d"] and m.get("id") == red.anfitrion():
+                    self.copiar_mobs(m["d"]["mobs"])
             elif t == "entra":
                 self.enviado = None                 # que el nuevo reciba ya mi posición
                 self.aviso("%s se ha unido" % m.get("nombre", "?"))
@@ -612,9 +730,19 @@ class Multijugador:
             c = self.chunk()
             if c != self.chunk_visto:               # he cambiado de chunk: cuando acabe
                 self.chunk_visto, self.chunk_t = c, K.ms() + 1000   # de cargar, lo de los demás
+                self.cofres_vistos = None
             elif self.chunk_t and K.ms() > self.chunk_t:
                 self.chunk_t = 0
-                self.aplicar_bloques(red.vars())
+                vs = red.vars()
+                self.aplicar_bloques(vs)
+                if self.lcofres:
+                    self.aplicar_cofres(vs)
+        if self.lcofres and not self.chunk_t and K.ms() > self.cofres_t:
+            self.cofres_t = K.ms() + 300            # ~3 veces por segundo
+            self.mandar_cofres()
+        if self.sinc and self.otros and red.anfitrion() == red.mi_id() and K.ms() > self.sinc_t:
+            self.sinc_t = K.ms() + 2000
+            red.enviar({"sinc": {nombre: dueno.vars.get(vid) for dueno, vid, nombre in self.sinc}})
         if self.mob_sp and self.otros:
             self.area_mobs()
         if self.invitado and K.ms() - self.inv_t > 1000:   # por si el juego genera otro
@@ -684,8 +812,109 @@ class Multijugador:
                 c = sp.costume
             else:                                   # sin clon: de pie o andando
                 c = raiz - 1 + (int(round(andar / 2)) if estado == 1 else 0)
-            out.append([c, round(mx, 2), round(my + ofy / self.k, 2), round(90 * cara), round(tam)])
+            try:
+                tile, vida = lst[i + 2], float(lst[i + 10])
+            except (ValueError, IndexError, TypeError):
+                tile, vida = 0, 1
+            # [disfraz, x, y de dibujo, dirección, tamaño, índice, tipo, casilla, y, vida]
+            out.append([c, round(mx, 2), round(my + ofy / self.k, 2), round(90 * cara), round(tam),
+                        i + 1, typ, tile, round(my, 2), vida])
         return out
+
+    # ---- combate: el anfitrión simula; los demás mandan lo que hacen -----------------
+    def jugadores(self):
+        """[(id o None = yo, x, y)] de los jugadores en mi chunk (como Minecraft:
+        los mobs miran a todos)."""
+        out = [(None, self.num(self.vx), self.num(self.vy))]
+        if self.on and self.listo:
+            c = self.chunk()
+            for pid, d in self.otros.items():
+                if pid != "yo" and d.get("c", c) == c and not d.get("muerto"):
+                    out.append((pid, self.num_de(d.get("x")), self.num_de(d.get("y"))))
+        return out
+
+    def objetivo(self, ctx, modo):
+        """Bloque scicalc_objetivo: _ObjX/_ObjY = el jugador más cercano al mob (o uno
+        al azar, para que aparezcan mobs alrededor de todos)."""
+        jug = self.jugadores()
+        if modo == "azar":
+            elegido = random.choice(jug)
+        else:
+            mx = my = None
+            if self.mob_sp:
+                if self.vid_clon is None:
+                    self.vid_clon = next((v for v in ctx.sp.vars if self.p.names.get(v) == "cloneAsID"), "")
+                lst = self.p.stage.lists.get(self.mob_lista) or []
+                try:
+                    i = int(float(ctx.sp.vars.get(self.vid_clon, 0))) - 1
+                    mx, my = float(lst[i + 3]), float(lst[i + 4])
+                except (ValueError, IndexError, TypeError):
+                    pass
+            if mx is None:
+                elegido = jug[0]
+            else:
+                elegido = min(jug, key=lambda j: abs(j[1] - mx) + abs(j[2] - my) * 0.5)
+        self.obj_pid = elegido[0]
+        ox, oy = self.vobj
+        if ox:
+            self.p.stage.vars[ox], self.p.stage.vars[oy] = elegido[1], elegido[2]
+
+    def cambio_remoto(self, nombre, v):
+        """Un mob le hace algo (daño, desgaste de armadura, empujón) a otro jugador."""
+        if nombre and v:
+            red.enviar({"cambia": [self.obj_pid, nombre, v]})
+
+    def recibir_cambio(self, nombre, v):
+        st = self.p.stage
+        vid = self.p.var_id(nombre)
+        if not vid:
+            return
+        st.vars[vid] = self.num_de(st.vars.get(vid)) + self.num_de(v)
+        if nombre == "_Health_s":                   # como si te hubiera dado en tu juego
+            self.p.start_hats("event_whenbroadcastreceived", "update health")
+
+    def copiar_mobs(self, mobs):
+        """Invitado: los mobs del anfitrión, también en MI lista del juego (sin
+        simularlos): así mi código de pegar los encuentra. Lo que les haga se le
+        manda al anfitrión."""
+        lst = self.p.stage.lists.get(self.mob_lista)
+        if lst is None:
+            return
+        paso = int(self.num(self.mob_vars[0])) or 20
+        self.golpes(lst, paso)
+        nueva = []
+        for e in mobs:
+            if len(e) < 10:
+                continue
+            i = int(e[5]) - 1
+            while len(nueva) < i + paso:
+                nueva.append("0")
+            nueva[i:i + paso] = [e[6], 1, e[7], e[1], e[8], 1 if e[3] > 0 else -1, 0, 0, 0, 0,
+                                 e[9], 0, 0, "", 0, 999999999, 0, 0, 0, 0][:paso]
+        lst[:] = nueva
+
+    def golpes(self, lst, paso):
+        """Invitado: mi juego le ha pegado a un mob (daño en +9): se lo digo al anfitrión."""
+        for i in range(0, len(lst) - paso + 1, paso):
+            try:
+                dano = float(lst[i + 9])
+            except (ValueError, TypeError):
+                continue
+            if dano > 0:
+                red.enviar({"golpe": [i + 1, dano, lst[i + 18]]})
+                lst[i + 9] = 0
+
+    def aplicar_golpe(self, idx, dano, cara):
+        """Anfitrión: otro jugador ha pegado al mob idx (como si fuera yo, con su daño)."""
+        lst = self.p.stage.lists.get(self.mob_lista) or []
+        i = int(idx) - 1
+        try:
+            if float(lst[i]) <= 0 or float(lst[i + 12]) >= self.num(self.vtiempo):
+                return                              # muerto o aún invulnerable
+        except (ValueError, IndexError, TypeError):
+            return
+        lst[i + 9] = dano
+        lst[i + 18] = cara
 
     def num_de(self, v):
         try:
@@ -785,7 +1014,8 @@ class Multijugador:
                 out.append((sp, e[1], bx + e[2], by + e[3], e[4], e[5], r.get("cuerpo", False), rot))
         if self.mob_sp and d.get("mobs"):           # mobs del anfitrión, donde estén
             sp = self.mob_sp
-            for c, mx, my, dr, tam in d["mobs"]:
+            for e in d["mobs"]:
+                c, mx, my, dr, tam = e[:5]
                 sx, sy = self.base(mx, my)
                 if abs(sx) < 300 and abs(sy) < 240 and 0 <= c < len(sp.costumes):
                     out.append((sp, c, sx, sy, dr, tam, False, sp.rot))

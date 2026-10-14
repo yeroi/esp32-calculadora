@@ -405,6 +405,13 @@ class Project:
         return self.ox + (x + 240) * self.fx, self.oy + (180 - y) * self.fy
 
     # ---- variables ---------------------------------------------------------------
+    def var_id(self, nombre):
+        """Id de la variable del escenario con ese nombre (o None)."""
+        ids = getattr(self, "_ids", None)
+        if ids is None:
+            ids = self._ids = {n: v for v, n in self.names.items() if v in self.stage.vars}
+        return ids.get(nombre)
+
     def var_get(self, sp, vid):
         if vid in sp.vars:
             return sp.vars[vid]
@@ -1116,6 +1123,29 @@ class Project:
             vid = self.field(b, "VARIABLE")
             self.var_set(ctx.sp, vid, num(self.var_get(ctx.sp, vid)) + num(self.ev(ctx, b, "VALUE")))
         S["data_changevariableby"] = changevar
+
+        # ---------- bloques propios de la calculadora (los ponen los parches) ----------
+        # scicalc_objetivo: _ObjX/_ObjY = jugador al que mira el mob (el más cercano, o
+        # uno al azar para aparecer). Jugando solo, siempre tú.
+        def objetivo(ctx, b):
+            if self.multi:
+                self.multi.objetivo(ctx, self.field(b, "MODO", "cerca"))
+            else:
+                st = self.stage.vars
+                ox, oy, x, y = (self.var_id(n) for n in ("_ObjX", "_ObjY", "_x", "_y"))
+                if ox and x:
+                    st[ox], st[oy] = st.get(x, 0), st.get(y, 0)
+        S["scicalc_objetivo"] = objetivo
+
+        # scicalc_cambiar_jugador: "cambiar variable" del jugador objetivo (vida,
+        # armadura, retroceso). Si es otro jugador, se le manda a él.
+        def cambiar_jugador(ctx, b):
+            if self.multi and self.multi.obj_pid is not None:
+                vid = self.field(b, "VARIABLE")
+                self.multi.cambio_remoto(self.names.get(vid, ""), num(self.ev(ctx, b, "VALUE")))
+            else:
+                changevar(ctx, b)
+        S["scicalc_cambiar_jugador"] = cambiar_jugador
         S["data_showvariable"] = lambda ctx, b: None
         S["data_hidevariable"] = lambda ctx, b: None
 

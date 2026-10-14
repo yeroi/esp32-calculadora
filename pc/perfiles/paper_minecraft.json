@@ -130,7 +130,6 @@
         "Mob"
       ],
       "vaciar": [
-        "_Mob",
         "_MobSpawn"
       ],
       "poner": {
@@ -156,11 +155,9 @@
       "datos": "_MOB_DATA",
       "paso": "_MobMul",
       "mdmul": "_MDMUL",
-      "mob100": "_Mob100",
-      "area": "_SpawnArea",
-      "area_base": 45
+      "mob100": "_Mob100"
     },
-    "_comentario_mobs": "mobs: el anfitrión manda sus mobs leyendo la lista _Mob del juego (el juego solo crea el objeto de los que caben en la pantalla del anfitrión) y agranda _SpawnArea para que no borre los que están cerca de los demás jugadores.",
+    "_comentario_mobs": "mobs: el anfitrión manda sus mobs leyendo la lista _Mob del juego (el juego solo crea el objeto de los que caben en su pantalla); el invitado los dibuja y los copia en su _Mob (sin simularlos) para que su código de pegar los encuentre: el golpe se le manda al anfitrión. Con los parches de Mob, cada mob mira al jugador más cercano (_ObjX/_ObjY) y el daño que hace va a ese jugador.",
     "chunk": "_CHUNK_SEED",
     "sin_enviar": [
       "load chunk",
@@ -170,7 +167,28 @@
       "load game",
       "load example"
     ],
-    "_comentario_chunk": "El mundo es infinito por chunks de 200 casillas (_CHUNK_SEED): los bloques van como b:chunk:i. sin_enviar: guiones que reescriben _Level al cargar o generar un chunk (no son cambios del jugador)."
+    "_comentario_chunk": "El mundo es infinito por chunks de 200 casillas (_CHUNK_SEED): los bloques van como b:chunk:i. sin_enviar: guiones que reescriben _Level al cargar o generar un chunk (no son cambios del jugador).",
+    "cofres": {
+      "lista": "_Inside",
+      "abierto": "_InsideIdx",
+      "inv": "_Inv",
+      "inv_base": 80
+    },
+    "sincronizar": [
+      [
+        "snow",
+        "Weather Type"
+      ],
+      [
+        "snow",
+        "weather time"
+      ],
+      [
+        "",
+        "_Time"
+      ]
+    ],
+    "_comentario_cofres": "cofres: _Inside son registros [casilla, huecos, nombre, (id, n)...]; se manda el registro entero al cambiar (c:chunk:casilla), así dos jugadores ven el mismo cofre y no se duplican objetos. sincronizar: el clima y la hora los manda el anfitrión."
   },
   "parches": [
     {
@@ -188,6 +206,68 @@
       ],
       "parar_si": "_RedInvitado",
       "motivo": "multijugador: el invitado no simula mobs (sin mobs invisibles ni sus sonidos); los lleva el anfitrión"
+    },
+    {
+      "objeto": "snow",
+      "buscar": {
+        "op": "operator_equals",
+        "OPERAND1": [
+          "v",
+          "weather time"
+        ],
+        "OPERAND2": [
+          "l",
+          "1"
+        ]
+      },
+      "poner": {
+        "OPERAND1": [
+          "v",
+          "Weather Type"
+        ]
+      },
+      "motivo": "clima: el juego comparaba 'weather time = 1' (nunca) en vez de 'Weather Type = 1': ya llueve y nieva a veces"
+    },
+    {
+      "objeto": "Mob",
+      "renombrar_var": {
+        "_x": "_ObjX",
+        "_y": "_ObjY"
+      },
+      "motivo": "multijugador: la IA de los mobs mira a _ObjX/_ObjY (el jugador más cercano) en vez de solo al Steve local"
+    },
+    {
+      "objeto": "Mob",
+      "al_principio_de": "Process Mob",
+      "bloque": [
+        "scicalc_objetivo",
+        {
+          "MODO": "cerca"
+        }
+      ],
+      "motivo": "multijugador: cada mob elige al jugador más cercano antes de moverse o atacar"
+    },
+    {
+      "objeto": "Mob",
+      "al_principio_de": "Initial Spawn %n",
+      "bloque": [
+        "scicalc_objetivo",
+        {
+          "MODO": "azar"
+        }
+      ],
+      "motivo": "multijugador: los mobs aparecen alrededor de cualquier jugador, no solo del anfitrión"
+    },
+    {
+      "objeto": "Mob",
+      "cambiar_op": "data_changevariableby",
+      "a": "scicalc_cambiar_jugador",
+      "si_var": [
+        "_Health_s",
+        "_DamageArmor",
+        "_KnockBack"
+      ],
+      "motivo": "multijugador: el daño, el desgaste de armadura y el empujón de un mob van al jugador al que ataca"
     }
   ]
 }

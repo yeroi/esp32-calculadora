@@ -80,13 +80,14 @@ En **Minecraft 2D** (nuestro juego de MicroPython) ya hay:
 - [x] Mobs simulados solo por el anfitrión y visibles para el invitado estén donde estén.
 - [x] Bloques por chunk; no mandar los cambios internos de cargar un chunk.
 - [x] Teclas inyectadas (guardar con O, pausa) que el juego no llegaba a leer.
-- [ ] Cofres compartidos (`_Inside` por índice, como los bloques). Quita la duplicación.
-- [ ] Arreglar el clima (#18) con un parche.
+- [x] Cofres compartidos: cada cofre se manda entero cuando cambia (`c:chunk:casilla`), también el que tienes abierto.
+- [x] Clima arreglado con un parche (#18) y sincronizado desde el anfitrión, junto con la hora.
 
 ### Fase 2: combate y mobs con varios jugadores (como Minecraft)
-- [ ] Parchear la IA (`Can See Steve?`, `Attack?`, `Follow Steve`, `Shoot Attack`, `Decide Next Move`) para que use el **jugador más cercano**: variables `_ObjX`/`_ObjY` que el anfitrión rellena antes de cada mob.
-- [ ] Daño a otro jugador: mensaje `dano` → el invitado lo aplica a su `_Health_s` y `_KnockBack`.
-- [ ] El invitado pega a un mob: intención `golpe{id}` → el anfitrión lo aplica (`_Mob[+9]`), como `EntityAttackC2SP`.
+- [x] La IA usa el **jugador más cercano**: en Mob, `_x`/`_y` pasan a `_ObjX`/`_ObjY`, que rellena el bloque nuevo `scicalc_objetivo` al principio de *Process Mob*. Los mobs aparecen alrededor de cualquier jugador.
+- [x] Daño a otro jugador: el bloque `scicalc_cambiar_jugador` manda la vida, el desgaste de la armadura y el empujón al jugador atacado.
+- [x] El invitado pega a un mob: tiene una copia de los mobs en su `_Mob` y su propio *Hit Mob* los encuentra. El golpe (`+9`, `+18`) se le manda al anfitrión, que lo aplica si el mob no es invulnerable. Es como `EntityAttackC2SP`.
+- [ ] Botín para el invitado: lo que suelta un mob que mata él aparece en el mundo del anfitrión.
 - [ ] Invulnerabilidad del jugador de 0.5 s (10 ticks), retroceso y PvP opcional.
 - [ ] Aparición alrededor de cada jugador y desaparición respecto al más cercano. Animales persistentes.
 
