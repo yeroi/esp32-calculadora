@@ -3603,6 +3603,9 @@ def web_descargar(url, maximo):
 # =============================================================================
 #  Simulador: carcasa + pantalla + gestor de apps
 # =============================================================================
+PC_NET = "Red del PC"                    # la Wi-Fi del simulador = la conexión del PC
+
+
 class Simulator:
     def __init__(self):
         self.screen = pygame.Surface((SCR_W, SCR_H))
@@ -3620,9 +3623,10 @@ class Simulator:
         self.files = FilesApp(self)
         self.diag = DiagApp(self)
         # Conectividad (simulada) y modo examen
-        self.wifi_on, self.wifi_net, self.bt_on, self.exam = False, None, False, False
-        self.wifi_known = {}
-        self.networks = [("MiCasa_WiFi", -48, "WPA2"), ("iPhone de Yerai", -56, "WPA2"),
+        # El simulador usa la red del PC: arranca SIEMPRE conectado a "Red del PC"
+        self.wifi_on, self.wifi_net, self.bt_on, self.exam = True, PC_NET, False, False
+        self.wifi_known = {PC_NET: ""}
+        self.networks = [(PC_NET, -40, "WPA2"), ("MiCasa_WiFi", -48, "WPA2"), ("iPhone de Yerai", -56, "WPA2"),
                          ("MOVISTAR_5A2C", -67, "WPA2"), ("Biblioteca_Libre", -78, "abierta")]
         self.link = LinkServer(self)
         self.link_clients, self.link_name = 0, ""
@@ -3704,6 +3708,8 @@ class Simulator:
         self.exam = on
         if on:
             self.wifi_on, self.wifi_net, self.bt_on = False, None, False
+        else:
+            self.wifi_on, self.wifi_net = True, PC_NET     # al salir: otra vez conectado
         return True
 
     def disconnect_wifi(self):
