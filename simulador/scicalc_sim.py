@@ -799,6 +799,9 @@ def _mostrar():
     _last[0] = _time.time()
 
 _pant.sprite, _pant.dibujar, _pant.mostrar, _pant.recorte = _sprite, _dibujar, _mostrar, _recorte
+# Sonido (WAV/MP3/OGG de la SD): suena con el siguiente mostrar()
+_pant.sonar = lambda ruta, volumen=1.0: _ops.append(("snd", _real(ruta), float(volumen)))
+_pant.parar_sonidos = lambda: _ops.append(("snd_stop",))
 _pant.trozos = lambda: 8          # trozos a redibujar sueltos (en el PC dibujar es barato)
 
 _tecl = types.ModuleType("scicalc.teclas")
@@ -1497,6 +1500,7 @@ class ScriptRunner:
         # Scripts gráficos (módulo scicalc): lienzo propio a 2x, 320x218 lógicos
         self.canvas = None
         self.sprites, self._scaled = {}, {}
+        self.sounds, self.sound_chans = {}, set()  # sonidos de los juegos (pygame.mixer)
         self.alive = time.time()          # último signo de vida (para el watchdog)
         self.held_sent = None
         self.wlock = threading.Lock()     # stdin lo escriben la UI y el hilo de red
@@ -1783,8 +1787,42 @@ class ScriptRunner:
                     self._blit_sprite(c, op)
             elif kind == "clip":
                 c.set_clip(None if len(op) == 1 else pygame.Rect(op[1] * 2, op[2] * 2, op[3] * 2, op[4] * 2))
+            elif kind == "snd":
+                self._play_sound(op[1], op[2], sd)
+            elif kind == "snd_stop":
+                for ch in self.sound_chans:
+                    ch.stop()
+
+    def _play_sound(self, path, vol, sd):
+        """Sonidos de los juegos (los de Scratch: pasos, mobs, golpes...)."""
+        path = os.path.realpath(path)
+        if os.path.commonpath([path, sd]) != sd or not os.path.isfile(path):
+            return
+        try:
+            if not pygame.mixer.get_init():
+                pygame.mixer.init(44100, -16, 2, 512)
+            if pygame.mixer.get_num_channels() < 24:
+                pygame.mixer.set_num_channels(24)
+            snd = self.sounds.get(path)
+            if snd is None:
+                if len(self.sounds) > 200:
+                    self.sounds.clear()
+                snd = self.sounds[path] = pygame.mixer.Sound(path)
+            ch = pygame.mixer.find_channel()
+            if ch is None:
+                return                                   # muchos a la vez: se salta uno
+            ch.set_volume(max(0.0, min(1.0, vol)))
+            ch.play(snd)
+            self.sound_chans.add(ch)
+        except pygame.error:
+            pass
 
     def _kill(self, state):
+        for ch in self.sound_chans:
+            try:
+                ch.stop()
+            except pygame.error:
+                pass
         try:
             self.proc.kill()
         except Exception:

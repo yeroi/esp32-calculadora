@@ -115,7 +115,7 @@ def compare(a, b):
 # ---- Objetos (sprites, escenario y clones) ------------------------------------
 class Sprite:
     COPY = ("proj", "name", "stage", "blocks", "hats", "procs", "costumes", "imgs", "costume",
-            "x", "y", "dir", "size", "visible", "rot", "ghost", "original")
+            "x", "y", "dir", "size", "visible", "rot", "ghost", "original", "sounds", "volume")
 
     def __init__(self, data, proj):
         self.changed = False
@@ -129,6 +129,8 @@ class Sprite:
         self.hats = data["guiones"]
         self.procs = data["procs"]
         self.costumes = data["disfraces"]       # [nombre, ruta, w, h, cx, cy]
+        self.sounds = data.get("sonidos", [])   # [nombre, ruta, segundos]
+        self.volume = 100.0
         self.imgs = [None] * len(self.costumes)
         self.vars = {k: v[1] for k, v in data["vars"].items()}
         self.lists = {k: list(v[1]) for k, v in data["listas"].items()}
@@ -765,12 +767,56 @@ class Project:
         R["looks_backdropnumbername"] = bd_num
         R["looks_size"] = lambda ctx, b: round(ctx.sp.size)
 
-        # ---------- sonido (sin altavoz por ahora: no hace nada) ----------
-        for op in ("sound_play", "sound_stopallsounds", "sound_changevolumeby", "sound_setvolumeto",
-                   "sound_seteffectto", "sound_changeeffectby", "sound_cleareffects"):
-            S[op] = lambda ctx, b: None
-        S["sound_playuntildone"] = lambda ctx, b: None
-        R["sound_volume"] = lambda ctx, b: 100
+        # ---------- sonido ----------
+        # P.sonar(ruta, volumen): en el simulador y en los juegos que hace el PC suena
+        # por el PC. En el ESP32 aún no hay altavoz: ahí no hace nada.
+        sonar = getattr(P, "sonar", None)
+
+        def find_sound(sp, v):
+            snds = sp.sounds
+            if not snds:
+                return None
+            if isinstance(v, str):
+                for e in snds:
+                    if e[0] == v:
+                        return e
+                if not is_num(v):
+                    return None
+            n = num(v)
+            return snds[(toint(round(n)) - 1 if finite(n) else 0) % len(snds)]
+
+        def play(ctx, b, until=False):
+            e = find_sound(ctx.sp, self.ev(ctx, b, "SOUND_MENU"))
+            if e is None:
+                return None
+            if sonar and ctx.sp.volume > 0:
+                sonar(e[1], ctx.sp.volume / 100)
+            if not until:
+                return None
+            end = self.now + float(e[2] if len(e) > 2 else 0) * 1000
+
+            def g():
+                yield
+                while self.now < end:
+                    yield
+            return g()
+        S["sound_play"] = lambda ctx, b: play(ctx, b)
+        S["sound_playuntildone"] = lambda ctx, b: play(ctx, b, True)
+
+        def stop_all(ctx, b):
+            if hasattr(P, "parar_sonidos"):
+                P.parar_sonidos()
+        S["sound_stopallsounds"] = stop_all
+
+        def set_vol(ctx, b, change=False):
+            v = num(self.ev(ctx, b, "VOLUME"))
+            v = (ctx.sp.volume + v) if change else v
+            ctx.sp.volume = max(0.0, min(100.0, v if finite(v) else 100.0))
+        S["sound_setvolumeto"] = lambda ctx, b: set_vol(ctx, b)
+        S["sound_changevolumeby"] = lambda ctx, b: set_vol(ctx, b, True)
+        for op in ("sound_seteffectto", "sound_changeeffectby", "sound_cleareffects"):
+            S[op] = lambda ctx, b: None              # (tono y balance: sin efectos)
+        R["sound_volume"] = lambda ctx, b: ctx.sp.volume
 
         # ---------- control ----------
         def wait(ctx, b):

@@ -192,6 +192,10 @@ Ejemplo incluido: `pc/ejemplos/AtrapaManzanas.sb3`, ya convertido en `simulador/
 
 La colisión usa cajas rectangulares (no el contorno exacto). En el ESP32 sin PSRAM solo caben proyectos pequeños (`proyecto.json` de pocas decenas de KB); con un ESP32-S3 con PSRAM, mucho más.
 
+## Sonido de los juegos de Scratch
+
+El conversor saca los **sonidos del .sb3** (los WAV IMA ADPCM de Scratch se pasan a WAV normal) a la carpeta `snd/` del juego, y el intérprete implementa *tocar sonido*, *tocar hasta que termine*, *detener todos*, volumen... Paper Minecraft trae los sonidos de Minecraft: **pasos** en hierba, grava, arena, piedra y madera, **cerdo, vaca, oveja, gallina, zombi, esqueleto y araña**, daño y caídas. Suenan en el simulador y cuando el juego lo hace el PC (modo PC). Vuelve a convertir el `.sb3` para tenerlos.
+
 ## Multijugador
 
 Las calculadoras juegan juntas a través de un **servidor SciCalc** (protocolo propio: un JSON por línea sobre TCP, puerto 8267; no usa los servidores de Scratch ni de nadie).

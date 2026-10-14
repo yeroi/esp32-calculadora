@@ -112,6 +112,9 @@ class Multijugador:
         self.nombre_cfg = "Jugador"
         self.cfg_icono = cfg.get("icono")
         self.btn_titulo = cfg.get("boton_titulo")
+        self.ver_espejo = cfg.get("ver_espejo", False)   # depuración: mi espejo a mi lado
+        if self.ver_espejo:
+            self.listo = True
 
     def disponible(self):
         return (red is not None and self.vx is not None and self.vy is not None
@@ -441,7 +444,14 @@ class Multijugador:
 
     # ---- el espejo: lo que los demás ven de mí ---------------------------------------
     def coincide(self, sp, r):
+        # Reglas del espejo (perfil): "clon" solo clones, "original" solo el objeto
+        # original, "tam_max" tamaño máximo, y con "var": "valores" (lista exacta),
+        # "mayor" / "menor" (umbral) del valor de esa variable del objeto.
         if r.get("clon") and not sp.is_clone:
+            return False
+        if r.get("original") and sp.is_clone:
+            return False
+        if "tam_max" in r and sp.size > r["tam_max"]:
             return False
         if r.get("prefijo") and not sp.costumes[sp.costume][0].startswith(r["prefijo"]):
             return False
@@ -450,7 +460,8 @@ class Multijugador:
                 v = float(sp.vars.get(r["vid"], 0))
             except (TypeError, ValueError):
                 return False
-            if v not in r.get("valores", ()) and not ("mayor" in r and v > r["mayor"]):
+            if v not in r.get("valores", ()) and not ("mayor" in r and v > r["mayor"]) \
+                    and not ("menor" in r and v < r["menor"]):
                 return False
         return True
 
@@ -528,6 +539,9 @@ class Multijugador:
     def dibujar(self):
         """Cuerpo, objeto en la mano, grieta y objetos soltados de los demás (a la
         altura de mi jugador: delante de troncos y hojas, como en Minecraft)."""
+        if self.ver_espejo and any(sp.visible for sp in self.partes):
+            x, y = self.num(self.vx), self.num(self.vy)
+            self.otros["yo"] = {"x": x + 2, "y": y, "e": self.espejo(x, y)}
         if not self.listo or not any(sp.visible for sp in self.partes):
             return                                # en menús del juego: no se dibuja a nadie
         for pid in list(self.otros):

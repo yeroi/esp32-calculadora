@@ -55,7 +55,7 @@
     "doble_toque": true
   },
   "multijugador": {
-    "_comentario": "Mundo compartido: listas que se envían al unirse (solo _Level y _Light: copiar más listas rompe el juego del invitado) y variables ('mundo_vars'), lista sincronizada bloque a bloque, posición del jugador (variables del escenario, en casillas), cámara y tamaño de casilla, objetos que forman al jugador (con sus clones) y 'espejo': la grieta al picar (Cursor digN), el bloque en la mano (Tiles con CloneAsID -1..-4 junto al jugador), los objetos tirados (CloneAsID > 0) y los mobs del anfitrión. 'invitado': el que se une borra sus mobs y no genera más (los simula el anfitrión).",
+    "_comentario": "Mundo compartido: listas que se envían al unirse (solo _Level y _Light: copiar más listas rompe el juego del invitado) y variables ('mundo_vars'), lista sincronizada bloque a bloque, posición del jugador (variables del escenario, en casillas), cámara y tamaño de casilla, objetos que forman al jugador (con sus clones) y 'espejo': la grieta al picar (Cursor digN), el bloque en la mano (el objeto Tiles original, junto al jugador), los objetos tirados (clones de Tiles con CloneAsID < 0 y tamaño 40; los iconos del inventario son de 65) y los mobs del anfitrión. 'invitado': el que se une borra sus mobs y no genera más (los simula el anfitrión).",
     "mundo": [
       "_Level",
       "_Light"
@@ -97,15 +97,16 @@
       },
       {
         "objeto": "Tiles",
-        "var": "CloneAsID",
-        "valores": [
-          -1,
-          -2,
-          -3,
-          -4
-        ],
-        "mayor": 0,
+        "original": true,
         "cerca": 80
+      },
+      {
+        "objeto": "Tiles",
+        "clon": true,
+        "var": "CloneAsID",
+        "menor": 0,
+        "tam_max": 50,
+        "cerca": 400
       },
       {
         "objeto": "Mob",

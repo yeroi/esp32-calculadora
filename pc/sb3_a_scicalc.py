@@ -26,11 +26,14 @@
    imágenes PNG incrustadas, que el lector SVG de pygame ignora).
 ===============================================================================
 """
+import array
 import io
 import json
 import os
 import re
+import struct
 import sys
+import wave
 import zipfile
 from pathlib import Path
 
@@ -307,6 +310,82 @@ def apply_patches(targets, patches):
                     print(f"  parche: {pt.get('motivo', lname)}")
 
 
+# ---- Sonidos ------------------------------------------------------------------------
+# Scratch guarda muchos sonidos como WAV IMA ADPCM (comprimido); se pasan a WAV
+# PCM normal de 16 bits para que suenen en cualquier sitio (pygame, el PC...).
+_IMA_STEP = [7, 8, 9, 10, 11, 12, 13, 14, 16, 17, 19, 21, 23, 25, 28, 31, 34, 37, 41, 45, 50, 55, 60, 66,
+             73, 80, 88, 97, 107, 118, 130, 143, 157, 173, 190, 209, 230, 253, 279, 307, 337, 371, 408,
+             449, 494, 544, 598, 658, 724, 796, 876, 963, 1060, 1166, 1282, 1411, 1552, 1707, 1878, 2066,
+             2272, 2499, 2749, 3024, 3327, 3660, 4026, 4428, 4871, 5358, 5894, 6484, 7132, 7845, 8630,
+             9493, 10442, 11487, 12635, 13899, 15289, 16818, 18500, 20350, 22385, 24623, 27086, 29794, 32767]
+_IMA_IDX = [-1, -1, -1, -1, 2, 4, 6, 8, -1, -1, -1, -1, 2, 4, 6, 8]
+
+
+def _wav_chunks(data):
+    i, out = 12, {}
+    while i + 8 <= len(data):
+        cid, n = data[i:i + 4], struct.unpack_from("<I", data, i + 4)[0]
+        out[cid] = data[i + 8:i + 8 + n]
+        i += 8 + n + (n & 1)
+    return out
+
+
+def adpcm_to_pcm(data):
+    """WAV IMA ADPCM mono -> (frecuencia, bytes PCM 16 bits). None si no es ese formato."""
+    ch = _wav_chunks(data)
+    fmt, raw = ch.get(b"fmt "), ch.get(b"data")
+    if not fmt or raw is None:
+        return None
+    tag, chans, rate = struct.unpack_from("<HHI", fmt, 0)
+    block = struct.unpack_from("<H", fmt, 12)[0]
+    if tag != 0x11 or chans != 1 or block < 5:
+        return None
+    out = array.array("h")
+    for b0 in range(0, len(raw) - 3, block):
+        blk = raw[b0:b0 + block]
+        pred, idx = struct.unpack_from("<hB", blk, 0)
+        idx = min(88, idx)
+        out.append(pred)
+        for byte in blk[4:]:
+            for nib in (byte & 15, byte >> 4):
+                step = _IMA_STEP[idx]
+                diff = step >> 3
+                if nib & 4: diff += step
+                if nib & 2: diff += step >> 1
+                if nib & 1: diff += step >> 2
+                pred = max(-32768, min(32767, pred - diff if nib & 8 else pred + diff))
+                idx = max(0, min(88, idx + _IMA_IDX[nib]))
+                out.append(pred)
+    return rate, out.tobytes()
+
+
+def convert_sound(zf, snd, out_path):
+    """Guarda el sonido en out_path (.wav o .mp3). Devuelve (ruta_final, segundos)."""
+    data = zf.read(snd["md5ext"])
+    fmt = snd.get("dataFormat", "wav")
+    if fmt == "wav":
+        pcm = adpcm_to_pcm(data)
+        if pcm:
+            rate, frames = pcm
+            buf = io.BytesIO()
+            with wave.open(buf, "wb") as w:
+                w.setnchannels(1)
+                w.setsampwidth(2)
+                w.setframerate(rate)
+                w.writeframes(frames)
+            data = buf.getvalue()
+            secs = len(frames) / 2 / rate
+        else:
+            rate = snd.get("rate") or 22050
+            secs = (snd.get("sampleCount") or 0) / rate
+        out_path = out_path.with_suffix(".wav")
+    else:
+        out_path = out_path.with_suffix("." + fmt)
+        secs = (snd.get("sampleCount") or 0) / (snd.get("rate") or 44100)
+    out_path.write_bytes(data)
+    return out_path, round(secs, 3)
+
+
 def convert(sb3_path, sd_root):
     sys.setrecursionlimit(20000)               # guiones muy largos
     pygame.display.init()
@@ -324,6 +403,9 @@ def convert(sb3_path, sd_root):
     out_dir = (root if root.name.lower() == "scratch" else root / "scratch") / name
     img_dir = out_dir / "img"
     img_dir.mkdir(parents=True, exist_ok=True)
+    snd_dir = out_dir / "snd"
+    snd_dir.mkdir(parents=True, exist_ok=True)
+    snd_done = {}                              # md5ext -> (ruta, segundos): sin repetir
 
     keys_used = set()
     targets_out = []
@@ -345,8 +427,20 @@ def convert(sb3_path, sd_root):
                 pygame.image.save(surf, str(png))
                 w, h, cx, cy = 2, 2, 1, 1
             costumes.append([c.get("name", str(ci)), f"img/{png.name}", w, h, cx, cy])
+        sounds = []
+        for si, snd in enumerate(t.get("sounds", [])):
+            key = snd.get("md5ext")
+            try:
+                if key not in snd_done:
+                    path, secs = convert_sound(zf, snd, snd_dir / Path(key).stem)
+                    snd_done[key] = (f"snd/{path.name}", secs)
+                rel, secs = snd_done[key]
+                sounds.append([snd.get("name", str(si)), rel, secs])
+            except Exception as e:
+                print(f"  aviso: sonido '{snd.get('name')}' de '{t['name']}' ilegible ({e})")
         targets_out.append({
             "nombre": t["name"],
+            "sonidos": sounds,
             "escenario": bool(t.get("isStage")),
             "vars": {vid: [v[0], v[1]] for vid, v in t.get("variables", {}).items()},
             "listas": {lid: [l[0], l[1]] for lid, l in t.get("lists", {}).items()},
