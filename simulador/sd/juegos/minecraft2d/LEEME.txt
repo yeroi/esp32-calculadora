@@ -1,0 +1,37 @@
+MINECRAFT 2D - edición calculadora
+==================================
+Un Minecraft de lado hecho en MicroPython para que funcione EN el ESP32
+(sin PSRAM): el código va congelado en el firmware (/lib/mc2d.py) y el mundo
+es un bloque de 200 x 64 (12,5 KB). Usa ~45 KB de los ~70 KB de Python.
+
+Abre:  Python > juegos > minecraft2d > minecraft2d.py
+
+CONTROLES
+  <- ->      andar                 ^         saltar / nadar
+  8 4 6 2    mover el cursor       5         picar / golpear (mantener)
+  EXE        poner bloque, comer, usar la mesa de trabajo o el horno
+  1 3 ( )    objeto anterior / siguiente
+  7          inventario y fabricar 9         tirar uno
+  DEL        menú (guardar)        AC        salir
+  Teclado del PC: WASD, E inventario, Q tirar, 1-9 elegir hueco.
+
+CÓMO EMPEZAR (como en Minecraft)
+  1. Pica un tronco (5 mantenido) -> Tablones x4 -> Palos x4 -> Mesa de trabajo.
+  2. Pon la mesa (EXE) y úsala (EXE sobre ella): pico de madera.
+  3. Con el pico, piedra -> roca -> herramientas de piedra y horno (8 de roca).
+  4. Horno: mena de hierro + carbón = lingote; arena + carbón = cristal;
+     chuleta cruda + carbón = asada (los cerdos dan chuletas).
+  5. De noche salen zombis: espada, refugio o cama... (no hay camas aún).
+
+MULTIJUGADOR
+  Multijugador > Hostear un mundo: abres tu mundo a la red.
+  Multijugador > Unirse: aparecen las partidas de tu red; o por IP.
+  El mundo se manda al entrar y cada bloque cambiado se sincroniza.
+
+SONIDO
+  Si tienes Paper Minecraft convertido (con el conversor nuevo), Minecraft 2D
+  usa sus sonidos (pasos, picar, cerdos, zombis, daño). En el ESP32 aún no hay
+  altavoz.
+
+Texturas propias generadas con pc/mc2d_texturas.py (no son las de Mojang).
+Truco para probar la noche: SHIFT + raíz adelanta una hora del día.

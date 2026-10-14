@@ -192,6 +192,18 @@ Ejemplo incluido: `pc/ejemplos/AtrapaManzanas.sb3`, ya convertido en `simulador/
 
 La colisión usa cajas rectangulares (no el contorno exacto). En el ESP32 sin PSRAM solo caben proyectos pequeños (`proyecto.json` de pocas decenas de KB); con un ESP32-S3 con PSRAM, mucho más.
 
+## Minecraft 2D (MicroPython, funciona EN el ESP32)
+
+`sd/juegos/minecraft2d`: un Minecraft de lado escrito en MicroPython para la calculadora. El código (`sd/lib/mc2d.py`) va **congelado en el firmware**, así que no ocupa RAM: en el ESP32 usa ~45 KB de los ~70 KB de Python (medido con MicroPython del PC limitado a 70 KB).
+
+- Mundo de 200×64 con biomas (llanura, desierto, nieve, mar), cuevas, menas (carbón, hierro, oro, diamante) y árboles.
+- Picar con grietas y herramientas (madera, piedra, hierro, diamante), poner bloques, arena y grava que caen.
+- Inventario de 27 huecos, fabricar a mano / en la mesa / en el horno, comida, hambre, vida y caídas.
+- Día y noche, cerdos y zombis. Guardar y cargar mundos. Multijugador con `scicalc.red`.
+- Sonidos de Paper Minecraft si está convertido. Texturas propias (`pc/mc2d_texturas.py`).
+
+Controles: ◄ ► andar · ▲ saltar · 8 4 6 2 cursor · 5 picar (mantener) · EXE poner/usar · 1 3 objeto · 7 inventario · DEL menú. Ver `LEEME.txt`.
+
 ## Sonido de los juegos de Scratch
 
 El conversor saca los **sonidos del .sb3** (los WAV IMA ADPCM de Scratch se pasan a WAV normal) a la carpeta `snd/` del juego, y el intérprete implementa *tocar sonido*, *tocar hasta que termine*, *detener todos*, volumen... Paper Minecraft trae los sonidos de Minecraft: **pasos** en hierba, grava, arena, piedra y madera, **cerdo, vaca, oveja, gallina, zombi, esqueleto y araña**, daño y caídas. Suenan en el simulador y cuando el juego lo hace el PC (modo PC). Vuelve a convertir el `.sb3` para tenerlos.

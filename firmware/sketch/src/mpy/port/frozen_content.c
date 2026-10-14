@@ -47,12 +47,21 @@ enum {
     MP_QSTR__percent__hyphen_11s_space__percent_s,
     MP_QSTR__percent_d_space__space__percent_s,
     MP_QSTR__percent_d_space__space__hyphen__gt__space__space_partida_space__percent_d,
+    MP_QSTR__percent_d_space__percent_s,
+    MP_QSTR__percent_d_space_jug,
     MP_QSTR__percent_d_hyphen__percent_d_space_de_space__percent_d,
     MP_QSTR__percent_d_slash_16,
+    MP_QSTR__percent_s_space_de_space__percent_s,
+    MP_QSTR__percent_s_space_entra,
     MP_QSTR__percent_s_space_se_space_ha_space_ido,
     MP_QSTR__percent_s_space_se_space_ha_space_unido,
+    MP_QSTR__percent_s_space_x_percent_d_space__space__lt__hyphen__space__space_,
+    MP_QSTR__percent_s_percent_d,
+    MP_QSTR__percent_s_slash__percent_s_dot_mc2d,
     MP_QSTR__percent_s_colon__percent_d,
+    MP_QSTR__percent_s__percent_s,
     MP_QSTR__plus_,
+    MP_QSTR__plus_1_space_hora,
     MP_QSTR__comma_,
     MP_QSTR__comma__space_,
     MP_QSTR__hyphen_,
@@ -60,10 +69,15 @@ enum {
     MP_QSTR__hyphen_inf,
     MP_QSTR__dot__comma__hyphen___bang__question_1,
     MP_QSTR__dot__slash__colon__hyphen___question__equals__amp_1,
+    MP_QSTR__dot_mc2d,
     MP_QSTR__dot_txt,
+    MP_QSTR__slash_scratch,
+    MP_QSTR__slash_scratch_slash__percent_s_slash__percent_s,
     MP_QSTR_0,
     MP_QSTR_1,
+    MP_QSTR_1_space_3_space__space_cambiar_space_de_space_objeto,
     MP_QSTR_10_space__caret_,
+    MP_QSTR_123456789,
     MP_QSTR_1234567890,
     MP_QSTR_2,
     MP_QSTR_3,
@@ -72,6 +86,7 @@ enum {
     MP_QSTR_6,
     MP_QSTR_7,
     MP_QSTR_8,
+    MP_QSTR_8_space_4_space_6_space_2_space__space_mover_space_el_space_cursor,
     MP_QSTR_9,
     MP_QSTR__colon_,
     MP_QSTR__colon__space_,
@@ -79,6 +94,17 @@ enum {
     MP_QSTR__equals_,
     MP_QSTR__question_,
     MP_QSTR_AC,
+    MP_QSTR_AGUA,
+    MP_QSTR_AIRE,
+    MP_QSTR_ALCANCE,
+    MP_QSTR_ANDAR,
+    MP_QSTR_ANTORCHA,
+    MP_QSTR_ARENA,
+    MP_QSTR_Abriendo_space_la_space_partida_dot__dot__dot_,
+    MP_QSTR_Amapola,
+    MP_QSTR_Antorcha,
+    MP_QSTR_Arena,
+    MP_QSTR_Atras,
     MP_QSTR_Atr_aacute_s,
     MP_QSTR_A_ntilde_adir_space_servidor,
     MP_QSTR_BACKDROP,
@@ -91,110 +117,239 @@ enum {
     MP_QSTR_Bloques_space_no_space_soportados_colon_,
     MP_QSTR_Borrar,
     MP_QSTR_Buscando_space_partidas_dot__dot__dot_,
+    MP_QSTR_CACTUS,
+    MP_QSTR_CAEN,
+    MP_QSTR_CARBON,
+    MP_QSTR_CARBON_M,
+    MP_QSTR_CARNE,
+    MP_QSTR_CARNE_ASADA,
+    MP_QSTR_CARNE_POD,
+    MP_QSTR_CARPETA,
     MP_QSTR_CH_colon_,
+    MP_QSTR_CH_colon_E,
+    MP_QSTR_CH_colon_e,
+    MP_QSTR_CH_colon_q,
     MP_QSTR_CHANGE,
+    MP_QSTR_CIELO_DIA,
+    MP_QSTR_CIELO_NOCHE,
     MP_QSTR_CLONE_OPTION,
+    MP_QSTR_COMIDA,
     MP_QSTR_CONDITION,
     MP_QSTR_COPY,
     MP_QSTR_COSTUME,
+    MP_QSTR_CRISTAL,
     MP_QSTR_CURRENTMENU,
+    MP_QSTR_Cactus,
     MP_QSTR_Cancelar,
+    MP_QSTR_Carbon,
+    MP_QSTR_Cargando_space__percent_s_dot__dot__dot_,
     MP_QSTR_Cargar_space_mundo_space_guardado,
+    MP_QSTR_Carne_space_podrida,
+    MP_QSTR_Cavando_space_cuevas_dot__dot__dot_,
+    MP_QSTR_Chuleta_space_asada,
+    MP_QSTR_Chuleta_space_cruda,
+    MP_QSTR_Conectando_space_con_space__percent_s_dot__dot__dot_,
     MP_QSTR_Conectando_dot__dot__dot_,
+    MP_QSTR_Conexion_space_directa_space__paren_open_IP_paren_close_,
     MP_QSTR_Conexi_oacute_n_space_directa,
     MP_QSTR_Continuar,
+    MP_QSTR_Controles,
     MP_QSTR_Controles_space__space__paren_open_EXE_space_vuelve_paren_close_,
+    MP_QSTR_Controles_colon_,
+    MP_QSTR_Crear_space_mundo_space_nuevo,
+    MP_QSTR_Cristal,
     MP_QSTR_Ctx,
+    MP_QSTR_DANO,
     MP_QSTR_DATE,
     MP_QSTR_DEGREES,
     MP_QSTR_DEL,
+    MP_QSTR_DEL_space__space_menu_space__paren_open_guardar_paren_close_,
+    MP_QSTR_DEL_colon__space_volver,
+    MP_QSTR_DIAMANTE,
+    MP_QSTR_DIAMANTE_M,
+    MP_QSTR_DIA_S,
     MP_QSTR_DIRECTION,
     MP_QSTR_DISTANCETOMENU,
     MP_QSTR_DOWN,
+    MP_QSTR_DT,
     MP_QSTR_DURATION,
+    MP_QSTR_DUREZA,
     MP_QSTR_DX,
     MP_QSTR_DY,
+    MP_QSTR_Descargando_space_el_space_mundo_dot__dot__dot_,
     MP_QSTR_Desconectar,
+    MP_QSTR_Diamante,
+    MP_QSTR_Diente_space_de_space_leon,
     MP_QSTR_EFFECT,
+    MP_QSTR_ESPADA,
     MP_QSTR_ESPERA,
     MP_QSTR_ESPERA_MUNDO,
     MP_QSTR_EXE,
+    MP_QSTR_EXE_colon__space_reaparecer,
+    MP_QSTR_EXE_colon__space_seguir_space_solo,
+    MP_QSTR_Edicion_space_calculadora,
+    MP_QSTR_Elige_space_un_space_mundo,
+    MP_QSTR_Error,
+    MP_QSTR_Escondiendo_space_menas_dot__dot__dot_,
     MP_QSTR_FILAS,
+    MP_QSTR_FLOR_A,
+    MP_QSTR_FLOR_R,
+    MP_QSTR_FONDO_CUEVA,
     MP_QSTR_FORWARD_BACKWARD,
     MP_QSTR_FROM,
     MP_QSTR_FRONT_BACK,
+    MP_QSTR_Fabricar_space__paren_open_a_space_mano_paren_close_,
     MP_QSTR_GIROS,
     MP_QSTR_GIROS_INV,
+    MP_QSTR_GRAV,
+    MP_QSTR_GRAVA,
+    MP_QSTR_Generando_space_el_space_terreno_dot__dot__dot_,
+    MP_QSTR_Grava,
+    MP_QSTR_Guardado,
+    MP_QSTR_Guardar,
     MP_QSTR_Guardar_space_partida,
+    MP_QSTR_Guardar_space_y_space_salir,
     MP_QSTR_H,
+    MP_QSTR_HACHA,
+    MP_QSTR_HERR,
+    MP_QSTR_HIERBA,
+    MP_QSTR_HIERBA_A,
+    MP_QSTR_HIERRO_M,
+    MP_QSTR_HOJAS,
+    MP_QSTR_HORNO,
     MP_QSTR_HOUR,
+    MP_QSTR_Has_space_muerto,
+    MP_QSTR_Hierba,
+    MP_QSTR_Hojas,
+    MP_QSTR_Horno,
     MP_QSTR_Hostear,
     MP_QSTR_Hostear_space_partida,
+    MP_QSTR_Hostear_space_un_space_mundo,
     MP_QSTR_INDEX,
     MP_QSTR_INF,
     MP_QSTR_ITEM,
     MP_QSTR_Infinity,
+    MP_QSTR_Inventario,
+    MP_QSTR_Juego,
     MP_QSTR_Jugador,
     MP_QSTR_Jugadores,
+    MP_QSTR_Jugar,
     MP_QSTR_K,
     MP_QSTR_KB_ROWS,
     MP_QSTR_KEY_OPTION,
     MP_QSTR_L,
+    MP_QSTR_LADRILLOS,
+    MP_QSTR_LECHO,
     MP_QSTR_LEFT,
     MP_QSTR_LETRAS,
     MP_QSTR_LETRAS_URL,
     MP_QSTR_LETTER,
+    MP_QSTR_LING_HIERRO,
+    MP_QSTR_LING_ORO,
     MP_QSTR_LIST,
     MP_QSTR_LIST_H,
     MP_QSTR_LIST_Y,
+    MP_QSTR_LP,
+    MP_QSTR_Ladrillos,
+    MP_QSTR_Lingote_space_de_space_hierro,
+    MP_QSTR_Lingote_space_de_space_oro,
+    MP_QSTR_Listo,
+    MP_QSTR_MANZANA,
+    MP_QSTR_MAR,
+    MP_QSTR_MATS,
+    MP_QSTR_MAX_CAIDA,
     MP_QSTR_MAX_CLONES,
+    MP_QSTR_MESA,
     MP_QSTR_MESSAGE,
+    MP_QSTR_MINECRAFT_space_2D,
     MP_QSTR_MINUTE,
     MP_QSTR_MONTH,
+    MP_QSTR_Manzana,
+    MP_QSTR_Mena_space_de_space_carbon,
+    MP_QSTR_Mena_space_de_space_diamante,
+    MP_QSTR_Mena_space_de_space_hierro,
+    MP_QSTR_Mena_space_de_space_oro,
+    MP_QSTR_Menu_space_del_space_juego,
+    MP_QSTR_Mesa_space_de_space_trabajo,
     MP_QSTR_Multijugador,
     MP_QSTR_Multijugador_space__paren_open__percent_d_space_jug_dot__paren_close_,
     MP_QSTR_Multijugador_dot__dot__dot_,
     MP_QSTR_Multijugador_colon__space_,
+    MP_QSTR_Mundo,
+    MP_QSTR_Mundo_space__percent_d,
     MP_QSTR_Mundo_space_nuevo,
+    MP_QSTR_NHUECOS,
+    MP_QSTR_NIEVE,
+    MP_QSTR_NOMBRE,
+    MP_QSTR_NO_SOLIDO,
+    MP_QSTR_NO_SUELO,
     MP_QSTR_NUM,
     MP_QSTR_NUM1,
     MP_QSTR_NUM2,
     MP_QSTR_NUMBER_NAME,
     MP_QSTR_NaN,
+    MP_QSTR_Nieve,
+    MP_QSTR_No_space_hay_space_partidas_space_abiertas,
     MP_QSTR_No_space_responde_space__middot__space__percent_s,
+    MP_QSTR_No_space_se_space_pudo_space_abrir_colon__space_,
+    MP_QSTR_No_space_se_space_pudo_space_conectar,
     MP_QSTR_No_space_se_space_pudo_space_guardar_colon__space__percent_s,
     MP_QSTR_Nombre,
+    MP_QSTR_Nombre_space_del_space_mundo_colon_,
     MP_QSTR_OBJECT,
     MP_QSTR_OK,
     MP_QSTR_OPERAND,
     MP_QSTR_OPERAND1,
     MP_QSTR_OPERAND2,
     MP_QSTR_OPERATOR,
+    MP_QSTR_ORO_M,
+    MP_QSTR_OSCURO,
     MP_QSTR_P,
+    MP_QSTR_PALA,
+    MP_QSTR_PALO,
+    MP_QSTR_PH,
+    MP_QSTR_PICO,
+    MP_QSTR_PIEDRA,
     MP_QSTR_POS_CADA,
     MP_QSTR_PROPERTY,
+    MP_QSTR_PW,
+    MP_QSTR_Palo,
     MP_QSTR_Pantalla_colon__space_,
     MP_QSTR_PantallaRed,
     MP_QSTR_Partida_space__percent_d_space_guardada,
+    MP_QSTR_Partida_space_online,
+    MP_QSTR_Partidas,
     MP_QSTR_Pausa_space_del_space_juego_space__paren_open_P_paren_close_,
+    MP_QSTR_Piedra,
+    MP_QSTR_Plantando_space_arboles_dot__dot__dot_,
     MP_QSTR_Project,
     MP_QSTR_QUESTION,
     MP_QSTR_R,
+    MP_QSTR_RECETAS,
     MP_QSTR_RIGHT,
+    MP_QSTR_ROCA,
     MP_QSTR_ROW1_Y,
     MP_QSTR_ROW2_Y,
     MP_QSTR_ROW_H,
+    MP_QSTR_RP,
     MP_QSTR_Recargar,
+    MP_QSTR_Recetas_space__paren_open_EXE_space_fabrica_paren_close__colon_,
     MP_QSTR_Red_space_local_space__middot__space_,
     MP_QSTR_Rendimiento_colon__space_,
+    MP_QSTR_Roca,
     MP_QSTR_S,
     MP_QSTR_S_colon_,
     MP_QSTR_S_colon_EXE,
+    MP_QSTR_SALA,
+    MP_QSTR_SALTO,
     MP_QSTR_SECOND,
     MP_QSTR_SECS,
     MP_QSTR_SHIFT_plus_,
     MP_QSTR_SIZE,
+    MP_QSTR_SND,
     MP_QSTR_SOUND_MENU,
+    MP_QSTR_SPR,
+    MP_QSTR_SQRT,
     MP_QSTR_STAGE_H,
     MP_QSTR_STAGE_W,
     MP_QSTR_STEPS,
@@ -206,32 +361,53 @@ enum {
     MP_QSTR_SUB,
     MP_QSTR_SUBSTACK,
     MP_QSTR_SUBSTACK2,
+    MP_QSTR_SUELTA,
+    MP_QSTR_Salir,
     MP_QSTR_Salir_space_del_space_juego,
+    MP_QSTR_Salir_space_sin_space_guardar,
+    MP_QSTR_Seguir_space_solo,
+    MP_QSTR_Sin_space_conexion,
     MP_QSTR_Sin_space_conexi_oacute_n_colon__space_,
     MP_QSTR_Sin_space_multijugador_colon__space_,
+    MP_QSTR_Sin_space_red,
     MP_QSTR_StopAll,
     MP_QSTR_StopScript,
     MP_QSTR_StopThread,
+    MP_QSTR_T,
     MP_QSTR_T9,
+    MP_QSTR_TABLONES,
+    MP_QSTR_TEX,
+    MP_QSTR_TIERRA,
     MP_QSTR_TIMES,
+    MP_QSTR_TIPOS,
     MP_QSTR_TO,
     MP_QSTR_TOUCHINGOBJECTMENU,
     MP_QSTR_TOWARDS,
+    MP_QSTR_TRANSP,
+    MP_QSTR_TRONCO,
     MP_QSTR_TROZO,
     MP_QSTR_TXT,
     MP_QSTR_TXT_GRIS,
     MP_QSTR_TXT_SEL,
+    MP_QSTR_Tablones,
     MP_QSTR_Thread,
+    MP_QSTR_Tierra,
+    MP_QSTR_Tronco,
     MP_QSTR_Tu_space_nombre,
     MP_QSTR_T_uacute__colon__space_,
     MP_QSTR_UP,
     MP_QSTR_Un_space_jugador,
     MP_QSTR_Unido_space_a_space_la_space_partida_space_de_space__percent_s,
     MP_QSTR_Unirse,
+    MP_QSTR_Unirse_space_a_space_una_space_partida,
     MP_QSTR_VALUE,
     MP_QSTR_VARIABLE,
+    MP_QSTR_VH,
+    MP_QSTR_VIEW_H,
     MP_QSTR_VOLUME,
+    MP_QSTR_VW,
     MP_QSTR_Ver_space_controles,
+    MP_QSTR_Volver_space_al_space_juego,
     MP_QSTR_W,
     MP_QSTR_WARP_MS,
     MP_QSTR_WORK_MS,
@@ -242,27 +418,41 @@ enum {
     MP_QSTR__backslash_,
     MP_QSTR__edge_,
     MP_QSTR__hover,
+    MP_QSTR__m,
+    MP_QSTR__mat,
+    MP_QSTR__medio,
     MP_QSTR__mon,
     MP_QSTR__mouse_,
     MP_QSTR__myself_,
     MP_QSTR__random_,
     MP_QSTR__register,
+    MP_QSTR__t,
     MP_QSTR__uses_mouse,
+    MP_QSTR__vacio,
     MP_QSTR_a,
+    MP_QSTR_a_bloques,
     MP_QSTR_abc2,
     MP_QSTR_abrir,
+    MP_QSTR_abrir_inventario,
     MP_QSTR_abrir_menu,
     MP_QSTR_after_save,
+    MP_QSTR_agua,
     MP_QSTR_alive,
     MP_QSTR_all_space_around,
     MP_QSTR_all_sprites,
     MP_QSTR_anadir,
+    MP_QSTR_anda_t,
     MP_QSTR_anfitrion,
     MP_QSTR_anfitri_oacute_n,
     MP_QSTR_answer,
+    MP_QSTR_antorcha,
+    MP_QSTR_aparecer,
     MP_QSTR_aplicar_bloques,
+    MP_QSTR_arbol,
+    MP_QSTR_arena,
     MP_QSTR_arith,
     MP_QSTR_asdfghjkl_slash_,
+    MP_QSTR_asentar,
     MP_QSTR_ask,
     MP_QSTR_ask_cb,
     MP_QSTR_ask_key,
@@ -271,6 +461,7 @@ enum {
     MP_QSTR_attr,
     MP_QSTR_auto,
     MP_QSTR_aviso,
+    MP_QSTR_aviso_t,
     MP_QSTR_b,
     MP_QSTR_b_colon_,
     MP_QSTR_b_colon__percent_d,
@@ -299,22 +490,40 @@ enum {
     MP_QSTR_btn_titulo,
     MP_QSTR_bubble_rect,
     MP_QSTR_buscar,
+    MP_QSTR_buscar_sonidos,
     MP_QSTR_by_name,
+    MP_QSTR_cactus,
+    MP_QSTR_caida_y,
+    MP_QSTR_caja_jugador,
+    MP_QSTR_calc_alto,
     MP_QSTR_call,
+    MP_QSTR_cam_top,
+    MP_QSTR_cam_x,
     MP_QSTR_camara,
     MP_QSTR_cancelar,
     MP_QSTR_capa,
+    MP_QSTR_cara,
+    MP_QSTR_carbon,
+    MP_QSTR_carbon_mena,
     MP_QSTR_cargar,
     MP_QSTR_cargar_partida,
+    MP_QSTR_carne,
+    MP_QSTR_carne_asada,
+    MP_QSTR_carne_podrida,
     MP_QSTR_casilla,
     MP_QSTR_cb,
+    MP_QSTR_cdx,
+    MP_QSTR_cdy,
     MP_QSTR_ceiling,
+    MP_QSTR_centrar,
     MP_QSTR_cerca,
+    MP_QSTR_cerdo,
     MP_QSTR_cfg,
     MP_QSTR_cfg_icono,
     MP_QSTR_change,
     MP_QSTR_changed,
     MP_QSTR_changevar,
+    MP_QSTR_cielo,
     MP_QSTR_clear_fx,
     MP_QSTR_clic,
     MP_QSTR_clic_hasta,
@@ -331,7 +540,10 @@ enum {
     MP_QSTR_cloud_ids,
     MP_QSTR_cloud_poll,
     MP_QSTR_coincide,
+    MP_QSTR_comida,
     MP_QSTR_compare,
+    MP_QSTR_completo,
+    MP_QSTR_comprimir,
     MP_QSTR_con_pose,
     MP_QSTR_cond,
     MP_QSTR_conectado,
@@ -350,6 +562,7 @@ enum {
     MP_QSTR_control_while,
     MP_QSTR_controles,
     MP_QSTR_controles_dot_json,
+    MP_QSTR_corazon,
     MP_QSTR_correr,
     MP_QSTR_cos_num,
     MP_QSTR_costume,
@@ -357,7 +570,10 @@ enum {
     MP_QSTR_costume_space_name,
     MP_QSTR_costumes,
     MP_QSTR_create_clone,
+    MP_QSTR_cristal,
     MP_QSTR_ctx,
+    MP_QSTR_cuadro,
+    MP_QSTR_cuantos,
     MP_QSTR_cuerpo,
     MP_QSTR_cuerpo_visto,
     MP_QSTR_current,
@@ -365,6 +581,8 @@ enum {
     MP_QSTR_cx,
     MP_QSTR_cy,
     MP_QSTR_d,
+    MP_QSTR_dano_t,
+    MP_QSTR_dar,
     MP_QSTR_data,
     MP_QSTR_data_addtolist,
     MP_QSTR_data_changevariableby,
@@ -388,10 +606,14 @@ enum {
     MP_QSTR_delete_clone,
     MP_QSTR_delta,
     MP_QSTR_descargar,
+    MP_QSTR_descomprimir,
     MP_QSTR_desconectado,
     MP_QSTR_desconectar,
     MP_QSTR_destino,
     MP_QSTR_detalle,
+    MP_QSTR_diamante,
+    MP_QSTR_diamante_mena,
+    MP_QSTR_dibujar_hud,
     MP_QSTR_dibujar_nombres,
     MP_QSTR_dibujar_titulo,
     MP_QSTR_dic,
@@ -417,19 +639,26 @@ enum {
     MP_QSTR_draw_monitors,
     MP_QSTR_draw_picker,
     MP_QSTR_drawn,
+    MP_QSTR_dt,
+    MP_QSTR_dx,
+    MP_QSTR_dy,
     MP_QSTR_e_space__caret_,
+    MP_QSTR_eat_percent_d,
     MP_QSTR_effect,
     MP_QSTR_ejecutar,
     MP_QSTR_eleccion,
     MP_QSTR_en_space_esta_space_partida,
     MP_QSTR_en_mundo,
     MP_QSTR_en_partida,
+    MP_QSTR_encerrado,
     MP_QSTR_entra,
     MP_QSTR_enviado,
     MP_QSTR_enviar,
     MP_QSTR_enviar_pose,
     MP_QSTR_error,
+    MP_QSTR_es_noche,
     MP_QSTR_escenario,
+    MP_QSTR_espada,
     MP_QSTR_esperar,
     MP_QSTR_esperar_vars,
     MP_QSTR_estado,
@@ -442,6 +671,9 @@ enum {
     MP_QSTR_event_whenkeypressed,
     MP_QSTR_event_whenstageclicked,
     MP_QSTR_events,
+    MP_QSTR_f,
+    MP_QSTR_fallbig1,
+    MP_QSTR_fallsmall,
     MP_QSTR_false,
     MP_QSTR_fast,
     MP_QSTR_fence,
@@ -450,11 +682,16 @@ enum {
     MP_QSTR_filas,
     MP_QSTR_find_sound,
     MP_QSTR_finite,
+    MP_QSTR_fisica,
+    MP_QSTR_flor_amarilla,
+    MP_QSTR_flor_roja,
     MP_QSTR_fn,
     MP_QSTR_foco,
     MP_QSTR_folder,
+    MP_QSTR_fondo_tierra,
     MP_QSTR_forever,
     MP_QSTR_forward,
+    MP_QSTR_frac,
     MP_QSTR_frame,
     MP_QSTR_front,
     MP_QSTR_front_back,
@@ -462,27 +699,49 @@ enum {
     MP_QSTR_fy,
     MP_QSTR_g,
     MP_QSTR_gen,
+    MP_QSTR_generar,
     MP_QSTR_getcwd,
     MP_QSTR_ghi4,
     MP_QSTR_ghost,
     MP_QSTR_giro,
     MP_QSTR_glide_obj,
     MP_QSTR_glide_to,
+    MP_QSTR_golpe_t,
+    MP_QSTR_golpear,
     MP_QSTR_goto,
     MP_QSTR_gotoxy,
+    MP_QSTR_grass,
+    MP_QSTR_grass1,
+    MP_QSTR_grass1_dot_wav,
+    MP_QSTR_grava,
+    MP_QSTR_gravel,
+    MP_QSTR_grieta_percent_d,
     MP_QSTR_guard,
     MP_QSTR_guardado,
     MP_QSTR_guardar,
     MP_QSTR_guardar_servidor,
     MP_QSTR_guiones,
     MP_QSTR_h,
+    MP_QSTR_hacha,
     MP_QSTR_had_bubble,
+    MP_QSTR_hambre,
+    MP_QSTR_hambre_t,
     MP_QSTR_hat,
     MP_QSTR_hats,
     MP_QSTR_hecho,
     MP_QSTR_held,
+    MP_QSTR_herir,
+    MP_QSTR_herramienta,
+    MP_QSTR_hierba,
+    MP_QSTR_hierba_alta,
+    MP_QSTR_hierro,
+    MP_QSTR_hierro_mena,
+    MP_QSTR_hojas,
+    MP_QSTR_horno,
     MP_QSTR_host,
     MP_QSTR_hostear,
+    MP_QSTR_hud,
+    MP_QSTR_hurt,
     MP_QSTR_i,
     MP_QSTR_icono,
     MP_QSTR_if_,
@@ -493,7 +752,10 @@ enum {
     MP_QSTR_inject,
     MP_QSTR_injected,
     MP_QSTR_input,
+    MP_QSTR_inv,
     MP_QSTR_inv_borrar,
+    MP_QSTR_inv_id,
+    MP_QSTR_inv_n,
     MP_QSTR_inv_poner,
     MP_QSTR_inv_t,
     MP_QSTR_inv_vaciar,
@@ -502,11 +764,16 @@ enum {
     MP_QSTR_ir_a,
     MP_QSTR_is_clone,
     MP_QSTR_is_num,
+    MP_QSTR_it,
     MP_QSTR_item,
     MP_QSTR_itemnum,
+    MP_QSTR_j,
     MP_QSTR_jkl5,
     MP_QSTR_jug,
+    MP_QSTR_jugador,
+    MP_QSTR_jugador_andar,
     MP_QSTR_jugadores,
+    MP_QSTR_jugar,
     MP_QSTR_k,
     MP_QSTR_kb,
     MP_QSTR_kb_layout,
@@ -515,18 +782,25 @@ enum {
     MP_QSTR_kx,
     MP_QSTR_ky,
     MP_QSTR_l,
+    MP_QSTR_ladrillos,
     MP_QSTR_large,
     MP_QSTR_largo,
     MP_QSTR_largo_t,
     MP_QSTR_last,
     MP_QSTR_last_tap,
     MP_QSTR_layers,
+    MP_QSTR_lecho,
     MP_QSTR_leer,
     MP_QSTR_left_hyphen_right,
     MP_QSTR_letter,
+    MP_QSTR_libre_col,
     MP_QSTR_lid,
+    MP_QSTR_lineas,
+    MP_QSTR_lingote_hierro,
+    MP_QSTR_lingote_oro,
     MP_QSTR_list_saves,
     MP_QSTR_lista,
+    MP_QSTR_lista_mundos,
     MP_QSTR_listas,
     MP_QSTR_listo,
     MP_QSTR_lists,
@@ -554,14 +828,21 @@ enum {
     MP_QSTR_loop_yield,
     MP_QSTR_lst,
     MP_QSTR_m,
+    MP_QSTR_m_colon__percent_d,
     MP_QSTR_m_colon__percent_s_colon__percent_d,
+    MP_QSTR_madera,
     MP_QSTR_mal,
+    MP_QSTR_manzana,
     MP_QSTR_mark,
     MP_QSTR_mathop,
     MP_QSTR_max_pieces,
+    MP_QSTR_max_pila,
     MP_QSTR_maximo,
     MP_QSTR_mayor,
+    MP_QSTR_mc2d_dot_py,
+    MP_QSTR_medio,
     MP_QSTR_menor,
+    MP_QSTR_mensaje,
     MP_QSTR_menu,
     MP_QSTR_menu_items,
     MP_QSTR_menu_key,
@@ -569,8 +850,14 @@ enum {
     MP_QSTR_menu_scratch,
     MP_QSTR_men_uacute__space__space__space__space__space__space__space__space_SHIFT_plus_EXE,
     MP_QSTR_merge,
+    MP_QSTR_mesa,
+    MP_QSTR_mezcla,
     MP_QSTR_mi_id,
+    MP_QSTR_minecraft2d,
     MP_QSTR_mno6,
+    MP_QSTR_mob_en,
+    MP_QSTR_mobs,
+    MP_QSTR_mobs_paso,
     MP_QSTR_mod,
     MP_QSTR_mode,
     MP_QSTR_modo,
@@ -579,6 +866,7 @@ enum {
     MP_QSTR_monitor_values,
     MP_QSTR_monitores,
     MP_QSTR_monitors,
+    MP_QSTR_morir,
     MP_QSTR_motion_changexby,
     MP_QSTR_motion_changeyby,
     MP_QSTR_motion_direction,
@@ -606,12 +894,15 @@ enum {
     MP_QSTR_move,
     MP_QSTR_move_mouse,
     MP_QSTR_moved,
+    MP_QSTR_mover_x,
+    MP_QSTR_mover_y,
     MP_QSTR_msg,
     MP_QSTR_multi,
     MP_QSTR_multi_layer,
     MP_QSTR_multijugador,
     MP_QSTR_mundo,
     MP_QSTR_mundo_vars,
+    MP_QSTR_mundos,
     MP_QSTR_mx,
     MP_QSTR_my,
     MP_QSTR_n,
@@ -619,6 +910,7 @@ enum {
     MP_QSTR_next_space_backdrop,
     MP_QSTR_next_space_costume,
     MP_QSTR_next_costume,
+    MP_QSTR_nieve,
     MP_QSTR_nombre,
     MP_QSTR_nombre_cfg,
     MP_QSTR_normal,
@@ -626,9 +918,11 @@ enum {
     MP_QSTR_now,
     MP_QSTR_nueva,
     MP_QSTR_nueva_partida,
+    MP_QSTR_nuevo_mundo,
     MP_QSTR_num,
     MP_QSTR_number,
     MP_QSTR_numero,
+    MP_QSTR_objetivo,
     MP_QSTR_objeto,
     MP_QSTR_objetos,
     MP_QSTR_of,
@@ -654,13 +948,18 @@ enum {
     MP_QSTR_operator_random,
     MP_QSTR_operator_round,
     MP_QSTR_operator_subtract,
+    MP_QSTR_ops,
     MP_QSTR_original,
+    MP_QSTR_oro_mena,
     MP_QSTR_os,
     MP_QSTR_otros,
     MP_QSTR_overlap,
     MP_QSTR_ox,
     MP_QSTR_oy,
     MP_QSTR_p,
+    MP_QSTR_pala,
+    MP_QSTR_palo,
+    MP_QSTR_pant,
     MP_QSTR_parar_sonidos,
     MP_QSTR_partes,
     MP_QSTR_partida,
@@ -668,20 +967,29 @@ enum {
     MP_QSTR_partida__percent_d_dot_txt,
     MP_QSTR_paso,
     MP_QSTR_paso_auto,
+    MP_QSTR_paso_t,
     MP_QSTR_pasos,
     MP_QSTR_paste,
     MP_QSTR_pausa,
     MP_QSTR_pega,
     MP_QSTR_pendiente,
     MP_QSTR_pending,
+    MP_QSTR_picar,
     MP_QSTR_picker,
     MP_QSTR_picker_box,
     MP_QSTR_picker_hit,
+    MP_QSTR_pico,
     MP_QSTR_pid,
+    MP_QSTR_piedra,
+    MP_QSTR_pig_percent_d,
+    MP_QSTR_pigdeath,
+    MP_QSTR_pintado,
+    MP_QSTR_pintar,
     MP_QSTR_play,
     MP_QSTR_point_towards,
     MP_QSTR_poner,
     MP_QSTR_poner_nombre,
+    MP_QSTR_pos,
     MP_QSTR_poses,
     MP_QSTR_pqrs7,
     MP_QSTR_prefijo,
@@ -691,20 +999,27 @@ enum {
     MP_QSTR_previous_space_costume,
     MP_QSTR_procedures_call,
     MP_QSTR_procs,
+    MP_QSTR_progreso,
     MP_QSTR_proj,
     MP_QSTR_proporcion,
     MP_QSTR_proporcional,
     MP_QSTR_publicar,
     MP_QSTR_puerto,
+    MP_QSTR_q,
+    MP_QSTR_quitar,
     MP_QSTR_quitar_servidor,
     MP_QSTR_qwertyuiop,
     MP_QSTR_r,
     MP_QSTR_random_space_backdrop,
     MP_QSTR_rapido,
+    MP_QSTR_rb,
     MP_QSTR_recargar,
     MP_QSTR_recibir,
+    MP_QSTR_recibir_mundo,
     MP_QSTR_rects,
     MP_QSTR_red,
+    MP_QSTR_red_paso,
+    MP_QSTR_red_tambien,
     MP_QSTR_redraw,
     MP_QSTR_regla_de,
     MP_QSTR_reglas,
@@ -715,6 +1030,7 @@ enum {
     MP_QSTR_reset_timer,
     MP_QSTR_restart,
     MP_QSTR_rnd,
+    MP_QSTR_roca,
     MP_QSTR_room,
     MP_QSTR_rot,
     MP_QSTR_rot_style,
@@ -727,6 +1043,7 @@ enum {
     MP_QSTR_salas,
     MP_QSTR_sale,
     MP_QSTR_salir,
+    MP_QSTR_sand,
     MP_QSTR_save,
     MP_QSTR_save_game,
     MP_QSTR_save_key,
@@ -745,7 +1062,9 @@ enum {
     MP_QSTR_secs,
     MP_QSTR_secs_name,
     MP_QSTR_seguir,
+    MP_QSTR_sel,
     MP_QSTR_sel_e,
+    MP_QSTR_semilla,
     MP_QSTR_sensing_answer,
     MP_QSTR_sensing_askandwait,
     MP_QSTR_sensing_current,
@@ -774,11 +1093,15 @@ enum {
     MP_QSTR_show_toast,
     MP_QSTR_showlist,
     MP_QSTR_si,
+    MP_QSTR_sitio,
     MP_QSTR_size,
     MP_QSTR_sk,
+    MP_QSTR_solido,
     MP_QSTR_solo_anfitrion,
     MP_QSTR_sombra,
     MP_QSTR_sonar,
+    MP_QSTR_sonar_bloque,
+    MP_QSTR_sonido,
     MP_QSTR_sonidos,
     MP_QSTR_sound_changeeffectby,
     MP_QSTR_sound_changevolumeby,
@@ -792,43 +1115,60 @@ enum {
     MP_QSTR_sounds,
     MP_QSTR_sp,
     MP_QSTR_space,
+    MP_QSTR_spr,
     MP_QSTR_sprint,
     MP_QSTR_sprites,
     MP_QSTR_stage,
     MP_QSTR_start_hats,
+    MP_QSTR_stone,
     MP_QSTR_stop_all,
     MP_QSTR_subir,
+    MP_QSTR_sucios,
+    MP_QSTR_suelo,
     MP_QSTR_sw,
+    MP_QSTR_t9,
     MP_QSTR_t9_dot_py,
+    MP_QSTR_tablones,
     MP_QSTR_tam_max,
+    MP_QSTR_tap,
     MP_QSTR_taps,
     MP_QSTR_target_xy,
     MP_QSTR_tecla,
+    MP_QSTR_tex_slash__percent_s_dot_png,
     MP_QSTR_text,
     MP_QSTR_this_space_script,
     MP_QSTR_thread,
     MP_QSTR_threads,
+    MP_QSTR_tiempo,
     MP_QSTR_tierra,
     MP_QSTR_time,
     MP_QSTR_timer0,
+    MP_QSTR_titulo,
     MP_QSTR_titulo_rect,
     MP_QSTR_to_screen,
     MP_QSTR_toast,
+    MP_QSTR_toca_jugador,
     MP_QSTR_toint,
     MP_QSTR_touching,
     MP_QSTR_tras_guardar,
+    MP_QSTR_tronco,
     MP_QSTR_true,
     MP_QSTR_truth,
     MP_QSTR_tuv8,
+    MP_QSTR_tx,
+    MP_QSTR_ty,
     MP_QSTR_ui,
     MP_QSTR_ultima,
+    MP_QSTR_un_jugador,
     MP_QSTR_unirse,
     MP_QSTR_unsupported,
     MP_QSTR_until,
     MP_QSTR_url,
+    MP_QSTR_usar,
     MP_QSTR_uses_mouse,
     MP_QSTR_v,
     MP_QSTR_vaciar,
+    MP_QSTR_valor,
     MP_QSTR_valores,
     MP_QSTR_var,
     MP_QSTR_var_get,
@@ -837,7 +1177,9 @@ enum {
     MP_QSTR_vars,
     MP_QSTR_ver_espejo,
     MP_QSTR_vid,
+    MP_QSTR_vida,
     MP_QSTR_visible,
+    MP_QSTR_vol,
     MP_QSTR_volume,
     MP_QSTR_volver,
     MP_QSTR_vs,
@@ -849,12 +1191,25 @@ enum {
     MP_QSTR_warp,
     MP_QSTR_warp_n,
     MP_QSTR_warp_t,
+    MP_QSTR_wasd_space_,
+    MP_QSTR_wb,
+    MP_QSTR_wood,
+    MP_QSTR_wood_percent_d,
+    MP_QSTR_wx,
     MP_QSTR_wxyz9,
+    MP_QSTR_wy,
     MP_QSTR_x_space_position,
+    MP_QSTR_x0,
     MP_QSTR_x1,
     MP_QSTR_y_space_position,
+    MP_QSTR_y0,
     MP_QSTR_y1,
     MP_QSTR_yo,
+    MP_QSTR_zombi,
+    MP_QSTR_zombie_percent_d,
+    MP_QSTR_zombiedeath,
+    MP_QSTR_zombiehurt_percent_d,
+    MP_QSTR_zona,
     MP_QSTR_zonas,
     MP_QSTR_zxcvbnm_dot__hyphen__,
     MP_QSTR__0x2601_,
@@ -866,12 +1221,21 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     23176,
     44818,
     6509,
+    51058,
+    49948,
     23528,
     57068,
+    39204,
+    60735,
     22670,
     51669,
+    15003,
+    45906,
+    64988,
     59208,
+    23226,
     46478,
+    40491,
     46473,
     26249,
     46472,
@@ -879,10 +1243,15 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     45353,
     23354,
     30617,
+    39603,
     31379,
+    9046,
+    11126,
     46485,
     46484,
+    456,
     64858,
+    59924,
     11428,
     46487,
     46486,
@@ -891,6 +1260,7 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     46483,
     46482,
     46493,
+    61389,
     46492,
     46495,
     26975,
@@ -898,6 +1268,17 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     46488,
     46490,
     29223,
+    37335,
+    43834,
+    44898,
+    13021,
+    46505,
+    47804,
+    2245,
+    55770,
+    21065,
+    47996,
+    22864,
     53331,
     21418,
     38215,
@@ -910,110 +1291,239 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     45873,
     12635,
     44960,
+    2806,
+    49036,
+    13398,
+    43044,
+    4510,
+    64855,
+    4058,
+    55765,
     53396,
+    58193,
+    58225,
+    58213,
     39907,
+    12314,
+    38489,
     3762,
+    14280,
     25590,
     56096,
     16499,
+    61495,
     4159,
+    4758,
     3088,
+    7158,
+    49102,
     13235,
+    31163,
+    50604,
+    60497,
+    21990,
+    25547,
     12447,
+    28422,
     32577,
     36850,
+    60884,
     35764,
+    43118,
+    53464,
+    62711,
     52586,
+    64385,
     64721,
     56610,
     47752,
+    33964,
+    22182,
+    9818,
+    10792,
+    43877,
     19328,
     3150,
     18231,
+    29269,
     10811,
+    37912,
     29273,
     29272,
+    15326,
     31860,
+    49850,
+    60891,
     41042,
+    31335,
     35893,
     57527,
     43261,
+    62371,
+    199,
+    25963,
+    29825,
+    4573,
+    29350,
     33844,
+    62540,
+    62559,
+    64082,
     50666,
     17523,
     61392,
+    4134,
     4581,
     5323,
+    50695,
+    34470,
+    58696,
+    34662,
+    52842,
+    41331,
     38984,
+    19951,
     46573,
+    25542,
+    32648,
+    19696,
+    16590,
+    51036,
+    5754,
+    14737,
     30565,
+    35467,
+    21648,
+    7738,
+    16785,
     59059,
     3336,
+    11189,
     12379,
     55076,
     10832,
     47495,
+    64030,
+    375,
     23493,
     21619,
+    2478,
     46574,
     44042,
     10958,
     46569,
+    19947,
+    13128,
     28062,
     37624,
     10508,
     35451,
+    43101,
+    46564,
     15655,
     11536,
     11521,
+    29529,
+    28203,
+    48573,
+    38692,
+    57736,
+    7635,
+    51099,
+    47982,
+    35904,
     46166,
+    52127,
     16462,
+    35198,
     33963,
     55317,
+    23123,
+    14000,
+    55548,
+    72,
+    945,
+    59689,
+    2943,
     45260,
     43418,
     59426,
     6422,
+    43992,
+    49433,
     37823,
+    48556,
+    43412,
+    11580,
+    13417,
+    4379,
     54931,
     43202,
     43201,
     8958,
     55332,
+    43476,
+    46951,
     20275,
+    3756,
+    36767,
     13798,
     5340,
+    18870,
     37264,
     29537,
     21926,
     2647,
     2644,
     30597,
+    20997,
+    6226,
     46581,
+    62041,
+    62039,
+    29917,
+    5040,
+    60782,
     4753,
     6914,
+    29890,
+    30327,
     52948,
     17277,
     36702,
+    44241,
+    45997,
     24957,
+    54286,
+    18796,
     37072,
     45547,
     46583,
+    18386,
     31173,
+    890,
     54648,
     57851,
     16312,
+    29831,
     33718,
+    25389,
     37902,
     54559,
+    34650,
     46582,
     29836,
     46356,
+    34490,
+    23744,
     20437,
     30019,
     58030,
     42336,
+    5052,
     39210,
+    4596,
+    17505,
     32182,
     32169,
     164,
@@ -1025,32 +1535,53 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     4353,
     10831,
     29725,
+    46623,
+    30176,
     41439,
+    31618,
+    23749,
+    57286,
     21795,
     58338,
+    42274,
     27868,
     18994,
     47283,
+    46577,
     29736,
+    43145,
+    65164,
+    21628,
     8099,
+    59764,
     29790,
     36294,
     48621,
+    40655,
+    41486,
     57529,
     64829,
     63373,
     42296,
+    13673,
     30731,
+    23580,
+    47982,
     24573,
     38642,
     29600,
     35966,
     36892,
     2643,
+    57139,
     60078,
     12003,
+    29723,
+    11935,
     28461,
+    29700,
     59381,
+    32878,
     46578,
     17392,
     64837,
@@ -1061,27 +1592,41 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     46585,
     61190,
     49820,
+    30039,
+    11106,
+    50640,
     11062,
     43812,
     27245,
     12862,
     46931,
+    30030,
     34420,
+    43528,
     46532,
+    49864,
     33559,
     13679,
+    39915,
     9891,
     4671,
+    37335,
     64914,
     2279,
     39169,
     50740,
+    33956,
     16971,
     5716,
     28089,
+    52841,
+    2134,
     56333,
+    46775,
+    39516,
     51459,
     53144,
+    52507,
     13692,
     42242,
     26580,
@@ -1090,6 +1635,7 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     48310,
     47274,
     39015,
+    18540,
     46535,
     28317,
     34172,
@@ -1118,22 +1664,40 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     2621,
     47044,
     31441,
+    14253,
     10854,
+    3766,
+    8749,
+    35475,
+    60865,
     49511,
+    8350,
+    55085,
     1240,
     18224,
     49910,
+    49716,
+    14358,
+    36462,
     2561,
     6949,
+    2558,
+    56471,
+    58756,
     47900,
     28388,
+    19290,
+    19291,
     41830,
+    27352,
     55059,
+    55226,
     19079,
     19580,
     36643,
     29671,
     20742,
+    4649,
     12669,
     54464,
     12208,
@@ -1150,7 +1714,10 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     12405,
     43956,
     27557,
+    13064,
     42786,
+    22150,
+    2105,
     56433,
     55587,
     34847,
@@ -1169,6 +1736,7 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     46210,
     12212,
     61730,
+    161,
     26206,
     15763,
     48019,
@@ -1176,7 +1744,10 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     22004,
     11648,
     17493,
+    46551,
     19786,
+    2635,
+    42004,
     62107,
     38067,
     61868,
@@ -1184,6 +1755,8 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     28414,
     28415,
     46529,
+    51978,
+    7666,
     56341,
     12722,
     31985,
@@ -1207,10 +1780,14 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     37640,
     20221,
     31603,
+    31243,
     25837,
     56404,
     47019,
     27604,
+    7898,
+    20002,
+    11392,
     44339,
     55526,
     7915,
@@ -1236,19 +1813,26 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     63205,
     61724,
     17963,
+    28053,
+    28057,
+    28056,
     10686,
+    26132,
     40018,
     53406,
     49217,
     43798,
     14860,
     27722,
+    37218,
     19273,
     17787,
     62082,
     17844,
     4541,
+    43587,
     10446,
+    21799,
     26343,
     2574,
     34221,
@@ -1261,6 +1845,9 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     5427,
     6473,
     41626,
+    46531,
+    50239,
+    6301,
     45080,
     5477,
     42254,
@@ -1269,11 +1856,16 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     52692,
     63548,
     28828,
+    50962,
+    10714,
+    13499,
     28237,
     11744,
     10291,
+    15343,
     52410,
     16414,
+    14963,
     35448,
     45508,
     17136,
@@ -1281,27 +1873,49 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     28250,
     46530,
     15145,
+    41389,
     53251,
     46103,
     13986,
     45750,
     47838,
     13122,
+    35711,
+    34887,
     52214,
     42231,
+    34545,
+    25888,
+    47310,
+    34630,
+    28654,
+    4648,
     21600,
     59530,
     57427,
     38030,
     44649,
     46541,
+    17382,
     40233,
+    20404,
+    5055,
     20728,
     28555,
     4716,
     23680,
+    23105,
+    46195,
+    12464,
+    16535,
+    11950,
+    40726,
+    48410,
+    57713,
     13605,
     50579,
+    21116,
+    40926,
     46540,
     8865,
     21557,
@@ -1312,7 +1926,10 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     36954,
     7099,
     23155,
+    21268,
     25909,
+    22502,
+    28485,
     57229,
     28511,
     55045,
@@ -1321,11 +1938,16 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     10912,
     36843,
     46998,
+    28472,
     8592,
     19782,
+    46543,
     27933,
     27517,
+    23717,
+    42754,
     5459,
+    19086,
     46542,
     28652,
     31977,
@@ -1334,18 +1956,25 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     28662,
     28663,
     46537,
+    44299,
     10904,
     10898,
     3673,
     16175,
     11285,
     40245,
+    4968,
     19963,
     31635,
     20091,
+    26122,
     16100,
+    32761,
+    40835,
+    38682,
     37546,
     49766,
+    10551,
     3925,
     49768,
     49780,
@@ -1373,14 +2002,21 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     2395,
     16814,
     46536,
+    61331,
     58207,
+    43515,
     17317,
+    64051,
     47984,
     22666,
     54215,
+    18458,
     2842,
     62925,
+    46586,
+    60751,
     58910,
+    54366,
     51446,
     33167,
     51934,
@@ -1388,8 +2024,14 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     36053,
     55401,
     23325,
+    52127,
+    27897,
     23923,
+    42334,
     42015,
+    27697,
+    49398,
+    40068,
     17379,
     49190,
     49196,
@@ -1398,6 +2040,7 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     59054,
     63967,
     29754,
+    8718,
     14113,
     13088,
     29345,
@@ -1425,12 +2068,15 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     49780,
     56746,
     4240,
+    17473,
+    17472,
     18044,
     37036,
     65136,
     36076,
     43960,
     42097,
+    8907,
     28336,
     28337,
     46539,
@@ -1438,6 +2084,7 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     7712,
     36308,
     44747,
+    60084,
     12796,
     33313,
     13366,
@@ -1445,9 +2092,11 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     22451,
     8236,
     11848,
+    64640,
     23411,
     63046,
     235,
+    22627,
     36796,
     34639,
     28524,
@@ -1473,13 +2122,18 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     64577,
     24376,
     19182,
+    24265,
     10076,
+    31823,
     28537,
     23920,
     23926,
     28530,
     28531,
     46549,
+    53657,
+    53655,
+    53838,
     17577,
     6436,
     20990,
@@ -1487,20 +2141,29 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     61654,
     53160,
     23704,
+    25507,
     50395,
     50806,
     48595,
     49462,
     25353,
     21434,
+    27404,
     46083,
     13929,
     64937,
+    62384,
     29688,
+    53550,
+    25434,
+    61511,
+    44268,
+    43061,
     56865,
     15998,
     4995,
     2501,
+    29481,
     56799,
     34898,
     3848,
@@ -1510,20 +2173,27 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     62306,
     12230,
     48952,
+    26564,
     33250,
     40654,
     38563,
     28823,
     45292,
+    46548,
+    48175,
     57074,
     5978,
     46551,
     16092,
     31812,
+    28885,
     41174,
     49761,
+    64515,
     14070,
     35702,
+    63236,
+    48945,
     38706,
     23078,
     34955,
@@ -1534,6 +2204,7 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     23816,
     30130,
     35741,
+    890,
     762,
     35756,
     55204,
@@ -1546,6 +2217,7 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     30409,
     34686,
     30144,
+    34493,
     33700,
     15605,
     47116,
@@ -1564,7 +2236,9 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     30019,
     9691,
     57082,
+    36671,
     24357,
+    61078,
     59501,
     3976,
     31352,
@@ -1593,11 +2267,15 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     39428,
     25188,
     28927,
+    29389,
     42272,
     28925,
+    25079,
     39019,
     38341,
     34180,
+    8091,
+    22965,
     36902,
     38995,
     61036,
@@ -1611,43 +2289,60 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     533,
     28902,
     7969,
+    36308,
     18023,
     55903,
     60961,
     19956,
+    1670,
     6467,
     22106,
+    39605,
+    25253,
     28897,
+    28616,
     16623,
+    61833,
     11670,
+    25056,
     40339,
     6442,
     55546,
+    4450,
     44952,
     58828,
     5163,
     39416,
+    12527,
     14396,
     49648,
     61426,
+    11674,
     34149,
     11533,
     14488,
+    39939,
     6637,
     49184,
     696,
+    13710,
     21043,
     38410,
     28298,
+    28553,
+    28552,
     28601,
     55757,
+    1,
     50547,
     38032,
     19695,
     25486,
+    61648,
     24651,
     46547,
     2891,
+    13443,
     21813,
     31456,
     16713,
@@ -1656,7 +2351,9 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     54931,
     15645,
     31742,
+    64479,
     27275,
+    31664,
     27501,
     34609,
     28736,
@@ -1668,12 +2365,25 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     21169,
     47648,
     47674,
+    43876,
+    28784,
+    36566,
+    41079,
+    28778,
     16720,
+    28779,
     8260,
+    29005,
     29004,
     48997,
+    29036,
     29037,
     28979,
+    35702,
+    55090,
+    15855,
+    49193,
+    8991,
     34444,
     15183,
     13854,
@@ -1685,12 +2395,21 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     8,
     6,
     18,
+    5,
+    6,
     11,
     5,
+    8,
+    8,
     12,
     14,
+    12,
+    4,
+    10,
+    5,
     5,
     1,
+    7,
     1,
     2,
     1,
@@ -1698,10 +2417,15 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     4,
     7,
     9,
+    5,
     4,
+    8,
+    14,
     1,
     1,
+    22,
     4,
+    9,
     10,
     1,
     1,
@@ -1710,6 +2434,7 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     1,
     1,
     1,
+    24,
     1,
     1,
     2,
@@ -1717,6 +2442,17 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     1,
     1,
     2,
+    4,
+    4,
+    7,
+    5,
+    8,
+    5,
+    22,
+    7,
+    8,
+    5,
+    5,
     6,
     16,
     8,
@@ -1729,110 +2465,239 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     22,
     6,
     20,
-    3,
     6,
+    4,
+    6,
+    8,
+    5,
+    11,
+    9,
+    7,
+    3,
+    4,
+    4,
+    4,
+    6,
+    9,
+    11,
     12,
+    6,
     9,
     4,
     7,
+    7,
     11,
+    6,
     8,
+    6,
+    14,
     21,
     13,
     17,
+    13,
+    13,
+    20,
+    13,
+    21,
+    17,
+    9,
     9,
     23,
+    10,
+    17,
+    7,
     3,
+    4,
     4,
     7,
     3,
+    19,
+    11,
+    8,
+    10,
+    5,
     9,
     14,
     4,
+    2,
     8,
+    6,
     2,
     2,
+    23,
     11,
+    8,
+    14,
+    6,
     6,
     6,
     12,
     3,
+    15,
+    16,
+    19,
+    14,
     5,
+    20,
+    5,
+    6,
+    6,
+    11,
     16,
     4,
     10,
+    17,
     5,
     9,
-    15,
-    1,
     4,
+    5,
+    23,
+    5,
+    8,
     7,
     15,
+    15,
+    1,
+    5,
+    4,
+    6,
+    8,
+    8,
+    5,
+    5,
+    4,
+    10,
+    6,
+    5,
+    5,
+    7,
+    15,
+    16,
     5,
     3,
     4,
     8,
+    10,
+    5,
     7,
     9,
+    5,
     1,
     7,
     10,
     1,
+    9,
+    5,
     4,
     6,
     10,
     6,
+    11,
+    8,
     4,
     6,
     6,
-    10,
+    2,
+    9,
+    17,
+    14,
+    5,
     7,
+    3,
+    4,
+    9,
+    10,
+    4,
+    7,
+    12,
     6,
     5,
+    7,
+    14,
+    16,
+    14,
+    11,
+    14,
+    15,
     12,
     22,
     15,
     14,
+    5,
+    8,
     11,
+    7,
+    5,
+    6,
+    9,
+    8,
     3,
     4,
     4,
     11,
     3,
+    5,
+    24,
     17,
+    18,
+    19,
     22,
     6,
+    17,
     6,
     2,
     7,
     8,
     8,
     8,
+    5,
+    6,
     1,
+    4,
+    4,
+    2,
+    4,
+    6,
     8,
     8,
+    2,
+    4,
     10,
     11,
     19,
+    14,
+    8,
     19,
+    6,
+    20,
     7,
     8,
     1,
+    7,
     5,
+    4,
     6,
     6,
     5,
+    2,
     8,
+    22,
     13,
     13,
+    4,
     1,
     2,
     5,
+    4,
+    5,
     6,
     4,
     6,
     4,
+    3,
     10,
+    3,
+    4,
     7,
     7,
     5,
@@ -1844,21 +2709,37 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     3,
     8,
     9,
+    6,
+    5,
     15,
+    17,
+    11,
+    12,
     15,
     18,
     7,
+    7,
     10,
     10,
+    1,
     2,
+    8,
+    3,
+    6,
+    5,
     5,
     2,
     18,
     7,
+    6,
+    6,
     5,
     3,
     8,
     7,
+    8,
+    6,
+    6,
     6,
     9,
     5,
@@ -1866,10 +2747,15 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     10,
     24,
     6,
+    20,
     5,
     8,
+    2,
     6,
+    6,
+    2,
     13,
+    15,
     1,
     7,
     7,
@@ -1879,28 +2765,42 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     4,
     1,
     6,
+    6,
+    2,
+    4,
     6,
     4,
     7,
     8,
     8,
     9,
+    2,
     11,
+    6,
     1,
+    9,
+    4,
+    5,
+    16,
+    10,
+    10,
     4,
     5,
     10,
-    10,
-    5,
-    10,
     11,
+    6,
     6,
     9,
     10,
     6,
+    8,
+    8,
     15,
     5,
+    5,
+    5,
     10,
+    7,
     3,
     6,
     7,
@@ -1909,6 +2809,7 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     4,
     4,
     5,
+    7,
     1,
     2,
     4,
@@ -1937,22 +2838,40 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     10,
     11,
     6,
+    14,
     7,
+    6,
+    7,
+    12,
+    9,
     4,
+    7,
+    5,
     6,
     8,
     4,
+    4,
+    6,
+    11,
     6,
     14,
+    5,
+    11,
+    13,
     7,
     2,
+    3,
+    3,
     7,
+    7,
+    5,
     5,
     3,
     9,
     6,
     7,
     9,
+    5,
     8,
     4,
     10,
@@ -1969,7 +2888,10 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     9,
     10,
     8,
+    6,
     7,
+    8,
+    9,
     8,
     4,
     9,
@@ -1988,6 +2910,7 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     13,
     9,
     14,
+    7,
     6,
     7,
     7,
@@ -1995,7 +2918,10 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     12,
     8,
     12,
+    7,
     3,
+    6,
+    7,
     6,
     12,
     7,
@@ -2003,6 +2929,8 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     2,
     2,
     1,
+    6,
+    3,
     4,
     14,
     21,
@@ -2027,9 +2955,13 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     5,
     9,
     12,
+    12,
     11,
     7,
     7,
+    8,
+    13,
+    11,
     15,
     14,
     3,
@@ -2055,19 +2987,26 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     13,
     11,
     5,
+    2,
+    2,
+    2,
     3,
+    5,
     6,
     8,
     8,
     15,
     8,
     10,
+    9,
     5,
     7,
     6,
     11,
     5,
+    8,
     9,
+    6,
     7,
     12,
     6,
@@ -2080,6 +3019,9 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     20,
     22,
     6,
+    1,
+    8,
+    9,
     5,
     4,
     5,
@@ -2088,11 +3030,16 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     5,
     10,
     6,
+    6,
+    13,
+    9,
     2,
     4,
     6,
+    12,
     7,
     7,
+    4,
     5,
     5,
     10,
@@ -2100,27 +3047,49 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     2,
     1,
     3,
+    7,
     6,
     4,
     5,
     4,
     9,
     8,
+    7,
+    7,
     4,
     6,
+    5,
+    6,
+    10,
+    5,
+    6,
+    8,
     5,
     8,
     7,
     16,
     7,
     1,
+    5,
     10,
+    6,
+    8,
     3,
     4,
     5,
     4,
+    5,
+    11,
+    6,
+    11,
+    6,
+    11,
+    5,
+    5,
     4,
     7,
+    3,
+    4,
     1,
     5,
     3,
@@ -2131,7 +3100,10 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     6,
     8,
     5,
+    3,
     10,
+    6,
+    5,
     9,
     5,
     10,
@@ -2140,11 +3112,16 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     4,
     8,
     6,
+    2,
     4,
     7,
+    1,
     4,
     3,
+    7,
+    13,
     9,
+    5,
     1,
     2,
     9,
@@ -2153,18 +3130,25 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     2,
     2,
     1,
+    9,
     5,
     5,
     7,
     4,
     8,
     6,
+    5,
     4,
     10,
     6,
+    9,
     3,
+    6,
+    14,
+    11,
     10,
     5,
+    12,
     6,
     5,
     5,
@@ -2192,14 +3176,21 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     10,
     3,
     1,
+    4,
     7,
+    6,
     3,
+    7,
     4,
     6,
     10,
+    8,
     6,
     5,
+    7,
     5,
+    5,
+    7,
     4,
     10,
     8,
@@ -2207,8 +3198,14 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     12,
     22,
     5,
-    5,
     4,
+    6,
+    5,
+    11,
+    4,
+    6,
+    4,
+    9,
     3,
     4,
     4,
@@ -2217,6 +3214,7 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     14,
     9,
     8,
+    5,
     16,
     16,
     16,
@@ -2244,12 +3242,15 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     4,
     10,
     5,
+    7,
+    7,
     3,
     5,
     11,
     12,
     5,
     10,
+    6,
     2,
     2,
     1,
@@ -2257,6 +3258,7 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     13,
     12,
     12,
+    5,
     6,
     10,
     6,
@@ -2264,9 +3266,11 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     3,
     5,
     13,
+    11,
     3,
     6,
     6,
+    8,
     6,
     7,
     2,
@@ -2292,6 +3296,8 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     15,
     14,
     17,
+    3,
+    8,
     8,
     2,
     5,
@@ -2299,6 +3305,9 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     2,
     2,
     1,
+    4,
+    4,
+    4,
     13,
     6,
     7,
@@ -2306,20 +3315,29 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     14,
     4,
     9,
+    6,
     5,
     5,
     5,
     4,
     9,
     7,
+    5,
     6,
     10,
     10,
+    4,
     3,
+    6,
+    5,
+    8,
+    7,
+    6,
     4,
     13,
     5,
     12,
+    3,
     5,
     5,
     7,
@@ -2329,20 +3347,27 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     16,
     15,
     5,
+    8,
     4,
     10,
     12,
     8,
+    6,
+    1,
     6,
     15,
     10,
     1,
     15,
     6,
+    2,
     8,
     7,
+    13,
     5,
     3,
+    8,
+    11,
     6,
     8,
     6,
@@ -2353,6 +3378,7 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     11,
     7,
     3,
+    4,
     4,
     3,
     9,
@@ -2365,6 +3391,7 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     5,
     4,
     5,
+    4,
     4,
     9,
     8,
@@ -2383,7 +3410,9 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     4,
     9,
     6,
+    3,
     5,
+    7,
     14,
     18,
     15,
@@ -2412,11 +3441,15 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     10,
     8,
     2,
+    5,
     4,
     2,
+    6,
     14,
     6,
     5,
+    12,
+    6,
     7,
     20,
     20,
@@ -2430,43 +3463,60 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     6,
     2,
     5,
+    3,
     6,
     7,
     5,
     10,
+    5,
     8,
     5,
+    6,
+    5,
+    2,
     2,
     5,
+    8,
     7,
+    3,
     4,
     9,
     5,
+    10,
     4,
     11,
     6,
     7,
     6,
+    6,
     4,
+    6,
     6,
     11,
     9,
     5,
+    12,
     5,
     8,
     12,
+    6,
     4,
     5,
     4,
     2,
+    2,
+    2,
     6,
+    10,
     6,
     11,
     5,
     3,
+    4,
     10,
     1,
     6,
+    5,
     7,
     3,
     7,
@@ -2475,7 +3525,9 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     4,
     10,
     3,
+    4,
     7,
+    3,
     6,
     6,
     2,
@@ -2488,11 +3540,24 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     6,
     6,
     5,
-    10,
+    2,
+    4,
+    6,
+    2,
+    5,
     2,
     10,
     2,
     2,
+    10,
+    2,
+    2,
+    2,
+    5,
+    8,
+    11,
+    12,
+    4,
     5,
     10,
     3,
@@ -2504,7 +3569,7 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
     MP_QSTRnumber_of, // previous pool size
     true, // is_sorted
     10, // allocated entries
-    816, // used entries
+    1171, // used entries
     (qstr_hash_t *)mp_qstr_frozen_const_hashes,
     (qstr_len_t *)mp_qstr_frozen_const_lengths,
     {
@@ -2513,12 +3578,21 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "%-11s %s",
         "%d  %s",
         "%d  ->  partida %d",
+        "%d %s",
+        "%d jug",
         "%d-%d de %d",
         "%d/16",
+        "%s de %s",
+        "%s entra",
         "%s se ha ido",
         "%s se ha unido",
+        "%s x%d  <-  ",
+        "%s%d",
+        "%s/%s.mc2d",
         "%s:%d",
+        "%s_%s",
         "+",
+        "+1 hora",
         ",",
         ", ",
         "-",
@@ -2526,10 +3600,15 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "-inf",
         ".,-_!?1",
         "./:-_?=&1",
+        ".mc2d",
         ".txt",
+        "/scratch",
+        "/scratch/%s/%s",
         "0",
         "1",
+        "1 3  cambiar de objeto",
         "10 ^",
+        "123456789",
         "1234567890",
         "2",
         "3",
@@ -2538,6 +3617,7 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "6",
         "7",
         "8",
+        "8 4 6 2  mover el cursor",
         "9",
         ":",
         ": ",
@@ -2545,6 +3625,17 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "=",
         "?",
         "AC",
+        "AGUA",
+        "AIRE",
+        "ALCANCE",
+        "ANDAR",
+        "ANTORCHA",
+        "ARENA",
+        "Abriendo la partida...",
+        "Amapola",
+        "Antorcha",
+        "Arena",
+        "Atras",
         "\x41\x74\x72\xc3\xa1\x73",
         "\x41\xc3\xb1\x61\x64\x69\x72\x20\x73\x65\x72\x76\x69\x64\x6f\x72",
         "BACKDROP",
@@ -2557,110 +3648,239 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "Bloques no soportados:",
         "Borrar",
         "Buscando partidas...",
+        "CACTUS",
+        "CAEN",
+        "CARBON",
+        "CARBON_M",
+        "CARNE",
+        "CARNE_ASADA",
+        "CARNE_POD",
+        "CARPETA",
         "CH:",
+        "CH:E",
+        "CH:e",
+        "CH:q",
         "CHANGE",
+        "CIELO_DIA",
+        "CIELO_NOCHE",
         "CLONE_OPTION",
+        "COMIDA",
         "CONDITION",
         "COPY",
         "COSTUME",
+        "CRISTAL",
         "CURRENTMENU",
+        "Cactus",
         "Cancelar",
+        "Carbon",
+        "Cargando %s...",
         "Cargar mundo guardado",
+        "Carne podrida",
+        "Cavando cuevas...",
+        "Chuleta asada",
+        "Chuleta cruda",
+        "Conectando con %s...",
         "Conectando...",
+        "Conexion directa (IP)",
         "\x43\x6f\x6e\x65\x78\x69\xc3\xb3\x6e\x20\x64\x69\x72\x65\x63\x74\x61",
         "Continuar",
+        "Controles",
         "Controles  (EXE vuelve)",
+        "Controles:",
+        "Crear mundo nuevo",
+        "Cristal",
         "Ctx",
+        "DANO",
         "DATE",
         "DEGREES",
         "DEL",
+        "DEL  menu (guardar)",
+        "DEL: volver",
+        "DIAMANTE",
+        "DIAMANTE_M",
+        "DIA_S",
         "DIRECTION",
         "DISTANCETOMENU",
         "DOWN",
+        "DT",
         "DURATION",
+        "DUREZA",
         "DX",
         "DY",
+        "Descargando el mundo...",
         "Desconectar",
+        "Diamante",
+        "Diente de leon",
         "EFFECT",
+        "ESPADA",
         "ESPERA",
         "ESPERA_MUNDO",
         "EXE",
+        "EXE: reaparecer",
+        "EXE: seguir solo",
+        "Edicion calculadora",
+        "Elige un mundo",
+        "Error",
+        "Escondiendo menas...",
         "FILAS",
+        "FLOR_A",
+        "FLOR_R",
+        "FONDO_CUEVA",
         "FORWARD_BACKWARD",
         "FROM",
         "FRONT_BACK",
+        "Fabricar (a mano)",
         "GIROS",
         "GIROS_INV",
+        "GRAV",
+        "GRAVA",
+        "Generando el terreno...",
+        "Grava",
+        "Guardado",
+        "Guardar",
         "Guardar partida",
+        "Guardar y salir",
         "H",
+        "HACHA",
+        "HERR",
+        "HIERBA",
+        "HIERBA_A",
+        "HIERRO_M",
+        "HOJAS",
+        "HORNO",
         "HOUR",
+        "Has muerto",
+        "Hierba",
+        "Hojas",
+        "Horno",
         "Hostear",
         "Hostear partida",
+        "Hostear un mundo",
         "INDEX",
         "INF",
         "ITEM",
         "Infinity",
+        "Inventario",
+        "Juego",
         "Jugador",
         "Jugadores",
+        "Jugar",
         "K",
         "KB_ROWS",
         "KEY_OPTION",
         "L",
+        "LADRILLOS",
+        "LECHO",
         "LEFT",
         "LETRAS",
         "LETRAS_URL",
         "LETTER",
+        "LING_HIERRO",
+        "LING_ORO",
         "LIST",
         "LIST_H",
         "LIST_Y",
+        "LP",
+        "Ladrillos",
+        "Lingote de hierro",
+        "Lingote de oro",
+        "Listo",
+        "MANZANA",
+        "MAR",
+        "MATS",
+        "MAX_CAIDA",
         "MAX_CLONES",
+        "MESA",
         "MESSAGE",
+        "MINECRAFT 2D",
         "MINUTE",
         "MONTH",
+        "Manzana",
+        "Mena de carbon",
+        "Mena de diamante",
+        "Mena de hierro",
+        "Mena de oro",
+        "Menu del juego",
+        "Mesa de trabajo",
         "Multijugador",
         "Multijugador (%d jug.)",
         "Multijugador...",
         "Multijugador: ",
+        "Mundo",
+        "Mundo %d",
         "Mundo nuevo",
+        "NHUECOS",
+        "NIEVE",
+        "NOMBRE",
+        "NO_SOLIDO",
+        "NO_SUELO",
         "NUM",
         "NUM1",
         "NUM2",
         "NUMBER_NAME",
         "NaN",
+        "Nieve",
+        "No hay partidas abiertas",
         "\x4e\x6f\x20\x72\x65\x73\x70\x6f\x6e\x64\x65\x20\xc2\xb7\x20\x25\x73",
+        "No se pudo abrir: ",
+        "No se pudo conectar",
         "No se pudo guardar: %s",
         "Nombre",
+        "Nombre del mundo:",
         "OBJECT",
         "OK",
         "OPERAND",
         "OPERAND1",
         "OPERAND2",
         "OPERATOR",
+        "ORO_M",
+        "OSCURO",
         "P",
+        "PALA",
+        "PALO",
+        "PH",
+        "PICO",
+        "PIEDRA",
         "POS_CADA",
         "PROPERTY",
+        "PW",
+        "Palo",
         "Pantalla: ",
         "PantallaRed",
         "Partida %d guardada",
+        "Partida online",
+        "Partidas",
         "Pausa del juego (P)",
+        "Piedra",
+        "Plantando arboles...",
         "Project",
         "QUESTION",
         "R",
+        "RECETAS",
         "RIGHT",
+        "ROCA",
         "ROW1_Y",
         "ROW2_Y",
         "ROW_H",
+        "RP",
         "Recargar",
+        "Recetas (EXE fabrica):",
         "\x52\x65\x64\x20\x6c\x6f\x63\x61\x6c\x20\xc2\xb7\x20",
         "Rendimiento: ",
+        "Roca",
         "S",
         "S:",
         "S:EXE",
+        "SALA",
+        "SALTO",
         "SECOND",
         "SECS",
         "SHIFT+",
         "SIZE",
+        "SND",
         "SOUND_MENU",
+        "SPR",
+        "SQRT",
         "STAGE_H",
         "STAGE_W",
         "STEPS",
@@ -2672,32 +3892,53 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "SUB",
         "SUBSTACK",
         "SUBSTACK2",
+        "SUELTA",
+        "Salir",
         "Salir del juego",
+        "Salir sin guardar",
+        "Seguir solo",
+        "Sin conexion",
         "\x53\x69\x6e\x20\x63\x6f\x6e\x65\x78\x69\xc3\xb3\x6e\x3a\x20",
         "Sin multijugador: ",
+        "Sin red",
         "StopAll",
         "StopScript",
         "StopThread",
+        "T",
         "T9",
+        "TABLONES",
+        "TEX",
+        "TIERRA",
         "TIMES",
+        "TIPOS",
         "TO",
         "TOUCHINGOBJECTMENU",
         "TOWARDS",
+        "TRANSP",
+        "TRONCO",
         "TROZO",
         "TXT",
         "TXT_GRIS",
         "TXT_SEL",
+        "Tablones",
         "Thread",
+        "Tierra",
+        "Tronco",
         "Tu nombre",
         "\x54\xc3\xba\x3a\x20",
         "UP",
         "Un jugador",
         "Unido a la partida de %s",
         "Unirse",
+        "Unirse a una partida",
         "VALUE",
         "VARIABLE",
+        "VH",
+        "VIEW_H",
         "VOLUME",
+        "VW",
         "Ver controles",
+        "Volver al juego",
         "W",
         "WARP_MS",
         "WORK_MS",
@@ -2708,27 +3949,41 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "\x5c",
         "_edge_",
         "_hover",
+        "_m",
+        "_mat",
+        "_medio",
         "_mon",
         "_mouse_",
         "_myself_",
         "_random_",
         "_register",
+        "_t",
         "_uses_mouse",
+        "_vacio",
         "a",
+        "a_bloques",
         "abc2",
         "abrir",
+        "abrir_inventario",
         "abrir_menu",
         "after_save",
+        "agua",
         "alive",
         "all around",
         "all_sprites",
         "anadir",
+        "anda_t",
         "anfitrion",
         "\x61\x6e\x66\x69\x74\x72\x69\xc3\xb3\x6e",
         "answer",
+        "antorcha",
+        "aparecer",
         "aplicar_bloques",
+        "arbol",
+        "arena",
         "arith",
         "asdfghjkl/",
+        "asentar",
         "ask",
         "ask_cb",
         "ask_key",
@@ -2737,6 +3992,7 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "attr",
         "auto",
         "aviso",
+        "aviso_t",
         "b",
         "b:",
         "b:%d",
@@ -2765,22 +4021,40 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "btn_titulo",
         "bubble_rect",
         "buscar",
+        "buscar_sonidos",
         "by_name",
+        "cactus",
+        "caida_y",
+        "caja_jugador",
+        "calc_alto",
         "call",
+        "cam_top",
+        "cam_x",
         "camara",
         "cancelar",
         "capa",
+        "cara",
+        "carbon",
+        "carbon_mena",
         "cargar",
         "cargar_partida",
+        "carne",
+        "carne_asada",
+        "carne_podrida",
         "casilla",
         "cb",
+        "cdx",
+        "cdy",
         "ceiling",
+        "centrar",
         "cerca",
+        "cerdo",
         "cfg",
         "cfg_icono",
         "change",
         "changed",
         "changevar",
+        "cielo",
         "clear_fx",
         "clic",
         "clic_hasta",
@@ -2797,7 +4071,10 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "cloud_ids",
         "cloud_poll",
         "coincide",
+        "comida",
         "compare",
+        "completo",
+        "comprimir",
         "con_pose",
         "cond",
         "conectado",
@@ -2816,6 +4093,7 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "control_while",
         "controles",
         "controles.json",
+        "corazon",
         "correr",
         "cos_num",
         "costume",
@@ -2823,7 +4101,10 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "costume name",
         "costumes",
         "create_clone",
+        "cristal",
         "ctx",
+        "cuadro",
+        "cuantos",
         "cuerpo",
         "cuerpo_visto",
         "current",
@@ -2831,6 +4112,8 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "cx",
         "cy",
         "d",
+        "dano_t",
+        "dar",
         "data",
         "data_addtolist",
         "data_changevariableby",
@@ -2854,10 +4137,14 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "delete_clone",
         "delta",
         "descargar",
+        "descomprimir",
         "desconectado",
         "desconectar",
         "destino",
         "detalle",
+        "diamante",
+        "diamante_mena",
+        "dibujar_hud",
         "dibujar_nombres",
         "dibujar_titulo",
         "dic",
@@ -2883,19 +4170,26 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "draw_monitors",
         "draw_picker",
         "drawn",
+        "dt",
+        "dx",
+        "dy",
         "e ^",
+        "eat%d",
         "effect",
         "ejecutar",
         "eleccion",
         "en esta partida",
         "en_mundo",
         "en_partida",
+        "encerrado",
         "entra",
         "enviado",
         "enviar",
         "enviar_pose",
         "error",
+        "es_noche",
         "escenario",
+        "espada",
         "esperar",
         "esperar_vars",
         "estado",
@@ -2908,6 +4202,9 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "event_whenkeypressed",
         "event_whenstageclicked",
         "events",
+        "f",
+        "fallbig1",
+        "fallsmall",
         "false",
         "fast",
         "fence",
@@ -2916,11 +4213,16 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "filas",
         "find_sound",
         "finite",
+        "fisica",
+        "flor_amarilla",
+        "flor_roja",
         "fn",
         "foco",
         "folder",
+        "fondo_tierra",
         "forever",
         "forward",
+        "frac",
         "frame",
         "front",
         "front_back",
@@ -2928,27 +4230,49 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "fy",
         "g",
         "gen",
+        "generar",
         "getcwd",
         "ghi4",
         "ghost",
         "giro",
         "glide_obj",
         "glide_to",
+        "golpe_t",
+        "golpear",
         "goto",
         "gotoxy",
+        "grass",
+        "grass1",
+        "grass1.wav",
+        "grava",
+        "gravel",
+        "grieta%d",
         "guard",
         "guardado",
         "guardar",
         "guardar_servidor",
         "guiones",
         "h",
+        "hacha",
         "had_bubble",
+        "hambre",
+        "hambre_t",
         "hat",
         "hats",
         "hecho",
         "held",
+        "herir",
+        "herramienta",
+        "hierba",
+        "hierba_alta",
+        "hierro",
+        "hierro_mena",
+        "hojas",
+        "horno",
         "host",
         "hostear",
+        "hud",
+        "hurt",
         "i",
         "icono",
         "if_",
@@ -2959,7 +4283,10 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "inject",
         "injected",
         "input",
+        "inv",
         "inv_borrar",
+        "inv_id",
+        "inv_n",
         "inv_poner",
         "inv_t",
         "inv_vaciar",
@@ -2968,11 +4295,16 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "ir_a",
         "is_clone",
         "is_num",
+        "it",
         "item",
         "itemnum",
+        "j",
         "jkl5",
         "jug",
+        "jugador",
+        "jugador_andar",
         "jugadores",
+        "jugar",
         "k",
         "kb",
         "kb_layout",
@@ -2981,18 +4313,25 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "kx",
         "ky",
         "l",
+        "ladrillos",
         "large",
         "largo",
         "largo_t",
         "last",
         "last_tap",
         "layers",
+        "lecho",
         "leer",
         "left-right",
         "letter",
+        "libre_col",
         "lid",
+        "lineas",
+        "lingote_hierro",
+        "lingote_oro",
         "list_saves",
         "lista",
+        "lista_mundos",
         "listas",
         "listo",
         "lists",
@@ -3020,14 +4359,21 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "loop_yield",
         "lst",
         "m",
+        "m:%d",
         "m:%s:%d",
+        "madera",
         "mal",
+        "manzana",
         "mark",
         "mathop",
         "max_pieces",
+        "max_pila",
         "maximo",
         "mayor",
+        "mc2d.py",
+        "medio",
         "menor",
+        "mensaje",
         "menu",
         "menu_items",
         "menu_key",
@@ -3035,8 +4381,14 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "menu_scratch",
         "\x6d\x65\x6e\xc3\xba\x20\x20\x20\x20\x20\x20\x20\x20\x53\x48\x49\x46\x54\x2b\x45\x58\x45",
         "merge",
+        "mesa",
+        "mezcla",
         "mi_id",
+        "minecraft2d",
         "mno6",
+        "mob_en",
+        "mobs",
+        "mobs_paso",
         "mod",
         "mode",
         "modo",
@@ -3045,6 +4397,7 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "monitor_values",
         "monitores",
         "monitors",
+        "morir",
         "motion_changexby",
         "motion_changeyby",
         "motion_direction",
@@ -3072,12 +4425,15 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "move",
         "move_mouse",
         "moved",
+        "mover_x",
+        "mover_y",
         "msg",
         "multi",
         "multi_layer",
         "multijugador",
         "mundo",
         "mundo_vars",
+        "mundos",
         "mx",
         "my",
         "n",
@@ -3085,6 +4441,7 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "next backdrop",
         "next costume",
         "next_costume",
+        "nieve",
         "nombre",
         "nombre_cfg",
         "normal",
@@ -3092,9 +4449,11 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "now",
         "nueva",
         "nueva_partida",
+        "nuevo_mundo",
         "num",
         "number",
         "numero",
+        "objetivo",
         "objeto",
         "objetos",
         "of",
@@ -3120,13 +4479,18 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "operator_random",
         "operator_round",
         "operator_subtract",
+        "ops",
         "original",
+        "oro_mena",
         "os",
         "otros",
         "overlap",
         "ox",
         "oy",
         "p",
+        "pala",
+        "palo",
+        "pant",
         "parar_sonidos",
         "partes",
         "partida",
@@ -3134,20 +4498,29 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "partida_%d.txt",
         "paso",
         "paso_auto",
+        "paso_t",
         "pasos",
         "paste",
         "pausa",
         "pega",
         "pendiente",
         "pending",
+        "picar",
         "picker",
         "picker_box",
         "picker_hit",
+        "pico",
         "pid",
+        "piedra",
+        "pig%d",
+        "pigdeath",
+        "pintado",
+        "pintar",
         "play",
         "point_towards",
         "poner",
         "poner_nombre",
+        "pos",
         "poses",
         "pqrs7",
         "prefijo",
@@ -3157,20 +4530,27 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "previous costume",
         "procedures_call",
         "procs",
+        "progreso",
         "proj",
         "proporcion",
         "proporcional",
         "publicar",
         "puerto",
+        "q",
+        "quitar",
         "quitar_servidor",
         "qwertyuiop",
         "r",
         "random backdrop",
         "rapido",
+        "rb",
         "recargar",
         "recibir",
+        "recibir_mundo",
         "rects",
         "red",
+        "red_paso",
+        "red_tambien",
         "redraw",
         "regla_de",
         "reglas",
@@ -3181,6 +4561,7 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "reset_timer",
         "restart",
         "rnd",
+        "roca",
         "room",
         "rot",
         "rot_style",
@@ -3193,6 +4574,7 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "salas",
         "sale",
         "salir",
+        "sand",
         "save",
         "save_game",
         "save_key",
@@ -3211,7 +4593,9 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "secs",
         "secs_name",
         "seguir",
+        "sel",
         "sel_e",
+        "semilla",
         "sensing_answer",
         "sensing_askandwait",
         "sensing_current",
@@ -3240,11 +4624,15 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "show_toast",
         "showlist",
         "si",
+        "sitio",
         "size",
         "sk",
+        "solido",
         "solo_anfitrion",
         "sombra",
         "sonar",
+        "sonar_bloque",
+        "sonido",
         "sonidos",
         "sound_changeeffectby",
         "sound_changevolumeby",
@@ -3258,43 +4646,60 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "sounds",
         "sp",
         "space",
+        "spr",
         "sprint",
         "sprites",
         "stage",
         "start_hats",
+        "stone",
         "stop_all",
         "subir",
+        "sucios",
+        "suelo",
         "sw",
+        "t9",
         "t9.py",
+        "tablones",
         "tam_max",
+        "tap",
         "taps",
         "target_xy",
         "tecla",
+        "tex/%s.png",
         "text",
         "this script",
         "thread",
         "threads",
+        "tiempo",
         "tierra",
         "time",
         "timer0",
+        "titulo",
         "titulo_rect",
         "to_screen",
         "toast",
+        "toca_jugador",
         "toint",
         "touching",
         "tras_guardar",
+        "tronco",
         "true",
         "truth",
         "tuv8",
+        "tx",
+        "ty",
         "ui",
         "ultima",
+        "un_jugador",
         "unirse",
         "unsupported",
         "until",
         "url",
+        "usar",
         "uses_mouse",
         "v",
         "vaciar",
+        "valor",
         "valores",
         "var",
         "var_get",
@@ -3303,7 +4708,9 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "vars",
         "ver_espejo",
         "vid",
+        "vida",
         "visible",
+        "vol",
         "volume",
         "volver",
         "vs",
@@ -3315,12 +4722,25 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "warp",
         "warp_n",
         "warp_t",
+        "wasd ",
+        "wb",
+        "wood",
+        "wood%d",
+        "wx",
         "wxyz9",
+        "wy",
         "x position",
+        "x0",
         "x1",
         "y position",
+        "y0",
         "y1",
         "yo",
+        "zombi",
+        "zombie%d",
+        "zombiedeath",
+        "zombiehurt%d",
+        "zona",
         "zonas",
         "zxcvbnm.-_",
         "\xe2\x98\x81",
@@ -37304,6 +38724,14255 @@ static const mp_frozen_module_t frozen_module_t9 = {
 };
 
 ////////////////////////////////////////////////////////////////////////////////
+// frozen module mc2d
+// - original source file: build-embed/frozen_mpy/mc2d.mpy
+// - frozen file name: mc2d.py
+// - .mpy header: 4d:06:00:1f
+
+// frozen bytecode for file mc2d.py, scope mc2d__lt_module_gt_
+static const byte fun_data_mc2d__lt_module_gt_[2151] = {
+    0xcc,0x10,0xe8,0x04, // prelude
+    0x01, // names: <module>
+    0x80,0x1d,0x26,0x26,0x26,0x26,0x34,0x22,0x56,0x66,0x40,0x1f,0x1f,0x38,0x1f,0x29,0x26,0x30,0x1f,0x21,0x3e,0x32,0x3e,0x38,0x32,0x38,0x38,0x2f,0x1f,0x21,0x38,0x32,0x32,0x38,0x38,0x32,0x32,0x2f,0x25,0x25,0x28,0x28,0x1f,0x25,0x1f,0x1f,0x4b,0x37,0x1f,0x21,0x6b,0x1f,0x2a,0x1f,0x28,0x1f,0x28,0x1f,0x28,0x1f,0x28,0x39,0x32,0x2f,0x3e,0x3f,0x39,0x6b,0x20,0x1f,0x2e,0x34,0x3e,0x1f,0x29,0x1f,0x4e,0x3f,0x1f,0x27,0x1f,0x27,0x1f,0x27,0x1f,0x6a,0x2a,0x24,0x24,0x26,0x3b,0x30,0x26,0x25,0x2f,0x6b,0x2a,0x2a,0x2a,0x26,0x64,0x64,0x60,0x64,0x20,0x64,0x20,0x1f,0x61,0x84,0x0a,0x65,0x84,0x13,0x69,0x60,0x89,0x08,0x84,0x08,0x84,0x5c,0x84,0x0f,0x24,0x2b,0x6b,0x64,0x20,0x88,0x13,0x84,0x08,0x88,0x0d,0x65,0x84,0x07,0x88,0x08,0xa9,0xdb,0x64,0x20,0x84,0x08,0x65,0x84,0x0f,0x85,0x13,0x85,0x08,0x85,0x0e,0x85,0x0a,0x85,0x0c,0x85,0x18,0x89,0x0c,0x85,0x07,0x8a,0x17,0x85,0x07,0x8a,0x15,0x85,0x09,0x85,0x1a,0x85,0x46,0x85,0x10, // code info
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x51, // LOAD_CONST_NONE
+    0x1b,0x02, // IMPORT_NAME 'math'
+    0x16,0x02, // STORE_NAME 'math'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x51, // LOAD_CONST_NONE
+    0x1b,0x03, // IMPORT_NAME 'random'
+    0x16,0x03, // STORE_NAME 'random'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x51, // LOAD_CONST_NONE
+    0x1b,0x04, // IMPORT_NAME 'json'
+    0x16,0x04, // STORE_NAME 'json'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x51, // LOAD_CONST_NONE
+    0x1b,0x05, // IMPORT_NAME 'os'
+    0x16,0x05, // STORE_NAME 'os'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x10,0x06, // LOAD_CONST_STRING 'pantalla'
+    0x10,0x07, // LOAD_CONST_STRING 'teclas'
+    0x2a,0x02, // BUILD_TUPLE 2
+    0x1b,0x08, // IMPORT_NAME 'scicalc'
+    0x1c,0x06, // IMPORT_FROM 'pantalla'
+    0x16,0x82,0x46, // STORE_NAME 'P'
+    0x1c,0x07, // IMPORT_FROM 'teclas'
+    0x16,0x82,0x47, // STORE_NAME 'K'
+    0x59, // POP_TOP
+    0x48,0x0e, // SETUP_EXCEPT 14
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x10,0x09, // LOAD_CONST_STRING 'red'
+    0x2a,0x01, // BUILD_TUPLE 1
+    0x1b,0x08, // IMPORT_NAME 'scicalc'
+    0x1c,0x09, // IMPORT_FROM 'red'
+    0x16,0x09, // STORE_NAME 'red'
+    0x59, // POP_TOP
+    0x4a,0x0e, // POP_EXCEPT_JUMP 14
+    0x57, // DUP_TOP
+    0x11,0x82,0x48, // LOAD_NAME 'ImportError'
+    0xdf, // BINARY_OP 8 <exception match>
+    0x44,0x46, // POP_JUMP_IF_FALSE 6
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x16,0x09, // STORE_NAME 'red'
+    0x4a,0x01, // POP_EXCEPT_JUMP 1
+    0x5d, // END_FINALLY
+    0x11,0x82,0x49, // LOAD_NAME 'range'
+    0x9a, // LOAD_CONST_SMALL_INT 26
+    0x34,0x01, // CALL_FUNCTION 1
+    0x30,0x1a, // UNPACK_SEQUENCE 26
+    0x16,0x82,0x4a, // STORE_NAME 'AIRE'
+    0x16,0x82,0x4b, // STORE_NAME 'HIERBA'
+    0x16,0x82,0x4c, // STORE_NAME 'TIERRA'
+    0x16,0x82,0x4d, // STORE_NAME 'PIEDRA'
+    0x16,0x82,0x4e, // STORE_NAME 'ROCA'
+    0x16,0x82,0x4f, // STORE_NAME 'TRONCO'
+    0x16,0x82,0x50, // STORE_NAME 'HOJAS'
+    0x16,0x82,0x51, // STORE_NAME 'TABLONES'
+    0x16,0x82,0x52, // STORE_NAME 'ARENA'
+    0x16,0x82,0x53, // STORE_NAME 'GRAVA'
+    0x16,0x82,0x54, // STORE_NAME 'CARBON_M'
+    0x16,0x82,0x55, // STORE_NAME 'HIERRO_M'
+    0x16,0x82,0x56, // STORE_NAME 'ORO_M'
+    0x16,0x82,0x57, // STORE_NAME 'DIAMANTE_M'
+    0x16,0x82,0x58, // STORE_NAME 'LECHO'
+    0x16,0x82,0x59, // STORE_NAME 'AGUA'
+    0x16,0x82,0x5a, // STORE_NAME 'MESA'
+    0x16,0x82,0x5b, // STORE_NAME 'HORNO'
+    0x16,0x82,0x5c, // STORE_NAME 'CRISTAL'
+    0x16,0x82,0x5d, // STORE_NAME 'LADRILLOS'
+    0x16,0x82,0x5e, // STORE_NAME 'NIEVE'
+    0x16,0x82,0x5f, // STORE_NAME 'CACTUS'
+    0x16,0x82,0x60, // STORE_NAME 'FLOR_R'
+    0x16,0x82,0x61, // STORE_NAME 'FLOR_A'
+    0x16,0x82,0x62, // STORE_NAME 'HIERBA_A'
+    0x16,0x82,0x63, // STORE_NAME 'ANTORCHA'
+    0x11,0x82,0x49, // LOAD_NAME 'range'
+    0x22,0x80,0x40, // LOAD_CONST_SMALL_INT 64
+    0x22,0x80,0x49, // LOAD_CONST_SMALL_INT 73
+    0x34,0x02, // CALL_FUNCTION 2
+    0x30,0x09, // UNPACK_SEQUENCE 9
+    0x16,0x82,0x64, // STORE_NAME 'PALO'
+    0x16,0x82,0x65, // STORE_NAME 'CARBON'
+    0x16,0x82,0x66, // STORE_NAME 'LING_HIERRO'
+    0x16,0x82,0x67, // STORE_NAME 'LING_ORO'
+    0x16,0x82,0x68, // STORE_NAME 'DIAMANTE'
+    0x16,0x82,0x69, // STORE_NAME 'MANZANA'
+    0x16,0x82,0x6a, // STORE_NAME 'CARNE'
+    0x16,0x82,0x6b, // STORE_NAME 'CARNE_ASADA'
+    0x16,0x82,0x6c, // STORE_NAME 'CARNE_POD'
+    0x22,0x80,0x50, // LOAD_CONST_SMALL_INT 80
+    0x16,0x82,0x6d, // STORE_NAME 'HERR'
+    0x23,0x00, // LOAD_CONST_OBJ 0
+    0x30,0x04, // UNPACK_SEQUENCE 4
+    0x16,0x82,0x6e, // STORE_NAME 'PICO'
+    0x16,0x82,0x6f, // STORE_NAME 'HACHA'
+    0x16,0x82,0x70, // STORE_NAME 'PALA'
+    0x16,0x82,0x71, // STORE_NAME 'ESPADA'
+    0x2c,0x23, // BUILD_MAP 35
+    0x10,0x0a, // LOAD_CONST_STRING ''
+    0x11,0x82,0x4a, // LOAD_NAME 'AIRE'
+    0x62, // STORE_MAP
+    0x10,0x0b, // LOAD_CONST_STRING 'hierba'
+    0x11,0x82,0x4b, // LOAD_NAME 'HIERBA'
+    0x62, // STORE_MAP
+    0x10,0x0c, // LOAD_CONST_STRING 'tierra'
+    0x11,0x82,0x4c, // LOAD_NAME 'TIERRA'
+    0x62, // STORE_MAP
+    0x10,0x0d, // LOAD_CONST_STRING 'piedra'
+    0x11,0x82,0x4d, // LOAD_NAME 'PIEDRA'
+    0x62, // STORE_MAP
+    0x10,0x0e, // LOAD_CONST_STRING 'roca'
+    0x11,0x82,0x4e, // LOAD_NAME 'ROCA'
+    0x62, // STORE_MAP
+    0x10,0x0f, // LOAD_CONST_STRING 'tronco'
+    0x11,0x82,0x4f, // LOAD_NAME 'TRONCO'
+    0x62, // STORE_MAP
+    0x10,0x10, // LOAD_CONST_STRING 'hojas'
+    0x11,0x82,0x50, // LOAD_NAME 'HOJAS'
+    0x62, // STORE_MAP
+    0x10,0x11, // LOAD_CONST_STRING 'tablones'
+    0x11,0x82,0x51, // LOAD_NAME 'TABLONES'
+    0x62, // STORE_MAP
+    0x10,0x12, // LOAD_CONST_STRING 'arena'
+    0x11,0x82,0x52, // LOAD_NAME 'ARENA'
+    0x62, // STORE_MAP
+    0x10,0x13, // LOAD_CONST_STRING 'grava'
+    0x11,0x82,0x53, // LOAD_NAME 'GRAVA'
+    0x62, // STORE_MAP
+    0x23,0x01, // LOAD_CONST_OBJ 1
+    0x11,0x82,0x54, // LOAD_NAME 'CARBON_M'
+    0x62, // STORE_MAP
+    0x23,0x02, // LOAD_CONST_OBJ 2
+    0x11,0x82,0x55, // LOAD_NAME 'HIERRO_M'
+    0x62, // STORE_MAP
+    0x10,0x14, // LOAD_CONST_STRING 'oro_mena'
+    0x11,0x82,0x56, // LOAD_NAME 'ORO_M'
+    0x62, // STORE_MAP
+    0x23,0x03, // LOAD_CONST_OBJ 3
+    0x11,0x82,0x57, // LOAD_NAME 'DIAMANTE_M'
+    0x62, // STORE_MAP
+    0x10,0x15, // LOAD_CONST_STRING 'lecho'
+    0x11,0x82,0x58, // LOAD_NAME 'LECHO'
+    0x62, // STORE_MAP
+    0x10,0x16, // LOAD_CONST_STRING 'agua'
+    0x11,0x82,0x59, // LOAD_NAME 'AGUA'
+    0x62, // STORE_MAP
+    0x10,0x17, // LOAD_CONST_STRING 'mesa'
+    0x11,0x82,0x5a, // LOAD_NAME 'MESA'
+    0x62, // STORE_MAP
+    0x10,0x18, // LOAD_CONST_STRING 'horno'
+    0x11,0x82,0x5b, // LOAD_NAME 'HORNO'
+    0x62, // STORE_MAP
+    0x10,0x19, // LOAD_CONST_STRING 'cristal'
+    0x11,0x82,0x5c, // LOAD_NAME 'CRISTAL'
+    0x62, // STORE_MAP
+    0x10,0x1a, // LOAD_CONST_STRING 'ladrillos'
+    0x11,0x82,0x5d, // LOAD_NAME 'LADRILLOS'
+    0x62, // STORE_MAP
+    0x10,0x1b, // LOAD_CONST_STRING 'nieve'
+    0x11,0x82,0x5e, // LOAD_NAME 'NIEVE'
+    0x62, // STORE_MAP
+    0x10,0x1c, // LOAD_CONST_STRING 'cactus'
+    0x11,0x82,0x5f, // LOAD_NAME 'CACTUS'
+    0x62, // STORE_MAP
+    0x10,0x1d, // LOAD_CONST_STRING 'flor_roja'
+    0x11,0x82,0x60, // LOAD_NAME 'FLOR_R'
+    0x62, // STORE_MAP
+    0x23,0x04, // LOAD_CONST_OBJ 4
+    0x11,0x82,0x61, // LOAD_NAME 'FLOR_A'
+    0x62, // STORE_MAP
+    0x23,0x05, // LOAD_CONST_OBJ 5
+    0x11,0x82,0x62, // LOAD_NAME 'HIERBA_A'
+    0x62, // STORE_MAP
+    0x10,0x1e, // LOAD_CONST_STRING 'antorcha'
+    0x11,0x82,0x63, // LOAD_NAME 'ANTORCHA'
+    0x62, // STORE_MAP
+    0x10,0x1f, // LOAD_CONST_STRING 'palo'
+    0x11,0x82,0x64, // LOAD_NAME 'PALO'
+    0x62, // STORE_MAP
+    0x10,0x20, // LOAD_CONST_STRING 'carbon'
+    0x11,0x82,0x65, // LOAD_NAME 'CARBON'
+    0x62, // STORE_MAP
+    0x23,0x06, // LOAD_CONST_OBJ 6
+    0x11,0x82,0x66, // LOAD_NAME 'LING_HIERRO'
+    0x62, // STORE_MAP
+    0x23,0x07, // LOAD_CONST_OBJ 7
+    0x11,0x82,0x67, // LOAD_NAME 'LING_ORO'
+    0x62, // STORE_MAP
+    0x10,0x21, // LOAD_CONST_STRING 'diamante'
+    0x11,0x82,0x68, // LOAD_NAME 'DIAMANTE'
+    0x62, // STORE_MAP
+    0x10,0x22, // LOAD_CONST_STRING 'manzana'
+    0x11,0x82,0x69, // LOAD_NAME 'MANZANA'
+    0x62, // STORE_MAP
+    0x10,0x23, // LOAD_CONST_STRING 'carne'
+    0x11,0x82,0x6a, // LOAD_NAME 'CARNE'
+    0x62, // STORE_MAP
+    0x23,0x08, // LOAD_CONST_OBJ 8
+    0x11,0x82,0x6b, // LOAD_NAME 'CARNE_ASADA'
+    0x62, // STORE_MAP
+    0x23,0x09, // LOAD_CONST_OBJ 9
+    0x11,0x82,0x6c, // LOAD_NAME 'CARNE_POD'
+    0x62, // STORE_MAP
+    0x16,0x82,0x72, // STORE_NAME 'TEX'
+    0x2c,0x1f, // BUILD_MAP 31
+    0x10,0x24, // LOAD_CONST_STRING 'Hierba'
+    0x11,0x82,0x4b, // LOAD_NAME 'HIERBA'
+    0x62, // STORE_MAP
+    0x10,0x25, // LOAD_CONST_STRING 'Tierra'
+    0x11,0x82,0x4c, // LOAD_NAME 'TIERRA'
+    0x62, // STORE_MAP
+    0x10,0x26, // LOAD_CONST_STRING 'Piedra'
+    0x11,0x82,0x4d, // LOAD_NAME 'PIEDRA'
+    0x62, // STORE_MAP
+    0x10,0x27, // LOAD_CONST_STRING 'Roca'
+    0x11,0x82,0x4e, // LOAD_NAME 'ROCA'
+    0x62, // STORE_MAP
+    0x10,0x28, // LOAD_CONST_STRING 'Tronco'
+    0x11,0x82,0x4f, // LOAD_NAME 'TRONCO'
+    0x62, // STORE_MAP
+    0x10,0x29, // LOAD_CONST_STRING 'Hojas'
+    0x11,0x82,0x50, // LOAD_NAME 'HOJAS'
+    0x62, // STORE_MAP
+    0x10,0x2a, // LOAD_CONST_STRING 'Tablones'
+    0x11,0x82,0x51, // LOAD_NAME 'TABLONES'
+    0x62, // STORE_MAP
+    0x10,0x2b, // LOAD_CONST_STRING 'Arena'
+    0x11,0x82,0x52, // LOAD_NAME 'ARENA'
+    0x62, // STORE_MAP
+    0x10,0x2c, // LOAD_CONST_STRING 'Grava'
+    0x11,0x82,0x53, // LOAD_NAME 'GRAVA'
+    0x62, // STORE_MAP
+    0x23,0x0a, // LOAD_CONST_OBJ 10
+    0x11,0x82,0x54, // LOAD_NAME 'CARBON_M'
+    0x62, // STORE_MAP
+    0x23,0x0b, // LOAD_CONST_OBJ 11
+    0x11,0x82,0x55, // LOAD_NAME 'HIERRO_M'
+    0x62, // STORE_MAP
+    0x23,0x0c, // LOAD_CONST_OBJ 12
+    0x11,0x82,0x56, // LOAD_NAME 'ORO_M'
+    0x62, // STORE_MAP
+    0x23,0x0d, // LOAD_CONST_OBJ 13
+    0x11,0x82,0x57, // LOAD_NAME 'DIAMANTE_M'
+    0x62, // STORE_MAP
+    0x23,0x0e, // LOAD_CONST_OBJ 14
+    0x11,0x82,0x5a, // LOAD_NAME 'MESA'
+    0x62, // STORE_MAP
+    0x10,0x2d, // LOAD_CONST_STRING 'Horno'
+    0x11,0x82,0x5b, // LOAD_NAME 'HORNO'
+    0x62, // STORE_MAP
+    0x10,0x2e, // LOAD_CONST_STRING 'Cristal'
+    0x11,0x82,0x5c, // LOAD_NAME 'CRISTAL'
+    0x62, // STORE_MAP
+    0x10,0x2f, // LOAD_CONST_STRING 'Ladrillos'
+    0x11,0x82,0x5d, // LOAD_NAME 'LADRILLOS'
+    0x62, // STORE_MAP
+    0x10,0x30, // LOAD_CONST_STRING 'Nieve'
+    0x11,0x82,0x5e, // LOAD_NAME 'NIEVE'
+    0x62, // STORE_MAP
+    0x10,0x31, // LOAD_CONST_STRING 'Cactus'
+    0x11,0x82,0x5f, // LOAD_NAME 'CACTUS'
+    0x62, // STORE_MAP
+    0x10,0x32, // LOAD_CONST_STRING 'Amapola'
+    0x11,0x82,0x60, // LOAD_NAME 'FLOR_R'
+    0x62, // STORE_MAP
+    0x23,0x0f, // LOAD_CONST_OBJ 15
+    0x11,0x82,0x61, // LOAD_NAME 'FLOR_A'
+    0x62, // STORE_MAP
+    0x10,0x33, // LOAD_CONST_STRING 'Antorcha'
+    0x11,0x82,0x63, // LOAD_NAME 'ANTORCHA'
+    0x62, // STORE_MAP
+    0x10,0x34, // LOAD_CONST_STRING 'Palo'
+    0x11,0x82,0x64, // LOAD_NAME 'PALO'
+    0x62, // STORE_MAP
+    0x10,0x35, // LOAD_CONST_STRING 'Carbon'
+    0x11,0x82,0x65, // LOAD_NAME 'CARBON'
+    0x62, // STORE_MAP
+    0x23,0x10, // LOAD_CONST_OBJ 16
+    0x11,0x82,0x66, // LOAD_NAME 'LING_HIERRO'
+    0x62, // STORE_MAP
+    0x23,0x11, // LOAD_CONST_OBJ 17
+    0x11,0x82,0x67, // LOAD_NAME 'LING_ORO'
+    0x62, // STORE_MAP
+    0x10,0x36, // LOAD_CONST_STRING 'Diamante'
+    0x11,0x82,0x68, // LOAD_NAME 'DIAMANTE'
+    0x62, // STORE_MAP
+    0x10,0x37, // LOAD_CONST_STRING 'Manzana'
+    0x11,0x82,0x69, // LOAD_NAME 'MANZANA'
+    0x62, // STORE_MAP
+    0x23,0x12, // LOAD_CONST_OBJ 18
+    0x11,0x82,0x6a, // LOAD_NAME 'CARNE'
+    0x62, // STORE_MAP
+    0x23,0x13, // LOAD_CONST_OBJ 19
+    0x11,0x82,0x6b, // LOAD_NAME 'CARNE_ASADA'
+    0x62, // STORE_MAP
+    0x23,0x14, // LOAD_CONST_OBJ 20
+    0x11,0x82,0x6c, // LOAD_NAME 'CARNE_POD'
+    0x62, // STORE_MAP
+    0x16,0x82,0x73, // STORE_NAME 'NOMBRE'
+    0x23,0x15, // LOAD_CONST_OBJ 21
+    0x16,0x82,0x74, // STORE_NAME 'MATS'
+    0x23,0x16, // LOAD_CONST_OBJ 22
+    0x16,0x82,0x75, // STORE_NAME 'TIPOS'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0xf2,0x80, // JUMP 114
+    0x57, // DUP_TOP
+    0x16,0x82,0x76, // STORE_NAME '_t'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0xe1,0x80, // JUMP 97
+    0x57, // DUP_TOP
+    0x16,0x82,0x77, // STORE_NAME '_m'
+    0x10,0x38, // LOAD_CONST_STRING '%s_%s'
+    0x11,0x82,0x75, // LOAD_NAME 'TIPOS'
+    0x11,0x82,0x76, // LOAD_NAME '_t'
+    0x55, // LOAD_SUBSCR
+    0x11,0x82,0x74, // LOAD_NAME 'MATS'
+    0x11,0x82,0x77, // LOAD_NAME '_m'
+    0x55, // LOAD_SUBSCR
+    0x2a,0x02, // BUILD_TUPLE 2
+    0xf8, // BINARY_OP 33 __mod__
+    0x11,0x82,0x72, // LOAD_NAME 'TEX'
+    0x11,0x82,0x6d, // LOAD_NAME 'HERR'
+    0x11,0x82,0x76, // LOAD_NAME '_t'
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x11,0x82,0x77, // LOAD_NAME '_m'
+    0xf2, // BINARY_OP 27 __add__
+    0x56, // STORE_SUBSCR
+    0x10,0x39, // LOAD_CONST_STRING '%s de %s'
+    0x11,0x82,0x75, // LOAD_NAME 'TIPOS'
+    0x11,0x82,0x76, // LOAD_NAME '_t'
+    0x55, // LOAD_SUBSCR
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0x14,0x3a, // LOAD_METHOD 'upper'
+    0x36,0x00, // CALL_METHOD 0
+    0x11,0x82,0x75, // LOAD_NAME 'TIPOS'
+    0x11,0x82,0x76, // LOAD_NAME '_t'
+    0x55, // LOAD_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x51, // LOAD_CONST_NONE
+    0x2e,0x02, // BUILD_SLICE 2
+    0x55, // LOAD_SUBSCR
+    0xf2, // BINARY_OP 27 __add__
+    0x11,0x82,0x74, // LOAD_NAME 'MATS'
+    0x11,0x82,0x77, // LOAD_NAME '_m'
+    0x55, // LOAD_SUBSCR
+    0x2a,0x02, // BUILD_TUPLE 2
+    0xf8, // BINARY_OP 33 __mod__
+    0x11,0x82,0x73, // LOAD_NAME 'NOMBRE'
+    0x11,0x82,0x6d, // LOAD_NAME 'HERR'
+    0x11,0x82,0x76, // LOAD_NAME '_t'
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x11,0x82,0x77, // LOAD_NAME '_m'
+    0xf2, // BINARY_OP 27 __add__
+    0x56, // STORE_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x57, // DUP_TOP
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x99,0x7f, // POP_JUMP_IF_TRUE -103
+    0x59, // POP_TOP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x57, // DUP_TOP
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x88,0x7f, // POP_JUMP_IF_TRUE -120
+    0x59, // POP_TOP
+    0x11,0x82,0x4a, // LOAD_NAME 'AIRE'
+    0x11,0x82,0x59, // LOAD_NAME 'AGUA'
+    0x11,0x82,0x60, // LOAD_NAME 'FLOR_R'
+    0x11,0x82,0x61, // LOAD_NAME 'FLOR_A'
+    0x11,0x82,0x62, // LOAD_NAME 'HIERBA_A'
+    0x11,0x82,0x63, // LOAD_NAME 'ANTORCHA'
+    0x2a,0x06, // BUILD_TUPLE 6
+    0x16,0x82,0x78, // STORE_NAME 'NO_SOLIDO'
+    0x11,0x82,0x4a, // LOAD_NAME 'AIRE'
+    0x11,0x82,0x59, // LOAD_NAME 'AGUA'
+    0x11,0x82,0x60, // LOAD_NAME 'FLOR_R'
+    0x11,0x82,0x61, // LOAD_NAME 'FLOR_A'
+    0x11,0x82,0x62, // LOAD_NAME 'HIERBA_A'
+    0x11,0x82,0x63, // LOAD_NAME 'ANTORCHA'
+    0x11,0x82,0x50, // LOAD_NAME 'HOJAS'
+    0x11,0x82,0x5c, // LOAD_NAME 'CRISTAL'
+    0x11,0x82,0x5f, // LOAD_NAME 'CACTUS'
+    0x2a,0x09, // BUILD_TUPLE 9
+    0x16,0x82,0x79, // STORE_NAME 'TRANSP'
+    0x11,0x82,0x52, // LOAD_NAME 'ARENA'
+    0x11,0x82,0x53, // LOAD_NAME 'GRAVA'
+    0x2a,0x02, // BUILD_TUPLE 2
+    0x16,0x82,0x7a, // STORE_NAME 'CAEN'
+    0x2c,0x17, // BUILD_MAP 23
+    0x22,0x87,0x04, // LOAD_CONST_SMALL_INT 900
+    0x11,0x82,0x70, // LOAD_NAME 'PALA'
+    0x7f, // LOAD_CONST_SMALL_INT -1
+    0x2a,0x03, // BUILD_TUPLE 3
+    0x11,0x82,0x4b, // LOAD_NAME 'HIERBA'
+    0x62, // STORE_MAP
+    0x22,0x85,0x6e, // LOAD_CONST_SMALL_INT 750
+    0x11,0x82,0x70, // LOAD_NAME 'PALA'
+    0x7f, // LOAD_CONST_SMALL_INT -1
+    0x2a,0x03, // BUILD_TUPLE 3
+    0x11,0x82,0x4c, // LOAD_NAME 'TIERRA'
+    0x62, // STORE_MAP
+    0x22,0x85,0x6e, // LOAD_CONST_SMALL_INT 750
+    0x11,0x82,0x70, // LOAD_NAME 'PALA'
+    0x7f, // LOAD_CONST_SMALL_INT -1
+    0x2a,0x03, // BUILD_TUPLE 3
+    0x11,0x82,0x52, // LOAD_NAME 'ARENA'
+    0x62, // STORE_MAP
+    0x22,0x87,0x04, // LOAD_CONST_SMALL_INT 900
+    0x11,0x82,0x70, // LOAD_NAME 'PALA'
+    0x7f, // LOAD_CONST_SMALL_INT -1
+    0x2a,0x03, // BUILD_TUPLE 3
+    0x11,0x82,0x53, // LOAD_NAME 'GRAVA'
+    0x62, // STORE_MAP
+    0x22,0x83,0x74, // LOAD_CONST_SMALL_INT 500
+    0x11,0x82,0x70, // LOAD_NAME 'PALA'
+    0x7f, // LOAD_CONST_SMALL_INT -1
+    0x2a,0x03, // BUILD_TUPLE 3
+    0x11,0x82,0x5e, // LOAD_NAME 'NIEVE'
+    0x62, // STORE_MAP
+    0x22,0x91,0x18, // LOAD_CONST_SMALL_INT 2200
+    0x11,0x82,0x6e, // LOAD_NAME 'PICO'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x2a,0x03, // BUILD_TUPLE 3
+    0x11,0x82,0x4d, // LOAD_NAME 'PIEDRA'
+    0x62, // STORE_MAP
+    0x22,0x94,0x28, // LOAD_CONST_SMALL_INT 2600
+    0x11,0x82,0x6e, // LOAD_NAME 'PICO'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x2a,0x03, // BUILD_TUPLE 3
+    0x11,0x82,0x4e, // LOAD_NAME 'ROCA'
+    0x62, // STORE_MAP
+    0x22,0x97,0x38, // LOAD_CONST_SMALL_INT 3000
+    0x11,0x82,0x6e, // LOAD_NAME 'PICO'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x2a,0x03, // BUILD_TUPLE 3
+    0x11,0x82,0x54, // LOAD_NAME 'CARBON_M'
+    0x62, // STORE_MAP
+    0x22,0x9c,0x10, // LOAD_CONST_SMALL_INT 3600
+    0x11,0x82,0x6e, // LOAD_NAME 'PICO'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x2a,0x03, // BUILD_TUPLE 3
+    0x11,0x82,0x55, // LOAD_NAME 'HIERRO_M'
+    0x62, // STORE_MAP
+    0x22,0x9c,0x10, // LOAD_CONST_SMALL_INT 3600
+    0x11,0x82,0x6e, // LOAD_NAME 'PICO'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x2a,0x03, // BUILD_TUPLE 3
+    0x11,0x82,0x56, // LOAD_NAME 'ORO_M'
+    0x62, // STORE_MAP
+    0x22,0x9f,0x20, // LOAD_CONST_SMALL_INT 4000
+    0x11,0x82,0x6e, // LOAD_NAME 'PICO'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x2a,0x03, // BUILD_TUPLE 3
+    0x11,0x82,0x57, // LOAD_NAME 'DIAMANTE_M'
+    0x62, // STORE_MAP
+    0x22,0x94,0x28, // LOAD_CONST_SMALL_INT 2600
+    0x11,0x82,0x6e, // LOAD_NAME 'PICO'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x2a,0x03, // BUILD_TUPLE 3
+    0x11,0x82,0x5d, // LOAD_NAME 'LADRILLOS'
+    0x62, // STORE_MAP
+    0x22,0x94,0x28, // LOAD_CONST_SMALL_INT 2600
+    0x11,0x82,0x6e, // LOAD_NAME 'PICO'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x2a,0x03, // BUILD_TUPLE 3
+    0x11,0x82,0x5b, // LOAD_NAME 'HORNO'
+    0x62, // STORE_MAP
+    0x22,0x8f,0x50, // LOAD_CONST_SMALL_INT 2000
+    0x11,0x82,0x6f, // LOAD_NAME 'HACHA'
+    0x7f, // LOAD_CONST_SMALL_INT -1
+    0x2a,0x03, // BUILD_TUPLE 3
+    0x11,0x82,0x4f, // LOAD_NAME 'TRONCO'
+    0x62, // STORE_MAP
+    0x22,0x8e,0x08, // LOAD_CONST_SMALL_INT 1800
+    0x11,0x82,0x6f, // LOAD_NAME 'HACHA'
+    0x7f, // LOAD_CONST_SMALL_INT -1
+    0x2a,0x03, // BUILD_TUPLE 3
+    0x11,0x82,0x51, // LOAD_NAME 'TABLONES'
+    0x62, // STORE_MAP
+    0x22,0x8e,0x08, // LOAD_CONST_SMALL_INT 1800
+    0x11,0x82,0x6f, // LOAD_NAME 'HACHA'
+    0x7f, // LOAD_CONST_SMALL_INT -1
+    0x2a,0x03, // BUILD_TUPLE 3
+    0x11,0x82,0x5a, // LOAD_NAME 'MESA'
+    0x62, // STORE_MAP
+    0x23,0x17, // LOAD_CONST_OBJ 23
+    0x11,0x82,0x50, // LOAD_NAME 'HOJAS'
+    0x62, // STORE_MAP
+    0x23,0x18, // LOAD_CONST_OBJ 24
+    0x11,0x82,0x5c, // LOAD_NAME 'CRISTAL'
+    0x62, // STORE_MAP
+    0x23,0x19, // LOAD_CONST_OBJ 25
+    0x11,0x82,0x5f, // LOAD_NAME 'CACTUS'
+    0x62, // STORE_MAP
+    0x23,0x1a, // LOAD_CONST_OBJ 26
+    0x11,0x82,0x60, // LOAD_NAME 'FLOR_R'
+    0x62, // STORE_MAP
+    0x23,0x1a, // LOAD_CONST_OBJ 26
+    0x11,0x82,0x61, // LOAD_NAME 'FLOR_A'
+    0x62, // STORE_MAP
+    0x23,0x1a, // LOAD_CONST_OBJ 26
+    0x11,0x82,0x62, // LOAD_NAME 'HIERBA_A'
+    0x62, // STORE_MAP
+    0x23,0x1a, // LOAD_CONST_OBJ 26
+    0x11,0x82,0x63, // LOAD_NAME 'ANTORCHA'
+    0x62, // STORE_MAP
+    0x16,0x82,0x7b, // STORE_NAME 'DUREZA'
+    0x2c,0x08, // BUILD_MAP 8
+    0x11,0x82,0x4c, // LOAD_NAME 'TIERRA'
+    0x11,0x82,0x4b, // LOAD_NAME 'HIERBA'
+    0x62, // STORE_MAP
+    0x11,0x82,0x4e, // LOAD_NAME 'ROCA'
+    0x11,0x82,0x4d, // LOAD_NAME 'PIEDRA'
+    0x62, // STORE_MAP
+    0x11,0x82,0x65, // LOAD_NAME 'CARBON'
+    0x11,0x82,0x54, // LOAD_NAME 'CARBON_M'
+    0x62, // STORE_MAP
+    0x11,0x82,0x68, // LOAD_NAME 'DIAMANTE'
+    0x11,0x82,0x57, // LOAD_NAME 'DIAMANTE_M'
+    0x62, // STORE_MAP
+    0x11,0x82,0x4a, // LOAD_NAME 'AIRE'
+    0x11,0x82,0x62, // LOAD_NAME 'HIERBA_A'
+    0x62, // STORE_MAP
+    0x11,0x82,0x4a, // LOAD_NAME 'AIRE'
+    0x11,0x82,0x5c, // LOAD_NAME 'CRISTAL'
+    0x62, // STORE_MAP
+    0x11,0x82,0x4a, // LOAD_NAME 'AIRE'
+    0x11,0x82,0x50, // LOAD_NAME 'HOJAS'
+    0x62, // STORE_MAP
+    0x11,0x82,0x5e, // LOAD_NAME 'NIEVE'
+    0x11,0x82,0x5e, // LOAD_NAME 'NIEVE'
+    0x62, // STORE_MAP
+    0x16,0x82,0x7c, // STORE_NAME 'SUELTA'
+    0x2c,0x04, // BUILD_MAP 4
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x11,0x82,0x69, // LOAD_NAME 'MANZANA'
+    0x62, // STORE_MAP
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x11,0x82,0x6a, // LOAD_NAME 'CARNE'
+    0x62, // STORE_MAP
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0x11,0x82,0x6b, // LOAD_NAME 'CARNE_ASADA'
+    0x62, // STORE_MAP
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x11,0x82,0x6c, // LOAD_NAME 'CARNE_POD'
+    0x62, // STORE_MAP
+    0x16,0x82,0x7d, // STORE_NAME 'COMIDA'
+    0x2c,0x01, // BUILD_MAP 1
+    0x23,0x1b, // LOAD_CONST_OBJ 27
+    0x11,0x82,0x71, // LOAD_NAME 'ESPADA'
+    0x62, // STORE_MAP
+    0x16,0x82,0x7e, // STORE_NAME 'DANO'
+    0x11,0x82,0x51, // LOAD_NAME 'TABLONES'
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x2c,0x01, // BUILD_MAP 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x11,0x82,0x4f, // LOAD_NAME 'TRONCO'
+    0x62, // STORE_MAP
+    0x10,0x0a, // LOAD_CONST_STRING ''
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x11,0x82,0x64, // LOAD_NAME 'PALO'
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x2c,0x01, // BUILD_MAP 1
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x11,0x82,0x51, // LOAD_NAME 'TABLONES'
+    0x62, // STORE_MAP
+    0x10,0x0a, // LOAD_CONST_STRING ''
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x11,0x82,0x5a, // LOAD_NAME 'MESA'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x2c,0x01, // BUILD_MAP 1
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x11,0x82,0x51, // LOAD_NAME 'TABLONES'
+    0x62, // STORE_MAP
+    0x10,0x0a, // LOAD_CONST_STRING ''
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x11,0x82,0x63, // LOAD_NAME 'ANTORCHA'
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x2c,0x02, // BUILD_MAP 2
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x11,0x82,0x64, // LOAD_NAME 'PALO'
+    0x62, // STORE_MAP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x11,0x82,0x65, // LOAD_NAME 'CARBON'
+    0x62, // STORE_MAP
+    0x10,0x0a, // LOAD_CONST_STRING ''
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x11,0x82,0x5b, // LOAD_NAME 'HORNO'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x2c,0x01, // BUILD_MAP 1
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0x11,0x82,0x4e, // LOAD_NAME 'ROCA'
+    0x62, // STORE_MAP
+    0x10,0x17, // LOAD_CONST_STRING 'mesa'
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x11,0x82,0x5d, // LOAD_NAME 'LADRILLOS'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x2c,0x01, // BUILD_MAP 1
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x11,0x82,0x4e, // LOAD_NAME 'ROCA'
+    0x62, // STORE_MAP
+    0x10,0x17, // LOAD_CONST_STRING 'mesa'
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x11,0x82,0x66, // LOAD_NAME 'LING_HIERRO'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x2c,0x02, // BUILD_MAP 2
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x11,0x82,0x55, // LOAD_NAME 'HIERRO_M'
+    0x62, // STORE_MAP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x11,0x82,0x65, // LOAD_NAME 'CARBON'
+    0x62, // STORE_MAP
+    0x10,0x18, // LOAD_CONST_STRING 'horno'
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x11,0x82,0x67, // LOAD_NAME 'LING_ORO'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x2c,0x02, // BUILD_MAP 2
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x11,0x82,0x56, // LOAD_NAME 'ORO_M'
+    0x62, // STORE_MAP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x11,0x82,0x65, // LOAD_NAME 'CARBON'
+    0x62, // STORE_MAP
+    0x10,0x18, // LOAD_CONST_STRING 'horno'
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x11,0x82,0x6b, // LOAD_NAME 'CARNE_ASADA'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x2c,0x02, // BUILD_MAP 2
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x11,0x82,0x6a, // LOAD_NAME 'CARNE'
+    0x62, // STORE_MAP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x11,0x82,0x65, // LOAD_NAME 'CARBON'
+    0x62, // STORE_MAP
+    0x10,0x18, // LOAD_CONST_STRING 'horno'
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x11,0x82,0x5c, // LOAD_NAME 'CRISTAL'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x2c,0x02, // BUILD_MAP 2
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x11,0x82,0x52, // LOAD_NAME 'ARENA'
+    0x62, // STORE_MAP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x11,0x82,0x65, // LOAD_NAME 'CARBON'
+    0x62, // STORE_MAP
+    0x10,0x18, // LOAD_CONST_STRING 'horno'
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x2b,0x0a, // BUILD_LIST 10
+    0x16,0x82,0x7f, // STORE_NAME 'RECETAS'
+    0x11,0x83,0x00, // LOAD_NAME 'enumerate'
+    0x11,0x82,0x51, // LOAD_NAME 'TABLONES'
+    0x11,0x82,0x4e, // LOAD_NAME 'ROCA'
+    0x11,0x82,0x66, // LOAD_NAME 'LING_HIERRO'
+    0x11,0x82,0x68, // LOAD_NAME 'DIAMANTE'
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x34,0x01, // CALL_FUNCTION 1
+    0x5f, // GET_ITER_STACK
+    0x4b,0xa3,0x01, // FOR_ITER 163
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0x16,0x82,0x77, // STORE_NAME '_m'
+    0x16,0x83,0x01, // STORE_NAME '_mat'
+    0x11,0x82,0x7f, // LOAD_NAME 'RECETAS'
+    0x14,0x3b, // LOAD_METHOD 'append'
+    0x11,0x82,0x6d, // LOAD_NAME 'HERR'
+    0x11,0x82,0x6e, // LOAD_NAME 'PICO'
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x11,0x82,0x77, // LOAD_NAME '_m'
+    0xf2, // BINARY_OP 27 __add__
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x2c,0x02, // BUILD_MAP 2
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x11,0x83,0x01, // LOAD_NAME '_mat'
+    0x62, // STORE_MAP
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x11,0x82,0x64, // LOAD_NAME 'PALO'
+    0x62, // STORE_MAP
+    0x10,0x17, // LOAD_CONST_STRING 'mesa'
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x11,0x82,0x7f, // LOAD_NAME 'RECETAS'
+    0x14,0x3b, // LOAD_METHOD 'append'
+    0x11,0x82,0x6d, // LOAD_NAME 'HERR'
+    0x11,0x82,0x6f, // LOAD_NAME 'HACHA'
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x11,0x82,0x77, // LOAD_NAME '_m'
+    0xf2, // BINARY_OP 27 __add__
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x2c,0x02, // BUILD_MAP 2
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x11,0x83,0x01, // LOAD_NAME '_mat'
+    0x62, // STORE_MAP
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x11,0x82,0x64, // LOAD_NAME 'PALO'
+    0x62, // STORE_MAP
+    0x10,0x17, // LOAD_CONST_STRING 'mesa'
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x11,0x82,0x7f, // LOAD_NAME 'RECETAS'
+    0x14,0x3b, // LOAD_METHOD 'append'
+    0x11,0x82,0x6d, // LOAD_NAME 'HERR'
+    0x11,0x82,0x70, // LOAD_NAME 'PALA'
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x11,0x82,0x77, // LOAD_NAME '_m'
+    0xf2, // BINARY_OP 27 __add__
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x2c,0x02, // BUILD_MAP 2
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x11,0x83,0x01, // LOAD_NAME '_mat'
+    0x62, // STORE_MAP
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x11,0x82,0x64, // LOAD_NAME 'PALO'
+    0x62, // STORE_MAP
+    0x10,0x17, // LOAD_CONST_STRING 'mesa'
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x11,0x82,0x7f, // LOAD_NAME 'RECETAS'
+    0x14,0x3b, // LOAD_METHOD 'append'
+    0x11,0x82,0x6d, // LOAD_NAME 'HERR'
+    0x11,0x82,0x71, // LOAD_NAME 'ESPADA'
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x11,0x82,0x77, // LOAD_NAME '_m'
+    0xf2, // BINARY_OP 27 __add__
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x2c,0x02, // BUILD_MAP 2
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x11,0x83,0x01, // LOAD_NAME '_mat'
+    0x62, // STORE_MAP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x11,0x82,0x64, // LOAD_NAME 'PALO'
+    0x62, // STORE_MAP
+    0x10,0x17, // LOAD_CONST_STRING 'mesa'
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x42,0xda,0x7e, // JUMP -166
+    0x23,0x1c, // LOAD_CONST_OBJ 28
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0x16,0x83,0x02, // STORE_NAME 'W'
+    0x16,0x83,0x03, // STORE_NAME 'H'
+    0x9e, // LOAD_CONST_SMALL_INT 30
+    0x16,0x83,0x04, // STORE_NAME 'MAR'
+    0x90, // LOAD_CONST_SMALL_INT 16
+    0x16,0x83,0x05, // STORE_NAME 'T'
+    0x22,0x81,0x38, // LOAD_CONST_SMALL_INT 184
+    0x16,0x83,0x06, // STORE_NAME 'VIEW_H'
+    0x11,0x82,0x46, // LOAD_NAME 'P'
+    0x13,0x3c, // LOAD_ATTR 'ANCHO'
+    0x11,0x83,0x05, // LOAD_NAME 'T'
+    0xf6, // BINARY_OP 31 __floordiv__
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x11,0x83,0x06, // LOAD_NAME 'VIEW_H'
+    0x11,0x83,0x05, // LOAD_NAME 'T'
+    0xf6, // BINARY_OP 31 __floordiv__
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x5a, // ROT_TWO
+    0x16,0x83,0x07, // STORE_NAME 'VW'
+    0x16,0x83,0x08, // STORE_NAME 'VH'
+    0x23,0x1d, // LOAD_CONST_OBJ 29
+    0x30,0x04, // UNPACK_SEQUENCE 4
+    0x16,0x83,0x09, // STORE_NAME 'CIELO_DIA'
+    0x16,0x83,0x0a, // STORE_NAME 'CIELO_NOCHE'
+    0x16,0x83,0x0b, // STORE_NAME 'FONDO_CUEVA'
+    0x16,0x83,0x0c, // STORE_NAME 'OSCURO'
+    0x22,0x84,0x58, // LOAD_CONST_SMALL_INT 600
+    0x16,0x83,0x0d, // STORE_NAME 'DIA_S'
+    0x23,0x1e, // LOAD_CONST_OBJ 30
+    0x16,0x83,0x0e, // STORE_NAME 'SALA'
+    0x11,0x83,0x0f, // LOAD_NAME 'bytearray'
+    0x11,0x83,0x02, // LOAD_NAME 'W'
+    0x11,0x83,0x03, // LOAD_NAME 'H'
+    0xf4, // BINARY_OP 29 __mul__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x16,0x81,0x0d, // STORE_NAME 'mundo'
+    0x11,0x83,0x0f, // LOAD_NAME 'bytearray'
+    0x11,0x83,0x02, // LOAD_NAME 'W'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x16,0x83,0x10, // STORE_NAME 'alto'
+    0x23,0x1f, // LOAD_CONST_OBJ 31
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0x16,0x83,0x11, // STORE_NAME 'PW'
+    0x16,0x83,0x12, // STORE_NAME 'PH'
+    0x23,0x20, // LOAD_CONST_OBJ 32
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0x16,0x83,0x13, // STORE_NAME 'GRAV'
+    0x16,0x83,0x14, // STORE_NAME 'MAX_CAIDA'
+    0x23,0x21, // LOAD_CONST_OBJ 33
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0x16,0x83,0x15, // STORE_NAME 'ANDAR'
+    0x16,0x83,0x16, // STORE_NAME 'SALTO'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x9e, // LOAD_CONST_SMALL_INT 30
+    0xf7, // BINARY_OP 32 __truediv__
+    0x16,0x83,0x17, // STORE_NAME 'DT'
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x16,0x83,0x18, // STORE_NAME 'ALCANCE'
+    0x32,0x00, // MAKE_FUNCTION 0
+    0x16,0x3f, // STORE_NAME 'g'
+    0x32,0x01, // MAKE_FUNCTION 1
+    0x16,0x40, // STORE_NAME 'sp'
+    0x32,0x02, // MAKE_FUNCTION 2
+    0x16,0x41, // STORE_NAME 'solido'
+    0x11,0x82,0x4a, // LOAD_NAME 'AIRE'
+    0x11,0x82,0x59, // LOAD_NAME 'AGUA'
+    0x11,0x82,0x60, // LOAD_NAME 'FLOR_R'
+    0x11,0x82,0x61, // LOAD_NAME 'FLOR_A'
+    0x11,0x82,0x62, // LOAD_NAME 'HIERBA_A'
+    0x11,0x82,0x63, // LOAD_NAME 'ANTORCHA'
+    0x11,0x82,0x50, // LOAD_NAME 'HOJAS'
+    0x11,0x82,0x4f, // LOAD_NAME 'TRONCO'
+    0x11,0x82,0x5f, // LOAD_NAME 'CACTUS'
+    0x2a,0x09, // BUILD_TUPLE 9
+    0x16,0x83,0x19, // STORE_NAME 'NO_SUELO'
+    0x32,0x03, // MAKE_FUNCTION 3
+    0x16,0x42, // STORE_NAME 'calc_alto'
+    0x2c,0x00, // BUILD_MAP 0
+    0x16,0x83,0x1a, // STORE_NAME 'SND'
+    0x32,0x04, // MAKE_FUNCTION 4
+    0x16,0x43, // STORE_NAME 'buscar_sonidos'
+    0x23,0x22, // LOAD_CONST_OBJ 34
+    0x2a,0x01, // BUILD_TUPLE 1
+    0x53, // LOAD_NULL
+    0x33,0x05, // MAKE_FUNCTION_DEFARGS 5
+    0x16,0x44, // STORE_NAME 'sonar'
+    0x23,0x23, // LOAD_CONST_OBJ 35
+    0x2a,0x01, // BUILD_TUPLE 1
+    0x53, // LOAD_NULL
+    0x33,0x06, // MAKE_FUNCTION_DEFARGS 6
+    0x16,0x4d, // STORE_NAME 'sonar_bloque'
+    0x32,0x07, // MAKE_FUNCTION 7
+    0x16,0x55, // STORE_NAME 'progreso'
+    0x32,0x08, // MAKE_FUNCTION 8
+    0x16,0x59, // STORE_NAME 'generar'
+    0x32,0x09, // MAKE_FUNCTION 9
+    0x16,0x61, // STORE_NAME 'arbol'
+    0x9b, // LOAD_CONST_SMALL_INT 27
+    0x16,0x83,0x1b, // STORE_NAME 'NHUECOS'
+    0x11,0x83,0x0f, // LOAD_NAME 'bytearray'
+    0x11,0x83,0x1b, // LOAD_NAME 'NHUECOS'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x16,0x83,0x1c, // STORE_NAME 'inv_id'
+    0x11,0x83,0x0f, // LOAD_NAME 'bytearray'
+    0x11,0x83,0x1b, // LOAD_NAME 'NHUECOS'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x16,0x83,0x1d, // STORE_NAME 'inv_n'
+    0x32,0x0a, // MAKE_FUNCTION 10
+    0x16,0x62, // STORE_NAME 'max_pila'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x2a,0x01, // BUILD_TUPLE 1
+    0x53, // LOAD_NULL
+    0x33,0x0b, // MAKE_FUNCTION_DEFARGS 11
+    0x16,0x63, // STORE_NAME 'dar'
+    0x32,0x0c, // MAKE_FUNCTION 12
+    0x16,0x64, // STORE_NAME 'cuantos'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x2a,0x01, // BUILD_TUPLE 1
+    0x53, // LOAD_NULL
+    0x33,0x0d, // MAKE_FUNCTION_DEFARGS 13
+    0x16,0x65, // STORE_NAME 'quitar'
+    0x2c,0x00, // BUILD_MAP 0
+    0x16,0x83,0x1e, // STORE_NAME 'SPR'
+    0x32,0x0e, // MAKE_FUNCTION 14
+    0x16,0x66, // STORE_NAME 'spr'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x2a,0x01, // BUILD_TUPLE 1
+    0x53, // LOAD_NULL
+    0x33,0x0f, // MAKE_FUNCTION_DEFARGS 15
+    0x16,0x69, // STORE_NAME 'icono'
+    0x54, // LOAD_BUILD_CLASS
+    0x32,0x10, // MAKE_FUNCTION 16
+    0x10,0x3d, // LOAD_CONST_STRING 'Juego'
+    0x34,0x02, // CALL_FUNCTION 2
+    0x16,0x3d, // STORE_NAME 'Juego'
+    0x32,0x11, // MAKE_FUNCTION 17
+    0x16,0x6c, // STORE_NAME 'medio'
+    0x32,0x12, // MAKE_FUNCTION 18
+    0x16,0x6f, // STORE_NAME 'mezcla'
+    0x10,0x3e, // LOAD_CONST_STRING 'mundos'
+    0x16,0x83,0x1f, // STORE_NAME 'CARPETA'
+    0x32,0x13, // MAKE_FUNCTION 19
+    0x16,0x70, // STORE_NAME 'guardar'
+    0x32,0x14, // MAKE_FUNCTION 20
+    0x16,0x81,0x01, // STORE_NAME 'cargar'
+    0x32,0x15, // MAKE_FUNCTION 21
+    0x16,0x81,0x06, // STORE_NAME 'lista_mundos'
+    0x32,0x16, // MAKE_FUNCTION 22
+    0x16,0x81,0x07, // STORE_NAME 'comprimir'
+    0x32,0x17, // MAKE_FUNCTION 23
+    0x16,0x81,0x08, // STORE_NAME 'descomprimir'
+    0x32,0x18, // MAKE_FUNCTION 24
+    0x16,0x81,0x09, // STORE_NAME 'publicar'
+    0x32,0x19, // MAKE_FUNCTION 25
+    0x16,0x81,0x0f, // STORE_NAME 'recibir_mundo'
+    0x52, // LOAD_CONST_TRUE
+    0x2a,0x01, // BUILD_TUPLE 1
+    0x53, // LOAD_NULL
+    0x33,0x1a, // MAKE_FUNCTION_DEFARGS 26
+    0x16,0x81,0x16, // STORE_NAME 'boton'
+    0x32,0x1b, // MAKE_FUNCTION 27
+    0x16,0x81,0x18, // STORE_NAME 'fondo_tierra'
+    0x10,0x0a, // LOAD_CONST_STRING ''
+    0x2a,0x01, // BUILD_TUPLE 1
+    0x53, // LOAD_NULL
+    0x33,0x1c, // MAKE_FUNCTION_DEFARGS 28
+    0x16,0x81,0x1a, // STORE_NAME 'menu'
+    0x32,0x1d, // MAKE_FUNCTION 29
+    0x16,0x81,0x1f, // STORE_NAME 'mensaje'
+    0x10,0x0a, // LOAD_CONST_STRING ''
+    0x2a,0x01, // BUILD_TUPLE 1
+    0x53, // LOAD_NULL
+    0x33,0x1e, // MAKE_FUNCTION_DEFARGS 30
+    0x16,0x81,0x20, // STORE_NAME 'preguntar'
+    0x32,0x1f, // MAKE_FUNCTION 31
+    0x16,0x81,0x26, // STORE_NAME 'nuevo_mundo'
+    0x32,0x20, // MAKE_FUNCTION 32
+    0x16,0x81,0x29, // STORE_NAME 'un_jugador'
+    0x32,0x21, // MAKE_FUNCTION 33
+    0x16,0x81,0x32, // STORE_NAME 'multijugador'
+    0x32,0x22, // MAKE_FUNCTION 34
+    0x16,0x81,0x46, // STORE_NAME 'jugar'
+    0x32,0x23, // MAKE_FUNCTION 35
+    0x16,0x81,0x4c, // STORE_NAME 'main'
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_g
+static const byte fun_data_mc2d_g[69] = {
+    0x2a,0x10, // prelude
+    0x3f,0x74,0x75, // names: g, x, y
+    0x80,0x7c,0x1f,0x23,0x2c, // code info
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xb0, // LOAD_FAST 0
+    0x57, // DUP_TOP
+    0x5b, // ROT_THREE
+    0xda, // BINARY_OP 3 __le__
+    0x46,0x06, // JUMP_IF_FALSE_OR_POP 6
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0xd7, // BINARY_OP 0 __lt__
+    0x42,0x42, // JUMP 2
+    0x5a, // ROT_TWO
+    0x59, // POP_TOP
+    0x44,0x5d, // POP_JUMP_IF_FALSE 29
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xb1, // LOAD_FAST 1
+    0x57, // DUP_TOP
+    0x5b, // ROT_THREE
+    0xda, // BINARY_OP 3 __le__
+    0x46,0x06, // JUMP_IF_FALSE_OR_POP 6
+    0x12,0x83,0x03, // LOAD_GLOBAL 'H'
+    0xd7, // BINARY_OP 0 __lt__
+    0x42,0x42, // JUMP 2
+    0x5a, // ROT_TWO
+    0x59, // POP_TOP
+    0x44,0x4c, // POP_JUMP_IF_FALSE 12
+    0x12,0x81,0x0d, // LOAD_GLOBAL 'mundo'
+    0xb0, // LOAD_FAST 0
+    0xb1, // LOAD_FAST 1
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x55, // LOAD_SUBSCR
+    0x63, // RETURN_VALUE
+    0xb1, // LOAD_FAST 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x12,0x82,0x58, // LOAD_GLOBAL 'LECHO'
+    0x63, // RETURN_VALUE
+    0x12,0x82,0x4a, // LOAD_GLOBAL 'AIRE'
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_g = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_g,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 69,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 6,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 2,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 63,
+        .line_info = fun_data_mc2d_g + 5,
+        .line_info_top = fun_data_mc2d_g + 10,
+        .opcodes = fun_data_mc2d_g + 10,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_g fun_data_mc2d_g[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_sp
+static const byte fun_data_mc2d_sp[23] = {
+    0x3b,0x0e, // prelude
+    0x40,0x74,0x75,0x83,0x20, // names: sp, x, y, b
+    0x80,0x82, // code info
+    0xb2, // LOAD_FAST 2
+    0x12,0x81,0x0d, // LOAD_GLOBAL 'mundo'
+    0xb0, // LOAD_FAST 0
+    0xb1, // LOAD_FAST 1
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x56, // STORE_SUBSCR
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_sp = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_sp,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 23,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 8,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 3,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 64,
+        .line_info = fun_data_mc2d_sp + 7,
+        .line_info_top = fun_data_mc2d_sp + 9,
+        .opcodes = fun_data_mc2d_sp + 9,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_sp fun_data_mc2d_sp[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_solido
+static const byte fun_data_mc2d_solido[14] = {
+    0x11,0x0a, // prelude
+    0x41,0x83,0x20, // names: solido, b
+    0x80,0x86, // code info
+    0xb0, // LOAD_FAST 0
+    0x12,0x82,0x78, // LOAD_GLOBAL 'NO_SOLIDO'
+    0xdd, // BINARY_OP 6 <in>
+    0xd3, // UNARY_OP 3 <not>
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_solido = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_solido,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 14,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 3,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 65,
+        .line_info = fun_data_mc2d_solido + 5,
+        .line_info_top = fun_data_mc2d_solido + 7,
+        .opcodes = fun_data_mc2d_solido + 7,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_solido fun_data_mc2d_solido[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_calc_alto
+static const byte fun_data_mc2d_calc_alto[51] = {
+    0x29,0x0e, // prelude
+    0x42,0x74, // names: calc_alto, x
+    0x80,0x8f,0x26,0x22,0x3a, // code info
+    0x12,0x83,0x03, // LOAD_GLOBAL 'H'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf3, // BINARY_OP 28 __sub__
+    0xc1, // STORE_FAST 1
+    0x42,0x44, // JUMP 4
+    0xb1, // LOAD_FAST 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe6, // BINARY_OP 15 __isub__
+    0xc1, // STORE_FAST 1
+    0xb1, // LOAD_FAST 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x51, // POP_JUMP_IF_FALSE 17
+    0x12,0x81,0x0d, // LOAD_GLOBAL 'mundo'
+    0xb0, // LOAD_FAST 0
+    0xb1, // LOAD_FAST 1
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x55, // LOAD_SUBSCR
+    0x12,0x83,0x19, // LOAD_GLOBAL 'NO_SUELO'
+    0xdd, // BINARY_OP 6 <in>
+    0x43,0x26, // POP_JUMP_IF_TRUE -26
+    0xb1, // LOAD_FAST 1
+    0x12,0x83,0x10, // LOAD_GLOBAL 'alto'
+    0xb0, // LOAD_FAST 0
+    0x56, // STORE_SUBSCR
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_calc_alto = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_calc_alto,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 51,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 6,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 66,
+        .line_info = fun_data_mc2d_calc_alto + 4,
+        .line_info_top = fun_data_mc2d_calc_alto + 9,
+        .opcodes = fun_data_mc2d_calc_alto + 9,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_calc_alto fun_data_mc2d_calc_alto[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_buscar_sonidos
+static const byte fun_data_mc2d_buscar_sonidos[150] = {
+    0x84,0x12,0x20, // prelude
+    0x43, // names: buscar_sonidos
+    0x80,0x9a,0x2c,0x22,0x22,0x2c,0x25,0x22,0x29,0x59,0x24,0x2c,0x2c,0x2e,0x4f, // code info
+    0x12,0x83,0x21, // LOAD_GLOBAL 'hasattr'
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x10,0x44, // LOAD_CONST_STRING 'sonar'
+    0x34,0x02, // CALL_FUNCTION 2
+    0x43,0x42, // POP_JUMP_IF_TRUE 2
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0x48,0x66, // SETUP_EXCEPT 102
+    0x12,0x05, // LOAD_GLOBAL 'os'
+    0x14,0x45, // LOAD_METHOD 'listdir'
+    0x10,0x46, // LOAD_CONST_STRING '/scratch'
+    0x36,0x01, // CALL_METHOD 1
+    0x5f, // GET_ITER_STACK
+    0x4b,0x59, // FOR_ITER 89
+    0xc0, // STORE_FAST 0
+    0x23,0x24, // LOAD_CONST_OBJ 36
+    0xb0, // LOAD_FAST 0
+    0xf8, // BINARY_OP 33 __mod__
+    0xc1, // STORE_FAST 1
+    0x48,0x1a, // SETUP_EXCEPT 26
+    0x12,0x83,0x22, // LOAD_GLOBAL 'open'
+    0xb1, // LOAD_FAST 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0x47,0x0e, // SETUP_WITH 14
+    0xc2, // STORE_FAST 2
+    0x12,0x04, // LOAD_GLOBAL 'json'
+    0x14,0x47, // LOAD_METHOD 'loads'
+    0xb2, // LOAD_FAST 2
+    0x14,0x48, // LOAD_METHOD 'read'
+    0x36,0x00, // CALL_METHOD 0
+    0x36,0x01, // CALL_METHOD 1
+    0xc3, // STORE_FAST 3
+    0x51, // LOAD_CONST_NONE
+    0x5c, // WITH_CLEANUP
+    0x5d, // END_FINALLY
+    0x4a,0x0c, // POP_EXCEPT_JUMP 12
+    0x57, // DUP_TOP
+    0x12,0x83,0x23, // LOAD_GLOBAL 'OSError'
+    0xdf, // BINARY_OP 8 <exception match>
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x59, // POP_TOP
+    0x40,0x12,0x01, // UNWIND_JUMP -46
+    0x5d, // END_FINALLY
+    0x10,0x49, // LOAD_CONST_STRING 'grass1'
+    0xb3, // LOAD_FAST 3
+    0xdd, // BINARY_OP 6 <in>
+    0x43,0x46, // POP_JUMP_IF_TRUE 6
+    0x10,0x4a, // LOAD_CONST_STRING 'grass1.wav'
+    0xb3, // LOAD_FAST 3
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x5c, // POP_JUMP_IF_FALSE 28
+    0xb3, // LOAD_FAST 3
+    0x14,0x4b, // LOAD_METHOD 'items'
+    0x36,0x00, // CALL_METHOD 0
+    0x5f, // GET_ITER_STACK
+    0x4b,0x12, // FOR_ITER 18
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc4, // STORE_FAST 4
+    0xc5, // STORE_FAST 5
+    0x23,0x25, // LOAD_CONST_OBJ 37
+    0xb0, // LOAD_FAST 0
+    0xb5, // LOAD_FAST 5
+    0x2a,0x02, // BUILD_TUPLE 2
+    0xf8, // BINARY_OP 33 __mod__
+    0x12,0x83,0x1a, // LOAD_GLOBAL 'SND'
+    0xb4, // LOAD_FAST 4
+    0x56, // STORE_SUBSCR
+    0x42,0x2c, // JUMP -20
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0x42,0xa5,0x7f, // JUMP -91
+    0x4a,0x0b, // POP_EXCEPT_JUMP 11
+    0x57, // DUP_TOP
+    0x12,0x83,0x23, // LOAD_GLOBAL 'OSError'
+    0xdf, // BINARY_OP 8 <exception match>
+    0x44,0x43, // POP_JUMP_IF_FALSE 3
+    0x59, // POP_TOP
+    0x4a,0x01, // POP_EXCEPT_JUMP 1
+    0x5d, // END_FINALLY
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_buscar_sonidos = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_buscar_sonidos,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 150,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 17,
+        .n_exc_stack = 3,
+        .scope_flags = 0,
+        .n_pos_args = 0,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 67,
+        .line_info = fun_data_mc2d_buscar_sonidos + 4,
+        .line_info_top = fun_data_mc2d_buscar_sonidos + 19,
+        .opcodes = fun_data_mc2d_buscar_sonidos + 19,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_buscar_sonidos fun_data_mc2d_buscar_sonidos[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_sonar
+static const byte fun_data_mc2d_sonar[35] = {
+    0xb2,0x01,0x10, // prelude
+    0x44,0x73,0x83,0x24, // names: sonar, nombre, vol
+    0x80,0xad,0x29,0x23, // code info
+    0x12,0x83,0x1a, // LOAD_GLOBAL 'SND'
+    0x14,0x4c, // LOAD_METHOD 'get'
+    0xb0, // LOAD_FAST 0
+    0x36,0x01, // CALL_METHOD 1
+    0xc2, // STORE_FAST 2
+    0xb2, // LOAD_FAST 2
+    0x44,0x4a, // POP_JUMP_IF_FALSE 10
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x44, // LOAD_METHOD 'sonar'
+    0xb2, // LOAD_FAST 2
+    0xb1, // LOAD_FAST 1
+    0x36,0x02, // CALL_METHOD 2
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_sonar = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_sonar,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 35,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 7,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 2,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 1,
+        .qstr_block_name_idx = 68,
+        .line_info = fun_data_mc2d_sonar + 7,
+        .line_info_top = fun_data_mc2d_sonar + 11,
+        .opcodes = fun_data_mc2d_sonar + 11,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_sonar fun_data_mc2d_sonar[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_sonar_bloque
+static const byte fun_data_mc2d_sonar_bloque[114] = {
+    0xda,0x01,0x16, // prelude
+    0x4d,0x83,0x20,0x83,0x24, // names: sonar_bloque, b, vol
+    0x80,0xb3,0x1f,0x23,0x36,0x36, // code info
+    0xb0, // LOAD_FAST 0
+    0x12,0x82,0x4b, // LOAD_GLOBAL 'HIERBA'
+    0x12,0x82,0x4c, // LOAD_GLOBAL 'TIERRA'
+    0x12,0x82,0x50, // LOAD_GLOBAL 'HOJAS'
+    0x12,0x82,0x62, // LOAD_GLOBAL 'HIERBA_A'
+    0x12,0x82,0x60, // LOAD_GLOBAL 'FLOR_R'
+    0x12,0x82,0x61, // LOAD_GLOBAL 'FLOR_A'
+    0x12,0x82,0x5e, // LOAD_GLOBAL 'NIEVE'
+    0x12,0x82,0x5f, // LOAD_GLOBAL 'CACTUS'
+    0x2a,0x08, // BUILD_TUPLE 8
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x10,0x4e, // LOAD_CONST_STRING 'grass'
+    0x42,0x6b, // JUMP 43
+    0xb0, // LOAD_FAST 0
+    0x12,0x82,0x52, // LOAD_GLOBAL 'ARENA'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x10,0x4f, // LOAD_CONST_STRING 'sand'
+    0x42,0x60, // JUMP 32
+    0xb0, // LOAD_FAST 0
+    0x12,0x82,0x53, // LOAD_GLOBAL 'GRAVA'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x10,0x50, // LOAD_CONST_STRING 'gravel'
+    0x42,0x55, // JUMP 21
+    0xb0, // LOAD_FAST 0
+    0x12,0x82,0x4f, // LOAD_GLOBAL 'TRONCO'
+    0x12,0x82,0x51, // LOAD_GLOBAL 'TABLONES'
+    0x12,0x82,0x5a, // LOAD_GLOBAL 'MESA'
+    0x2a,0x03, // BUILD_TUPLE 3
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x10,0x51, // LOAD_CONST_STRING 'wood'
+    0x42,0x42, // JUMP 2
+    0x10,0x52, // LOAD_CONST_STRING 'stone'
+    0xc2, // STORE_FAST 2
+    0x12,0x44, // LOAD_GLOBAL 'sonar'
+    0x10,0x53, // LOAD_CONST_STRING '%s%d'
+    0xb2, // LOAD_FAST 2
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x54, // LOAD_METHOD 'randint'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x36,0x02, // CALL_METHOD 2
+    0x2a,0x02, // BUILD_TUPLE 2
+    0xf8, // BINARY_OP 33 __mod__
+    0xb1, // LOAD_FAST 1
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_sonar_bloque = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_sonar_bloque,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 114,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 12,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 2,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 1,
+        .qstr_block_name_idx = 77,
+        .line_info = fun_data_mc2d_sonar_bloque + 8,
+        .line_info_top = fun_data_mc2d_sonar_bloque + 14,
+        .opcodes = fun_data_mc2d_sonar_bloque + 14,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_sonar_bloque fun_data_mc2d_sonar_bloque[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_progreso
+static const byte fun_data_mc2d_progreso[111] = {
+    0x42,0x14, // prelude
+    0x55,0x57,0x83,0x25, // names: progreso, texto, frac
+    0x80,0xbb,0x36,0x3d,0x33,0x33, // code info
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x56, // LOAD_METHOD 'rect'
+    0x22,0x3c, // LOAD_CONST_SMALL_INT 60
+    0x22,0x81,0x0c, // LOAD_CONST_SMALL_INT 140
+    0x22,0x81,0x48, // LOAD_CONST_SMALL_INT 200
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0x22,0x81,0xc0,0xe8,0x40, // LOAD_CONST_SMALL_INT 3159104
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x56, // LOAD_METHOD 'rect'
+    0x22,0x3c, // LOAD_CONST_SMALL_INT 60
+    0x22,0x81,0x0c, // LOAD_CONST_SMALL_INT 140
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0x22,0x81,0x48, // LOAD_CONST_SMALL_INT 200
+    0xb1, // LOAD_FAST 1
+    0xf4, // BINARY_OP 29 __mul__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0x22,0x82,0xf2,0xfe,0x3a, // LOAD_CONST_SMALL_INT 6078266
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x56, // LOAD_METHOD 'rect'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x22,0x81,0x1c, // LOAD_CONST_SMALL_INT 156
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x13,0x3c, // LOAD_ATTR 'ANCHO'
+    0x8c, // LOAD_CONST_SMALL_INT 12
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x57, // LOAD_METHOD 'texto'
+    0xb0, // LOAD_FAST 0
+    0x22,0x3c, // LOAD_CONST_SMALL_INT 60
+    0x22,0x81,0x1c, // LOAD_CONST_SMALL_INT 156
+    0x22,0x85,0x82,0xc1,0x20, // LOAD_CONST_SMALL_INT 10526880
+    0x36,0x04, // CALL_METHOD 4
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x58, // LOAD_METHOD 'mostrar'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_progreso = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_progreso,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 111,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 9,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 2,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 85,
+        .line_info = fun_data_mc2d_progreso + 6,
+        .line_info_top = fun_data_mc2d_progreso + 12,
+        .opcodes = fun_data_mc2d_progreso + 12,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_progreso fun_data_mc2d_progreso[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_generar
+static const byte fun_data_mc2d_generar[1403] = {
+    0xc9,0x20,0xc4,0x02, // prelude
+    0x59,0x83,0x27, // names: generar, semilla
+    0x80,0xc3,0x28,0x2c,0x51,0x29,0x22,0x22,0x2a,0x29,0x30,0x2d,0x2b,0x3a,0x3e,0x29,0x29,0x23,0x29,0x32,0x27,0x24,0x37,0x29,0x29,0x27,0x30,0x25,0x1f,0x48,0x24,0x36,0x28,0x2b,0x2c,0x2c,0x1f,0x22,0x29,0x2b,0x35,0x38,0x2f,0x27,0x27,0x37,0x1f,0x3c,0x3b,0x1f,0x23,0x30,0x2e,0x2e,0x1f,0x23,0x29,0x39,0x38,0x3a,0x27,0x35,0x28,0x31,0x2c,0x3b,0x1f,0x33,0x29,0x28,0x2f,0x22,0x23,0x26,0x2d,0x33,0x2e,0x24,0x23,0x1f,0x25,0x2d,0x2b,0x3b,0x24,0x23,0x33,0x28,0x27,0x32,0x27,0x3d,0x2e,0x28,0x2f, // code info
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x5a, // LOAD_METHOD 'seed'
+    0xb0, // LOAD_FAST 0
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x03, // LOAD_GLOBAL 'H'
+    0xf4, // BINARY_OP 29 __mul__
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0x4c, // JUMP 12
+    0x57, // DUP_TOP
+    0xc1, // STORE_FAST 1
+    0x12,0x82,0x4a, // LOAD_GLOBAL 'AIRE'
+    0x12,0x81,0x0d, // LOAD_GLOBAL 'mundo'
+    0xb1, // LOAD_FAST 1
+    0x56, // STORE_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x2f, // POP_JUMP_IF_TRUE -17
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x12,0x83,0x0f, // LOAD_GLOBAL 'bytearray'
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0x34,0x01, // CALL_FUNCTION 1
+    0xc2, // STORE_FAST 2
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xc3, // STORE_FAST 3
+    0x42,0x74, // JUMP 52
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x54, // LOAD_METHOD 'randint'
+    0x9e, // LOAD_CONST_SMALL_INT 30
+    0x22,0x3c, // LOAD_CONST_SMALL_INT 60
+    0x36,0x02, // CALL_METHOD 2
+    0xc4, // STORE_FAST 4
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x5b, // LOAD_METHOD 'choice'
+    0x23,0x26, // LOAD_CONST_OBJ 38
+    0x36,0x01, // CALL_METHOD 1
+    0xc5, // STORE_FAST 5
+    0x12,0x83,0x28, // LOAD_GLOBAL 'min'
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0xb3, // LOAD_FAST 3
+    0xb4, // LOAD_FAST 4
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x02, // CALL_FUNCTION 2
+    0xb3, // LOAD_FAST 3
+    0x42,0x48, // JUMP 8
+    0x57, // DUP_TOP
+    0xc1, // STORE_FAST 1
+    0xb5, // LOAD_FAST 5
+    0xb2, // LOAD_FAST 2
+    0xb1, // LOAD_FAST 1
+    0x56, // STORE_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x33, // POP_JUMP_IF_TRUE -13
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0xb3, // LOAD_FAST 3
+    0xb4, // LOAD_FAST 4
+    0xe5, // BINARY_OP 14 __iadd__
+    0xc3, // STORE_FAST 3
+    0xb3, // LOAD_FAST 3
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x05, // POP_JUMP_IF_TRUE -59
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x5c, // LOAD_METHOD 'uniform'
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0x94, // LOAD_CONST_SMALL_INT 20
+    0x36,0x02, // CALL_METHOD 2
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x5c, // LOAD_METHOD 'uniform'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x36,0x02, // CALL_METHOD 2
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x5c, // LOAD_METHOD 'uniform'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0x36,0x02, // CALL_METHOD 2
+    0x2a,0x03, // BUILD_TUPLE 3
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x5c, // LOAD_METHOD 'uniform'
+    0x99, // LOAD_CONST_SMALL_INT 25
+    0x22,0x32, // LOAD_CONST_SMALL_INT 50
+    0x36,0x02, // CALL_METHOD 2
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x5c, // LOAD_METHOD 'uniform'
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x87, // LOAD_CONST_SMALL_INT 7
+    0x36,0x02, // CALL_METHOD 2
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x5c, // LOAD_METHOD 'uniform'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0x36,0x02, // CALL_METHOD 2
+    0x2a,0x03, // BUILD_TUPLE 3
+    0x2b,0x02, // BUILD_LIST 2
+    0xc6, // STORE_FAST 6
+    0x12,0x55, // LOAD_GLOBAL 'progreso'
+    0x23,0x27, // LOAD_CONST_OBJ 39
+    0x23,0x28, // LOAD_CONST_OBJ 40
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0xf5,0x81, // JUMP 245
+    0x57, // DUP_TOP
+    0xc3, // STORE_FAST 3
+    0x23,0x29, // LOAD_CONST_OBJ 41
+    0xc7, // STORE_FAST 7
+    0xb6, // LOAD_FAST 6
+    0x5f, // GET_ITER_STACK
+    0x4b,0x17, // FOR_ITER 23
+    0x30,0x03, // UNPACK_SEQUENCE 3
+    0xc8, // STORE_FAST 8
+    0xc9, // STORE_FAST 9
+    0xca, // STORE_FAST 10
+    0xb7, // LOAD_FAST 7
+    0x12,0x02, // LOAD_GLOBAL 'math'
+    0x14,0x5d, // LOAD_METHOD 'sin'
+    0xb3, // LOAD_FAST 3
+    0xb8, // LOAD_FAST 8
+    0xf7, // BINARY_OP 32 __truediv__
+    0xba, // LOAD_FAST 10
+    0xf2, // BINARY_OP 27 __add__
+    0x36,0x01, // CALL_METHOD 1
+    0xb9, // LOAD_FAST 9
+    0xf4, // BINARY_OP 29 __mul__
+    0xe5, // BINARY_OP 14 __iadd__
+    0xc7, // STORE_FAST 7
+    0x42,0x27, // JUMP -25
+    0xb2, // LOAD_FAST 2
+    0xb3, // LOAD_FAST 3
+    0x55, // LOAD_SUBSCR
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0xb7, // LOAD_FAST 7
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0xe5, // BINARY_OP 14 __iadd__
+    0xc7, // STORE_FAST 7
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x29, // LOAD_GLOBAL 'max'
+    0x92, // LOAD_CONST_SMALL_INT 18
+    0x12,0x83,0x28, // LOAD_GLOBAL 'min'
+    0x12,0x83,0x03, // LOAD_GLOBAL 'H'
+    0x8a, // LOAD_CONST_SMALL_INT 10
+    0xf3, // BINARY_OP 28 __sub__
+    0xb7, // LOAD_FAST 7
+    0x34,0x02, // CALL_FUNCTION 2
+    0x34,0x02, // CALL_FUNCTION 2
+    0x34,0x01, // CALL_FUNCTION 1
+    0xc7, // STORE_FAST 7
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x54, // LOAD_METHOD 'randint'
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x36,0x02, // CALL_METHOD 2
+    0xcb, // STORE_FAST 11
+    0xb7, // LOAD_FAST 7
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x42,0xd7,0x80, // JUMP 87
+    0x57, // DUP_TOP
+    0xcc, // STORE_FAST 12
+    0xbc, // LOAD_FAST 12
+    0xb7, // LOAD_FAST 7
+    0xbb, // LOAD_FAST 11
+    0xf3, // BINARY_OP 28 __sub__
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x7c, // POP_JUMP_IF_FALSE 60
+    0xb2, // LOAD_FAST 2
+    0xb3, // LOAD_FAST 3
+    0x55, // LOAD_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x45, // POP_JUMP_IF_FALSE 5
+    0x12,0x82,0x52, // LOAD_GLOBAL 'ARENA'
+    0x42,0x43, // JUMP 3
+    0x12,0x82,0x4c, // LOAD_GLOBAL 'TIERRA'
+    0xc5, // STORE_FAST 5
+    0xbc, // LOAD_FAST 12
+    0xb7, // LOAD_FAST 7
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x65, // POP_JUMP_IF_FALSE 37
+    0xb2, // LOAD_FAST 2
+    0xb3, // LOAD_FAST 3
+    0x55, // LOAD_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xd9, // BINARY_OP 2 __eq__
+    0x43,0x49, // POP_JUMP_IF_TRUE 9
+    0xb7, // LOAD_FAST 7
+    0x12,0x83,0x04, // LOAD_GLOBAL 'MAR'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xda, // BINARY_OP 3 __le__
+    0x44,0x45, // POP_JUMP_IF_FALSE 5
+    0x12,0x82,0x52, // LOAD_GLOBAL 'ARENA'
+    0x42,0x4f, // JUMP 15
+    0xb2, // LOAD_FAST 2
+    0xb3, // LOAD_FAST 3
+    0x55, // LOAD_SUBSCR
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x45, // POP_JUMP_IF_FALSE 5
+    0x12,0x82,0x5e, // LOAD_GLOBAL 'NIEVE'
+    0x42,0x43, // JUMP 3
+    0x12,0x82,0x4b, // LOAD_GLOBAL 'HIERBA'
+    0xc5, // STORE_FAST 5
+    0x42,0x44, // JUMP 4
+    0x12,0x82,0x4d, // LOAD_GLOBAL 'PIEDRA'
+    0xc5, // STORE_FAST 5
+    0xb5, // LOAD_FAST 5
+    0x12,0x81,0x0d, // LOAD_GLOBAL 'mundo'
+    0xb3, // LOAD_FAST 3
+    0xbc, // LOAD_FAST 12
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x56, // STORE_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0xa3,0x7f, // POP_JUMP_IF_TRUE -93
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x12,0x82,0x58, // LOAD_GLOBAL 'LECHO'
+    0x12,0x81,0x0d, // LOAD_GLOBAL 'mundo'
+    0xb3, // LOAD_FAST 3
+    0x56, // STORE_SUBSCR
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x03, // LOAD_METHOD 'random'
+    0x36,0x00, // CALL_METHOD 0
+    0x23,0x23, // LOAD_CONST_OBJ 35
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x4c, // POP_JUMP_IF_FALSE 12
+    0x12,0x82,0x58, // LOAD_GLOBAL 'LECHO'
+    0x12,0x81,0x0d, // LOAD_GLOBAL 'mundo'
+    0xb3, // LOAD_FAST 3
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0xf2, // BINARY_OP 27 __add__
+    0x56, // STORE_SUBSCR
+    0x12,0x83,0x04, // LOAD_GLOBAL 'MAR'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb7, // LOAD_FAST 7
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x42,0x52, // JUMP 18
+    0x57, // DUP_TOP
+    0xcc, // STORE_FAST 12
+    0x12,0x82,0x59, // LOAD_GLOBAL 'AGUA'
+    0x12,0x81,0x0d, // LOAD_GLOBAL 'mundo'
+    0xb3, // LOAD_FAST 3
+    0xbc, // LOAD_FAST 12
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x56, // STORE_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x29, // POP_JUMP_IF_TRUE -23
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x85,0x7e, // POP_JUMP_IF_TRUE -251
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x12,0x55, // LOAD_GLOBAL 'progreso'
+    0x23,0x2a, // LOAD_CONST_OBJ 42
+    0x23,0x2b, // LOAD_CONST_OBJ 43
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0x92, // LOAD_CONST_SMALL_INT 18
+    0xf6, // BINARY_OP 31 __floordiv__
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0xa1,0x82, // JUMP 289
+    0x57, // DUP_TOP
+    0xcd, // STORE_FAST 13
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x5c, // LOAD_METHOD 'uniform'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0x36,0x02, // CALL_METHOD 2
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x5c, // LOAD_METHOD 'uniform'
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0x9e, // LOAD_CONST_SMALL_INT 30
+    0x36,0x02, // CALL_METHOD 2
+    0x5a, // ROT_TWO
+    0xce, // STORE_FAST 14
+    0xcf, // STORE_FAST 15
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x5c, // LOAD_METHOD 'uniform'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x23,0x2c, // LOAD_CONST_OBJ 44
+    0x36,0x02, // CALL_METHOD 2
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x5c, // LOAD_METHOD 'uniform'
+    0x23,0x2d, // LOAD_CONST_OBJ 45
+    0x23,0x2e, // LOAD_CONST_OBJ 46
+    0x36,0x02, // CALL_METHOD 2
+    0x5a, // ROT_TWO
+    0x26,0x10, // STORE_FAST_N 16
+    0x26,0x11, // STORE_FAST_N 17
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x54, // LOAD_METHOD 'randint'
+    0x99, // LOAD_CONST_SMALL_INT 25
+    0x22,0x3c, // LOAD_CONST_SMALL_INT 60
+    0x36,0x02, // CALL_METHOD 2
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0xdb,0x81, // JUMP 219
+    0x57, // DUP_TOP
+    0xcd, // STORE_FAST 13
+    0x7e, // LOAD_CONST_SMALL_INT -2
+    0x42,0x92,0x81, // JUMP 146
+    0x57, // DUP_TOP
+    0x26,0x12, // STORE_FAST_N 18
+    0x7e, // LOAD_CONST_SMALL_INT -2
+    0x42,0x82,0x81, // JUMP 130
+    0x57, // DUP_TOP
+    0x26,0x13, // STORE_FAST_N 19
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xbe, // LOAD_FAST 14
+    0x24,0x12, // LOAD_FAST_N 18
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xbf, // LOAD_FAST 15
+    0x24,0x13, // LOAD_FAST_N 19
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x5a, // ROT_TWO
+    0x26,0x14, // STORE_FAST_N 20
+    0x26,0x15, // STORE_FAST_N 21
+    0x24,0x12, // LOAD_FAST_N 18
+    0x24,0x12, // LOAD_FAST_N 18
+    0xf4, // BINARY_OP 29 __mul__
+    0x24,0x13, // LOAD_FAST_N 19
+    0x24,0x13, // LOAD_FAST_N 19
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x24,0x11, // LOAD_FAST_N 17
+    0x24,0x11, // LOAD_FAST_N 17
+    0xf4, // BINARY_OP 29 __mul__
+    0x23,0x2f, // LOAD_CONST_OBJ 47
+    0xf4, // BINARY_OP 29 __mul__
+    0xda, // BINARY_OP 3 __le__
+    0x44,0xcf,0x80, // POP_JUMP_IF_FALSE 79
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x24,0x14, // LOAD_FAST_N 20
+    0x57, // DUP_TOP
+    0x5b, // ROT_THREE
+    0xda, // BINARY_OP 3 __le__
+    0x46,0x06, // JUMP_IF_FALSE_OR_POP 6
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0xd7, // BINARY_OP 0 __lt__
+    0x42,0x42, // JUMP 2
+    0x5a, // ROT_TWO
+    0x59, // POP_TOP
+    0x44,0x7d, // POP_JUMP_IF_FALSE 61
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x24,0x15, // LOAD_FAST_N 21
+    0x57, // DUP_TOP
+    0x5b, // ROT_THREE
+    0xda, // BINARY_OP 3 __le__
+    0x46,0x06, // JUMP_IF_FALSE_OR_POP 6
+    0x12,0x83,0x03, // LOAD_GLOBAL 'H'
+    0xd7, // BINARY_OP 0 __lt__
+    0x42,0x42, // JUMP 2
+    0x5a, // ROT_TWO
+    0x59, // POP_TOP
+    0x44,0x6b, // POP_JUMP_IF_FALSE 43
+    0x12,0x81,0x0d, // LOAD_GLOBAL 'mundo'
+    0x24,0x14, // LOAD_FAST_N 20
+    0x24,0x15, // LOAD_FAST_N 21
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x55, // LOAD_SUBSCR
+    0x12,0x82,0x4d, // LOAD_GLOBAL 'PIEDRA'
+    0x12,0x82,0x4c, // LOAD_GLOBAL 'TIERRA'
+    0x12,0x82,0x53, // LOAD_GLOBAL 'GRAVA'
+    0x2a,0x03, // BUILD_TUPLE 3
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x50, // POP_JUMP_IF_FALSE 16
+    0x12,0x82,0x4a, // LOAD_GLOBAL 'AIRE'
+    0x12,0x81,0x0d, // LOAD_GLOBAL 'mundo'
+    0x24,0x14, // LOAD_FAST_N 20
+    0x24,0x15, // LOAD_FAST_N 21
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x56, // STORE_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x57, // DUP_TOP
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0xf8,0x7e, // POP_JUMP_IF_TRUE -136
+    0x59, // POP_TOP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x57, // DUP_TOP
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0xe8,0x7e, // POP_JUMP_IF_TRUE -152
+    0x59, // POP_TOP
+    0x24,0x10, // LOAD_FAST_N 16
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x5c, // LOAD_METHOD 'uniform'
+    0x23,0x30, // LOAD_CONST_OBJ 48
+    0xd1, // UNARY_OP 1 __neg__
+    0x23,0x30, // LOAD_CONST_OBJ 48
+    0x36,0x02, // CALL_METHOD 2
+    0xe5, // BINARY_OP 14 __iadd__
+    0x26,0x10, // STORE_FAST_N 16
+    0xbe, // LOAD_FAST 14
+    0x12,0x02, // LOAD_GLOBAL 'math'
+    0x14,0x5e, // LOAD_METHOD 'cos'
+    0x24,0x10, // LOAD_FAST_N 16
+    0x36,0x01, // CALL_METHOD 1
+    0x23,0x31, // LOAD_CONST_OBJ 49
+    0xf4, // BINARY_OP 29 __mul__
+    0xe5, // BINARY_OP 14 __iadd__
+    0xce, // STORE_FAST 14
+    0xbf, // LOAD_FAST 15
+    0x12,0x02, // LOAD_GLOBAL 'math'
+    0x14,0x5d, // LOAD_METHOD 'sin'
+    0x24,0x10, // LOAD_FAST_N 16
+    0x36,0x01, // CALL_METHOD 1
+    0x23,0x32, // LOAD_CONST_OBJ 50
+    0xf4, // BINARY_OP 29 __mul__
+    0xe5, // BINARY_OP 14 __iadd__
+    0xcf, // STORE_FAST 15
+    0x12,0x83,0x29, // LOAD_GLOBAL 'max'
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x12,0x83,0x28, // LOAD_GLOBAL 'min'
+    0xa8, // LOAD_CONST_SMALL_INT 40
+    0xbf, // LOAD_FAST 15
+    0x34,0x02, // CALL_FUNCTION 2
+    0x34,0x02, // CALL_FUNCTION 2
+    0xcf, // STORE_FAST 15
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x9f,0x7e, // POP_JUMP_IF_TRUE -225
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0xd9,0x7d, // POP_JUMP_IF_TRUE -295
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x12,0x55, // LOAD_GLOBAL 'progreso'
+    0x23,0x33, // LOAD_CONST_OBJ 51
+    0x23,0x34, // LOAD_CONST_OBJ 52
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0x12,0x82,0x54, // LOAD_GLOBAL 'CARBON_M'
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0xf6, // BINARY_OP 31 __floordiv__
+    0x22,0x30, // LOAD_CONST_SMALL_INT 48
+    0x85, // LOAD_CONST_SMALL_INT 5
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x12,0x82,0x55, // LOAD_GLOBAL 'HIERRO_M'
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0x85, // LOAD_CONST_SMALL_INT 5
+    0xf6, // BINARY_OP 31 __floordiv__
+    0xa0, // LOAD_CONST_SMALL_INT 32
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x12,0x82,0x56, // LOAD_GLOBAL 'ORO_M'
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0x8c, // LOAD_CONST_SMALL_INT 12
+    0xf6, // BINARY_OP 31 __floordiv__
+    0x92, // LOAD_CONST_SMALL_INT 18
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x12,0x82,0x57, // LOAD_GLOBAL 'DIAMANTE_M'
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0x94, // LOAD_CONST_SMALL_INT 20
+    0xf6, // BINARY_OP 31 __floordiv__
+    0x8b, // LOAD_CONST_SMALL_INT 11
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x12,0x82,0x53, // LOAD_GLOBAL 'GRAVA'
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0xf6, // BINARY_OP 31 __floordiv__
+    0xa8, // LOAD_CONST_SMALL_INT 40
+    0x85, // LOAD_CONST_SMALL_INT 5
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x2a,0x05, // BUILD_TUPLE 5
+    0x5f, // GET_ITER_STACK
+    0x4b,0x96,0x01, // FOR_ITER 150
+    0x30,0x04, // UNPACK_SEQUENCE 4
+    0xc5, // STORE_FAST 5
+    0xc4, // STORE_FAST 4
+    0x26,0x16, // STORE_FAST_N 22
+    0x26,0x17, // STORE_FAST_N 23
+    0xb4, // LOAD_FAST 4
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0xfe,0x80, // JUMP 126
+    0x57, // DUP_TOP
+    0xcd, // STORE_FAST 13
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x5f, // LOAD_METHOD 'randrange'
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0x36,0x01, // CALL_METHOD 1
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x54, // LOAD_METHOD 'randint'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x24,0x16, // LOAD_FAST_N 22
+    0x36,0x02, // CALL_METHOD 2
+    0x5a, // ROT_TWO
+    0xc3, // STORE_FAST 3
+    0xcc, // STORE_FAST 12
+    0x24,0x17, // LOAD_FAST_N 23
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0xd7,0x80, // JUMP 87
+    0x57, // DUP_TOP
+    0xcd, // STORE_FAST 13
+    0x12,0x81,0x0d, // LOAD_GLOBAL 'mundo'
+    0xb3, // LOAD_FAST 3
+    0xbc, // LOAD_FAST 12
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x55, // LOAD_SUBSCR
+    0x12,0x82,0x4d, // LOAD_GLOBAL 'PIEDRA'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x4c, // POP_JUMP_IF_FALSE 12
+    0xb5, // LOAD_FAST 5
+    0x12,0x81,0x0d, // LOAD_GLOBAL 'mundo'
+    0xb3, // LOAD_FAST 3
+    0xbc, // LOAD_FAST 12
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x56, // STORE_SUBSCR
+    0x12,0x83,0x29, // LOAD_GLOBAL 'max'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x12,0x83,0x28, // LOAD_GLOBAL 'min'
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf3, // BINARY_OP 28 __sub__
+    0xb3, // LOAD_FAST 3
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x54, // LOAD_METHOD 'randint'
+    0x7f, // LOAD_CONST_SMALL_INT -1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x36,0x02, // CALL_METHOD 2
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x02, // CALL_FUNCTION 2
+    0x34,0x02, // CALL_FUNCTION 2
+    0xc3, // STORE_FAST 3
+    0x12,0x83,0x29, // LOAD_GLOBAL 'max'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x12,0x83,0x28, // LOAD_GLOBAL 'min'
+    0x12,0x83,0x03, // LOAD_GLOBAL 'H'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf3, // BINARY_OP 28 __sub__
+    0xbc, // LOAD_FAST 12
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x54, // LOAD_METHOD 'randint'
+    0x7f, // LOAD_CONST_SMALL_INT -1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x36,0x02, // CALL_METHOD 2
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x02, // CALL_FUNCTION 2
+    0x34,0x02, // CALL_FUNCTION 2
+    0xcc, // STORE_FAST 12
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0xa3,0x7f, // POP_JUMP_IF_TRUE -93
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0xfc,0x7e, // POP_JUMP_IF_TRUE -132
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x42,0xe7,0x7e, // JUMP -153
+    0x12,0x55, // LOAD_GLOBAL 'progreso'
+    0x23,0x35, // LOAD_CONST_OBJ 53
+    0x23,0x36, // LOAD_CONST_OBJ 54
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0x4a, // JUMP 10
+    0x57, // DUP_TOP
+    0xc3, // STORE_FAST 3
+    0x12,0x42, // LOAD_GLOBAL 'calc_alto'
+    0xb3, // LOAD_FAST 3
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x31, // POP_JUMP_IF_TRUE -15
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0xc3, // STORE_FAST 3
+    0x42,0xf5,0x81, // JUMP 245
+    0x12,0x83,0x10, // LOAD_GLOBAL 'alto'
+    0xb3, // LOAD_FAST 3
+    0x55, // LOAD_SUBSCR
+    0xcc, // STORE_FAST 12
+    0x12,0x81,0x0d, // LOAD_GLOBAL 'mundo'
+    0xb3, // LOAD_FAST 3
+    0xbc, // LOAD_FAST 12
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x55, // LOAD_SUBSCR
+    0x26,0x18, // STORE_FAST_N 24
+    0x24,0x18, // LOAD_FAST_N 24
+    0x12,0x82,0x4b, // LOAD_GLOBAL 'HIERBA'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x60, // POP_JUMP_IF_FALSE 32
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x03, // LOAD_METHOD 'random'
+    0x36,0x00, // CALL_METHOD 0
+    0x23,0x37, // LOAD_CONST_OBJ 55
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x55, // POP_JUMP_IF_FALSE 21
+    0x12,0x61, // LOAD_GLOBAL 'arbol'
+    0xb3, // LOAD_FAST 3
+    0xbc, // LOAD_FAST 12
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb2, // LOAD_FAST 2
+    0xb3, // LOAD_FAST 3
+    0x55, // LOAD_SUBSCR
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xd9, // BINARY_OP 2 __eq__
+    0x34,0x03, // CALL_FUNCTION 3
+    0x59, // POP_TOP
+    0xb3, // LOAD_FAST 3
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0xe5, // BINARY_OP 14 __iadd__
+    0xc3, // STORE_FAST 3
+    0x42,0xba,0x81, // JUMP 186
+    0x24,0x18, // LOAD_FAST_N 24
+    0x12,0x82,0x52, // LOAD_GLOBAL 'ARENA'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0xd5,0x80, // POP_JUMP_IF_FALSE 85
+    0xb2, // LOAD_FAST 2
+    0xb3, // LOAD_FAST 3
+    0x55, // LOAD_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0xcd,0x80, // POP_JUMP_IF_FALSE 77
+    0xbc, // LOAD_FAST 12
+    0x12,0x83,0x04, // LOAD_GLOBAL 'MAR'
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0xc5,0x80, // POP_JUMP_IF_FALSE 69
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x03, // LOAD_METHOD 'random'
+    0x36,0x00, // CALL_METHOD 0
+    0x23,0x38, // LOAD_CONST_OBJ 56
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x7a, // POP_JUMP_IF_FALSE 58
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x54, // LOAD_METHOD 'randint'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x36,0x02, // CALL_METHOD 2
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0x61, // JUMP 33
+    0x57, // DUP_TOP
+    0xc1, // STORE_FAST 1
+    0xbc, // LOAD_FAST 12
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb1, // LOAD_FAST 1
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x03, // LOAD_GLOBAL 'H'
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x52, // POP_JUMP_IF_FALSE 18
+    0x12,0x82,0x5f, // LOAD_GLOBAL 'CACTUS'
+    0x12,0x81,0x0d, // LOAD_GLOBAL 'mundo'
+    0xb3, // LOAD_FAST 3
+    0xbc, // LOAD_FAST 12
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb1, // LOAD_FAST 1
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x56, // STORE_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x1a, // POP_JUMP_IF_TRUE -38
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0xb3, // LOAD_FAST 3
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0xe5, // BINARY_OP 14 __iadd__
+    0xc3, // STORE_FAST 3
+    0x42,0xdc,0x80, // JUMP 92
+    0x24,0x18, // LOAD_FAST_N 24
+    0x12,0x82,0x4b, // LOAD_GLOBAL 'HIERBA'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0xcf,0x80, // POP_JUMP_IF_FALSE 79
+    0xbc, // LOAD_FAST 12
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x03, // LOAD_GLOBAL 'H'
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0xc5,0x80, // POP_JUMP_IF_FALSE 69
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x03, // LOAD_METHOD 'random'
+    0x36,0x00, // CALL_METHOD 0
+    0x26,0x11, // STORE_FAST_N 17
+    0x24,0x11, // LOAD_FAST_N 17
+    0x23,0x39, // LOAD_CONST_OBJ 57
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x52, // POP_JUMP_IF_FALSE 18
+    0x12,0x82,0x62, // LOAD_GLOBAL 'HIERBA_A'
+    0x12,0x81,0x0d, // LOAD_GLOBAL 'mundo'
+    0xb3, // LOAD_FAST 3
+    0xbc, // LOAD_FAST 12
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x56, // STORE_SUBSCR
+    0x42,0x64, // JUMP 36
+    0x24,0x11, // LOAD_FAST_N 17
+    0x23,0x3a, // LOAD_CONST_OBJ 58
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x5d, // POP_JUMP_IF_FALSE 29
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x5b, // LOAD_METHOD 'choice'
+    0x12,0x82,0x60, // LOAD_GLOBAL 'FLOR_R'
+    0x12,0x82,0x61, // LOAD_GLOBAL 'FLOR_A'
+    0x2a,0x02, // BUILD_TUPLE 2
+    0x36,0x01, // CALL_METHOD 1
+    0x12,0x81,0x0d, // LOAD_GLOBAL 'mundo'
+    0xb3, // LOAD_FAST 3
+    0xbc, // LOAD_FAST 12
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x56, // STORE_SUBSCR
+    0x42,0x40, // JUMP 0
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0xc3, // STORE_FAST 3
+    0xb3, // LOAD_FAST 3
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0xf3, // BINARY_OP 28 __sub__
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x81,0x7e, // POP_JUMP_IF_TRUE -255
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0x4a, // JUMP 10
+    0x57, // DUP_TOP
+    0xc3, // STORE_FAST 3
+    0x12,0x42, // LOAD_GLOBAL 'calc_alto'
+    0xb3, // LOAD_FAST 3
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x31, // POP_JUMP_IF_TRUE -15
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x12,0x55, // LOAD_GLOBAL 'progreso'
+    0x10,0x60, // LOAD_CONST_STRING 'Listo'
+    0x23,0x2d, // LOAD_CONST_OBJ 45
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_generar = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_generar,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 1403,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 42,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 89,
+        .line_info = fun_data_mc2d_generar + 7,
+        .line_info_top = fun_data_mc2d_generar + 102,
+        .opcodes = fun_data_mc2d_generar + 102,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_generar fun_data_mc2d_generar[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_arbol
+static const byte fun_data_mc2d_arbol[194] = {
+    0x93,0x10,0x22, // prelude
+    0x61,0x74,0x75,0x1b, // names: arbol, x, y, nieve
+    0x90,0x1f,0x29,0x26,0x29,0x39,0x24,0x26,0x2a,0x2a,0x29,0x1f,0x34, // code info
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x54, // LOAD_METHOD 'randint'
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0x36,0x02, // CALL_METHOD 2
+    0xc3, // STORE_FAST 3
+    0xb3, // LOAD_FAST 3
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0x5d, // JUMP 29
+    0x57, // DUP_TOP
+    0xc4, // STORE_FAST 4
+    0xb1, // LOAD_FAST 1
+    0xb4, // LOAD_FAST 4
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x03, // LOAD_GLOBAL 'H'
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x50, // POP_JUMP_IF_FALSE 16
+    0x12,0x82,0x4f, // LOAD_GLOBAL 'TRONCO'
+    0x12,0x81,0x0d, // LOAD_GLOBAL 'mundo'
+    0xb0, // LOAD_FAST 0
+    0xb1, // LOAD_FAST 1
+    0xb4, // LOAD_FAST 4
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x56, // STORE_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x1e, // POP_JUMP_IF_TRUE -34
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0xb1, // LOAD_FAST 1
+    0xb3, // LOAD_FAST 3
+    0xf2, // BINARY_OP 27 __add__
+    0xc5, // STORE_FAST 5
+    0x7e, // LOAD_CONST_SMALL_INT -2
+    0x42,0xec,0x80, // JUMP 108
+    0x57, // DUP_TOP
+    0xc6, // STORE_FAST 6
+    0xb6, // LOAD_FAST 6
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x43, // POP_JUMP_IF_FALSE 3
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x42,0x41, // JUMP 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xc7, // STORE_FAST 7
+    0xb7, // LOAD_FAST 7
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb7, // LOAD_FAST 7
+    0xd1, // UNARY_OP 1 __neg__
+    0x42,0xce,0x80, // JUMP 78
+    0x57, // DUP_TOP
+    0xc8, // STORE_FAST 8
+    0xb0, // LOAD_FAST 0
+    0xb8, // LOAD_FAST 8
+    0xf2, // BINARY_OP 27 __add__
+    0xb5, // LOAD_FAST 5
+    0xb6, // LOAD_FAST 6
+    0xf2, // BINARY_OP 27 __add__
+    0x5a, // ROT_TWO
+    0xc9, // STORE_FAST 9
+    0xca, // STORE_FAST 10
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xb9, // LOAD_FAST 9
+    0x57, // DUP_TOP
+    0x5b, // ROT_THREE
+    0xda, // BINARY_OP 3 __le__
+    0x46,0x06, // JUMP_IF_FALSE_OR_POP 6
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0xd7, // BINARY_OP 0 __lt__
+    0x42,0x42, // JUMP 2
+    0x5a, // ROT_TWO
+    0x59, // POP_TOP
+    0x44,0x70, // POP_JUMP_IF_FALSE 48
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xba, // LOAD_FAST 10
+    0x57, // DUP_TOP
+    0x5b, // ROT_THREE
+    0xda, // BINARY_OP 3 __le__
+    0x46,0x06, // JUMP_IF_FALSE_OR_POP 6
+    0x12,0x83,0x03, // LOAD_GLOBAL 'H'
+    0xd7, // BINARY_OP 0 __lt__
+    0x42,0x42, // JUMP 2
+    0x5a, // ROT_TWO
+    0x59, // POP_TOP
+    0x44,0x5f, // POP_JUMP_IF_FALSE 31
+    0x12,0x81,0x0d, // LOAD_GLOBAL 'mundo'
+    0xb9, // LOAD_FAST 9
+    0xba, // LOAD_FAST 10
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x55, // LOAD_SUBSCR
+    0x12,0x82,0x4a, // LOAD_GLOBAL 'AIRE'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x4e, // POP_JUMP_IF_FALSE 14
+    0x12,0x82,0x50, // LOAD_GLOBAL 'HOJAS'
+    0x12,0x81,0x0d, // LOAD_GLOBAL 'mundo'
+    0xb9, // LOAD_FAST 9
+    0xba, // LOAD_FAST 10
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x56, // STORE_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0xac,0x7f, // POP_JUMP_IF_TRUE -84
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x57, // DUP_TOP
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x8e,0x7f, // POP_JUMP_IF_TRUE -114
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_arbol = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_arbol,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 194,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 19,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 3,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 97,
+        .line_info = fun_data_mc2d_arbol + 7,
+        .line_info_top = fun_data_mc2d_arbol + 20,
+        .opcodes = fun_data_mc2d_arbol + 20,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_arbol fun_data_mc2d_arbol[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_max_pila
+static const byte fun_data_mc2d_max_pila[20] = {
+    0x11,0x0a, // prelude
+    0x62,0x83,0x2a, // names: max_pila, it
+    0x90,0x33, // code info
+    0xb0, // LOAD_FAST 0
+    0x12,0x82,0x6d, // LOAD_GLOBAL 'HERR'
+    0xdb, // BINARY_OP 4 __ge__
+    0x44,0x42, // POP_JUMP_IF_FALSE 2
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x63, // RETURN_VALUE
+    0x22,0x80,0x40, // LOAD_CONST_SMALL_INT 64
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_max_pila = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_max_pila,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 20,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 3,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 98,
+        .line_info = fun_data_mc2d_max_pila + 5,
+        .line_info_top = fun_data_mc2d_max_pila + 7,
+        .opcodes = fun_data_mc2d_max_pila + 7,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_max_pila fun_data_mc2d_max_pila[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_dar
+static const byte fun_data_mc2d_dar[163] = {
+    0xd2,0x01,0x2c, // prelude
+    0x63,0x83,0x2a,0x81,0x0e, // names: dar, it, n
+    0x90,0x37,0x20,0x29,0x36,0x32,0x2a,0x24,0x23,0x2c,0x28,0x27,0x2c,0x2d,0x24,0x23,0x2b, // code info
+    0x12,0x83,0x1b, // LOAD_GLOBAL 'NHUECOS'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0xbf,0x80, // JUMP 63
+    0x57, // DUP_TOP
+    0xc2, // STORE_FAST 2
+    0x12,0x83,0x1c, // LOAD_GLOBAL 'inv_id'
+    0xb2, // LOAD_FAST 2
+    0x55, // LOAD_SUBSCR
+    0xb0, // LOAD_FAST 0
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x72, // POP_JUMP_IF_FALSE 50
+    0x12,0x83,0x1d, // LOAD_GLOBAL 'inv_n'
+    0xb2, // LOAD_FAST 2
+    0x55, // LOAD_SUBSCR
+    0x12,0x62, // LOAD_GLOBAL 'max_pila'
+    0xb0, // LOAD_FAST 0
+    0x34,0x01, // CALL_FUNCTION 1
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x65, // POP_JUMP_IF_FALSE 37
+    0x12,0x83,0x28, // LOAD_GLOBAL 'min'
+    0xb1, // LOAD_FAST 1
+    0x12,0x62, // LOAD_GLOBAL 'max_pila'
+    0xb0, // LOAD_FAST 0
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x83,0x1d, // LOAD_GLOBAL 'inv_n'
+    0xb2, // LOAD_FAST 2
+    0x55, // LOAD_SUBSCR
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x02, // CALL_FUNCTION 2
+    0xc3, // STORE_FAST 3
+    0x12,0x83,0x1d, // LOAD_GLOBAL 'inv_n'
+    0xb2, // LOAD_FAST 2
+    0x58, // DUP_TOP_TWO
+    0x55, // LOAD_SUBSCR
+    0xb3, // LOAD_FAST 3
+    0xe5, // BINARY_OP 14 __iadd__
+    0x5b, // ROT_THREE
+    0x56, // STORE_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0xb3, // LOAD_FAST 3
+    0xe6, // BINARY_OP 15 __isub__
+    0xc1, // STORE_FAST 1
+    0xb1, // LOAD_FAST 1
+    0x43,0x42, // POP_JUMP_IF_TRUE 2
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x63, // RETURN_VALUE
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0xbb,0x7f, // POP_JUMP_IF_TRUE -69
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x12,0x83,0x1b, // LOAD_GLOBAL 'NHUECOS'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0x6d, // JUMP 45
+    0x57, // DUP_TOP
+    0xc2, // STORE_FAST 2
+    0x12,0x83,0x1c, // LOAD_GLOBAL 'inv_id'
+    0xb2, // LOAD_FAST 2
+    0x55, // LOAD_SUBSCR
+    0x43,0x62, // POP_JUMP_IF_TRUE 34
+    0x12,0x83,0x28, // LOAD_GLOBAL 'min'
+    0xb1, // LOAD_FAST 1
+    0x12,0x62, // LOAD_GLOBAL 'max_pila'
+    0xb0, // LOAD_FAST 0
+    0x34,0x01, // CALL_FUNCTION 1
+    0x34,0x02, // CALL_FUNCTION 2
+    0xc3, // STORE_FAST 3
+    0xb0, // LOAD_FAST 0
+    0xb3, // LOAD_FAST 3
+    0x5a, // ROT_TWO
+    0x12,0x83,0x1c, // LOAD_GLOBAL 'inv_id'
+    0xb2, // LOAD_FAST 2
+    0x56, // STORE_SUBSCR
+    0x12,0x83,0x1d, // LOAD_GLOBAL 'inv_n'
+    0xb2, // LOAD_FAST 2
+    0x56, // STORE_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0xb3, // LOAD_FAST 3
+    0xe6, // BINARY_OP 15 __isub__
+    0xc1, // STORE_FAST 1
+    0xb1, // LOAD_FAST 1
+    0x43,0x42, // POP_JUMP_IF_TRUE 2
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x63, // RETURN_VALUE
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x0e, // POP_JUMP_IF_TRUE -50
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0xb1, // LOAD_FAST 1
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_dar = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_dar,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 163,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 11,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 2,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 1,
+        .qstr_block_name_idx = 99,
+        .line_info = fun_data_mc2d_dar + 8,
+        .line_info_top = fun_data_mc2d_dar + 25,
+        .opcodes = fun_data_mc2d_dar + 25,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_dar fun_data_mc2d_dar[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_cuantos
+static const byte fun_data_mc2d_cuantos[49] = {
+    0x39,0x12, // prelude
+    0x64,0x83,0x2a, // names: cuantos, it
+    0x90,0x4a,0x22,0x28,0x29,0x31, // code info
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xc1, // STORE_FAST 1
+    0x12,0x83,0x1b, // LOAD_GLOBAL 'NHUECOS'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0x55, // JUMP 21
+    0x57, // DUP_TOP
+    0xc2, // STORE_FAST 2
+    0x12,0x83,0x1c, // LOAD_GLOBAL 'inv_id'
+    0xb2, // LOAD_FAST 2
+    0x55, // LOAD_SUBSCR
+    0xb0, // LOAD_FAST 0
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x48, // POP_JUMP_IF_FALSE 8
+    0xb1, // LOAD_FAST 1
+    0x12,0x83,0x1d, // LOAD_GLOBAL 'inv_n'
+    0xb2, // LOAD_FAST 2
+    0x55, // LOAD_SUBSCR
+    0xe5, // BINARY_OP 14 __iadd__
+    0xc1, // STORE_FAST 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x26, // POP_JUMP_IF_TRUE -26
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0xb1, // LOAD_FAST 1
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_cuantos = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_cuantos,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 49,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 8,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 100,
+        .line_info = fun_data_mc2d_cuantos + 5,
+        .line_info_top = fun_data_mc2d_cuantos + 11,
+        .opcodes = fun_data_mc2d_cuantos + 11,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_cuantos fun_data_mc2d_cuantos[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_quitar
+static const byte fun_data_mc2d_quitar[90] = {
+    0xc2,0x01,0x1e, // prelude
+    0x65,0x83,0x2a,0x81,0x0e, // names: quitar, it, n
+    0x90,0x52,0x29,0x29,0x2c,0x2a,0x24,0x27,0x26,0x23, // code info
+    0x12,0x83,0x1b, // LOAD_GLOBAL 'NHUECOS'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf3, // BINARY_OP 28 __sub__
+    0x42,0x79, // JUMP 57
+    0x57, // DUP_TOP
+    0xc2, // STORE_FAST 2
+    0x12,0x83,0x1c, // LOAD_GLOBAL 'inv_id'
+    0xb2, // LOAD_FAST 2
+    0x55, // LOAD_SUBSCR
+    0xb0, // LOAD_FAST 0
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x6c, // POP_JUMP_IF_FALSE 44
+    0x12,0x83,0x28, // LOAD_GLOBAL 'min'
+    0xb1, // LOAD_FAST 1
+    0x12,0x83,0x1d, // LOAD_GLOBAL 'inv_n'
+    0xb2, // LOAD_FAST 2
+    0x55, // LOAD_SUBSCR
+    0x34,0x02, // CALL_FUNCTION 2
+    0xc3, // STORE_FAST 3
+    0x12,0x83,0x1d, // LOAD_GLOBAL 'inv_n'
+    0xb2, // LOAD_FAST 2
+    0x58, // DUP_TOP_TWO
+    0x55, // LOAD_SUBSCR
+    0xb3, // LOAD_FAST 3
+    0xe6, // BINARY_OP 15 __isub__
+    0x5b, // ROT_THREE
+    0x56, // STORE_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0xb3, // LOAD_FAST 3
+    0xe6, // BINARY_OP 15 __isub__
+    0xc1, // STORE_FAST 1
+    0x12,0x83,0x1d, // LOAD_GLOBAL 'inv_n'
+    0xb2, // LOAD_FAST 2
+    0x55, // LOAD_SUBSCR
+    0x43,0x46, // POP_JUMP_IF_TRUE 6
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x12,0x83,0x1c, // LOAD_GLOBAL 'inv_id'
+    0xb2, // LOAD_FAST 2
+    0x56, // STORE_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0x43,0x42, // POP_JUMP_IF_TRUE 2
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0x7f, // LOAD_CONST_SMALL_INT -1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x57, // DUP_TOP
+    0x7f, // LOAD_CONST_SMALL_INT -1
+    0xd8, // BINARY_OP 1 __gt__
+    0x43,0x02, // POP_JUMP_IF_TRUE -62
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_quitar = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_quitar,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 90,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 9,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 2,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 1,
+        .qstr_block_name_idx = 101,
+        .line_info = fun_data_mc2d_quitar + 8,
+        .line_info_top = fun_data_mc2d_quitar + 18,
+        .opcodes = fun_data_mc2d_quitar + 18,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_quitar fun_data_mc2d_quitar[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_spr
+static const byte fun_data_mc2d_spr[43] = {
+    0x29,0x0e, // prelude
+    0x66,0x73, // names: spr, nombre
+    0x90,0x62,0x29,0x25,0x32, // code info
+    0x12,0x83,0x1e, // LOAD_GLOBAL 'SPR'
+    0x14,0x4c, // LOAD_METHOD 'get'
+    0xb0, // LOAD_FAST 0
+    0x36,0x01, // CALL_METHOD 1
+    0xc1, // STORE_FAST 1
+    0xb1, // LOAD_FAST 1
+    0x51, // LOAD_CONST_NONE
+    0xde, // BINARY_OP 7 <is>
+    0x44,0x52, // POP_JUMP_IF_FALSE 18
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x67, // LOAD_METHOD 'sprite'
+    0x10,0x68, // LOAD_CONST_STRING 'tex/%s.png'
+    0xb0, // LOAD_FAST 0
+    0xf8, // BINARY_OP 33 __mod__
+    0x36,0x01, // CALL_METHOD 1
+    0x57, // DUP_TOP
+    0xc1, // STORE_FAST 1
+    0x12,0x83,0x1e, // LOAD_GLOBAL 'SPR'
+    0xb0, // LOAD_FAST 0
+    0x56, // STORE_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_spr = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_spr,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 43,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 6,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 102,
+        .line_info = fun_data_mc2d_spr + 4,
+        .line_info_top = fun_data_mc2d_spr + 9,
+        .opcodes = fun_data_mc2d_spr + 9,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_spr fun_data_mc2d_spr[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_icono
+static const byte fun_data_mc2d_icono[84] = {
+    0xd8,0x05,0x18, // prelude
+    0x69,0x83,0x2a,0x74,0x75,0x81,0x0e, // names: icono, it, x, y, n
+    0x90,0x69,0x24,0x33,0x25, // code info
+    0xb0, // LOAD_FAST 0
+    0x44,0xbf,0x80, // POP_JUMP_IF_FALSE 63
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x6a, // LOAD_METHOD 'dibujar'
+    0x12,0x66, // LOAD_GLOBAL 'spr'
+    0x12,0x82,0x72, // LOAD_GLOBAL 'TEX'
+    0xb0, // LOAD_FAST 0
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0xb1, // LOAD_FAST 1
+    0xb2, // LOAD_FAST 2
+    0x36,0x03, // CALL_METHOD 3
+    0x59, // POP_TOP
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x67, // POP_JUMP_IF_FALSE 39
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x57, // LOAD_METHOD 'texto'
+    0x12,0x83,0x2b, // LOAD_GLOBAL 'str'
+    0xb3, // LOAD_FAST 3
+    0x34,0x01, // CALL_FUNCTION 1
+    0xb1, // LOAD_FAST 1
+    0x90, // LOAD_CONST_SMALL_INT 16
+    0xf2, // BINARY_OP 27 __add__
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0x12,0x83,0x2c, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x2b, // LOAD_GLOBAL 'str'
+    0xb3, // LOAD_FAST 3
+    0x34,0x01, // CALL_FUNCTION 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0xf4, // BINARY_OP 29 __mul__
+    0xf3, // BINARY_OP 28 __sub__
+    0xb2, // LOAD_FAST 2
+    0x89, // LOAD_CONST_SMALL_INT 9
+    0xf2, // BINARY_OP 27 __add__
+    0x22,0x87,0xff,0xff,0x7f, // LOAD_CONST_SMALL_INT 16777215
+    0x36,0x04, // CALL_METHOD 4
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_icono = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_icono,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 84,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 12,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 4,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 1,
+        .qstr_block_name_idx = 105,
+        .line_info = fun_data_mc2d_icono + 10,
+        .line_info_top = fun_data_mc2d_icono + 15,
+        .opcodes = fun_data_mc2d_icono + 15,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_icono fun_data_mc2d_icono[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_Juego
+static const byte fun_data_mc2d_Juego[274] = {
+    0x08,0x86,0x02, // prelude
+    0x3d, // names: Juego
+    0x9b,0x71,0x89,0x20,0x85,0x10,0x65,0x40,0x65,0x65,0x40,0x85,0x09,0x85,0x0e,0x65,0x40,0x65,0x85,0x15,0x65,0x20,0x85,0x08,0x85,0x3d,0x89,0x0b,0x85,0x09,0x65,0x65,0x60,0x85,0x24,0x85,0x1e,0x65,0x60,0x85,0x13,0x65,0x60,0x85,0x14,0x85,0x13,0x85,0x33,0x8a,0x08,0x65,0x85,0x38,0x85,0x23,0x85,0x08,0x89,0x5b,0x85,0x1e,0x84,0x2a,0x85,0x25, // code info
+    0x11,0x83,0x2d, // LOAD_NAME '__name__'
+    0x16,0x83,0x2e, // STORE_NAME '__module__'
+    0x10,0x3d, // LOAD_CONST_STRING 'Juego'
+    0x16,0x83,0x2f, // STORE_NAME '__qualname__'
+    0x50, // LOAD_CONST_FALSE
+    0x2a,0x01, // BUILD_TUPLE 1
+    0x53, // LOAD_NULL
+    0x33,0x00, // MAKE_FUNCTION_DEFARGS 0
+    0x16,0x81,0x50, // STORE_NAME '__init__'
+    0x32,0x01, // MAKE_FUNCTION 1
+    0x16,0x81,0x28, // STORE_NAME 'aparecer'
+    0x32,0x02, // MAKE_FUNCTION 2
+    0x16,0x81,0x05, // STORE_NAME 'centrar'
+    0x32,0x03, // MAKE_FUNCTION 3
+    0x16,0x81,0x6b, // STORE_NAME 'pant'
+    0x32,0x04, // MAKE_FUNCTION 4
+    0x16,0x81,0x6c, // STORE_NAME 'fondo'
+    0x32,0x05, // MAKE_FUNCTION 5
+    0x16,0x81,0x6d, // STORE_NAME 'encerrado'
+    0x32,0x06, // MAKE_FUNCTION 6
+    0x16,0x81,0x6e, // STORE_NAME 'bloque'
+    0x32,0x07, // MAKE_FUNCTION 7
+    0x16,0x81,0x6f, // STORE_NAME 'zona'
+    0x32,0x08, // MAKE_FUNCTION 8
+    0x16,0x81,0x70, // STORE_NAME 'objetivo'
+    0x32,0x09, // MAKE_FUNCTION 9
+    0x16,0x81,0x71, // STORE_NAME 'dibujar_hud'
+    0x32,0x0a, // MAKE_FUNCTION 10
+    0x16,0x81,0x77, // STORE_NAME 'caja_jugador'
+    0x32,0x0b, // MAKE_FUNCTION 11
+    0x16,0x81,0x78, // STORE_NAME 'a_bloques'
+    0x32,0x0c, // MAKE_FUNCTION 12
+    0x16,0x81,0x4a, // STORE_NAME 'pintar'
+    0x52, // LOAD_CONST_TRUE
+    0x2a,0x01, // BUILD_TUPLE 1
+    0x53, // LOAD_NULL
+    0x33,0x0d, // MAKE_FUNCTION_DEFARGS 13
+    0x16,0x81,0x7e, // STORE_NAME 'poner'
+    0x32,0x0e, // MAKE_FUNCTION 14
+    0x16,0x82,0x00, // STORE_NAME 'asentar'
+    0x32,0x0f, // MAKE_FUNCTION 15
+    0x16,0x82,0x01, // STORE_NAME 'toca_jugador'
+    0x32,0x10, // MAKE_FUNCTION 16
+    0x16,0x82,0x02, // STORE_NAME 'herramienta'
+    0x32,0x11, // MAKE_FUNCTION 17
+    0x16,0x82,0x03, // STORE_NAME 'picar'
+    0x32,0x12, // MAKE_FUNCTION 18
+    0x16,0x82,0x04, // STORE_NAME 'usar'
+    0x32,0x13, // MAKE_FUNCTION 19
+    0x16,0x82,0x07, // STORE_NAME 'mob_en'
+    0x32,0x14, // MAKE_FUNCTION 20
+    0x16,0x82,0x08, // STORE_NAME 'golpear'
+    0x32,0x15, // MAKE_FUNCTION 21
+    0x16,0x82,0x0b, // STORE_NAME 'libre_col'
+    0x32,0x16, // MAKE_FUNCTION 22
+    0x16,0x82,0x0c, // STORE_NAME 'mover_x'
+    0x32,0x17, // MAKE_FUNCTION 23
+    0x16,0x82,0x0e, // STORE_NAME 'mover_y'
+    0x32,0x18, // MAKE_FUNCTION 24
+    0x16,0x82,0x0f, // STORE_NAME 'fisica'
+    0x10,0x6b, // LOAD_CONST_STRING 'hurt'
+    0x2a,0x01, // BUILD_TUPLE 1
+    0x53, // LOAD_NULL
+    0x33,0x19, // MAKE_FUNCTION_DEFARGS 25
+    0x16,0x82,0x18, // STORE_NAME 'herir'
+    0x32,0x1a, // MAKE_FUNCTION 26
+    0x16,0x82,0x1b, // STORE_NAME 'es_noche'
+    0x32,0x1b, // MAKE_FUNCTION 27
+    0x16,0x82,0x1c, // STORE_NAME 'mobs_paso'
+    0x32,0x1c, // MAKE_FUNCTION 28
+    0x16,0x81,0x43, // STORE_NAME 'red_paso'
+    0x32,0x1d, // MAKE_FUNCTION 29
+    0x16,0x82,0x2c, // STORE_NAME 'cerca'
+    0x51, // LOAD_CONST_NONE
+    0x2a,0x01, // BUILD_TUPLE 1
+    0x53, // LOAD_NULL
+    0x33,0x1e, // MAKE_FUNCTION_DEFARGS 30
+    0x16,0x82,0x05, // STORE_NAME 'abrir_inventario'
+    0x32,0x1f, // MAKE_FUNCTION 31
+    0x16,0x82,0x31, // STORE_NAME 'pausa'
+    0x32,0x20, // MAKE_FUNCTION 32
+    0x16,0x07, // STORE_NAME 'teclas'
+    0x32,0x21, // MAKE_FUNCTION 33
+    0x16,0x81,0x48, // STORE_NAME 'paso'
+    0x32,0x22, // MAKE_FUNCTION 34
+    0x16,0x81,0x49, // STORE_NAME 'morir'
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego___init__
+static const byte fun_data_mc2d_Juego___init__[226] = {
+    0xab,0x01,0x4a, // prelude
+    0x81,0x50,0x83,0x3e,0x73,0x81,0x38, // names: __init__, self, nombre, online
+    0x90,0x72,0x24,0x25,0x2e,0x2b,0x25,0x25,0x2a,0x26,0x25,0x2c,0x25,0x25,0x26,0x26,0x26,0x26,0x26,0x26,0x26,0x25,0x25,0x25,0x26,0x26,0x25,0x25,0x27,0x26, // code info
+    0xb1, // LOAD_FAST 1
+    0xb0, // LOAD_FAST 0
+    0x18,0x73, // STORE_ATTR 'nombre'
+    0xb2, // LOAD_FAST 2
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x38, // STORE_ATTR 'online'
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf7, // BINARY_OP 32 __truediv__
+    0x23,0x64, // LOAD_CONST_OBJ 100
+    0x5a, // ROT_TWO
+    0xb0, // LOAD_FAST 0
+    0x18,0x74, // STORE_ATTR 'x'
+    0xb0, // LOAD_FAST 0
+    0x18,0x75, // STORE_ATTR 'y'
+    0x23,0x64, // LOAD_CONST_OBJ 100
+    0x57, // DUP_TOP
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x51, // STORE_ATTR 'vx'
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x52, // STORE_ATTR 'vy'
+    0x50, // LOAD_CONST_FALSE
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x53, // STORE_ATTR 'suelo'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x54, // STORE_ATTR 'cara'
+    0x23,0x65, // LOAD_CONST_OBJ 101
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xb0, // LOAD_FAST 0
+    0x18,0x76, // STORE_ATTR 'vida'
+    0xb0, // LOAD_FAST 0
+    0x18,0x77, // STORE_ATTR 'hambre'
+    0x23,0x64, // LOAD_CONST_OBJ 100
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x55, // STORE_ATTR 'hambre_t'
+    0x51, // LOAD_CONST_NONE
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x56, // STORE_ATTR 'caida_y'
+    0x23,0x66, // LOAD_CONST_OBJ 102
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x57, // STORE_ATTR 'cdx'
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x58, // STORE_ATTR 'cdy'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x59, // STORE_ATTR 'sel'
+    0x23,0x56, // LOAD_CONST_OBJ 86
+    0xb0, // LOAD_FAST 0
+    0x18,0x78, // STORE_ATTR 'tiempo'
+    0x23,0x67, // LOAD_CONST_OBJ 103
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x5a, // STORE_ATTR 'pico'
+    0x23,0x64, // LOAD_CONST_OBJ 100
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x5b, // STORE_ATTR 'anda_t'
+    0x23,0x64, // LOAD_CONST_OBJ 100
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x5c, // STORE_ATTR 'paso_t'
+    0x23,0x64, // LOAD_CONST_OBJ 100
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x5d, // STORE_ATTR 'golpe_t'
+    0x23,0x64, // LOAD_CONST_OBJ 100
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x5e, // STORE_ATTR 'dano_t'
+    0x2b,0x00, // BUILD_LIST 0
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x5f, // STORE_ATTR 'mobs'
+    0x2c,0x00, // BUILD_MAP 0
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x45, // STORE_ATTR 'otros'
+    0x51, // LOAD_CONST_NONE
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x60, // STORE_ATTR 'enviado'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x61, // STORE_ATTR 'cuadro'
+    0x52, // LOAD_CONST_TRUE
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x62, // STORE_ATTR 'completo'
+    0x2b,0x00, // BUILD_LIST 0
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x63, // STORE_ATTR 'sucios'
+    0x2b,0x00, // BUILD_LIST 0
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x64, // STORE_ATTR 'pintado'
+    0x51, // LOAD_CONST_NONE
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x65, // STORE_ATTR 'hud'
+    0x51, // LOAD_CONST_NONE
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x66, // STORE_ATTR 'aviso'
+    0x12,0x83,0x09, // LOAD_GLOBAL 'CIELO_DIA'
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x67, // STORE_ATTR 'cielo'
+    0x2c,0x00, // BUILD_MAP 0
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x68, // STORE_ATTR 'tap'
+    0x50, // LOAD_CONST_FALSE
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x4b, // STORE_ATTR 'salir'
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego___init__ = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego___init__,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 226,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 6,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 3,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 1,
+        .qstr_block_name_idx = 208,
+        .line_info = fun_data_mc2d_Juego___init__ + 10,
+        .line_info_top = fun_data_mc2d_Juego___init__ + 40,
+        .opcodes = fun_data_mc2d_Juego___init__ + 40,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego___init__ fun_data_mc2d_Juego___init__[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_aparecer
+static const byte fun_data_mc2d_Juego_aparecer[185] = {
+    0x71,0x24, // prelude
+    0x81,0x28,0x83,0x3e, // names: aparecer, self
+    0x90,0x92,0x26,0x2b,0x34,0x1f,0x2f,0x32,0x22,0x49,0x22,0x2c,0x33,0x2b, // code info
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf6, // BINARY_OP 31 __floordiv__
+    0xc1, // STORE_FAST 1
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf6, // BINARY_OP 31 __floordiv__
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0xe7,0x80, // JUMP 103
+    0x57, // DUP_TOP
+    0xc2, // STORE_FAST 2
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf6, // BINARY_OP 31 __floordiv__
+    0xb2, // LOAD_FAST 2
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf6, // BINARY_OP 31 __floordiv__
+    0xb2, // LOAD_FAST 2
+    0xf3, // BINARY_OP 28 __sub__
+    0x2a,0x02, // BUILD_TUPLE 2
+    0x5f, // GET_ITER_STACK
+    0x4b,0x4c, // FOR_ITER 76
+    0xc3, // STORE_FAST 3
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xb3, // LOAD_FAST 3
+    0x57, // DUP_TOP
+    0x5b, // ROT_THREE
+    0xda, // BINARY_OP 3 __le__
+    0x46,0x06, // JUMP_IF_FALSE_OR_POP 6
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0xd7, // BINARY_OP 0 __lt__
+    0x42,0x42, // JUMP 2
+    0x5a, // ROT_TWO
+    0x59, // POP_TOP
+    0x44,0x77, // POP_JUMP_IF_FALSE 55
+    0x12,0x83,0x10, // LOAD_GLOBAL 'alto'
+    0xb3, // LOAD_FAST 3
+    0x55, // LOAD_SUBSCR
+    0x12,0x83,0x04, // LOAD_GLOBAL 'MAR'
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x6c, // POP_JUMP_IF_FALSE 44
+    0x12,0x41, // LOAD_GLOBAL 'solido'
+    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0xb3, // LOAD_FAST 3
+    0x12,0x83,0x10, // LOAD_GLOBAL 'alto'
+    0xb3, // LOAD_FAST 3
+    0x55, // LOAD_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x02, // CALL_FUNCTION 2
+    0x34,0x01, // CALL_FUNCTION 1
+    0x43,0x5a, // POP_JUMP_IF_TRUE 26
+    0x12,0x41, // LOAD_GLOBAL 'solido'
+    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0xb3, // LOAD_FAST 3
+    0x12,0x83,0x10, // LOAD_GLOBAL 'alto'
+    0xb3, // LOAD_FAST 3
+    0x55, // LOAD_SUBSCR
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x02, // CALL_FUNCTION 2
+    0x34,0x01, // CALL_FUNCTION 1
+    0x43,0x48, // POP_JUMP_IF_TRUE 8
+    0xb3, // LOAD_FAST 3
+    0xc1, // STORE_FAST 1
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x42,0x45, // JUMP 5
+    0x42,0xb2,0x7f, // JUMP -78
+    0x42,0x42, // JUMP 2
+    0x42,0x48, // JUMP 8
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x93,0x7f, // POP_JUMP_IF_TRUE -109
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0xb1, // LOAD_FAST 1
+    0x23,0x3a, // LOAD_CONST_OBJ 58
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x10, // LOAD_GLOBAL 'alto'
+    0xb1, // LOAD_FAST 1
+    0x55, // LOAD_SUBSCR
+    0x23,0x2d, // LOAD_CONST_OBJ 45
+    0xf2, // BINARY_OP 27 __add__
+    0x5a, // ROT_TWO
+    0xb0, // LOAD_FAST 0
+    0x18,0x74, // STORE_ATTR 'x'
+    0xb0, // LOAD_FAST 0
+    0x18,0x75, // STORE_ATTR 'y'
+    0x23,0x64, // LOAD_CONST_OBJ 100
+    0x57, // DUP_TOP
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x51, // STORE_ATTR 'vx'
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x52, // STORE_ATTR 'vy'
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x05, // LOAD_METHOD 'centrar'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_aparecer = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_aparecer,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 185,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 15,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 168,
+        .line_info = fun_data_mc2d_Juego_aparecer + 6,
+        .line_info_top = fun_data_mc2d_Juego_aparecer + 20,
+        .opcodes = fun_data_mc2d_Juego_aparecer + 20,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_aparecer fun_data_mc2d_Juego_aparecer[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_centrar
+static const byte fun_data_mc2d_Juego_centrar[55] = {
+    0x19,0x10, // prelude
+    0x81,0x05,0x83,0x3e, // names: centrar, self
+    0x90,0xa2,0x32,0x34, // code info
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb0, // LOAD_FAST 0
+    0x13,0x74, // LOAD_ATTR 'x'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x83,0x07, // LOAD_GLOBAL 'VW'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf6, // BINARY_OP 31 __floordiv__
+    0xf3, // BINARY_OP 28 __sub__
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x69, // STORE_ATTR 'cam_x'
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb0, // LOAD_FAST 0
+    0x13,0x75, // LOAD_ATTR 'y'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x83,0x08, // LOAD_GLOBAL 'VH'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf6, // BINARY_OP 31 __floordiv__
+    0xf2, // BINARY_OP 27 __add__
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x6a, // STORE_ATTR 'cam_top'
+    0x52, // LOAD_CONST_TRUE
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x62, // STORE_ATTR 'completo'
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_centrar = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_centrar,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 55,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 4,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 133,
+        .line_info = fun_data_mc2d_Juego_centrar + 6,
+        .line_info_top = fun_data_mc2d_Juego_centrar + 10,
+        .opcodes = fun_data_mc2d_Juego_centrar + 10,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_centrar fun_data_mc2d_Juego_centrar[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_pant
+static const byte fun_data_mc2d_Juego_pant[45] = {
+    0x33,0x14, // prelude
+    0x81,0x6b,0x83,0x3e,0x83,0x3f,0x83,0x40, // names: pant, self, wx, wy
+    0x90,0xa7, // code info
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb1, // LOAD_FAST 1
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x69, // LOAD_ATTR 'cam_x'
+    0xf3, // BINARY_OP 28 __sub__
+    0x12,0x83,0x05, // LOAD_GLOBAL 'T'
+    0xf4, // BINARY_OP 29 __mul__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x6a, // LOAD_ATTR 'cam_top'
+    0xb2, // LOAD_FAST 2
+    0xf3, // BINARY_OP 28 __sub__
+    0x12,0x83,0x05, // LOAD_GLOBAL 'T'
+    0xf4, // BINARY_OP 29 __mul__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x2a,0x02, // BUILD_TUPLE 2
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_pant = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_pant,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 45,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 7,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 3,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 235,
+        .line_info = fun_data_mc2d_Juego_pant + 10,
+        .line_info_top = fun_data_mc2d_Juego_pant + 12,
+        .opcodes = fun_data_mc2d_Juego_pant + 12,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_pant fun_data_mc2d_Juego_pant[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_fondo
+static const byte fun_data_mc2d_Juego_fondo[52] = {
+    0x2b,0x18, // prelude
+    0x81,0x6c,0x83,0x3e,0x83,0x41,0x83,0x42, // names: fondo, self, tx, ty
+    0x90,0xaa,0x3d,0x25, // code info
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xb1, // LOAD_FAST 1
+    0x57, // DUP_TOP
+    0x5b, // ROT_THREE
+    0xda, // BINARY_OP 3 __le__
+    0x46,0x06, // JUMP_IF_FALSE_OR_POP 6
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0xd7, // BINARY_OP 0 __lt__
+    0x42,0x42, // JUMP 2
+    0x5a, // ROT_TWO
+    0x59, // POP_TOP
+    0x44,0x49, // POP_JUMP_IF_FALSE 9
+    0xb2, // LOAD_FAST 2
+    0x12,0x83,0x10, // LOAD_GLOBAL 'alto'
+    0xb1, // LOAD_FAST 1
+    0x55, // LOAD_SUBSCR
+    0xd8, // BINARY_OP 1 __gt__
+    0x42,0x41, // JUMP 1
+    0x52, // LOAD_CONST_TRUE
+    0x44,0x45, // POP_JUMP_IF_FALSE 5
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x67, // LOAD_ATTR 'cielo'
+    0x63, // RETURN_VALUE
+    0x12,0x83,0x0b, // LOAD_GLOBAL 'FONDO_CUEVA'
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_fondo = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_fondo,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 52,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 6,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 3,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 236,
+        .line_info = fun_data_mc2d_Juego_fondo + 10,
+        .line_info_top = fun_data_mc2d_Juego_fondo + 14,
+        .opcodes = fun_data_mc2d_Juego_fondo + 14,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_fondo fun_data_mc2d_Juego_fondo[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_encerrado
+static const byte fun_data_mc2d_Juego_encerrado[81] = {
+    0x63,0x1e, // prelude
+    0x81,0x6d,0x83,0x3e,0x83,0x41,0x83,0x42, // names: encerrado, self, tx, ty
+    0x90,0xb0,0x3f,0x22,0x29,0x30,0x24, // code info
+    0xb2, // LOAD_FAST 2
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xb1, // LOAD_FAST 1
+    0x57, // DUP_TOP
+    0x5b, // ROT_THREE
+    0xda, // BINARY_OP 3 __le__
+    0x46,0x06, // JUMP_IF_FALSE_OR_POP 6
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0xd7, // BINARY_OP 0 __lt__
+    0x42,0x42, // JUMP 2
+    0x5a, // ROT_TWO
+    0x59, // POP_TOP
+    0x44,0x47, // POP_JUMP_IF_FALSE 7
+    0x12,0x83,0x10, // LOAD_GLOBAL 'alto'
+    0xb1, // LOAD_FAST 1
+    0x55, // LOAD_SUBSCR
+    0x42,0x41, // JUMP 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x85, // LOAD_CONST_SMALL_INT 5
+    0xf3, // BINARY_OP 28 __sub__
+    0xdb, // BINARY_OP 4 __ge__
+    0x44,0x42, // POP_JUMP_IF_FALSE 2
+    0x50, // LOAD_CONST_FALSE
+    0x63, // RETURN_VALUE
+    0x23,0x68, // LOAD_CONST_OBJ 104
+    0x5f, // GET_ITER_STACK
+    0x4b,0x18, // FOR_ITER 24
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc3, // STORE_FAST 3
+    0xc4, // STORE_FAST 4
+    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0xb1, // LOAD_FAST 1
+    0xb3, // LOAD_FAST 3
+    0xf2, // BINARY_OP 27 __add__
+    0xb2, // LOAD_FAST 2
+    0xb4, // LOAD_FAST 4
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x02, // CALL_FUNCTION 2
+    0x12,0x82,0x79, // LOAD_GLOBAL 'TRANSP'
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x42, // POP_JUMP_IF_FALSE 2
+    0x50, // LOAD_CONST_FALSE
+    0x63, // RETURN_VALUE
+    0x42,0x26, // JUMP -26
+    0x52, // LOAD_CONST_TRUE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_encerrado = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_encerrado,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 81,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 13,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 3,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 237,
+        .line_info = fun_data_mc2d_Juego_encerrado + 10,
+        .line_info_top = fun_data_mc2d_Juego_encerrado + 17,
+        .opcodes = fun_data_mc2d_Juego_encerrado + 17,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_encerrado fun_data_mc2d_Juego_encerrado[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_bloque
+static const byte fun_data_mc2d_Juego_bloque[187] = {
+    0x7b,0x2a, // prelude
+    0x81,0x6e,0x83,0x3e,0x83,0x41,0x83,0x42, // names: bloque, self, tx, ty
+    0x90,0xb8,0x2e,0x1f,0x23,0x22,0x27,0x27,0x38,0x23,0x35,0x2a,0x55, // code info
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x6b, // LOAD_METHOD 'pant'
+    0xb1, // LOAD_FAST 1
+    0xb2, // LOAD_FAST 2
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x36,0x02, // CALL_METHOD 2
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc3, // STORE_FAST 3
+    0xc4, // STORE_FAST 4
+    0xb4, // LOAD_FAST 4
+    0x12,0x83,0x06, // LOAD_GLOBAL 'VIEW_H'
+    0xdb, // BINARY_OP 4 __ge__
+    0x43,0x5b, // POP_JUMP_IF_TRUE 27
+    0xb3, // LOAD_FAST 3
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x13,0x3c, // LOAD_ATTR 'ANCHO'
+    0xdb, // BINARY_OP 4 __ge__
+    0x43,0x52, // POP_JUMP_IF_TRUE 18
+    0xb3, // LOAD_FAST 3
+    0x12,0x83,0x05, // LOAD_GLOBAL 'T'
+    0xf2, // BINARY_OP 27 __add__
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xda, // BINARY_OP 3 __le__
+    0x43,0x49, // POP_JUMP_IF_TRUE 9
+    0xb4, // LOAD_FAST 4
+    0x12,0x83,0x05, // LOAD_GLOBAL 'T'
+    0xf2, // BINARY_OP 27 __add__
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xda, // BINARY_OP 3 __le__
+    0x44,0x42, // POP_JUMP_IF_FALSE 2
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0xb1, // LOAD_FAST 1
+    0xb2, // LOAD_FAST 2
+    0x34,0x02, // CALL_FUNCTION 2
+    0xc5, // STORE_FAST 5
+    0xb5, // LOAD_FAST 5
+    0x12,0x82,0x79, // LOAD_GLOBAL 'TRANSP'
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x70, // POP_JUMP_IF_FALSE 48
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x56, // LOAD_METHOD 'rect'
+    0xb3, // LOAD_FAST 3
+    0xb4, // LOAD_FAST 4
+    0x12,0x83,0x05, // LOAD_GLOBAL 'T'
+    0x12,0x83,0x05, // LOAD_GLOBAL 'T'
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x6c, // LOAD_METHOD 'fondo'
+    0xb1, // LOAD_FAST 1
+    0xb2, // LOAD_FAST 2
+    0x36,0x02, // CALL_METHOD 2
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0xb5, // LOAD_FAST 5
+    0x44,0x53, // POP_JUMP_IF_FALSE 19
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x6a, // LOAD_METHOD 'dibujar'
+    0x12,0x66, // LOAD_GLOBAL 'spr'
+    0x12,0x82,0x72, // LOAD_GLOBAL 'TEX'
+    0xb5, // LOAD_FAST 5
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0xb3, // LOAD_FAST 3
+    0xb4, // LOAD_FAST 4
+    0x36,0x03, // CALL_METHOD 3
+    0x59, // POP_TOP
+    0x42,0x72, // JUMP 50
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x6d, // LOAD_METHOD 'encerrado'
+    0xb1, // LOAD_FAST 1
+    0xb2, // LOAD_FAST 2
+    0x36,0x02, // CALL_METHOD 2
+    0x44,0x55, // POP_JUMP_IF_FALSE 21
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x56, // LOAD_METHOD 'rect'
+    0xb3, // LOAD_FAST 3
+    0xb4, // LOAD_FAST 4
+    0x12,0x83,0x05, // LOAD_GLOBAL 'T'
+    0x12,0x83,0x05, // LOAD_GLOBAL 'T'
+    0x12,0x83,0x0c, // LOAD_GLOBAL 'OSCURO'
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0x42,0x53, // JUMP 19
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x6a, // LOAD_METHOD 'dibujar'
+    0x12,0x66, // LOAD_GLOBAL 'spr'
+    0x12,0x82,0x72, // LOAD_GLOBAL 'TEX'
+    0xb5, // LOAD_FAST 5
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0xb3, // LOAD_FAST 3
+    0xb4, // LOAD_FAST 4
+    0x36,0x03, // CALL_METHOD 3
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_bloque = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_bloque,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 187,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 16,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 3,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 238,
+        .line_info = fun_data_mc2d_Juego_bloque + 10,
+        .line_info_top = fun_data_mc2d_Juego_bloque + 23,
+        .opcodes = fun_data_mc2d_Juego_bloque + 23,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_bloque fun_data_mc2d_Juego_bloque[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_zona
+static const byte fun_data_mc2d_Juego_zona[64] = {
+    0xf1,0x04,0x20, // prelude
+    0x81,0x6f,0x83,0x3e,0x83,0x43,0x83,0x44,0x83,0x45,0x83,0x46, // names: zona, self, x0, y0, x1, y1
+    0x90,0xc6,0x28,0x28, // code info
+    0xb4, // LOAD_FAST 4
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb2, // LOAD_FAST 2
+    0x42,0x5e, // JUMP 30
+    0x57, // DUP_TOP
+    0xc5, // STORE_FAST 5
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb1, // LOAD_FAST 1
+    0x42,0x4d, // JUMP 13
+    0x57, // DUP_TOP
+    0xc6, // STORE_FAST 6
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x6e, // LOAD_METHOD 'bloque'
+    0xb6, // LOAD_FAST 6
+    0xb5, // LOAD_FAST 5
+    0x36,0x02, // CALL_METHOD 2
+    0x59, // POP_TOP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x2e, // POP_JUMP_IF_TRUE -18
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x1d, // POP_JUMP_IF_TRUE -35
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_zona = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_zona,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 64,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 15,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 5,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 239,
+        .line_info = fun_data_mc2d_Juego_zona + 15,
+        .line_info_top = fun_data_mc2d_Juego_zona + 19,
+        .opcodes = fun_data_mc2d_Juego_zona + 19,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_zona fun_data_mc2d_Juego_zona[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_objetivo
+static const byte fun_data_mc2d_Juego_objetivo[46] = {
+    0x21,0x0c, // prelude
+    0x81,0x70,0x83,0x3e, // names: objetivo, self
+    0x90,0xcb, // code info
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb0, // LOAD_FAST 0
+    0x13,0x74, // LOAD_ATTR 'x'
+    0x12,0x83,0x11, // LOAD_GLOBAL 'PW'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf7, // BINARY_OP 32 __truediv__
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x01, // CALL_FUNCTION 1
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x57, // LOAD_ATTR 'cdx'
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb0, // LOAD_FAST 0
+    0x13,0x75, // LOAD_ATTR 'y'
+    0x23,0x69, // LOAD_CONST_OBJ 105
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x01, // CALL_FUNCTION 1
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x58, // LOAD_ATTR 'cdy'
+    0xf2, // BINARY_OP 27 __add__
+    0x2a,0x02, // BUILD_TUPLE 2
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_objetivo = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_objetivo,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 46,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 5,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 240,
+        .line_info = fun_data_mc2d_Juego_objetivo + 6,
+        .line_info_top = fun_data_mc2d_Juego_objetivo + 8,
+        .opcodes = fun_data_mc2d_Juego_objetivo + 8,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_objetivo fun_data_mc2d_Juego_objetivo[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_dibujar_hud
+static const byte fun_data_mc2d_Juego_dibujar_hud[437] = {
+    0x71,0x3e, // prelude
+    0x81,0x71,0x83,0x3e, // names: dibujar_hud, self
+    0x90,0xce,0x1f,0x2c,0x28,0x22,0x25,0x29,0x1f,0x21,0x26,0x1f,0x25,0x1f,0x2e,0x24,0x26,0x26,0x1f,0x25,0x37,0x1f,0x21,0x32,0x1f,0x2d,0x2a, // code info
+    0xb0, // LOAD_FAST 0
+    0x13,0x76, // LOAD_ATTR 'vida'
+    0xb0, // LOAD_FAST 0
+    0x13,0x77, // LOAD_ATTR 'hambre'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x59, // LOAD_ATTR 'sel'
+    0x12,0x83,0x47, // LOAD_GLOBAL 'bytes'
+    0x12,0x83,0x1c, // LOAD_GLOBAL 'inv_id'
+    0x51, // LOAD_CONST_NONE
+    0x89, // LOAD_CONST_SMALL_INT 9
+    0x2e,0x02, // BUILD_SLICE 2
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x83,0x47, // LOAD_GLOBAL 'bytes'
+    0x12,0x83,0x1d, // LOAD_GLOBAL 'inv_n'
+    0x51, // LOAD_CONST_NONE
+    0x89, // LOAD_CONST_SMALL_INT 9
+    0x2e,0x02, // BUILD_SLICE 2
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x66, // LOAD_ATTR 'aviso'
+    0x2a,0x06, // BUILD_TUPLE 6
+    0xc1, // STORE_FAST 1
+    0xb1, // LOAD_FAST 1
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x65, // LOAD_ATTR 'hud'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x42, // POP_JUMP_IF_FALSE 2
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0xb1, // LOAD_FAST 1
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x65, // STORE_ATTR 'hud'
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x72, // LOAD_METHOD 'recorte'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x56, // LOAD_METHOD 'rect'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x12,0x83,0x06, // LOAD_GLOBAL 'VIEW_H'
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x13,0x3c, // LOAD_ATTR 'ANCHO'
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x13,0x81,0x19, // LOAD_ATTR 'ALTO'
+    0x12,0x83,0x06, // LOAD_GLOBAL 'VIEW_H'
+    0xf3, // BINARY_OP 28 __sub__
+    0x22,0x80,0xe8,0xb4,0x1a, // LOAD_CONST_SMALL_INT 1710618
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0xcc,0x80, // JUMP 76
+    0x57, // DUP_TOP
+    0xc2, // STORE_FAST 2
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x6a, // LOAD_METHOD 'dibujar'
+    0x12,0x66, // LOAD_GLOBAL 'spr'
+    0x10,0x81,0x73, // LOAD_CONST_STRING 'corazon'
+    0x12,0x6c, // LOAD_GLOBAL 'medio'
+    0xb0, // LOAD_FAST 0
+    0x13,0x76, // LOAD_ATTR 'vida'
+    0xb2, // LOAD_FAST 2
+    0x34,0x02, // CALL_FUNCTION 2
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x22,0x80,0x46, // LOAD_CONST_SMALL_INT 70
+    0xb2, // LOAD_FAST 2
+    0x89, // LOAD_CONST_SMALL_INT 9
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x06, // LOAD_GLOBAL 'VIEW_H'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf2, // BINARY_OP 27 __add__
+    0x36,0x03, // CALL_METHOD 3
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x6a, // LOAD_METHOD 'dibujar'
+    0x12,0x66, // LOAD_GLOBAL 'spr'
+    0x10,0x81,0x74, // LOAD_CONST_STRING 'comida'
+    0x12,0x6c, // LOAD_GLOBAL 'medio'
+    0xb0, // LOAD_FAST 0
+    0x13,0x77, // LOAD_ATTR 'hambre'
+    0xb2, // LOAD_FAST 2
+    0x34,0x02, // CALL_FUNCTION 2
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x22,0x81,0x72, // LOAD_CONST_SMALL_INT 242
+    0xb2, // LOAD_FAST 2
+    0x89, // LOAD_CONST_SMALL_INT 9
+    0xf4, // BINARY_OP 29 __mul__
+    0xf3, // BINARY_OP 28 __sub__
+    0x12,0x83,0x06, // LOAD_GLOBAL 'VIEW_H'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf2, // BINARY_OP 27 __add__
+    0x36,0x03, // CALL_METHOD 3
+    0x59, // POP_TOP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x57, // DUP_TOP
+    0x8a, // LOAD_CONST_SMALL_INT 10
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0xae,0x7f, // POP_JUMP_IF_TRUE -82
+    0x59, // POP_TOP
+    0x22,0x80,0x46, // LOAD_CONST_SMALL_INT 70
+    0xc3, // STORE_FAST 3
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0xdc,0x80, // JUMP 92
+    0x57, // DUP_TOP
+    0xc2, // STORE_FAST 2
+    0xb3, // LOAD_FAST 3
+    0xb2, // LOAD_FAST 2
+    0x94, // LOAD_CONST_SMALL_INT 20
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0xc4, // STORE_FAST 4
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x56, // LOAD_METHOD 'rect'
+    0xb4, // LOAD_FAST 4
+    0x12,0x83,0x06, // LOAD_GLOBAL 'VIEW_H'
+    0x8c, // LOAD_CONST_SMALL_INT 12
+    0xf2, // BINARY_OP 27 __add__
+    0x94, // LOAD_CONST_SMALL_INT 20
+    0x96, // LOAD_CONST_SMALL_INT 22
+    0xb2, // LOAD_FAST 2
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x59, // LOAD_ATTR 'sel'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x47, // POP_JUMP_IF_FALSE 7
+    0x22,0x84,0xae,0x97,0x0b, // LOAD_CONST_SMALL_INT 9145227
+    0x42,0x45, // JUMP 5
+    0x22,0x82,0xa9,0x94,0x4a, // LOAD_CONST_SMALL_INT 4868682
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x56, // LOAD_METHOD 'rect'
+    0xb4, // LOAD_FAST 4
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x06, // LOAD_GLOBAL 'VIEW_H'
+    0x8d, // LOAD_CONST_SMALL_INT 13
+    0xf2, // BINARY_OP 27 __add__
+    0x92, // LOAD_CONST_SMALL_INT 18
+    0x94, // LOAD_CONST_SMALL_INT 20
+    0x22,0x81,0xa8,0xd4,0x2a, // LOAD_CONST_SMALL_INT 2763306
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0x12,0x69, // LOAD_GLOBAL 'icono'
+    0x12,0x83,0x1c, // LOAD_GLOBAL 'inv_id'
+    0xb2, // LOAD_FAST 2
+    0x55, // LOAD_SUBSCR
+    0xb4, // LOAD_FAST 4
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x06, // LOAD_GLOBAL 'VIEW_H'
+    0x8f, // LOAD_CONST_SMALL_INT 15
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x1d, // LOAD_GLOBAL 'inv_n'
+    0xb2, // LOAD_FAST 2
+    0x55, // LOAD_SUBSCR
+    0x34,0x04, // CALL_FUNCTION 4
+    0x59, // POP_TOP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x57, // DUP_TOP
+    0x89, // LOAD_CONST_SMALL_INT 9
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x9e,0x7f, // POP_JUMP_IF_TRUE -98
+    0x59, // POP_TOP
+    0x12,0x82,0x73, // LOAD_GLOBAL 'NOMBRE'
+    0x14,0x4c, // LOAD_METHOD 'get'
+    0x12,0x83,0x1c, // LOAD_GLOBAL 'inv_id'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x59, // LOAD_ATTR 'sel'
+    0x55, // LOAD_SUBSCR
+    0x10,0x0a, // LOAD_CONST_STRING ''
+    0x36,0x02, // CALL_METHOD 2
+    0xc5, // STORE_FAST 5
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x57, // LOAD_METHOD 'texto'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x66, // LOAD_ATTR 'aviso'
+    0x45,0x01, // JUMP_IF_TRUE_OR_POP 1
+    0xb5, // LOAD_FAST 5
+    0x51, // LOAD_CONST_NONE
+    0x8a, // LOAD_CONST_SMALL_INT 10
+    0x2e,0x02, // BUILD_SLICE 2
+    0x55, // LOAD_SUBSCR
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x12,0x83,0x06, // LOAD_GLOBAL 'VIEW_H'
+    0x94, // LOAD_CONST_SMALL_INT 20
+    0xf2, // BINARY_OP 27 __add__
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x66, // LOAD_ATTR 'aviso'
+    0x44,0x47, // POP_JUMP_IF_FALSE 7
+    0x22,0x87,0xff,0xff,0x20, // LOAD_CONST_SMALL_INT 16777120
+    0x42,0x45, // JUMP 5
+    0x22,0x86,0x83,0x81,0x40, // LOAD_CONST_SMALL_INT 12632256
+    0x36,0x04, // CALL_METHOD 4
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x38, // LOAD_ATTR 'online'
+    0x44,0x69, // POP_JUMP_IF_FALSE 41
+    0x12,0x09, // LOAD_GLOBAL 'red'
+    0x44,0x65, // POP_JUMP_IF_FALSE 37
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x57, // LOAD_METHOD 'texto'
+    0x10,0x81,0x75, // LOAD_CONST_STRING '%d jug'
+    0x12,0x83,0x2c, // LOAD_GLOBAL 'len'
+    0x12,0x09, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x76, // LOAD_METHOD 'jugadores'
+    0x36,0x00, // CALL_METHOD 0
+    0x34,0x01, // CALL_FUNCTION 1
+    0xf8, // BINARY_OP 33 __mod__
+    0x22,0x82,0x16, // LOAD_CONST_SMALL_INT 278
+    0x12,0x83,0x06, // LOAD_GLOBAL 'VIEW_H'
+    0x94, // LOAD_CONST_SMALL_INT 20
+    0xf2, // BINARY_OP 27 __add__
+    0x22,0x82,0xc3,0xb8,0x78, // LOAD_CONST_SMALL_INT 5299320
+    0x36,0x04, // CALL_METHOD 4
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_dibujar_hud = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_dibujar_hud,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 437,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 15,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 241,
+        .line_info = fun_data_mc2d_Juego_dibujar_hud + 6,
+        .line_info_top = fun_data_mc2d_Juego_dibujar_hud + 33,
+        .opcodes = fun_data_mc2d_Juego_dibujar_hud + 33,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_dibujar_hud fun_data_mc2d_Juego_dibujar_hud[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_caja_jugador
+static const byte fun_data_mc2d_Juego_caja_jugador[44] = {
+    0x4b,0x12, // prelude
+    0x81,0x77,0x83,0x3e,0x74,0x75, // names: caja_jugador, self, x, y
+    0x90,0xe3,0x32, // code info
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x6b, // LOAD_METHOD 'pant'
+    0xb1, // LOAD_FAST 1
+    0x12,0x83,0x11, // LOAD_GLOBAL 'PW'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf7, // BINARY_OP 32 __truediv__
+    0xf2, // BINARY_OP 27 __add__
+    0xb2, // LOAD_FAST 2
+    0x36,0x02, // CALL_METHOD 2
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc3, // STORE_FAST 3
+    0xc4, // STORE_FAST 4
+    0xb3, // LOAD_FAST 3
+    0x87, // LOAD_CONST_SMALL_INT 7
+    0xf3, // BINARY_OP 28 __sub__
+    0xb4, // LOAD_FAST 4
+    0x9d, // LOAD_CONST_SMALL_INT 29
+    0xf3, // BINARY_OP 28 __sub__
+    0xb3, // LOAD_FAST 3
+    0x87, // LOAD_CONST_SMALL_INT 7
+    0xf2, // BINARY_OP 27 __add__
+    0xb4, // LOAD_FAST 4
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_caja_jugador = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_caja_jugador,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 44,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 10,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 3,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 247,
+        .line_info = fun_data_mc2d_Juego_caja_jugador + 8,
+        .line_info_top = fun_data_mc2d_Juego_caja_jugador + 11,
+        .opcodes = fun_data_mc2d_Juego_caja_jugador + 11,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_caja_jugador fun_data_mc2d_Juego_caja_jugador[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_a_bloques
+static const byte fun_data_mc2d_Juego_a_bloques[80] = {
+    0xe1,0x04,0x24, // prelude
+    0x81,0x78,0x83,0x3e,0x83,0x43,0x83,0x44,0x83,0x45,0x83,0x46, // names: a_bloques, self, x0, y0, x1, y1
+    0x90,0xe8,0x2b,0x2b,0x2b,0x2f, // code info
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x69, // LOAD_ATTR 'cam_x'
+    0xb1, // LOAD_FAST 1
+    0x12,0x83,0x05, // LOAD_GLOBAL 'T'
+    0xf6, // BINARY_OP 31 __floordiv__
+    0xf2, // BINARY_OP 27 __add__
+    0xc5, // STORE_FAST 5
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x69, // LOAD_ATTR 'cam_x'
+    0xb3, // LOAD_FAST 3
+    0x12,0x83,0x05, // LOAD_GLOBAL 'T'
+    0xf6, // BINARY_OP 31 __floordiv__
+    0xf2, // BINARY_OP 27 __add__
+    0xc6, // STORE_FAST 6
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x6a, // LOAD_ATTR 'cam_top'
+    0xb2, // LOAD_FAST 2
+    0x12,0x83,0x05, // LOAD_GLOBAL 'T'
+    0xf6, // BINARY_OP 31 __floordiv__
+    0xf3, // BINARY_OP 28 __sub__
+    0xc7, // STORE_FAST 7
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x6a, // LOAD_ATTR 'cam_top'
+    0xb4, // LOAD_FAST 4
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf3, // BINARY_OP 28 __sub__
+    0x12,0x83,0x05, // LOAD_GLOBAL 'T'
+    0xf6, // BINARY_OP 31 __floordiv__
+    0xf3, // BINARY_OP 28 __sub__
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf3, // BINARY_OP 28 __sub__
+    0xc8, // STORE_FAST 8
+    0xb5, // LOAD_FAST 5
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf3, // BINARY_OP 28 __sub__
+    0xb8, // LOAD_FAST 8
+    0xb6, // LOAD_FAST 6
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb7, // LOAD_FAST 7
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_a_bloques = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_a_bloques,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 80,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 13,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 5,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 248,
+        .line_info = fun_data_mc2d_Juego_a_bloques + 15,
+        .line_info_top = fun_data_mc2d_Juego_a_bloques + 21,
+        .opcodes = fun_data_mc2d_Juego_a_bloques + 21,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_a_bloques fun_data_mc2d_Juego_a_bloques[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_pintar
+static const byte fun_data_mc2d_Juego_pintar[1032] = {
+    0xb1,0x20,0x84,0x02, // prelude
+    0x81,0x4a,0x83,0x3e, // names: pintar, self
+    0x90,0xef,0x34,0x1f,0x35,0x27,0x33,0x26,0x25,0x26,0x26,0x1f,0x42,0x28,0x2b,0x2b,0x2b,0x26,0x46,0x29,0x30,0x28,0x33,0x37,0x5b,0x32,0x39,0x56,0x2e,0x32,0x2e,0x22,0x1f,0x25,0x25,0x1f,0x28,0x2b,0x1f,0x22,0x3e,0x5a,0x32,0x1f,0x24,0x1f,0x25,0x2a,0x25,0x3d,0x1f,0x2e,0x57,0x2c,0x32,0x2a,0x33,0x1f,0x2c,0x34,0x33,0x29, // code info
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x6b, // LOAD_METHOD 'pant'
+    0xb0, // LOAD_FAST 0
+    0x13,0x74, // LOAD_ATTR 'x'
+    0xb0, // LOAD_FAST 0
+    0x13,0x75, // LOAD_ATTR 'y'
+    0x12,0x83,0x12, // LOAD_GLOBAL 'PH'
+    0xf2, // BINARY_OP 27 __add__
+    0x36,0x02, // CALL_METHOD 2
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc1, // STORE_FAST 1
+    0xc2, // STORE_FAST 2
+    0xb1, // LOAD_FAST 1
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x13,0x3c, // LOAD_ATTR 'ANCHO'
+    0x23,0x6a, // LOAD_CONST_OBJ 106
+    0xf4, // BINARY_OP 29 __mul__
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x68, // POP_JUMP_IF_TRUE 40
+    0xb1, // LOAD_FAST 1
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x13,0x3c, // LOAD_ATTR 'ANCHO'
+    0x23,0x22, // LOAD_CONST_OBJ 34
+    0xf4, // BINARY_OP 29 __mul__
+    0xd8, // BINARY_OP 1 __gt__
+    0x43,0x5c, // POP_JUMP_IF_TRUE 28
+    0xb2, // LOAD_FAST 2
+    0x12,0x83,0x06, // LOAD_GLOBAL 'VIEW_H'
+    0x23,0x39, // LOAD_CONST_OBJ 57
+    0xf4, // BINARY_OP 29 __mul__
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x52, // POP_JUMP_IF_TRUE 18
+    0xb2, // LOAD_FAST 2
+    0x12,0x83,0x12, // LOAD_GLOBAL 'PH'
+    0x12,0x83,0x05, // LOAD_GLOBAL 'T'
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x06, // LOAD_GLOBAL 'VIEW_H'
+    0x23,0x6b, // LOAD_CONST_OBJ 107
+    0xf4, // BINARY_OP 29 __mul__
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x47, // POP_JUMP_IF_FALSE 7
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x05, // LOAD_METHOD 'centrar'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x72, // LOAD_METHOD 'recorte'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x13,0x3c, // LOAD_ATTR 'ANCHO'
+    0x12,0x83,0x06, // LOAD_GLOBAL 'VIEW_H'
+    0x36,0x04, // CALL_METHOD 4
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x62, // LOAD_ATTR 'completo'
+    0x44,0x72, // POP_JUMP_IF_FALSE 50
+    0x50, // LOAD_CONST_FALSE
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x62, // STORE_ATTR 'completo'
+    0x2b,0x00, // BUILD_LIST 0
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x63, // STORE_ATTR 'sucios'
+    0x2b,0x00, // BUILD_LIST 0
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x64, // STORE_ATTR 'pintado'
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x6f, // LOAD_METHOD 'zona'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x69, // LOAD_ATTR 'cam_x'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x6a, // LOAD_ATTR 'cam_top'
+    0x12,0x83,0x08, // LOAD_GLOBAL 'VH'
+    0xf3, // BINARY_OP 28 __sub__
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x69, // LOAD_ATTR 'cam_x'
+    0x12,0x83,0x07, // LOAD_GLOBAL 'VW'
+    0xf2, // BINARY_OP 27 __add__
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x6a, // LOAD_ATTR 'cam_top'
+    0x36,0x04, // CALL_METHOD 4
+    0x59, // POP_TOP
+    0x42,0x6f, // JUMP 47
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x64, // LOAD_ATTR 'pintado'
+    0x5f, // GET_ITER_STACK
+    0x4b,0x0c, // FOR_ITER 12
+    0xc3, // STORE_FAST 3
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x6f, // LOAD_METHOD 'zona'
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x37,0x01, // CALL_METHOD_VAR_KW 1
+    0x59, // POP_TOP
+    0x42,0x32, // JUMP -14
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x63, // LOAD_ATTR 'sucios'
+    0x5f, // GET_ITER_STACK
+    0x4b,0x0f, // FOR_ITER 15
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc4, // STORE_FAST 4
+    0xc5, // STORE_FAST 5
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x6e, // LOAD_METHOD 'bloque'
+    0xb4, // LOAD_FAST 4
+    0xb5, // LOAD_FAST 5
+    0x36,0x02, // CALL_METHOD 2
+    0x59, // POP_TOP
+    0x42,0x2f, // JUMP -17
+    0x2b,0x00, // BUILD_LIST 0
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x63, // STORE_ATTR 'sucios'
+    0x2b,0x00, // BUILD_LIST 0
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x64, // STORE_ATTR 'pintado'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x5f, // LOAD_ATTR 'mobs'
+    0x5f, // GET_ITER_STACK
+    0x4b,0x9f,0x01, // FOR_ITER 159
+    0xc6, // STORE_FAST 6
+    0xb6, // LOAD_FAST 6
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x45, // POP_JUMP_IF_FALSE 5
+    0x10,0x81,0x79, // LOAD_CONST_STRING 'cerdo'
+    0x42,0x43, // JUMP 3
+    0x10,0x81,0x7a, // LOAD_CONST_STRING 'zombi'
+    0xc7, // STORE_FAST 7
+    0xb6, // LOAD_FAST 6
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0xc5,0x80, // POP_JUMP_IF_FALSE 69
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x6b, // LOAD_METHOD 'pant'
+    0xb6, // LOAD_FAST 6
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0xb6, // LOAD_FAST 6
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0x23,0x36, // LOAD_CONST_OBJ 54
+    0xf2, // BINARY_OP 27 __add__
+    0x36,0x02, // CALL_METHOD 2
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc8, // STORE_FAST 8
+    0xc9, // STORE_FAST 9
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x6a, // LOAD_METHOD 'dibujar'
+    0x12,0x66, // LOAD_GLOBAL 'spr'
+    0xb7, // LOAD_FAST 7
+    0x34,0x01, // CALL_FUNCTION 1
+    0xb8, // LOAD_FAST 8
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0xf3, // BINARY_OP 28 __sub__
+    0xb9, // LOAD_FAST 9
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xb6, // LOAD_FAST 6
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0x55, // LOAD_SUBSCR
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd7, // BINARY_OP 0 __lt__
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x64, // LOAD_ATTR 'pintado'
+    0x14,0x3b, // LOAD_METHOD 'append'
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x78, // LOAD_METHOD 'a_bloques'
+    0xb8, // LOAD_FAST 8
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0xf3, // BINARY_OP 28 __sub__
+    0xb9, // LOAD_FAST 9
+    0xb8, // LOAD_FAST 8
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0xf2, // BINARY_OP 27 __add__
+    0xb9, // LOAD_FAST 9
+    0x8c, // LOAD_CONST_SMALL_INT 12
+    0xf2, // BINARY_OP 27 __add__
+    0x36,0x04, // CALL_METHOD 4
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x42,0x7e, // JUMP 62
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x77, // LOAD_METHOD 'caja_jugador'
+    0xb6, // LOAD_FAST 6
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0xb6, // LOAD_FAST 6
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0x36,0x02, // CALL_METHOD 2
+    0x30,0x04, // UNPACK_SEQUENCE 4
+    0xca, // STORE_FAST 10
+    0xcb, // STORE_FAST 11
+    0xcc, // STORE_FAST 12
+    0xcd, // STORE_FAST 13
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x6a, // LOAD_METHOD 'dibujar'
+    0x12,0x66, // LOAD_GLOBAL 'spr'
+    0xb7, // LOAD_FAST 7
+    0x34,0x01, // CALL_FUNCTION 1
+    0xba, // LOAD_FAST 10
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xbb, // LOAD_FAST 11
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xb6, // LOAD_FAST 6
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0x55, // LOAD_SUBSCR
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd7, // BINARY_OP 0 __lt__
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x64, // LOAD_ATTR 'pintado'
+    0x14,0x3b, // LOAD_METHOD 'append'
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x78, // LOAD_METHOD 'a_bloques'
+    0xba, // LOAD_FAST 10
+    0xbb, // LOAD_FAST 11
+    0xbc, // LOAD_FAST 12
+    0xbd, // LOAD_FAST 13
+    0x36,0x04, // CALL_METHOD 4
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x42,0xde,0x7e, // JUMP -162
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x45, // LOAD_ATTR 'otros'
+    0x14,0x81,0x7b, // LOAD_METHOD 'values'
+    0x36,0x00, // CALL_METHOD 0
+    0x5f, // GET_ITER_STACK
+    0x4b,0xd7,0x01, // FOR_ITER 215
+    0xce, // STORE_FAST 14
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x77, // LOAD_METHOD 'caja_jugador'
+    0xbe, // LOAD_FAST 14
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0xbe, // LOAD_FAST 14
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0x36,0x02, // CALL_METHOD 2
+    0x30,0x04, // UNPACK_SEQUENCE 4
+    0xca, // STORE_FAST 10
+    0xcb, // STORE_FAST 11
+    0xcc, // STORE_FAST 12
+    0xcd, // STORE_FAST 13
+    0xbc, // LOAD_FAST 12
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x49, // POP_JUMP_IF_TRUE 9
+    0xba, // LOAD_FAST 10
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x13,0x3c, // LOAD_ATTR 'ANCHO'
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x42, // POP_JUMP_IF_FALSE 2
+    0x42,0x1a, // JUMP -38
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x6a, // LOAD_METHOD 'dibujar'
+    0x12,0x66, // LOAD_GLOBAL 'spr'
+    0xbe, // LOAD_FAST 14
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x55, // LOAD_SUBSCR
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x23,0x6c, // LOAD_CONST_OBJ 108
+    0x42,0x43, // JUMP 3
+    0x10,0x81,0x7c, // LOAD_CONST_STRING 'jugador'
+    0x34,0x01, // CALL_FUNCTION 1
+    0xba, // LOAD_FAST 10
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xbb, // LOAD_FAST 11
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xbe, // LOAD_FAST 14
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd7, // BINARY_OP 0 __lt__
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0xbe, // LOAD_FAST 14
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x55, // LOAD_SUBSCR
+    0x44,0x67, // POP_JUMP_IF_FALSE 39
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x6a, // LOAD_METHOD 'dibujar'
+    0x12,0x66, // LOAD_GLOBAL 'spr'
+    0x12,0x82,0x72, // LOAD_GLOBAL 'TEX'
+    0xbe, // LOAD_FAST 14
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x55, // LOAD_SUBSCR
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0xbe, // LOAD_FAST 14
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x45, // POP_JUMP_IF_FALSE 5
+    0xba, // LOAD_FAST 10
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0xf2, // BINARY_OP 27 __add__
+    0x42,0x43, // JUMP 3
+    0xba, // LOAD_FAST 10
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0xf3, // BINARY_OP 28 __sub__
+    0xbb, // LOAD_FAST 11
+    0x8c, // LOAD_CONST_SMALL_INT 12
+    0xf2, // BINARY_OP 27 __add__
+    0x23,0x36, // LOAD_CONST_OBJ 54
+    0x36,0x04, // CALL_METHOD 4
+    0x59, // POP_TOP
+    0x12,0x83,0x2c, // LOAD_GLOBAL 'len'
+    0xbe, // LOAD_FAST 14
+    0x85, // LOAD_CONST_SMALL_INT 5
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0xf4, // BINARY_OP 29 __mul__
+    0xcf, // STORE_FAST 15
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x57, // LOAD_METHOD 'texto'
+    0xbe, // LOAD_FAST 14
+    0x85, // LOAD_CONST_SMALL_INT 5
+    0x55, // LOAD_SUBSCR
+    0xba, // LOAD_FAST 10
+    0xbc, // LOAD_FAST 12
+    0xf2, // BINARY_OP 27 __add__
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf6, // BINARY_OP 31 __floordiv__
+    0xbf, // LOAD_FAST 15
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf6, // BINARY_OP 31 __floordiv__
+    0xf3, // BINARY_OP 28 __sub__
+    0xbb, // LOAD_FAST 11
+    0x8a, // LOAD_CONST_SMALL_INT 10
+    0xf3, // BINARY_OP 28 __sub__
+    0x22,0x87,0xff,0xff,0x7f, // LOAD_CONST_SMALL_INT 16777215
+    0x22,0x81,0x80,0xc0,0x20, // LOAD_CONST_SMALL_INT 2105376
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x64, // LOAD_ATTR 'pintado'
+    0x14,0x3b, // LOAD_METHOD 'append'
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x78, // LOAD_METHOD 'a_bloques'
+    0x12,0x83,0x28, // LOAD_GLOBAL 'min'
+    0xba, // LOAD_FAST 10
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0xf3, // BINARY_OP 28 __sub__
+    0xba, // LOAD_FAST 10
+    0xbc, // LOAD_FAST 12
+    0xf2, // BINARY_OP 27 __add__
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf6, // BINARY_OP 31 __floordiv__
+    0xbf, // LOAD_FAST 15
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf6, // BINARY_OP 31 __floordiv__
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x02, // CALL_FUNCTION 2
+    0xbb, // LOAD_FAST 11
+    0x8a, // LOAD_CONST_SMALL_INT 10
+    0xf3, // BINARY_OP 28 __sub__
+    0x12,0x83,0x29, // LOAD_GLOBAL 'max'
+    0xbc, // LOAD_FAST 12
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0xf2, // BINARY_OP 27 __add__
+    0xba, // LOAD_FAST 10
+    0xbc, // LOAD_FAST 12
+    0xf2, // BINARY_OP 27 __add__
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf6, // BINARY_OP 31 __floordiv__
+    0xbf, // LOAD_FAST 15
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf6, // BINARY_OP 31 __floordiv__
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x02, // CALL_FUNCTION 2
+    0xbd, // LOAD_FAST 13
+    0x36,0x04, // CALL_METHOD 4
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x42,0xa6,0x7e, // JUMP -218
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x77, // LOAD_METHOD 'caja_jugador'
+    0xb0, // LOAD_FAST 0
+    0x13,0x74, // LOAD_ATTR 'x'
+    0xb0, // LOAD_FAST 0
+    0x13,0x75, // LOAD_ATTR 'y'
+    0x36,0x02, // CALL_METHOD 2
+    0x30,0x04, // UNPACK_SEQUENCE 4
+    0xca, // STORE_FAST 10
+    0xcb, // STORE_FAST 11
+    0xcc, // STORE_FAST 12
+    0xcd, // STORE_FAST 13
+    0x12,0x83,0x48, // LOAD_GLOBAL 'abs'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x51, // LOAD_ATTR 'vx'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x23,0x23, // LOAD_CONST_OBJ 35
+    0xd8, // BINARY_OP 1 __gt__
+    0x46,0x13, // JUMP_IF_FALSE_OR_POP 19
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x53, // LOAD_ATTR 'suelo'
+    0x46,0x0d, // JUMP_IF_FALSE_OR_POP 13
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x5b, // LOAD_ATTR 'anda_t'
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0xf4, // BINARY_OP 29 __mul__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf8, // BINARY_OP 33 __mod__
+    0x26,0x10, // STORE_FAST_N 16
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x6a, // LOAD_METHOD 'dibujar'
+    0x12,0x66, // LOAD_GLOBAL 'spr'
+    0x24,0x10, // LOAD_FAST_N 16
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x23,0x6c, // LOAD_CONST_OBJ 108
+    0x42,0x43, // JUMP 3
+    0x10,0x81,0x7c, // LOAD_CONST_STRING 'jugador'
+    0x34,0x01, // CALL_FUNCTION 1
+    0xba, // LOAD_FAST 10
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xbb, // LOAD_FAST 11
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x54, // LOAD_ATTR 'cara'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd7, // BINARY_OP 0 __lt__
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0x12,0x83,0x1c, // LOAD_GLOBAL 'inv_id'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x59, // LOAD_ATTR 'sel'
+    0x55, // LOAD_SUBSCR
+    0x26,0x11, // STORE_FAST_N 17
+    0x24,0x11, // LOAD_FAST_N 17
+    0x44,0xca,0x80, // POP_JUMP_IF_FALSE 74
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x5d, // LOAD_ATTR 'golpe_t'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x52, // POP_JUMP_IF_FALSE 18
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x5d, // LOAD_ATTR 'golpe_t'
+    0x94, // LOAD_CONST_SMALL_INT 20
+    0xf4, // BINARY_OP 29 __mul__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf8, // BINARY_OP 33 __mod__
+    0x44,0x43, // POP_JUMP_IF_FALSE 3
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x42,0x41, // JUMP 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x26,0x12, // STORE_FAST_N 18
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x6a, // LOAD_METHOD 'dibujar'
+    0x12,0x66, // LOAD_GLOBAL 'spr'
+    0x12,0x82,0x72, // LOAD_GLOBAL 'TEX'
+    0x24,0x11, // LOAD_FAST_N 17
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x54, // LOAD_ATTR 'cara'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x48, // POP_JUMP_IF_FALSE 8
+    0xba, // LOAD_FAST 10
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0xf2, // BINARY_OP 27 __add__
+    0x24,0x12, // LOAD_FAST_N 18
+    0xf2, // BINARY_OP 27 __add__
+    0x42,0x46, // JUMP 6
+    0xba, // LOAD_FAST 10
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0xf3, // BINARY_OP 28 __sub__
+    0x24,0x12, // LOAD_FAST_N 18
+    0xf3, // BINARY_OP 28 __sub__
+    0xbb, // LOAD_FAST 11
+    0x8c, // LOAD_CONST_SMALL_INT 12
+    0xf2, // BINARY_OP 27 __add__
+    0x23,0x36, // LOAD_CONST_OBJ 54
+    0x36,0x04, // CALL_METHOD 4
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x64, // LOAD_ATTR 'pintado'
+    0x14,0x3b, // LOAD_METHOD 'append'
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x78, // LOAD_METHOD 'a_bloques'
+    0xba, // LOAD_FAST 10
+    0x8a, // LOAD_CONST_SMALL_INT 10
+    0xf3, // BINARY_OP 28 __sub__
+    0xbb, // LOAD_FAST 11
+    0xbc, // LOAD_FAST 12
+    0x8a, // LOAD_CONST_SMALL_INT 10
+    0xf2, // BINARY_OP 27 __add__
+    0xbd, // LOAD_FAST 13
+    0x36,0x04, // CALL_METHOD 4
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x70, // LOAD_METHOD 'objetivo'
+    0x36,0x00, // CALL_METHOD 0
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0x26,0x13, // STORE_FAST_N 19
+    0x26,0x14, // STORE_FAST_N 20
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x6b, // LOAD_METHOD 'pant'
+    0x24,0x13, // LOAD_FAST_N 19
+    0x24,0x14, // LOAD_FAST_N 20
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x36,0x02, // CALL_METHOD 2
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0x26,0x15, // STORE_FAST_N 21
+    0x26,0x16, // STORE_FAST_N 22
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x5a, // LOAD_ATTR 'pico'
+    0x30,0x03, // UNPACK_SEQUENCE 3
+    0xc4, // STORE_FAST 4
+    0xc5, // STORE_FAST 5
+    0x26,0x17, // STORE_FAST_N 23
+    0xb4, // LOAD_FAST 4
+    0xb5, // LOAD_FAST 5
+    0x2a,0x02, // BUILD_TUPLE 2
+    0x24,0x13, // LOAD_FAST_N 19
+    0x24,0x14, // LOAD_FAST_N 20
+    0x2a,0x02, // BUILD_TUPLE 2
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x71, // POP_JUMP_IF_FALSE 49
+    0x24,0x17, // LOAD_FAST_N 23
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x6b, // POP_JUMP_IF_FALSE 43
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x6a, // LOAD_METHOD 'dibujar'
+    0x12,0x66, // LOAD_GLOBAL 'spr'
+    0x10,0x81,0x7d, // LOAD_CONST_STRING 'grieta%d'
+    0x12,0x83,0x29, // LOAD_GLOBAL 'max'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x12,0x83,0x28, // LOAD_GLOBAL 'min'
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0x24,0x17, // LOAD_FAST_N 23
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0xf4, // BINARY_OP 29 __mul__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x02, // CALL_FUNCTION 2
+    0x34,0x02, // CALL_FUNCTION 2
+    0xf8, // BINARY_OP 33 __mod__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x24,0x15, // LOAD_FAST_N 21
+    0x24,0x16, // LOAD_FAST_N 22
+    0x36,0x03, // CALL_METHOD 3
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x17, // LOAD_METHOD 'marco'
+    0x24,0x15, // LOAD_FAST_N 21
+    0x24,0x16, // LOAD_FAST_N 22
+    0x12,0x83,0x05, // LOAD_GLOBAL 'T'
+    0x12,0x83,0x05, // LOAD_GLOBAL 'T'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x64, // LOAD_ATTR 'pintado'
+    0x14,0x3b, // LOAD_METHOD 'append'
+    0x24,0x13, // LOAD_FAST_N 19
+    0x24,0x14, // LOAD_FAST_N 20
+    0x24,0x13, // LOAD_FAST_N 19
+    0x24,0x14, // LOAD_FAST_N 20
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x72, // LOAD_METHOD 'recorte'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x71, // LOAD_METHOD 'dibujar_hud'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_pintar = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_pintar,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 1032,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 39,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 202,
+        .line_info = fun_data_mc2d_Juego_pintar + 8,
+        .line_info_top = fun_data_mc2d_Juego_pintar + 70,
+        .opcodes = fun_data_mc2d_Juego_pintar + 70,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_pintar fun_data_mc2d_Juego_pintar[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_poner
+static const byte fun_data_mc2d_Juego_poner[138] = {
+    0x99,0x15,0x2a, // prelude
+    0x81,0x7e,0x83,0x3e,0x74,0x75,0x83,0x20,0x83,0x49, // names: poner, self, x, y, b, red_tambien
+    0xa0,0x2c,0x1f,0x23,0x22,0x28,0x26,0x26,0x26,0x35,0x29, // code info
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xb1, // LOAD_FAST 1
+    0x57, // DUP_TOP
+    0x5b, // ROT_THREE
+    0xda, // BINARY_OP 3 __le__
+    0x46,0x06, // JUMP_IF_FALSE_OR_POP 6
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0xd7, // BINARY_OP 0 __lt__
+    0x42,0x42, // JUMP 2
+    0x5a, // ROT_TWO
+    0x59, // POP_TOP
+    0x44,0x51, // POP_JUMP_IF_FALSE 17
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xb2, // LOAD_FAST 2
+    0x57, // DUP_TOP
+    0x5b, // ROT_THREE
+    0xda, // BINARY_OP 3 __le__
+    0x46,0x06, // JUMP_IF_FALSE_OR_POP 6
+    0x12,0x83,0x03, // LOAD_GLOBAL 'H'
+    0xd7, // BINARY_OP 0 __lt__
+    0x42,0x42, // JUMP 2
+    0x5a, // ROT_TWO
+    0x59, // POP_TOP
+    0x43,0x42, // POP_JUMP_IF_TRUE 2
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0x12,0x40, // LOAD_GLOBAL 'sp'
+    0xb1, // LOAD_FAST 1
+    0xb2, // LOAD_FAST 2
+    0xb3, // LOAD_FAST 3
+    0x34,0x03, // CALL_FUNCTION 3
+    0x59, // POP_TOP
+    0x12,0x42, // LOAD_GLOBAL 'calc_alto'
+    0xb1, // LOAD_FAST 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0x23,0x6d, // LOAD_CONST_OBJ 109
+    0x5f, // GET_ITER_STACK
+    0x4b,0x1c, // FOR_ITER 28
+    0xc5, // STORE_FAST 5
+    0x23,0x6d, // LOAD_CONST_OBJ 109
+    0x5f, // GET_ITER_STACK
+    0x4b,0x14, // FOR_ITER 20
+    0xc6, // STORE_FAST 6
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x63, // LOAD_ATTR 'sucios'
+    0x14,0x3b, // LOAD_METHOD 'append'
+    0xb1, // LOAD_FAST 1
+    0xb5, // LOAD_FAST 5
+    0xf2, // BINARY_OP 27 __add__
+    0xb2, // LOAD_FAST 2
+    0xb6, // LOAD_FAST 6
+    0xf2, // BINARY_OP 27 __add__
+    0x2a,0x02, // BUILD_TUPLE 2
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x42,0x2a, // JUMP -22
+    0x42,0x22, // JUMP -30
+    0xb4, // LOAD_FAST 4
+    0x44,0x5a, // POP_JUMP_IF_FALSE 26
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x38, // LOAD_ATTR 'online'
+    0x44,0x54, // POP_JUMP_IF_FALSE 20
+    0x12,0x09, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x0b, // LOAD_METHOD 'var'
+    0x10,0x81,0x7f, // LOAD_CONST_STRING 'b:%d'
+    0xb1, // LOAD_FAST 1
+    0xb2, // LOAD_FAST 2
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0xf8, // BINARY_OP 33 __mod__
+    0xb3, // LOAD_FAST 3
+    0x36,0x02, // CALL_METHOD 2
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_poner = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_poner,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 138,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 20,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 5,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 1,
+        .qstr_block_name_idx = 254,
+        .line_info = fun_data_mc2d_Juego_poner + 13,
+        .line_info_top = fun_data_mc2d_Juego_poner + 24,
+        .opcodes = fun_data_mc2d_Juego_poner + 24,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_poner fun_data_mc2d_Juego_poner[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_asentar
+static const byte fun_data_mc2d_Juego_asentar[109] = {
+    0x53,0x1c, // prelude
+    0x82,0x00,0x83,0x3e,0x74,0x75, // names: asentar, self, x, y
+    0xa0,0x37,0x23,0x22,0x22,0x31,0x2c,0x3f, // code info
+    0x42,0xc4,0x80, // JUMP 68
+    0xb2, // LOAD_FAST 2
+    0xc3, // STORE_FAST 3
+    0x42,0x61, // JUMP 33
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x7e, // LOAD_METHOD 'poner'
+    0xb1, // LOAD_FAST 1
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf3, // BINARY_OP 28 __sub__
+    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0xb1, // LOAD_FAST 1
+    0xb3, // LOAD_FAST 3
+    0x34,0x02, // CALL_FUNCTION 2
+    0x36,0x03, // CALL_METHOD 3
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x7e, // LOAD_METHOD 'poner'
+    0xb1, // LOAD_FAST 1
+    0xb3, // LOAD_FAST 3
+    0x12,0x82,0x4a, // LOAD_GLOBAL 'AIRE'
+    0x36,0x03, // CALL_METHOD 3
+    0x59, // POP_TOP
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe6, // BINARY_OP 15 __isub__
+    0xc3, // STORE_FAST 3
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x56, // POP_JUMP_IF_FALSE 22
+    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0xb1, // LOAD_FAST 1
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x02, // CALL_FUNCTION 2
+    0x12,0x82,0x4a, // LOAD_GLOBAL 'AIRE'
+    0x12,0x82,0x59, // LOAD_GLOBAL 'AGUA'
+    0x12,0x82,0x62, // LOAD_GLOBAL 'HIERBA_A'
+    0x2a,0x03, // BUILD_TUPLE 3
+    0xdd, // BINARY_OP 6 <in>
+    0x43,0x04, // POP_JUMP_IF_TRUE -60
+    0xb2, // LOAD_FAST 2
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0xc2, // STORE_FAST 2
+    0xb2, // LOAD_FAST 2
+    0x12,0x83,0x03, // LOAD_GLOBAL 'H'
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x4d, // POP_JUMP_IF_FALSE 13
+    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0xb1, // LOAD_FAST 1
+    0xb2, // LOAD_FAST 2
+    0x34,0x02, // CALL_FUNCTION 2
+    0x12,0x82,0x7a, // LOAD_GLOBAL 'CAEN'
+    0xdd, // BINARY_OP 6 <in>
+    0x43,0xa8,0x7f, // POP_JUMP_IF_TRUE -88
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_asentar = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_asentar,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 109,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 11,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 3,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 256,
+        .line_info = fun_data_mc2d_Juego_asentar + 8,
+        .line_info_top = fun_data_mc2d_Juego_asentar + 16,
+        .opcodes = fun_data_mc2d_Juego_asentar + 16,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_asentar fun_data_mc2d_Juego_asentar[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_toca_jugador
+static const byte fun_data_mc2d_Juego_toca_jugador[51] = {
+    0x2b,0x14, // prelude
+    0x82,0x01,0x83,0x3e,0x83,0x41,0x83,0x42, // names: toca_jugador, self, tx, ty
+    0xa0,0x40, // code info
+    0xb1, // LOAD_FAST 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb0, // LOAD_FAST 0
+    0x13,0x74, // LOAD_ATTR 'x'
+    0xd8, // BINARY_OP 1 __gt__
+    0x46,0x1d, // JUMP_IF_FALSE_OR_POP 29
+    0xb1, // LOAD_FAST 1
+    0xb0, // LOAD_FAST 0
+    0x13,0x74, // LOAD_ATTR 'x'
+    0x12,0x83,0x11, // LOAD_GLOBAL 'PW'
+    0xf2, // BINARY_OP 27 __add__
+    0xd7, // BINARY_OP 0 __lt__
+    0x46,0x12, // JUMP_IF_FALSE_OR_POP 18
+    0xb2, // LOAD_FAST 2
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb0, // LOAD_FAST 0
+    0x13,0x75, // LOAD_ATTR 'y'
+    0xd8, // BINARY_OP 1 __gt__
+    0x46,0x09, // JUMP_IF_FALSE_OR_POP 9
+    0xb2, // LOAD_FAST 2
+    0xb0, // LOAD_FAST 0
+    0x13,0x75, // LOAD_ATTR 'y'
+    0x12,0x83,0x12, // LOAD_GLOBAL 'PH'
+    0xf2, // BINARY_OP 27 __add__
+    0xd7, // BINARY_OP 0 __lt__
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_toca_jugador = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_toca_jugador,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 51,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 6,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 3,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 257,
+        .line_info = fun_data_mc2d_Juego_toca_jugador + 10,
+        .line_info_top = fun_data_mc2d_Juego_toca_jugador + 12,
+        .opcodes = fun_data_mc2d_Juego_toca_jugador + 12,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_toca_jugador fun_data_mc2d_Juego_toca_jugador[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_herramienta
+static const byte fun_data_mc2d_Juego_herramienta[47] = {
+    0x21,0x12, // prelude
+    0x82,0x02,0x83,0x3e, // names: herramienta, self
+    0xa0,0x43,0x29,0x27,0x31, // code info
+    0x12,0x83,0x1c, // LOAD_GLOBAL 'inv_id'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x59, // LOAD_ATTR 'sel'
+    0x55, // LOAD_SUBSCR
+    0xc1, // STORE_FAST 1
+    0xb1, // LOAD_FAST 1
+    0x12,0x82,0x6d, // LOAD_GLOBAL 'HERR'
+    0xdb, // BINARY_OP 4 __ge__
+    0x44,0x51, // POP_JUMP_IF_FALSE 17
+    0xb1, // LOAD_FAST 1
+    0x12,0x82,0x6d, // LOAD_GLOBAL 'HERR'
+    0xf3, // BINARY_OP 28 __sub__
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0xf6, // BINARY_OP 31 __floordiv__
+    0xb1, // LOAD_FAST 1
+    0x12,0x82,0x6d, // LOAD_GLOBAL 'HERR'
+    0xf3, // BINARY_OP 28 __sub__
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0xf8, // BINARY_OP 33 __mod__
+    0x2a,0x02, // BUILD_TUPLE 2
+    0x63, // RETURN_VALUE
+    0x23,0x6e, // LOAD_CONST_OBJ 110
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_herramienta = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_herramienta,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 47,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 5,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 258,
+        .line_info = fun_data_mc2d_Juego_herramienta + 6,
+        .line_info_top = fun_data_mc2d_Juego_herramienta + 11,
+        .opcodes = fun_data_mc2d_Juego_herramienta + 11,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_herramienta fun_data_mc2d_Juego_herramienta[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_picar
+static const byte fun_data_mc2d_Juego_picar[413] = {
+    0xa2,0x10,0x56, // prelude
+    0x82,0x03,0x83,0x3e,0x83,0x4a, // names: picar, self, dt
+    0xa0,0x49,0x2a,0x27,0x37,0x26,0x22,0x2a,0x2a,0x2a,0x28,0x29,0x2b,0x23,0x2a,0x26,0x1f,0x24,0x28,0x2d,0x27,0x2c,0x30,0x23,0x2a,0x32,0x24,0x23,0x26,0x28,0x2b,0x1f,0x24,0x20,0x39,0x2e,0x23, // code info
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x70, // LOAD_METHOD 'objetivo'
+    0x36,0x00, // CALL_METHOD 0
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc2, // STORE_FAST 2
+    0xc3, // STORE_FAST 3
+    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0xb2, // LOAD_FAST 2
+    0xb3, // LOAD_FAST 3
+    0x34,0x02, // CALL_FUNCTION 2
+    0xc4, // STORE_FAST 4
+    0xb4, // LOAD_FAST 4
+    0x44,0x54, // POP_JUMP_IF_FALSE 20
+    0xb4, // LOAD_FAST 4
+    0x12,0x82,0x59, // LOAD_GLOBAL 'AGUA'
+    0x12,0x82,0x58, // LOAD_GLOBAL 'LECHO'
+    0x2a,0x02, // BUILD_TUPLE 2
+    0xdd, // BINARY_OP 6 <in>
+    0x43,0x48, // POP_JUMP_IF_TRUE 8
+    0xb4, // LOAD_FAST 4
+    0x12,0x82,0x7b, // LOAD_GLOBAL 'DUREZA'
+    0xdd, // BINARY_OP 6 <in>
+    0xd3, // UNARY_OP 3 <not>
+    0x44,0x48, // POP_JUMP_IF_FALSE 8
+    0x23,0x67, // LOAD_CONST_OBJ 103
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x5a, // STORE_ATTR 'pico'
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x02, // LOAD_METHOD 'herramienta'
+    0x36,0x00, // CALL_METHOD 0
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc5, // STORE_FAST 5
+    0xc6, // STORE_FAST 6
+    0x12,0x82,0x7b, // LOAD_GLOBAL 'DUREZA'
+    0xb4, // LOAD_FAST 4
+    0x55, // LOAD_SUBSCR
+    0x30,0x03, // UNPACK_SEQUENCE 3
+    0xc7, // STORE_FAST 7
+    0xc8, // STORE_FAST 8
+    0xc9, // STORE_FAST 9
+    0xb5, // LOAD_FAST 5
+    0xb8, // LOAD_FAST 8
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x4d, // POP_JUMP_IF_FALSE 13
+    0xb5, // LOAD_FAST 5
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xdb, // BINARY_OP 4 __ge__
+    0x44,0x48, // POP_JUMP_IF_FALSE 8
+    0xb7, // LOAD_FAST 7
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xb6, // LOAD_FAST 6
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0xf7, // BINARY_OP 32 __truediv__
+    0xc7, // STORE_FAST 7
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x5a, // LOAD_ATTR 'pico'
+    0x30,0x03, // UNPACK_SEQUENCE 3
+    0xca, // STORE_FAST 10
+    0xcb, // STORE_FAST 11
+    0xcc, // STORE_FAST 12
+    0xba, // LOAD_FAST 10
+    0xbb, // LOAD_FAST 11
+    0x2a,0x02, // BUILD_TUPLE 2
+    0xb2, // LOAD_FAST 2
+    0xb3, // LOAD_FAST 3
+    0x2a,0x02, // BUILD_TUPLE 2
+    0xdc, // BINARY_OP 5 __ne__
+    0x44,0x43, // POP_JUMP_IF_FALSE 3
+    0x23,0x64, // LOAD_CONST_OBJ 100
+    0xcc, // STORE_FAST 12
+    0xbc, // LOAD_FAST 12
+    0xb1, // LOAD_FAST 1
+    0x22,0x87,0x68, // LOAD_CONST_SMALL_INT 1000
+    0xf4, // BINARY_OP 29 __mul__
+    0xb7, // LOAD_FAST 7
+    0xf7, // BINARY_OP 32 __truediv__
+    0xe5, // BINARY_OP 14 __iadd__
+    0xcc, // STORE_FAST 12
+    0x23,0x6a, // LOAD_CONST_OBJ 106
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x5d, // STORE_ATTR 'golpe_t'
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xbc, // LOAD_FAST 12
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0xf4, // BINARY_OP 29 __mul__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x5a, // LOAD_ATTR 'pico'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0xf4, // BINARY_OP 29 __mul__
+    0x34,0x01, // CALL_FUNCTION 1
+    0xdc, // BINARY_OP 5 __ne__
+    0x43,0x4b, // POP_JUMP_IF_TRUE 11
+    0xba, // LOAD_FAST 10
+    0xbb, // LOAD_FAST 11
+    0x2a,0x02, // BUILD_TUPLE 2
+    0xb2, // LOAD_FAST 2
+    0xb3, // LOAD_FAST 3
+    0x2a,0x02, // BUILD_TUPLE 2
+    0xdc, // BINARY_OP 5 __ne__
+    0x44,0x55, // POP_JUMP_IF_FALSE 21
+    0x12,0x4d, // LOAD_GLOBAL 'sonar_bloque'
+    0xb4, // LOAD_FAST 4
+    0x23,0x6a, // LOAD_CONST_OBJ 106
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x63, // LOAD_ATTR 'sucios'
+    0x14,0x3b, // LOAD_METHOD 'append'
+    0xb2, // LOAD_FAST 2
+    0xb3, // LOAD_FAST 3
+    0x2a,0x02, // BUILD_TUPLE 2
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0xbc, // LOAD_FAST 12
+    0x23,0x2d, // LOAD_CONST_OBJ 45
+    0xdb, // BINARY_OP 4 __ge__
+    0x44,0xa8,0x81, // POP_JUMP_IF_FALSE 168
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x7e, // LOAD_METHOD 'poner'
+    0xb2, // LOAD_FAST 2
+    0xb3, // LOAD_FAST 3
+    0x12,0x82,0x4a, // LOAD_GLOBAL 'AIRE'
+    0x36,0x03, // CALL_METHOD 3
+    0x59, // POP_TOP
+    0xb9, // LOAD_FAST 9
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd7, // BINARY_OP 0 __lt__
+    0x45,0x0a, // JUMP_IF_TRUE_OR_POP 10
+    0xb5, // LOAD_FAST 5
+    0x12,0x82,0x6e, // LOAD_GLOBAL 'PICO'
+    0xd9, // BINARY_OP 2 __eq__
+    0x46,0x03, // JUMP_IF_FALSE_OR_POP 3
+    0xb6, // LOAD_FAST 6
+    0xb9, // LOAD_FAST 9
+    0xdb, // BINARY_OP 4 __ge__
+    0xcd, // STORE_FAST 13
+    0xbd, // LOAD_FAST 13
+    0x44,0x69, // POP_JUMP_IF_FALSE 41
+    0x12,0x82,0x7c, // LOAD_GLOBAL 'SUELTA'
+    0x14,0x4c, // LOAD_METHOD 'get'
+    0xb4, // LOAD_FAST 4
+    0xb4, // LOAD_FAST 4
+    0x36,0x02, // CALL_METHOD 2
+    0xce, // STORE_FAST 14
+    0xb4, // LOAD_FAST 4
+    0x12,0x82,0x50, // LOAD_GLOBAL 'HOJAS'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x4f, // POP_JUMP_IF_FALSE 15
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x03, // LOAD_METHOD 'random'
+    0x36,0x00, // CALL_METHOD 0
+    0x23,0x6f, // LOAD_CONST_OBJ 111
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x12,0x82,0x69, // LOAD_GLOBAL 'MANZANA'
+    0xce, // STORE_FAST 14
+    0xbe, // LOAD_FAST 14
+    0x44,0x46, // POP_JUMP_IF_FALSE 6
+    0x12,0x63, // LOAD_GLOBAL 'dar'
+    0xbe, // LOAD_FAST 14
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0x12,0x4d, // LOAD_GLOBAL 'sonar_bloque'
+    0xb4, // LOAD_FAST 4
+    0x23,0x22, // LOAD_CONST_OBJ 34
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x00, // LOAD_METHOD 'asentar'
+    0xb2, // LOAD_FAST 2
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x36,0x02, // CALL_METHOD 2
+    0x59, // POP_TOP
+    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0xb2, // LOAD_FAST 2
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x02, // CALL_FUNCTION 2
+    0x12,0x82,0x60, // LOAD_GLOBAL 'FLOR_R'
+    0x12,0x82,0x61, // LOAD_GLOBAL 'FLOR_A'
+    0x12,0x82,0x62, // LOAD_GLOBAL 'HIERBA_A'
+    0x12,0x82,0x63, // LOAD_GLOBAL 'ANTORCHA'
+    0x12,0x82,0x5f, // LOAD_GLOBAL 'CACTUS'
+    0x2a,0x05, // BUILD_TUPLE 5
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x47, // POP_JUMP_IF_FALSE 7
+    0xb4, // LOAD_FAST 4
+    0x12,0x82,0x5f, // LOAD_GLOBAL 'CACTUS'
+    0xdc, // BINARY_OP 5 __ne__
+    0x44,0x40, // POP_JUMP_IF_FALSE 0
+    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0xb2, // LOAD_FAST 2
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x02, // CALL_FUNCTION 2
+    0x12,0x82,0x60, // LOAD_GLOBAL 'FLOR_R'
+    0x12,0x82,0x61, // LOAD_GLOBAL 'FLOR_A'
+    0x12,0x82,0x62, // LOAD_GLOBAL 'HIERBA_A'
+    0x12,0x82,0x63, // LOAD_GLOBAL 'ANTORCHA'
+    0x2a,0x04, // BUILD_TUPLE 4
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x4e, // POP_JUMP_IF_FALSE 14
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x7e, // LOAD_METHOD 'poner'
+    0xb2, // LOAD_FAST 2
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x82,0x4a, // LOAD_GLOBAL 'AIRE'
+    0x36,0x03, // CALL_METHOD 3
+    0x59, // POP_TOP
+    0x23,0x64, // LOAD_CONST_OBJ 100
+    0xcc, // STORE_FAST 12
+    0xb2, // LOAD_FAST 2
+    0xb3, // LOAD_FAST 3
+    0xbc, // LOAD_FAST 12
+    0x2a,0x03, // BUILD_TUPLE 3
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x5a, // STORE_ATTR 'pico'
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_picar = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_picar,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 413,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 21,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 2,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 259,
+        .line_info = fun_data_mc2d_Juego_picar + 9,
+        .line_info_top = fun_data_mc2d_Juego_picar + 46,
+        .opcodes = fun_data_mc2d_Juego_picar + 46,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_picar fun_data_mc2d_Juego_picar[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_usar
+static const byte fun_data_mc2d_Juego_usar[301] = {
+    0x79,0x42, // prelude
+    0x82,0x04,0x83,0x3e, // names: usar, self
+    0xa0,0x6d,0x2a,0x27,0x2c,0x34,0x22,0x29,0x2e,0x32,0x26,0x31,0x22,0x31,0x22,0x30,0x22,0x3b,0x22,0x22,0x29,0x36,0x24,0x23,0x22,0x26,0x2a,0x28,0x29, // code info
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x70, // LOAD_METHOD 'objetivo'
+    0x36,0x00, // CALL_METHOD 0
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc1, // STORE_FAST 1
+    0xc2, // STORE_FAST 2
+    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0xb1, // LOAD_FAST 1
+    0xb2, // LOAD_FAST 2
+    0x34,0x02, // CALL_FUNCTION 2
+    0xc3, // STORE_FAST 3
+    0xb3, // LOAD_FAST 3
+    0x12,0x82,0x5a, // LOAD_GLOBAL 'MESA'
+    0x12,0x82,0x5b, // LOAD_GLOBAL 'HORNO'
+    0x2a,0x02, // BUILD_TUPLE 2
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x56, // POP_JUMP_IF_FALSE 22
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x05, // LOAD_METHOD 'abrir_inventario'
+    0xb3, // LOAD_FAST 3
+    0x12,0x82,0x5a, // LOAD_GLOBAL 'MESA'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x10,0x17, // LOAD_CONST_STRING 'mesa'
+    0x42,0x42, // JUMP 2
+    0x10,0x18, // LOAD_CONST_STRING 'horno'
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0x12,0x83,0x1c, // LOAD_GLOBAL 'inv_id'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x59, // LOAD_ATTR 'sel'
+    0x55, // LOAD_SUBSCR
+    0xc4, // STORE_FAST 4
+    0xb4, // LOAD_FAST 4
+    0x12,0x82,0x7d, // LOAD_GLOBAL 'COMIDA'
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x72, // POP_JUMP_IF_FALSE 50
+    0xb0, // LOAD_FAST 0
+    0x13,0x77, // LOAD_ATTR 'hambre'
+    0x94, // LOAD_CONST_SMALL_INT 20
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x6b, // POP_JUMP_IF_FALSE 43
+    0x12,0x83,0x28, // LOAD_GLOBAL 'min'
+    0x94, // LOAD_CONST_SMALL_INT 20
+    0xb0, // LOAD_FAST 0
+    0x13,0x77, // LOAD_ATTR 'hambre'
+    0x12,0x82,0x7d, // LOAD_GLOBAL 'COMIDA'
+    0xb4, // LOAD_FAST 4
+    0x55, // LOAD_SUBSCR
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x02, // CALL_FUNCTION 2
+    0xb0, // LOAD_FAST 0
+    0x18,0x77, // STORE_ATTR 'hambre'
+    0x12,0x65, // LOAD_GLOBAL 'quitar'
+    0xb4, // LOAD_FAST 4
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0x12,0x44, // LOAD_GLOBAL 'sonar'
+    0x10,0x82,0x06, // LOAD_CONST_STRING 'eat%d'
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x54, // LOAD_METHOD 'randint'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x36,0x02, // CALL_METHOD 2
+    0xf8, // BINARY_OP 33 __mod__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0xb4, // LOAD_FAST 4
+    0x44,0x4e, // POP_JUMP_IF_FALSE 14
+    0xb4, // LOAD_FAST 4
+    0x22,0x80,0x40, // LOAD_CONST_SMALL_INT 64
+    0xdb, // BINARY_OP 4 __ge__
+    0x43,0x47, // POP_JUMP_IF_TRUE 7
+    0xb4, // LOAD_FAST 4
+    0x12,0x82,0x59, // LOAD_GLOBAL 'AGUA'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x42, // POP_JUMP_IF_FALSE 2
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0xb3, // LOAD_FAST 3
+    0x12,0x82,0x4a, // LOAD_GLOBAL 'AIRE'
+    0x12,0x82,0x59, // LOAD_GLOBAL 'AGUA'
+    0x12,0x82,0x62, // LOAD_GLOBAL 'HIERBA_A'
+    0x2a,0x03, // BUILD_TUPLE 3
+    0xdd, // BINARY_OP 6 <in>
+    0xd3, // UNARY_OP 3 <not>
+    0x44,0x42, // POP_JUMP_IF_FALSE 2
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0x12,0x41, // LOAD_GLOBAL 'solido'
+    0xb4, // LOAD_FAST 4
+    0x34,0x01, // CALL_FUNCTION 1
+    0x44,0x56, // POP_JUMP_IF_FALSE 22
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x01, // LOAD_METHOD 'toca_jugador'
+    0xb1, // LOAD_FAST 1
+    0xb2, // LOAD_FAST 2
+    0x36,0x02, // CALL_METHOD 2
+    0x43,0x4a, // POP_JUMP_IF_TRUE 10
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x07, // LOAD_METHOD 'mob_en'
+    0xb1, // LOAD_FAST 1
+    0xb2, // LOAD_FAST 2
+    0x36,0x02, // CALL_METHOD 2
+    0x44,0x42, // POP_JUMP_IF_FALSE 2
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0x50, // LOAD_CONST_FALSE
+    0xc5, // STORE_FAST 5
+    0x23,0x68, // LOAD_CONST_OBJ 104
+    0x5f, // GET_ITER_STACK
+    0x4b,0x1e, // FOR_ITER 30
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc6, // STORE_FAST 6
+    0xc7, // STORE_FAST 7
+    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0xb1, // LOAD_FAST 1
+    0xb6, // LOAD_FAST 6
+    0xf2, // BINARY_OP 27 __add__
+    0xb2, // LOAD_FAST 2
+    0xb7, // LOAD_FAST 7
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x02, // CALL_FUNCTION 2
+    0x12,0x82,0x4a, // LOAD_GLOBAL 'AIRE'
+    0x12,0x82,0x59, // LOAD_GLOBAL 'AGUA'
+    0x2a,0x02, // BUILD_TUPLE 2
+    0xdd, // BINARY_OP 6 <in>
+    0xd3, // UNARY_OP 3 <not>
+    0x44,0x42, // POP_JUMP_IF_FALSE 2
+    0x52, // LOAD_CONST_TRUE
+    0xc5, // STORE_FAST 5
+    0x42,0x20, // JUMP -32
+    0xb5, // LOAD_FAST 5
+    0x43,0x42, // POP_JUMP_IF_TRUE 2
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0x12,0x65, // LOAD_GLOBAL 'quitar'
+    0xb4, // LOAD_FAST 4
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x7e, // LOAD_METHOD 'poner'
+    0xb1, // LOAD_FAST 1
+    0xb2, // LOAD_FAST 2
+    0xb4, // LOAD_FAST 4
+    0x36,0x03, // CALL_METHOD 3
+    0x59, // POP_TOP
+    0x12,0x4d, // LOAD_GLOBAL 'sonar_bloque'
+    0xb4, // LOAD_FAST 4
+    0x23,0x30, // LOAD_CONST_OBJ 48
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x00, // LOAD_METHOD 'asentar'
+    0xb1, // LOAD_FAST 1
+    0xb2, // LOAD_FAST 2
+    0x36,0x02, // CALL_METHOD 2
+    0x59, // POP_TOP
+    0x23,0x3a, // LOAD_CONST_OBJ 58
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x5d, // STORE_ATTR 'golpe_t'
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_usar = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_usar,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 301,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 16,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 260,
+        .line_info = fun_data_mc2d_Juego_usar + 6,
+        .line_info_top = fun_data_mc2d_Juego_usar + 35,
+        .opcodes = fun_data_mc2d_Juego_usar + 35,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_usar fun_data_mc2d_Juego_usar[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_mob_en
+static const byte fun_data_mc2d_Juego_mob_en[73] = {
+    0x5b,0x1c, // prelude
+    0x82,0x07,0x83,0x3e,0x83,0x41,0x83,0x42, // names: mob_en, self, tx, ty
+    0xa0,0x8b,0x28,0x1f,0x2c,0x24, // code info
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x5f, // LOAD_ATTR 'mobs'
+    0x5f, // GET_ITER_STACK
+    0x4b,0x30, // FOR_ITER 48
+    0xc3, // STORE_FAST 3
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0xb1, // LOAD_FAST 1
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x61, // POP_JUMP_IF_FALSE 33
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb3, // LOAD_FAST 3
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0xb2, // LOAD_FAST 2
+    0x57, // DUP_TOP
+    0x5b, // ROT_THREE
+    0xda, // BINARY_OP 3 __le__
+    0x46,0x0d, // JUMP_IF_FALSE_OR_POP 13
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb3, // LOAD_FAST 3
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x01, // CALL_FUNCTION 1
+    0xda, // BINARY_OP 3 __le__
+    0x42,0x42, // JUMP 2
+    0x5a, // ROT_TWO
+    0x59, // POP_TOP
+    0x44,0x42, // POP_JUMP_IF_FALSE 2
+    0xb3, // LOAD_FAST 3
+    0x63, // RETURN_VALUE
+    0x42,0x0e, // JUMP -50
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_mob_en = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_mob_en,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 73,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 12,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 3,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 263,
+        .line_info = fun_data_mc2d_Juego_mob_en + 10,
+        .line_info_top = fun_data_mc2d_Juego_mob_en + 16,
+        .opcodes = fun_data_mc2d_Juego_mob_en + 16,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_mob_en fun_data_mc2d_Juego_mob_en[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_golpear
+static const byte fun_data_mc2d_Juego_golpear[239] = {
+    0x61,0x2c, // prelude
+    0x82,0x08,0x83,0x3e, // names: golpear, self
+    0xa0,0x91,0x2a,0x1f,0x23,0x23,0x22,0x2a,0x3c,0x28,0x2a,0x25,0x26,0x3e,0x27,0x2b,0x35,0x3c, // code info
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x70, // LOAD_METHOD 'objetivo'
+    0x36,0x00, // CALL_METHOD 0
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc1, // STORE_FAST 1
+    0xc2, // STORE_FAST 2
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x07, // LOAD_METHOD 'mob_en'
+    0xb1, // LOAD_FAST 1
+    0xb2, // LOAD_FAST 2
+    0x36,0x02, // CALL_METHOD 2
+    0x45,0x17, // JUMP_IF_TRUE_OR_POP 23
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x07, // LOAD_METHOD 'mob_en'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x54, // LOAD_ATTR 'cara'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x45, // POP_JUMP_IF_FALSE 5
+    0xb1, // LOAD_FAST 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf3, // BINARY_OP 28 __sub__
+    0x42,0x43, // JUMP 3
+    0xb1, // LOAD_FAST 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb2, // LOAD_FAST 2
+    0x36,0x02, // CALL_METHOD 2
+    0xc3, // STORE_FAST 3
+    0xb3, // LOAD_FAST 3
+    0x43,0x42, // POP_JUMP_IF_TRUE 2
+    0x50, // LOAD_CONST_FALSE
+    0x63, // RETURN_VALUE
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x02, // LOAD_METHOD 'herramienta'
+    0x36,0x00, // CALL_METHOD 0
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc4, // STORE_FAST 4
+    0xc5, // STORE_FAST 5
+    0xb4, // LOAD_FAST 4
+    0x12,0x82,0x71, // LOAD_GLOBAL 'ESPADA'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x4b, // POP_JUMP_IF_FALSE 11
+    0x12,0x82,0x7e, // LOAD_GLOBAL 'DANO'
+    0x12,0x82,0x71, // LOAD_GLOBAL 'ESPADA'
+    0x55, // LOAD_SUBSCR
+    0xb5, // LOAD_FAST 5
+    0x55, // LOAD_SUBSCR
+    0x42,0x49, // JUMP 9
+    0xb4, // LOAD_FAST 4
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xdb, // BINARY_OP 4 __ge__
+    0x44,0x43, // POP_JUMP_IF_FALSE 3
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x42,0x41, // JUMP 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xc6, // STORE_FAST 6
+    0xb3, // LOAD_FAST 3
+    0x85, // LOAD_CONST_SMALL_INT 5
+    0x58, // DUP_TOP_TWO
+    0x55, // LOAD_SUBSCR
+    0xb6, // LOAD_FAST 6
+    0xe6, // BINARY_OP 15 __isub__
+    0x5b, // ROT_THREE
+    0x56, // STORE_SUBSCR
+    0x23,0x70, // LOAD_CONST_OBJ 112
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x54, // LOAD_ATTR 'cara'
+    0xf4, // BINARY_OP 29 __mul__
+    0xb3, // LOAD_FAST 3
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x56, // STORE_SUBSCR
+    0x23,0x70, // LOAD_CONST_OBJ 112
+    0xb3, // LOAD_FAST 3
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x56, // STORE_SUBSCR
+    0x23,0x6a, // LOAD_CONST_OBJ 106
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x5d, // STORE_ATTR 'golpe_t'
+    0x12,0x44, // LOAD_GLOBAL 'sonar'
+    0xb3, // LOAD_FAST 3
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x45, // POP_JUMP_IF_FALSE 5
+    0x10,0x82,0x09, // LOAD_CONST_STRING 'pig%d'
+    0x42,0x42, // JUMP 2
+    0x23,0x71, // LOAD_CONST_OBJ 113
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x54, // LOAD_METHOD 'randint'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x36,0x02, // CALL_METHOD 2
+    0xf8, // BINARY_OP 33 __mod__
+    0x23,0x30, // LOAD_CONST_OBJ 48
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0xb3, // LOAD_FAST 3
+    0x85, // LOAD_CONST_SMALL_INT 5
+    0x55, // LOAD_SUBSCR
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xda, // BINARY_OP 3 __le__
+    0x44,0x7c, // POP_JUMP_IF_FALSE 60
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x5f, // LOAD_ATTR 'mobs'
+    0x14,0x81,0x31, // LOAD_METHOD 'remove'
+    0xb3, // LOAD_FAST 3
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x12,0x44, // LOAD_GLOBAL 'sonar'
+    0xb3, // LOAD_FAST 3
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x45, // POP_JUMP_IF_FALSE 5
+    0x10,0x82,0x0a, // LOAD_CONST_STRING 'pigdeath'
+    0x42,0x42, // JUMP 2
+    0x23,0x72, // LOAD_CONST_OBJ 114
+    0x23,0x22, // LOAD_CONST_OBJ 34
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0x12,0x63, // LOAD_GLOBAL 'dar'
+    0xb3, // LOAD_FAST 3
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x45, // POP_JUMP_IF_FALSE 5
+    0x12,0x82,0x6a, // LOAD_GLOBAL 'CARNE'
+    0x42,0x43, // JUMP 3
+    0x12,0x82,0x6c, // LOAD_GLOBAL 'CARNE_POD'
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x54, // LOAD_METHOD 'randint'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x36,0x02, // CALL_METHOD 2
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0x52, // LOAD_CONST_TRUE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_golpear = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_golpear,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 239,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 13,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 264,
+        .line_info = fun_data_mc2d_Juego_golpear + 6,
+        .line_info_top = fun_data_mc2d_Juego_golpear + 24,
+        .opcodes = fun_data_mc2d_Juego_golpear + 24,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_golpear fun_data_mc2d_Juego_golpear[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_libre_col
+static const byte fun_data_mc2d_Juego_libre_col[51] = {
+    0xd0,0x04,0x1e, // prelude
+    0x82,0x0b,0x83,0x3e,0x83,0x41,0x83,0x44,0x83,0x46, // names: libre_col, self, tx, y0, y1
+    0xa0,0xa4,0x28,0x2c,0x2b, // code info
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb2, // LOAD_FAST 2
+    0x42,0x52, // JUMP 18
+    0x57, // DUP_TOP
+    0xc4, // STORE_FAST 4
+    0x12,0x41, // LOAD_GLOBAL 'solido'
+    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0xb1, // LOAD_FAST 1
+    0xb4, // LOAD_FAST 4
+    0x34,0x02, // CALL_FUNCTION 2
+    0x34,0x01, // CALL_FUNCTION 1
+    0x44,0x42, // POP_JUMP_IF_FALSE 2
+    0x50, // LOAD_CONST_FALSE
+    0x63, // RETURN_VALUE
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x29, // POP_JUMP_IF_TRUE -23
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x52, // LOAD_CONST_TRUE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_libre_col = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_libre_col,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 51,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 11,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 4,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 267,
+        .line_info = fun_data_mc2d_Juego_libre_col + 13,
+        .line_info_top = fun_data_mc2d_Juego_libre_col + 18,
+        .opcodes = fun_data_mc2d_Juego_libre_col + 18,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_libre_col fun_data_mc2d_Juego_libre_col[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_mover_x
+static const byte fun_data_mc2d_Juego_mover_x[224] = {
+    0x7b,0x36, // prelude
+    0x82,0x0c,0x83,0x3e,0x82,0x2a,0x83,0x4b, // names: mover_x, self, e, dx
+    0xa0,0xaa,0x28,0x29,0x29,0x25,0x2e,0x25,0x4b,0x22,0x34,0x2b,0x22,0x1f,0x2a,0x39,0x27,0x22,0x31, // code info
+    0xb1, // LOAD_FAST 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x58, // DUP_TOP_TWO
+    0x55, // LOAD_SUBSCR
+    0xb2, // LOAD_FAST 2
+    0xe5, // BINARY_OP 14 __iadd__
+    0x5b, // ROT_THREE
+    0x56, // STORE_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0x5a, // ROT_TWO
+    0xc3, // STORE_FAST 3
+    0xc4, // STORE_FAST 4
+    0xb1, // LOAD_FAST 1
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x55, // LOAD_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0x85, // LOAD_CONST_SMALL_INT 5
+    0x55, // LOAD_SUBSCR
+    0x5a, // ROT_TWO
+    0xc5, // STORE_FAST 5
+    0xc6, // STORE_FAST 6
+    0xb2, // LOAD_FAST 2
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x4e, // POP_JUMP_IF_FALSE 14
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb3, // LOAD_FAST 3
+    0xb5, // LOAD_FAST 5
+    0xf2, // BINARY_OP 27 __add__
+    0x23,0x73, // LOAD_CONST_OBJ 115
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x01, // CALL_FUNCTION 1
+    0xc7, // STORE_FAST 7
+    0x42,0x52, // JUMP 18
+    0xb2, // LOAD_FAST 2
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x4b, // POP_JUMP_IF_FALSE 11
+    0x12,0x02, // LOAD_GLOBAL 'math'
+    0x14,0x82,0x0d, // LOAD_METHOD 'floor'
+    0xb3, // LOAD_FAST 3
+    0x36,0x01, // CALL_METHOD 1
+    0xc7, // STORE_FAST 7
+    0x42,0x42, // JUMP 2
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb4, // LOAD_FAST 4
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb4, // LOAD_FAST 4
+    0xb6, // LOAD_FAST 6
+    0xf2, // BINARY_OP 27 __add__
+    0x23,0x73, // LOAD_CONST_OBJ 115
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x5a, // ROT_TWO
+    0xc8, // STORE_FAST 8
+    0xc9, // STORE_FAST 9
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x0b, // LOAD_METHOD 'libre_col'
+    0xb7, // LOAD_FAST 7
+    0xb8, // LOAD_FAST 8
+    0xb9, // LOAD_FAST 9
+    0x36,0x03, // CALL_METHOD 3
+    0x44,0x42, // POP_JUMP_IF_FALSE 2
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0xb1, // LOAD_FAST 1
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x55, // LOAD_SUBSCR
+    0x44,0xc5,0x80, // POP_JUMP_IF_FALSE 69
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x0b, // LOAD_METHOD 'libre_col'
+    0xb7, // LOAD_FAST 7
+    0xb8, // LOAD_FAST 8
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb9, // LOAD_FAST 9
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x36,0x03, // CALL_METHOD 3
+    0x44,0x76, // POP_JUMP_IF_FALSE 54
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x0b, // LOAD_METHOD 'libre_col'
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb3, // LOAD_FAST 3
+    0x34,0x01, // CALL_FUNCTION 1
+    0xb9, // LOAD_FAST 9
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb9, // LOAD_FAST 9
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x36,0x03, // CALL_METHOD 3
+    0x44,0x62, // POP_JUMP_IF_FALSE 34
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x0b, // LOAD_METHOD 'libre_col'
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb3, // LOAD_FAST 3
+    0xb5, // LOAD_FAST 5
+    0xf2, // BINARY_OP 27 __add__
+    0x23,0x73, // LOAD_CONST_OBJ 115
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x01, // CALL_FUNCTION 1
+    0xb9, // LOAD_FAST 9
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb9, // LOAD_FAST 9
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x36,0x03, // CALL_METHOD 3
+    0x44,0x49, // POP_JUMP_IF_FALSE 9
+    0xb8, // LOAD_FAST 8
+    0x23,0x2d, // LOAD_CONST_OBJ 45
+    0xf2, // BINARY_OP 27 __add__
+    0xb1, // LOAD_FAST 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x56, // STORE_SUBSCR
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0xb2, // LOAD_FAST 2
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x45, // POP_JUMP_IF_FALSE 5
+    0xb7, // LOAD_FAST 7
+    0xb5, // LOAD_FAST 5
+    0xf3, // BINARY_OP 28 __sub__
+    0x42,0x44, // JUMP 4
+    0xb7, // LOAD_FAST 7
+    0x23,0x2d, // LOAD_CONST_OBJ 45
+    0xf2, // BINARY_OP 27 __add__
+    0xb1, // LOAD_FAST 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x56, // STORE_SUBSCR
+    0x23,0x64, // LOAD_CONST_OBJ 100
+    0xb1, // LOAD_FAST 1
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x56, // STORE_SUBSCR
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_mover_x = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_mover_x,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 224,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 16,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 3,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 268,
+        .line_info = fun_data_mc2d_Juego_mover_x + 10,
+        .line_info_top = fun_data_mc2d_Juego_mover_x + 29,
+        .opcodes = fun_data_mc2d_Juego_mover_x + 29,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_mover_x fun_data_mc2d_Juego_mover_x[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_mover_y
+static const byte fun_data_mc2d_Juego_mover_y[195] = {
+    0x7b,0x34, // prelude
+    0x82,0x0e,0x83,0x3e,0x82,0x2a,0x83,0x4c, // names: mover_y, self, e, dy
+    0xa0,0xbe,0x28,0x2e,0x34,0x25,0x2b,0x28,0x2c,0x2c,0x2d,0x25,0x2e,0x28,0x2c,0x26,0x2d,0x24, // code info
+    0xb1, // LOAD_FAST 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x58, // DUP_TOP_TWO
+    0x55, // LOAD_SUBSCR
+    0xb2, // LOAD_FAST 2
+    0xe5, // BINARY_OP 14 __iadd__
+    0x5b, // ROT_THREE
+    0x56, // STORE_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x55, // LOAD_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0x85, // LOAD_CONST_SMALL_INT 5
+    0x55, // LOAD_SUBSCR
+    0x5b, // ROT_THREE
+    0x5a, // ROT_TWO
+    0xc3, // STORE_FAST 3
+    0xc4, // STORE_FAST 4
+    0xc5, // STORE_FAST 5
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb3, // LOAD_FAST 3
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb3, // LOAD_FAST 3
+    0xb4, // LOAD_FAST 4
+    0xf2, // BINARY_OP 27 __add__
+    0x23,0x73, // LOAD_CONST_OBJ 115
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x5a, // ROT_TWO
+    0xc6, // STORE_FAST 6
+    0xc7, // STORE_FAST 7
+    0xb2, // LOAD_FAST 2
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x78, // POP_JUMP_IF_FALSE 56
+    0x12,0x02, // LOAD_GLOBAL 'math'
+    0x14,0x82,0x0d, // LOAD_METHOD 'floor'
+    0xb1, // LOAD_FAST 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0x36,0x01, // CALL_METHOD 1
+    0xc8, // STORE_FAST 8
+    0xb7, // LOAD_FAST 7
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb6, // LOAD_FAST 6
+    0x42,0x5e, // JUMP 30
+    0x57, // DUP_TOP
+    0xc9, // STORE_FAST 9
+    0x12,0x41, // LOAD_GLOBAL 'solido'
+    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0xb9, // LOAD_FAST 9
+    0xb8, // LOAD_FAST 8
+    0x34,0x02, // CALL_FUNCTION 2
+    0x34,0x01, // CALL_FUNCTION 1
+    0x44,0x4e, // POP_JUMP_IF_FALSE 14
+    0xb8, // LOAD_FAST 8
+    0x23,0x2d, // LOAD_CONST_OBJ 45
+    0xf2, // BINARY_OP 27 __add__
+    0x52, // LOAD_CONST_TRUE
+    0x5a, // ROT_TWO
+    0xb1, // LOAD_FAST 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x56, // STORE_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x56, // STORE_SUBSCR
+    0x52, // LOAD_CONST_TRUE
+    0x63, // RETURN_VALUE
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x1d, // POP_JUMP_IF_TRUE -35
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x42,0x7a, // JUMP 58
+    0xb2, // LOAD_FAST 2
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x75, // POP_JUMP_IF_FALSE 53
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb1, // LOAD_FAST 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0xb5, // LOAD_FAST 5
+    0xf2, // BINARY_OP 27 __add__
+    0x23,0x73, // LOAD_CONST_OBJ 115
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x01, // CALL_FUNCTION 1
+    0xc8, // STORE_FAST 8
+    0xb7, // LOAD_FAST 7
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb6, // LOAD_FAST 6
+    0x42,0x58, // JUMP 24
+    0x57, // DUP_TOP
+    0xc9, // STORE_FAST 9
+    0x12,0x41, // LOAD_GLOBAL 'solido'
+    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0xb9, // LOAD_FAST 9
+    0xb8, // LOAD_FAST 8
+    0x34,0x02, // CALL_FUNCTION 2
+    0x34,0x01, // CALL_FUNCTION 1
+    0x44,0x48, // POP_JUMP_IF_FALSE 8
+    0xb8, // LOAD_FAST 8
+    0xb5, // LOAD_FAST 5
+    0xf3, // BINARY_OP 28 __sub__
+    0xb1, // LOAD_FAST 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x56, // STORE_SUBSCR
+    0x52, // LOAD_CONST_TRUE
+    0x63, // RETURN_VALUE
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x23, // POP_JUMP_IF_TRUE -29
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x42,0x40, // JUMP 0
+    0x50, // LOAD_CONST_FALSE
+    0xb1, // LOAD_FAST 1
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x56, // STORE_SUBSCR
+    0x50, // LOAD_CONST_FALSE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_mover_y = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_mover_y,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 195,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 16,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 3,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 270,
+        .line_info = fun_data_mc2d_Juego_mover_y + 10,
+        .line_info_top = fun_data_mc2d_Juego_mover_y + 28,
+        .opcodes = fun_data_mc2d_Juego_mover_y + 28,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_mover_y fun_data_mc2d_Juego_mover_y[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_fisica
+static const byte fun_data_mc2d_Juego_fisica[682] = {
+    0x82,0x10,0x6e, // prelude
+    0x82,0x0f,0x83,0x3e,0x83,0x4a, // names: fisica, self, dt
+    0xa0,0xd1,0x3c,0x3c,0x1f,0x2d,0x1f,0x23,0x2e,0x26,0x54,0x4d,0x26,0x23,0x39,0x23,0x26,0x47,0x29,0x27,0x25,0x37,0x37,0x2e,0x25,0x2e,0x3e,0x23,0x46,0x29,0x32,0x27,0x32,0x29,0x26,0x3c,0x25,0x36,0x2b,0x2b,0x28,0x26,0x1f,0x25,0x27,0x25,0x2d,0x2a,0x27, // code info
+    0x12,0x82,0x47, // LOAD_GLOBAL 'K'
+    0x14,0x82,0x10, // LOAD_METHOD 'pulsada'
+    0x10,0x82,0x11, // LOAD_CONST_STRING 'LEFT'
+    0x36,0x01, // CALL_METHOD 1
+    0x45,0x0e, // JUMP_IF_TRUE_OR_POP 14
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x68, // LOAD_ATTR 'tap'
+    0x14,0x4c, // LOAD_METHOD 'get'
+    0x10,0x82,0x12, // LOAD_CONST_STRING 'a'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x36,0x02, // CALL_METHOD 2
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd8, // BINARY_OP 1 __gt__
+    0xc2, // STORE_FAST 2
+    0x12,0x82,0x47, // LOAD_GLOBAL 'K'
+    0x14,0x82,0x10, // LOAD_METHOD 'pulsada'
+    0x10,0x82,0x13, // LOAD_CONST_STRING 'RIGHT'
+    0x36,0x01, // CALL_METHOD 1
+    0x45,0x0e, // JUMP_IF_TRUE_OR_POP 14
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x68, // LOAD_ATTR 'tap'
+    0x14,0x4c, // LOAD_METHOD 'get'
+    0x10,0x82,0x14, // LOAD_CONST_STRING 'd'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x36,0x02, // CALL_METHOD 2
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd8, // BINARY_OP 1 __gt__
+    0xc3, // STORE_FAST 3
+    0x12,0x82,0x47, // LOAD_GLOBAL 'K'
+    0x14,0x82,0x10, // LOAD_METHOD 'pulsada'
+    0x10,0x82,0x15, // LOAD_CONST_STRING 'UP'
+    0x36,0x01, // CALL_METHOD 1
+    0x45,0x1e, // JUMP_IF_TRUE_OR_POP 30
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x68, // LOAD_ATTR 'tap'
+    0x14,0x4c, // LOAD_METHOD 'get'
+    0x10,0x82,0x16, // LOAD_CONST_STRING 'w'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x36,0x02, // CALL_METHOD 2
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd8, // BINARY_OP 1 __gt__
+    0x45,0x0e, // JUMP_IF_TRUE_OR_POP 14
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x68, // LOAD_ATTR 'tap'
+    0x14,0x4c, // LOAD_METHOD 'get'
+    0x10,0x82,0x17, // LOAD_CONST_STRING ' '
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x36,0x02, // CALL_METHOD 2
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd8, // BINARY_OP 1 __gt__
+    0xc4, // STORE_FAST 4
+    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb0, // LOAD_FAST 0
+    0x13,0x74, // LOAD_ATTR 'x'
+    0x12,0x83,0x11, // LOAD_GLOBAL 'PW'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf7, // BINARY_OP 32 __truediv__
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb0, // LOAD_FAST 0
+    0x13,0x75, // LOAD_ATTR 'y'
+    0x23,0x23, // LOAD_CONST_OBJ 35
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x34,0x02, // CALL_FUNCTION 2
+    0x12,0x82,0x59, // LOAD_GLOBAL 'AGUA'
+    0xd9, // BINARY_OP 2 __eq__
+    0xc5, // STORE_FAST 5
+    0x12,0x83,0x15, // LOAD_GLOBAL 'ANDAR'
+    0xb5, // LOAD_FAST 5
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x23,0x30, // LOAD_CONST_OBJ 48
+    0x42,0x42, // JUMP 2
+    0x23,0x2d, // LOAD_CONST_OBJ 45
+    0xf4, // BINARY_OP 29 __mul__
+    0xc6, // STORE_FAST 6
+    0xb2, // LOAD_FAST 2
+    0x44,0x51, // POP_JUMP_IF_FALSE 17
+    0xb3, // LOAD_FAST 3
+    0x43,0x4e, // POP_JUMP_IF_TRUE 14
+    0xb6, // LOAD_FAST 6
+    0xd1, // UNARY_OP 1 __neg__
+    0x7f, // LOAD_CONST_SMALL_INT -1
+    0x5a, // ROT_TWO
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x51, // STORE_ATTR 'vx'
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x54, // STORE_ATTR 'cara'
+    0x42,0x59, // JUMP 25
+    0xb3, // LOAD_FAST 3
+    0x44,0x50, // POP_JUMP_IF_FALSE 16
+    0xb2, // LOAD_FAST 2
+    0x43,0x4d, // POP_JUMP_IF_TRUE 13
+    0xb6, // LOAD_FAST 6
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x5a, // ROT_TWO
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x51, // STORE_ATTR 'vx'
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x54, // STORE_ATTR 'cara'
+    0x42,0x46, // JUMP 6
+    0x23,0x64, // LOAD_CONST_OBJ 100
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x51, // STORE_ATTR 'vx'
+    0xb5, // LOAD_FAST 5
+    0x44,0x69, // POP_JUMP_IF_FALSE 41
+    0x12,0x83,0x29, // LOAD_GLOBAL 'max'
+    0x23,0x74, // LOAD_CONST_OBJ 116
+    0xd1, // UNARY_OP 1 __neg__
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x52, // LOAD_ATTR 'vy'
+    0x12,0x83,0x13, // LOAD_GLOBAL 'GRAV'
+    0x23,0x6a, // LOAD_CONST_OBJ 106
+    0xf4, // BINARY_OP 29 __mul__
+    0xb1, // LOAD_FAST 1
+    0xf4, // BINARY_OP 29 __mul__
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x02, // CALL_FUNCTION 2
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x52, // STORE_ATTR 'vy'
+    0xb4, // LOAD_FAST 4
+    0x44,0x46, // POP_JUMP_IF_FALSE 6
+    0x23,0x75, // LOAD_CONST_OBJ 117
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x52, // STORE_ATTR 'vy'
+    0x51, // LOAD_CONST_NONE
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x56, // STORE_ATTR 'caida_y'
+    0x42,0x6c, // JUMP 44
+    0xb4, // LOAD_FAST 4
+    0x44,0x52, // POP_JUMP_IF_FALSE 18
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x53, // LOAD_ATTR 'suelo'
+    0x44,0x4c, // POP_JUMP_IF_FALSE 12
+    0x12,0x83,0x16, // LOAD_GLOBAL 'SALTO'
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x52, // STORE_ATTR 'vy'
+    0x50, // LOAD_CONST_FALSE
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x53, // STORE_ATTR 'suelo'
+    0x12,0x83,0x29, // LOAD_GLOBAL 'max'
+    0x12,0x83,0x14, // LOAD_GLOBAL 'MAX_CAIDA'
+    0xd1, // UNARY_OP 1 __neg__
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x52, // LOAD_ATTR 'vy'
+    0x12,0x83,0x13, // LOAD_GLOBAL 'GRAV'
+    0xb1, // LOAD_FAST 1
+    0xf4, // BINARY_OP 29 __mul__
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x02, // CALL_FUNCTION 2
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x52, // STORE_ATTR 'vy'
+    0xb0, // LOAD_FAST 0
+    0x13,0x74, // LOAD_ATTR 'x'
+    0xb0, // LOAD_FAST 0
+    0x13,0x75, // LOAD_ATTR 'y'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x51, // LOAD_ATTR 'vx'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x53, // LOAD_ATTR 'suelo'
+    0x12,0x83,0x11, // LOAD_GLOBAL 'PW'
+    0x12,0x83,0x12, // LOAD_GLOBAL 'PH'
+    0x2b,0x06, // BUILD_LIST 6
+    0xc7, // STORE_FAST 7
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x0c, // LOAD_METHOD 'mover_x'
+    0xb7, // LOAD_FAST 7
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x51, // LOAD_ATTR 'vx'
+    0xb1, // LOAD_FAST 1
+    0xf4, // BINARY_OP 29 __mul__
+    0x36,0x02, // CALL_METHOD 2
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x53, // LOAD_ATTR 'suelo'
+    0xc8, // STORE_FAST 8
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x0e, // LOAD_METHOD 'mover_y'
+    0xb7, // LOAD_FAST 7
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x52, // LOAD_ATTR 'vy'
+    0xb1, // LOAD_FAST 1
+    0xf4, // BINARY_OP 29 __mul__
+    0x36,0x02, // CALL_METHOD 2
+    0xc9, // STORE_FAST 9
+    0xb7, // LOAD_FAST 7
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0xb7, // LOAD_FAST 7
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0xb7, // LOAD_FAST 7
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0xb7, // LOAD_FAST 7
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x55, // LOAD_SUBSCR
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x30,0x04, // UNPACK_SEQUENCE 4
+    0xb0, // LOAD_FAST 0
+    0x18,0x74, // STORE_ATTR 'x'
+    0xb0, // LOAD_FAST 0
+    0x18,0x75, // STORE_ATTR 'y'
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x51, // STORE_ATTR 'vx'
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x53, // STORE_ATTR 'suelo'
+    0xb9, // LOAD_FAST 9
+    0x44,0x46, // POP_JUMP_IF_FALSE 6
+    0x23,0x64, // LOAD_CONST_OBJ 100
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x52, // STORE_ATTR 'vy'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x53, // LOAD_ATTR 'suelo'
+    0x43,0x5c, // POP_JUMP_IF_TRUE 28
+    0xb5, // LOAD_FAST 5
+    0x43,0x59, // POP_JUMP_IF_TRUE 25
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x56, // LOAD_ATTR 'caida_y'
+    0x51, // LOAD_CONST_NONE
+    0xde, // BINARY_OP 7 <is>
+    0x43,0x4a, // POP_JUMP_IF_TRUE 10
+    0xb0, // LOAD_FAST 0
+    0x13,0x75, // LOAD_ATTR 'y'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x56, // LOAD_ATTR 'caida_y'
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x47, // POP_JUMP_IF_FALSE 7
+    0xb0, // LOAD_FAST 0
+    0x13,0x75, // LOAD_ATTR 'y'
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x56, // STORE_ATTR 'caida_y'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x53, // LOAD_ATTR 'suelo'
+    0x44,0x7c, // POP_JUMP_IF_FALSE 60
+    0xb8, // LOAD_FAST 8
+    0x43,0x79, // POP_JUMP_IF_TRUE 57
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x56, // LOAD_ATTR 'caida_y'
+    0x51, // LOAD_CONST_NONE
+    0xde, // BINARY_OP 7 <is>
+    0xd3, // UNARY_OP 3 <not>
+    0x44,0x70, // POP_JUMP_IF_FALSE 48
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x56, // LOAD_ATTR 'caida_y'
+    0xb0, // LOAD_FAST 0
+    0x13,0x75, // LOAD_ATTR 'y'
+    0xf3, // BINARY_OP 28 __sub__
+    0xca, // STORE_FAST 10
+    0xba, // LOAD_FAST 10
+    0x23,0x75, // LOAD_CONST_OBJ 117
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x5c, // POP_JUMP_IF_FALSE 28
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x18, // LOAD_METHOD 'herir'
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xba, // LOAD_FAST 10
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x01, // CALL_FUNCTION 1
+    0xba, // LOAD_FAST 10
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x45, // POP_JUMP_IF_FALSE 5
+    0x10,0x82,0x19, // LOAD_CONST_STRING 'fallbig1'
+    0x42,0x43, // JUMP 3
+    0x10,0x82,0x1a, // LOAD_CONST_STRING 'fallsmall'
+    0x36,0x02, // CALL_METHOD 2
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x56, // STORE_ATTR 'caida_y'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x53, // LOAD_ATTR 'suelo'
+    0x44,0xd7,0x80, // POP_JUMP_IF_FALSE 87
+    0x12,0x83,0x48, // LOAD_GLOBAL 'abs'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x51, // LOAD_ATTR 'vx'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x23,0x28, // LOAD_CONST_OBJ 40
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0xc8,0x80, // POP_JUMP_IF_FALSE 72
+    0xb0, // LOAD_FAST 0
+    0x57, // DUP_TOP
+    0x13,0x81,0x5b, // LOAD_ATTR 'anda_t'
+    0xb1, // LOAD_FAST 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x5a, // ROT_TWO
+    0x18,0x81,0x5b, // STORE_ATTR 'anda_t'
+    0xb0, // LOAD_FAST 0
+    0x57, // DUP_TOP
+    0x13,0x81,0x5c, // LOAD_ATTR 'paso_t'
+    0xb1, // LOAD_FAST 1
+    0xe6, // BINARY_OP 15 __isub__
+    0x5a, // ROT_TWO
+    0x18,0x81,0x5c, // STORE_ATTR 'paso_t'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x5c, // LOAD_ATTR 'paso_t'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xda, // BINARY_OP 3 __le__
+    0x44,0x6a, // POP_JUMP_IF_FALSE 42
+    0x23,0x76, // LOAD_CONST_OBJ 118
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x5c, // STORE_ATTR 'paso_t'
+    0x12,0x4d, // LOAD_GLOBAL 'sonar_bloque'
+    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb0, // LOAD_FAST 0
+    0x13,0x74, // LOAD_ATTR 'x'
+    0x12,0x83,0x11, // LOAD_GLOBAL 'PW'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf7, // BINARY_OP 32 __truediv__
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb0, // LOAD_FAST 0
+    0x13,0x75, // LOAD_ATTR 'y'
+    0x23,0x23, // LOAD_CONST_OBJ 35
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x34,0x02, // CALL_FUNCTION 2
+    0x23,0x6a, // LOAD_CONST_OBJ 106
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x13,0x74, // LOAD_ATTR 'x'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x45, // POP_JUMP_IF_FALSE 5
+    0x23,0x64, // LOAD_CONST_OBJ 100
+    0xb0, // LOAD_FAST 0
+    0x18,0x74, // STORE_ATTR 'x'
+    0xb0, // LOAD_FAST 0
+    0x13,0x74, // LOAD_ATTR 'x'
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x11, // LOAD_GLOBAL 'PW'
+    0xf3, // BINARY_OP 28 __sub__
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x4a, // POP_JUMP_IF_FALSE 10
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x11, // LOAD_GLOBAL 'PW'
+    0xf3, // BINARY_OP 28 __sub__
+    0xb0, // LOAD_FAST 0
+    0x18,0x74, // STORE_ATTR 'x'
+    0xb0, // LOAD_FAST 0
+    0x13,0x75, // LOAD_ATTR 'y'
+    0x7b, // LOAD_CONST_SMALL_INT -5
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x4a, // POP_JUMP_IF_FALSE 10
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x18, // LOAD_METHOD 'herir'
+    0x94, // LOAD_CONST_SMALL_INT 20
+    0x10,0x6b, // LOAD_CONST_STRING 'hurt'
+    0x36,0x02, // CALL_METHOD 2
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_fisica = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_fisica,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 682,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 17,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 2,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 271,
+        .line_info = fun_data_mc2d_Juego_fisica + 9,
+        .line_info_top = fun_data_mc2d_Juego_fisica + 58,
+        .opcodes = fun_data_mc2d_Juego_fisica + 58,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_fisica fun_data_mc2d_Juego_fisica[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_herir
+static const byte fun_data_mc2d_Juego_herir[54] = {
+    0xb3,0x01,0x1c, // prelude
+    0x82,0x18,0x83,0x3e,0x81,0x0e,0x83,0x4d, // names: herir, self, n, sonido
+    0xb0,0x04,0x25,0x22,0x2e,0x26, // code info
+    0xb1, // LOAD_FAST 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xda, // BINARY_OP 3 __le__
+    0x44,0x42, // POP_JUMP_IF_FALSE 2
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0x12,0x83,0x29, // LOAD_GLOBAL 'max'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xb0, // LOAD_FAST 0
+    0x13,0x76, // LOAD_ATTR 'vida'
+    0xb1, // LOAD_FAST 1
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x02, // CALL_FUNCTION 2
+    0xb0, // LOAD_FAST 0
+    0x18,0x76, // STORE_ATTR 'vida'
+    0x23,0x23, // LOAD_CONST_OBJ 35
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x5e, // STORE_ATTR 'dano_t'
+    0x12,0x44, // LOAD_GLOBAL 'sonar'
+    0xb2, // LOAD_FAST 2
+    0x23,0x32, // LOAD_CONST_OBJ 50
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_herir = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_herir,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 54,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 7,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 3,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 1,
+        .qstr_block_name_idx = 280,
+        .line_info = fun_data_mc2d_Juego_herir + 11,
+        .line_info_top = fun_data_mc2d_Juego_herir + 17,
+        .opcodes = fun_data_mc2d_Juego_herir + 17,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_herir fun_data_mc2d_Juego_herir[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_es_noche
+static const byte fun_data_mc2d_Juego_es_noche[23] = {
+    0x19,0x0c, // prelude
+    0x82,0x1b,0x83,0x3e, // names: es_noche, self
+    0xb0,0x0c, // code info
+    0xb0, // LOAD_FAST 0
+    0x13,0x78, // LOAD_ATTR 'tiempo'
+    0x12,0x83,0x0d, // LOAD_GLOBAL 'DIA_S'
+    0xf8, // BINARY_OP 33 __mod__
+    0x12,0x83,0x0d, // LOAD_GLOBAL 'DIA_S'
+    0x23,0x22, // LOAD_CONST_OBJ 34
+    0xf4, // BINARY_OP 29 __mul__
+    0xd8, // BINARY_OP 1 __gt__
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_es_noche = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_es_noche,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 23,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 4,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 283,
+        .line_info = fun_data_mc2d_Juego_es_noche + 6,
+        .line_info_top = fun_data_mc2d_Juego_es_noche + 8,
+        .opcodes = fun_data_mc2d_Juego_es_noche + 8,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_es_noche fun_data_mc2d_Juego_es_noche[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_mobs_paso
+static const byte fun_data_mc2d_Juego_mobs_paso[781] = {
+    0xca,0x10,0x7e, // prelude
+    0x82,0x1c,0x83,0x3e,0x83,0x4a, // names: mobs_paso, self, dt
+    0xb0,0x10,0x2f,0x1f,0x29,0x29,0x34,0x32,0x28,0x2b,0x28,0x25,0x1f,0x22,0x27,0x1f,0x21,0x2e,0x30,0x2b,0x22,0x1f,0x32,0x2b,0x23,0x28,0x28,0x28,0x2c,0x36,0x1f,0x24,0x28,0x2a,0x25,0x2d,0x56,0x27,0x2d,0x2b,0x27,0x2d,0x33,0x2d,0x24,0x29,0x2f,0x3a,0x35,0x2b,0x38,0x29,0x2d,0x23,0x25,0x2d,0x27, // code info
+    0x12,0x83,0x4e, // LOAD_GLOBAL 'sum'
+    0x32,0x00, // MAKE_FUNCTION 0
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x5f, // LOAD_ATTR 'mobs'
+    0x5e, // GET_ITER
+    0x34,0x01, // CALL_FUNCTION 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0xc2, // STORE_FAST 2
+    0x12,0x83,0x2c, // LOAD_GLOBAL 'len'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x5f, // LOAD_ATTR 'mobs'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x85, // LOAD_CONST_SMALL_INT 5
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0xb1,0x81, // POP_JUMP_IF_FALSE 177
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x03, // LOAD_METHOD 'random'
+    0x36,0x00, // CALL_METHOD 0
+    0xb1, // LOAD_FAST 1
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x1b, // LOAD_METHOD 'es_noche'
+    0x36,0x00, // CALL_METHOD 0
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x23,0x77, // LOAD_CONST_OBJ 119
+    0x42,0x42, // JUMP 2
+    0x23,0x6a, // LOAD_CONST_OBJ 106
+    0xf4, // BINARY_OP 29 __mul__
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x97,0x81, // POP_JUMP_IF_FALSE 151
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x5b, // LOAD_METHOD 'choice'
+    0x23,0x78, // LOAD_CONST_OBJ 120
+    0x36,0x01, // CALL_METHOD 1
+    0xc3, // STORE_FAST 3
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb0, // LOAD_FAST 0
+    0x13,0x74, // LOAD_ATTR 'x'
+    0x34,0x01, // CALL_FUNCTION 1
+    0xb3, // LOAD_FAST 3
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x54, // LOAD_METHOD 'randint'
+    0x8c, // LOAD_CONST_SMALL_INT 12
+    0x92, // LOAD_CONST_SMALL_INT 18
+    0x36,0x02, // CALL_METHOD 2
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0xc4, // STORE_FAST 4
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xb4, // LOAD_FAST 4
+    0x57, // DUP_TOP
+    0x5b, // ROT_THREE
+    0xda, // BINARY_OP 3 __le__
+    0x46,0x06, // JUMP_IF_FALSE_OR_POP 6
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0xd7, // BINARY_OP 0 __lt__
+    0x42,0x42, // JUMP 2
+    0x5a, // ROT_TWO
+    0x59, // POP_TOP
+    0x44,0xe8,0x80, // POP_JUMP_IF_FALSE 104
+    0x12,0x83,0x10, // LOAD_GLOBAL 'alto'
+    0xb4, // LOAD_FAST 4
+    0x55, // LOAD_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xc5, // STORE_FAST 5
+    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0xb4, // LOAD_FAST 4
+    0x12,0x83,0x10, // LOAD_GLOBAL 'alto'
+    0xb4, // LOAD_FAST 4
+    0x55, // LOAD_SUBSCR
+    0x34,0x02, // CALL_FUNCTION 2
+    0xc6, // STORE_FAST 6
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x1b, // LOAD_METHOD 'es_noche'
+    0x36,0x00, // CALL_METHOD 0
+    0x44,0x66, // POP_JUMP_IF_FALSE 38
+    0xb2, // LOAD_FAST 2
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x5f, // POP_JUMP_IF_FALSE 31
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x5f, // LOAD_ATTR 'mobs'
+    0x14,0x3b, // LOAD_METHOD 'append'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xb4, // LOAD_FAST 4
+    0x23,0x3a, // LOAD_CONST_OBJ 58
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x4f, // LOAD_GLOBAL 'float'
+    0xb5, // LOAD_FAST 5
+    0x34,0x01, // CALL_FUNCTION 1
+    0x23,0x64, // LOAD_CONST_OBJ 100
+    0x23,0x64, // LOAD_CONST_OBJ 100
+    0x94, // LOAD_CONST_SMALL_INT 20
+    0xb3, // LOAD_FAST 3
+    0xd1, // UNARY_OP 1 __neg__
+    0x23,0x64, // LOAD_CONST_OBJ 100
+    0x2b,0x08, // BUILD_LIST 8
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x42,0x67, // JUMP 39
+    0xb6, // LOAD_FAST 6
+    0x12,0x82,0x4b, // LOAD_GLOBAL 'HIERBA'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x60, // POP_JUMP_IF_FALSE 32
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x5f, // LOAD_ATTR 'mobs'
+    0x14,0x3b, // LOAD_METHOD 'append'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xb4, // LOAD_FAST 4
+    0x23,0x3a, // LOAD_CONST_OBJ 58
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x4f, // LOAD_GLOBAL 'float'
+    0xb5, // LOAD_FAST 5
+    0x34,0x01, // CALL_FUNCTION 1
+    0x23,0x64, // LOAD_CONST_OBJ 100
+    0x23,0x64, // LOAD_CONST_OBJ 100
+    0x8a, // LOAD_CONST_SMALL_INT 10
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x23,0x64, // LOAD_CONST_OBJ 100
+    0x2b,0x08, // BUILD_LIST 8
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x42,0x40, // JUMP 0
+    0x12,0x83,0x3d, // LOAD_GLOBAL 'list'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x5f, // LOAD_ATTR 'mobs'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x5f, // GET_ITER_STACK
+    0x4b,0xee,0x03, // FOR_ITER 494
+    0xc7, // STORE_FAST 7
+    0x12,0x83,0x48, // LOAD_GLOBAL 'abs'
+    0xb7, // LOAD_FAST 7
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0xb0, // LOAD_FAST 0
+    0x13,0x74, // LOAD_ATTR 'x'
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x01, // CALL_FUNCTION 1
+    0xa8, // LOAD_CONST_SMALL_INT 40
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x4d, // POP_JUMP_IF_FALSE 13
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x5f, // LOAD_ATTR 'mobs'
+    0x14,0x81,0x31, // LOAD_METHOD 'remove'
+    0xb7, // LOAD_FAST 7
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x42,0x1f, // JUMP -33
+    0xb7, // LOAD_FAST 7
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x78, // POP_JUMP_IF_FALSE 56
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x1b, // LOAD_METHOD 'es_noche'
+    0x36,0x00, // CALL_METHOD 0
+    0x43,0x70, // POP_JUMP_IF_TRUE 48
+    0xb7, // LOAD_FAST 7
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0x12,0x83,0x10, // LOAD_GLOBAL 'alto'
+    0x12,0x83,0x28, // LOAD_GLOBAL 'min'
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf3, // BINARY_OP 28 __sub__
+    0x12,0x83,0x29, // LOAD_GLOBAL 'max'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb7, // LOAD_FAST 7
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0x34,0x02, // CALL_FUNCTION 2
+    0x34,0x02, // CALL_FUNCTION 2
+    0x55, // LOAD_SUBSCR
+    0xdb, // BINARY_OP 4 __ge__
+    0x44,0x4e, // POP_JUMP_IF_FALSE 14
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x5f, // LOAD_ATTR 'mobs'
+    0x14,0x81,0x31, // LOAD_METHOD 'remove'
+    0xb7, // LOAD_FAST 7
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x42,0xa0,0x7f, // JUMP -96
+    0xb7, // LOAD_FAST 7
+    0x87, // LOAD_CONST_SMALL_INT 7
+    0x58, // DUP_TOP_TWO
+    0x55, // LOAD_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0xe6, // BINARY_OP 15 __isub__
+    0x5b, // ROT_THREE
+    0x56, // STORE_SUBSCR
+    0xb7, // LOAD_FAST 7
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x87,0x81, // POP_JUMP_IF_FALSE 135
+    0xb0, // LOAD_FAST 0
+    0x13,0x74, // LOAD_ATTR 'x'
+    0xb7, // LOAD_FAST 7
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0xf3, // BINARY_OP 28 __sub__
+    0xc8, // STORE_FAST 8
+    0xb8, // LOAD_FAST 8
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x43, // POP_JUMP_IF_FALSE 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x42,0x41, // JUMP 1
+    0x7f, // LOAD_CONST_SMALL_INT -1
+    0xb7, // LOAD_FAST 7
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0x56, // STORE_SUBSCR
+    0x12,0x83,0x48, // LOAD_GLOBAL 'abs'
+    0xb8, // LOAD_FAST 8
+    0x34,0x01, // CALL_FUNCTION 1
+    0x23,0x23, // LOAD_CONST_OBJ 35
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x48, // POP_JUMP_IF_FALSE 8
+    0x23,0x79, // LOAD_CONST_OBJ 121
+    0xb7, // LOAD_FAST 7
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0x55, // LOAD_SUBSCR
+    0xf4, // BINARY_OP 29 __mul__
+    0x42,0x42, // JUMP 2
+    0x23,0x64, // LOAD_CONST_OBJ 100
+    0xc9, // STORE_FAST 9
+    0x12,0x83,0x48, // LOAD_GLOBAL 'abs'
+    0xb8, // LOAD_FAST 8
+    0x34,0x01, // CALL_FUNCTION 1
+    0x23,0x32, // LOAD_CONST_OBJ 50
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x6f, // POP_JUMP_IF_FALSE 47
+    0x12,0x83,0x48, // LOAD_GLOBAL 'abs'
+    0xb0, // LOAD_FAST 0
+    0x13,0x75, // LOAD_ATTR 'y'
+    0xb7, // LOAD_FAST 7
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x23,0x31, // LOAD_CONST_OBJ 49
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x5e, // POP_JUMP_IF_FALSE 30
+    0xb7, // LOAD_FAST 7
+    0x87, // LOAD_CONST_SMALL_INT 7
+    0x55, // LOAD_SUBSCR
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xda, // BINARY_OP 3 __le__
+    0x44,0x57, // POP_JUMP_IF_FALSE 23
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x18, // LOAD_METHOD 'herir'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x23,0x7a, // LOAD_CONST_OBJ 122
+    0xb7, // LOAD_FAST 7
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0x55, // LOAD_SUBSCR
+    0xf4, // BINARY_OP 29 __mul__
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x51, // STORE_ATTR 'vx'
+    0x23,0x7b, // LOAD_CONST_OBJ 123
+    0xb7, // LOAD_FAST 7
+    0x87, // LOAD_CONST_SMALL_INT 7
+    0x56, // STORE_SUBSCR
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x03, // LOAD_METHOD 'random'
+    0x36,0x00, // CALL_METHOD 0
+    0xb1, // LOAD_FAST 1
+    0x23,0x57, // LOAD_CONST_OBJ 87
+    0xf4, // BINARY_OP 29 __mul__
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x53, // POP_JUMP_IF_FALSE 19
+    0x12,0x44, // LOAD_GLOBAL 'sonar'
+    0x10,0x82,0x1d, // LOAD_CONST_STRING 'zombie%d'
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x54, // LOAD_METHOD 'randint'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x36,0x02, // CALL_METHOD 2
+    0xf8, // BINARY_OP 33 __mod__
+    0x23,0x7c, // LOAD_CONST_OBJ 124
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0x42,0xc6,0x80, // JUMP 70
+    0xb7, // LOAD_FAST 7
+    0x87, // LOAD_CONST_SMALL_INT 7
+    0x55, // LOAD_SUBSCR
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xda, // BINARY_OP 3 __le__
+    0x44,0x58, // POP_JUMP_IF_FALSE 24
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x5c, // LOAD_METHOD 'uniform'
+    0x23,0x31, // LOAD_CONST_OBJ 49
+    0x23,0x7d, // LOAD_CONST_OBJ 125
+    0x36,0x02, // CALL_METHOD 2
+    0xb7, // LOAD_FAST 7
+    0x87, // LOAD_CONST_SMALL_INT 7
+    0x56, // STORE_SUBSCR
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x5b, // LOAD_METHOD 'choice'
+    0x23,0x6d, // LOAD_CONST_OBJ 109
+    0x36,0x01, // CALL_METHOD 1
+    0xb7, // LOAD_FAST 7
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0x56, // STORE_SUBSCR
+    0x23,0x7b, // LOAD_CONST_OBJ 123
+    0xb7, // LOAD_FAST 7
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0x55, // LOAD_SUBSCR
+    0xf4, // BINARY_OP 29 __mul__
+    0xc9, // STORE_FAST 9
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x03, // LOAD_METHOD 'random'
+    0x36,0x00, // CALL_METHOD 0
+    0xb1, // LOAD_FAST 1
+    0x23,0x7e, // LOAD_CONST_OBJ 126
+    0xf4, // BINARY_OP 29 __mul__
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x53, // POP_JUMP_IF_FALSE 19
+    0x12,0x44, // LOAD_GLOBAL 'sonar'
+    0x10,0x82,0x09, // LOAD_CONST_STRING 'pig%d'
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x54, // LOAD_METHOD 'randint'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x36,0x02, // CALL_METHOD 2
+    0xf8, // BINARY_OP 33 __mod__
+    0x23,0x57, // LOAD_CONST_OBJ 87
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0x12,0x83,0x48, // LOAD_GLOBAL 'abs'
+    0xb7, // LOAD_FAST 7
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0x23,0x28, // LOAD_CONST_OBJ 40
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x4d, // POP_JUMP_IF_FALSE 13
+    0xb7, // LOAD_FAST 7
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x55, // LOAD_SUBSCR
+    0xc9, // STORE_FAST 9
+    0xb7, // LOAD_FAST 7
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x58, // DUP_TOP_TWO
+    0x55, // LOAD_SUBSCR
+    0x23,0x6b, // LOAD_CONST_OBJ 107
+    0xe7, // BINARY_OP 16 __imul__
+    0x5b, // ROT_THREE
+    0x56, // STORE_SUBSCR
+    0xb7, // LOAD_FAST 7
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x23,0x36, // LOAD_CONST_OBJ 54
+    0x42,0x43, // JUMP 3
+    0x12,0x83,0x12, // LOAD_GLOBAL 'PH'
+    0xca, // STORE_FAST 10
+    0xb7, // LOAD_FAST 7
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0xb7, // LOAD_FAST 7
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0xb9, // LOAD_FAST 9
+    0x50, // LOAD_CONST_FALSE
+    0xb7, // LOAD_FAST 7
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x23,0x32, // LOAD_CONST_OBJ 50
+    0x42,0x43, // JUMP 3
+    0x12,0x83,0x11, // LOAD_GLOBAL 'PW'
+    0xba, // LOAD_FAST 10
+    0x2b,0x06, // BUILD_LIST 6
+    0xcb, // STORE_FAST 11
+    0x12,0x83,0x29, // LOAD_GLOBAL 'max'
+    0x12,0x83,0x14, // LOAD_GLOBAL 'MAX_CAIDA'
+    0xd1, // UNARY_OP 1 __neg__
+    0xb7, // LOAD_FAST 7
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x55, // LOAD_SUBSCR
+    0x12,0x83,0x13, // LOAD_GLOBAL 'GRAV'
+    0xb1, // LOAD_FAST 1
+    0xf4, // BINARY_OP 29 __mul__
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x02, // CALL_FUNCTION 2
+    0xb7, // LOAD_FAST 7
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x56, // STORE_SUBSCR
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x0c, // LOAD_METHOD 'mover_x'
+    0xbb, // LOAD_FAST 11
+    0xb9, // LOAD_FAST 9
+    0xb1, // LOAD_FAST 1
+    0xf4, // BINARY_OP 29 __mul__
+    0x36,0x02, // CALL_METHOD 2
+    0x59, // POP_TOP
+    0xbb, // LOAD_FAST 11
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0x23,0x64, // LOAD_CONST_OBJ 100
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x59, // POP_JUMP_IF_FALSE 25
+    0xb9, // LOAD_FAST 9
+    0x44,0x56, // POP_JUMP_IF_FALSE 22
+    0x12,0x83,0x48, // LOAD_GLOBAL 'abs'
+    0xb7, // LOAD_FAST 7
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0x23,0x69, // LOAD_CONST_OBJ 105
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x49, // POP_JUMP_IF_FALSE 9
+    0x12,0x83,0x16, // LOAD_GLOBAL 'SALTO'
+    0x23,0x32, // LOAD_CONST_OBJ 50
+    0xf4, // BINARY_OP 29 __mul__
+    0xb7, // LOAD_FAST 7
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x56, // STORE_SUBSCR
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x0e, // LOAD_METHOD 'mover_y'
+    0xbb, // LOAD_FAST 11
+    0xb7, // LOAD_FAST 7
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x55, // LOAD_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0xf4, // BINARY_OP 29 __mul__
+    0x36,0x02, // CALL_METHOD 2
+    0xcc, // STORE_FAST 12
+    0xbc, // LOAD_FAST 12
+    0x44,0x45, // POP_JUMP_IF_FALSE 5
+    0x23,0x64, // LOAD_CONST_OBJ 100
+    0xb7, // LOAD_FAST 7
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x56, // STORE_SUBSCR
+    0xbb, // LOAD_FAST 11
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0xbb, // LOAD_FAST 11
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0x5a, // ROT_TWO
+    0xb7, // LOAD_FAST 7
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x56, // STORE_SUBSCR
+    0xb7, // LOAD_FAST 7
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x56, // STORE_SUBSCR
+    0xb7, // LOAD_FAST 7
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0x55, // LOAD_SUBSCR
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xb7, // LOAD_FAST 7
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0x56, // STORE_SUBSCR
+    0x42,0x8f,0x7c, // JUMP -497
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+// child of mc2d_Juego_mobs_paso
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_mobs_paso__lt_genexpr_gt_
+static const byte fun_data_mc2d_Juego_mobs_paso__lt_genexpr_gt_[30] = {
+    0xb9,0x40,0x0c, // prelude
+    0x82,0x44,0x83,0x54, // names: <genexpr>, *
+    0xb0,0x10, // code info
+    0x53, // LOAD_NULL
+    0xb0, // LOAD_FAST 0
+    0x53, // LOAD_NULL
+    0x53, // LOAD_NULL
+    0x4b,0x0d, // FOR_ITER 13
+    0xc1, // STORE_FAST 1
+    0xb1, // LOAD_FAST 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x36, // POP_JUMP_IF_FALSE -10
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x67, // YIELD_VALUE
+    0x59, // POP_TOP
+    0x42,0x31, // JUMP -15
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_mobs_paso__lt_genexpr_gt_ = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 1,
+    .fun_data = fun_data_mc2d_Juego_mobs_paso__lt_genexpr_gt_,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 30,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 8,
+        .n_exc_stack = 0,
+        .scope_flags = 1,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 324,
+        .line_info = fun_data_mc2d_Juego_mobs_paso__lt_genexpr_gt_ + 7,
+        .line_info_top = fun_data_mc2d_Juego_mobs_paso__lt_genexpr_gt_ + 9,
+        .opcodes = fun_data_mc2d_Juego_mobs_paso__lt_genexpr_gt_ + 9,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_mobs_paso__lt_genexpr_gt_ fun_data_mc2d_Juego_mobs_paso__lt_genexpr_gt_[0]
+#endif
+
+static const mp_raw_code_t *const children_mc2d_Juego_mobs_paso[] = {
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_mobs_paso__lt_genexpr_gt_,
+};
+
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_mobs_paso = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_mobs_paso,
+    .children = (void *)&children_mc2d_Juego_mobs_paso,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 781,
+    .n_children = 1,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 26,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 2,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 284,
+        .line_info = fun_data_mc2d_Juego_mobs_paso + 9,
+        .line_info_top = fun_data_mc2d_Juego_mobs_paso + 66,
+        .opcodes = fun_data_mc2d_Juego_mobs_paso + 66,
+    },
+    #endif
+    #endif
+};
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_red_paso
+static const byte fun_data_mc2d_Juego_red_paso[521] = {
+    0x91,0x10,0x50, // prelude
+    0x81,0x43,0x83,0x3e, // names: red_paso, self
+    0xb0,0x47,0x26,0x22,0x2b,0x2b,0x38,0x1f,0x22,0x28,0x29,0x25,0x2c,0x28,0x39,0x2a,0x2e,0x3e,0x3f,0x1f,0x23,0x30,0x1f,0x25,0x3e,0x27,0x25,0x32,0x29,0x27,0x33,0x27,0x35,0x25,0x26,0x26, // code info
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x38, // LOAD_ATTR 'online'
+    0x43,0x42, // POP_JUMP_IF_TRUE 2
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0xb0, // LOAD_FAST 0
+    0x57, // DUP_TOP
+    0x13,0x81,0x61, // LOAD_ATTR 'cuadro'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x5a, // ROT_TWO
+    0x18,0x81,0x61, // STORE_ATTR 'cuadro'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x61, // LOAD_ATTR 'cuadro'
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0xf8, // BINARY_OP 33 __mod__
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0xcf,0x80, // POP_JUMP_IF_FALSE 79
+    0x2c,0x01, // BUILD_MAP 1
+    0x12,0x83,0x50, // LOAD_GLOBAL 'round'
+    0xb0, // LOAD_FAST 0
+    0x13,0x74, // LOAD_ATTR 'x'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x34,0x02, // CALL_FUNCTION 2
+    0x12,0x83,0x50, // LOAD_GLOBAL 'round'
+    0xb0, // LOAD_FAST 0
+    0x13,0x75, // LOAD_ATTR 'y'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x34,0x02, // CALL_FUNCTION 2
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x54, // LOAD_ATTR 'cara'
+    0x12,0x83,0x48, // LOAD_GLOBAL 'abs'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x51, // LOAD_ATTR 'vx'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x23,0x23, // LOAD_CONST_OBJ 35
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x43, // POP_JUMP_IF_FALSE 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x42,0x41, // JUMP 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x12,0x83,0x1c, // LOAD_GLOBAL 'inv_id'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x59, // LOAD_ATTR 'sel'
+    0x55, // LOAD_SUBSCR
+    0x2b,0x05, // BUILD_LIST 5
+    0x10,0x82,0x1e, // LOAD_CONST_STRING 'p'
+    0x62, // STORE_MAP
+    0xc1, // STORE_FAST 1
+    0xb1, // LOAD_FAST 1
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x60, // LOAD_ATTR 'enviado'
+    0xdc, // BINARY_OP 5 __ne__
+    0x44,0x4e, // POP_JUMP_IF_FALSE 14
+    0x12,0x09, // LOAD_GLOBAL 'red'
+    0x14,0x82,0x1f, // LOAD_METHOD 'enviar'
+    0xb1, // LOAD_FAST 1
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0xb1, // LOAD_FAST 1
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x60, // STORE_ATTR 'enviado'
+    0x12,0x09, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x15, // LOAD_METHOD 'recibir'
+    0x36,0x00, // CALL_METHOD 0
+    0x5f, // GET_ITER_STACK
+    0x4b,0xe4,0x02, // FOR_ITER 356
+    0xc2, // STORE_FAST 2
+    0xb2, // LOAD_FAST 2
+    0x14,0x4c, // LOAD_METHOD 'get'
+    0x10,0x79, // LOAD_CONST_STRING 't'
+    0x36,0x01, // CALL_METHOD 1
+    0xc3, // STORE_FAST 3
+    0xb3, // LOAD_FAST 3
+    0x10,0x82,0x20, // LOAD_CONST_STRING 'de'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0xe6,0x80, // POP_JUMP_IF_FALSE 102
+    0x10,0x82,0x1e, // LOAD_CONST_STRING 'p'
+    0xb2, // LOAD_FAST 2
+    0x14,0x4c, // LOAD_METHOD 'get'
+    0x10,0x82,0x14, // LOAD_CONST_STRING 'd'
+    0x2c,0x00, // BUILD_MAP 0
+    0x36,0x02, // CALL_METHOD 2
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0xd5,0x80, // POP_JUMP_IF_FALSE 85
+    0xb2, // LOAD_FAST 2
+    0x10,0x82,0x14, // LOAD_CONST_STRING 'd'
+    0x55, // LOAD_SUBSCR
+    0x10,0x82,0x1e, // LOAD_CONST_STRING 'p'
+    0x55, // LOAD_SUBSCR
+    0xc4, // STORE_FAST 4
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x45, // LOAD_ATTR 'otros'
+    0x14,0x4c, // LOAD_METHOD 'get'
+    0xb2, // LOAD_FAST 2
+    0x10,0x82,0x21, // LOAD_CONST_STRING 'id'
+    0x55, // LOAD_SUBSCR
+    0x36,0x01, // CALL_METHOD 1
+    0xc5, // STORE_FAST 5
+    0x12,0x83,0x2b, // LOAD_GLOBAL 'str'
+    0x12,0x09, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x76, // LOAD_METHOD 'jugadores'
+    0x36,0x00, // CALL_METHOD 0
+    0x14,0x4c, // LOAD_METHOD 'get'
+    0xb2, // LOAD_FAST 2
+    0x10,0x82,0x21, // LOAD_CONST_STRING 'id'
+    0x55, // LOAD_SUBSCR
+    0x10,0x82,0x22, // LOAD_CONST_STRING '?'
+    0x36,0x02, // CALL_METHOD 2
+    0x34,0x01, // CALL_FUNCTION 1
+    0x51, // LOAD_CONST_NONE
+    0x8a, // LOAD_CONST_SMALL_INT 10
+    0x2e,0x02, // BUILD_SLICE 2
+    0x55, // LOAD_SUBSCR
+    0xc6, // STORE_FAST 6
+    0xb4, // LOAD_FAST 4
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0xb4, // LOAD_FAST 4
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0xb4, // LOAD_FAST 4
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0xb4, // LOAD_FAST 4
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x55, // LOAD_SUBSCR
+    0xb4, // LOAD_FAST 4
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x55, // LOAD_SUBSCR
+    0xb6, // LOAD_FAST 6
+    0x2b,0x06, // BUILD_LIST 6
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x45, // LOAD_ATTR 'otros'
+    0xb2, // LOAD_FAST 2
+    0x10,0x82,0x21, // LOAD_CONST_STRING 'id'
+    0x55, // LOAD_SUBSCR
+    0x56, // STORE_SUBSCR
+    0x42,0xea,0x81, // JUMP 234
+    0xb3, // LOAD_FAST 3
+    0x10,0x81,0x0b, // LOAD_CONST_STRING 'var'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0xec,0x80, // POP_JUMP_IF_FALSE 108
+    0x12,0x83,0x2b, // LOAD_GLOBAL 'str'
+    0xb2, // LOAD_FAST 2
+    0x14,0x4c, // LOAD_METHOD 'get'
+    0x10,0x81,0x0e, // LOAD_CONST_STRING 'n'
+    0x10,0x0a, // LOAD_CONST_STRING ''
+    0x36,0x02, // CALL_METHOD 2
+    0x34,0x01, // CALL_FUNCTION 1
+    0x14,0x81,0x13, // LOAD_METHOD 'startswith'
+    0x10,0x81,0x14, // LOAD_CONST_STRING 'b:'
+    0x36,0x01, // CALL_METHOD 1
+    0x44,0xd2,0x80, // POP_JUMP_IF_FALSE 82
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb2, // LOAD_FAST 2
+    0x10,0x81,0x0e, // LOAD_CONST_STRING 'n'
+    0x55, // LOAD_SUBSCR
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x51, // LOAD_CONST_NONE
+    0x2e,0x02, // BUILD_SLICE 2
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0xc7, // STORE_FAST 7
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xb7, // LOAD_FAST 7
+    0x57, // DUP_TOP
+    0x5b, // ROT_THREE
+    0xda, // BINARY_OP 3 __le__
+    0x46,0x0a, // JUMP_IF_FALSE_OR_POP 10
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x03, // LOAD_GLOBAL 'H'
+    0xf4, // BINARY_OP 29 __mul__
+    0xd7, // BINARY_OP 0 __lt__
+    0x42,0x42, // JUMP 2
+    0x5a, // ROT_TWO
+    0x59, // POP_TOP
+    0x44,0x6a, // POP_JUMP_IF_FALSE 42
+    0xb2, // LOAD_FAST 2
+    0x10,0x82,0x21, // LOAD_CONST_STRING 'id'
+    0x55, // LOAD_SUBSCR
+    0x12,0x09, // LOAD_GLOBAL 'red'
+    0x14,0x82,0x23, // LOAD_METHOD 'mi_id'
+    0x36,0x00, // CALL_METHOD 0
+    0xdc, // BINARY_OP 5 __ne__
+    0x44,0x5b, // POP_JUMP_IF_FALSE 27
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x7e, // LOAD_METHOD 'poner'
+    0xb7, // LOAD_FAST 7
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0xf8, // BINARY_OP 33 __mod__
+    0xb7, // LOAD_FAST 7
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0xf6, // BINARY_OP 31 __floordiv__
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb2, // LOAD_FAST 2
+    0x10,0x72, // LOAD_CONST_STRING 'v'
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0x50, // LOAD_CONST_FALSE
+    0x36,0x04, // CALL_METHOD 4
+    0x59, // POP_TOP
+    0x42,0xf6,0x80, // JUMP 118
+    0xb3, // LOAD_FAST 3
+    0x10,0x82,0x24, // LOAD_CONST_STRING 'entra'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x60, // POP_JUMP_IF_FALSE 32
+    0x51, // LOAD_CONST_NONE
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x60, // STORE_ATTR 'enviado'
+    0x10,0x82,0x25, // LOAD_CONST_STRING '%s entra'
+    0xb2, // LOAD_FAST 2
+    0x14,0x4c, // LOAD_METHOD 'get'
+    0x10,0x73, // LOAD_CONST_STRING 'nombre'
+    0x10,0x82,0x22, // LOAD_CONST_STRING '?'
+    0x36,0x02, // CALL_METHOD 2
+    0xf8, // BINARY_OP 33 __mod__
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x66, // STORE_ATTR 'aviso'
+    0x23,0x74, // LOAD_CONST_OBJ 116
+    0xb0, // LOAD_FAST 0
+    0x18,0x82,0x26, // STORE_ATTR 'aviso_t'
+    0x42,0xcf,0x80, // JUMP 79
+    0xb3, // LOAD_FAST 3
+    0x10,0x82,0x27, // LOAD_CONST_STRING 'sale'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x5a, // POP_JUMP_IF_FALSE 26
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x45, // LOAD_ATTR 'otros'
+    0x14,0x82,0x28, // LOAD_METHOD 'pop'
+    0xb2, // LOAD_FAST 2
+    0x14,0x4c, // LOAD_METHOD 'get'
+    0x10,0x82,0x21, // LOAD_CONST_STRING 'id'
+    0x36,0x01, // CALL_METHOD 1
+    0x51, // LOAD_CONST_NONE
+    0x36,0x02, // CALL_METHOD 2
+    0x59, // POP_TOP
+    0x52, // LOAD_CONST_TRUE
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x62, // STORE_ATTR 'completo'
+    0x42,0x6e, // JUMP 46
+    0xb3, // LOAD_FAST 3
+    0x10,0x82,0x29, // LOAD_CONST_STRING 'estado'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x67, // POP_JUMP_IF_FALSE 39
+    0xb2, // LOAD_FAST 2
+    0x14,0x4c, // LOAD_METHOD 'get'
+    0x10,0x82,0x2a, // LOAD_CONST_STRING 'e'
+    0x36,0x01, // CALL_METHOD 1
+    0x10,0x82,0x2b, // LOAD_CONST_STRING 'conectado'
+    0xdc, // BINARY_OP 5 __ne__
+    0x44,0x59, // POP_JUMP_IF_FALSE 25
+    0x50, // LOAD_CONST_FALSE
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x38, // STORE_ATTR 'online'
+    0x2c,0x00, // BUILD_MAP 0
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x45, // STORE_ATTR 'otros'
+    0x23,0x7f, // LOAD_CONST_OBJ 127
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x66, // STORE_ATTR 'aviso'
+    0x23,0x74, // LOAD_CONST_OBJ 116
+    0xb0, // LOAD_FAST 0
+    0x18,0x82,0x26, // STORE_ATTR 'aviso_t'
+    0x42,0x40, // JUMP 0
+    0x42,0x99,0x7d, // JUMP -359
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_red_paso = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_red_paso,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 521,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 19,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 195,
+        .line_info = fun_data_mc2d_Juego_red_paso + 7,
+        .line_info_top = fun_data_mc2d_Juego_red_paso + 43,
+        .opcodes = fun_data_mc2d_Juego_red_paso + 43,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_red_paso fun_data_mc2d_Juego_red_paso[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_cerca
+static const byte fun_data_mc2d_Juego_cerca[78] = {
+    0x5a,0x1a, // prelude
+    0x82,0x2c,0x83,0x3e,0x83,0x20, // names: cerca, self, b
+    0xb0,0x6a,0x33,0x25,0x25,0x2e,0x32, // code info
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb0, // LOAD_FAST 0
+    0x13,0x74, // LOAD_ATTR 'x'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb0, // LOAD_FAST 0
+    0x13,0x75, // LOAD_ATTR 'y'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x5a, // ROT_TWO
+    0xc2, // STORE_FAST 2
+    0xc3, // STORE_FAST 3
+    0x7c, // LOAD_CONST_SMALL_INT -4
+    0x42,0x61, // JUMP 33
+    0x57, // DUP_TOP
+    0xc4, // STORE_FAST 4
+    0x7d, // LOAD_CONST_SMALL_INT -3
+    0x42,0x54, // JUMP 20
+    0x57, // DUP_TOP
+    0xc5, // STORE_FAST 5
+    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0xb2, // LOAD_FAST 2
+    0xb4, // LOAD_FAST 4
+    0xf2, // BINARY_OP 27 __add__
+    0xb3, // LOAD_FAST 3
+    0xb5, // LOAD_FAST 5
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x02, // CALL_FUNCTION 2
+    0xb1, // LOAD_FAST 1
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x42, // POP_JUMP_IF_FALSE 2
+    0x52, // LOAD_CONST_TRUE
+    0x63, // RETURN_VALUE
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x57, // DUP_TOP
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x27, // POP_JUMP_IF_TRUE -25
+    0x59, // POP_TOP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x57, // DUP_TOP
+    0x85, // LOAD_CONST_SMALL_INT 5
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x1a, // POP_JUMP_IF_TRUE -38
+    0x59, // POP_TOP
+    0x50, // LOAD_CONST_FALSE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_cerca = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_cerca,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 78,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 12,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 2,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 300,
+        .line_info = fun_data_mc2d_Juego_cerca + 8,
+        .line_info_top = fun_data_mc2d_Juego_cerca + 15,
+        .opcodes = fun_data_mc2d_Juego_cerca + 15,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_cerca fun_data_mc2d_Juego_cerca[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_abrir_inventario
+static const byte fun_data_mc2d_Juego_abrir_inventario[1226] = {
+    0x82,0x21,0xc3,0x02, // prelude
+    0x82,0x05,0x83,0x3e,0x83,0x51, // names: abrir_inventario, self, sitio
+    0xb0,0x72,0x25,0x1f,0x22,0x1f,0x22,0x27,0x2b,0x27,0x27,0x20,0x29,0x35,0x32,0x32,0x1f,0x46,0x29,0x3b,0x25,0x46,0x2a,0x31,0x1f,0x22,0x35,0x25,0x1f,0x41,0x24,0x34,0x38,0x2f,0x24,0x28,0x32,0x1f,0x24,0x2a,0x3d,0x2e,0x1f,0x2c,0x3a,0x35,0x37,0x28,0x23,0x32,0x28,0x26,0x2f,0x2b,0x2f,0x2b,0x28,0x27,0x30,0x25,0x26,0x25,0x29,0x29,0x27,0x32,0x2f,0x26,0x25,0x46,0x2d,0x29,0x28,0x28,0x33,0x30,0x2b,0x2b,0x35,0x25,0x44,0x35,0x35,0x24,0x36,0x2a,0x27,0x2b,0x24,0x25,0x25,0x15, // code info
+    0xb1, // LOAD_FAST 1
+    0x51, // LOAD_CONST_NONE
+    0xde, // BINARY_OP 7 <is>
+    0x44,0x61, // POP_JUMP_IF_FALSE 33
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x2c, // LOAD_METHOD 'cerca'
+    0x12,0x82,0x5b, // LOAD_GLOBAL 'HORNO'
+    0x36,0x01, // CALL_METHOD 1
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x10,0x18, // LOAD_CONST_STRING 'horno'
+    0x42,0x51, // JUMP 17
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x2c, // LOAD_METHOD 'cerca'
+    0x12,0x82,0x5a, // LOAD_GLOBAL 'MESA'
+    0x36,0x01, // CALL_METHOD 1
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x10,0x17, // LOAD_CONST_STRING 'mesa'
+    0x42,0x42, // JUMP 2
+    0x10,0x0a, // LOAD_CONST_STRING ''
+    0xc1, // STORE_FAST 1
+    0xb1, // LOAD_FAST 1
+    0x10,0x17, // LOAD_CONST_STRING 'mesa'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x45, // POP_JUMP_IF_FALSE 5
+    0x23,0x81,0x00, // LOAD_CONST_OBJ 128
+    0x42,0x5b, // JUMP 27
+    0xb1, // LOAD_FAST 1
+    0x10,0x18, // LOAD_CONST_STRING 'horno'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x50, // POP_JUMP_IF_FALSE 16
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x2c, // LOAD_METHOD 'cerca'
+    0x12,0x82,0x5a, // LOAD_GLOBAL 'MESA'
+    0x36,0x01, // CALL_METHOD 1
+    0x44,0x45, // POP_JUMP_IF_FALSE 5
+    0x23,0x81,0x01, // LOAD_CONST_OBJ 129
+    0x42,0x45, // JUMP 5
+    0x10,0x0a, // LOAD_CONST_STRING ''
+    0xb1, // LOAD_FAST 1
+    0x2a,0x02, // BUILD_TUPLE 2
+    0x27,0x15, // STORE_DEREF 21
+    0x24,0x15, // LOAD_FAST_N 21
+    0x20,0x00,0x01, // MAKE_CLOSURE 0
+    0x12,0x82,0x7f, // LOAD_GLOBAL 'RECETAS'
+    0x34,0x01, // CALL_FUNCTION 1
+    0xc2, // STORE_FAST 2
+    0x23,0x81,0x02, // LOAD_CONST_OBJ 130
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc3, // STORE_FAST 3
+    0xc4, // STORE_FAST 4
+    0x12,0x83,0x2c, // LOAD_GLOBAL 'len'
+    0xb2, // LOAD_FAST 2
+    0x34,0x01, // CALL_FUNCTION 1
+    0xc5, // STORE_FAST 5
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x72, // LOAD_METHOD 'recorte'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x56, // LOAD_METHOD 'rect'
+    0x8a, // LOAD_CONST_SMALL_INT 10
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0x22,0x82,0x2c, // LOAD_CONST_SMALL_INT 300
+    0x22,0x81,0x4e, // LOAD_CONST_SMALL_INT 206
+    0x22,0x86,0x9b,0x8d,0x46, // LOAD_CONST_SMALL_INT 13027014
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x17, // LOAD_METHOD 'marco'
+    0x8a, // LOAD_CONST_SMALL_INT 10
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0x22,0x82,0x2c, // LOAD_CONST_SMALL_INT 300
+    0x22,0x81,0x4e, // LOAD_CONST_SMALL_INT 206
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x57, // LOAD_METHOD 'texto'
+    0x10,0x82,0x2d, // LOAD_CONST_STRING 'Inventario'
+    0x92, // LOAD_CONST_SMALL_INT 18
+    0x8c, // LOAD_CONST_SMALL_INT 12
+    0x22,0x82,0x81,0x80,0x40, // LOAD_CONST_SMALL_INT 4210752
+    0x36,0x04, // CALL_METHOD 4
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x57, // LOAD_METHOD 'texto'
+    0x2c,0x03, // BUILD_MAP 3
+    0x23,0x81,0x03, // LOAD_CONST_OBJ 131
+    0x10,0x0a, // LOAD_CONST_STRING ''
+    0x62, // STORE_MAP
+    0x23,0x0e, // LOAD_CONST_OBJ 14
+    0x10,0x17, // LOAD_CONST_STRING 'mesa'
+    0x62, // STORE_MAP
+    0x10,0x2d, // LOAD_CONST_STRING 'Horno'
+    0x10,0x18, // LOAD_CONST_STRING 'horno'
+    0x62, // STORE_MAP
+    0xb1, // LOAD_FAST 1
+    0x55, // LOAD_SUBSCR
+    0x22,0x81,0x2a, // LOAD_CONST_SMALL_INT 170
+    0x8c, // LOAD_CONST_SMALL_INT 12
+    0x22,0x82,0x81,0x80,0x40, // LOAD_CONST_SMALL_INT 4210752
+    0x36,0x04, // CALL_METHOD 4
+    0x59, // POP_TOP
+    0x12,0x83,0x1b, // LOAD_GLOBAL 'NHUECOS'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0x96,0x81, // JUMP 150
+    0x57, // DUP_TOP
+    0xc6, // STORE_FAST 6
+    0x92, // LOAD_CONST_SMALL_INT 18
+    0xb6, // LOAD_FAST 6
+    0x89, // LOAD_CONST_SMALL_INT 9
+    0xf8, // BINARY_OP 33 __mod__
+    0x94, // LOAD_CONST_SMALL_INT 20
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x9a, // LOAD_CONST_SMALL_INT 26
+    0xb6, // LOAD_FAST 6
+    0x89, // LOAD_CONST_SMALL_INT 9
+    0xf6, // BINARY_OP 31 __floordiv__
+    0x96, // LOAD_CONST_SMALL_INT 22
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0xb6, // LOAD_FAST 6
+    0x89, // LOAD_CONST_SMALL_INT 9
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x43, // POP_JUMP_IF_FALSE 3
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0x42,0x41, // JUMP 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xf2, // BINARY_OP 27 __add__
+    0x5a, // ROT_TWO
+    0xc7, // STORE_FAST 7
+    0xc8, // STORE_FAST 8
+    0xb6, // LOAD_FAST 6
+    0x89, // LOAD_CONST_SMALL_INT 9
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x46, // POP_JUMP_IF_FALSE 6
+    0x22,0x80,0x50, // LOAD_CONST_SMALL_INT 80
+    0xc8, // STORE_FAST 8
+    0x42,0x4a, // JUMP 10
+    0x9a, // LOAD_CONST_SMALL_INT 26
+    0xb6, // LOAD_FAST 6
+    0x89, // LOAD_CONST_SMALL_INT 9
+    0xf6, // BINARY_OP 31 __floordiv__
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf3, // BINARY_OP 28 __sub__
+    0x96, // LOAD_CONST_SMALL_INT 22
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0xc8, // STORE_FAST 8
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x56, // LOAD_METHOD 'rect'
+    0xb7, // LOAD_FAST 7
+    0xb8, // LOAD_FAST 8
+    0x93, // LOAD_CONST_SMALL_INT 19
+    0x95, // LOAD_CONST_SMALL_INT 21
+    0x22,0x84,0xae,0x97,0x0b, // LOAD_CONST_SMALL_INT 9145227
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x56, // LOAD_METHOD 'rect'
+    0xb7, // LOAD_FAST 7
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb8, // LOAD_FAST 8
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x91, // LOAD_CONST_SMALL_INT 17
+    0x93, // LOAD_CONST_SMALL_INT 19
+    0xb4, // LOAD_FAST 4
+    0xb6, // LOAD_FAST 6
+    0xdc, // BINARY_OP 5 __ne__
+    0x44,0x47, // POP_JUMP_IF_FALSE 7
+    0x22,0x83,0xb9,0xdc,0x6e, // LOAD_CONST_SMALL_INT 7237230
+    0x42,0x45, // JUMP 5
+    0x22,0x85,0x82,0xc0,0x50, // LOAD_CONST_SMALL_INT 10526800
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0x12,0x69, // LOAD_GLOBAL 'icono'
+    0x12,0x83,0x1c, // LOAD_GLOBAL 'inv_id'
+    0xb6, // LOAD_FAST 6
+    0x55, // LOAD_SUBSCR
+    0xb7, // LOAD_FAST 7
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb8, // LOAD_FAST 8
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x1d, // LOAD_GLOBAL 'inv_n'
+    0xb6, // LOAD_FAST 6
+    0x55, // LOAD_SUBSCR
+    0x34,0x04, // CALL_FUNCTION 4
+    0x59, // POP_TOP
+    0xb3, // LOAD_FAST 3
+    0xb6, // LOAD_FAST 6
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x56, // POP_JUMP_IF_FALSE 22
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x17, // LOAD_METHOD 'marco'
+    0xb7, // LOAD_FAST 7
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf3, // BINARY_OP 28 __sub__
+    0xb8, // LOAD_FAST 8
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf3, // BINARY_OP 28 __sub__
+    0x95, // LOAD_CONST_SMALL_INT 21
+    0x97, // LOAD_CONST_SMALL_INT 23
+    0x22,0x87,0xff,0xff,0x7f, // LOAD_CONST_SMALL_INT 16777215
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0xe4,0x7e, // POP_JUMP_IF_TRUE -156
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x22,0x80,0x70, // LOAD_CONST_SMALL_INT 112
+    0xc9, // STORE_FAST 9
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x57, // LOAD_METHOD 'texto'
+    0x23,0x81,0x04, // LOAD_CONST_OBJ 132
+    0x92, // LOAD_CONST_SMALL_INT 18
+    0xb9, // LOAD_FAST 9
+    0x8a, // LOAD_CONST_SMALL_INT 10
+    0xf3, // BINARY_OP 28 __sub__
+    0x22,0x82,0x81,0x80,0x40, // LOAD_CONST_SMALL_INT 4210752
+    0x36,0x04, // CALL_METHOD 4
+    0x59, // POP_TOP
+    0xb3, // LOAD_FAST 3
+    0x12,0x83,0x1b, // LOAD_GLOBAL 'NHUECOS'
+    0xdb, // BINARY_OP 4 __ge__
+    0x44,0x4f, // POP_JUMP_IF_FALSE 15
+    0x12,0x83,0x29, // LOAD_GLOBAL 'max'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xb3, // LOAD_FAST 3
+    0x12,0x83,0x1b, // LOAD_GLOBAL 'NHUECOS'
+    0xf3, // BINARY_OP 28 __sub__
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x02, // CALL_FUNCTION 2
+    0x42,0x41, // JUMP 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xca, // STORE_FAST 10
+    0x12,0x83,0x28, // LOAD_GLOBAL 'min'
+    0xb5, // LOAD_FAST 5
+    0xba, // LOAD_FAST 10
+    0x85, // LOAD_CONST_SMALL_INT 5
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x02, // CALL_FUNCTION 2
+    0xba, // LOAD_FAST 10
+    0x42,0x9b,0x81, // JUMP 155
+    0x57, // DUP_TOP
+    0xcb, // STORE_FAST 11
+    0xb2, // LOAD_FAST 2
+    0xbb, // LOAD_FAST 11
+    0x55, // LOAD_SUBSCR
+    0xcc, // STORE_FAST 12
+    0xb9, // LOAD_FAST 9
+    0xbb, // LOAD_FAST 11
+    0xba, // LOAD_FAST 10
+    0xf3, // BINARY_OP 28 __sub__
+    0x92, // LOAD_CONST_SMALL_INT 18
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0xc8, // STORE_FAST 8
+    0x12,0x83,0x52, // LOAD_GLOBAL 'all'
+    0x32,0x01, // MAKE_FUNCTION 1
+    0xbc, // LOAD_FAST 12
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0x14,0x4b, // LOAD_METHOD 'items'
+    0x36,0x00, // CALL_METHOD 0
+    0x5e, // GET_ITER
+    0x34,0x01, // CALL_FUNCTION 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0xcd, // STORE_FAST 13
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x56, // LOAD_METHOD 'rect'
+    0x92, // LOAD_CONST_SMALL_INT 18
+    0xb8, // LOAD_FAST 8
+    0x22,0x82,0x1c, // LOAD_CONST_SMALL_INT 284
+    0x90, // LOAD_CONST_SMALL_INT 16
+    0xb3, // LOAD_FAST 3
+    0x12,0x83,0x1b, // LOAD_GLOBAL 'NHUECOS'
+    0xbb, // LOAD_FAST 11
+    0xf2, // BINARY_OP 27 __add__
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x47, // POP_JUMP_IF_FALSE 7
+    0x22,0x87,0xff,0xff,0x7f, // LOAD_CONST_SMALL_INT 16777215
+    0x42,0x45, // JUMP 5
+    0x22,0x85,0xc2,0xe1,0x30, // LOAD_CONST_SMALL_INT 11579568
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0x12,0x69, // LOAD_GLOBAL 'icono'
+    0xbc, // LOAD_FAST 12
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0x94, // LOAD_CONST_SMALL_INT 20
+    0xb8, // LOAD_FAST 8
+    0x34,0x03, // CALL_FUNCTION 3
+    0x59, // POP_TOP
+    0x23,0x81,0x05, // LOAD_CONST_OBJ 133
+    0x12,0x82,0x73, // LOAD_GLOBAL 'NOMBRE'
+    0xbc, // LOAD_FAST 12
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0x55, // LOAD_SUBSCR
+    0x51, // LOAD_CONST_NONE
+    0x90, // LOAD_CONST_SMALL_INT 16
+    0x2e,0x02, // BUILD_SLICE 2
+    0x55, // LOAD_SUBSCR
+    0xbc, // LOAD_FAST 12
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0x2a,0x02, // BUILD_TUPLE 2
+    0xf8, // BINARY_OP 33 __mod__
+    0x10,0x82,0x2e, // LOAD_CONST_STRING ', '
+    0x14,0x82,0x2f, // LOAD_METHOD 'join'
+    0x32,0x02, // MAKE_FUNCTION 2
+    0xbc, // LOAD_FAST 12
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0x14,0x4b, // LOAD_METHOD 'items'
+    0x36,0x00, // CALL_METHOD 0
+    0x5e, // GET_ITER
+    0x34,0x01, // CALL_FUNCTION 1
+    0x36,0x01, // CALL_METHOD 1
+    0xf2, // BINARY_OP 27 __add__
+    0xce, // STORE_FAST 14
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x57, // LOAD_METHOD 'texto'
+    0xbe, // LOAD_FAST 14
+    0x51, // LOAD_CONST_NONE
+    0xac, // LOAD_CONST_SMALL_INT 44
+    0x2e,0x02, // BUILD_SLICE 2
+    0x55, // LOAD_SUBSCR
+    0xa6, // LOAD_CONST_SMALL_INT 38
+    0xb8, // LOAD_FAST 8
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0xf2, // BINARY_OP 27 __add__
+    0xbd, // LOAD_FAST 13
+    0x44,0x47, // POP_JUMP_IF_FALSE 7
+    0x22,0x81,0x81,0xc0,0x20, // LOAD_CONST_SMALL_INT 2121760
+    0x42,0x45, // JUMP 5
+    0x22,0x84,0x80,0xc0,0x20, // LOAD_CONST_SMALL_INT 8396832
+    0x36,0x04, // CALL_METHOD 4
+    0x59, // POP_TOP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0xdf,0x7e, // POP_JUMP_IF_TRUE -161
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0xb3, // LOAD_FAST 3
+    0x12,0x83,0x1b, // LOAD_GLOBAL 'NHUECOS'
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x50, // POP_JUMP_IF_FALSE 16
+    0x12,0x82,0x73, // LOAD_GLOBAL 'NOMBRE'
+    0x14,0x4c, // LOAD_METHOD 'get'
+    0x12,0x83,0x1c, // LOAD_GLOBAL 'inv_id'
+    0xb3, // LOAD_FAST 3
+    0x55, // LOAD_SUBSCR
+    0x10,0x0a, // LOAD_CONST_STRING ''
+    0x36,0x02, // CALL_METHOD 2
+    0x42,0x42, // JUMP 2
+    0x10,0x0a, // LOAD_CONST_STRING ''
+    0xcf, // STORE_FAST 15
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x56, // LOAD_METHOD 'rect'
+    0x92, // LOAD_CONST_SMALL_INT 18
+    0x22,0x81,0x4a, // LOAD_CONST_SMALL_INT 202
+    0x22,0x82,0x1c, // LOAD_CONST_SMALL_INT 284
+    0x89, // LOAD_CONST_SMALL_INT 9
+    0x22,0x86,0x9b,0x8d,0x46, // LOAD_CONST_SMALL_INT 13027014
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x57, // LOAD_METHOD 'texto'
+    0xbf, // LOAD_FAST 15
+    0x45,0x03, // JUMP_IF_TRUE_OR_POP 3
+    0x23,0x81,0x06, // LOAD_CONST_OBJ 134
+    0x92, // LOAD_CONST_SMALL_INT 18
+    0x22,0x81,0x4a, // LOAD_CONST_SMALL_INT 202
+    0x22,0x82,0x81,0x80,0x40, // LOAD_CONST_SMALL_INT 4210752
+    0x36,0x04, // CALL_METHOD 4
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x58, // LOAD_METHOD 'mostrar'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x50, // LOAD_CONST_FALSE
+    0x26,0x10, // STORE_FAST_N 16
+    0x12,0x82,0x47, // LOAD_GLOBAL 'K'
+    0x14,0x81,0x1b, // LOAD_METHOD 'eventos'
+    0x36,0x00, // CALL_METHOD 0
+    0x5f, // GET_ITER_STACK
+    0x4b,0x9f,0x03, // FOR_ITER 415
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0x26,0x11, // STORE_FAST_N 17
+    0x26,0x12, // STORE_FAST_N 18
+    0x24,0x11, // LOAD_FAST_N 17
+    0x23,0x81,0x07, // LOAD_CONST_OBJ 135
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x46, // POP_JUMP_IF_FALSE 6
+    0x52, // LOAD_CONST_TRUE
+    0x26,0x10, // STORE_FAST_N 16
+    0x42,0x88,0x83, // JUMP 392
+    0x24,0x11, // LOAD_FAST_N 17
+    0x10,0x82,0x13, // LOAD_CONST_STRING 'RIGHT'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x52, // POP_JUMP_IF_FALSE 18
+    0xb3, // LOAD_FAST 3
+    0x12,0x83,0x1b, // LOAD_GLOBAL 'NHUECOS'
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x4b, // POP_JUMP_IF_FALSE 11
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x1b, // LOAD_GLOBAL 'NHUECOS'
+    0xf8, // BINARY_OP 33 __mod__
+    0xc3, // STORE_FAST 3
+    0x42,0xee,0x82, // JUMP 366
+    0x24,0x11, // LOAD_FAST_N 17
+    0x10,0x82,0x11, // LOAD_CONST_STRING 'LEFT'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x52, // POP_JUMP_IF_FALSE 18
+    0xb3, // LOAD_FAST 3
+    0x12,0x83,0x1b, // LOAD_GLOBAL 'NHUECOS'
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x4b, // POP_JUMP_IF_FALSE 11
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf3, // BINARY_OP 28 __sub__
+    0x12,0x83,0x1b, // LOAD_GLOBAL 'NHUECOS'
+    0xf8, // BINARY_OP 33 __mod__
+    0xc3, // STORE_FAST 3
+    0x42,0xd4,0x82, // JUMP 340
+    0x24,0x11, // LOAD_FAST_N 17
+    0x10,0x82,0x15, // LOAD_CONST_STRING 'UP'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x70, // POP_JUMP_IF_FALSE 48
+    0xb3, // LOAD_FAST 3
+    0x12,0x83,0x1b, // LOAD_GLOBAL 'NHUECOS'
+    0xdb, // BINARY_OP 4 __ge__
+    0x44,0x50, // POP_JUMP_IF_FALSE 16
+    0xb3, // LOAD_FAST 3
+    0x12,0x83,0x1b, // LOAD_GLOBAL 'NHUECOS'
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x45, // POP_JUMP_IF_FALSE 5
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf3, // BINARY_OP 28 __sub__
+    0x42,0x41, // JUMP 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xc3, // STORE_FAST 3
+    0x42,0x56, // JUMP 22
+    0xb3, // LOAD_FAST 3
+    0x92, // LOAD_CONST_SMALL_INT 18
+    0xdb, // BINARY_OP 4 __ge__
+    0x44,0x46, // POP_JUMP_IF_FALSE 6
+    0xb3, // LOAD_FAST 3
+    0x89, // LOAD_CONST_SMALL_INT 9
+    0xe6, // BINARY_OP 15 __isub__
+    0xc3, // STORE_FAST 3
+    0x42,0x4b, // JUMP 11
+    0xb3, // LOAD_FAST 3
+    0x89, // LOAD_CONST_SMALL_INT 9
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x46, // POP_JUMP_IF_FALSE 6
+    0xb3, // LOAD_FAST 3
+    0x92, // LOAD_CONST_SMALL_INT 18
+    0xe5, // BINARY_OP 14 __iadd__
+    0xc3, // STORE_FAST 3
+    0x42,0x40, // JUMP 0
+    0x42,0x9c,0x82, // JUMP 284
+    0x24,0x11, // LOAD_FAST_N 17
+    0x10,0x81,0x1c, // LOAD_CONST_STRING 'DOWN'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0xc6,0x80, // POP_JUMP_IF_FALSE 70
+    0xb3, // LOAD_FAST 3
+    0x12,0x83,0x1b, // LOAD_GLOBAL 'NHUECOS'
+    0xdb, // BINARY_OP 4 __ge__
+    0x44,0x52, // POP_JUMP_IF_FALSE 18
+    0x12,0x83,0x28, // LOAD_GLOBAL 'min'
+    0x12,0x83,0x1b, // LOAD_GLOBAL 'NHUECOS'
+    0xb5, // LOAD_FAST 5
+    0xf2, // BINARY_OP 27 __add__
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf3, // BINARY_OP 28 __sub__
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x02, // CALL_FUNCTION 2
+    0xc3, // STORE_FAST 3
+    0x42,0x6a, // JUMP 42
+    0x89, // LOAD_CONST_SMALL_INT 9
+    0xb3, // LOAD_FAST 3
+    0x57, // DUP_TOP
+    0x5b, // ROT_THREE
+    0xda, // BINARY_OP 3 __le__
+    0x46,0x04, // JUMP_IF_FALSE_OR_POP 4
+    0x92, // LOAD_CONST_SMALL_INT 18
+    0xd7, // BINARY_OP 0 __lt__
+    0x42,0x42, // JUMP 2
+    0x5a, // ROT_TWO
+    0x59, // POP_TOP
+    0x44,0x46, // POP_JUMP_IF_FALSE 6
+    0xb3, // LOAD_FAST 3
+    0x89, // LOAD_CONST_SMALL_INT 9
+    0xe5, // BINARY_OP 14 __iadd__
+    0xc3, // STORE_FAST 3
+    0x42,0x55, // JUMP 21
+    0xb3, // LOAD_FAST 3
+    0x92, // LOAD_CONST_SMALL_INT 18
+    0xdb, // BINARY_OP 4 __ge__
+    0x44,0x46, // POP_JUMP_IF_FALSE 6
+    0xb3, // LOAD_FAST 3
+    0x92, // LOAD_CONST_SMALL_INT 18
+    0xe6, // BINARY_OP 15 __isub__
+    0xc3, // STORE_FAST 3
+    0x42,0x4a, // JUMP 10
+    0xb5, // LOAD_FAST 5
+    0x44,0x45, // POP_JUMP_IF_FALSE 5
+    0x12,0x83,0x1b, // LOAD_GLOBAL 'NHUECOS'
+    0x42,0x41, // JUMP 1
+    0xb3, // LOAD_FAST 3
+    0xc3, // STORE_FAST 3
+    0x42,0xcd,0x81, // JUMP 205
+    0x24,0x11, // LOAD_FAST_N 17
+    0x10,0x81,0x1d, // LOAD_CONST_STRING 'EXE'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x95,0x81, // POP_JUMP_IF_FALSE 149
+    0xb3, // LOAD_FAST 3
+    0x12,0x83,0x1b, // LOAD_GLOBAL 'NHUECOS'
+    0xdb, // BINARY_OP 4 __ge__
+    0x44,0xd6,0x80, // POP_JUMP_IF_FALSE 86
+    0xb2, // LOAD_FAST 2
+    0xb3, // LOAD_FAST 3
+    0x12,0x83,0x1b, // LOAD_GLOBAL 'NHUECOS'
+    0xf3, // BINARY_OP 28 __sub__
+    0x55, // LOAD_SUBSCR
+    0xcc, // STORE_FAST 12
+    0x12,0x83,0x52, // LOAD_GLOBAL 'all'
+    0x32,0x03, // MAKE_FUNCTION 3
+    0xbc, // LOAD_FAST 12
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0x14,0x4b, // LOAD_METHOD 'items'
+    0x36,0x00, // CALL_METHOD 0
+    0x5e, // GET_ITER
+    0x34,0x01, // CALL_FUNCTION 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0x44,0x79, // POP_JUMP_IF_FALSE 57
+    0xbc, // LOAD_FAST 12
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0x14,0x4b, // LOAD_METHOD 'items'
+    0x36,0x00, // CALL_METHOD 0
+    0x5f, // GET_ITER_STACK
+    0x4b,0x11, // FOR_ITER 17
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0x26,0x13, // STORE_FAST_N 19
+    0x26,0x14, // STORE_FAST_N 20
+    0x12,0x65, // LOAD_GLOBAL 'quitar'
+    0x24,0x13, // LOAD_FAST_N 19
+    0x24,0x14, // LOAD_FAST_N 20
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0x42,0x2d, // JUMP -19
+    0x12,0x63, // LOAD_GLOBAL 'dar'
+    0xbc, // LOAD_FAST 12
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0xbc, // LOAD_FAST 12
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0x12,0x44, // LOAD_GLOBAL 'sonar'
+    0x10,0x82,0x30, // LOAD_CONST_STRING 'wood%d'
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x54, // LOAD_METHOD 'randint'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x36,0x02, // CALL_METHOD 2
+    0xf8, // BINARY_OP 33 __mod__
+    0x23,0x7c, // LOAD_CONST_OBJ 124
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0x42,0x75, // JUMP 53
+    0xb4, // LOAD_FAST 4
+    0x51, // LOAD_CONST_NONE
+    0xde, // BINARY_OP 7 <is>
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0xb3, // LOAD_FAST 3
+    0xc4, // STORE_FAST 4
+    0x42,0x6c, // JUMP 44
+    0x12,0x83,0x1c, // LOAD_GLOBAL 'inv_id'
+    0xb3, // LOAD_FAST 3
+    0x55, // LOAD_SUBSCR
+    0x12,0x83,0x1c, // LOAD_GLOBAL 'inv_id'
+    0xb4, // LOAD_FAST 4
+    0x55, // LOAD_SUBSCR
+    0x5a, // ROT_TWO
+    0x12,0x83,0x1c, // LOAD_GLOBAL 'inv_id'
+    0xb4, // LOAD_FAST 4
+    0x56, // STORE_SUBSCR
+    0x12,0x83,0x1c, // LOAD_GLOBAL 'inv_id'
+    0xb3, // LOAD_FAST 3
+    0x56, // STORE_SUBSCR
+    0x12,0x83,0x1d, // LOAD_GLOBAL 'inv_n'
+    0xb3, // LOAD_FAST 3
+    0x55, // LOAD_SUBSCR
+    0x12,0x83,0x1d, // LOAD_GLOBAL 'inv_n'
+    0xb4, // LOAD_FAST 4
+    0x55, // LOAD_SUBSCR
+    0x5a, // ROT_TWO
+    0x12,0x83,0x1d, // LOAD_GLOBAL 'inv_n'
+    0xb4, // LOAD_FAST 4
+    0x56, // STORE_SUBSCR
+    0x12,0x83,0x1d, // LOAD_GLOBAL 'inv_n'
+    0xb3, // LOAD_FAST 3
+    0x56, // STORE_SUBSCR
+    0x51, // LOAD_CONST_NONE
+    0xc4, // STORE_FAST 4
+    0x42,0x6f, // JUMP 47
+    0x24,0x11, // LOAD_FAST_N 17
+    0x23,0x81,0x08, // LOAD_CONST_OBJ 136
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x67, // POP_JUMP_IF_FALSE 39
+    0xb3, // LOAD_FAST 3
+    0x12,0x83,0x1b, // LOAD_GLOBAL 'NHUECOS'
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x60, // POP_JUMP_IF_FALSE 32
+    0x12,0x83,0x1c, // LOAD_GLOBAL 'inv_id'
+    0xb3, // LOAD_FAST 3
+    0x55, // LOAD_SUBSCR
+    0x44,0x59, // POP_JUMP_IF_FALSE 25
+    0x12,0x83,0x1d, // LOAD_GLOBAL 'inv_n'
+    0xb3, // LOAD_FAST 3
+    0x58, // DUP_TOP_TWO
+    0x55, // LOAD_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe6, // BINARY_OP 15 __isub__
+    0x5b, // ROT_THREE
+    0x56, // STORE_SUBSCR
+    0x12,0x83,0x1d, // LOAD_GLOBAL 'inv_n'
+    0xb3, // LOAD_FAST 3
+    0x55, // LOAD_SUBSCR
+    0x43,0x46, // POP_JUMP_IF_TRUE 6
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x12,0x83,0x1c, // LOAD_GLOBAL 'inv_id'
+    0xb3, // LOAD_FAST 3
+    0x56, // STORE_SUBSCR
+    0x42,0x40, // JUMP 0
+    0x42,0xde,0x7c, // JUMP -418
+    0x24,0x10, // LOAD_FAST_N 16
+    0x44,0x42, // POP_JUMP_IF_FALSE 2
+    0x42,0x43, // JUMP 3
+    0x42,0x8f,0x78, // JUMP -1009
+    0x52, // LOAD_CONST_TRUE
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x62, // STORE_ATTR 'completo'
+    0x51, // LOAD_CONST_NONE
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x65, // STORE_ATTR 'hud'
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+// child of mc2d_Juego_abrir_inventario
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_abrir_inventario__lt_listcomp_gt_
+static const byte fun_data_mc2d_Juego_abrir_inventario__lt_listcomp_gt_[31] = {
+    0x4a,0x10, // prelude
+    0x82,0x41,0x83,0x54,0x83,0x54, // names: <listcomp>, *, *
+    0xb0,0x76, // code info
+    0x2b,0x00, // BUILD_LIST 0
+    0xb1, // LOAD_FAST 1
+    0x5f, // GET_ITER_STACK
+    0x4b,0x0e, // FOR_ITER 14
+    0xc2, // STORE_FAST 2
+    0xb2, // LOAD_FAST 2
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x55, // LOAD_SUBSCR
+    0x25,0x00, // LOAD_DEREF 0
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x35, // POP_JUMP_IF_FALSE -11
+    0xb2, // LOAD_FAST 2
+    0x2f,0x14, // STORE_COMP 20
+    0x42,0x30, // JUMP -16
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_abrir_inventario__lt_listcomp_gt_ = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_abrir_inventario__lt_listcomp_gt_,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 31,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 10,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 2,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 321,
+        .line_info = fun_data_mc2d_Juego_abrir_inventario__lt_listcomp_gt_ + 8,
+        .line_info_top = fun_data_mc2d_Juego_abrir_inventario__lt_listcomp_gt_ + 10,
+        .opcodes = fun_data_mc2d_Juego_abrir_inventario__lt_listcomp_gt_ + 10,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_abrir_inventario__lt_listcomp_gt_ fun_data_mc2d_Juego_abrir_inventario__lt_listcomp_gt_[0]
+#endif
+
+// child of mc2d_Juego_abrir_inventario
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_abrir_inventario__lt_genexpr_gt_
+static const byte fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_[32] = {
+    0xc1,0x40,0x0c, // prelude
+    0x82,0x44,0x83,0x54, // names: <genexpr>, *
+    0xb0,0x92, // code info
+    0x53, // LOAD_NULL
+    0xb0, // LOAD_FAST 0
+    0x53, // LOAD_NULL
+    0x53, // LOAD_NULL
+    0x4b,0x0f, // FOR_ITER 15
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc1, // STORE_FAST 1
+    0xc2, // STORE_FAST 2
+    0x12,0x64, // LOAD_GLOBAL 'cuantos'
+    0xb1, // LOAD_FAST 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0xb2, // LOAD_FAST 2
+    0xdb, // BINARY_OP 4 __ge__
+    0x67, // YIELD_VALUE
+    0x59, // POP_TOP
+    0x42,0x2f, // JUMP -17
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_abrir_inventario__lt_genexpr_gt_ = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 1,
+    .fun_data = fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 32,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 9,
+        .n_exc_stack = 0,
+        .scope_flags = 1,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 324,
+        .line_info = fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_ + 7,
+        .line_info_top = fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_ + 9,
+        .opcodes = fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_ + 9,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_abrir_inventario__lt_genexpr_gt_ fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_[0]
+#endif
+
+// child of mc2d_Juego_abrir_inventario
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_abrir_inventario__lt_genexpr_gt_2
+static const byte fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_2[42] = {
+    0xd9,0x40,0x0c, // prelude
+    0x82,0x44,0x83,0x54, // names: <genexpr>, *
+    0xb0,0x96, // code info
+    0x53, // LOAD_NULL
+    0xb0, // LOAD_FAST 0
+    0x53, // LOAD_NULL
+    0x53, // LOAD_NULL
+    0x4b,0x19, // FOR_ITER 25
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc1, // STORE_FAST 1
+    0xc2, // STORE_FAST 2
+    0x10,0x82,0x45, // LOAD_CONST_STRING '%d %s'
+    0xb2, // LOAD_FAST 2
+    0x12,0x82,0x73, // LOAD_GLOBAL 'NOMBRE'
+    0xb1, // LOAD_FAST 1
+    0x55, // LOAD_SUBSCR
+    0x51, // LOAD_CONST_NONE
+    0x89, // LOAD_CONST_SMALL_INT 9
+    0x2e,0x02, // BUILD_SLICE 2
+    0x55, // LOAD_SUBSCR
+    0x2a,0x02, // BUILD_TUPLE 2
+    0xf8, // BINARY_OP 33 __mod__
+    0x67, // YIELD_VALUE
+    0x59, // POP_TOP
+    0x42,0x25, // JUMP -27
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_abrir_inventario__lt_genexpr_gt_2 = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 1,
+    .fun_data = fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_2,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 42,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 12,
+        .n_exc_stack = 0,
+        .scope_flags = 1,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 324,
+        .line_info = fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_2 + 7,
+        .line_info_top = fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_2 + 9,
+        .opcodes = fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_2 + 9,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_abrir_inventario__lt_genexpr_gt_2 fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_2[0]
+#endif
+
+// child of mc2d_Juego_abrir_inventario
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_abrir_inventario__lt_genexpr_gt_3
+static const byte fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_3[32] = {
+    0xc1,0x40,0x0c, // prelude
+    0x82,0x44,0x83,0x54, // names: <genexpr>, *
+    0xb0,0xb7, // code info
+    0x53, // LOAD_NULL
+    0xb0, // LOAD_FAST 0
+    0x53, // LOAD_NULL
+    0x53, // LOAD_NULL
+    0x4b,0x0f, // FOR_ITER 15
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc1, // STORE_FAST 1
+    0xc2, // STORE_FAST 2
+    0x12,0x64, // LOAD_GLOBAL 'cuantos'
+    0xb1, // LOAD_FAST 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0xb2, // LOAD_FAST 2
+    0xdb, // BINARY_OP 4 __ge__
+    0x67, // YIELD_VALUE
+    0x59, // POP_TOP
+    0x42,0x2f, // JUMP -17
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_abrir_inventario__lt_genexpr_gt_3 = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 1,
+    .fun_data = fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_3,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 32,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 9,
+        .n_exc_stack = 0,
+        .scope_flags = 1,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 324,
+        .line_info = fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_3 + 7,
+        .line_info_top = fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_3 + 9,
+        .opcodes = fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_3 + 9,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_abrir_inventario__lt_genexpr_gt_3 fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_3[0]
+#endif
+
+static const mp_raw_code_t *const children_mc2d_Juego_abrir_inventario[] = {
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_abrir_inventario__lt_listcomp_gt_,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_abrir_inventario__lt_genexpr_gt_,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_abrir_inventario__lt_genexpr_gt_2,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_abrir_inventario__lt_genexpr_gt_3,
+};
+
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_abrir_inventario = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_abrir_inventario,
+    .children = (void *)&children_mc2d_Juego_abrir_inventario,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 1226,
+    .n_children = 4,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 33,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 2,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 1,
+        .qstr_block_name_idx = 261,
+        .line_info = fun_data_mc2d_Juego_abrir_inventario + 10,
+        .line_info_top = fun_data_mc2d_Juego_abrir_inventario + 101,
+        .opcodes = fun_data_mc2d_Juego_abrir_inventario + 102,
+    },
+    #endif
+    #endif
+};
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_pausa
+static const byte fun_data_mc2d_Juego_pausa[304] = {
+    0x89,0x10,0x40, // prelude
+    0x82,0x31,0x83,0x3e, // names: pausa, self
+    0xb0,0xcd,0x2f,0x22,0x20,0x29,0x36,0x37,0x35,0x2d,0x39,0x28,0x2f,0x26,0x37,0x27,0x29,0x27,0x25,0x25,0x25,0x22,0x26,0x26,0x25,0x2d,0x22,0x25, // code info
+    0x23,0x81,0x09, // LOAD_CONST_OBJ 137
+    0x10,0x82,0x32, // LOAD_CONST_STRING 'Guardar'
+    0x23,0x81,0x0a, // LOAD_CONST_OBJ 138
+    0x23,0x81,0x0b, // LOAD_CONST_OBJ 139
+    0x2b,0x04, // BUILD_LIST 4
+    0xc1, // STORE_FAST 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xc2, // STORE_FAST 2
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x72, // LOAD_METHOD 'recorte'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x56, // LOAD_METHOD 'rect'
+    0x22,0x3c, // LOAD_CONST_SMALL_INT 60
+    0xa8, // LOAD_CONST_SMALL_INT 40
+    0x22,0x81,0x48, // LOAD_CONST_SMALL_INT 200
+    0x22,0x81,0x0c, // LOAD_CONST_SMALL_INT 140
+    0x22,0x81,0x80,0xc0,0x20, // LOAD_CONST_SMALL_INT 2105376
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x17, // LOAD_METHOD 'marco'
+    0x22,0x3c, // LOAD_CONST_SMALL_INT 60
+    0xa8, // LOAD_CONST_SMALL_INT 40
+    0x22,0x81,0x48, // LOAD_CONST_SMALL_INT 200
+    0x22,0x81,0x0c, // LOAD_CONST_SMALL_INT 140
+    0x22,0x87,0xff,0xff,0x7f, // LOAD_CONST_SMALL_INT 16777215
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x57, // LOAD_METHOD 'texto'
+    0x23,0x81,0x0c, // LOAD_CONST_OBJ 140
+    0x22,0x80,0x70, // LOAD_CONST_SMALL_INT 112
+    0x22,0x32, // LOAD_CONST_SMALL_INT 50
+    0x22,0x87,0xff,0xff,0x7f, // LOAD_CONST_SMALL_INT 16777215
+    0x36,0x04, // CALL_METHOD 4
+    0x59, // POP_TOP
+    0x12,0x83,0x00, // LOAD_GLOBAL 'enumerate'
+    0xb1, // LOAD_FAST 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0x5f, // GET_ITER_STACK
+    0x4b,0x1d, // FOR_ITER 29
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc3, // STORE_FAST 3
+    0xc4, // STORE_FAST 4
+    0x12,0x81,0x16, // LOAD_GLOBAL 'boton'
+    0xb4, // LOAD_FAST 4
+    0x22,0x80,0x50, // LOAD_CONST_SMALL_INT 80
+    0x22,0x80,0x46, // LOAD_CONST_SMALL_INT 70
+    0xb3, // LOAD_FAST 3
+    0x9a, // LOAD_CONST_SMALL_INT 26
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x22,0x81,0x20, // LOAD_CONST_SMALL_INT 160
+    0xb3, // LOAD_FAST 3
+    0xb2, // LOAD_FAST 2
+    0xd9, // BINARY_OP 2 __eq__
+    0x34,0x05, // CALL_FUNCTION 5
+    0x59, // POP_TOP
+    0x42,0x21, // JUMP -31
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x58, // LOAD_METHOD 'mostrar'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x12,0x82,0x47, // LOAD_GLOBAL 'K'
+    0x14,0x81,0x1b, // LOAD_METHOD 'eventos'
+    0x36,0x00, // CALL_METHOD 0
+    0x5f, // GET_ITER_STACK
+    0x4b,0x73, // FOR_ITER 115
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc5, // STORE_FAST 5
+    0xc6, // STORE_FAST 6
+    0xb5, // LOAD_FAST 5
+    0x23,0x3e, // LOAD_CONST_OBJ 62
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x57, // POP_JUMP_IF_FALSE 23
+    0xb2, // LOAD_FAST 2
+    0xb5, // LOAD_FAST 5
+    0x10,0x81,0x1c, // LOAD_CONST_STRING 'DOWN'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x43, // POP_JUMP_IF_FALSE 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x42,0x41, // JUMP 1
+    0x7f, // LOAD_CONST_SMALL_INT -1
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x2c, // LOAD_GLOBAL 'len'
+    0xb1, // LOAD_FAST 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0xf8, // BINARY_OP 33 __mod__
+    0xc2, // STORE_FAST 2
+    0x42,0x50, // JUMP 16
+    0xb5, // LOAD_FAST 5
+    0x10,0x81,0x1e, // LOAD_CONST_STRING 'DEL'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x49, // POP_JUMP_IF_FALSE 9
+    0x23,0x81,0x0d, // LOAD_CONST_OBJ 141
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc2, // STORE_FAST 2
+    0xc5, // STORE_FAST 5
+    0x42,0x40, // JUMP 0
+    0xb5, // LOAD_FAST 5
+    0x10,0x81,0x1d, // LOAD_CONST_STRING 'EXE'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x78, // POP_JUMP_IF_FALSE 56
+    0x52, // LOAD_CONST_TRUE
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x62, // STORE_ATTR 'completo'
+    0x51, // LOAD_CONST_NONE
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x65, // STORE_ATTR 'hud'
+    0xb2, // LOAD_FAST 2
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x42, // POP_JUMP_IF_FALSE 2
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0xb2, // LOAD_FAST 2
+    0x23,0x4e, // LOAD_CONST_OBJ 78
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x5a, // POP_JUMP_IF_FALSE 26
+    0x12,0x70, // LOAD_GLOBAL 'guardar'
+    0xb0, // LOAD_FAST 0
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0xb2, // LOAD_FAST 2
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x4f, // POP_JUMP_IF_FALSE 15
+    0x23,0x81,0x0e, // LOAD_CONST_OBJ 142
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x66, // STORE_ATTR 'aviso'
+    0xb0, // LOAD_FAST 0
+    0x18,0x82,0x26, // STORE_ATTR 'aviso_t'
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0x52, // LOAD_CONST_TRUE
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x4b, // STORE_ATTR 'salir'
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0x42,0x8b,0x7f, // JUMP -117
+    0x42,0x86,0x7e, // JUMP -250
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_pausa = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_pausa,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 304,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 18,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 305,
+        .line_info = fun_data_mc2d_Juego_pausa + 7,
+        .line_info_top = fun_data_mc2d_Juego_pausa + 35,
+        .opcodes = fun_data_mc2d_Juego_pausa + 35,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_pausa fun_data_mc2d_Juego_pausa[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_teclas
+static const byte fun_data_mc2d_Juego_teclas[463] = {
+    0x61,0x58, // prelude
+    0x07,0x83,0x3e, // names: teclas, self
+    0xb0,0xeb,0x30,0x2c,0x2c,0x27,0x2b,0x27,0x2e,0x27,0x29,0x27,0x26,0x2b,0x23,0x27,0x35,0x27,0x36,0x27,0x36,0x27,0x35,0x27,0x2a,0x27,0x2a,0x27,0x2f,0x27,0x2f,0x27,0x2a,0x27,0x29,0x23,0x28,0x27,0x29,0x2a,0x2d, // code info
+    0x12,0x82,0x47, // LOAD_GLOBAL 'K'
+    0x14,0x81,0x1b, // LOAD_METHOD 'eventos'
+    0x36,0x00, // CALL_METHOD 0
+    0x5f, // GET_ITER_STACK
+    0x4b,0x93,0x03, // FOR_ITER 403
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc1, // STORE_FAST 1
+    0xc2, // STORE_FAST 2
+    0xb1, // LOAD_FAST 1
+    0x14,0x81,0x13, // LOAD_METHOD 'startswith'
+    0x10,0x82,0x33, // LOAD_CONST_STRING 'CH:'
+    0x36,0x01, // CALL_METHOD 1
+    0x44,0xde,0x80, // POP_JUMP_IF_FALSE 94
+    0xb1, // LOAD_FAST 1
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x51, // LOAD_CONST_NONE
+    0x2e,0x02, // BUILD_SLICE 2
+    0x55, // LOAD_SUBSCR
+    0x14,0x82,0x34, // LOAD_METHOD 'lower'
+    0x36,0x00, // CALL_METHOD 0
+    0xc3, // STORE_FAST 3
+    0xb3, // LOAD_FAST 3
+    0x10,0x82,0x35, // LOAD_CONST_STRING 'wasd '
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x4b, // POP_JUMP_IF_FALSE 11
+    0x23,0x81,0x0f, // LOAD_CONST_OBJ 143
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x68, // LOAD_ATTR 'tap'
+    0xb3, // LOAD_FAST 3
+    0x56, // STORE_SUBSCR
+    0x42,0x72, // JUMP 50
+    0xb3, // LOAD_FAST 3
+    0x10,0x82,0x36, // LOAD_CONST_STRING '123456789'
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x4e, // POP_JUMP_IF_FALSE 14
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb3, // LOAD_FAST 3
+    0x34,0x01, // CALL_FUNCTION 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf3, // BINARY_OP 28 __sub__
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x59, // STORE_ATTR 'sel'
+    0x42,0x5d, // JUMP 29
+    0xb3, // LOAD_FAST 3
+    0x10,0x82,0x2a, // LOAD_CONST_STRING 'e'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x49, // POP_JUMP_IF_FALSE 9
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x05, // LOAD_METHOD 'abrir_inventario'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x42,0x4d, // JUMP 13
+    0xb3, // LOAD_FAST 3
+    0x10,0x82,0x37, // LOAD_CONST_STRING 'q'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x46, // POP_JUMP_IF_FALSE 6
+    0x10,0x82,0x38, // LOAD_CONST_STRING '9'
+    0xc1, // STORE_FAST 1
+    0x42,0x40, // JUMP 0
+    0xb1, // LOAD_FAST 1
+    0x14,0x81,0x13, // LOAD_METHOD 'startswith'
+    0x10,0x82,0x38, // LOAD_CONST_STRING '9'
+    0x36,0x01, // CALL_METHOD 1
+    0x43,0x43, // POP_JUMP_IF_TRUE 3
+    0x42,0x8f,0x7f, // JUMP -113
+    0xb1, // LOAD_FAST 1
+    0x10,0x82,0x39, // LOAD_CONST_STRING '8'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x55, // POP_JUMP_IF_FALSE 21
+    0x12,0x83,0x28, // LOAD_GLOBAL 'min'
+    0x12,0x83,0x18, // LOAD_GLOBAL 'ALCANCE'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x58, // LOAD_ATTR 'cdy'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x02, // CALL_FUNCTION 2
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x58, // STORE_ATTR 'cdy'
+    0x42,0x86,0x82, // JUMP 262
+    0xb1, // LOAD_FAST 1
+    0x10,0x82,0x3a, // LOAD_CONST_STRING '2'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x56, // POP_JUMP_IF_FALSE 22
+    0x12,0x83,0x29, // LOAD_GLOBAL 'max'
+    0x12,0x83,0x18, // LOAD_GLOBAL 'ALCANCE'
+    0xd1, // UNARY_OP 1 __neg__
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x58, // LOAD_ATTR 'cdy'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x02, // CALL_FUNCTION 2
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x58, // STORE_ATTR 'cdy'
+    0x42,0xe9,0x81, // JUMP 233
+    0xb1, // LOAD_FAST 1
+    0x10,0x82,0x3b, // LOAD_CONST_STRING '4'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x56, // POP_JUMP_IF_FALSE 22
+    0x12,0x83,0x29, // LOAD_GLOBAL 'max'
+    0x12,0x83,0x18, // LOAD_GLOBAL 'ALCANCE'
+    0xd1, // UNARY_OP 1 __neg__
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x57, // LOAD_ATTR 'cdx'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x02, // CALL_FUNCTION 2
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x57, // STORE_ATTR 'cdx'
+    0x42,0xcc,0x81, // JUMP 204
+    0xb1, // LOAD_FAST 1
+    0x10,0x82,0x3c, // LOAD_CONST_STRING '6'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x55, // POP_JUMP_IF_FALSE 21
+    0x12,0x83,0x28, // LOAD_GLOBAL 'min'
+    0x12,0x83,0x18, // LOAD_GLOBAL 'ALCANCE'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x57, // LOAD_ATTR 'cdx'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x02, // CALL_FUNCTION 2
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x57, // STORE_ATTR 'cdx'
+    0x42,0xb0,0x81, // JUMP 176
+    0xb1, // LOAD_FAST 1
+    0x10,0x82,0x3d, // LOAD_CONST_STRING '5'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x4a, // POP_JUMP_IF_FALSE 10
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x08, // LOAD_METHOD 'golpear'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x42,0x9f,0x81, // JUMP 159
+    0xb1, // LOAD_FAST 1
+    0x10,0x81,0x1d, // LOAD_CONST_STRING 'EXE'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x4a, // POP_JUMP_IF_FALSE 10
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x04, // LOAD_METHOD 'usar'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x42,0x8e,0x81, // JUMP 142
+    0xb1, // LOAD_FAST 1
+    0x23,0x81,0x10, // LOAD_CONST_OBJ 144
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x4f, // POP_JUMP_IF_FALSE 15
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x59, // LOAD_ATTR 'sel'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf3, // BINARY_OP 28 __sub__
+    0x89, // LOAD_CONST_SMALL_INT 9
+    0xf8, // BINARY_OP 33 __mod__
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x59, // STORE_ATTR 'sel'
+    0x42,0xf8,0x80, // JUMP 120
+    0xb1, // LOAD_FAST 1
+    0x23,0x81,0x11, // LOAD_CONST_OBJ 145
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x4f, // POP_JUMP_IF_FALSE 15
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x59, // LOAD_ATTR 'sel'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x89, // LOAD_CONST_SMALL_INT 9
+    0xf8, // BINARY_OP 33 __mod__
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x59, // STORE_ATTR 'sel'
+    0x42,0xe2,0x80, // JUMP 98
+    0xb1, // LOAD_FAST 1
+    0x10,0x82,0x3e, // LOAD_CONST_STRING '7'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x4a, // POP_JUMP_IF_FALSE 10
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x05, // LOAD_METHOD 'abrir_inventario'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x42,0xd1,0x80, // JUMP 81
+    0xb1, // LOAD_FAST 1
+    0x10,0x82,0x38, // LOAD_CONST_STRING '9'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x54, // POP_JUMP_IF_FALSE 20
+    0x12,0x83,0x1c, // LOAD_GLOBAL 'inv_id'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x59, // LOAD_ATTR 'sel'
+    0x55, // LOAD_SUBSCR
+    0xc4, // STORE_FAST 4
+    0xb4, // LOAD_FAST 4
+    0x44,0x46, // POP_JUMP_IF_FALSE 6
+    0x12,0x65, // LOAD_GLOBAL 'quitar'
+    0xb4, // LOAD_FAST 4
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0x42,0x76, // JUMP 54
+    0xb1, // LOAD_FAST 1
+    0x10,0x81,0x1e, // LOAD_CONST_STRING 'DEL'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x49, // POP_JUMP_IF_FALSE 9
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x31, // LOAD_METHOD 'pausa'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x42,0x66, // JUMP 38
+    0xb1, // LOAD_FAST 1
+    0x10,0x82,0x3f, // LOAD_CONST_STRING 'SQRT'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x5f, // POP_JUMP_IF_FALSE 31
+    0xb2, // LOAD_FAST 2
+    0x44,0x5c, // POP_JUMP_IF_FALSE 28
+    0xb0, // LOAD_FAST 0
+    0x57, // DUP_TOP
+    0x13,0x78, // LOAD_ATTR 'tiempo'
+    0x12,0x83,0x0d, // LOAD_GLOBAL 'DIA_S'
+    0x8a, // LOAD_CONST_SMALL_INT 10
+    0xf7, // BINARY_OP 32 __truediv__
+    0xe5, // BINARY_OP 14 __iadd__
+    0x5a, // ROT_TWO
+    0x18,0x78, // STORE_ATTR 'tiempo'
+    0x23,0x81,0x12, // LOAD_CONST_OBJ 146
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x66, // STORE_ATTR 'aviso'
+    0xb0, // LOAD_FAST 0
+    0x18,0x82,0x26, // STORE_ATTR 'aviso_t'
+    0x42,0x40, // JUMP 0
+    0x42,0xea,0x7c, // JUMP -406
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_teclas = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_teclas,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 463,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 13,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 7,
+        .line_info = fun_data_mc2d_Juego_teclas + 5,
+        .line_info_top = fun_data_mc2d_Juego_teclas + 46,
+        .opcodes = fun_data_mc2d_Juego_teclas + 46,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_teclas fun_data_mc2d_Juego_teclas[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_paso
+static const byte fun_data_mc2d_Juego_paso[523] = {
+    0x62,0x56, // prelude
+    0x81,0x48,0x83,0x3e,0x83,0x4a, // names: paso, self, dt
+    0xc0,0x15,0x26,0x2d,0x2d,0x2d,0x2a,0x28,0x37,0x28,0x28,0x28,0x27,0x31,0x49,0x1f,0x21,0x28,0x25,0x2e,0x3e,0x32,0x29,0x1f,0x26,0x28,0x2e,0x2b,0x28,0x45,0x2c,0x1f,0x22,0x37,0x3a,0x3e,0x25, // code info
+    0xb0, // LOAD_FAST 0
+    0x14,0x07, // LOAD_METHOD 'teclas'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x12,0x83,0x3d, // LOAD_GLOBAL 'list'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x68, // LOAD_ATTR 'tap'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x5f, // GET_ITER_STACK
+    0x4b,0x0e, // FOR_ITER 14
+    0xc2, // STORE_FAST 2
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x68, // LOAD_ATTR 'tap'
+    0xb2, // LOAD_FAST 2
+    0x58, // DUP_TOP_TWO
+    0x55, // LOAD_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0xe6, // BINARY_OP 15 __isub__
+    0x5b, // ROT_THREE
+    0x56, // STORE_SUBSCR
+    0x42,0x30, // JUMP -16
+    0x12,0x82,0x47, // LOAD_GLOBAL 'K'
+    0x14,0x82,0x10, // LOAD_METHOD 'pulsada'
+    0x10,0x82,0x3d, // LOAD_CONST_STRING '5'
+    0x36,0x01, // CALL_METHOD 1
+    0x44,0x4a, // POP_JUMP_IF_FALSE 10
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x03, // LOAD_METHOD 'picar'
+    0xb1, // LOAD_FAST 1
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x42,0x67, // JUMP 39
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x5a, // LOAD_ATTR 'pico'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0x44,0x5f, // POP_JUMP_IF_FALSE 31
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x63, // LOAD_ATTR 'sucios'
+    0x14,0x3b, // LOAD_METHOD 'append'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x5a, // LOAD_ATTR 'pico'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x5a, // LOAD_ATTR 'pico'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0x2a,0x02, // BUILD_TUPLE 2
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x23,0x67, // LOAD_CONST_OBJ 103
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x5a, // STORE_ATTR 'pico'
+    0x42,0x40, // JUMP 0
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x0f, // LOAD_METHOD 'fisica'
+    0xb1, // LOAD_FAST 1
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x1c, // LOAD_METHOD 'mobs_paso'
+    0xb1, // LOAD_FAST 1
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x43, // LOAD_METHOD 'red_paso'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x12,0x83,0x29, // LOAD_GLOBAL 'max'
+    0x23,0x64, // LOAD_CONST_OBJ 100
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x5d, // LOAD_ATTR 'golpe_t'
+    0xb1, // LOAD_FAST 1
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x02, // CALL_FUNCTION 2
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x5d, // STORE_ATTR 'golpe_t'
+    0xb0, // LOAD_FAST 0
+    0x57, // DUP_TOP
+    0x13,0x78, // LOAD_ATTR 'tiempo'
+    0xb1, // LOAD_FAST 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x5a, // ROT_TWO
+    0x18,0x78, // STORE_ATTR 'tiempo'
+    0xb0, // LOAD_FAST 0
+    0x57, // DUP_TOP
+    0x13,0x81,0x55, // LOAD_ATTR 'hambre_t'
+    0xb1, // LOAD_FAST 1
+    0x12,0x83,0x48, // LOAD_GLOBAL 'abs'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x51, // LOAD_ATTR 'vx'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x23,0x28, // LOAD_CONST_OBJ 40
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x23,0x31, // LOAD_CONST_OBJ 49
+    0x42,0x42, // JUMP 2
+    0x23,0x2d, // LOAD_CONST_OBJ 45
+    0xf4, // BINARY_OP 29 __mul__
+    0xe5, // BINARY_OP 14 __iadd__
+    0x5a, // ROT_TWO
+    0x18,0x81,0x55, // STORE_ATTR 'hambre_t'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x55, // LOAD_ATTR 'hambre_t'
+    0xa8, // LOAD_CONST_SMALL_INT 40
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x53, // POP_JUMP_IF_FALSE 19
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x55, // STORE_ATTR 'hambre_t'
+    0x12,0x83,0x29, // LOAD_GLOBAL 'max'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xb0, // LOAD_FAST 0
+    0x13,0x77, // LOAD_ATTR 'hambre'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x02, // CALL_FUNCTION 2
+    0xb0, // LOAD_FAST 0
+    0x18,0x77, // STORE_ATTR 'hambre'
+    0xb0, // LOAD_FAST 0
+    0x13,0x77, // LOAD_ATTR 'hambre'
+    0x92, // LOAD_CONST_SMALL_INT 18
+    0xdb, // BINARY_OP 4 __ge__
+    0x44,0x72, // POP_JUMP_IF_FALSE 50
+    0xb0, // LOAD_FAST 0
+    0x13,0x76, // LOAD_ATTR 'vida'
+    0x94, // LOAD_CONST_SMALL_INT 20
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x6b, // POP_JUMP_IF_FALSE 43
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb0, // LOAD_FAST 0
+    0x13,0x78, // LOAD_ATTR 'tiempo'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf4, // BINARY_OP 29 __mul__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0xf8, // BINARY_OP 33 __mod__
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x5b, // POP_JUMP_IF_FALSE 27
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb0, // LOAD_FAST 0
+    0x13,0x78, // LOAD_ATTR 'tiempo'
+    0xb1, // LOAD_FAST 1
+    0xf3, // BINARY_OP 28 __sub__
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf4, // BINARY_OP 29 __mul__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0xf8, // BINARY_OP 33 __mod__
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xdc, // BINARY_OP 5 __ne__
+    0x44,0x49, // POP_JUMP_IF_FALSE 9
+    0xb0, // LOAD_FAST 0
+    0x57, // DUP_TOP
+    0x13,0x76, // LOAD_ATTR 'vida'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x5a, // ROT_TWO
+    0x18,0x76, // STORE_ATTR 'vida'
+    0xb0, // LOAD_FAST 0
+    0x13,0x77, // LOAD_ATTR 'hambre'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x66, // POP_JUMP_IF_FALSE 38
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb0, // LOAD_FAST 0
+    0x13,0x78, // LOAD_ATTR 'tiempo'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0xf8, // BINARY_OP 33 __mod__
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x58, // POP_JUMP_IF_FALSE 24
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb0, // LOAD_FAST 0
+    0x13,0x78, // LOAD_ATTR 'tiempo'
+    0xb1, // LOAD_FAST 1
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0xf8, // BINARY_OP 33 __mod__
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xdc, // BINARY_OP 5 __ne__
+    0x44,0x48, // POP_JUMP_IF_FALSE 8
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x18, // LOAD_METHOD 'herir'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x12,0x83,0x53, // LOAD_GLOBAL 'getattr'
+    0xb0, // LOAD_FAST 0
+    0x10,0x82,0x26, // LOAD_CONST_STRING 'aviso_t'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x34,0x03, // CALL_FUNCTION 3
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x58, // POP_JUMP_IF_FALSE 24
+    0xb0, // LOAD_FAST 0
+    0x57, // DUP_TOP
+    0x13,0x82,0x26, // LOAD_ATTR 'aviso_t'
+    0xb1, // LOAD_FAST 1
+    0xe6, // BINARY_OP 15 __isub__
+    0x5a, // ROT_TWO
+    0x18,0x82,0x26, // STORE_ATTR 'aviso_t'
+    0xb0, // LOAD_FAST 0
+    0x13,0x82,0x26, // LOAD_ATTR 'aviso_t'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xda, // BINARY_OP 3 __le__
+    0x44,0x45, // POP_JUMP_IF_FALSE 5
+    0x51, // LOAD_CONST_NONE
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x66, // STORE_ATTR 'aviso'
+    0xb0, // LOAD_FAST 0
+    0x13,0x78, // LOAD_ATTR 'tiempo'
+    0x12,0x83,0x0d, // LOAD_GLOBAL 'DIA_S'
+    0xf8, // BINARY_OP 33 __mod__
+    0x12,0x83,0x0d, // LOAD_GLOBAL 'DIA_S'
+    0xf7, // BINARY_OP 32 __truediv__
+    0xc3, // STORE_FAST 3
+    0x23,0x36, // LOAD_CONST_OBJ 54
+    0xb3, // LOAD_FAST 3
+    0x57, // DUP_TOP
+    0x5b, // ROT_THREE
+    0xd7, // BINARY_OP 0 __lt__
+    0x46,0x06, // JUMP_IF_FALSE_OR_POP 6
+    0x23,0x81,0x13, // LOAD_CONST_OBJ 147
+    0xd7, // BINARY_OP 0 __lt__
+    0x42,0x42, // JUMP 2
+    0x5a, // ROT_TWO
+    0x59, // POP_TOP
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x23,0x2d, // LOAD_CONST_OBJ 45
+    0x42,0x61, // JUMP 33
+    0xb3, // LOAD_FAST 3
+    0x23,0x81,0x14, // LOAD_CONST_OBJ 148
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x23,0x64, // LOAD_CONST_OBJ 100
+    0x42,0x56, // JUMP 22
+    0xb3, // LOAD_FAST 3
+    0x23,0x36, // LOAD_CONST_OBJ 54
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x4a, // POP_JUMP_IF_FALSE 10
+    0xb3, // LOAD_FAST 3
+    0x23,0x81,0x14, // LOAD_CONST_OBJ 148
+    0xf3, // BINARY_OP 28 __sub__
+    0x23,0x28, // LOAD_CONST_OBJ 40
+    0xf7, // BINARY_OP 32 __truediv__
+    0x42,0x46, // JUMP 6
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xb3, // LOAD_FAST 3
+    0xf3, // BINARY_OP 28 __sub__
+    0x23,0x7e, // LOAD_CONST_OBJ 126
+    0xf7, // BINARY_OP 32 __truediv__
+    0xc4, // STORE_FAST 4
+    0x12,0x6f, // LOAD_GLOBAL 'mezcla'
+    0x12,0x83,0x09, // LOAD_GLOBAL 'CIELO_DIA'
+    0x12,0x83,0x0a, // LOAD_GLOBAL 'CIELO_NOCHE'
+    0x12,0x83,0x28, // LOAD_GLOBAL 'min'
+    0x23,0x2d, // LOAD_CONST_OBJ 45
+    0x12,0x83,0x29, // LOAD_GLOBAL 'max'
+    0x23,0x64, // LOAD_CONST_OBJ 100
+    0xb4, // LOAD_FAST 4
+    0x34,0x02, // CALL_FUNCTION 2
+    0x34,0x02, // CALL_FUNCTION 2
+    0x34,0x03, // CALL_FUNCTION 3
+    0xc2, // STORE_FAST 2
+    0xb2, // LOAD_FAST 2
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x67, // LOAD_ATTR 'cielo'
+    0xdc, // BINARY_OP 5 __ne__
+    0x44,0x60, // POP_JUMP_IF_FALSE 32
+    0x12,0x83,0x48, // LOAD_GLOBAL 'abs'
+    0xb4, // LOAD_FAST 4
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0xf4, // BINARY_OP 29 __mul__
+    0x12,0x83,0x50, // LOAD_GLOBAL 'round'
+    0xb4, // LOAD_FAST 4
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0xf4, // BINARY_OP 29 __mul__
+    0x34,0x01, // CALL_FUNCTION 1
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x23,0x7e, // LOAD_CONST_OBJ 126
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x4a, // POP_JUMP_IF_FALSE 10
+    0xb2, // LOAD_FAST 2
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x67, // STORE_ATTR 'cielo'
+    0x52, // LOAD_CONST_TRUE
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x62, // STORE_ATTR 'completo'
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_paso = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_paso,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 523,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 13,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 2,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 200,
+        .line_info = fun_data_mc2d_Juego_paso + 8,
+        .line_info_top = fun_data_mc2d_Juego_paso + 45,
+        .opcodes = fun_data_mc2d_Juego_paso + 45,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_paso fun_data_mc2d_Juego_paso[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_morir
+static const byte fun_data_mc2d_Juego_morir[202] = {
+    0x69,0x28, // prelude
+    0x81,0x49,0x83,0x3e, // names: morir, self
+    0xc0,0x3a,0x29,0x3a,0x38,0x36,0x28,0x20,0x2f,0x27,0x2a,0x28,0x35,0x27,0x25,0x25, // code info
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x72, // LOAD_METHOD 'recorte'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x56, // LOAD_METHOD 'rect'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x13,0x3c, // LOAD_ATTR 'ANCHO'
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x13,0x81,0x19, // LOAD_ATTR 'ALTO'
+    0x22,0x83,0x80,0xa0,0x10, // LOAD_CONST_SMALL_INT 6295568
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x57, // LOAD_METHOD 'texto'
+    0x10,0x82,0x40, // LOAD_CONST_STRING 'Has muerto'
+    0x22,0x80,0x64, // LOAD_CONST_SMALL_INT 100
+    0x22,0x80,0x46, // LOAD_CONST_SMALL_INT 70
+    0x22,0x87,0xff,0xff,0x7f, // LOAD_CONST_SMALL_INT 16777215
+    0x51, // LOAD_CONST_NONE
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x36,0x06, // CALL_METHOD 6
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x57, // LOAD_METHOD 'texto'
+    0x23,0x81,0x15, // LOAD_CONST_OBJ 149
+    0x22,0x80,0x6e, // LOAD_CONST_SMALL_INT 110
+    0x22,0x80,0x78, // LOAD_CONST_SMALL_INT 120
+    0x22,0x87,0xff,0x81,0x40, // LOAD_CONST_SMALL_INT 16761024
+    0x36,0x04, // CALL_METHOD 4
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x58, // LOAD_METHOD 'mostrar'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x12,0x82,0x47, // LOAD_GLOBAL 'K'
+    0x14,0x81,0x1b, // LOAD_METHOD 'eventos'
+    0x36,0x00, // CALL_METHOD 0
+    0x5f, // GET_ITER_STACK
+    0x4b,0x43, // FOR_ITER 67
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc1, // STORE_FAST 1
+    0xc2, // STORE_FAST 2
+    0xb1, // LOAD_FAST 1
+    0x10,0x81,0x1d, // LOAD_CONST_STRING 'EXE'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x75, // POP_JUMP_IF_FALSE 53
+    0x23,0x65, // LOAD_CONST_OBJ 101
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xb0, // LOAD_FAST 0
+    0x18,0x76, // STORE_ATTR 'vida'
+    0xb0, // LOAD_FAST 0
+    0x18,0x77, // STORE_ATTR 'hambre'
+    0x12,0x83,0x1b, // LOAD_GLOBAL 'NHUECOS'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0x50, // JUMP 16
+    0x57, // DUP_TOP
+    0xc3, // STORE_FAST 3
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x57, // DUP_TOP
+    0x12,0x83,0x1c, // LOAD_GLOBAL 'inv_id'
+    0xb3, // LOAD_FAST 3
+    0x56, // STORE_SUBSCR
+    0x12,0x83,0x1d, // LOAD_GLOBAL 'inv_n'
+    0xb3, // LOAD_FAST 3
+    0x56, // STORE_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x2b, // POP_JUMP_IF_TRUE -21
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x28, // LOAD_METHOD 'aparecer'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x65, // STORE_ATTR 'hud'
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0x42,0xbb,0x7f, // JUMP -69
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x58, // LOAD_METHOD 'mostrar'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x42,0xa7,0x7f, // JUMP -89
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_morir = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_morir,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 202,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 14,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 201,
+        .line_info = fun_data_mc2d_Juego_morir + 6,
+        .line_info_top = fun_data_mc2d_Juego_morir + 22,
+        .opcodes = fun_data_mc2d_Juego_morir + 22,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_morir fun_data_mc2d_Juego_morir[0]
+#endif
+
+static const mp_raw_code_t *const children_mc2d_Juego[] = {
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego___init__,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_aparecer,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_centrar,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_pant,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_fondo,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_encerrado,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_bloque,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_zona,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_objetivo,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_dibujar_hud,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_caja_jugador,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_a_bloques,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_pintar,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_poner,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_asentar,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_toca_jugador,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_herramienta,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_picar,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_usar,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_mob_en,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_golpear,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_libre_col,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_mover_x,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_mover_y,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_fisica,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_herir,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_es_noche,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_mobs_paso,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_red_paso,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_cerca,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_abrir_inventario,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_pausa,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_teclas,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_paso,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_morir,
+};
+
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego,
+    .children = (void *)&children_mc2d_Juego,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 274,
+    .n_children = 35,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 2,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 0,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 61,
+        .line_info = fun_data_mc2d_Juego + 4,
+        .line_info_top = fun_data_mc2d_Juego + 70,
+        .opcodes = fun_data_mc2d_Juego + 70,
+    },
+    #endif
+    #endif
+};
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_medio
+static const byte fun_data_mc2d_medio[35] = {
+    0x22,0x0e, // prelude
+    0x6c,0x83,0x30,0x83,0x31, // names: medio, valor, i
+    0xc0,0x4c, // code info
+    0xb0, // LOAD_FAST 0
+    0xb1, // LOAD_FAST 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf4, // BINARY_OP 29 __mul__
+    0xdb, // BINARY_OP 4 __ge__
+    0x44,0x43, // POP_JUMP_IF_FALSE 3
+    0x10,0x0a, // LOAD_CONST_STRING ''
+    0x63, // RETURN_VALUE
+    0xb0, // LOAD_FAST 0
+    0xb1, // LOAD_FAST 1
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf4, // BINARY_OP 29 __mul__
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x10,0x6d, // LOAD_CONST_STRING '_medio'
+    0x42,0x42, // JUMP 2
+    0x10,0x6e, // LOAD_CONST_STRING '_vacio'
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_medio = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_medio,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 35,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 5,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 2,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 108,
+        .line_info = fun_data_mc2d_medio + 7,
+        .line_info_top = fun_data_mc2d_medio + 9,
+        .opcodes = fun_data_mc2d_medio + 9,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_medio fun_data_mc2d_medio[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_mezcla
+static const byte fun_data_mc2d_mezcla[101] = {
+    0x4b,0x18, // prelude
+    0x6f,0x82,0x12,0x83,0x20,0x83,0x32, // names: mezcla, a, b, f
+    0xc0,0x50,0x3b,0x3b,0x37, // code info
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb0, // LOAD_FAST 0
+    0x90, // LOAD_CONST_SMALL_INT 16
+    0xf1, // BINARY_OP 26 __rshift__
+    0x22,0x81,0x7f, // LOAD_CONST_SMALL_INT 255
+    0xef, // BINARY_OP 24 __and__
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xb2, // LOAD_FAST 2
+    0xf3, // BINARY_OP 28 __sub__
+    0xf4, // BINARY_OP 29 __mul__
+    0xb1, // LOAD_FAST 1
+    0x90, // LOAD_CONST_SMALL_INT 16
+    0xf1, // BINARY_OP 26 __rshift__
+    0x22,0x81,0x7f, // LOAD_CONST_SMALL_INT 255
+    0xef, // BINARY_OP 24 __and__
+    0xb2, // LOAD_FAST 2
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x01, // CALL_FUNCTION 1
+    0xc3, // STORE_FAST 3
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb0, // LOAD_FAST 0
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0xf1, // BINARY_OP 26 __rshift__
+    0x22,0x81,0x7f, // LOAD_CONST_SMALL_INT 255
+    0xef, // BINARY_OP 24 __and__
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xb2, // LOAD_FAST 2
+    0xf3, // BINARY_OP 28 __sub__
+    0xf4, // BINARY_OP 29 __mul__
+    0xb1, // LOAD_FAST 1
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0xf1, // BINARY_OP 26 __rshift__
+    0x22,0x81,0x7f, // LOAD_CONST_SMALL_INT 255
+    0xef, // BINARY_OP 24 __and__
+    0xb2, // LOAD_FAST 2
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x01, // CALL_FUNCTION 1
+    0xc4, // STORE_FAST 4
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb0, // LOAD_FAST 0
+    0x22,0x81,0x7f, // LOAD_CONST_SMALL_INT 255
+    0xef, // BINARY_OP 24 __and__
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xb2, // LOAD_FAST 2
+    0xf3, // BINARY_OP 28 __sub__
+    0xf4, // BINARY_OP 29 __mul__
+    0xb1, // LOAD_FAST 1
+    0x22,0x81,0x7f, // LOAD_CONST_SMALL_INT 255
+    0xef, // BINARY_OP 24 __and__
+    0xb2, // LOAD_FAST 2
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x01, // CALL_FUNCTION 1
+    0xc5, // STORE_FAST 5
+    0xb3, // LOAD_FAST 3
+    0x90, // LOAD_CONST_SMALL_INT 16
+    0xf0, // BINARY_OP 25 __lshift__
+    0xb4, // LOAD_FAST 4
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0xf0, // BINARY_OP 25 __lshift__
+    0xed, // BINARY_OP 22 __or__
+    0xb5, // LOAD_FAST 5
+    0xed, // BINARY_OP 22 __or__
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_mezcla = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_mezcla,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 101,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 10,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 3,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 111,
+        .line_info = fun_data_mc2d_mezcla + 9,
+        .line_info_top = fun_data_mc2d_mezcla + 14,
+        .opcodes = fun_data_mc2d_mezcla + 14,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_mezcla fun_data_mc2d_mezcla[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_guardar
+static const byte fun_data_mc2d_guardar[185] = {
+    0x4d,0x20, // prelude
+    0x70,0x83,0x33, // names: guardar, j
+    0xc0,0x5b,0x22,0x54,0x23,0x1f,0x25,0x35,0x30,0x35,0x28,0x32,0x28, // code info
+    0x48,0x0c, // SETUP_EXCEPT 12
+    0x12,0x05, // LOAD_GLOBAL 'os'
+    0x14,0x71, // LOAD_METHOD 'mkdir'
+    0x12,0x83,0x1f, // LOAD_GLOBAL 'CARPETA'
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x4a,0x0b, // POP_EXCEPT_JUMP 11
+    0x57, // DUP_TOP
+    0x12,0x83,0x23, // LOAD_GLOBAL 'OSError'
+    0xdf, // BINARY_OP 8 <exception match>
+    0x44,0x43, // POP_JUMP_IF_FALSE 3
+    0x59, // POP_TOP
+    0x4a,0x01, // POP_EXCEPT_JUMP 1
+    0x5d, // END_FINALLY
+    0x2c,0x09, // BUILD_MAP 9
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x10,0x72, // LOAD_CONST_STRING 'v'
+    0x62, // STORE_MAP
+    0xb0, // LOAD_FAST 0
+    0x13,0x73, // LOAD_ATTR 'nombre'
+    0x10,0x73, // LOAD_CONST_STRING 'nombre'
+    0x62, // STORE_MAP
+    0xb0, // LOAD_FAST 0
+    0x13,0x74, // LOAD_ATTR 'x'
+    0x10,0x74, // LOAD_CONST_STRING 'x'
+    0x62, // STORE_MAP
+    0xb0, // LOAD_FAST 0
+    0x13,0x75, // LOAD_ATTR 'y'
+    0x10,0x75, // LOAD_CONST_STRING 'y'
+    0x62, // STORE_MAP
+    0xb0, // LOAD_FAST 0
+    0x13,0x76, // LOAD_ATTR 'vida'
+    0x10,0x76, // LOAD_CONST_STRING 'vida'
+    0x62, // STORE_MAP
+    0xb0, // LOAD_FAST 0
+    0x13,0x77, // LOAD_ATTR 'hambre'
+    0x10,0x77, // LOAD_CONST_STRING 'hambre'
+    0x62, // STORE_MAP
+    0xb0, // LOAD_FAST 0
+    0x13,0x78, // LOAD_ATTR 'tiempo'
+    0x10,0x79, // LOAD_CONST_STRING 't'
+    0x62, // STORE_MAP
+    0x32,0x00, // MAKE_FUNCTION 0
+    0x12,0x82,0x49, // LOAD_GLOBAL 'range'
+    0x12,0x83,0x1b, // LOAD_GLOBAL 'NHUECOS'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0x10,0x7a, // LOAD_CONST_STRING 'inv'
+    0x62, // STORE_MAP
+    0x32,0x01, // MAKE_FUNCTION 1
+    0x12,0x82,0x49, // LOAD_GLOBAL 'range'
+    0x12,0x83,0x1b, // LOAD_GLOBAL 'NHUECOS'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0x10,0x7b, // LOAD_CONST_STRING 'pos'
+    0x62, // STORE_MAP
+    0xc1, // STORE_FAST 1
+    0x12,0x83,0x22, // LOAD_GLOBAL 'open'
+    0x10,0x7c, // LOAD_CONST_STRING '%s/%s.mc2d'
+    0x12,0x83,0x1f, // LOAD_GLOBAL 'CARPETA'
+    0xb0, // LOAD_FAST 0
+    0x13,0x73, // LOAD_ATTR 'nombre'
+    0x2a,0x02, // BUILD_TUPLE 2
+    0xf8, // BINARY_OP 33 __mod__
+    0x10,0x7d, // LOAD_CONST_STRING 'wb'
+    0x34,0x02, // CALL_FUNCTION 2
+    0x47,0x2d, // SETUP_WITH 45
+    0xc2, // STORE_FAST 2
+    0xb2, // LOAD_FAST 2
+    0x14,0x7e, // LOAD_METHOD 'write'
+    0x23,0x3b, // LOAD_CONST_OBJ 59
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0xb2, // LOAD_FAST 2
+    0x14,0x7e, // LOAD_METHOD 'write'
+    0x12,0x04, // LOAD_GLOBAL 'json'
+    0x14,0x7f, // LOAD_METHOD 'dumps'
+    0xb1, // LOAD_FAST 1
+    0x36,0x01, // CALL_METHOD 1
+    0x14,0x81,0x00, // LOAD_METHOD 'encode'
+    0x36,0x00, // CALL_METHOD 0
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0xb2, // LOAD_FAST 2
+    0x14,0x7e, // LOAD_METHOD 'write'
+    0x23,0x3c, // LOAD_CONST_OBJ 60
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0xb2, // LOAD_FAST 2
+    0x14,0x7e, // LOAD_METHOD 'write'
+    0x12,0x81,0x0d, // LOAD_GLOBAL 'mundo'
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x5c, // WITH_CLEANUP
+    0x5d, // END_FINALLY
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+// child of mc2d_guardar
+// frozen bytecode for file mc2d.py, scope mc2d_guardar__lt_listcomp_gt_
+static const byte fun_data_mc2d_guardar__lt_listcomp_gt_[39] = {
+    0x49,0x0c, // prelude
+    0x82,0x41,0x83,0x54, // names: <listcomp>, *
+    0xc0,0x60, // code info
+    0x2b,0x00, // BUILD_LIST 0
+    0xb0, // LOAD_FAST 0
+    0x5f, // GET_ITER_STACK
+    0x4b,0x18, // FOR_ITER 24
+    0xc1, // STORE_FAST 1
+    0x12,0x83,0x1c, // LOAD_GLOBAL 'inv_id'
+    0xb1, // LOAD_FAST 1
+    0x55, // LOAD_SUBSCR
+    0x44,0x36, // POP_JUMP_IF_FALSE -10
+    0x12,0x83,0x1c, // LOAD_GLOBAL 'inv_id'
+    0xb1, // LOAD_FAST 1
+    0x55, // LOAD_SUBSCR
+    0x12,0x83,0x1d, // LOAD_GLOBAL 'inv_n'
+    0xb1, // LOAD_FAST 1
+    0x55, // LOAD_SUBSCR
+    0x2b,0x02, // BUILD_LIST 2
+    0x2f,0x14, // STORE_COMP 20
+    0x42,0x26, // JUMP -26
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_guardar__lt_listcomp_gt_ = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_guardar__lt_listcomp_gt_,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 39,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 10,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 321,
+        .line_info = fun_data_mc2d_guardar__lt_listcomp_gt_ + 6,
+        .line_info_top = fun_data_mc2d_guardar__lt_listcomp_gt_ + 8,
+        .opcodes = fun_data_mc2d_guardar__lt_listcomp_gt_ + 8,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_guardar__lt_listcomp_gt_ fun_data_mc2d_guardar__lt_listcomp_gt_[0]
+#endif
+
+// child of mc2d_guardar
+// frozen bytecode for file mc2d.py, scope mc2d_guardar__lt_listcomp_gt_2
+static const byte fun_data_mc2d_guardar__lt_listcomp_gt_2[28] = {
+    0x41,0x0c, // prelude
+    0x82,0x41,0x83,0x54, // names: <listcomp>, *
+    0xc0,0x61, // code info
+    0x2b,0x00, // BUILD_LIST 0
+    0xb0, // LOAD_FAST 0
+    0x5f, // GET_ITER_STACK
+    0x4b,0x0d, // FOR_ITER 13
+    0xc1, // STORE_FAST 1
+    0x12,0x83,0x1c, // LOAD_GLOBAL 'inv_id'
+    0xb1, // LOAD_FAST 1
+    0x55, // LOAD_SUBSCR
+    0x44,0x36, // POP_JUMP_IF_FALSE -10
+    0xb1, // LOAD_FAST 1
+    0x2f,0x14, // STORE_COMP 20
+    0x42,0x31, // JUMP -15
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_guardar__lt_listcomp_gt_2 = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_guardar__lt_listcomp_gt_2,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 28,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 9,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 321,
+        .line_info = fun_data_mc2d_guardar__lt_listcomp_gt_2 + 6,
+        .line_info_top = fun_data_mc2d_guardar__lt_listcomp_gt_2 + 8,
+        .opcodes = fun_data_mc2d_guardar__lt_listcomp_gt_2 + 8,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_guardar__lt_listcomp_gt_2 fun_data_mc2d_guardar__lt_listcomp_gt_2[0]
+#endif
+
+static const mp_raw_code_t *const children_mc2d_guardar[] = {
+    (const mp_raw_code_t *)&proto_fun_mc2d_guardar__lt_listcomp_gt_,
+    (const mp_raw_code_t *)&proto_fun_mc2d_guardar__lt_listcomp_gt_2,
+};
+
+static const mp_raw_code_truncated_t proto_fun_mc2d_guardar = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_guardar,
+    .children = (void *)&children_mc2d_guardar,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 185,
+    .n_children = 2,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 10,
+        .n_exc_stack = 1,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 112,
+        .line_info = fun_data_mc2d_guardar + 5,
+        .line_info_top = fun_data_mc2d_guardar + 18,
+        .opcodes = fun_data_mc2d_guardar + 18,
+    },
+    #endif
+    #endif
+};
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_cargar
+static const byte fun_data_mc2d_cargar[275] = {
+    0x9d,0x10,0x2c, // prelude
+    0x81,0x01,0x73, // names: cargar, nombre
+    0xc0,0x6a,0x34,0x29,0x29,0x2c,0x34,0x3a,0x28,0x2f,0x28,0x35,0x1f,0x22,0x2f,0x26,0x1f,0x28,0x27, // code info
+    0x12,0x83,0x22, // LOAD_GLOBAL 'open'
+    0x10,0x7c, // LOAD_CONST_STRING '%s/%s.mc2d'
+    0x12,0x83,0x1f, // LOAD_GLOBAL 'CARPETA'
+    0xb0, // LOAD_FAST 0
+    0x2a,0x02, // BUILD_TUPLE 2
+    0xf8, // BINARY_OP 33 __mod__
+    0x10,0x81,0x02, // LOAD_CONST_STRING 'rb'
+    0x34,0x02, // CALL_FUNCTION 2
+    0x47,0x08, // SETUP_WITH 8
+    0xc1, // STORE_FAST 1
+    0xb1, // LOAD_FAST 1
+    0x14,0x48, // LOAD_METHOD 'read'
+    0x36,0x00, // CALL_METHOD 0
+    0xc2, // STORE_FAST 2
+    0x51, // LOAD_CONST_NONE
+    0x5c, // WITH_CLEANUP
+    0x5d, // END_FINALLY
+    0xb2, // LOAD_FAST 2
+    0x14,0x81,0x03, // LOAD_METHOD 'find'
+    0x23,0x3c, // LOAD_CONST_OBJ 60
+    0x36,0x01, // CALL_METHOD 1
+    0xc3, // STORE_FAST 3
+    0xb2, // LOAD_FAST 2
+    0x14,0x81,0x03, // LOAD_METHOD 'find'
+    0x23,0x3c, // LOAD_CONST_OBJ 60
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x36,0x02, // CALL_METHOD 2
+    0xc4, // STORE_FAST 4
+    0x12,0x04, // LOAD_GLOBAL 'json'
+    0x14,0x47, // LOAD_METHOD 'loads'
+    0xb2, // LOAD_FAST 2
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb4, // LOAD_FAST 4
+    0x2e,0x02, // BUILD_SLICE 2
+    0x55, // LOAD_SUBSCR
+    0x14,0x81,0x04, // LOAD_METHOD 'decode'
+    0x36,0x00, // CALL_METHOD 0
+    0x36,0x01, // CALL_METHOD 1
+    0xc5, // STORE_FAST 5
+    0xb2, // LOAD_FAST 2
+    0xb4, // LOAD_FAST 4
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb4, // LOAD_FAST 4
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x03, // LOAD_GLOBAL 'H'
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x2e,0x02, // BUILD_SLICE 2
+    0x55, // LOAD_SUBSCR
+    0x12,0x81,0x0d, // LOAD_GLOBAL 'mundo'
+    0x51, // LOAD_CONST_NONE
+    0x51, // LOAD_CONST_NONE
+    0x2e,0x02, // BUILD_SLICE 2
+    0x56, // STORE_SUBSCR
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0x4a, // JUMP 10
+    0x57, // DUP_TOP
+    0xc6, // STORE_FAST 6
+    0x12,0x42, // LOAD_GLOBAL 'calc_alto'
+    0xb6, // LOAD_FAST 6
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x31, // POP_JUMP_IF_TRUE -15
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x12,0x83,0x1b, // LOAD_GLOBAL 'NHUECOS'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0x50, // JUMP 16
+    0x57, // DUP_TOP
+    0xc7, // STORE_FAST 7
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x57, // DUP_TOP
+    0x12,0x83,0x1c, // LOAD_GLOBAL 'inv_id'
+    0xb7, // LOAD_FAST 7
+    0x56, // STORE_SUBSCR
+    0x12,0x83,0x1d, // LOAD_GLOBAL 'inv_n'
+    0xb7, // LOAD_FAST 7
+    0x56, // STORE_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x2b, // POP_JUMP_IF_TRUE -21
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x12,0x83,0x34, // LOAD_GLOBAL 'zip'
+    0xb5, // LOAD_FAST 5
+    0x14,0x4c, // LOAD_METHOD 'get'
+    0x10,0x7b, // LOAD_CONST_STRING 'pos'
+    0x2b,0x00, // BUILD_LIST 0
+    0x36,0x02, // CALL_METHOD 2
+    0xb5, // LOAD_FAST 5
+    0x14,0x4c, // LOAD_METHOD 'get'
+    0x10,0x7a, // LOAD_CONST_STRING 'inv'
+    0x2b,0x00, // BUILD_LIST 0
+    0x36,0x02, // CALL_METHOD 2
+    0x34,0x02, // CALL_FUNCTION 2
+    0x5f, // GET_ITER_STACK
+    0x4b,0x16, // FOR_ITER 22
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc8, // STORE_FAST 8
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc9, // STORE_FAST 9
+    0xca, // STORE_FAST 10
+    0xb9, // LOAD_FAST 9
+    0xba, // LOAD_FAST 10
+    0x5a, // ROT_TWO
+    0x12,0x83,0x1c, // LOAD_GLOBAL 'inv_id'
+    0xb8, // LOAD_FAST 8
+    0x56, // STORE_SUBSCR
+    0x12,0x83,0x1d, // LOAD_GLOBAL 'inv_n'
+    0xb8, // LOAD_FAST 8
+    0x56, // STORE_SUBSCR
+    0x42,0x28, // JUMP -24
+    0x12,0x3d, // LOAD_GLOBAL 'Juego'
+    0xb0, // LOAD_FAST 0
+    0x34,0x01, // CALL_FUNCTION 1
+    0xcb, // STORE_FAST 11
+    0xb5, // LOAD_FAST 5
+    0x10,0x74, // LOAD_CONST_STRING 'x'
+    0x55, // LOAD_SUBSCR
+    0xb5, // LOAD_FAST 5
+    0x10,0x75, // LOAD_CONST_STRING 'y'
+    0x55, // LOAD_SUBSCR
+    0xb5, // LOAD_FAST 5
+    0x10,0x76, // LOAD_CONST_STRING 'vida'
+    0x55, // LOAD_SUBSCR
+    0xb5, // LOAD_FAST 5
+    0x10,0x77, // LOAD_CONST_STRING 'hambre'
+    0x55, // LOAD_SUBSCR
+    0xb5, // LOAD_FAST 5
+    0x10,0x79, // LOAD_CONST_STRING 't'
+    0x55, // LOAD_SUBSCR
+    0x2a,0x05, // BUILD_TUPLE 5
+    0x30,0x05, // UNPACK_SEQUENCE 5
+    0xbb, // LOAD_FAST 11
+    0x18,0x74, // STORE_ATTR 'x'
+    0xbb, // LOAD_FAST 11
+    0x18,0x75, // STORE_ATTR 'y'
+    0xbb, // LOAD_FAST 11
+    0x18,0x76, // STORE_ATTR 'vida'
+    0xbb, // LOAD_FAST 11
+    0x18,0x77, // STORE_ATTR 'hambre'
+    0xbb, // LOAD_FAST 11
+    0x18,0x78, // STORE_ATTR 'tiempo'
+    0xbb, // LOAD_FAST 11
+    0x14,0x81,0x05, // LOAD_METHOD 'centrar'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0xbb, // LOAD_FAST 11
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_cargar = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_cargar,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 275,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 20,
+        .n_exc_stack = 1,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 129,
+        .line_info = fun_data_mc2d_cargar + 6,
+        .line_info_top = fun_data_mc2d_cargar + 25,
+        .opcodes = fun_data_mc2d_cargar + 25,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_cargar fun_data_mc2d_cargar[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_lista_mundos
+static const byte fun_data_mc2d_lista_mundos[38] = {
+    0x2c,0x0c, // prelude
+    0x81,0x06, // names: lista_mundos
+    0xc0,0x7d,0x22,0x56, // code info
+    0x48,0x0e, // SETUP_EXCEPT 14
+    0x32,0x00, // MAKE_FUNCTION 0
+    0x12,0x05, // LOAD_GLOBAL 'os'
+    0x14,0x45, // LOAD_METHOD 'listdir'
+    0x12,0x83,0x1f, // LOAD_GLOBAL 'CARPETA'
+    0x36,0x01, // CALL_METHOD 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0x63, // RETURN_VALUE
+    0x57, // DUP_TOP
+    0x12,0x83,0x23, // LOAD_GLOBAL 'OSError'
+    0xdf, // BINARY_OP 8 <exception match>
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x59, // POP_TOP
+    0x2b,0x00, // BUILD_LIST 0
+    0x63, // RETURN_VALUE
+    0x5d, // END_FINALLY
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+// child of mc2d_lista_mundos
+// frozen bytecode for file mc2d.py, scope mc2d_lista_mundos__lt_listcomp_gt_
+static const byte fun_data_mc2d_lista_mundos__lt_listcomp_gt_[37] = {
+    0x49,0x0c, // prelude
+    0x82,0x41,0x83,0x54, // names: <listcomp>, *
+    0xc0,0x7e, // code info
+    0x2b,0x00, // BUILD_LIST 0
+    0xb0, // LOAD_FAST 0
+    0x5f, // GET_ITER_STACK
+    0x4b,0x16, // FOR_ITER 22
+    0xc1, // STORE_FAST 1
+    0xb1, // LOAD_FAST 1
+    0x14,0x82,0x42, // LOAD_METHOD 'endswith'
+    0x10,0x82,0x43, // LOAD_CONST_STRING '.mc2d'
+    0x36,0x01, // CALL_METHOD 1
+    0x44,0x32, // POP_JUMP_IF_FALSE -14
+    0xb1, // LOAD_FAST 1
+    0x51, // LOAD_CONST_NONE
+    0x7b, // LOAD_CONST_SMALL_INT -5
+    0x2e,0x02, // BUILD_SLICE 2
+    0x55, // LOAD_SUBSCR
+    0x2f,0x14, // STORE_COMP 20
+    0x42,0x28, // JUMP -24
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_lista_mundos__lt_listcomp_gt_ = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_lista_mundos__lt_listcomp_gt_,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 37,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 10,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 321,
+        .line_info = fun_data_mc2d_lista_mundos__lt_listcomp_gt_ + 6,
+        .line_info_top = fun_data_mc2d_lista_mundos__lt_listcomp_gt_ + 8,
+        .opcodes = fun_data_mc2d_lista_mundos__lt_listcomp_gt_ + 8,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_lista_mundos__lt_listcomp_gt_ fun_data_mc2d_lista_mundos__lt_listcomp_gt_[0]
+#endif
+
+static const mp_raw_code_t *const children_mc2d_lista_mundos[] = {
+    (const mp_raw_code_t *)&proto_fun_mc2d_lista_mundos__lt_listcomp_gt_,
+};
+
+static const mp_raw_code_truncated_t proto_fun_mc2d_lista_mundos = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_lista_mundos,
+    .children = (void *)&children_mc2d_lista_mundos,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 38,
+    .n_children = 1,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 6,
+        .n_exc_stack = 1,
+        .scope_flags = 0,
+        .n_pos_args = 0,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 134,
+        .line_info = fun_data_mc2d_lista_mundos + 4,
+        .line_info_top = fun_data_mc2d_lista_mundos + 8,
+        .opcodes = fun_data_mc2d_lista_mundos + 8,
+    },
+    #endif
+    #endif
+};
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_comprimir
+static const byte fun_data_mc2d_comprimir[102] = {
+    0x30,0x1e, // prelude
+    0x81,0x07, // names: comprimir
+    0xc0,0x85,0x23,0x22,0x23,0x26,0x22,0x22,0x1f,0x24,0x27,0x27,0x30, // code info
+    0x2b,0x00, // BUILD_LIST 0
+    0xc0, // STORE_FAST 0
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xc1, // STORE_FAST 1
+    0x42,0xbf,0x80, // JUMP 63
+    0x12,0x81,0x0d, // LOAD_GLOBAL 'mundo'
+    0xb1, // LOAD_FAST 1
+    0x55, // LOAD_SUBSCR
+    0xc2, // STORE_FAST 2
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xc3, // STORE_FAST 3
+    0x42,0x44, // JUMP 4
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0xc3, // STORE_FAST 3
+    0xb1, // LOAD_FAST 1
+    0xb3, // LOAD_FAST 3
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x03, // LOAD_GLOBAL 'H'
+    0xf4, // BINARY_OP 29 __mul__
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x52, // POP_JUMP_IF_FALSE 18
+    0x12,0x81,0x0d, // LOAD_GLOBAL 'mundo'
+    0xb1, // LOAD_FAST 1
+    0xb3, // LOAD_FAST 3
+    0xf2, // BINARY_OP 27 __add__
+    0x55, // LOAD_SUBSCR
+    0xb2, // LOAD_FAST 2
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x47, // POP_JUMP_IF_FALSE 7
+    0xb3, // LOAD_FAST 3
+    0x22,0x81,0x7f, // LOAD_CONST_SMALL_INT 255
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x1d, // POP_JUMP_IF_TRUE -35
+    0xb0, // LOAD_FAST 0
+    0x14,0x3b, // LOAD_METHOD 'append'
+    0xb2, // LOAD_FAST 2
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x14,0x3b, // LOAD_METHOD 'append'
+    0xb3, // LOAD_FAST 3
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0xb1, // LOAD_FAST 1
+    0xb3, // LOAD_FAST 3
+    0xe5, // BINARY_OP 14 __iadd__
+    0xc1, // STORE_FAST 1
+    0xb1, // LOAD_FAST 1
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x03, // LOAD_GLOBAL 'H'
+    0xf4, // BINARY_OP 29 __mul__
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0xb5,0x7f, // POP_JUMP_IF_TRUE -75
+    0xb0, // LOAD_FAST 0
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_comprimir = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_comprimir,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 102,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 7,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 0,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 135,
+        .line_info = fun_data_mc2d_comprimir + 4,
+        .line_info_top = fun_data_mc2d_comprimir + 17,
+        .opcodes = fun_data_mc2d_comprimir + 17,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_comprimir fun_data_mc2d_comprimir[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_descomprimir
+static const byte fun_data_mc2d_descomprimir[85] = {
+    0x61,0x18, // prelude
+    0x81,0x08,0x83,0x35, // names: descomprimir, lst
+    0xc0,0x93,0x22,0x2b,0x2b,0x26,0x2b,0x26, // code info
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xc1, // STORE_FAST 1
+    0x12,0x83,0x2c, // LOAD_GLOBAL 'len'
+    0xb0, // LOAD_FAST 0
+    0x34,0x01, // CALL_FUNCTION 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0x73, // JUMP 51
+    0x57, // DUP_TOP
+    0xc2, // STORE_FAST 2
+    0xb0, // LOAD_FAST 0
+    0xb2, // LOAD_FAST 2
+    0x55, // LOAD_SUBSCR
+    0xb0, // LOAD_FAST 0
+    0xb2, // LOAD_FAST 2
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x55, // LOAD_SUBSCR
+    0x5a, // ROT_TWO
+    0xc3, // STORE_FAST 3
+    0xc4, // STORE_FAST 4
+    0xb4, // LOAD_FAST 4
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0x59, // JUMP 25
+    0x57, // DUP_TOP
+    0xc5, // STORE_FAST 5
+    0xb1, // LOAD_FAST 1
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x03, // LOAD_GLOBAL 'H'
+    0xf4, // BINARY_OP 29 __mul__
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x46, // POP_JUMP_IF_FALSE 6
+    0xb3, // LOAD_FAST 3
+    0x12,0x81,0x0d, // LOAD_GLOBAL 'mundo'
+    0xb1, // LOAD_FAST 1
+    0x56, // STORE_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0xc1, // STORE_FAST 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x22, // POP_JUMP_IF_TRUE -30
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x08, // POP_JUMP_IF_TRUE -56
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_descomprimir = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_descomprimir,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 85,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 13,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 136,
+        .line_info = fun_data_mc2d_descomprimir + 6,
+        .line_info_top = fun_data_mc2d_descomprimir + 14,
+        .opcodes = fun_data_mc2d_descomprimir + 14,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_descomprimir fun_data_mc2d_descomprimir[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_publicar
+static const byte fun_data_mc2d_publicar[128] = {
+    0x69,0x1c, // prelude
+    0x81,0x09,0x83,0x33, // names: publicar, j
+    0xc0,0x9d,0x28,0x26,0x24,0x2d,0x26,0x39,0x27,0x31, // code info
+    0x12,0x09, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x0a, // LOAD_METHOD 'vaciar'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x12,0x81,0x07, // LOAD_GLOBAL 'comprimir'
+    0x34,0x00, // CALL_FUNCTION 0
+    0xc1, // STORE_FAST 1
+    0x22,0x89,0x30, // LOAD_CONST_SMALL_INT 1200
+    0xc2, // STORE_FAST 2
+    0x12,0x83,0x2c, // LOAD_GLOBAL 'len'
+    0xb1, // LOAD_FAST 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0xb2, // LOAD_FAST 2
+    0xf2, // BINARY_OP 27 __add__
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf3, // BINARY_OP 28 __sub__
+    0xb2, // LOAD_FAST 2
+    0xf6, // BINARY_OP 31 __floordiv__
+    0xc3, // STORE_FAST 3
+    0xb3, // LOAD_FAST 3
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0x6c, // JUMP 44
+    0x57, // DUP_TOP
+    0xc4, // STORE_FAST 4
+    0x12,0x09, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x0b, // LOAD_METHOD 'var'
+    0x10,0x81,0x0c, // LOAD_CONST_STRING 'm:%d'
+    0xb4, // LOAD_FAST 4
+    0xf8, // BINARY_OP 33 __mod__
+    0xb1, // LOAD_FAST 1
+    0xb4, // LOAD_FAST 4
+    0xb2, // LOAD_FAST 2
+    0xf4, // BINARY_OP 29 __mul__
+    0xb4, // LOAD_FAST 4
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb2, // LOAD_FAST 2
+    0xf4, // BINARY_OP 29 __mul__
+    0x2e,0x02, // BUILD_SLICE 2
+    0x55, // LOAD_SUBSCR
+    0x36,0x02, // CALL_METHOD 2
+    0x59, // POP_TOP
+    0xb4, // LOAD_FAST 4
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0xf8, // BINARY_OP 33 __mod__
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x48, // POP_JUMP_IF_FALSE 8
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x58, // LOAD_METHOD 'mostrar'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x0f, // POP_JUMP_IF_TRUE -49
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x12,0x09, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x0b, // LOAD_METHOD 'var'
+    0x10,0x81,0x0d, // LOAD_CONST_STRING 'mundo'
+    0x2c,0x02, // BUILD_MAP 2
+    0xb3, // LOAD_FAST 3
+    0x10,0x81,0x0e, // LOAD_CONST_STRING 'n'
+    0x62, // STORE_MAP
+    0xb0, // LOAD_FAST 0
+    0x13,0x78, // LOAD_ATTR 'tiempo'
+    0x10,0x79, // LOAD_CONST_STRING 't'
+    0x62, // STORE_MAP
+    0x36,0x02, // CALL_METHOD 2
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_publicar = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_publicar,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 128,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 14,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 137,
+        .line_info = fun_data_mc2d_publicar + 6,
+        .line_info_top = fun_data_mc2d_publicar + 16,
+        .opcodes = fun_data_mc2d_publicar + 16,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_publicar fun_data_mc2d_publicar[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_recibir_mundo
+static const byte fun_data_mc2d_recibir_mundo[240] = {
+    0x80,0x10,0x2e, // prelude
+    0x81,0x0f, // names: recibir_mundo
+    0xc0,0xa9,0x2e,0x23,0x28,0x29,0x24,0x23,0x2a,0x3e,0x27,0x2c,0x2b,0x2c,0x35,0x2d,0x28,0x2f,0x22,0x29,0x35, // code info
+    0x12,0x82,0x47, // LOAD_GLOBAL 'K'
+    0x14,0x81,0x10, // LOAD_METHOD 'ms'
+    0x36,0x00, // CALL_METHOD 0
+    0x22,0x80,0xf5,0x18, // LOAD_CONST_SMALL_INT 15000
+    0xf2, // BINARY_OP 27 __add__
+    0xc0, // STORE_FAST 0
+    0x42,0xb6,0x81, // JUMP 182
+    0x12,0x09, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x11, // LOAD_METHOD 'vars'
+    0x36,0x00, // CALL_METHOD 0
+    0xc1, // STORE_FAST 1
+    0xb1, // LOAD_FAST 1
+    0x14,0x4c, // LOAD_METHOD 'get'
+    0x10,0x81,0x0d, // LOAD_CONST_STRING 'mundo'
+    0x36,0x01, // CALL_METHOD 1
+    0xc2, // STORE_FAST 2
+    0xb2, // LOAD_FAST 2
+    0x44,0x90,0x81, // POP_JUMP_IF_FALSE 144
+    0x2b,0x00, // BUILD_LIST 0
+    0xc3, // STORE_FAST 3
+    0xb2, // LOAD_FAST 2
+    0x10,0x81,0x0e, // LOAD_CONST_STRING 'n'
+    0x55, // LOAD_SUBSCR
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0x59, // JUMP 25
+    0x57, // DUP_TOP
+    0xc4, // STORE_FAST 4
+    0xb3, // LOAD_FAST 3
+    0x14,0x81,0x12, // LOAD_METHOD 'extend'
+    0xb1, // LOAD_FAST 1
+    0x14,0x4c, // LOAD_METHOD 'get'
+    0x10,0x81,0x0c, // LOAD_CONST_STRING 'm:%d'
+    0xb4, // LOAD_FAST 4
+    0xf8, // BINARY_OP 33 __mod__
+    0x36,0x01, // CALL_METHOD 1
+    0x45,0x02, // JUMP_IF_TRUE_OR_POP 2
+    0x2b,0x00, // BUILD_LIST 0
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x22, // POP_JUMP_IF_TRUE -30
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x12,0x81,0x08, // LOAD_GLOBAL 'descomprimir'
+    0xb3, // LOAD_FAST 3
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0xb1, // LOAD_FAST 1
+    0x14,0x4b, // LOAD_METHOD 'items'
+    0x36,0x00, // CALL_METHOD 0
+    0x5f, // GET_ITER_STACK
+    0x4b,0x3d, // FOR_ITER 61
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc5, // STORE_FAST 5
+    0xc6, // STORE_FAST 6
+    0xb5, // LOAD_FAST 5
+    0x14,0x81,0x13, // LOAD_METHOD 'startswith'
+    0x10,0x81,0x14, // LOAD_CONST_STRING 'b:'
+    0x36,0x01, // CALL_METHOD 1
+    0x44,0x6c, // POP_JUMP_IF_FALSE 44
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb5, // LOAD_FAST 5
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x51, // LOAD_CONST_NONE
+    0x2e,0x02, // BUILD_SLICE 2
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0xc7, // STORE_FAST 7
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xb7, // LOAD_FAST 7
+    0x57, // DUP_TOP
+    0x5b, // ROT_THREE
+    0xda, // BINARY_OP 3 __le__
+    0x46,0x0a, // JUMP_IF_FALSE_OR_POP 10
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x03, // LOAD_GLOBAL 'H'
+    0xf4, // BINARY_OP 29 __mul__
+    0xd7, // BINARY_OP 0 __lt__
+    0x42,0x42, // JUMP 2
+    0x5a, // ROT_TWO
+    0x59, // POP_TOP
+    0x44,0x4b, // POP_JUMP_IF_FALSE 11
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xb6, // LOAD_FAST 6
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x81,0x0d, // LOAD_GLOBAL 'mundo'
+    0xb7, // LOAD_FAST 7
+    0x56, // STORE_SUBSCR
+    0x42,0x01, // JUMP -63
+    0x12,0x83,0x02, // LOAD_GLOBAL 'W'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0x4a, // JUMP 10
+    0x57, // DUP_TOP
+    0xc8, // STORE_FAST 8
+    0x12,0x42, // LOAD_GLOBAL 'calc_alto'
+    0xb8, // LOAD_FAST 8
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x31, // POP_JUMP_IF_TRUE -15
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0xb2, // LOAD_FAST 2
+    0x63, // RETURN_VALUE
+    0x12,0x55, // LOAD_GLOBAL 'progreso'
+    0x23,0x3d, // LOAD_CONST_OBJ 61
+    0x23,0x23, // LOAD_CONST_OBJ 35
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0x12,0x09, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x15, // LOAD_METHOD 'recibir'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x12,0x82,0x47, // LOAD_GLOBAL 'K'
+    0x14,0x81,0x10, // LOAD_METHOD 'ms'
+    0x36,0x00, // CALL_METHOD 0
+    0xb0, // LOAD_FAST 0
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0xbd,0x7e, // POP_JUMP_IF_TRUE -195
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_recibir_mundo = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_recibir_mundo,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 240,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 17,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 0,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 143,
+        .line_info = fun_data_mc2d_recibir_mundo + 5,
+        .line_info_top = fun_data_mc2d_recibir_mundo + 26,
+        .opcodes = fun_data_mc2d_recibir_mundo + 26,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_recibir_mundo fun_data_mc2d_recibir_mundo[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_boton
+static const byte fun_data_mc2d_boton[227] = {
+    0xea,0x05,0x2e, // prelude
+    0x81,0x16,0x79,0x74,0x75,0x82,0x16,0x83,0x36,0x81,0x24, // names: boton, t, x, y, w, foco, ok
+    0xc0,0xc1,0x2d,0x1f,0x22,0x37,0x37,0x23,0x32,0x3a,0x1f,0x22, // code info
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x56, // LOAD_METHOD 'rect'
+    0xb1, // LOAD_FAST 1
+    0xb2, // LOAD_FAST 2
+    0xb3, // LOAD_FAST 3
+    0x94, // LOAD_CONST_SMALL_INT 20
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x56, // LOAD_METHOD 'rect'
+    0xb1, // LOAD_FAST 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb2, // LOAD_FAST 2
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb3, // LOAD_FAST 3
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf3, // BINARY_OP 28 __sub__
+    0x92, // LOAD_CONST_SMALL_INT 18
+    0xb5, // LOAD_FAST 5
+    0x44,0x47, // POP_JUMP_IF_FALSE 7
+    0x22,0x83,0xb9,0xdc,0x6e, // LOAD_CONST_SMALL_INT 7237230
+    0x42,0x45, // JUMP 5
+    0x22,0x81,0xb0,0xd8,0x2c, // LOAD_CONST_SMALL_INT 2894892
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x56, // LOAD_METHOD 'rect'
+    0xb1, // LOAD_FAST 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb2, // LOAD_FAST 2
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb3, // LOAD_FAST 3
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf3, // BINARY_OP 28 __sub__
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x22,0x85,0xa6,0xd3,0x29, // LOAD_CONST_SMALL_INT 11119017
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x56, // LOAD_METHOD 'rect'
+    0xb1, // LOAD_FAST 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb2, // LOAD_FAST 2
+    0x92, // LOAD_CONST_SMALL_INT 18
+    0xf2, // BINARY_OP 27 __add__
+    0xb3, // LOAD_FAST 3
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf3, // BINARY_OP 28 __sub__
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x22,0x81,0xdc,0xee,0x37, // LOAD_CONST_SMALL_INT 3618615
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0xb4, // LOAD_FAST 4
+    0x44,0x52, // POP_JUMP_IF_FALSE 18
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x17, // LOAD_METHOD 'marco'
+    0xb1, // LOAD_FAST 1
+    0xb2, // LOAD_FAST 2
+    0xb3, // LOAD_FAST 3
+    0x94, // LOAD_CONST_SMALL_INT 20
+    0x22,0x87,0xff,0xff,0x7f, // LOAD_CONST_SMALL_INT 16777215
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0xb5, // LOAD_FAST 5
+    0x44,0x51, // POP_JUMP_IF_FALSE 17
+    0xb4, // LOAD_FAST 4
+    0x44,0x47, // POP_JUMP_IF_FALSE 7
+    0x22,0x87,0xff,0xff,0x20, // LOAD_CONST_SMALL_INT 16777120
+    0x42,0x45, // JUMP 5
+    0x22,0x87,0x83,0xc1,0x60, // LOAD_CONST_SMALL_INT 14737632
+    0x42,0x45, // JUMP 5
+    0x22,0x85,0x82,0xc1,0x20, // LOAD_CONST_SMALL_INT 10526880
+    0xc6, // STORE_FAST 6
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x57, // LOAD_METHOD 'texto'
+    0xb0, // LOAD_FAST 0
+    0xb1, // LOAD_FAST 1
+    0xb3, // LOAD_FAST 3
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf6, // BINARY_OP 31 __floordiv__
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x2c, // LOAD_GLOBAL 'len'
+    0xb0, // LOAD_FAST 0
+    0x34,0x01, // CALL_FUNCTION 1
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0xf4, // BINARY_OP 29 __mul__
+    0xf3, // BINARY_OP 28 __sub__
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb2, // LOAD_FAST 2
+    0x87, // LOAD_CONST_SMALL_INT 7
+    0xf2, // BINARY_OP 27 __add__
+    0x22,0x81,0xa8,0xd4,0x2a, // LOAD_CONST_SMALL_INT 2763306
+    0x36,0x04, // CALL_METHOD 4
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x57, // LOAD_METHOD 'texto'
+    0xb0, // LOAD_FAST 0
+    0xb1, // LOAD_FAST 1
+    0xb3, // LOAD_FAST 3
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf6, // BINARY_OP 31 __floordiv__
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x2c, // LOAD_GLOBAL 'len'
+    0xb0, // LOAD_FAST 0
+    0x34,0x01, // CALL_FUNCTION 1
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0xf4, // BINARY_OP 29 __mul__
+    0xf3, // BINARY_OP 28 __sub__
+    0xb2, // LOAD_FAST 2
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0xf2, // BINARY_OP 27 __add__
+    0xb6, // LOAD_FAST 6
+    0x36,0x04, // CALL_METHOD 4
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_boton = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_boton,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 227,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 14,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 6,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 1,
+        .qstr_block_name_idx = 150,
+        .line_info = fun_data_mc2d_boton + 14,
+        .line_info_top = fun_data_mc2d_boton + 26,
+        .opcodes = fun_data_mc2d_boton + 26,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_boton fun_data_mc2d_boton[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_fondo_tierra
+static const byte fun_data_mc2d_fondo_tierra[69] = {
+    0x60,0x0e, // prelude
+    0x81,0x18, // names: fondo_tierra
+    0xc0,0xcd,0x27,0x2b,0x2a, // code info
+    0x12,0x66, // LOAD_GLOBAL 'spr'
+    0x10,0x0c, // LOAD_CONST_STRING 'tierra'
+    0x34,0x01, // CALL_FUNCTION 1
+    0xc0, // STORE_FAST 0
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x13,0x81,0x19, // LOAD_ATTR 'ALTO'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0x63, // JUMP 35
+    0x57, // DUP_TOP
+    0xc1, // STORE_FAST 1
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x13,0x3c, // LOAD_ATTR 'ANCHO'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0x50, // JUMP 16
+    0x57, // DUP_TOP
+    0xc2, // STORE_FAST 2
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x6a, // LOAD_METHOD 'dibujar'
+    0xb0, // LOAD_FAST 0
+    0xb2, // LOAD_FAST 2
+    0xb1, // LOAD_FAST 1
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x36,0x04, // CALL_METHOD 4
+    0x59, // POP_TOP
+    0xa0, // LOAD_CONST_SMALL_INT 32
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x2b, // POP_JUMP_IF_TRUE -21
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0xa0, // LOAD_CONST_SMALL_INT 32
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x18, // POP_JUMP_IF_TRUE -40
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_fondo_tierra = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_fondo_tierra,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 69,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 13,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 0,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 152,
+        .line_info = fun_data_mc2d_fondo_tierra + 4,
+        .line_info_top = fun_data_mc2d_fondo_tierra + 9,
+        .opcodes = fun_data_mc2d_fondo_tierra + 9,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_fondo_tierra fun_data_mc2d_fondo_tierra[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_menu
+static const byte fun_data_mc2d_menu[291] = {
+    0x83,0x11,0x40, // prelude
+    0x81,0x1a,0x83,0x37,0x83,0x38,0x83,0x39, // names: menu, titulo, ops, sub
+    0xc0,0xd4,0x20,0x22,0x26,0x20,0x1f,0x24,0x1f,0x22,0x23,0x3f,0x2a,0x33,0x1f,0x23,0x28,0x2f,0x26,0x35,0x28,0x27,0x22,0x27, // code info
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xc3, // STORE_FAST 3
+    0x12,0x81,0x18, // LOAD_GLOBAL 'fondo_tierra'
+    0x34,0x00, // CALL_FUNCTION 0
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x57, // LOAD_METHOD 'texto'
+    0xb0, // LOAD_FAST 0
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x13,0x3c, // LOAD_ATTR 'ANCHO'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf6, // BINARY_OP 31 __floordiv__
+    0x12,0x83,0x2c, // LOAD_GLOBAL 'len'
+    0xb0, // LOAD_FAST 0
+    0x34,0x01, // CALL_FUNCTION 1
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0xf4, // BINARY_OP 29 __mul__
+    0xf3, // BINARY_OP 28 __sub__
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf2, // BINARY_OP 27 __add__
+    0x90, // LOAD_CONST_SMALL_INT 16
+    0x22,0x81,0xe8,0xf4,0x3a, // LOAD_CONST_SMALL_INT 3815994
+    0x51, // LOAD_CONST_NONE
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x36,0x06, // CALL_METHOD 6
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x57, // LOAD_METHOD 'texto'
+    0xb0, // LOAD_FAST 0
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x13,0x3c, // LOAD_ATTR 'ANCHO'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf6, // BINARY_OP 31 __floordiv__
+    0x12,0x83,0x2c, // LOAD_GLOBAL 'len'
+    0xb0, // LOAD_FAST 0
+    0x34,0x01, // CALL_FUNCTION 1
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0xf4, // BINARY_OP 29 __mul__
+    0xf3, // BINARY_OP 28 __sub__
+    0x8e, // LOAD_CONST_SMALL_INT 14
+    0x22,0x87,0xff,0xff,0x7f, // LOAD_CONST_SMALL_INT 16777215
+    0x51, // LOAD_CONST_NONE
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x36,0x06, // CALL_METHOD 6
+    0x59, // POP_TOP
+    0xb2, // LOAD_FAST 2
+    0x44,0x5f, // POP_JUMP_IF_FALSE 31
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x57, // LOAD_METHOD 'texto'
+    0xb2, // LOAD_FAST 2
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x13,0x3c, // LOAD_ATTR 'ANCHO'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf6, // BINARY_OP 31 __floordiv__
+    0x12,0x83,0x2c, // LOAD_GLOBAL 'len'
+    0xb2, // LOAD_FAST 2
+    0x34,0x01, // CALL_FUNCTION 1
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0xf4, // BINARY_OP 29 __mul__
+    0xf3, // BINARY_OP 28 __sub__
+    0xa6, // LOAD_CONST_SMALL_INT 38
+    0x22,0x87,0xff,0xfe,0x60, // LOAD_CONST_SMALL_INT 16777056
+    0x36,0x04, // CALL_METHOD 4
+    0x59, // POP_TOP
+    0x12,0x83,0x29, // LOAD_GLOBAL 'max'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xb3, // LOAD_FAST 3
+    0x85, // LOAD_CONST_SMALL_INT 5
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x02, // CALL_FUNCTION 2
+    0xc4, // STORE_FAST 4
+    0x12,0x83,0x28, // LOAD_GLOBAL 'min'
+    0x12,0x83,0x2c, // LOAD_GLOBAL 'len'
+    0xb1, // LOAD_FAST 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0xb4, // LOAD_FAST 4
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x02, // CALL_FUNCTION 2
+    0xb4, // LOAD_FAST 4
+    0x42,0x5d, // JUMP 29
+    0x57, // DUP_TOP
+    0xc5, // STORE_FAST 5
+    0x12,0x81,0x16, // LOAD_GLOBAL 'boton'
+    0xb1, // LOAD_FAST 1
+    0xb5, // LOAD_FAST 5
+    0x55, // LOAD_SUBSCR
+    0x22,0x3c, // LOAD_CONST_SMALL_INT 60
+    0x22,0x38, // LOAD_CONST_SMALL_INT 56
+    0xb5, // LOAD_FAST 5
+    0xb4, // LOAD_FAST 4
+    0xf3, // BINARY_OP 28 __sub__
+    0x9a, // LOAD_CONST_SMALL_INT 26
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x22,0x81,0x48, // LOAD_CONST_SMALL_INT 200
+    0xb5, // LOAD_FAST 5
+    0xb3, // LOAD_FAST 3
+    0xd9, // BINARY_OP 2 __eq__
+    0x34,0x05, // CALL_FUNCTION 5
+    0x59, // POP_TOP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x1e, // POP_JUMP_IF_TRUE -34
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x58, // LOAD_METHOD 'mostrar'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x12,0x82,0x47, // LOAD_GLOBAL 'K'
+    0x14,0x81,0x1b, // LOAD_METHOD 'eventos'
+    0x36,0x00, // CALL_METHOD 0
+    0x5f, // GET_ITER_STACK
+    0x4b,0x3b, // FOR_ITER 59
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc6, // STORE_FAST 6
+    0xc7, // STORE_FAST 7
+    0xb6, // LOAD_FAST 6
+    0x23,0x3e, // LOAD_CONST_OBJ 62
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x5d, // POP_JUMP_IF_FALSE 29
+    0xb3, // LOAD_FAST 3
+    0xb6, // LOAD_FAST 6
+    0x10,0x81,0x1c, // LOAD_CONST_STRING 'DOWN'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x43, // POP_JUMP_IF_FALSE 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x42,0x41, // JUMP 1
+    0x7f, // LOAD_CONST_SMALL_INT -1
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x2c, // LOAD_GLOBAL 'len'
+    0xb1, // LOAD_FAST 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0xf8, // BINARY_OP 33 __mod__
+    0xc3, // STORE_FAST 3
+    0x12,0x81,0x18, // LOAD_GLOBAL 'fondo_tierra'
+    0x34,0x00, // CALL_FUNCTION 0
+    0x59, // POP_TOP
+    0x42,0x52, // JUMP 18
+    0xb6, // LOAD_FAST 6
+    0x10,0x81,0x1d, // LOAD_CONST_STRING 'EXE'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x42, // POP_JUMP_IF_FALSE 2
+    0xb3, // LOAD_FAST 3
+    0x63, // RETURN_VALUE
+    0xb6, // LOAD_FAST 6
+    0x10,0x81,0x1e, // LOAD_CONST_STRING 'DEL'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x42, // POP_JUMP_IF_FALSE 2
+    0x7f, // LOAD_CONST_SMALL_INT -1
+    0x63, // RETURN_VALUE
+    0x42,0x03, // JUMP -61
+    0x42,0x8a,0x7e, // JUMP -246
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_menu = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_menu,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 291,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 17,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 3,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 1,
+        .qstr_block_name_idx = 154,
+        .line_info = fun_data_mc2d_menu + 11,
+        .line_info_top = fun_data_mc2d_menu + 35,
+        .opcodes = fun_data_mc2d_menu + 35,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_menu fun_data_mc2d_menu[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_mensaje
+static const byte fun_data_mc2d_mensaje[63] = {
+    0x69,0x12, // prelude
+    0x81,0x1f,0x83,0x3a, // names: mensaje, lineas
+    0xc0,0xeb,0x26,0x2d,0x37, // code info
+    0x12,0x81,0x18, // LOAD_GLOBAL 'fondo_tierra'
+    0x34,0x00, // CALL_FUNCTION 0
+    0x59, // POP_TOP
+    0x12,0x83,0x00, // LOAD_GLOBAL 'enumerate'
+    0xb0, // LOAD_FAST 0
+    0x34,0x01, // CALL_FUNCTION 1
+    0x5f, // GET_ITER_STACK
+    0x4b,0x1b, // FOR_ITER 27
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc1, // STORE_FAST 1
+    0xc2, // STORE_FAST 2
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x57, // LOAD_METHOD 'texto'
+    0xb2, // LOAD_FAST 2
+    0x94, // LOAD_CONST_SMALL_INT 20
+    0x22,0x3c, // LOAD_CONST_SMALL_INT 60
+    0xb1, // LOAD_FAST 1
+    0x8e, // LOAD_CONST_SMALL_INT 14
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x22,0x87,0xff,0xff,0x7f, // LOAD_CONST_SMALL_INT 16777215
+    0x36,0x04, // CALL_METHOD 4
+    0x59, // POP_TOP
+    0x42,0x23, // JUMP -29
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x58, // LOAD_METHOD 'mostrar'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_mensaje = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_mensaje,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 63,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 14,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 159,
+        .line_info = fun_data_mc2d_mensaje + 6,
+        .line_info_top = fun_data_mc2d_mensaje + 11,
+        .opcodes = fun_data_mc2d_mensaje + 11,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_mensaje fun_data_mc2d_mensaje[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_preguntar
+static const byte fun_data_mc2d_preguntar[204] = {
+    0xf6,0x01,0x30, // prelude
+    0x81,0x20,0x83,0x37,0x83,0x3b, // names: preguntar, titulo, inicial
+    0xc0,0xf2,0x22,0x58,0x23,0x28,0x20,0x26,0x31,0x31,0x36,0x33,0x28,0x2f,0x29,0x27,0x24,0x27, // code info
+    0x48,0x10, // SETUP_EXCEPT 16
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x10,0x81,0x21, // LOAD_CONST_STRING 'T9'
+    0x2a,0x01, // BUILD_TUPLE 1
+    0x1b,0x81,0x22, // IMPORT_NAME 't9'
+    0x1c,0x81,0x21, // IMPORT_FROM 'T9'
+    0xc2, // STORE_FAST 2
+    0x59, // POP_TOP
+    0x4a,0x0b, // POP_EXCEPT_JUMP 11
+    0x57, // DUP_TOP
+    0x12,0x82,0x48, // LOAD_GLOBAL 'ImportError'
+    0xdf, // BINARY_OP 8 <exception match>
+    0x44,0x43, // POP_JUMP_IF_FALSE 3
+    0x59, // POP_TOP
+    0xb1, // LOAD_FAST 1
+    0x63, // RETURN_VALUE
+    0x5d, // END_FINALLY
+    0xb2, // LOAD_FAST 2
+    0xb1, // LOAD_FAST 1
+    0x10,0x57, // LOAD_CONST_STRING 'texto'
+    0x94, // LOAD_CONST_SMALL_INT 20
+    0x34,0x03, // CALL_FUNCTION 3
+    0xc3, // STORE_FAST 3
+    0x12,0x81,0x18, // LOAD_GLOBAL 'fondo_tierra'
+    0x34,0x00, // CALL_FUNCTION 0
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x57, // LOAD_METHOD 'texto'
+    0xb0, // LOAD_FAST 0
+    0x94, // LOAD_CONST_SMALL_INT 20
+    0x22,0x3c, // LOAD_CONST_SMALL_INT 60
+    0x22,0x87,0xff,0xff,0x7f, // LOAD_CONST_SMALL_INT 16777215
+    0x36,0x04, // CALL_METHOD 4
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x56, // LOAD_METHOD 'rect'
+    0x94, // LOAD_CONST_SMALL_INT 20
+    0x22,0x80,0x50, // LOAD_CONST_SMALL_INT 80
+    0x22,0x82,0x18, // LOAD_CONST_SMALL_INT 280
+    0x94, // LOAD_CONST_SMALL_INT 20
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x57, // LOAD_METHOD 'texto'
+    0xb3, // LOAD_FAST 3
+    0x14,0x58, // LOAD_METHOD 'mostrar'
+    0x36,0x00, // CALL_METHOD 0
+    0x98, // LOAD_CONST_SMALL_INT 24
+    0x22,0x80,0x56, // LOAD_CONST_SMALL_INT 86
+    0x22,0x87,0xff,0xff,0x7f, // LOAD_CONST_SMALL_INT 16777215
+    0x36,0x04, // CALL_METHOD 4
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x57, // LOAD_METHOD 'texto'
+    0x23,0x3f, // LOAD_CONST_OBJ 63
+    0x94, // LOAD_CONST_SMALL_INT 20
+    0x22,0x80,0x6e, // LOAD_CONST_SMALL_INT 110
+    0x22,0x85,0x82,0xc1,0x20, // LOAD_CONST_SMALL_INT 10526880
+    0x36,0x04, // CALL_METHOD 4
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x58, // LOAD_METHOD 'mostrar'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x12,0x82,0x47, // LOAD_GLOBAL 'K'
+    0x14,0x81,0x1b, // LOAD_METHOD 'eventos'
+    0x36,0x00, // CALL_METHOD 0
+    0x5f, // GET_ITER_STACK
+    0x4b,0x23, // FOR_ITER 35
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc4, // STORE_FAST 4
+    0xc5, // STORE_FAST 5
+    0xb3, // LOAD_FAST 3
+    0x14,0x81,0x23, // LOAD_METHOD 'tecla'
+    0xb4, // LOAD_FAST 4
+    0xb5, // LOAD_FAST 5
+    0x36,0x02, // CALL_METHOD 2
+    0xc6, // STORE_FAST 6
+    0xb6, // LOAD_FAST 6
+    0x10,0x81,0x24, // LOAD_CONST_STRING 'ok'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0xb3, // LOAD_FAST 3
+    0x13,0x57, // LOAD_ATTR 'texto'
+    0x63, // RETURN_VALUE
+    0xb6, // LOAD_FAST 6
+    0x10,0x81,0x25, // LOAD_CONST_STRING 'cancelar'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x42, // POP_JUMP_IF_FALSE 2
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0x42,0x1b, // JUMP -37
+    0x42,0xf6,0x7e, // JUMP -138
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_preguntar = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_preguntar,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 204,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 15,
+        .n_exc_stack = 1,
+        .scope_flags = 0,
+        .n_pos_args = 2,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 1,
+        .qstr_block_name_idx = 160,
+        .line_info = fun_data_mc2d_preguntar + 9,
+        .line_info_top = fun_data_mc2d_preguntar + 27,
+        .opcodes = fun_data_mc2d_preguntar + 27,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_preguntar fun_data_mc2d_preguntar[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_nuevo_mundo
+static const byte fun_data_mc2d_nuevo_mundo[69] = {
+    0x41,0x14, // prelude
+    0x81,0x26,0x73, // names: nuevo_mundo, nombre
+    0xd0,0x07,0x2d,0x28,0x35,0x26,0x27, // code info
+    0x12,0x59, // LOAD_GLOBAL 'generar'
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x81,0x27, // LOAD_METHOD 'getrandbits'
+    0x9e, // LOAD_CONST_SMALL_INT 30
+    0x36,0x01, // CALL_METHOD 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0x12,0x83,0x1b, // LOAD_GLOBAL 'NHUECOS'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0x50, // JUMP 16
+    0x57, // DUP_TOP
+    0xc1, // STORE_FAST 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x57, // DUP_TOP
+    0x12,0x83,0x1c, // LOAD_GLOBAL 'inv_id'
+    0xb1, // LOAD_FAST 1
+    0x56, // STORE_SUBSCR
+    0x12,0x83,0x1d, // LOAD_GLOBAL 'inv_n'
+    0xb1, // LOAD_FAST 1
+    0x56, // STORE_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x2b, // POP_JUMP_IF_TRUE -21
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x12,0x3d, // LOAD_GLOBAL 'Juego'
+    0xb0, // LOAD_FAST 0
+    0x34,0x01, // CALL_FUNCTION 1
+    0xc2, // STORE_FAST 2
+    0xb2, // LOAD_FAST 2
+    0x14,0x81,0x28, // LOAD_METHOD 'aparecer'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0xb2, // LOAD_FAST 2
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_nuevo_mundo = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_nuevo_mundo,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 69,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 9,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 166,
+        .line_info = fun_data_mc2d_nuevo_mundo + 5,
+        .line_info_top = fun_data_mc2d_nuevo_mundo + 12,
+        .opcodes = fun_data_mc2d_nuevo_mundo + 12,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_nuevo_mundo fun_data_mc2d_nuevo_mundo[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_un_jugador
+static const byte fun_data_mc2d_un_jugador[231] = {
+    0x5c,0x30, // prelude
+    0x81,0x29, // names: un_jugador
+    0xd0,0x10,0x20,0x26,0x2d,0x2c,0x31,0x22,0x25,0x22,0x22,0x2d,0x2d,0x23,0x59,0x34,0x25,0x2e,0x29,0x25,0x22,0x5d, // code info
+    0x12,0x81,0x06, // LOAD_GLOBAL 'lista_mundos'
+    0x34,0x00, // CALL_FUNCTION 0
+    0xc0, // STORE_FAST 0
+    0x23,0x40, // LOAD_CONST_OBJ 64
+    0x2b,0x01, // BUILD_LIST 1
+    0xb0, // LOAD_FAST 0
+    0xf2, // BINARY_OP 27 __add__
+    0x10,0x81,0x2a, // LOAD_CONST_STRING 'Atras'
+    0x2b,0x01, // BUILD_LIST 1
+    0xf2, // BINARY_OP 27 __add__
+    0xc1, // STORE_FAST 1
+    0x12,0x81,0x1a, // LOAD_GLOBAL 'menu'
+    0x10,0x81,0x2b, // LOAD_CONST_STRING 'Un jugador'
+    0xb1, // LOAD_FAST 1
+    0x23,0x41, // LOAD_CONST_OBJ 65
+    0x34,0x03, // CALL_FUNCTION 3
+    0xc2, // STORE_FAST 2
+    0xb2, // LOAD_FAST 2
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x4c, // POP_JUMP_IF_TRUE 12
+    0xb2, // LOAD_FAST 2
+    0x12,0x83,0x2c, // LOAD_GLOBAL 'len'
+    0xb1, // LOAD_FAST 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf3, // BINARY_OP 28 __sub__
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x42, // POP_JUMP_IF_FALSE 2
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0xb2, // LOAD_FAST 2
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x7a, // POP_JUMP_IF_FALSE 58
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xc3, // STORE_FAST 3
+    0x42,0x44, // JUMP 4
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0xc3, // STORE_FAST 3
+    0x10,0x81,0x2c, // LOAD_CONST_STRING 'Mundo %d'
+    0xb3, // LOAD_FAST 3
+    0xf8, // BINARY_OP 33 __mod__
+    0xb0, // LOAD_FAST 0
+    0xdd, // BINARY_OP 6 <in>
+    0x43,0x33, // POP_JUMP_IF_TRUE -13
+    0x12,0x81,0x20, // LOAD_GLOBAL 'preguntar'
+    0x23,0x42, // LOAD_CONST_OBJ 66
+    0x10,0x81,0x2c, // LOAD_CONST_STRING 'Mundo %d'
+    0xb3, // LOAD_FAST 3
+    0xf8, // BINARY_OP 33 __mod__
+    0x34,0x02, // CALL_FUNCTION 2
+    0xc4, // STORE_FAST 4
+    0xb4, // LOAD_FAST 4
+    0x44,0x56, // POP_JUMP_IF_FALSE 22
+    0x12,0x81,0x26, // LOAD_GLOBAL 'nuevo_mundo'
+    0xb4, // LOAD_FAST 4
+    0x14,0x81,0x2d, // LOAD_METHOD 'strip'
+    0x36,0x00, // CALL_METHOD 0
+    0x51, // LOAD_CONST_NONE
+    0x90, // LOAD_CONST_SMALL_INT 16
+    0x2e,0x02, // BUILD_SLICE 2
+    0x55, // LOAD_SUBSCR
+    0x45,0x03, // JUMP_IF_TRUE_OR_POP 3
+    0x10,0x81,0x2e, // LOAD_CONST_STRING 'Mundo'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x63, // RETURN_VALUE
+    0x42,0xd7,0x80, // JUMP 87
+    0x12,0x81,0x1a, // LOAD_GLOBAL 'menu'
+    0xb1, // LOAD_FAST 1
+    0xb2, // LOAD_FAST 2
+    0x55, // LOAD_SUBSCR
+    0x10,0x81,0x2f, // LOAD_CONST_STRING 'Jugar'
+    0x10,0x81,0x30, // LOAD_CONST_STRING 'Borrar'
+    0x10,0x81,0x2a, // LOAD_CONST_STRING 'Atras'
+    0x2b,0x03, // BUILD_LIST 3
+    0x34,0x02, // CALL_FUNCTION 2
+    0xc5, // STORE_FAST 5
+    0xb5, // LOAD_FAST 5
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x57, // POP_JUMP_IF_FALSE 23
+    0x12,0x81,0x1f, // LOAD_GLOBAL 'mensaje'
+    0x23,0x43, // LOAD_CONST_OBJ 67
+    0xb1, // LOAD_FAST 1
+    0xb2, // LOAD_FAST 2
+    0x55, // LOAD_SUBSCR
+    0xf8, // BINARY_OP 33 __mod__
+    0x2b,0x01, // BUILD_LIST 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0x12,0x81,0x01, // LOAD_GLOBAL 'cargar'
+    0xb1, // LOAD_FAST 1
+    0xb2, // LOAD_FAST 2
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0x63, // RETURN_VALUE
+    0xb5, // LOAD_FAST 5
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x62, // POP_JUMP_IF_FALSE 34
+    0x48,0x15, // SETUP_EXCEPT 21
+    0x12,0x05, // LOAD_GLOBAL 'os'
+    0x14,0x81,0x31, // LOAD_METHOD 'remove'
+    0x10,0x7c, // LOAD_CONST_STRING '%s/%s.mc2d'
+    0x12,0x83,0x1f, // LOAD_GLOBAL 'CARPETA'
+    0xb1, // LOAD_FAST 1
+    0xb2, // LOAD_FAST 2
+    0x55, // LOAD_SUBSCR
+    0x2a,0x02, // BUILD_TUPLE 2
+    0xf8, // BINARY_OP 33 __mod__
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x4a,0x0b, // POP_EXCEPT_JUMP 11
+    0x57, // DUP_TOP
+    0x12,0x83,0x23, // LOAD_GLOBAL 'OSError'
+    0xdf, // BINARY_OP 8 <exception match>
+    0x44,0x43, // POP_JUMP_IF_FALSE 3
+    0x59, // POP_TOP
+    0x4a,0x01, // POP_EXCEPT_JUMP 1
+    0x5d, // END_FINALLY
+    0x42,0xb5,0x7e, // JUMP -203
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_un_jugador = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_un_jugador,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 231,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 12,
+        .n_exc_stack = 1,
+        .scope_flags = 0,
+        .n_pos_args = 0,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 169,
+        .line_info = fun_data_mc2d_un_jugador + 4,
+        .line_info_top = fun_data_mc2d_un_jugador + 26,
+        .opcodes = fun_data_mc2d_un_jugador + 26,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_un_jugador fun_data_mc2d_un_jugador[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_multijugador
+static const byte fun_data_mc2d_multijugador[744] = {
+    0xf0,0x10,0x8e,0x02, // prelude
+    0x81,0x32, // names: multijugador
+    0xd0,0x2a,0x26,0x2e,0x2e,0x22,0x33,0x26,0x26,0x23,0x22,0x2a,0x2f,0x29,0x3b,0x2d,0x22,0x27,0x25,0x22,0x27,0x22,0x26,0x2a,0x28,0x23,0x2c,0x25,0x2e,0x2e,0x1f,0x24,0x23,0x2f,0x22,0x34,0x2f,0x22,0x4b,0x2a,0x23,0x22,0x33,0x38,0x2e,0x33,0x29,0x3e,0x22,0x26,0x23,0x2d,0x28,0x22,0x28,0x35,0x28,0x2c,0x27,0x2d,0x22,0x27,0x1f,0x24,0x30,0x23,0x30,0x27,0x22, // code info
+    0x12,0x09, // LOAD_GLOBAL 'red'
+    0x51, // LOAD_CONST_NONE
+    0xde, // BINARY_OP 7 <is>
+    0x44,0x5e, // POP_JUMP_IF_FALSE 30
+    0x12,0x81,0x1f, // LOAD_GLOBAL 'mensaje'
+    0x23,0x44, // LOAD_CONST_OBJ 68
+    0x10,0x0a, // LOAD_CONST_STRING ''
+    0x23,0x45, // LOAD_CONST_OBJ 69
+    0x2b,0x03, // BUILD_LIST 3
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0x12,0x81,0x1a, // LOAD_GLOBAL 'menu'
+    0x10,0x81,0x33, // LOAD_CONST_STRING 'Sin red'
+    0x10,0x81,0x2a, // LOAD_CONST_STRING 'Atras'
+    0x2b,0x01, // BUILD_LIST 1
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0x12,0x81,0x1a, // LOAD_GLOBAL 'menu'
+    0x23,0x46, // LOAD_CONST_OBJ 70
+    0x23,0x47, // LOAD_CONST_OBJ 71
+    0x23,0x48, // LOAD_CONST_OBJ 72
+    0x23,0x49, // LOAD_CONST_OBJ 73
+    0x10,0x81,0x2a, // LOAD_CONST_STRING 'Atras'
+    0x2b,0x04, // BUILD_LIST 4
+    0x34,0x02, // CALL_FUNCTION 2
+    0xc0, // STORE_FAST 0
+    0xb0, // LOAD_FAST 0
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0xe5,0x80, // POP_JUMP_IF_FALSE 101
+    0x12,0x81,0x29, // LOAD_GLOBAL 'un_jugador'
+    0x34,0x00, // CALL_FUNCTION 0
+    0xc1, // STORE_FAST 1
+    0xb1, // LOAD_FAST 1
+    0x43,0x42, // POP_JUMP_IF_TRUE 2
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0x12,0x81,0x1f, // LOAD_GLOBAL 'mensaje'
+    0x23,0x4a, // LOAD_CONST_OBJ 74
+    0x2b,0x01, // BUILD_LIST 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0x12,0x09, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x34, // LOAD_METHOD 'conectar'
+    0x12,0x83,0x0e, // LOAD_GLOBAL 'SALA'
+    0x51, // LOAD_CONST_NONE
+    0x51, // LOAD_CONST_NONE
+    0x51, // LOAD_CONST_NONE
+    0x52, // LOAD_CONST_TRUE
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0x12,0x09, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x35, // LOAD_METHOD 'esperar'
+    0x36,0x00, // CALL_METHOD 0
+    0x43,0x6a, // POP_JUMP_IF_TRUE 42
+    0x12,0x81,0x1f, // LOAD_GLOBAL 'mensaje'
+    0x23,0x4b, // LOAD_CONST_OBJ 75
+    0x12,0x83,0x2b, // LOAD_GLOBAL 'str'
+    0x12,0x09, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x36, // LOAD_METHOD 'error'
+    0x36,0x00, // CALL_METHOD 0
+    0x34,0x01, // CALL_FUNCTION 1
+    0xf2, // BINARY_OP 27 __add__
+    0x10,0x0a, // LOAD_CONST_STRING ''
+    0x23,0x4c, // LOAD_CONST_OBJ 76
+    0x2b,0x03, // BUILD_LIST 3
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0x12,0x81,0x1a, // LOAD_GLOBAL 'menu'
+    0x10,0x81,0x37, // LOAD_CONST_STRING 'Error'
+    0x23,0x4d, // LOAD_CONST_OBJ 77
+    0x2b,0x01, // BUILD_LIST 1
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0xb1, // LOAD_FAST 1
+    0x63, // RETURN_VALUE
+    0x12,0x81,0x09, // LOAD_GLOBAL 'publicar'
+    0xb1, // LOAD_FAST 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0x52, // LOAD_CONST_TRUE
+    0xb1, // LOAD_FAST 1
+    0x18,0x81,0x38, // STORE_ATTR 'online'
+    0xb1, // LOAD_FAST 1
+    0x63, // RETURN_VALUE
+    0xb0, // LOAD_FAST 0
+    0x23,0x4e, // LOAD_CONST_OBJ 78
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0xf2,0x83, // POP_JUMP_IF_FALSE 498
+    0x51, // LOAD_CONST_NONE
+    0xc2, // STORE_FAST 2
+    0xb0, // LOAD_FAST 0
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0xa9,0x81, // POP_JUMP_IF_FALSE 169
+    0x12,0x81,0x1f, // LOAD_GLOBAL 'mensaje'
+    0x23,0x4f, // LOAD_CONST_OBJ 79
+    0x2b,0x01, // BUILD_LIST 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0x12,0x09, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x39, // LOAD_METHOD 'buscar'
+    0x36,0x00, // CALL_METHOD 0
+    0xc3, // STORE_FAST 3
+    0x2b,0x00, // BUILD_LIST 0
+    0xc4, // STORE_FAST 4
+    0x12,0x83,0x3c, // LOAD_GLOBAL 'isinstance'
+    0xb3, // LOAD_FAST 3
+    0x12,0x83,0x3d, // LOAD_GLOBAL 'list'
+    0x34,0x02, // CALL_FUNCTION 2
+    0x44,0xc4,0x80, // POP_JUMP_IF_FALSE 68
+    0xb3, // LOAD_FAST 3
+    0x5f, // GET_ITER_STACK
+    0x4b,0x40, // FOR_ITER 64
+    0xc5, // STORE_FAST 5
+    0xb5, // LOAD_FAST 5
+    0x14,0x4c, // LOAD_METHOD 'get'
+    0x10,0x81,0x3a, // LOAD_CONST_STRING 'salas'
+    0x2b,0x00, // BUILD_LIST 0
+    0x36,0x02, // CALL_METHOD 2
+    0x5f, // GET_ITER_STACK
+    0x4b,0x2f, // FOR_ITER 47
+    0xc6, // STORE_FAST 6
+    0xb6, // LOAD_FAST 6
+    0x14,0x4c, // LOAD_METHOD 'get'
+    0x10,0x81,0x3b, // LOAD_CONST_STRING 'sala'
+    0x36,0x01, // CALL_METHOD 1
+    0x12,0x83,0x0e, // LOAD_GLOBAL 'SALA'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x5e, // POP_JUMP_IF_FALSE 30
+    0xb4, // LOAD_FAST 4
+    0x14,0x3b, // LOAD_METHOD 'append'
+    0xb5, // LOAD_FAST 5
+    0x14,0x4c, // LOAD_METHOD 'get'
+    0x10,0x73, // LOAD_CONST_STRING 'nombre'
+    0xb5, // LOAD_FAST 5
+    0x10,0x81,0x3c, // LOAD_CONST_STRING 'ip'
+    0x55, // LOAD_SUBSCR
+    0x36,0x02, // CALL_METHOD 2
+    0xb5, // LOAD_FAST 5
+    0x10,0x81,0x3c, // LOAD_CONST_STRING 'ip'
+    0x55, // LOAD_SUBSCR
+    0xb5, // LOAD_FAST 5
+    0x10,0x81,0x3d, // LOAD_CONST_STRING 'puerto'
+    0x55, // LOAD_SUBSCR
+    0x2a,0x03, // BUILD_TUPLE 3
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x42,0x0f, // JUMP -49
+    0x42,0xbe,0x7f, // JUMP -66
+    0xb4, // LOAD_FAST 4
+    0x43,0x51, // POP_JUMP_IF_TRUE 17
+    0x12,0x81,0x1a, // LOAD_GLOBAL 'menu'
+    0x23,0x46, // LOAD_CONST_OBJ 70
+    0x10,0x81,0x2a, // LOAD_CONST_STRING 'Atras'
+    0x2b,0x01, // BUILD_LIST 1
+    0x23,0x50, // LOAD_CONST_OBJ 80
+    0x34,0x03, // CALL_FUNCTION 3
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0x12,0x81,0x1a, // LOAD_GLOBAL 'menu'
+    0x10,0x81,0x3e, // LOAD_CONST_STRING 'Partidas'
+    0x32,0x00, // MAKE_FUNCTION 0
+    0xb4, // LOAD_FAST 4
+    0x34,0x01, // CALL_FUNCTION 1
+    0x10,0x81,0x2a, // LOAD_CONST_STRING 'Atras'
+    0x2b,0x01, // BUILD_LIST 1
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x02, // CALL_FUNCTION 2
+    0xc7, // STORE_FAST 7
+    0xb7, // LOAD_FAST 7
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x4a, // POP_JUMP_IF_TRUE 10
+    0xb7, // LOAD_FAST 7
+    0x12,0x83,0x2c, // LOAD_GLOBAL 'len'
+    0xb4, // LOAD_FAST 4
+    0x34,0x01, // CALL_FUNCTION 1
+    0xdb, // BINARY_OP 4 __ge__
+    0x44,0x42, // POP_JUMP_IF_FALSE 2
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0xb4, // LOAD_FAST 4
+    0xb7, // LOAD_FAST 7
+    0x55, // LOAD_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x51, // LOAD_CONST_NONE
+    0x2e,0x02, // BUILD_SLICE 2
+    0x55, // LOAD_SUBSCR
+    0xc2, // STORE_FAST 2
+    0x42,0x7a, // JUMP 58
+    0x12,0x81,0x20, // LOAD_GLOBAL 'preguntar'
+    0x23,0x51, // LOAD_CONST_OBJ 81
+    0x10,0x0a, // LOAD_CONST_STRING ''
+    0x34,0x02, // CALL_FUNCTION 2
+    0xc8, // STORE_FAST 8
+    0xb8, // LOAD_FAST 8
+    0x43,0x42, // POP_JUMP_IF_TRUE 2
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0xb8, // LOAD_FAST 8
+    0x14,0x81,0x2d, // LOAD_METHOD 'strip'
+    0x36,0x00, // CALL_METHOD 0
+    0x14,0x81,0x3f, // LOAD_METHOD 'partition'
+    0x10,0x81,0x40, // LOAD_CONST_STRING ':'
+    0x36,0x01, // CALL_METHOD 1
+    0x30,0x03, // UNPACK_SEQUENCE 3
+    0xc9, // STORE_FAST 9
+    0xca, // STORE_FAST 10
+    0xcb, // STORE_FAST 11
+    0xb9, // LOAD_FAST 9
+    0xbb, // LOAD_FAST 11
+    0x14,0x81,0x41, // LOAD_METHOD 'isdigit'
+    0x36,0x00, // CALL_METHOD 0
+    0x44,0x48, // POP_JUMP_IF_FALSE 8
+    0x12,0x83,0x26, // LOAD_GLOBAL 'int'
+    0xbb, // LOAD_FAST 11
+    0x34,0x01, // CALL_FUNCTION 1
+    0x42,0x44, // JUMP 4
+    0x22,0x80,0xc0,0x4b, // LOAD_CONST_SMALL_INT 8267
+    0x2a,0x02, // BUILD_TUPLE 2
+    0xc2, // STORE_FAST 2
+    0x12,0x81,0x1f, // LOAD_GLOBAL 'mensaje'
+    0x23,0x52, // LOAD_CONST_OBJ 82
+    0xb2, // LOAD_FAST 2
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0xf8, // BINARY_OP 33 __mod__
+    0x2b,0x01, // BUILD_LIST 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0x12,0x09, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x34, // LOAD_METHOD 'conectar'
+    0x12,0x83,0x0e, // LOAD_GLOBAL 'SALA'
+    0x51, // LOAD_CONST_NONE
+    0xb2, // LOAD_FAST 2
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0xb2, // LOAD_FAST 2
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0x50, // LOAD_CONST_FALSE
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0x12,0x09, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x35, // LOAD_METHOD 'esperar'
+    0x36,0x00, // CALL_METHOD 0
+    0x43,0x60, // POP_JUMP_IF_TRUE 32
+    0x12,0x81,0x1a, // LOAD_GLOBAL 'menu'
+    0x23,0x53, // LOAD_CONST_OBJ 83
+    0x10,0x81,0x2a, // LOAD_CONST_STRING 'Atras'
+    0x2b,0x01, // BUILD_LIST 1
+    0x12,0x83,0x2b, // LOAD_GLOBAL 'str'
+    0x12,0x09, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x36, // LOAD_METHOD 'error'
+    0x36,0x00, // CALL_METHOD 0
+    0x34,0x01, // CALL_FUNCTION 1
+    0x51, // LOAD_CONST_NONE
+    0xa8, // LOAD_CONST_SMALL_INT 40
+    0x2e,0x02, // BUILD_SLICE 2
+    0x55, // LOAD_SUBSCR
+    0x34,0x03, // CALL_FUNCTION 3
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0x12,0x81,0x0f, // LOAD_GLOBAL 'recibir_mundo'
+    0x34,0x00, // CALL_FUNCTION 0
+    0xcc, // STORE_FAST 12
+    0xbc, // LOAD_FAST 12
+    0x43,0x57, // POP_JUMP_IF_TRUE 23
+    0x12,0x81,0x1a, // LOAD_GLOBAL 'menu'
+    0x23,0x54, // LOAD_CONST_OBJ 84
+    0x10,0x81,0x2a, // LOAD_CONST_STRING 'Atras'
+    0x2b,0x01, // BUILD_LIST 1
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0x12,0x09, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x42, // LOAD_METHOD 'desconectar'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0x12,0x83,0x1b, // LOAD_GLOBAL 'NHUECOS'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0x50, // JUMP 16
+    0x57, // DUP_TOP
+    0xcd, // STORE_FAST 13
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x57, // DUP_TOP
+    0x12,0x83,0x1c, // LOAD_GLOBAL 'inv_id'
+    0xbd, // LOAD_FAST 13
+    0x56, // STORE_SUBSCR
+    0x12,0x83,0x1d, // LOAD_GLOBAL 'inv_n'
+    0xbd, // LOAD_FAST 13
+    0x56, // STORE_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x2b, // POP_JUMP_IF_TRUE -21
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x12,0x3d, // LOAD_GLOBAL 'Juego'
+    0x23,0x55, // LOAD_CONST_OBJ 85
+    0x52, // LOAD_CONST_TRUE
+    0x34,0x02, // CALL_FUNCTION 2
+    0xc1, // STORE_FAST 1
+    0xbc, // LOAD_FAST 12
+    0x14,0x4c, // LOAD_METHOD 'get'
+    0x10,0x79, // LOAD_CONST_STRING 't'
+    0x23,0x56, // LOAD_CONST_OBJ 86
+    0x36,0x02, // CALL_METHOD 2
+    0xb1, // LOAD_FAST 1
+    0x18,0x78, // STORE_ATTR 'tiempo'
+    0xb1, // LOAD_FAST 1
+    0x14,0x81,0x28, // LOAD_METHOD 'aparecer'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x12,0x82,0x47, // LOAD_GLOBAL 'K'
+    0x14,0x81,0x10, // LOAD_METHOD 'ms'
+    0x36,0x00, // CALL_METHOD 0
+    0x22,0x8f,0x50, // LOAD_CONST_SMALL_INT 2000
+    0xf2, // BINARY_OP 27 __add__
+    0xce, // STORE_FAST 14
+    0x42,0x4f, // JUMP 15
+    0xb1, // LOAD_FAST 1
+    0x14,0x81,0x43, // LOAD_METHOD 'red_paso'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x58, // LOAD_METHOD 'mostrar'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x12,0x82,0x47, // LOAD_GLOBAL 'K'
+    0x14,0x81,0x10, // LOAD_METHOD 'ms'
+    0x36,0x00, // CALL_METHOD 0
+    0xbe, // LOAD_FAST 14
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x4f, // POP_JUMP_IF_FALSE 15
+    0x12,0x09, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x44, // LOAD_METHOD 'anfitrion'
+    0x36,0x00, // CALL_METHOD 0
+    0xb1, // LOAD_FAST 1
+    0x13,0x81,0x45, // LOAD_ATTR 'otros'
+    0xdd, // BINARY_OP 6 <in>
+    0xd3, // UNARY_OP 3 <not>
+    0x43,0x16, // POP_JUMP_IF_TRUE -42
+    0xb1, // LOAD_FAST 1
+    0x13,0x81,0x45, // LOAD_ATTR 'otros'
+    0x14,0x4c, // LOAD_METHOD 'get'
+    0x12,0x09, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x44, // LOAD_METHOD 'anfitrion'
+    0x36,0x00, // CALL_METHOD 0
+    0x36,0x01, // CALL_METHOD 1
+    0xcf, // STORE_FAST 15
+    0xbf, // LOAD_FAST 15
+    0x44,0x57, // POP_JUMP_IF_FALSE 23
+    0xbf, // LOAD_FAST 15
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0xbf, // LOAD_FAST 15
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0x23,0x28, // LOAD_CONST_OBJ 40
+    0xf2, // BINARY_OP 27 __add__
+    0x5a, // ROT_TWO
+    0xb1, // LOAD_FAST 1
+    0x18,0x74, // STORE_ATTR 'x'
+    0xb1, // LOAD_FAST 1
+    0x18,0x75, // STORE_ATTR 'y'
+    0xb1, // LOAD_FAST 1
+    0x14,0x81,0x05, // LOAD_METHOD 'centrar'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0xb1, // LOAD_FAST 1
+    0x63, // RETURN_VALUE
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+// child of mc2d_multijugador
+// frozen bytecode for file mc2d.py, scope mc2d_multijugador__lt_listcomp_gt_
+static const byte fun_data_mc2d_multijugador__lt_listcomp_gt_[28] = {
+    0x49,0x0c, // prelude
+    0x82,0x41,0x83,0x54, // names: <listcomp>, *
+    0xd0,0x4a, // code info
+    0x2b,0x00, // BUILD_LIST 0
+    0xb0, // LOAD_FAST 0
+    0x5f, // GET_ITER_STACK
+    0x4b,0x0d, // FOR_ITER 13
+    0xc1, // STORE_FAST 1
+    0xb1, // LOAD_FAST 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0x51, // LOAD_CONST_NONE
+    0x9a, // LOAD_CONST_SMALL_INT 26
+    0x2e,0x02, // BUILD_SLICE 2
+    0x55, // LOAD_SUBSCR
+    0x2f,0x14, // STORE_COMP 20
+    0x42,0x31, // JUMP -15
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_multijugador__lt_listcomp_gt_ = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_multijugador__lt_listcomp_gt_,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 28,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 10,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 321,
+        .line_info = fun_data_mc2d_multijugador__lt_listcomp_gt_ + 6,
+        .line_info_top = fun_data_mc2d_multijugador__lt_listcomp_gt_ + 8,
+        .opcodes = fun_data_mc2d_multijugador__lt_listcomp_gt_ + 8,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_multijugador__lt_listcomp_gt_ fun_data_mc2d_multijugador__lt_listcomp_gt_[0]
+#endif
+
+static const mp_raw_code_t *const children_mc2d_multijugador[] = {
+    (const mp_raw_code_t *)&proto_fun_mc2d_multijugador__lt_listcomp_gt_,
+};
+
+static const mp_raw_code_truncated_t proto_fun_mc2d_multijugador = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_multijugador,
+    .children = (void *)&children_mc2d_multijugador,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 744,
+    .n_children = 1,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 31,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 0,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 178,
+        .line_info = fun_data_mc2d_multijugador + 6,
+        .line_info_top = fun_data_mc2d_multijugador + 75,
+        .opcodes = fun_data_mc2d_multijugador + 75,
+    },
+    #endif
+    #endif
+};
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_jugar
+static const byte fun_data_mc2d_jugar[135] = {
+    0x49,0x24, // prelude
+    0x81,0x46,0x83,0x33, // names: jugar, j
+    0xd0,0x70,0x2a,0x29,0x23,0x29,0x36,0x22,0x28,0x27,0x27,0x27,0x2f,0x26, // code info
+    0x12,0x44, // LOAD_GLOBAL 'sonar'
+    0x10,0x81,0x47, // LOAD_CONST_STRING 'click'
+    0x23,0x57, // LOAD_CONST_OBJ 87
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0x12,0x82,0x47, // LOAD_GLOBAL 'K'
+    0x14,0x81,0x10, // LOAD_METHOD 'ms'
+    0x36,0x00, // CALL_METHOD 0
+    0xc1, // STORE_FAST 1
+    0x42,0xc6,0x80, // JUMP 70
+    0x12,0x82,0x47, // LOAD_GLOBAL 'K'
+    0x14,0x81,0x10, // LOAD_METHOD 'ms'
+    0x36,0x00, // CALL_METHOD 0
+    0xc2, // STORE_FAST 2
+    0x12,0x83,0x28, // LOAD_GLOBAL 'min'
+    0x23,0x28, // LOAD_CONST_OBJ 40
+    0x12,0x83,0x29, // LOAD_GLOBAL 'max'
+    0x23,0x58, // LOAD_CONST_OBJ 88
+    0xb2, // LOAD_FAST 2
+    0xb1, // LOAD_FAST 1
+    0xf3, // BINARY_OP 28 __sub__
+    0x22,0x87,0x68, // LOAD_CONST_SMALL_INT 1000
+    0xf7, // BINARY_OP 32 __truediv__
+    0x34,0x02, // CALL_FUNCTION 2
+    0x34,0x02, // CALL_FUNCTION 2
+    0xc3, // STORE_FAST 3
+    0xb2, // LOAD_FAST 2
+    0xc1, // STORE_FAST 1
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x48, // LOAD_METHOD 'paso'
+    0xb3, // LOAD_FAST 3
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x13,0x76, // LOAD_ATTR 'vida'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xda, // BINARY_OP 3 __le__
+    0x44,0x47, // POP_JUMP_IF_FALSE 7
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x49, // LOAD_METHOD 'morir'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x4a, // LOAD_METHOD 'pintar'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x12,0x82,0x46, // LOAD_GLOBAL 'P'
+    0x14,0x58, // LOAD_METHOD 'mostrar'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x4b, // LOAD_ATTR 'salir'
+    0x44,0xb3,0x7f, // POP_JUMP_IF_FALSE -77
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x38, // LOAD_ATTR 'online'
+    0x44,0x48, // POP_JUMP_IF_FALSE 8
+    0x12,0x09, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x42, // LOAD_METHOD 'desconectar'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_jugar = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_jugar,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 135,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 10,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 198,
+        .line_info = fun_data_mc2d_jugar + 6,
+        .line_info_top = fun_data_mc2d_jugar + 20,
+        .opcodes = fun_data_mc2d_jugar + 20,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_jugar fun_data_mc2d_jugar[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_main
+static const byte fun_data_mc2d_main[142] = {
+    0x60,0x28, // prelude
+    0x81,0x4c, // names: main
+    0xd0,0x80,0x25,0x20,0x32,0x25,0x26,0x23,0x25,0x2a,0x24,0x24,0x24,0x27,0x2e,0x22,0x32,0x23, // code info
+    0x12,0x43, // LOAD_GLOBAL 'buscar_sonidos'
+    0x34,0x00, // CALL_FUNCTION 0
+    0x59, // POP_TOP
+    0x12,0x81,0x1a, // LOAD_GLOBAL 'menu'
+    0x23,0x59, // LOAD_CONST_OBJ 89
+    0x10,0x81,0x2b, // LOAD_CONST_STRING 'Un jugador'
+    0x23,0x46, // LOAD_CONST_OBJ 70
+    0x10,0x81,0x4d, // LOAD_CONST_STRING 'Controles'
+    0x10,0x81,0x4e, // LOAD_CONST_STRING 'Salir'
+    0x2b,0x04, // BUILD_LIST 4
+    0x23,0x5a, // LOAD_CONST_OBJ 90
+    0x34,0x03, // CALL_FUNCTION 3
+    0xc0, // STORE_FAST 0
+    0xb0, // LOAD_FAST 0
+    0x23,0x5b, // LOAD_CONST_OBJ 91
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x43, // POP_JUMP_IF_FALSE 3
+    0x42,0xd1,0x80, // JUMP 81
+    0xb0, // LOAD_FAST 0
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x6d, // POP_JUMP_IF_FALSE 45
+    0x12,0x81,0x1f, // LOAD_GLOBAL 'mensaje'
+    0x10,0x81,0x4f, // LOAD_CONST_STRING 'Controles:'
+    0x10,0x0a, // LOAD_CONST_STRING ''
+    0x23,0x5c, // LOAD_CONST_OBJ 92
+    0x23,0x5d, // LOAD_CONST_OBJ 93
+    0x23,0x5e, // LOAD_CONST_OBJ 94
+    0x23,0x5f, // LOAD_CONST_OBJ 95
+    0x23,0x60, // LOAD_CONST_OBJ 96
+    0x23,0x61, // LOAD_CONST_OBJ 97
+    0x23,0x62, // LOAD_CONST_OBJ 98
+    0x23,0x63, // LOAD_CONST_OBJ 99
+    0x2b,0x0a, // BUILD_LIST 10
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0x12,0x81,0x1a, // LOAD_GLOBAL 'menu'
+    0x10,0x81,0x4d, // LOAD_CONST_STRING 'Controles'
+    0x10,0x81,0x2a, // LOAD_CONST_STRING 'Atras'
+    0x2b,0x01, // BUILD_LIST 1
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0x42,0x5c, // JUMP 28
+    0xb0, // LOAD_FAST 0
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x47, // POP_JUMP_IF_FALSE 7
+    0x12,0x81,0x29, // LOAD_GLOBAL 'un_jugador'
+    0x34,0x00, // CALL_FUNCTION 0
+    0x42,0x45, // JUMP 5
+    0x12,0x81,0x32, // LOAD_GLOBAL 'multijugador'
+    0x34,0x00, // CALL_FUNCTION 0
+    0xc1, // STORE_FAST 1
+    0xb1, // LOAD_FAST 1
+    0x44,0x47, // POP_JUMP_IF_FALSE 7
+    0x12,0x81,0x46, // LOAD_GLOBAL 'jugar'
+    0xb1, // LOAD_FAST 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0x42,0x8f,0x7f, // JUMP -113
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_main = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_main,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 142,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 13,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 0,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 204,
+        .line_info = fun_data_mc2d_main + 4,
+        .line_info_top = fun_data_mc2d_main + 22,
+        .opcodes = fun_data_mc2d_main + 22,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_main fun_data_mc2d_main[0]
+#endif
+
+static const mp_raw_code_t *const children_mc2d__lt_module_gt_[] = {
+    (const mp_raw_code_t *)&proto_fun_mc2d_g,
+    (const mp_raw_code_t *)&proto_fun_mc2d_sp,
+    (const mp_raw_code_t *)&proto_fun_mc2d_solido,
+    (const mp_raw_code_t *)&proto_fun_mc2d_calc_alto,
+    (const mp_raw_code_t *)&proto_fun_mc2d_buscar_sonidos,
+    (const mp_raw_code_t *)&proto_fun_mc2d_sonar,
+    (const mp_raw_code_t *)&proto_fun_mc2d_sonar_bloque,
+    (const mp_raw_code_t *)&proto_fun_mc2d_progreso,
+    (const mp_raw_code_t *)&proto_fun_mc2d_generar,
+    (const mp_raw_code_t *)&proto_fun_mc2d_arbol,
+    (const mp_raw_code_t *)&proto_fun_mc2d_max_pila,
+    (const mp_raw_code_t *)&proto_fun_mc2d_dar,
+    (const mp_raw_code_t *)&proto_fun_mc2d_cuantos,
+    (const mp_raw_code_t *)&proto_fun_mc2d_quitar,
+    (const mp_raw_code_t *)&proto_fun_mc2d_spr,
+    (const mp_raw_code_t *)&proto_fun_mc2d_icono,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego,
+    (const mp_raw_code_t *)&proto_fun_mc2d_medio,
+    (const mp_raw_code_t *)&proto_fun_mc2d_mezcla,
+    (const mp_raw_code_t *)&proto_fun_mc2d_guardar,
+    (const mp_raw_code_t *)&proto_fun_mc2d_cargar,
+    (const mp_raw_code_t *)&proto_fun_mc2d_lista_mundos,
+    (const mp_raw_code_t *)&proto_fun_mc2d_comprimir,
+    (const mp_raw_code_t *)&proto_fun_mc2d_descomprimir,
+    (const mp_raw_code_t *)&proto_fun_mc2d_publicar,
+    (const mp_raw_code_t *)&proto_fun_mc2d_recibir_mundo,
+    (const mp_raw_code_t *)&proto_fun_mc2d_boton,
+    (const mp_raw_code_t *)&proto_fun_mc2d_fondo_tierra,
+    (const mp_raw_code_t *)&proto_fun_mc2d_menu,
+    (const mp_raw_code_t *)&proto_fun_mc2d_mensaje,
+    (const mp_raw_code_t *)&proto_fun_mc2d_preguntar,
+    (const mp_raw_code_t *)&proto_fun_mc2d_nuevo_mundo,
+    (const mp_raw_code_t *)&proto_fun_mc2d_un_jugador,
+    (const mp_raw_code_t *)&proto_fun_mc2d_multijugador,
+    (const mp_raw_code_t *)&proto_fun_mc2d_jugar,
+    (const mp_raw_code_t *)&proto_fun_mc2d_main,
+};
+
+static const mp_raw_code_truncated_t proto_fun_mc2d__lt_module_gt_ = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d__lt_module_gt_,
+    .children = (void *)&children_mc2d__lt_module_gt_,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 2151,
+    .n_children = 36,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 26,
+        .n_exc_stack = 1,
+        .scope_flags = 0,
+        .n_pos_args = 0,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 1,
+        .line_info = fun_data_mc2d__lt_module_gt_ + 5,
+        .line_info_top = fun_data_mc2d__lt_module_gt_ + 184,
+        .opcodes = fun_data_mc2d__lt_module_gt_ + 184,
+    },
+    #endif
+    #endif
+};
+
+static const qstr_short_t const_qstr_table_data_mc2d[469] = {
+    MP_QSTR_mc2d_dot_py,
+    MP_QSTR__lt_module_gt_,
+    MP_QSTR_math,
+    MP_QSTR_random,
+    MP_QSTR_json,
+    MP_QSTR_os,
+    MP_QSTR_pantalla,
+    MP_QSTR_teclas,
+    MP_QSTR_scicalc,
+    MP_QSTR_red,
+    MP_QSTR_,
+    MP_QSTR_hierba,
+    MP_QSTR_tierra,
+    MP_QSTR_piedra,
+    MP_QSTR_roca,
+    MP_QSTR_tronco,
+    MP_QSTR_hojas,
+    MP_QSTR_tablones,
+    MP_QSTR_arena,
+    MP_QSTR_grava,
+    MP_QSTR_oro_mena,
+    MP_QSTR_lecho,
+    MP_QSTR_agua,
+    MP_QSTR_mesa,
+    MP_QSTR_horno,
+    MP_QSTR_cristal,
+    MP_QSTR_ladrillos,
+    MP_QSTR_nieve,
+    MP_QSTR_cactus,
+    MP_QSTR_flor_roja,
+    MP_QSTR_antorcha,
+    MP_QSTR_palo,
+    MP_QSTR_carbon,
+    MP_QSTR_diamante,
+    MP_QSTR_manzana,
+    MP_QSTR_carne,
+    MP_QSTR_Hierba,
+    MP_QSTR_Tierra,
+    MP_QSTR_Piedra,
+    MP_QSTR_Roca,
+    MP_QSTR_Tronco,
+    MP_QSTR_Hojas,
+    MP_QSTR_Tablones,
+    MP_QSTR_Arena,
+    MP_QSTR_Grava,
+    MP_QSTR_Horno,
+    MP_QSTR_Cristal,
+    MP_QSTR_Ladrillos,
+    MP_QSTR_Nieve,
+    MP_QSTR_Cactus,
+    MP_QSTR_Amapola,
+    MP_QSTR_Antorcha,
+    MP_QSTR_Palo,
+    MP_QSTR_Carbon,
+    MP_QSTR_Diamante,
+    MP_QSTR_Manzana,
+    MP_QSTR__percent_s__percent_s,
+    MP_QSTR__percent_s_space_de_space__percent_s,
+    MP_QSTR_upper,
+    MP_QSTR_append,
+    MP_QSTR_ANCHO,
+    MP_QSTR_Juego,
+    MP_QSTR_mundos,
+    MP_QSTR_g,
+    MP_QSTR_sp,
+    MP_QSTR_solido,
+    MP_QSTR_calc_alto,
+    MP_QSTR_buscar_sonidos,
+    MP_QSTR_sonar,
+    MP_QSTR_listdir,
+    MP_QSTR__slash_scratch,
+    MP_QSTR_loads,
+    MP_QSTR_read,
+    MP_QSTR_grass1,
+    MP_QSTR_grass1_dot_wav,
+    MP_QSTR_items,
+    MP_QSTR_get,
+    MP_QSTR_sonar_bloque,
+    MP_QSTR_grass,
+    MP_QSTR_sand,
+    MP_QSTR_gravel,
+    MP_QSTR_wood,
+    MP_QSTR_stone,
+    MP_QSTR__percent_s_percent_d,
+    MP_QSTR_randint,
+    MP_QSTR_progreso,
+    MP_QSTR_rect,
+    MP_QSTR_texto,
+    MP_QSTR_mostrar,
+    MP_QSTR_generar,
+    MP_QSTR_seed,
+    MP_QSTR_choice,
+    MP_QSTR_uniform,
+    MP_QSTR_sin,
+    MP_QSTR_cos,
+    MP_QSTR_randrange,
+    MP_QSTR_Listo,
+    MP_QSTR_arbol,
+    MP_QSTR_max_pila,
+    MP_QSTR_dar,
+    MP_QSTR_cuantos,
+    MP_QSTR_quitar,
+    MP_QSTR_spr,
+    MP_QSTR_sprite,
+    MP_QSTR_tex_slash__percent_s_dot_png,
+    MP_QSTR_icono,
+    MP_QSTR_dibujar,
+    MP_QSTR_hurt,
+    MP_QSTR_medio,
+    MP_QSTR__medio,
+    MP_QSTR__vacio,
+    MP_QSTR_mezcla,
+    MP_QSTR_guardar,
+    MP_QSTR_mkdir,
+    MP_QSTR_v,
+    MP_QSTR_nombre,
+    MP_QSTR_x,
+    MP_QSTR_y,
+    MP_QSTR_vida,
+    MP_QSTR_hambre,
+    MP_QSTR_tiempo,
+    MP_QSTR_t,
+    MP_QSTR_inv,
+    MP_QSTR_pos,
+    MP_QSTR__percent_s_slash__percent_s_dot_mc2d,
+    MP_QSTR_wb,
+    MP_QSTR_write,
+    MP_QSTR_dumps,
+    MP_QSTR_encode,
+    MP_QSTR_cargar,
+    MP_QSTR_rb,
+    MP_QSTR_find,
+    MP_QSTR_decode,
+    MP_QSTR_centrar,
+    MP_QSTR_lista_mundos,
+    MP_QSTR_comprimir,
+    MP_QSTR_descomprimir,
+    MP_QSTR_publicar,
+    MP_QSTR_vaciar,
+    MP_QSTR_var,
+    MP_QSTR_m_colon__percent_d,
+    MP_QSTR_mundo,
+    MP_QSTR_n,
+    MP_QSTR_recibir_mundo,
+    MP_QSTR_ms,
+    MP_QSTR_vars,
+    MP_QSTR_extend,
+    MP_QSTR_startswith,
+    MP_QSTR_b_colon_,
+    MP_QSTR_recibir,
+    MP_QSTR_boton,
+    MP_QSTR_marco,
+    MP_QSTR_fondo_tierra,
+    MP_QSTR_ALTO,
+    MP_QSTR_menu,
+    MP_QSTR_eventos,
+    MP_QSTR_DOWN,
+    MP_QSTR_EXE,
+    MP_QSTR_DEL,
+    MP_QSTR_mensaje,
+    MP_QSTR_preguntar,
+    MP_QSTR_T9,
+    MP_QSTR_t9,
+    MP_QSTR_tecla,
+    MP_QSTR_ok,
+    MP_QSTR_cancelar,
+    MP_QSTR_nuevo_mundo,
+    MP_QSTR_getrandbits,
+    MP_QSTR_aparecer,
+    MP_QSTR_un_jugador,
+    MP_QSTR_Atras,
+    MP_QSTR_Un_space_jugador,
+    MP_QSTR_Mundo_space__percent_d,
+    MP_QSTR_strip,
+    MP_QSTR_Mundo,
+    MP_QSTR_Jugar,
+    MP_QSTR_Borrar,
+    MP_QSTR_remove,
+    MP_QSTR_multijugador,
+    MP_QSTR_Sin_space_red,
+    MP_QSTR_conectar,
+    MP_QSTR_esperar,
+    MP_QSTR_error,
+    MP_QSTR_Error,
+    MP_QSTR_online,
+    MP_QSTR_buscar,
+    MP_QSTR_salas,
+    MP_QSTR_sala,
+    MP_QSTR_ip,
+    MP_QSTR_puerto,
+    MP_QSTR_Partidas,
+    MP_QSTR_partition,
+    MP_QSTR__colon_,
+    MP_QSTR_isdigit,
+    MP_QSTR_desconectar,
+    MP_QSTR_red_paso,
+    MP_QSTR_anfitrion,
+    MP_QSTR_otros,
+    MP_QSTR_jugar,
+    MP_QSTR_click,
+    MP_QSTR_paso,
+    MP_QSTR_morir,
+    MP_QSTR_pintar,
+    MP_QSTR_salir,
+    MP_QSTR_main,
+    MP_QSTR_Controles,
+    MP_QSTR_Salir,
+    MP_QSTR_Controles_colon_,
+    MP_QSTR___init__,
+    MP_QSTR_vx,
+    MP_QSTR_vy,
+    MP_QSTR_suelo,
+    MP_QSTR_cara,
+    MP_QSTR_hambre_t,
+    MP_QSTR_caida_y,
+    MP_QSTR_cdx,
+    MP_QSTR_cdy,
+    MP_QSTR_sel,
+    MP_QSTR_pico,
+    MP_QSTR_anda_t,
+    MP_QSTR_paso_t,
+    MP_QSTR_golpe_t,
+    MP_QSTR_dano_t,
+    MP_QSTR_mobs,
+    MP_QSTR_enviado,
+    MP_QSTR_cuadro,
+    MP_QSTR_completo,
+    MP_QSTR_sucios,
+    MP_QSTR_pintado,
+    MP_QSTR_hud,
+    MP_QSTR_aviso,
+    MP_QSTR_cielo,
+    MP_QSTR_tap,
+    MP_QSTR_cam_x,
+    MP_QSTR_cam_top,
+    MP_QSTR_pant,
+    MP_QSTR_fondo,
+    MP_QSTR_encerrado,
+    MP_QSTR_bloque,
+    MP_QSTR_zona,
+    MP_QSTR_objetivo,
+    MP_QSTR_dibujar_hud,
+    MP_QSTR_recorte,
+    MP_QSTR_corazon,
+    MP_QSTR_comida,
+    MP_QSTR__percent_d_space_jug,
+    MP_QSTR_jugadores,
+    MP_QSTR_caja_jugador,
+    MP_QSTR_a_bloques,
+    MP_QSTR_cerdo,
+    MP_QSTR_zombi,
+    MP_QSTR_values,
+    MP_QSTR_jugador,
+    MP_QSTR_grieta_percent_d,
+    MP_QSTR_poner,
+    MP_QSTR_b_colon__percent_d,
+    MP_QSTR_asentar,
+    MP_QSTR_toca_jugador,
+    MP_QSTR_herramienta,
+    MP_QSTR_picar,
+    MP_QSTR_usar,
+    MP_QSTR_abrir_inventario,
+    MP_QSTR_eat_percent_d,
+    MP_QSTR_mob_en,
+    MP_QSTR_golpear,
+    MP_QSTR_pig_percent_d,
+    MP_QSTR_pigdeath,
+    MP_QSTR_libre_col,
+    MP_QSTR_mover_x,
+    MP_QSTR_floor,
+    MP_QSTR_mover_y,
+    MP_QSTR_fisica,
+    MP_QSTR_pulsada,
+    MP_QSTR_LEFT,
+    MP_QSTR_a,
+    MP_QSTR_RIGHT,
+    MP_QSTR_d,
+    MP_QSTR_UP,
+    MP_QSTR_w,
+    MP_QSTR__space_,
+    MP_QSTR_herir,
+    MP_QSTR_fallbig1,
+    MP_QSTR_fallsmall,
+    MP_QSTR_es_noche,
+    MP_QSTR_mobs_paso,
+    MP_QSTR_zombie_percent_d,
+    MP_QSTR_p,
+    MP_QSTR_enviar,
+    MP_QSTR_de,
+    MP_QSTR_id,
+    MP_QSTR__question_,
+    MP_QSTR_mi_id,
+    MP_QSTR_entra,
+    MP_QSTR__percent_s_space_entra,
+    MP_QSTR_aviso_t,
+    MP_QSTR_sale,
+    MP_QSTR_pop,
+    MP_QSTR_estado,
+    MP_QSTR_e,
+    MP_QSTR_conectado,
+    MP_QSTR_cerca,
+    MP_QSTR_Inventario,
+    MP_QSTR__comma__space_,
+    MP_QSTR_join,
+    MP_QSTR_wood_percent_d,
+    MP_QSTR_pausa,
+    MP_QSTR_Guardar,
+    MP_QSTR_CH_colon_,
+    MP_QSTR_lower,
+    MP_QSTR_wasd_space_,
+    MP_QSTR_123456789,
+    MP_QSTR_q,
+    MP_QSTR_9,
+    MP_QSTR_8,
+    MP_QSTR_2,
+    MP_QSTR_4,
+    MP_QSTR_6,
+    MP_QSTR_5,
+    MP_QSTR_7,
+    MP_QSTR_SQRT,
+    MP_QSTR_Has_space_muerto,
+    MP_QSTR__lt_listcomp_gt_,
+    MP_QSTR_endswith,
+    MP_QSTR__dot_mc2d,
+    MP_QSTR__lt_genexpr_gt_,
+    MP_QSTR__percent_d_space__percent_s,
+    MP_QSTR_P,
+    MP_QSTR_K,
+    MP_QSTR_ImportError,
+    MP_QSTR_range,
+    MP_QSTR_AIRE,
+    MP_QSTR_HIERBA,
+    MP_QSTR_TIERRA,
+    MP_QSTR_PIEDRA,
+    MP_QSTR_ROCA,
+    MP_QSTR_TRONCO,
+    MP_QSTR_HOJAS,
+    MP_QSTR_TABLONES,
+    MP_QSTR_ARENA,
+    MP_QSTR_GRAVA,
+    MP_QSTR_CARBON_M,
+    MP_QSTR_HIERRO_M,
+    MP_QSTR_ORO_M,
+    MP_QSTR_DIAMANTE_M,
+    MP_QSTR_LECHO,
+    MP_QSTR_AGUA,
+    MP_QSTR_MESA,
+    MP_QSTR_HORNO,
+    MP_QSTR_CRISTAL,
+    MP_QSTR_LADRILLOS,
+    MP_QSTR_NIEVE,
+    MP_QSTR_CACTUS,
+    MP_QSTR_FLOR_R,
+    MP_QSTR_FLOR_A,
+    MP_QSTR_HIERBA_A,
+    MP_QSTR_ANTORCHA,
+    MP_QSTR_PALO,
+    MP_QSTR_CARBON,
+    MP_QSTR_LING_HIERRO,
+    MP_QSTR_LING_ORO,
+    MP_QSTR_DIAMANTE,
+    MP_QSTR_MANZANA,
+    MP_QSTR_CARNE,
+    MP_QSTR_CARNE_ASADA,
+    MP_QSTR_CARNE_POD,
+    MP_QSTR_HERR,
+    MP_QSTR_PICO,
+    MP_QSTR_HACHA,
+    MP_QSTR_PALA,
+    MP_QSTR_ESPADA,
+    MP_QSTR_TEX,
+    MP_QSTR_NOMBRE,
+    MP_QSTR_MATS,
+    MP_QSTR_TIPOS,
+    MP_QSTR__t,
+    MP_QSTR__m,
+    MP_QSTR_NO_SOLIDO,
+    MP_QSTR_TRANSP,
+    MP_QSTR_CAEN,
+    MP_QSTR_DUREZA,
+    MP_QSTR_SUELTA,
+    MP_QSTR_COMIDA,
+    MP_QSTR_DANO,
+    MP_QSTR_RECETAS,
+    MP_QSTR_enumerate,
+    MP_QSTR__mat,
+    MP_QSTR_W,
+    MP_QSTR_H,
+    MP_QSTR_MAR,
+    MP_QSTR_T,
+    MP_QSTR_VIEW_H,
+    MP_QSTR_VW,
+    MP_QSTR_VH,
+    MP_QSTR_CIELO_DIA,
+    MP_QSTR_CIELO_NOCHE,
+    MP_QSTR_FONDO_CUEVA,
+    MP_QSTR_OSCURO,
+    MP_QSTR_DIA_S,
+    MP_QSTR_SALA,
+    MP_QSTR_bytearray,
+    MP_QSTR_alto,
+    MP_QSTR_PW,
+    MP_QSTR_PH,
+    MP_QSTR_GRAV,
+    MP_QSTR_MAX_CAIDA,
+    MP_QSTR_ANDAR,
+    MP_QSTR_SALTO,
+    MP_QSTR_DT,
+    MP_QSTR_ALCANCE,
+    MP_QSTR_NO_SUELO,
+    MP_QSTR_SND,
+    MP_QSTR_NHUECOS,
+    MP_QSTR_inv_id,
+    MP_QSTR_inv_n,
+    MP_QSTR_SPR,
+    MP_QSTR_CARPETA,
+    MP_QSTR_b,
+    MP_QSTR_hasattr,
+    MP_QSTR_open,
+    MP_QSTR_OSError,
+    MP_QSTR_vol,
+    MP_QSTR_frac,
+    MP_QSTR_int,
+    MP_QSTR_semilla,
+    MP_QSTR_min,
+    MP_QSTR_max,
+    MP_QSTR_it,
+    MP_QSTR_str,
+    MP_QSTR_len,
+    MP_QSTR___name__,
+    MP_QSTR___module__,
+    MP_QSTR___qualname__,
+    MP_QSTR_valor,
+    MP_QSTR_i,
+    MP_QSTR_f,
+    MP_QSTR_j,
+    MP_QSTR_zip,
+    MP_QSTR_lst,
+    MP_QSTR_foco,
+    MP_QSTR_titulo,
+    MP_QSTR_ops,
+    MP_QSTR_sub,
+    MP_QSTR_lineas,
+    MP_QSTR_inicial,
+    MP_QSTR_isinstance,
+    MP_QSTR_list,
+    MP_QSTR_self,
+    MP_QSTR_wx,
+    MP_QSTR_wy,
+    MP_QSTR_tx,
+    MP_QSTR_ty,
+    MP_QSTR_x0,
+    MP_QSTR_y0,
+    MP_QSTR_x1,
+    MP_QSTR_y1,
+    MP_QSTR_bytes,
+    MP_QSTR_abs,
+    MP_QSTR_red_tambien,
+    MP_QSTR_dt,
+    MP_QSTR_dx,
+    MP_QSTR_dy,
+    MP_QSTR_sonido,
+    MP_QSTR_sum,
+    MP_QSTR_float,
+    MP_QSTR_round,
+    MP_QSTR_sitio,
+    MP_QSTR_all,
+    MP_QSTR_getattr,
+    MP_QSTR__star_,
+};
+
+// constants
+static const mp_rom_obj_tuple_t const_obj_mc2d_0 = {{&mp_type_tuple}, 4, {
+    MP_ROM_INT(0),
+    MP_ROM_INT(1),
+    MP_ROM_INT(2),
+    MP_ROM_INT(3),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_21 = {{&mp_type_tuple}, 4, {
+    MP_ROM_QSTR(MP_QSTR_madera),
+    MP_ROM_QSTR(MP_QSTR_piedra),
+    MP_ROM_QSTR(MP_QSTR_hierro),
+    MP_ROM_QSTR(MP_QSTR_diamante),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_22 = {{&mp_type_tuple}, 4, {
+    MP_ROM_QSTR(MP_QSTR_pico),
+    MP_ROM_QSTR(MP_QSTR_hacha),
+    MP_ROM_QSTR(MP_QSTR_pala),
+    MP_ROM_QSTR(MP_QSTR_espada),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_23 = {{&mp_type_tuple}, 3, {
+    MP_ROM_INT(300),
+    MP_ROM_INT(-1),
+    MP_ROM_INT(-1),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_24 = {{&mp_type_tuple}, 3, {
+    MP_ROM_INT(400),
+    MP_ROM_INT(-1),
+    MP_ROM_INT(-1),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_25 = {{&mp_type_tuple}, 3, {
+    MP_ROM_INT(600),
+    MP_ROM_INT(-1),
+    MP_ROM_INT(-1),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_26 = {{&mp_type_tuple}, 3, {
+    MP_ROM_INT(50),
+    MP_ROM_INT(-1),
+    MP_ROM_INT(-1),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_27 = {{&mp_type_tuple}, 4, {
+    MP_ROM_INT(4),
+    MP_ROM_INT(5),
+    MP_ROM_INT(6),
+    MP_ROM_INT(7),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_28 = {{&mp_type_tuple}, 2, {
+    MP_ROM_INT(200),
+    MP_ROM_INT(64),
+}};
+static const mp_obj_int_t const_obj_mc2d_29_0 = {{&mp_type_int}, {.neg=0, .fixed_dig=1, .alloc=2, .len=2, .dig=(uint16_t*)(const uint16_t[]){0xa8f0,0x78}}};
+static const mp_obj_int_t const_obj_mc2d_29_1 = {{&mp_type_int}, {.neg=0, .fixed_dig=1, .alloc=2, .len=2, .dig=(uint16_t*)(const uint16_t[]){0x1830,0x10}}};
+static const mp_obj_int_t const_obj_mc2d_29_2 = {{&mp_type_int}, {.neg=0, .fixed_dig=1, .alloc=2, .len=2, .dig=(uint16_t*)(const uint16_t[]){0x3530,0x3a}}};
+static const mp_obj_int_t const_obj_mc2d_29_3 = {{&mp_type_int}, {.neg=0, .fixed_dig=1, .alloc=2, .len=2, .dig=(uint16_t*)(const uint16_t[]){0xc0c,0xc}}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_29 = {{&mp_type_tuple}, 4, {
+    MP_ROM_PTR(&const_obj_mc2d_29_0),
+    MP_ROM_PTR(&const_obj_mc2d_29_1),
+    MP_ROM_PTR(&const_obj_mc2d_29_2),
+    MP_ROM_PTR(&const_obj_mc2d_29_3),
+}};
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_31_0 = {{&mp_type_float}, (mp_float_t)0.6};
+#define const_obj_mc2d_31_0_macro MP_ROM_PTR(&const_obj_mc2d_31_0)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_31_0_macro ((mp_rom_obj_t)(0xbf99999a))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_31_0_macro ((mp_rom_obj_t)(0xbfe7333333333333))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_31_1 = {{&mp_type_float}, (mp_float_t)1.8};
+#define const_obj_mc2d_31_1_macro MP_ROM_PTR(&const_obj_mc2d_31_1)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_31_1_macro ((mp_rom_obj_t)(0xc0666666))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_31_1_macro ((mp_rom_obj_t)(0xc000cccccccccccd))
+#endif
+static const mp_rom_obj_tuple_t const_obj_mc2d_31 = {{&mp_type_tuple}, 2, {
+    const_obj_mc2d_31_0_macro,
+    const_obj_mc2d_31_1_macro,
+}};
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_32_0 = {{&mp_type_float}, (mp_float_t)32};
+#define const_obj_mc2d_32_0_macro MP_ROM_PTR(&const_obj_mc2d_32_0)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_32_0_macro ((mp_rom_obj_t)(0xc2800002))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_32_0_macro ((mp_rom_obj_t)(0xc044000000000000))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_32_1 = {{&mp_type_float}, (mp_float_t)24};
+#define const_obj_mc2d_32_1_macro MP_ROM_PTR(&const_obj_mc2d_32_1)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_32_1_macro ((mp_rom_obj_t)(0xc2400002))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_32_1_macro ((mp_rom_obj_t)(0xc03c000000000000))
+#endif
+static const mp_rom_obj_tuple_t const_obj_mc2d_32 = {{&mp_type_tuple}, 2, {
+    const_obj_mc2d_32_0_macro,
+    const_obj_mc2d_32_1_macro,
+}};
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_33_0 = {{&mp_type_float}, (mp_float_t)4.3};
+#define const_obj_mc2d_33_0_macro MP_ROM_PTR(&const_obj_mc2d_33_0)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_33_0_macro ((mp_rom_obj_t)(0xc109999a))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_33_0_macro ((mp_rom_obj_t)(0xc015333333333333))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_33_1 = {{&mp_type_float}, (mp_float_t)9};
+#define const_obj_mc2d_33_1_macro MP_ROM_PTR(&const_obj_mc2d_33_1)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_33_1_macro ((mp_rom_obj_t)(0xc1900002))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_33_1_macro ((mp_rom_obj_t)(0xc026000000000000))
+#endif
+static const mp_rom_obj_tuple_t const_obj_mc2d_33 = {{&mp_type_tuple}, 2, {
+    const_obj_mc2d_33_0_macro,
+    const_obj_mc2d_33_1_macro,
+}};
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_34 = {{&mp_type_float}, (mp_float_t)0.7};
+#define const_obj_mc2d_34_macro MP_ROM_PTR(&const_obj_mc2d_34)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_34_macro ((mp_rom_obj_t)(0xbfb33332))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_34_macro ((mp_rom_obj_t)(0xbfea666666666666))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_35 = {{&mp_type_float}, (mp_float_t)0.5};
+#define const_obj_mc2d_35_macro MP_ROM_PTR(&const_obj_mc2d_35)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_35_macro ((mp_rom_obj_t)(0xbf800002))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_35_macro ((mp_rom_obj_t)(0xbfe4000000000000))
+#endif
+static const mp_obj_str_t const_obj_mc2d_36 = {{&mp_type_str}, 37228, 27, (const byte*)"\x2f\x73\x63\x72\x61\x74\x63\x68\x2f\x25\x73\x2f\x73\x6e\x64\x2f\x69\x6e\x64\x69\x63\x65\x2e\x6a\x73\x6f\x6e"};
+static const mp_rom_obj_tuple_t const_obj_mc2d_38 = {{&mp_type_tuple}, 5, {
+    MP_ROM_INT(0),
+    MP_ROM_INT(0),
+    MP_ROM_INT(0),
+    MP_ROM_INT(1),
+    MP_ROM_INT(2),
+}};
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_40 = {{&mp_type_float}, (mp_float_t)0.1};
+#define const_obj_mc2d_40_macro MP_ROM_PTR(&const_obj_mc2d_40)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_40_macro ((mp_rom_obj_t)(0xbe4cccce))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_40_macro ((mp_rom_obj_t)(0xbfbd99999999999a))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_41 = {{&mp_type_float}, (mp_float_t)34};
+#define const_obj_mc2d_41_macro MP_ROM_PTR(&const_obj_mc2d_41)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_41_macro ((mp_rom_obj_t)(0xc2880002))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_41_macro ((mp_rom_obj_t)(0xc045000000000000))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_43 = {{&mp_type_float}, (mp_float_t)0.35};
+#define const_obj_mc2d_43_macro MP_ROM_PTR(&const_obj_mc2d_43)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_43_macro ((mp_rom_obj_t)(0xbf333332))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_43_macro ((mp_rom_obj_t)(0xbfda666666666666))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_44 = {{&mp_type_float}, (mp_float_t)6.28};
+#define const_obj_mc2d_44_macro MP_ROM_PTR(&const_obj_mc2d_44)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_44_macro ((mp_rom_obj_t)(0xc148f5c2))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_44_macro ((mp_rom_obj_t)(0xc01d1eb851eb851f))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_45 = {{&mp_type_float}, (mp_float_t)1};
+#define const_obj_mc2d_45_macro MP_ROM_PTR(&const_obj_mc2d_45)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_45_macro ((mp_rom_obj_t)(0xc0000002))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_45_macro ((mp_rom_obj_t)(0xbff4000000000000))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_46 = {{&mp_type_float}, (mp_float_t)1.8};
+#define const_obj_mc2d_46_macro MP_ROM_PTR(&const_obj_mc2d_46)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_46_macro ((mp_rom_obj_t)(0xc0666666))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_46_macro ((mp_rom_obj_t)(0xc000cccccccccccd))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_47 = {{&mp_type_float}, (mp_float_t)1.4};
+#define const_obj_mc2d_47_macro MP_ROM_PTR(&const_obj_mc2d_47)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_47_macro ((mp_rom_obj_t)(0xc0333332))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_47_macro ((mp_rom_obj_t)(0xbffa666666666666))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_48 = {{&mp_type_float}, (mp_float_t)0.6};
+#define const_obj_mc2d_48_macro MP_ROM_PTR(&const_obj_mc2d_48)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_48_macro ((mp_rom_obj_t)(0xbf99999a))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_48_macro ((mp_rom_obj_t)(0xbfe7333333333333))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_49 = {{&mp_type_float}, (mp_float_t)1.5};
+#define const_obj_mc2d_49_macro MP_ROM_PTR(&const_obj_mc2d_49)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_49_macro ((mp_rom_obj_t)(0xc0400002))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_49_macro ((mp_rom_obj_t)(0xbffc000000000000))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_50 = {{&mp_type_float}, (mp_float_t)0.8};
+#define const_obj_mc2d_50_macro MP_ROM_PTR(&const_obj_mc2d_50)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_50_macro ((mp_rom_obj_t)(0xbfccccce))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_50_macro ((mp_rom_obj_t)(0xbfed99999999999a))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_52 = {{&mp_type_float}, (mp_float_t)0.55};
+#define const_obj_mc2d_52_macro MP_ROM_PTR(&const_obj_mc2d_52)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_52_macro ((mp_rom_obj_t)(0xbf8cccce))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_52_macro ((mp_rom_obj_t)(0xbfe599999999999a))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_54 = {{&mp_type_float}, (mp_float_t)0.75};
+#define const_obj_mc2d_54_macro MP_ROM_PTR(&const_obj_mc2d_54)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_54_macro ((mp_rom_obj_t)(0xbfc00002))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_54_macro ((mp_rom_obj_t)(0xbfec000000000000))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_55 = {{&mp_type_float}, (mp_float_t)0.13};
+#define const_obj_mc2d_55_macro MP_ROM_PTR(&const_obj_mc2d_55)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_55_macro ((mp_rom_obj_t)(0xbe851eba))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_55_macro ((mp_rom_obj_t)(0xbfc4a3d70a3d70a4))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_56 = {{&mp_type_float}, (mp_float_t)0.07000000000000001};
+#define const_obj_mc2d_56_macro MP_ROM_PTR(&const_obj_mc2d_56)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_56_macro ((mp_rom_obj_t)(0xbe0f5c2a))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_56_macro ((mp_rom_obj_t)(0xbfb5eb851eb851ec))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_57 = {{&mp_type_float}, (mp_float_t)0.15};
+#define const_obj_mc2d_57_macro MP_ROM_PTR(&const_obj_mc2d_57)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_57_macro ((mp_rom_obj_t)(0xbe99999a))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_57_macro ((mp_rom_obj_t)(0xbfc7333333333333))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_58 = {{&mp_type_float}, (mp_float_t)0.2};
+#define const_obj_mc2d_58_macro MP_ROM_PTR(&const_obj_mc2d_58)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_58_macro ((mp_rom_obj_t)(0xbeccccce))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_58_macro ((mp_rom_obj_t)(0xbfcd99999999999a))
+#endif
+static const mp_obj_str_t const_obj_mc2d_59 = {{&mp_type_bytes}, 1030, 6, (const byte*)"\x4d\x43\x32\x44\x31\x0a"};
+static const mp_obj_str_t const_obj_mc2d_60 = {{&mp_type_bytes}, 46511, 1, (const byte*)"\x0a"};
+static const mp_rom_obj_tuple_t const_obj_mc2d_62 = {{&mp_type_tuple}, 2, {
+    MP_ROM_QSTR(MP_QSTR_UP),
+    MP_ROM_QSTR(MP_QSTR_DOWN),
+}};
+static const mp_obj_str_t const_obj_mc2d_63 = {{&mp_type_str}, 50347, 51, (const byte*)"\x32\x61\x62\x63\x2e\x2e\x39\x77\x78\x79\x7a\x2c\x20\x74\x65\x63\x6c\x61\x64\x6f\x20\x64\x65\x6c\x20\x50\x43\x20\xc2\xb7\x20\x45\x58\x45\x20\x6f\x6b\x20\xc2\xb7\x20\x44\x45\x4c\x20\x62\x6f\x72\x72\x61\x72"};
+static const mp_obj_str_t const_obj_mc2d_68 = {{&mp_type_str}, 38916, 38, (const byte*)"\x45\x73\x74\x61\x20\x63\x61\x6c\x63\x75\x6c\x61\x64\x6f\x72\x61\x20\x6e\x6f\x20\x74\x69\x65\x6e\x65\x20\x72\x65\x64\x20\x74\x6f\x64\x61\x76\x69\x61\x2e"};
+static const mp_rom_obj_tuple_t const_obj_mc2d_78 = {{&mp_type_tuple}, 2, {
+    MP_ROM_INT(1),
+    MP_ROM_INT(2),
+}};
+static const mp_obj_str_t const_obj_mc2d_79 = {{&mp_type_str}, 59321, 30, (const byte*)"\x42\x75\x73\x63\x61\x6e\x64\x6f\x20\x70\x61\x72\x74\x69\x64\x61\x73\x20\x65\x6e\x20\x74\x75\x20\x72\x65\x64\x2e\x2e\x2e"};
+static const mp_obj_str_t const_obj_mc2d_81 = {{&mp_type_str}, 20878, 29, (const byte*)"\x49\x50\x20\x64\x65\x6c\x20\x61\x6e\x66\x69\x74\x72\x69\x6f\x6e\x20\x28\x69\x70\x3a\x70\x75\x65\x72\x74\x6f\x29\x3a"};
+static const mp_obj_str_t const_obj_mc2d_84 = {{&mp_type_str}, 44286, 30, (const byte*)"\x45\x6c\x20\x61\x6e\x66\x69\x74\x72\x69\x6f\x6e\x20\x6e\x6f\x20\x6d\x61\x6e\x64\x6f\x20\x65\x6c\x20\x6d\x75\x6e\x64\x6f"};
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_86 = {{&mp_type_float}, (mp_float_t)60};
+#define const_obj_mc2d_86_macro MP_ROM_PTR(&const_obj_mc2d_86)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_86_macro ((mp_rom_obj_t)(0xc2f00002))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_86_macro ((mp_rom_obj_t)(0xc052000000000000))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_87 = {{&mp_type_float}, (mp_float_t)0.3};
+#define const_obj_mc2d_87_macro MP_ROM_PTR(&const_obj_mc2d_87)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_87_macro ((mp_rom_obj_t)(0xbf19999a))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_87_macro ((mp_rom_obj_t)(0xbfd7333333333333))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_88 = {{&mp_type_float}, (mp_float_t)0.001};
+#define const_obj_mc2d_88_macro MP_ROM_PTR(&const_obj_mc2d_88)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_88_macro ((mp_rom_obj_t)(0xbb03126e))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_88_macro ((mp_rom_obj_t)(0xbf54624dd2f1a9fc))
+#endif
+static const mp_rom_obj_tuple_t const_obj_mc2d_91 = {{&mp_type_tuple}, 2, {
+    MP_ROM_INT(3),
+    MP_ROM_INT(-1),
+}};
+static const mp_obj_str_t const_obj_mc2d_92 = {{&mp_type_str}, 47535, 31, (const byte*)"\x3c\x2d\x20\x2d\x3e\x20\x20\x61\x6e\x64\x61\x72\x20\x20\x20\x20\x20\x5e\x20\x73\x61\x6c\x74\x61\x72\x2f\x6e\x61\x64\x61\x72"};
+static const mp_obj_str_t const_obj_mc2d_94 = {{&mp_type_str}, 37375, 29, (const byte*)"\x35\x20\x20\x70\x69\x63\x61\x72\x20\x2f\x20\x67\x6f\x6c\x70\x65\x61\x72\x20\x28\x6d\x61\x6e\x74\x65\x6e\x65\x72\x29"};
+static const mp_obj_str_t const_obj_mc2d_95 = {{&mp_type_str}, 31513, 34, (const byte*)"\x45\x58\x45\x20\x20\x70\x6f\x6e\x65\x72\x2c\x20\x63\x6f\x6d\x65\x72\x2c\x20\x75\x73\x61\x72\x20\x6d\x65\x73\x61\x2f\x68\x6f\x72\x6e\x6f"};
+static const mp_obj_str_t const_obj_mc2d_97 = {{&mp_type_str}, 41051, 35, (const byte*)"\x37\x20\x20\x69\x6e\x76\x65\x6e\x74\x61\x72\x69\x6f\x20\x79\x20\x66\x61\x62\x72\x69\x63\x61\x72\x20\x20\x20\x39\x20\x20\x74\x69\x72\x61\x72"};
+static const mp_obj_str_t const_obj_mc2d_99 = {{&mp_type_str}, 60119, 36, (const byte*)"\x50\x43\x3a\x20\x57\x41\x53\x44\x2c\x20\x45\x20\x69\x6e\x76\x65\x6e\x74\x61\x72\x69\x6f\x2c\x20\x51\x20\x74\x69\x72\x61\x72\x2c\x20\x31\x2d\x39"};
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_100 = {{&mp_type_float}, (mp_float_t)0};
+#define const_obj_mc2d_100_macro MP_ROM_PTR(&const_obj_mc2d_100)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_100_macro ((mp_rom_obj_t)(0x80800002))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_100_macro ((mp_rom_obj_t)(0x8004000000000000))
+#endif
+static const mp_rom_obj_tuple_t const_obj_mc2d_101 = {{&mp_type_tuple}, 2, {
+    MP_ROM_INT(20),
+    MP_ROM_INT(20),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_102 = {{&mp_type_tuple}, 2, {
+    MP_ROM_INT(1),
+    MP_ROM_INT(-1),
+}};
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_103_2 = {{&mp_type_float}, (mp_float_t)0};
+#define const_obj_mc2d_103_2_macro MP_ROM_PTR(&const_obj_mc2d_103_2)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_103_2_macro ((mp_rom_obj_t)(0x80800002))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_103_2_macro ((mp_rom_obj_t)(0x8004000000000000))
+#endif
+static const mp_rom_obj_tuple_t const_obj_mc2d_103 = {{&mp_type_tuple}, 3, {
+    MP_ROM_INT(-1),
+    MP_ROM_INT(-1),
+    const_obj_mc2d_103_2_macro,
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_104_0 = {{&mp_type_tuple}, 2, {
+    MP_ROM_INT(1),
+    MP_ROM_INT(0),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_104_1 = {{&mp_type_tuple}, 2, {
+    MP_ROM_INT(-1),
+    MP_ROM_INT(0),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_104_2 = {{&mp_type_tuple}, 2, {
+    MP_ROM_INT(0),
+    MP_ROM_INT(1),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_104_3 = {{&mp_type_tuple}, 2, {
+    MP_ROM_INT(0),
+    MP_ROM_INT(-1),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_104 = {{&mp_type_tuple}, 4, {
+    MP_ROM_PTR(&const_obj_mc2d_104_0),
+    MP_ROM_PTR(&const_obj_mc2d_104_1),
+    MP_ROM_PTR(&const_obj_mc2d_104_2),
+    MP_ROM_PTR(&const_obj_mc2d_104_3),
+}};
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_105 = {{&mp_type_float}, (mp_float_t)0.01};
+#define const_obj_mc2d_105_macro MP_ROM_PTR(&const_obj_mc2d_105)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_105_macro ((mp_rom_obj_t)(0xbca3d70a))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_105_macro ((mp_rom_obj_t)(0xbf887ae147ae147b))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_106 = {{&mp_type_float}, (mp_float_t)0.25};
+#define const_obj_mc2d_106_macro MP_ROM_PTR(&const_obj_mc2d_106)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_106_macro ((mp_rom_obj_t)(0xbf000002))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_106_macro ((mp_rom_obj_t)(0xbfd4000000000000))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_107 = {{&mp_type_float}, (mp_float_t)0.85};
+#define const_obj_mc2d_107_macro MP_ROM_PTR(&const_obj_mc2d_107)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_107_macro ((mp_rom_obj_t)(0xbfd9999a))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_107_macro ((mp_rom_obj_t)(0xbfef333333333333))
+#endif
+static const mp_rom_obj_tuple_t const_obj_mc2d_109 = {{&mp_type_tuple}, 3, {
+    MP_ROM_INT(-1),
+    MP_ROM_INT(0),
+    MP_ROM_INT(1),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_110 = {{&mp_type_tuple}, 2, {
+    MP_ROM_INT(-1),
+    MP_ROM_INT(-1),
+}};
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_111 = {{&mp_type_float}, (mp_float_t)0.08};
+#define const_obj_mc2d_111_macro MP_ROM_PTR(&const_obj_mc2d_111)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_111_macro ((mp_rom_obj_t)(0xbe23d70a))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_111_macro ((mp_rom_obj_t)(0xbfb87ae147ae147b))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_112 = {{&mp_type_float}, (mp_float_t)5};
+#define const_obj_mc2d_112_macro MP_ROM_PTR(&const_obj_mc2d_112)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_112_macro ((mp_rom_obj_t)(0xc1200002))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_112_macro ((mp_rom_obj_t)(0xc018000000000000))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_115 = {{&mp_type_float}, (mp_float_t)1e-06};
+#define const_obj_mc2d_115_macro MP_ROM_PTR(&const_obj_mc2d_115)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_115_macro ((mp_rom_obj_t)(0xb60637be))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_115_macro ((mp_rom_obj_t)(0xbeb4c6f7a0b5ed8d))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_116 = {{&mp_type_float}, (mp_float_t)3};
+#define const_obj_mc2d_116_macro MP_ROM_PTR(&const_obj_mc2d_116)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_116_macro ((mp_rom_obj_t)(0xc0c00002))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_116_macro ((mp_rom_obj_t)(0xc00c000000000000))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_117 = {{&mp_type_float}, (mp_float_t)3.5};
+#define const_obj_mc2d_117_macro MP_ROM_PTR(&const_obj_mc2d_117)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_117_macro ((mp_rom_obj_t)(0xc0e00002))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_117_macro ((mp_rom_obj_t)(0xc010000000000000))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_118 = {{&mp_type_float}, (mp_float_t)0.38};
+#define const_obj_mc2d_118_macro MP_ROM_PTR(&const_obj_mc2d_118)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_118_macro ((mp_rom_obj_t)(0xbf428f5e))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_118_macro ((mp_rom_obj_t)(0xbfdc51eb851eb852))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_119 = {{&mp_type_float}, (mp_float_t)0.12};
+#define const_obj_mc2d_119_macro MP_ROM_PTR(&const_obj_mc2d_119)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_119_macro ((mp_rom_obj_t)(0xbe75c28e))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_119_macro ((mp_rom_obj_t)(0xbfc2b851eb851eb8))
+#endif
+static const mp_rom_obj_tuple_t const_obj_mc2d_120 = {{&mp_type_tuple}, 2, {
+    MP_ROM_INT(-1),
+    MP_ROM_INT(1),
+}};
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_121 = {{&mp_type_float}, (mp_float_t)2.2};
+#define const_obj_mc2d_121_macro MP_ROM_PTR(&const_obj_mc2d_121)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_121_macro ((mp_rom_obj_t)(0xc08cccce))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_121_macro ((mp_rom_obj_t)(0xc00599999999999a))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_122 = {{&mp_type_float}, (mp_float_t)6};
+#define const_obj_mc2d_122_macro MP_ROM_PTR(&const_obj_mc2d_122)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_122_macro ((mp_rom_obj_t)(0xc1400002))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_122_macro ((mp_rom_obj_t)(0xc01c000000000000))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_123 = {{&mp_type_float}, (mp_float_t)1.2};
+#define const_obj_mc2d_123_macro MP_ROM_PTR(&const_obj_mc2d_123)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_123_macro ((mp_rom_obj_t)(0xc019999a))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_123_macro ((mp_rom_obj_t)(0xbff7333333333333))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_124 = {{&mp_type_float}, (mp_float_t)0.4};
+#define const_obj_mc2d_124_macro MP_ROM_PTR(&const_obj_mc2d_124)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_124_macro ((mp_rom_obj_t)(0xbf4cccce))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_124_macro ((mp_rom_obj_t)(0xbfdd99999999999a))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_125 = {{&mp_type_float}, (mp_float_t)4};
+#define const_obj_mc2d_125_macro MP_ROM_PTR(&const_obj_mc2d_125)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_125_macro ((mp_rom_obj_t)(0xc1000002))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_125_macro ((mp_rom_obj_t)(0xc014000000000000))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_126 = {{&mp_type_float}, (mp_float_t)0.05};
+#define const_obj_mc2d_126_macro MP_ROM_PTR(&const_obj_mc2d_126)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_126_macro ((mp_rom_obj_t)(0xbdccccce))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_126_macro ((mp_rom_obj_t)(0xbfad99999999999a))
+#endif
+static const mp_rom_obj_tuple_t const_obj_mc2d_128 = {{&mp_type_tuple}, 2, {
+    MP_ROM_QSTR(MP_QSTR_),
+    MP_ROM_QSTR(MP_QSTR_mesa),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_129 = {{&mp_type_tuple}, 3, {
+    MP_ROM_QSTR(MP_QSTR_),
+    MP_ROM_QSTR(MP_QSTR_mesa),
+    MP_ROM_QSTR(MP_QSTR_horno),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_130 = {{&mp_type_tuple}, 2, {
+    MP_ROM_INT(0),
+    MP_ROM_NONE,
+}};
+static const mp_obj_str_t const_obj_mc2d_134 = {{&mp_type_str}, 9414, 46, (const byte*)"\x45\x58\x45\x3a\x20\x63\x6f\x67\x65\x72\x2f\x73\x6f\x6c\x74\x61\x72\x20\xc2\xb7\x20\x39\x3a\x20\x74\x69\x72\x61\x72\x20\xc2\xb7\x20\x37\x2f\x44\x45\x4c\x3a\x20\x63\x65\x72\x72\x61\x72"};
+static const mp_rom_obj_tuple_t const_obj_mc2d_135 = {{&mp_type_tuple}, 4, {
+    MP_ROM_QSTR(MP_QSTR_7),
+    MP_ROM_QSTR(MP_QSTR_DEL),
+    MP_ROM_QSTR(MP_QSTR_CH_colon_e),
+    MP_ROM_QSTR(MP_QSTR_CH_colon_E),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_136 = {{&mp_type_tuple}, 2, {
+    MP_ROM_QSTR(MP_QSTR_9),
+    MP_ROM_QSTR(MP_QSTR_CH_colon_q),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_141 = {{&mp_type_tuple}, 2, {
+    MP_ROM_INT(0),
+    MP_ROM_QSTR(MP_QSTR_EXE),
+}};
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_142_1 = {{&mp_type_float}, (mp_float_t)2};
+#define const_obj_mc2d_142_1_macro MP_ROM_PTR(&const_obj_mc2d_142_1)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_142_1_macro ((mp_rom_obj_t)(0xc0800002))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_142_1_macro ((mp_rom_obj_t)(0xc004000000000000))
+#endif
+static const mp_rom_obj_tuple_t const_obj_mc2d_142 = {{&mp_type_tuple}, 2, {
+    MP_ROM_QSTR(MP_QSTR_Guardado),
+    const_obj_mc2d_142_1_macro,
+}};
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_143 = {{&mp_type_float}, (mp_float_t)0.18};
+#define const_obj_mc2d_143_macro MP_ROM_PTR(&const_obj_mc2d_143)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_143_macro ((mp_rom_obj_t)(0xbeb851ee))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_143_macro ((mp_rom_obj_t)(0xbfcb0a3d70a3d70a))
+#endif
+static const mp_rom_obj_tuple_t const_obj_mc2d_144 = {{&mp_type_tuple}, 2, {
+    MP_ROM_QSTR(MP_QSTR_1),
+    MP_ROM_QSTR(MP_QSTR_LP),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_145 = {{&mp_type_tuple}, 2, {
+    MP_ROM_QSTR(MP_QSTR_3),
+    MP_ROM_QSTR(MP_QSTR_RP),
+}};
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_146_1 = {{&mp_type_float}, (mp_float_t)1.5};
+#define const_obj_mc2d_146_1_macro MP_ROM_PTR(&const_obj_mc2d_146_1)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_146_1_macro ((mp_rom_obj_t)(0xc0400002))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_146_1_macro ((mp_rom_obj_t)(0xbffc000000000000))
+#endif
+static const mp_rom_obj_tuple_t const_obj_mc2d_146 = {{&mp_type_tuple}, 2, {
+    MP_ROM_QSTR(MP_QSTR__plus_1_space_hora),
+    const_obj_mc2d_146_1_macro,
+}};
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_147 = {{&mp_type_float}, (mp_float_t)0.95};
+#define const_obj_mc2d_147_macro MP_ROM_PTR(&const_obj_mc2d_147)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_147_macro ((mp_rom_obj_t)(0xbff33332))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_147_macro ((mp_rom_obj_t)(0xbff2666666666666))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_148 = {{&mp_type_float}, (mp_float_t)0.65};
+#define const_obj_mc2d_148_macro MP_ROM_PTR(&const_obj_mc2d_148)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_148_macro ((mp_rom_obj_t)(0xbfa66666))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_148_macro ((mp_rom_obj_t)(0xbfe8cccccccccccd))
+#endif
+
+// constant table
+static const mp_rom_obj_t const_obj_table_data_mc2d[150] = {
+    MP_ROM_PTR(&const_obj_mc2d_0),
+    MP_ROM_QSTR(MP_QSTR_carbon_mena),
+    MP_ROM_QSTR(MP_QSTR_hierro_mena),
+    MP_ROM_QSTR(MP_QSTR_diamante_mena),
+    MP_ROM_QSTR(MP_QSTR_flor_amarilla),
+    MP_ROM_QSTR(MP_QSTR_hierba_alta),
+    MP_ROM_QSTR(MP_QSTR_lingote_hierro),
+    MP_ROM_QSTR(MP_QSTR_lingote_oro),
+    MP_ROM_QSTR(MP_QSTR_carne_asada),
+    MP_ROM_QSTR(MP_QSTR_carne_podrida),
+    MP_ROM_QSTR(MP_QSTR_Mena_space_de_space_carbon),
+    MP_ROM_QSTR(MP_QSTR_Mena_space_de_space_hierro),
+    MP_ROM_QSTR(MP_QSTR_Mena_space_de_space_oro),
+    MP_ROM_QSTR(MP_QSTR_Mena_space_de_space_diamante),
+    MP_ROM_QSTR(MP_QSTR_Mesa_space_de_space_trabajo),
+    MP_ROM_QSTR(MP_QSTR_Diente_space_de_space_leon),
+    MP_ROM_QSTR(MP_QSTR_Lingote_space_de_space_hierro),
+    MP_ROM_QSTR(MP_QSTR_Lingote_space_de_space_oro),
+    MP_ROM_QSTR(MP_QSTR_Chuleta_space_cruda),
+    MP_ROM_QSTR(MP_QSTR_Chuleta_space_asada),
+    MP_ROM_QSTR(MP_QSTR_Carne_space_podrida),
+    MP_ROM_PTR(&const_obj_mc2d_21),
+    MP_ROM_PTR(&const_obj_mc2d_22),
+    MP_ROM_PTR(&const_obj_mc2d_23),
+    MP_ROM_PTR(&const_obj_mc2d_24),
+    MP_ROM_PTR(&const_obj_mc2d_25),
+    MP_ROM_PTR(&const_obj_mc2d_26),
+    MP_ROM_PTR(&const_obj_mc2d_27),
+    MP_ROM_PTR(&const_obj_mc2d_28),
+    MP_ROM_PTR(&const_obj_mc2d_29),
+    MP_ROM_QSTR(MP_QSTR_minecraft2d),
+    MP_ROM_PTR(&const_obj_mc2d_31),
+    MP_ROM_PTR(&const_obj_mc2d_32),
+    MP_ROM_PTR(&const_obj_mc2d_33),
+    const_obj_mc2d_34_macro,
+    const_obj_mc2d_35_macro,
+    MP_ROM_PTR(&const_obj_mc2d_36),
+    MP_ROM_QSTR(MP_QSTR__slash_scratch_slash__percent_s_slash__percent_s),
+    MP_ROM_PTR(&const_obj_mc2d_38),
+    MP_ROM_QSTR(MP_QSTR_Generando_space_el_space_terreno_dot__dot__dot_),
+    const_obj_mc2d_40_macro,
+    const_obj_mc2d_41_macro,
+    MP_ROM_QSTR(MP_QSTR_Cavando_space_cuevas_dot__dot__dot_),
+    const_obj_mc2d_43_macro,
+    const_obj_mc2d_44_macro,
+    const_obj_mc2d_45_macro,
+    const_obj_mc2d_46_macro,
+    const_obj_mc2d_47_macro,
+    const_obj_mc2d_48_macro,
+    const_obj_mc2d_49_macro,
+    const_obj_mc2d_50_macro,
+    MP_ROM_QSTR(MP_QSTR_Escondiendo_space_menas_dot__dot__dot_),
+    const_obj_mc2d_52_macro,
+    MP_ROM_QSTR(MP_QSTR_Plantando_space_arboles_dot__dot__dot_),
+    const_obj_mc2d_54_macro,
+    const_obj_mc2d_55_macro,
+    const_obj_mc2d_56_macro,
+    const_obj_mc2d_57_macro,
+    const_obj_mc2d_58_macro,
+    MP_ROM_PTR(&const_obj_mc2d_59),
+    MP_ROM_PTR(&const_obj_mc2d_60),
+    MP_ROM_QSTR(MP_QSTR_Descargando_space_el_space_mundo_dot__dot__dot_),
+    MP_ROM_PTR(&const_obj_mc2d_62),
+    MP_ROM_PTR(&const_obj_mc2d_63),
+    MP_ROM_QSTR(MP_QSTR_Crear_space_mundo_space_nuevo),
+    MP_ROM_QSTR(MP_QSTR_Elige_space_un_space_mundo),
+    MP_ROM_QSTR(MP_QSTR_Nombre_space_del_space_mundo_colon_),
+    MP_ROM_QSTR(MP_QSTR_Cargando_space__percent_s_dot__dot__dot_),
+    MP_ROM_PTR(&const_obj_mc2d_68),
+    MP_ROM_QSTR(MP_QSTR_DEL_colon__space_volver),
+    MP_ROM_QSTR(MP_QSTR_Multijugador),
+    MP_ROM_QSTR(MP_QSTR_Hostear_space_un_space_mundo),
+    MP_ROM_QSTR(MP_QSTR_Unirse_space_a_space_una_space_partida),
+    MP_ROM_QSTR(MP_QSTR_Conexion_space_directa_space__paren_open_IP_paren_close_),
+    MP_ROM_QSTR(MP_QSTR_Abriendo_space_la_space_partida_dot__dot__dot_),
+    MP_ROM_QSTR(MP_QSTR_No_space_se_space_pudo_space_abrir_colon__space_),
+    MP_ROM_QSTR(MP_QSTR_EXE_colon__space_seguir_space_solo),
+    MP_ROM_QSTR(MP_QSTR_Seguir_space_solo),
+    MP_ROM_PTR(&const_obj_mc2d_78),
+    MP_ROM_PTR(&const_obj_mc2d_79),
+    MP_ROM_QSTR(MP_QSTR_No_space_hay_space_partidas_space_abiertas),
+    MP_ROM_PTR(&const_obj_mc2d_81),
+    MP_ROM_QSTR(MP_QSTR_Conectando_space_con_space__percent_s_dot__dot__dot_),
+    MP_ROM_QSTR(MP_QSTR_No_space_se_space_pudo_space_conectar),
+    MP_ROM_PTR(&const_obj_mc2d_84),
+    MP_ROM_QSTR(MP_QSTR_Partida_space_online),
+    const_obj_mc2d_86_macro,
+    const_obj_mc2d_87_macro,
+    const_obj_mc2d_88_macro,
+    MP_ROM_QSTR(MP_QSTR_MINECRAFT_space_2D),
+    MP_ROM_QSTR(MP_QSTR_Edicion_space_calculadora),
+    MP_ROM_PTR(&const_obj_mc2d_91),
+    MP_ROM_PTR(&const_obj_mc2d_92),
+    MP_ROM_QSTR(MP_QSTR_8_space_4_space_6_space_2_space__space_mover_space_el_space_cursor),
+    MP_ROM_PTR(&const_obj_mc2d_94),
+    MP_ROM_PTR(&const_obj_mc2d_95),
+    MP_ROM_QSTR(MP_QSTR_1_space_3_space__space_cambiar_space_de_space_objeto),
+    MP_ROM_PTR(&const_obj_mc2d_97),
+    MP_ROM_QSTR(MP_QSTR_DEL_space__space_menu_space__paren_open_guardar_paren_close_),
+    MP_ROM_PTR(&const_obj_mc2d_99),
+    const_obj_mc2d_100_macro,
+    MP_ROM_PTR(&const_obj_mc2d_101),
+    MP_ROM_PTR(&const_obj_mc2d_102),
+    MP_ROM_PTR(&const_obj_mc2d_103),
+    MP_ROM_PTR(&const_obj_mc2d_104),
+    const_obj_mc2d_105_macro,
+    const_obj_mc2d_106_macro,
+    const_obj_mc2d_107_macro,
+    MP_ROM_QSTR(MP_QSTR_jugador_andar),
+    MP_ROM_PTR(&const_obj_mc2d_109),
+    MP_ROM_PTR(&const_obj_mc2d_110),
+    const_obj_mc2d_111_macro,
+    const_obj_mc2d_112_macro,
+    MP_ROM_QSTR(MP_QSTR_zombiehurt_percent_d),
+    MP_ROM_QSTR(MP_QSTR_zombiedeath),
+    const_obj_mc2d_115_macro,
+    const_obj_mc2d_116_macro,
+    const_obj_mc2d_117_macro,
+    const_obj_mc2d_118_macro,
+    const_obj_mc2d_119_macro,
+    MP_ROM_PTR(&const_obj_mc2d_120),
+    const_obj_mc2d_121_macro,
+    const_obj_mc2d_122_macro,
+    const_obj_mc2d_123_macro,
+    const_obj_mc2d_124_macro,
+    const_obj_mc2d_125_macro,
+    const_obj_mc2d_126_macro,
+    MP_ROM_QSTR(MP_QSTR_Sin_space_conexion),
+    MP_ROM_PTR(&const_obj_mc2d_128),
+    MP_ROM_PTR(&const_obj_mc2d_129),
+    MP_ROM_PTR(&const_obj_mc2d_130),
+    MP_ROM_QSTR(MP_QSTR_Fabricar_space__paren_open_a_space_mano_paren_close_),
+    MP_ROM_QSTR(MP_QSTR_Recetas_space__paren_open_EXE_space_fabrica_paren_close__colon_),
+    MP_ROM_QSTR(MP_QSTR__percent_s_space_x_percent_d_space__space__lt__hyphen__space__space_),
+    MP_ROM_PTR(&const_obj_mc2d_134),
+    MP_ROM_PTR(&const_obj_mc2d_135),
+    MP_ROM_PTR(&const_obj_mc2d_136),
+    MP_ROM_QSTR(MP_QSTR_Volver_space_al_space_juego),
+    MP_ROM_QSTR(MP_QSTR_Guardar_space_y_space_salir),
+    MP_ROM_QSTR(MP_QSTR_Salir_space_sin_space_guardar),
+    MP_ROM_QSTR(MP_QSTR_Menu_space_del_space_juego),
+    MP_ROM_PTR(&const_obj_mc2d_141),
+    MP_ROM_PTR(&const_obj_mc2d_142),
+    const_obj_mc2d_143_macro,
+    MP_ROM_PTR(&const_obj_mc2d_144),
+    MP_ROM_PTR(&const_obj_mc2d_145),
+    MP_ROM_PTR(&const_obj_mc2d_146),
+    const_obj_mc2d_147_macro,
+    const_obj_mc2d_148_macro,
+    MP_ROM_QSTR(MP_QSTR_EXE_colon__space_reaparecer),
+};
+
+static const mp_frozen_module_t frozen_module_mc2d = {
+    .constants = {
+        .qstr_table = (qstr_short_t *)&const_qstr_table_data_mc2d,
+        .obj_table = (mp_obj_t *)&const_obj_table_data_mc2d,
+    },
+    .proto_fun = &proto_fun_mc2d__lt_module_gt_,
+};
+
+////////////////////////////////////////////////////////////////////////////////
 // collection of all frozen modules
 
 const char mp_frozen_names[] = {
@@ -37314,6 +52983,7 @@ const char mp_frozen_names[] = {
     "scratch_red.py\0"
     "scratch_red_ui.py\0"
     "t9.py\0"
+    "mc2d.py\0"
     "\0"
 };
 
@@ -37322,6 +52992,7 @@ const mp_frozen_module_t *const mp_frozen_mpy_content[] = {
     &frozen_module_scratch_red,
     &frozen_module_scratch_red_ui,
     &frozen_module_t9,
+    &frozen_module_mc2d,
 };
 
 #ifdef MICROPY_FROZEN_LIST_ITEM
@@ -37329,19 +53000,20 @@ MICROPY_FROZEN_LIST_ITEM("scratch", "scratch.py")
 MICROPY_FROZEN_LIST_ITEM("scratch_red", "scratch_red.py")
 MICROPY_FROZEN_LIST_ITEM("scratch_red_ui", "scratch_red_ui.py")
 MICROPY_FROZEN_LIST_ITEM("t9", "t9.py")
+MICROPY_FROZEN_LIST_ITEM("mc2d", "mc2d.py")
 #endif
 
 /*
 byte sizes:
-qstr content: 816 unique, 9890 bytes
-bc content: 34463
-const str content: 1062
-const int content: 28
-const obj content: 824
+qstr content: 1171 unique, 14012 bytes
+bc content: 52396
+const str content: 1485
+const int content: 44
+const obj content: 1712
 const table qstr content: 0 entries, 0 bytes
-const table ptr content: 241 entries, 964 bytes
-raw code content: 343 * 4 = 5488
-mp_frozen_mpy_names_content: 51
-mp_frozen_mpy_content_size: 16
-total: 52786
+const table ptr content: 391 entries, 1564 bytes
+raw code content: 424 * 4 = 6784
+mp_frozen_mpy_names_content: 59
+mp_frozen_mpy_content_size: 20
+total: 78076
 */

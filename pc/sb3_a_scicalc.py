@@ -456,6 +456,13 @@ def convert(sb3_path, sd_root):
             "guiones": tc.hats,
             "procs": tc.procs,
         })
+    # Índice de sonidos por nombre (lo usan otros juegos, p. ej. Minecraft 2D)
+    indice = {}
+    for t in targets_out:
+        for nombre_s, rel, _ in t.get("sonidos", []):
+            indice.setdefault(nombre_s, rel)
+    if indice:
+        (snd_dir / "indice.json").write_text(json.dumps(indice, ensure_ascii=False), encoding="utf-8")
     monitors = []
     for m in project.get("monitors", []):
         if m.get("visible") and m.get("opcode") == "data_variable":

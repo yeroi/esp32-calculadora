@@ -17,3 +17,4 @@ simulador/sd/wifi_ip.json
 # MicroPython: archivos intermedios al regenerar src/mpy
 firmware/micropython/build-embed/
 firmware/micropython/micropython_embed/
+simulador/sd/juegos/minecraft2d/mundos/
