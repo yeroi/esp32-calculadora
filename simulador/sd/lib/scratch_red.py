@@ -161,6 +161,7 @@ class Multijugador:
         self.golpeado = {}                   # anfitrión: mob -> (quién le pegó, cuándo)
         self.chat = []                       # [(texto, color, hasta)] últimos mensajes
         self.bocadillo = {}                  # id -> (texto, hasta): lo que acaba de decir
+        self.suave = {}                      # id o (id, mob) -> [x, y] dibujados (interpolados)
         self.vvida = var(cfg.get("vida"), st.vars)
         self.vivo = True
         self.vid_clon = None
@@ -1013,6 +1014,7 @@ class Multijugador:
         """Zonas de pantalla que cambian (los demás se mueven o se mueve la cámara).
         Se llama justo antes de dibujar: la cámara ya está donde se va a dibujar."""
         self.enviar_pose()
+        self.interpolar()
         nuevos = {}
         if self.listo and any(sp.visible for sp in self.partes):
             for pid in self.otros:
@@ -1067,11 +1069,33 @@ class Multijugador:
         return out
 
     # ---- dibujar a los demás --------------------------------------------------------
+    def interpolar(self):
+        """Como Minecraft: lo que llega ~10 veces por segundo se dibuja yendo poco a
+        poco hacia la posición nueva (si el salto es grande, de golpe)."""
+        vivos = set()
+        for pid, d in self.otros.items():
+            pares = [(pid, d.get("x", 0), d.get("y", 0))]
+            for e in d.get("mobs") or ():
+                if len(e) > 5:
+                    pares.append(((pid, e[5]), e[1], e[2]))
+            for k, x, y in pares:
+                vivos.add(k)
+                cur = self.suave.get(k)
+                if cur is None or abs(cur[0] - x) > 3 or abs(cur[1] - y) > 3:
+                    self.suave[k] = [x, y]
+                else:
+                    cur[0] += (x - cur[0]) * 0.45
+                    cur[1] += (y - cur[1]) * 0.45
+        for k in list(self.suave):
+            if k not in vivos:
+                del self.suave[k]
+
     def poses(self, pid):
         """(objeto, disfraz, x, y, dirección, tamaño, ¿cuerpo?, estilo de giro) de lo
         que se ve de otro."""
         d = self.otros[pid]
-        bx, by = self.base(d["x"], d["y"])
+        sx, sy = self.suave.get(pid) or (d["x"], d["y"])
+        bx, by = self.base(sx, sy)
         out = []
         if self.vchunk and d.get("c", self.chunk()) != self.chunk():
             return out                              # está en otro trozo del mundo
@@ -1087,6 +1111,8 @@ class Multijugador:
             sp = self.mob_sp
             for e in d["mobs"]:
                 c, mx, my, dr, tam = e[:5]
+                if len(e) > 5 and (pid, e[5]) in self.suave:
+                    mx, my = self.suave[(pid, e[5])]
                 sx, sy = self.base(mx, my)
                 if abs(sx) < 300 and abs(sy) < 240 and 0 <= c < len(sp.costumes):
                     out.append((sp, c, sx, sy, dr, tam, False, sp.rot))
