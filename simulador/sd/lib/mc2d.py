@@ -385,7 +385,9 @@ class Juego:
         self.paso_t = 0.0
         self.golpe_t = 0.0                        # animación del brazo
         self.dano_t = 0.0
-        self.mobs = []                            # [tipo, x, y, vx, vy, vida, cara, t]
+        self.mobs = []                            # [tipo, x, y, vx, vy, vida, cara, t, id]
+        self.mob_id = 0
+        self.muerto = False
         self.otros = {}                           # id -> [x, y, cara, anim, objeto, nombre]
         self.enviado = None
         self.cuadro = 0
@@ -523,7 +525,7 @@ class Juego:
         # otros jugadores
         for o in self.otros.values():
             x0, y0, x1, y1 = self.caja_jugador(o[0], o[1])
-            if x1 < 0 or x0 > P.ANCHO:
+            if x1 < 0 or x0 > P.ANCHO or o[6]:
                 continue
             P.dibujar(spr("jugador_andar" if o[3] else "jugador"), x0 + 1, y0 + 1, 1, o[2] < 0)
             if o[4]:
@@ -656,21 +658,25 @@ class Juego:
 
     def golpear(self):
         tx, ty = self.objetivo()
-        m = self.mob_en(tx, ty) or self.mob_en(tx - 1 if self.cara < 0 else tx + 1, ty)
-        if not m:
-            return False
         tipo, mat = self.herramienta()
         dano = DANO[ESPADA][mat] if tipo == ESPADA else (2 if tipo >= 0 else 1)
-        m[5] -= dano
-        m[3] = 5.0 * self.cara
-        m[4] = 5.0
-        self.golpe_t = 0.25
-        sonar(("pig%d" if m[0] == 0 else "zombiehurt%d") % random.randint(1, 2), 0.6)
-        if m[5] <= 0:
-            self.mobs.remove(m)
-            sonar("pigdeath" if m[0] == 0 else "zombiedeath", 0.7)
-            dar(CARNE if m[0] == 0 else CARNE_POD, random.randint(1, 2))
-        return True
+        m = self.mob_en(tx, ty) or self.mob_en(tx - 1 if self.cara < 0 else tx + 1, ty)
+        if m:
+            self.golpe_t = 0.25
+            if self.manda_mobs():
+                self.dano_mob(m, dano, self.cara)
+            else:                                 # el mob es del anfitrión: se lo digo
+                red.enviar({"golpe": [m[8], dano, self.cara]})
+                sonar(("pig%d" if m[0] == 0 else "zombiehurt%d") % random.randint(1, 2), 0.6)
+            return True
+        # otro jugador (PvP, como en Minecraft)
+        for pid, o in self.otros.items():
+            if not o[6] and int(o[0] + PW / 2) in (tx, tx - self.cara) and int(o[1]) <= ty <= int(o[1] + 1.8):
+                red.enviar({"dano": [pid, dano, self.cara]})
+                self.golpe_t = 0.25
+                sonar("hurt", 0.5)
+                return True
+        return False
 
     # ---- física --------------------------------------------------------------------
     def libre_col(self, tx, y0, y1):
@@ -780,60 +786,122 @@ class Juego:
     def es_noche(self):
         return self.tiempo % DIA_S > DIA_S * 0.7
 
+    def manda_mobs(self):
+        """Los mobs los lleva el anfitrión (o tú si juegas solo)."""
+        return not self.online or red.anfitrion() == red.mi_id()
+
+    def jugadores(self):
+        """[(id o None si soy yo, x, y)] de todos los jugadores de la partida."""
+        out = [] if self.muerto else [(None, self.x, self.y)]
+        for pid, o in self.otros.items():
+            if not o[6]:
+                out.append((pid, o[0], o[1]))
+        return out
+
+    def herir_a(self, pid, n, cara):
+        if pid is None:
+            self.herir(n)
+            self.vx = 6.0 * cara
+        else:                                     # otro jugador: se lo digo a él
+            red.enviar({"dano": [pid, n, cara]})
+
+    def oye(self, m):
+        """Solo se oyen los mobs que tienes cerca (no los del otro jugador)."""
+        return abs(m[1] - self.x) < 14 and abs(m[2] - self.y) < 10
+
+    def ruido_mob(self, m, dt):
+        if m[0] == 1:
+            if random.random() < dt * 0.3 and self.oye(m):
+                sonar("zombie%d" % random.randint(1, 3), 0.4)
+        elif random.random() < dt * 0.05 and self.oye(m):
+            sonar("pig%d" % random.randint(1, 3), 0.3)
+
     def mobs_paso(self, dt):
-        # aparecer (cerca del jugador, fuera de la pantalla)
+        if not self.manda_mobs():                 # los mobs llegan del anfitrión
+            for m in self.mobs:
+                self.ruido_mob(m, dt)
+            return
+        jug = self.jugadores()
+        if not jug:
+            return
+        # aparecer cerca de algún jugador, fuera de su pantalla
         zombis = sum(1 for m in self.mobs if m[0] == 1)
-        if len(self.mobs) < 5 and random.random() < dt * (0.12 if self.es_noche() else 0.25):
+        if len(self.mobs) < 4 + 2 * len(self.otros) and \
+                random.random() < dt * (0.12 if self.es_noche() else 0.25):
+            _, jx, jy = random.choice(jug)
             lado = random.choice((-1, 1))
-            x = int(self.x) + lado * random.randint(12, 18)
+            x = int(jx) + lado * random.randint(12, 18)
             if 0 <= x < W:
                 y = alto[x] + 1
                 top = g(x, alto[x])
+                self.mob_id += 1
                 if self.es_noche():
-                    if zombis < 3:
-                        self.mobs.append([1, x + 0.2, float(y), 0.0, 0.0, 20, -lado, 0.0])
+                    if zombis < 3 + len(self.otros):
+                        self.mobs.append([1, x + 0.2, float(y), 0.0, 0.0, 20, -lado, 0.0, self.mob_id])
                 elif top == HIERBA:
-                    self.mobs.append([0, x + 0.2, float(y), 0.0, 0.0, 10, 1, 0.0])
+                    self.mobs.append([0, x + 0.2, float(y), 0.0, 0.0, 10, 1, 0.0, self.mob_id])
         for m in list(self.mobs):
-            if abs(m[1] - self.x) > 40:
+            # el jugador más cercano (yo o cualquiera de los demás)
+            cerca, dist = None, 1e9
+            for pj in jug:
+                d = abs(pj[1] - m[1]) + abs(pj[2] - m[2]) * 0.5
+                if d < dist:
+                    cerca, dist = pj, d
+            if dist > 40:
                 self.mobs.remove(m)
                 continue
             if m[0] == 1 and not self.es_noche() and m[2] >= alto[min(W - 1, max(0, int(m[1])))]:
                 self.mobs.remove(m)               # los zombis se van al amanecer
                 continue
             m[7] -= dt
-            if m[0] == 1:                         # zombi: hacia el jugador
-                d = self.x - m[1]
+            if m[0] == 1:                         # zombi: hacia el jugador más cercano
+                pid, px, py = cerca
+                d = px - m[1]
                 m[6] = 1 if d > 0 else -1
                 vx = 2.2 * m[6] if abs(d) > 0.5 else 0.0
-                if abs(d) < 0.8 and abs(self.y - m[2]) < 1.5 and m[7] <= 0:
-                    self.herir(2)
-                    self.vx = 6.0 * m[6]
+                if abs(d) < 0.8 and abs(py - m[2]) < 1.5 and m[7] <= 0:
+                    self.herir_a(pid, 2, m[6])
                     m[7] = 1.2
-                if random.random() < dt * 0.3:
-                    sonar("zombie%d" % random.randint(1, 3), 0.4)
             else:                                 # cerdo: pasea
                 if m[7] <= 0:
                     m[7] = random.uniform(1.5, 4.0)
                     m[6] = random.choice((-1, 0, 1))
                 vx = 1.2 * m[6]
-                if random.random() < dt * 0.05:
-                    sonar("pig%d" % random.randint(1, 3), 0.3)
+            self.ruido_mob(m, dt)
             if abs(m[3]) > 0.1:                   # empujón al golpearlo
                 vx = m[3]
                 m[3] *= 0.85
             alto_m = 0.75 if m[0] == 0 else PH
-            e = [m[1], m[2], vx, False, 0.8 if m[0] == 0 else PW, alto_m]
+            suelo = abs(m[4]) < 0.01              # (se mira antes de la gravedad)
+            e = [m[1], m[2], vx, suelo, 0.8 if m[0] == 0 else PW, alto_m]
             m[4] = max(-MAX_CAIDA, m[4] - GRAV * dt)
-            self.mover_x(e, vx * dt)
-            if e[2] == 0.0 and vx and abs(m[4]) < 0.01:
-                m[4] = SALTO * 0.8                  # saltar un obstáculo
+            self.mover_x(e, vx * dt)              # en el suelo sube escalones solo
+            if e[2] == 0.0 and vx and suelo:
+                m[4] = SALTO                      # saltar un obstáculo
             golpe = self.mover_y(e, m[4] * dt)
             if golpe:
                 m[4] = 0.0
             m[1], m[2] = e[0], e[1]
             if m[6] == 0:
                 m[6] = 1
+
+    def dano_mob(self, m, dano, cara, quien=None):
+        """Golpe a un mob (lo aplica quien lleva los mobs). quien = id del que pega."""
+        m[5] -= dano
+        m[3] = 5.0 * cara
+        m[4] = 5.0
+        oigo = self.oye(m)
+        if oigo:
+            sonar(("pig%d" if m[0] == 0 else "zombiehurt%d") % random.randint(1, 2), 0.6)
+        if m[5] <= 0:
+            self.mobs.remove(m)
+            if oigo:
+                sonar("pigdeath" if m[0] == 0 else "zombiedeath", 0.7)
+            it, n = (CARNE if m[0] == 0 else CARNE_POD), random.randint(1, 2)
+            if quien is None:
+                dar(it, n)
+            else:
+                red.enviar({"dar": [quien, it, n]})
 
     # ---- red --------------------------------------------------------------------------
     def red_paso(self):
@@ -842,17 +910,38 @@ class Juego:
         self.cuadro += 1
         if self.cuadro % 3 == 0:
             d = {"p": [round(self.x, 2), round(self.y, 2), self.cara,
-                       1 if abs(self.vx) > 0.5 else 0, inv_id[self.sel]]}
+                       1 if abs(self.vx) > 0.5 else 0, inv_id[self.sel], 1 if self.muerto else 0]}
             if d != self.enviado:
                 red.enviar(d)
                 self.enviado = d
+            if self.manda_mobs() and self.otros:   # el anfitrión cuenta dónde están los mobs
+                red.enviar({"m": [[m[8], m[0], round(m[1], 2), round(m[2], 2), m[6]]
+                                  for m in self.mobs], "t": round(self.tiempo, 1)})
+        yo = red.mi_id()
         for m in red.recibir():
             t = m.get("t")
-            if t == "de" and "p" in m.get("d", {}):
-                p = m["d"]["p"]
-                o = self.otros.get(m["id"])
+            d = m.get("d") or {}
+            if t == "de" and "p" in d:
+                p = d["p"]
                 nombre = str(red.jugadores().get(m["id"], "?"))[:10]
-                self.otros[m["id"]] = [p[0], p[1], p[2], p[3], p[4], nombre]
+                self.otros[m["id"]] = [p[0], p[1], p[2], p[3], p[4], nombre,
+                                       p[5] if len(p) > 5 else 0]
+            elif t == "de" and "m" in d and not self.manda_mobs():
+                # mobs del anfitrión: [id, tipo, x, y, cara]
+                self.mobs = [[e[1], e[2], e[3], 0.0, 0.0, 10, e[4], 0.0, e[0]] for e in d["m"]]
+                if "t" in d:                      # la hora del día es la del anfitrión
+                    self.tiempo = d["t"]
+            elif t == "de" and "golpe" in d and self.manda_mobs():
+                mid, dano, cara = d["golpe"]
+                for mob in self.mobs:
+                    if mob[8] == mid:
+                        self.dano_mob(mob, dano, cara, m["id"])
+                        break
+            elif t == "de" and "dano" in d and d["dano"][0] == yo and not self.muerto:
+                self.herir(d["dano"][1])
+                self.vx = 6.0 * d["dano"][2]
+            elif t == "de" and "dar" in d and d["dar"][0] == yo:
+                dar(d["dar"][1], d["dar"][2])
             elif t == "var" and str(m.get("n", "")).startswith("b:"):
                 i = int(m["n"][2:])
                 if 0 <= i < W * H and m["id"] != red.mi_id():
@@ -887,7 +976,9 @@ class Juego:
         recetas = [r for r in RECETAS if r[3] in sitios]
         sel, coger = 0, None
         n_rec = len(recetas)
+        self.fondo_t = K.ms()
         while True:
+            self.fondo_paso()
             P.recorte()
             P.rect(10, 6, 300, 206, 0xC6C6C6)
             P.marco(10, 6, 300, 206, 0x000000)
@@ -973,7 +1064,9 @@ class Juego:
     def pausa(self):
         ops = ["Volver al juego", "Guardar", "Guardar y salir", "Salir sin guardar"]
         sel = 0
+        self.fondo_t = K.ms()
         while True:
+            self.fondo_paso()
             P.recorte()
             P.rect(60, 40, 200, 140, 0x202020)
             P.marco(60, 40, 200, 140, 0xFFFFFF)
@@ -1079,15 +1172,31 @@ class Juego:
             self.cielo = c
             self.completo = True
 
+    def fondo_paso(self):
+        """Con un menú abierto (o muerto) la partida online sigue: mobs, red y hora."""
+        if not self.online:
+            return
+        ahora = K.ms()
+        dt = min(0.1, max(0.0, (ahora - self.fondo_t) / 1000))
+        self.fondo_t = ahora
+        self.tiempo += dt
+        self.mobs_paso(dt)
+        self.red_paso()
+        self.completo = True                      # al volver se repinta todo
+
     def morir(self):
         P.recorte()
         P.rect(0, 0, P.ANCHO, P.ALTO, 0x601010)
         P.texto("Has muerto", 100, 70, 0xFFFFFF, None, 2)
         P.texto("EXE: reaparecer", 110, 120, 0xFFC0C0)
         P.mostrar()
+        self.muerto = True
+        self.fondo_t = K.ms()
         while True:
+            self.fondo_paso()
             for k, sh in K.eventos():
                 if k == "EXE":
+                    self.muerto = False
                     self.vida, self.hambre = 20, 20
                     for i in range(NHUECOS):          # como en Minecraft: lo pierdes todo
                         inv_id[i] = inv_n[i] = 0

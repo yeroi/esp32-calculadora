@@ -175,7 +175,7 @@ python pc/sb3_a_scicalc.py MiJuego.sb3 E:\              # -> MicroSD (E:\scratch
 
 **Partidas guardadas**: si el juego muestra una lista cuyo nombre contiene "save", su contenido se guarda en `partida_N.txt` junto al juego (el sandbox pide permiso para escribir). Cuando el juego pide pegar un código de partida, aparece un selector: pulsa el número de la partida.
 
-**Controles por juego**: el convertidor crea `controles.json` (editable) y aplica los perfiles de `pc/perfiles/` (incluido el de Paper Minecraft: E → 9, F → 7, barra de objetos en SHIFT+1…9, P → "(" abre el menú, guardar con O). Correr (SHIFT en Scratch) es un doble toque rápido en ◄ o ►.
+**Controles por juego**: el convertidor crea `controles.json` (editable) y aplica los perfiles de `pc/perfiles/` (con sus **parches al código Scratch**, ver `pc/parches_scratch.py`; para un juego ya convertido: `python pc/parches_scratch.py simulador/sd/scratch/<juego>`) (incluido el de Paper Minecraft: E → 9, F → 7, barra de objetos en SHIFT+1…9, P → "(" abre el menú, guardar con O). Correr (SHIFT en Scratch) es un doble toque rápido en ◄ o ►.
 
 El intérprete reparte el tiempo como Scratch: en cada fotograma repite los guiones hasta que algo cambia en pantalla, así que los bucles de cálculo (generar un mundo, por ejemplo) van a toda velocidad. Probado con *Paper Minecraft* de griffpatch (30 objetos, 14 000 bloques): genera el mundo y se juega en el simulador.
 
@@ -218,7 +218,7 @@ python pc/scicalc_servidor.py          # servidor dedicado en un PC (o en intern
 
 **En Paper Minecraft**: menú SciCalc (SHIFT+EXE o «(») › **Multijugador...**
 
-- **Buscar partidas en la red**: encuentra las partidas de este juego abiertas en tu Wi-Fi (servidores dedicados y calculadoras que hostean). *Unirse* te mete en ese mundo; si estás en el título, el juego empieza uno solo y lo cambia por el de la partida.
+- **Buscar partidas en la red**: encuentra las partidas de este juego abiertas en tu Wi-Fi (servidores dedicados y calculadoras que hostean). *Unirse* te mete en ese mundo. Desde el título **no se crea ningún mundo**: el anfitrión guarda su partida con el propio guardado del juego y tu calculadora la abre con *Load Game* (como al cargar una partida).
 - **Hostear este mundo**: tu calculadora hace de servidor con el mundo en el que estás; los demás lo encuentran con *Buscar*.
 - **+ Añadir servidor (IP)**: para jugar por internet; escribe `IP` o `IP:puerto` con el teclado en pantalla (los números se escriben directamente). Luego, en el servidor: *Unirse* o *Nueva partida aquí* (sube tu mundo).
 - **Tu nombre**: el que ven los demás encima de tu personaje.
@@ -235,7 +235,7 @@ Necesita Wi-Fi conectado y está bloqueado en modo examen.
 
 - **Clonaria**: al empezar, `1` un jugador / `2` multijugador. Todos comparten el mismo mundo (semilla del anfitrión), ven los bloques que pican o ponen los demás —también los cambiados antes de entrar— y a los otros jugadores con su nombre encima.
 - **Scratch**: las variables en la nube (☁) se sincronizan entre todos los que juegan al mismo proyecto.
-- **Paper Minecraft** (y otros juegos de Scratch con un perfil): menú SciCalc › **Multijugador...** (ver arriba). Quien hostea sube su mundo; los demás lo reciben y aparecen a su lado. Los bloques que pica o pone cada uno se ven en todas las pantallas y cada jugador ve a los demás con su nombre. No se comparten criaturas, objetos tirados ni inventario. Se configura en la sección `multijugador` del perfil (`pc/perfiles/paper_minecraft.json`, ver `/lib/scratch_red.py`).
+- **Paper Minecraft** (y otros juegos de Scratch con un perfil): menú SciCalc › **Multijugador...** (ver arriba). Quien hostea sube su mundo; los demás lo reciben y aparecen a su lado. Los bloques que pica o pone cada uno se ven en todas las pantallas y cada jugador ve a los demás con su nombre. Las criaturas las simula solo el anfitrión (los demás las ven, sin mobs propios invisibles); no se comparte el inventario. Se configura en la sección `multijugador` del perfil (`pc/perfiles/paper_minecraft.json`, ver `/lib/scratch_red.py`).
 - **Tus juegos**: módulo `scicalc.red` ([docs/API_scicalc.md](docs/API_scicalc.md)).
 
 Medios de conexión en el ESP32 (firmware, pendiente; mismo protocolo en todos):

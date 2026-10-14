@@ -140,7 +140,8 @@
       ],
       "poner": {
         "_MaxMobs": 0,
-        "_MaxMobsBad": 0
+        "_MaxMobsBad": 0,
+        "_RedInvitado": 1
       }
     },
     "cargar_partida": [
@@ -151,7 +152,9 @@
           -15
         ]
       }
-    ]
+    ],
+    "unirse_con_partida": true,
+    "_comentario_unirse": "unirse_con_partida: el que se une NO crea un mundo: el anfitrión guarda su partida con el propio 'Save Game' del juego y el invitado la abre con 'Load Game' (botón de cargar_partida); el juego arranca por 'start after loaded', sin generar nada. _RedInvitado (ver parches) apaga sus mobs."
   },
   "parches": [
     {
@@ -160,6 +163,15 @@
       "era": "S1",
       "valor": "S",
       "motivo": "la hierba con nieve suelta tierra también sin pala (como en Minecraft)"
+    },
+    {
+      "objeto": "Mob",
+      "guion": [
+        "event_whenbroadcastreceived",
+        "animate"
+      ],
+      "parar_si": "_RedInvitado",
+      "motivo": "multijugador: el invitado no simula mobs (sin mobs invisibles ni sus sonidos); los lleva el anfitrión"
     }
   ]
 }

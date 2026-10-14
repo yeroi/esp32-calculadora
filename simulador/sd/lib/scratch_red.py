@@ -23,9 +23,15 @@
 #                 botón "Multijugador" en el título del juego (coordenadas de Scratch)
 #      "icono": ["Tiles", "grass", "soil"]   disfraces para la pantalla (icono, fondo)
 #
+#      "unirse_con_partida": true
+#                 el que se une no crea ningún mundo: el anfitrión guarda su partida
+#                 con el propio guardado del juego (tecla "guardar") y el invitado
+#                 la abre con el botón de cargar ("cargar_partida"), contestando él
+#                 solo a "pega el código". El juego arranca como al cargar una partida.
+#
 #  En el juego: botón "Multijugador" del título, o menú SciCalc > Multijugador:
-#  pantalla al estilo de Minecraft (scratch_red_ui.py). Si te unes desde el
-#  título, el juego empieza un mundo cualquiera y se cambia por el de la partida.
+#  pantalla al estilo de Minecraft (scratch_red_ui.py). Sin "unirse_con_partida",
+#  si te unes desde el título el juego empieza un mundo y se cambia por el de la partida.
 #
 #  Cómo funciona (todo con scicalc.red, en la sala del juego):
 #    * El primero que se conecta ABRE la partida: sube las listas del mundo
@@ -55,6 +61,46 @@ POS_CADA = 3           # enviar la posición cada 3 fotogramas (~10 por segundo)
 GIROS = {"all around": 0, "left-right": 1, "don't rotate": 2}   # estilo de giro -> número
 GIROS_INV = ("all around", "left-right", "don't rotate")
 ESPERA_MUNDO = 10000   # ms esperando a que el anfitrión suba el mundo
+ESPERA_PARTIDA = 60000  # ms esperando a que el anfitrión guarde y suba su partida
+
+
+# Inventario vacío (registro 202: "0" = huecos vacíos seguidos, 40 de ellos)
+INV_VACIO = "3202" + "15" + "10" + "240"
+
+
+def sin_inventario(txt):
+    """Cambia el inventario (registros 200-202) de un código de partida de Paper
+    Minecraft por uno vacío: el que se une no se lleva una copia del del anfitrión.
+    Formato: número de formato y registros [tipo][largo][datos]; cada número va
+    como 1 cifra con cuántas cifras tiene y luego el número ("0" es el 1)."""
+    def num(i):
+        c = txt[i]
+        if c == "0":
+            return 1, i + 1
+        k = int(c)
+        return int(txt[i + 1:i + 1 + k]), i + 1 + k
+    try:
+        _, i = num(0)
+        out = [txt[:i]]
+        puesto = False
+        while i < len(txt):
+            if not ("0" <= txt[i] <= "9"):
+                out.append(txt[i])
+                i += 1
+                continue
+            ini = i
+            tipo, i = num(i)
+            largo, i = num(i)
+            fin = i + largo
+            if not 200 <= tipo <= 202:
+                out.append(txt[ini:fin])
+            elif not puesto:
+                out.append(INV_VACIO)
+                puesto = True
+            i = fin
+        return "".join(out)
+    except (ValueError, IndexError):
+        return txt                                  # formato raro: tal cual
 
 
 class Multijugador:
@@ -78,6 +124,9 @@ class Multijugador:
         self.inv_vaciar = [var(n, st.lists) for n in inv.get("vaciar", [])]
         self.inv_poner = [(var(n, st.vars), v) for n, v in (inv.get("poner") or {}).items()]
         self.invitado = False       # me he unido a la partida de otro
+        self.con_partida = bool(cfg.get("unirse_con_partida"))
+        self.capturar = False       # anfitrión: el próximo guardado es para la red
+        self.partida_txt = None     # invitado: código de partida que contestar al juego
         self.inv_t = 0
         self.vx, self.vy = var(cfg.get("x"), st.vars), var(cfg.get("y"), st.vars)
         cam = cfg.get("camara") or [None, None]
@@ -158,6 +207,7 @@ class Multijugador:
     def auto(self, modo, destino=None):
         """Entrar en la partida en cuanto el jugador esté en un mundo."""
         self.modo_auto, self.destino = modo, destino or {}
+        self.p.dirty_all = True
         if not self.en_mundo():        # desde el título: el juego empieza un mundo nuevo
             pasos = self.cargar if self.destino.get("cargar") and self.cargar else self.nueva
             self.pasos = [dict(p) for p in pasos]     # (o abre "Load Game": tú eliges cuál)
@@ -183,12 +233,40 @@ class Multijugador:
             elif len(self.pasos) == 1 and not self.visible(paso["si"]) and self.clic_t:
                 self.pasos = []                        # el último botón ya no está: hecho
         if self.en_mundo():
-            self.modo_auto = None
-            self.conectar()
+            modo, self.modo_auto = self.modo_auto, None
+            self.p.dirty_all = True
+            if modo == "cargando":
+                self.unido()                           # ya estoy en el mundo del anfitrión
+            else:
+                self.conectar()
+        elif self.modo_auto in ("unirse", "cargando"):
+            pass                                       # ya lo dice tapar()
         elif self.p.toast is None or ahora > self.p.toast[1] - 500:
             self.aviso("Elige el mundo guardado..." if self.destino.get("cargar") else
                        "Creando el mundo para hostear..." if self.modo_auto == "hostear"
                        else "Entrando en la partida...")
+
+    def mudo(self, sp):
+        """Sonidos que no deben oírse: los del mundo provisional mientras te unes y
+        los de mis mobs de invitado (los de verdad los simula el anfitrión)."""
+        if self.modo_auto in ("unirse", "cargando"):
+            return True
+        return self.invitado and sp.is_clone and sp.name in self.inv_borrar
+
+    def tapar(self):
+        """Al unirte desde el título el juego de Scratch tiene que arrancar un mundo
+        (es su forma de empezar), pero no es el tuyo: se tapa hasta recibir el del
+        anfitrión."""
+        x, y = int(self.p.ox), int(self.p.oy)
+        w, h = int(self.p.sw), int(self.p.sh)
+        P.rect(x, y, w, h, 0x3B2A1E)
+        for i in range(0, w, 16):
+            P.rect(x + i, y, 8, h, 0x45321F)
+        t = "Conectando a la partida..."
+        P.texto(t, x + (w - len(t) * 6) // 2, y + h // 2 - 12, 0xFFFFFF)
+        t = "(abriendo el mundo del anfitrion)" if self.modo_auto == "cargando" else \
+            "(descargando el mundo del anfitrion)"
+        P.texto(t, x + (w - len(t) * 6) // 2, y + h // 2 + 4, 0xA0A0A0)
 
     # ---- conectar / salir --------------------------------------------------------
     def conectar(self):
@@ -276,11 +354,42 @@ class Multijugador:
                     self.aviso(msg)
                 return
         self.p.menu = None
-        if self.en_mundo():
+        if self.con_partida and self.cargar and not self.en_mundo():
+            self.unirse_cargando(destino)         # abre la partida del anfitrión, sin crear nada
+        elif self.en_mundo():
             self.destino = destino
             self.conectar()                       # tu mundo se cambia por el de la partida
         else:
             self.auto("unirse", destino)          # desde el título: empieza uno y se cambia
+
+    def unirse_cargando(self, destino):
+        self.destino = destino
+        self.aviso("Conectando...")
+        P.mostrar()
+        red.conectar(self.p.room, None, destino.get("host"), destino.get("puerto"), False)
+        if not red.esperar():
+            self.aviso("Sin conexión: " + red.error())
+            return
+        self.on = True
+        self.modo_auto = "cargando"               # (tapa la pantalla mientras)
+        self.tapar()
+        P.mostrar()
+        vs = self.esperar_vars(lambda v: "partida" in (v.get("mundo") or {}), ESPERA_PARTIDA)
+        self.modo_auto = None
+        info = vs.get("mundo") or {}
+        if "partida" not in info:
+            red.desconectar()
+            self.on = False
+            self.aviso("El anfitrión no ha mandado su partida")
+            return
+        trozos = [vs.get("g:%d" % i) or "" for i in range(info["partida"])]
+        self.partida_txt = "".join(trozos)
+        for vid, v in self.inv_poner:              # _RedInvitado = 1 ya: el juego no simula mobs
+            if vid:
+                self.p.stage.vars[vid] = v
+        self.modo_auto = "cargando"               # clic en "Load Game"; el código lo pongo yo
+        self.pasos = [dict(p) for p in self.cargar]
+        self.p.dirty_all = True
 
     def hostear(self, destino):
         self.p.menu = None
@@ -293,7 +402,12 @@ class Multijugador:
     def salir(self):
         self.p.menu = None
         red.desconectar()
+        if self.invitado:                           # vuelves a jugar solo: tus mobs, otra vez
+            for vid, v in self.inv_poner:
+                if vid and self.p.names.get(vid) == "_RedInvitado":
+                    self.p.stage.vars[vid] = 0
         self.on = self.listo = self.invitado = False
+        self.capturar, self.partida_txt = False, None
         self.otros = {}                             # (zonas() borra lo que se dibujó)
         self.aviso("Multijugador desconectado")
 
@@ -310,7 +424,30 @@ class Multijugador:
             info[nombre] = n
         vs = {n: st.vars.get(vid) for n, vid in self.mundo_vars.items() if vid}
         red.var("mundo", {"listas": info, "vars": vs})   # al final: el mundo ya está completo
+        self.info_listas = info
+        if self.con_partida and self.p.save_key:
+            # y la partida guardada por el propio juego, para quien se una desde el
+            # título (la abre con "Load Game" en vez de crear un mundo)
+            self.capturar = True                    # el juego guarda y guardado() lo sube
+            self.p.inject(self.p.save_key)
         self.aviso("Partida abierta: ya se pueden unir")
+
+    def guardado(self, txt):
+        """Anfitrión: el juego acaba de guardar la partida (su código): se sube."""
+        self.capturar = False
+        txt = sin_inventario(txt)
+        n = (len(txt) + 3999) // 4000
+        for i in range(n):
+            red.var("g:%d" % i, txt[i * 4000:(i + 1) * 4000])
+        st = self.p.stage
+        vs = {nm: st.vars.get(vid) for nm, vid in self.mundo_vars.items() if vid}
+        red.var("mundo", {"listas": getattr(self, "info_listas", {}), "vars": vs, "partida": n})
+        self.aviso("Partida abierta: ya se pueden unir")
+
+    def respuesta(self):
+        """Invitado: el código de partida con el que contestar a "pega el código"."""
+        t, self.partida_txt = self.partida_txt, None
+        return t
 
     def descargar(self, vs):
         st = self.p.stage
@@ -327,7 +464,12 @@ class Multijugador:
             vid = self.mundo_vars.get(nombre)
             if vid:
                 st.vars[vid] = v
+        self.unido()
+
+    def unido(self):
+        """Ya estoy en el mundo del anfitrión: sin mis mobs, junto a él."""
         self.invitado = True
+        self.listo = True
         self.solo_anfitrion()
         # aparecer junto al anfitrión (su posición llega en unos instantes)
         anf = red.anfitrion()
@@ -410,6 +552,10 @@ class Multijugador:
         return bool(msgs)
 
     def paso(self):
+        if self.modo_auto == "cargando":              # conectado, abriendo su partida
+            self.leer()
+            self.paso_auto()
+            return
         if self.modo_auto and not self.on:
             self.paso_auto()
             return

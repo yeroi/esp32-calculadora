@@ -297,17 +297,10 @@ def key_label(c):
 
 # -----------------------------------------------------------------------------
 def apply_patches(targets, patches):
-    """Cambios de datos de un perfil: {"lista", "indice" (desde 1, como en Scratch),
-    "era", "valor", "motivo"}. Solo se aplica si el valor actual es "era"."""
-    for pt in patches:
-        for t in targets:
-            for lid, (lname, items) in t["listas"].items():
-                if lname != pt.get("lista"):
-                    continue
-                i = int(pt.get("indice", 0)) - 1
-                if 0 <= i < len(items) and str(items[i]) == str(pt.get("era")):
-                    items[i] = pt.get("valor")
-                    print(f"  parche: {pt.get('motivo', lname)}")
+    """Parches del perfil (datos de listas y código): ver pc/parches_scratch.py."""
+    sys.path.insert(0, str(HERE))
+    import parches_scratch
+    parches_scratch.aplicar(targets, patches)
 
 
 # ---- Sonidos ------------------------------------------------------------------------

@@ -357,6 +357,7 @@ class Project:
         self.mouse_t = 0                         # ms que lleva moviéndose (acelera)
         self.mouse_drawn = None
         self.taps = {}                           # "S:x" (SHIFT+tecla) -> válido hasta (ms)
+        self.inj_leida = set()                   # teclas inyectadas que el juego ya ha leído
         self.injected = {}                       # tecla de Scratch pulsada por el menú -> hasta (ms)
         self.last_tap = (None, 0)                # para el doble toque (correr)
         self.sprint = None                       # flecha con la que se está corriendo
@@ -789,7 +790,7 @@ class Project:
             e = find_sound(ctx.sp, self.ev(ctx, b, "SOUND_MENU"))
             if e is None:
                 return None
-            if sonar and ctx.sp.volume > 0:
+            if sonar and ctx.sp.volume > 0 and not (self.multi and self.multi.mudo(ctx.sp)):
                 sonar(e[1], ctx.sp.volume / 100)
             if not until:
                 return None
@@ -932,7 +933,11 @@ class Project:
 
         def key_pressed(name):
             name = str(name).lower()
-            if self.injected.get(name, -1) >= self.frame:
+            fin = self.injected.get(name, -1)
+            if fin >= self.frame:
+                if name not in self.inj_leida:         # el juego ya la ha visto: se suelta
+                    self.inj_leida.add(name)           # en 3 fotogramas
+                    self.injected[name] = min(fin, self.frame + 3)
                 return True
             if self.run_key is not None and name == self.run_key and self.sprint:
                 return True                            # correr: doble toque en una flecha
@@ -1010,7 +1015,9 @@ class Project:
             q = text(self.ev(ctx, b, "QUESTION"))
             self.asking = [q, "", False]
             ql = q.lower()
-            if ("save" in ql or "paste" in ql or "partida" in ql or "pega" in ql) and self.list_saves():
+            if self.multi and self.multi.partida_txt and ("save" in ql or "paste" in ql):
+                self.asking = [q, self.multi.respuesta(), True]   # partida del anfitrión
+            elif ("save" in ql or "paste" in ql or "partida" in ql or "pega" in ql) and self.list_saves():
                 self.picker = self.list_saves()        # elegir partida guardada con un número
             self.dirty_all = True
 
@@ -1116,7 +1123,13 @@ class Project:
             lid = self.field(b, "LIST")
             name = self.names.get(lid, "")
             if "save" in name.lower() or "guard" in name.lower():
-                self.save_game(self.lst(ctx.sp, lid))
+                items = self.lst(ctx.sp, lid)
+                if self.multi and self.multi.capturar:   # guardado para el multijugador
+                    self.multi.guardado("".join(text(i) for i in items))
+                    if self.after_save:
+                        self.pending = [self.after_save, self.now + 700]
+                else:
+                    self.save_game(items)
         S["data_showlist"] = showlist
         S["data_hidelist"] = lambda ctx, b: None
 
@@ -1268,6 +1281,8 @@ class Project:
         self.draw_monitors()
         if self.asking:
             self.draw_picker() if self.picker else self.draw_ask()
+        if self.multi and self.multi.modo_auto in ("unirse", "cargando"):
+            self.multi.tapar()                        # el mundo provisional no se ve
         if self.toast:
             P.rect(int(self.ox) + 4, int(self.oy) + 4, len(self.toast[0]) * 6 + 10, 14, 0x203020)
             P.texto(self.toast[0], int(self.ox) + 9, int(self.oy) + 7, 0x80FF80)
@@ -1470,8 +1485,10 @@ class Project:
 
     def inject(self, sk):
         """Pulsa una tecla de Scratch como si la hubiera pulsado el jugador."""
-        self.injected[sk] = self.frame + 6            # dura 6 fotogramas (no ms: en mundos
-                                                      # pesados un fotograma puede ser lento)
+        # Sigue pulsada hasta que el juego la mira (y 3 fotogramas más): una vuelta del
+        # bucle principal de un juego pesado puede durar muchos fotogramas
+        self.injected[sk] = self.frame + 300
+        self.inj_leida.discard(sk)
         self.start_hats("event_whenkeypressed", sk, restart=False)
 
     def draw_menu(self):
