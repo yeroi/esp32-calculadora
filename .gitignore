@@ -18,3 +18,4 @@ simulador/sd/wifi_ip.json
 firmware/micropython/build-embed/
 firmware/micropython/micropython_embed/
 simulador/sd/juegos/minecraft2d/mundos/
+simulador/sd/juegos/minecraft2d/pm/

@@ -194,13 +194,19 @@ La colisión usa cajas rectangulares (no el contorno exacto). En el ESP32 sin PS
 
 ## Minecraft 2D (MicroPython, funciona EN el ESP32)
 
-`sd/juegos/minecraft2d`: un Minecraft de lado escrito en MicroPython para la calculadora. El código (`sd/lib/mc2d.py`) va **congelado en el firmware**, así que no ocupa RAM: en el ESP32 usa ~45 KB de los ~70 KB de Python (medido con MicroPython del PC limitado a 70 KB).
+`sd/juegos/minecraft2d`: **Paper Minecraft hecho para caber en el ESP32**. Paper Minecraft entero (1,6 MB de Scratch) no cabe en los ~70 KB de Python; esta versión en MicroPython (`sd/lib/mc2d.py`, **congelada en el firmware**) no inventa nada: usa las **imágenes y las tablas del propio Paper Minecraft**, que saca de tu `.sb3`:
 
-- Mundo de 200×64 con biomas (llanura, desierto, nieve, mar), cuevas, menas (carbón, hierro, oro, diamante) y árboles.
-- Picar con grietas y herramientas (madera, piedra, hierro, diamante), poner bloques, arena y grava que caen.
-- Inventario de 27 huecos, fabricar a mano / en la mesa / en el horno, comida, hambre, vida y caídas.
-- Día y noche, cerdos y zombis. Guardar y cargar mundos. Multijugador con `scicalc.red`.
-- Sonidos de Paper Minecraft si está convertido. Texturas propias (`pc/mc2d_texturas.py`).
+```bash
+python pc/pm_a_mc2d.py "Paper Minecraft v11.7.sb3"     # crea juegos/minecraft2d/pm/ (no va en el repositorio)
+```
+
+- Bloques y objetos de `_BLOCK_DATA` (287), con sus texturas de 16×16 originales. Steve montado con sus partes en las poses del juego, sus criaturas, corazones, comida y grietas.
+- Picar como **Get Dig Speed** (dureza × herramienta y nivel); lo que cae como **Add To Harvest** (nivel de pico, pedernal, retoños, redstone...); durabilidad y daño de las herramientas.
+- Las **83 recetas** de `_Recipes` (2×2 a mano, 3×3 en la mesa, ingredientes por objeto raíz) y el **horno** (fundir con combustible: carbón 80 s, madera 15 s...).
+- Comida y saturación de `_FOOD_DATA`; criaturas de `_MOB_DATA` (cerdo, oveja, vaca, gallina, zombi, esqueleto que dispara, araña, creeper que explota) con su botín.
+- Biomas de `BIOME_DATA` (llanura, colinas, desierto, islas, bosque, taiga, nieve), cuevas con lava, menas (también redstone y esmeralda).
+- Día y noche, guardar y cargar mundos, multijugador con `scicalc.red` (mobs del anfitrión, PvP...).
+- En el ESP32 usa ~56 KB de los ~70 KB (medido con MicroPython del PC limitado a 70 KB): las tablas se leen del archivo cuando hacen falta.
 
 Controles: ◄ ► andar · ▲ saltar · 8 4 6 2 cursor · 5 picar (mantener) · EXE poner/usar · 1 3 objeto · 7 inventario · DEL menú. Ver `LEEME.txt`.
 

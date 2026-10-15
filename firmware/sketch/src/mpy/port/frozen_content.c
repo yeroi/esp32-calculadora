@@ -43,6 +43,7 @@ typedef struct _mp_obj_complex_t {
 
 enum {
     MP_QSTR__space_0 = MP_QSTRnumber_of,
+    MP_QSTR__space_x_percent_d,
     MP_QSTR__bang_,
     MP_QSTR__percent__hyphen_11s_space__percent_s,
     MP_QSTR__percent_d_space__space__percent_s,
@@ -51,14 +52,13 @@ enum {
     MP_QSTR__percent_d_space_jug,
     MP_QSTR__percent_d_hyphen__percent_d_space_de_space__percent_d,
     MP_QSTR__percent_d_slash_16,
-    MP_QSTR__percent_s_space_de_space__percent_s,
+    MP_QSTR__percent_s_space__space__lt__hyphen__space__space__percent_s,
     MP_QSTR__percent_s_space_entra,
     MP_QSTR__percent_s_space_ha_space_muerto,
-    MP_QSTR__percent_s_space_x_percent_d_space__space__lt__hyphen__space__space_,
     MP_QSTR__percent_s_percent_d,
+    MP_QSTR__percent_s_percent_s_space__lt__hyphen__space_,
     MP_QSTR__percent_s_slash__percent_s_dot_mc2d,
     MP_QSTR__percent_s_colon__percent_d,
-    MP_QSTR__percent_s__percent_s,
     MP_QSTR__plus_,
     MP_QSTR__plus_1_space_hora,
     MP_QSTR__comma_,
@@ -96,23 +96,30 @@ enum {
     MP_QSTR__colon__space_,
     MP_QSTR__lt__percent_s_gt__space__percent_s,
     MP_QSTR__lt__hyphen_,
+    MP_QSTR__lt_BHBBBBbbhHHbbHHHH,
+    MP_QSTR__lt_H,
+    MP_QSTR__lt_HH9H,
     MP_QSTR__equals_,
     MP_QSTR__question_,
+    MP_QSTR_ABEDUL,
+    MP_QSTR_ABETO,
     MP_QSTR_AC,
-    MP_QSTR_AGUA,
-    MP_QSTR_AIRE,
+    MP_QSTR_AGUA_PM,
+    MP_QSTR_AIRE_PM,
     MP_QSTR_ALCANCE,
     MP_QSTR_ANDAR,
-    MP_QSTR_ANTORCHA,
-    MP_QSTR_ARENA,
+    MP_QSTR_ANTORCHA_PM,
+    MP_QSTR_ARBOLES,
+    MP_QSTR_ARCILLA_PM,
+    MP_QSTR_ARENA_PM,
+    MP_QSTR_AREN_PIEDRA,
     MP_QSTR_Abriendo_space_la_space_partida_dot__dot__dot_,
-    MP_QSTR_Amapola,
-    MP_QSTR_Antorcha,
-    MP_QSTR_Arena,
     MP_QSTR_Atras,
     MP_QSTR_Atr_aacute_s,
     MP_QSTR_A_ntilde_adir_space_servidor,
+    MP_QSTR_B,
     MP_QSTR_BACKDROP,
+    MP_QSTR_BIOMAS,
     MP_QSTR_BROADCAST_INPUT,
     MP_QSTR_BTN,
     MP_QSTR_BTN_H,
@@ -122,14 +129,14 @@ enum {
     MP_QSTR_Bloques_space_no_space_soportados_colon_,
     MP_QSTR_Borrar,
     MP_QSTR_Buscando_space_partidas_dot__dot__dot_,
-    MP_QSTR_CACTUS,
-    MP_QSTR_CAEN,
-    MP_QSTR_CARBON,
+    MP_QSTR_C,
+    MP_QSTR_CACTUS_PM,
+    MP_QSTR_CAE,
+    MP_QSTR_CALABAZA,
+    MP_QSTR_CANA,
     MP_QSTR_CARBON_M,
-    MP_QSTR_CARNE,
-    MP_QSTR_CARNE_ASADA,
-    MP_QSTR_CARNE_POD,
     MP_QSTR_CARPETA,
+    MP_QSTR_CERO,
     MP_QSTR_CH_colon_,
     MP_QSTR_CH_colon_E,
     MP_QSTR_CH_colon_e,
@@ -138,21 +145,19 @@ enum {
     MP_QSTR_CIELO_DIA,
     MP_QSTR_CIELO_NOCHE,
     MP_QSTR_CLONE_OPTION,
+    MP_QSTR_COFRE_PM,
     MP_QSTR_COMIDA,
     MP_QSTR_CONDITION,
     MP_QSTR_COPY,
     MP_QSTR_COSTUME,
-    MP_QSTR_CRISTAL,
+    MP_QSTR_CUBO,
+    MP_QSTR_CUBO_AGUA,
+    MP_QSTR_CUBO_LAVA,
     MP_QSTR_CURRENTMENU,
-    MP_QSTR_Cactus,
     MP_QSTR_Cancelar,
-    MP_QSTR_Carbon,
     MP_QSTR_Cargando_space__percent_s_dot__dot__dot_,
     MP_QSTR_Cargar_space_mundo_space_guardado,
-    MP_QSTR_Carne_space_podrida,
     MP_QSTR_Cavando_space_cuevas_dot__dot__dot_,
-    MP_QSTR_Chuleta_space_asada,
-    MP_QSTR_Chuleta_space_cruda,
     MP_QSTR_Conectando_space_con_space__percent_s_dot__dot__dot_,
     MP_QSTR_Conectando_dot__dot__dot_,
     MP_QSTR_Conexion_space_directa_space__paren_open_IP_paren_close_,
@@ -162,71 +167,87 @@ enum {
     MP_QSTR_Controles_space__space__paren_open_EXE_space_vuelve_paren_close_,
     MP_QSTR_Controles_colon_,
     MP_QSTR_Crear_space_mundo_space_nuevo,
-    MP_QSTR_Cristal,
     MP_QSTR_Ctx,
-    MP_QSTR_DANO,
+    MP_QSTR_D,
     MP_QSTR_DATE,
     MP_QSTR_DEGREES,
     MP_QSTR_DEL,
     MP_QSTR_DEL_space__space_menu_space__paren_open_guardar_paren_close_,
+    MP_QSTR_DEL_colon__space_salir,
     MP_QSTR_DEL_colon__space_volver,
-    MP_QSTR_DIAMANTE,
     MP_QSTR_DIAMANTE_M,
     MP_QSTR_DIA_S,
     MP_QSTR_DIRECTION,
     MP_QSTR_DISTANCETOMENU,
     MP_QSTR_DOWN,
-    MP_QSTR_DT,
     MP_QSTR_DURATION,
-    MP_QSTR_DUREZA,
     MP_QSTR_DX,
     MP_QSTR_DY,
     MP_QSTR_Descargando_space_el_space_mundo_dot__dot__dot_,
     MP_QSTR_Desconectar,
-    MP_QSTR_Diamante,
-    MP_QSTR_Diente_space_de_space_leon,
     MP_QSTR_EFFECT,
-    MP_QSTR_ESPADA,
+    MP_QSTR_ESCALERA_PM,
+    MP_QSTR_ESMERALDA_M,
     MP_QSTR_ESPERA,
     MP_QSTR_ESPERA_MUNDO,
     MP_QSTR_ESPERA_PARTIDA,
     MP_QSTR_EXE,
     MP_QSTR_EXE_colon__space_reaparecer,
     MP_QSTR_EXE_colon__space_seguir_space_solo,
-    MP_QSTR_Edicion_space_calculadora,
     MP_QSTR_Elige_space_un_space_mundo,
     MP_QSTR_Error,
     MP_QSTR_Escondiendo_space_menas_dot__dot__dot_,
+    MP_QSTR_FICHA,
     MP_QSTR_FILAS,
-    MP_QSTR_FLOR_A,
-    MP_QSTR_FLOR_R,
+    MP_QSTR_FLECHA,
+    MP_QSTR_FLOR,
     MP_QSTR_FONDO_CUEVA,
     MP_QSTR_FORWARD_BACKWARD,
     MP_QSTR_FROM,
     MP_QSTR_FRONT_BACK,
-    MP_QSTR_Fabricar_space__paren_open_a_space_mano_paren_close_,
+    MP_QSTR_FT,
+    MP_QSTR_F_CAE,
+    MP_QSTR_F_CREAT,
+    MP_QSTR_F_DANO,
+    MP_QSTR_F_DUR,
+    MP_QSTR_F_DURAB,
+    MP_QSTR_F_FUNDE,
+    MP_QSTR_F_GRUPO,
+    MP_QSTR_F_HERR,
+    MP_QSTR_F_INV,
+    MP_QSTR_F_LIQ,
+    MP_QSTR_F_LUZ,
+    MP_QSTR_F_NIV,
+    MP_QSTR_F_QUEMA,
+    MP_QSTR_F_RAIZ,
+    MP_QSTR_F_SOL,
+    MP_QSTR_F_SUELTA,
+    MP_QSTR_F_TILE,
+    MP_QSTR_Fabricar_space__paren_open_2x2_paren_close_,
+    MP_QSTR_Falta_space_Paper_space_Minecraft,
+    MP_QSTR_Fundir_space__paren_open_EXE_paren_close__colon_,
     MP_QSTR_GIROS,
     MP_QSTR_GIROS_INV,
     MP_QSTR_GRAV,
-    MP_QSTR_GRAVA,
+    MP_QSTR_GRAVA_PM,
     MP_QSTR_Generando_space_el_space_terreno_dot__dot__dot_,
-    MP_QSTR_Grava,
     MP_QSTR_Guardado,
     MP_QSTR_Guardar,
     MP_QSTR_Guardar_space_partida,
     MP_QSTR_Guardar_space_y_space_salir,
     MP_QSTR_H,
-    MP_QSTR_HACHA,
-    MP_QSTR_HERR,
-    MP_QSTR_HIERBA,
-    MP_QSTR_HIERBA_A,
+    MP_QSTR_HIELO,
+    MP_QSTR_HIERBA_ALTA,
+    MP_QSTR_HIERBA_PM,
     MP_QSTR_HIERRO_M,
-    MP_QSTR_HOJAS,
-    MP_QSTR_HORNO,
+    MP_QSTR_HOJAS_ABEDUL,
+    MP_QSTR_HOJAS_ABETO,
+    MP_QSTR_HOJAS_JUNGLA,
+    MP_QSTR_HOJAS_PM,
+    MP_QSTR_HORNO_ON_PM,
+    MP_QSTR_HORNO_PM,
     MP_QSTR_HOUR,
     MP_QSTR_Has_space_muerto,
-    MP_QSTR_Hierba,
-    MP_QSTR_Hojas,
     MP_QSTR_Horno,
     MP_QSTR_Hostear,
     MP_QSTR_Hostear_space_partida,
@@ -237,6 +258,8 @@ enum {
     MP_QSTR_ITEM,
     MP_QSTR_Infinity,
     MP_QSTR_Inventario,
+    MP_QSTR_J,
+    MP_QSTR_JUNGLA,
     MP_QSTR_Juego,
     MP_QSTR_Jugador,
     MP_QSTR_Jugadores,
@@ -245,38 +268,29 @@ enum {
     MP_QSTR_KB_ROWS,
     MP_QSTR_KEY_OPTION,
     MP_QSTR_L,
-    MP_QSTR_LADRILLOS,
-    MP_QSTR_LECHO,
+    MP_QSTR_L2PM,
+    MP_QSTR_LAVA_PM,
+    MP_QSTR_LECHO_PM,
     MP_QSTR_LEFT,
     MP_QSTR_LETRAS,
     MP_QSTR_LETRAS_URL,
     MP_QSTR_LETTER,
-    MP_QSTR_LING_HIERRO,
-    MP_QSTR_LING_ORO,
+    MP_QSTR_LIQ,
     MP_QSTR_LIST,
     MP_QSTR_LIST_H,
     MP_QSTR_LIST_Y,
     MP_QSTR_LP,
-    MP_QSTR_Ladrillos,
-    MP_QSTR_Lingote_space_de_space_hierro,
-    MP_QSTR_Lingote_space_de_space_oro,
     MP_QSTR_Listo,
-    MP_QSTR_MANZANA,
     MP_QSTR_MAR,
-    MP_QSTR_MATS,
     MP_QSTR_MAX_CAIDA,
     MP_QSTR_MAX_CLONES,
-    MP_QSTR_MESA,
+    MP_QSTR_MESA_PM,
     MP_QSTR_MESSAGE,
     MP_QSTR_MINECRAFT_space_2D,
     MP_QSTR_MINUTE,
+    MP_QSTR_MOBS,
     MP_QSTR_MODO,
     MP_QSTR_MONTH,
-    MP_QSTR_Manzana,
-    MP_QSTR_Mena_space_de_space_carbon,
-    MP_QSTR_Mena_space_de_space_diamante,
-    MP_QSTR_Mena_space_de_space_hierro,
-    MP_QSTR_Mena_space_de_space_oro,
     MP_QSTR_Menu_space_del_space_juego,
     MP_QSTR_Mesa_space_de_space_trabajo,
     MP_QSTR_Multijugador,
@@ -286,24 +300,27 @@ enum {
     MP_QSTR_Mundo,
     MP_QSTR_Mundo_space__percent_d,
     MP_QSTR_Mundo_space_nuevo,
+    MP_QSTR_NB,
     MP_QSTR_NHUECOS,
-    MP_QSTR_NIEVE,
-    MP_QSTR_NOMBRE,
-    MP_QSTR_NO_SOLIDO,
-    MP_QSTR_NO_SUELO,
+    MP_QSTR_NIEVE_CAPA,
+    MP_QSTR_NIEVE_HIERBA,
+    MP_QSTR_NOSUELO,
+    MP_QSTR_NREC,
     MP_QSTR_NUM,
     MP_QSTR_NUM1,
     MP_QSTR_NUM2,
     MP_QSTR_NUMBER_NAME,
     MP_QSTR_NaN,
-    MP_QSTR_Nieve,
     MP_QSTR_No_space_hay_space_partidas_space_abiertas,
     MP_QSTR_No_space_responde_space__middot__space__percent_s,
     MP_QSTR_No_space_se_space_pudo_space_abrir_colon__space_,
     MP_QSTR_No_space_se_space_pudo_space_conectar,
     MP_QSTR_No_space_se_space_pudo_space_guardar_colon__space__percent_s,
+    MP_QSTR_No_space_se_space_pudo_space_unir,
+    MP_QSTR_No_space_se_space_puede_space_abrir,
     MP_QSTR_Nombre,
     MP_QSTR_Nombre_space_del_space_mundo_colon_,
+    MP_QSTR_O,
     MP_QSTR_OBJECT,
     MP_QSTR_OK,
     MP_QSTR_OPERAND,
@@ -313,29 +330,28 @@ enum {
     MP_QSTR_ORO_M,
     MP_QSTR_OSCURO,
     MP_QSTR_P,
-    MP_QSTR_PALA,
-    MP_QSTR_PALO,
     MP_QSTR_PH,
-    MP_QSTR_PICO,
-    MP_QSTR_PIEDRA,
+    MP_QSTR_PIEDRA_PM,
+    MP_QSTR_PM2L,
+    MP_QSTR_PMD,
     MP_QSTR_POS_CADA,
     MP_QSTR_PROPERTY,
     MP_QSTR_PW,
-    MP_QSTR_Palo,
     MP_QSTR_Pantalla_colon__space_,
     MP_QSTR_PantallaRed,
     MP_QSTR_Partida_space__percent_d_space_guardada,
     MP_QSTR_Partida_space_online,
     MP_QSTR_Partidas,
     MP_QSTR_Pausa_space_del_space_juego_space__paren_open_P_paren_close_,
-    MP_QSTR_Piedra,
     MP_QSTR_Plantando_space_arboles_dot__dot__dot_,
     MP_QSTR_Project,
     MP_QSTR_QUESTION,
     MP_QSTR_R,
-    MP_QSTR_RECETAS,
+    MP_QSTR_REDSTONE_M,
+    MP_QSTR_RETONO,
     MP_QSTR_RIGHT,
-    MP_QSTR_ROCA,
+    MP_QSTR_ROCA_PM,
+    MP_QSTR_ROSA,
     MP_QSTR_ROW1_Y,
     MP_QSTR_ROW2_Y,
     MP_QSTR_ROW_H,
@@ -344,7 +360,6 @@ enum {
     MP_QSTR_Recetas_space__paren_open_EXE_space_fabrica_paren_close__colon_,
     MP_QSTR_Red_space_local_space__middot__space_,
     MP_QSTR_Rendimiento_colon__space_,
-    MP_QSTR_Roca,
     MP_QSTR_S,
     MP_QSTR_S_colon_,
     MP_QSTR_S_colon_EXE,
@@ -352,15 +367,19 @@ enum {
     MP_QSTR_SALTO,
     MP_QSTR_SECOND,
     MP_QSTR_SECS,
+    MP_QSTR_SETA_M,
+    MP_QSTR_SETA_R,
     MP_QSTR_SHIFT_plus_,
     MP_QSTR_SIZE,
     MP_QSTR_SND,
+    MP_QSTR_SOL,
     MP_QSTR_SOUND_MENU,
     MP_QSTR_SPR,
     MP_QSTR_SQRT,
     MP_QSTR_STAGE_H,
     MP_QSTR_STAGE_W,
     MP_QSTR_STEPS,
+    MP_QSTR_STEVE,
     MP_QSTR_STOP_OPTION,
     MP_QSTR_STRING,
     MP_QSTR_STRING1,
@@ -369,11 +388,11 @@ enum {
     MP_QSTR_SUB,
     MP_QSTR_SUBSTACK,
     MP_QSTR_SUBSTACK2,
-    MP_QSTR_SUELTA,
     MP_QSTR_Salir,
     MP_QSTR_Salir_space_del_space_juego,
     MP_QSTR_Salir_space_sin_space_guardar,
     MP_QSTR_Seguir_space_solo,
+    MP_QSTR_Sin_space_combustible,
     MP_QSTR_Sin_space_conexion,
     MP_QSTR_Sin_space_conexi_oacute_n_colon__space_,
     MP_QSTR_Sin_space_multijugador_colon__space_,
@@ -384,24 +403,19 @@ enum {
     MP_QSTR_StuckIn,
     MP_QSTR_T,
     MP_QSTR_T9,
-    MP_QSTR_TABLONES,
-    MP_QSTR_TEX,
-    MP_QSTR_TIERRA,
+    MP_QSTR_TEXL,
+    MP_QSTR_TIERRA_PM,
     MP_QSTR_TIMES,
-    MP_QSTR_TIPOS,
     MP_QSTR_TO,
     MP_QSTR_TOUCHINGOBJECTMENU,
     MP_QSTR_TOWARDS,
     MP_QSTR_TRANSP,
-    MP_QSTR_TRONCO,
+    MP_QSTR_TRONCO_PM,
     MP_QSTR_TROZO,
     MP_QSTR_TXT,
     MP_QSTR_TXT_GRIS,
     MP_QSTR_TXT_SEL,
-    MP_QSTR_Tablones,
     MP_QSTR_Thread,
-    MP_QSTR_Tierra,
-    MP_QSTR_Tronco,
     MP_QSTR_Tu_space_nombre,
     MP_QSTR_T_uacute__colon__space_,
     MP_QSTR_UP,
@@ -437,20 +451,18 @@ enum {
     MP_QSTR__RedInvitado,
     MP_QSTR__SpriteCount,
     MP_QSTR__TimeReal,
+    MP_QSTR__bl,
     MP_QSTR__edge_,
+    MP_QSTR__fichas,
     MP_QSTR__hover,
     MP_QSTR__ids,
-    MP_QSTR__m,
-    MP_QSTR__mat,
-    MP_QSTR__medio,
     MP_QSTR__mon,
     MP_QSTR__mouse_,
     MP_QSTR__myself_,
+    MP_QSTR__nombres,
     MP_QSTR__random_,
     MP_QSTR__register,
-    MP_QSTR__t,
     MP_QSTR__uses_mouse,
-    MP_QSTR__vacio,
     MP_QSTR__x,
     MP_QSTR__y,
     MP_QSTR_a,
@@ -462,17 +474,16 @@ enum {
     MP_QSTR_abrir_menu,
     MP_QSTR_acercar,
     MP_QSTR_after_save,
-    MP_QSTR_agua,
     MP_QSTR_alive,
     MP_QSTR_all_space_around,
     MP_QSTR_all_sprites,
     MP_QSTR_anadir,
     MP_QSTR_anda_t,
+    MP_QSTR_andar,
     MP_QSTR_anfitrion,
     MP_QSTR_anfitri_oacute_n,
     MP_QSTR_answer,
     MP_QSTR_antes,
-    MP_QSTR_antorcha,
     MP_QSTR_aparecer,
     MP_QSTR_aplicar_bloques,
     MP_QSTR_aplicar_cofres,
@@ -481,7 +492,6 @@ enum {
     MP_QSTR_area,
     MP_QSTR_area_base,
     MP_QSTR_area_mobs,
-    MP_QSTR_arena,
     MP_QSTR_arith,
     MP_QSTR_armadura,
     MP_QSTR_asdfghjkl_slash_,
@@ -506,13 +516,16 @@ enum {
     MP_QSTR_backward,
     MP_QSTR_barras,
     MP_QSTR_base,
+    MP_QSTR_base_x,
     MP_QSTR_bbox,
     MP_QSTR_bd_num,
     MP_QSTR_bid,
+    MP_QSTR_biomas,
     MP_QSTR_blockID,
     MP_QSTR_blocks,
     MP_QSTR_bloque,
     MP_QSTR_bloques,
+    MP_QSTR_bloques_dot_bin,
     MP_QSTR_bocadillo,
     MP_QSTR_body,
     MP_QSTR_borrar,
@@ -523,6 +536,7 @@ enum {
     MP_QSTR_botones,
     MP_QSTR_botones_e,
     MP_QSTR_bounce,
+    MP_QSTR_break,
     MP_QSTR_broadcast,
     MP_QSTR_broadcast_wait,
     MP_QSTR_btn_titulo,
@@ -533,7 +547,6 @@ enum {
     MP_QSTR_c_colon_,
     MP_QSTR_c_colon__percent_d_colon_,
     MP_QSTR_c_colon__percent_d_colon__percent_s,
-    MP_QSTR_cactus,
     MP_QSTR_caida_y,
     MP_QSTR_caja_jugador,
     MP_QSTR_calc_alto,
@@ -548,14 +561,10 @@ enum {
     MP_QSTR_capa,
     MP_QSTR_capturar,
     MP_QSTR_cara,
-    MP_QSTR_carbon,
-    MP_QSTR_carbon_mena,
     MP_QSTR_cargando,
     MP_QSTR_cargar,
+    MP_QSTR_cargar_datos,
     MP_QSTR_cargar_partida,
-    MP_QSTR_carne,
-    MP_QSTR_carne_asada,
-    MP_QSTR_carne_podrida,
     MP_QSTR_casilla,
     MP_QSTR_cb,
     MP_QSTR_cdx,
@@ -563,7 +572,6 @@ enum {
     MP_QSTR_ceiling,
     MP_QSTR_centrar,
     MP_QSTR_cerca,
-    MP_QSTR_cerdo,
     MP_QSTR_cfg,
     MP_QSTR_cfg_icono,
     MP_QSTR_change,
@@ -571,6 +579,7 @@ enum {
     MP_QSTR_changevar,
     MP_QSTR_chat,
     MP_QSTR_chat_local,
+    MP_QSTR_chicken,
     MP_QSTR_chunk,
     MP_QSTR_chunk_t,
     MP_QSTR_chunk_visto,
@@ -597,6 +606,7 @@ enum {
     MP_QSTR_cofres_t,
     MP_QSTR_cofres_vistos,
     MP_QSTR_coincide,
+    MP_QSTR_combustible,
     MP_QSTR_comida,
     MP_QSTR_compare,
     MP_QSTR_completo,
@@ -621,18 +631,17 @@ enum {
     MP_QSTR_controles,
     MP_QSTR_controles_dot_json,
     MP_QSTR_copiar_mobs,
-    MP_QSTR_corazon,
     MP_QSTR_correr,
     MP_QSTR_cos_num,
     MP_QSTR_costume,
     MP_QSTR_costume_space__hash_,
     MP_QSTR_costume_space_name,
     MP_QSTR_costumes,
+    MP_QSTR_cow,
     MP_QSTR_create_clone,
-    MP_QSTR_cristal,
     MP_QSTR_ctx,
     MP_QSTR_cuadro,
-    MP_QSTR_cuantos,
+    MP_QSTR_cuantos_raiz,
     MP_QSTR_cuerpo,
     MP_QSTR_cuerpo_visto,
     MP_QSTR_current,
@@ -641,6 +650,7 @@ enum {
     MP_QSTR_cy,
     MP_QSTR_d,
     MP_QSTR_dano,
+    MP_QSTR_dano_arma,
     MP_QSTR_dano_mob,
     MP_QSTR_dano_t,
     MP_QSTR_dar,
@@ -662,6 +672,7 @@ enum {
     MP_QSTR_data_showlist,
     MP_QSTR_data_showvariable,
     MP_QSTR_datos,
+    MP_QSTR_datos_dot_json,
     MP_QSTR_datos_t,
     MP_QSTR_de,
     MP_QSTR_def3,
@@ -675,11 +686,10 @@ enum {
     MP_QSTR_desconectar,
     MP_QSTR_destino,
     MP_QSTR_detalle,
-    MP_QSTR_diamante,
-    MP_QSTR_diamante_mena,
     MP_QSTR_dibujar_chat,
     MP_QSTR_dibujar_hud,
     MP_QSTR_dibujar_nombres,
+    MP_QSTR_dibujar_steve,
     MP_QSTR_dibujar_titulo,
     MP_QSTR_dic,
     MP_QSTR_directa,
@@ -722,9 +732,11 @@ enum {
     MP_QSTR_enviar_pose,
     MP_QSTR_era_cliente,
     MP_QSTR_error,
+    MP_QSTR_es_agua,
+    MP_QSTR_es_herramienta,
+    MP_QSTR_es_lava,
     MP_QSTR_es_noche,
     MP_QSTR_escenario,
-    MP_QSTR_espada,
     MP_QSTR_esperar,
     MP_QSTR_esperar_vars,
     MP_QSTR_estado,
@@ -737,23 +749,27 @@ enum {
     MP_QSTR_event_whenkeypressed,
     MP_QSTR_event_whenstageclicked,
     MP_QSTR_events,
+    MP_QSTR_explode_percent_d,
     MP_QSTR_explosion,
     MP_QSTR_explota,
+    MP_QSTR_explotar,
     MP_QSTR_f,
     MP_QSTR_fallbig1,
     MP_QSTR_fallsmall,
     MP_QSTR_false,
     MP_QSTR_fast,
     MP_QSTR_fence,
+    MP_QSTR_ficha,
     MP_QSTR_field,
     MP_QSTR_fila_sel,
     MP_QSTR_filas,
     MP_QSTR_find_sound,
     MP_QSTR_finite,
+    MP_QSTR_fire,
     MP_QSTR_fisica,
     MP_QSTR_flecha,
-    MP_QSTR_flor_amarilla,
-    MP_QSTR_flor_roja,
+    MP_QSTR_flechas,
+    MP_QSTR_flechas_paso,
     MP_QSTR_fn,
     MP_QSTR_foco,
     MP_QSTR_folder,
@@ -766,10 +782,12 @@ enum {
     MP_QSTR_frame,
     MP_QSTR_front,
     MP_QSTR_front_back,
+    MP_QSTR_fuego_colon__space__percent_ds,
     MP_QSTR_fx,
     MP_QSTR_fy,
     MP_QSTR_g,
     MP_QSTR_g_colon__percent_d,
+    MP_QSTR_gastar_herramienta,
     MP_QSTR_gen,
     MP_QSTR_generar,
     MP_QSTR_getcwd,
@@ -788,9 +806,7 @@ enum {
     MP_QSTR_grass,
     MP_QSTR_grass1,
     MP_QSTR_grass1_dot_wav,
-    MP_QSTR_grava,
     MP_QSTR_gravel,
-    MP_QSTR_grieta_percent_d,
     MP_QSTR_guard,
     MP_QSTR_guardado,
     MP_QSTR_guardar,
@@ -798,22 +814,16 @@ enum {
     MP_QSTR_guardar_servidor,
     MP_QSTR_guiones,
     MP_QSTR_h,
-    MP_QSTR_hacha,
+    MP_QSTR_hacer,
     MP_QSTR_had_bubble,
     MP_QSTR_hambre,
-    MP_QSTR_hambre_t,
+    MP_QSTR_hambre_percent_d_dot_png,
     MP_QSTR_hat,
     MP_QSTR_hats,
     MP_QSTR_hecho,
     MP_QSTR_held,
     MP_QSTR_herir,
     MP_QSTR_herir_a,
-    MP_QSTR_herramienta,
-    MP_QSTR_hierba,
-    MP_QSTR_hierba_alta,
-    MP_QSTR_hierro,
-    MP_QSTR_hierro_mena,
-    MP_QSTR_hojas,
     MP_QSTR_horno,
     MP_QSTR_host,
     MP_QSTR_hostear,
@@ -821,6 +831,7 @@ enum {
     MP_QSTR_hurt,
     MP_QSTR_i,
     MP_QSTR_icono,
+    MP_QSTR_ids,
     MP_QSTR_idx,
     MP_QSTR_if_,
     MP_QSTR_if_else,
@@ -853,8 +864,6 @@ enum {
     MP_QSTR_j_colon_,
     MP_QSTR_jkl5,
     MP_QSTR_jug,
-    MP_QSTR_jugador,
-    MP_QSTR_jugador_andar,
     MP_QSTR_jugadores,
     MP_QSTR_jugar,
     MP_QSTR_k,
@@ -865,24 +874,21 @@ enum {
     MP_QSTR_kx,
     MP_QSTR_ky,
     MP_QSTR_l,
-    MP_QSTR_ladrillos,
     MP_QSTR_large,
     MP_QSTR_largo,
     MP_QSTR_largo_t,
     MP_QSTR_last,
     MP_QSTR_last_tap,
+    MP_QSTR_lava_t,
     MP_QSTR_layers,
     MP_QSTR_lbotin,
     MP_QSTR_lcofres,
-    MP_QSTR_lecho,
     MP_QSTR_leer,
     MP_QSTR_left_hyphen_right,
     MP_QSTR_letter,
     MP_QSTR_libre_col,
     MP_QSTR_lid,
     MP_QSTR_lineas,
-    MP_QSTR_lingote_hierro,
-    MP_QSTR_lingote_oro,
     MP_QSTR_linv,
     MP_QSTR_list_saves,
     MP_QSTR_lista,
@@ -916,11 +922,10 @@ enum {
     MP_QSTR_m,
     MP_QSTR_m_colon__percent_d,
     MP_QSTR_m_colon__percent_s_colon__percent_d,
-    MP_QSTR_madera,
     MP_QSTR_mal,
     MP_QSTR_manda_mobs,
     MP_QSTR_mandar_cofres,
-    MP_QSTR_manzana,
+    MP_QSTR_marcos,
     MP_QSTR_mark,
     MP_QSTR_mathop,
     MP_QSTR_max_pieces,
@@ -930,8 +935,8 @@ enum {
     MP_QSTR_mc2d_dot_py,
     MP_QSTR_mdmul,
     MP_QSTR_me_explota,
-    MP_QSTR_medio,
     MP_QSTR_menor,
+    MP_QSTR_menos,
     MP_QSTR_mensaje,
     MP_QSTR_menu,
     MP_QSTR_menu_items,
@@ -943,8 +948,9 @@ enum {
     MP_QSTR_mesa,
     MP_QSTR_mezcla,
     MP_QSTR_mi_id,
-    MP_QSTR_minecraft2d,
+    MP_QSTR_minecraft2d_hyphen_pm,
     MP_QSTR_mno6,
+    MP_QSTR_mob_slash__percent_d_dot_png,
     MP_QSTR_mob100,
     MP_QSTR_mobID,
     MP_QSTR_mob_area,
@@ -1006,18 +1012,22 @@ enum {
     MP_QSTR_mx,
     MP_QSTR_my,
     MP_QSTR_n,
+    MP_QSTR_n_recetas,
     MP_QSTR_names,
     MP_QSTR_next_space_backdrop,
     MP_QSTR_next_space_costume,
     MP_QSTR_next_costume,
-    MP_QSTR_nieve,
     MP_QSTR_nombre,
     MP_QSTR_nombre_cfg,
+    MP_QSTR_nombre_m,
+    MP_QSTR_nombre_s,
+    MP_QSTR_nombres_dot_txt,
     MP_QSTR_normal,
     MP_QSTR_nota,
     MP_QSTR_now,
     MP_QSTR_nueva,
     MP_QSTR_nueva_partida,
+    MP_QSTR_nuevo_mob,
     MP_QSTR_nuevo_mundo,
     MP_QSTR_num,
     MP_QSTR_num_de,
@@ -1033,6 +1043,7 @@ enum {
     MP_QSTR_on,
     MP_QSTR_online,
     MP_QSTR_op,
+    MP_QSTR_opciones,
     MP_QSTR_operator_add,
     MP_QSTR_operator_and,
     MP_QSTR_operator_contains,
@@ -1053,7 +1064,6 @@ enum {
     MP_QSTR_operator_subtract,
     MP_QSTR_ops,
     MP_QSTR_original,
-    MP_QSTR_oro_mena,
     MP_QSTR_os,
     MP_QSTR_otros,
     MP_QSTR_overlap,
@@ -1061,8 +1071,6 @@ enum {
     MP_QSTR_oy,
     MP_QSTR_oye,
     MP_QSTR_p,
-    MP_QSTR_pala,
-    MP_QSTR_palo,
     MP_QSTR_pant,
     MP_QSTR_parar_sonidos,
     MP_QSTR_partes,
@@ -1085,12 +1093,13 @@ enum {
     MP_QSTR_picker_hit,
     MP_QSTR_pico,
     MP_QSTR_pid,
-    MP_QSTR_piedra,
-    MP_QSTR_pig_percent_d,
-    MP_QSTR_pigdeath,
+    MP_QSTR_pig,
     MP_QSTR_pintado,
     MP_QSTR_pintar,
     MP_QSTR_play,
+    MP_QSTR_pm,
+    MP_QSTR_pm_slash_,
+    MP_QSTR_pm_slash_bloques_dot_bin_space_no_space_valido,
     MP_QSTR_point_towards,
     MP_QSTR_poner,
     MP_QSTR_poner_cofre,
@@ -1101,6 +1110,7 @@ enum {
     MP_QSTR_prefijo,
     MP_QSTR_pregunta,
     MP_QSTR_preguntar,
+    MP_QSTR_preparar_mobs,
     MP_QSTR_previous_space_backdrop,
     MP_QSTR_previous_space_costume,
     MP_QSTR_procedures_call,
@@ -1118,15 +1128,19 @@ enum {
     MP_QSTR_q,
     MP_QSTR_quantity,
     MP_QSTR_quien,
-    MP_QSTR_quitar,
+    MP_QSTR_quitar_hueco,
+    MP_QSTR_quitar_raiz,
     MP_QSTR_quitar_servidor,
     MP_QSTR_qwertyuiop,
     MP_QSTR_r,
+    MP_QSTR_raiz,
     MP_QSTR_random_space_backdrop,
     MP_QSTR_rapido,
     MP_QSTR_raton_antes,
     MP_QSTR_rb,
     MP_QSTR_recargar,
+    MP_QSTR_receta,
+    MP_QSTR_recetas_dot_bin,
     MP_QSTR_recibir,
     MP_QSTR_recibir_botin,
     MP_QSTR_recibir_cambio,
@@ -1150,7 +1164,6 @@ enum {
     MP_QSTR_respuesta,
     MP_QSTR_restart,
     MP_QSTR_rnd,
-    MP_QSTR_roca,
     MP_QSTR_room,
     MP_QSTR_rot,
     MP_QSTR_rot_style,
@@ -1166,6 +1179,7 @@ enum {
     MP_QSTR_salir,
     MP_QSTR_saltado,
     MP_QSTR_sand,
+    MP_QSTR_sat,
     MP_QSTR_save,
     MP_QSTR_save_game,
     MP_QSTR_save_key,
@@ -1216,6 +1230,7 @@ enum {
     MP_QSTR_setvar,
     MP_QSTR_setxy,
     MP_QSTR_sh,
+    MP_QSTR_sheep,
     MP_QSTR_shift,
     MP_QSTR_show,
     MP_QSTR_show_toast,
@@ -1230,6 +1245,8 @@ enum {
     MP_QSTR_sitio,
     MP_QSTR_size,
     MP_QSTR_sk,
+    MP_QSTR_skeleton,
+    MP_QSTR_skeletonhurt,
     MP_QSTR_solido,
     MP_QSTR_solo_anfitrion,
     MP_QSTR_soltar,
@@ -1251,38 +1268,46 @@ enum {
     MP_QSTR_sounds,
     MP_QSTR_sp,
     MP_QSTR_space,
+    MP_QSTR_spider,
     MP_QSTR_spr,
     MP_QSTR_sprint,
     MP_QSTR_sprites,
     MP_QSTR_stage,
     MP_QSTR_start_hats,
+    MP_QSTR_steve,
+    MP_QSTR_steve_percent_d_dot_png,
     MP_QSTR_stone,
     MP_QSTR_stop_all,
     MP_QSTR_suave,
     MP_QSTR_subir,
     MP_QSTR_sucios,
     MP_QSTR_suelo,
+    MP_QSTR_suelta,
     MP_QSTR_sw,
     MP_QSTR_sx,
     MP_QSTR_sy,
     MP_QSTR_t9,
     MP_QSTR_t9_dot_py,
-    MP_QSTR_tablones,
     MP_QSTR_tam_max,
     MP_QSTR_tap,
     MP_QSTR_tapar,
     MP_QSTR_taps,
     MP_QSTR_target_xy,
     MP_QSTR_tecla,
-    MP_QSTR_tex_slash__percent_s_dot_png,
+    MP_QSTR_tex,
+    MP_QSTR_tex_slash_grieta_percent_d_dot_png,
+    MP_QSTR_tex_slash_t_percent_d_dot_png,
     MP_QSTR_text,
     MP_QSTR_this_space_script,
     MP_QSTR_thread,
     MP_QSTR_threads,
+    MP_QSTR_ticks,
     MP_QSTR_tiempo,
+    MP_QSTR_tiempo_picar,
     MP_QSTR_tierra,
     MP_QSTR_time,
     MP_QSTR_timer0,
+    MP_QSTR_tipo,
     MP_QSTR_titulo,
     MP_QSTR_titulo_rect,
     MP_QSTR_to_screen,
@@ -1291,7 +1316,6 @@ enum {
     MP_QSTR_toint,
     MP_QSTR_touching,
     MP_QSTR_tras_guardar,
-    MP_QSTR_tronco,
     MP_QSTR_true,
     MP_QSTR_truth,
     MP_QSTR_tuv8,
@@ -1315,7 +1339,6 @@ enum {
     MP_QSTR_v,
     MP_QSTR_vabierto,
     MP_QSTR_vaciar,
-    MP_QSTR_valor,
     MP_QSTR_valores,
     MP_QSTR_var,
     MP_QSTR_var_get,
@@ -1329,6 +1352,7 @@ enum {
     MP_QSTR_vid,
     MP_QSTR_vid_clon,
     MP_QSTR_vida,
+    MP_QSTR_vida_percent_d_dot_png,
     MP_QSTR_visible,
     MP_QSTR_vivo,
     MP_QSTR_vobj,
@@ -1360,10 +1384,8 @@ enum {
     MP_QSTR_y0,
     MP_QSTR_y1,
     MP_QSTR_yo,
-    MP_QSTR_zombi,
-    MP_QSTR_zombie_percent_d,
-    MP_QSTR_zombiedeath,
-    MP_QSTR_zombiehurt_percent_d,
+    MP_QSTR_zombie,
+    MP_QSTR_zombiehurt,
     MP_QSTR_zona,
     MP_QSTR_zonas,
     MP_QSTR_zxcvbnm_dot__hyphen__,
@@ -1372,6 +1394,7 @@ enum {
 
 const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     26133,
+    27836,
     46468,
     23176,
     44818,
@@ -1380,14 +1403,13 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     49948,
     23528,
     57068,
-    39204,
+    6292,
     60735,
     17358,
-    15003,
     45906,
+    2548,
     64988,
     59208,
-    23226,
     46478,
     40491,
     46473,
@@ -1425,23 +1447,30 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     26975,
     19719,
     26772,
+    19035,
+    26865,
+    47624,
     46488,
     46490,
+    33534,
+    63096,
     29223,
-    37335,
-    43834,
+    41205,
+    10616,
     44898,
     13021,
-    46505,
-    47804,
+    23947,
+    46881,
+    5567,
+    12478,
+    35977,
     2245,
-    55770,
-    21065,
-    47996,
     22864,
     53331,
     21418,
+    46567,
     38215,
+    1822,
     55955,
     50365,
     56330,
@@ -1451,14 +1480,14 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     45873,
     12635,
     44960,
-    2806,
-    49036,
-    13398,
+    46566,
+    37428,
+    53122,
+    62194,
+    49384,
     43044,
-    4510,
-    64855,
-    4058,
     55765,
+    45438,
     53396,
     58193,
     58225,
@@ -1467,21 +1496,19 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     12314,
     38489,
     3762,
+    52442,
     14280,
     25590,
     56096,
     16499,
-    61495,
+    62334,
+    48691,
+    52859,
     4159,
-    4758,
     3088,
-    7158,
     49102,
     13235,
-    31163,
     50604,
-    60497,
-    21990,
     25547,
     12447,
     28422,
@@ -1491,71 +1518,87 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     35764,
     43118,
     53464,
-    62711,
     52586,
-    64385,
+    46561,
     64721,
     56610,
     47752,
     33964,
+    50039,
     22182,
-    9818,
     10792,
     43877,
     19328,
     3150,
     18231,
-    29269,
     10811,
-    37912,
     29273,
     29272,
     15326,
     31860,
-    49850,
-    60891,
     41042,
-    31335,
+    5161,
+    12019,
     35893,
     57527,
     5873,
     43261,
     62371,
     199,
-    25963,
     29825,
     4573,
     29350,
+    41152,
     33844,
-    62540,
-    62559,
+    60896,
+    10226,
     64082,
     50666,
     17523,
     61392,
-    4134,
+    29207,
+    45563,
+    47613,
+    664,
+    33407,
+    5532,
+    32,
+    48067,
+    48785,
+    30669,
+    25320,
+    24703,
+    31725,
+    61457,
+    42748,
+    27564,
+    26182,
+    7368,
+    64626,
+    45056,
+    27652,
     4581,
     5323,
     50695,
-    34470,
+    868,
     58696,
-    34662,
     52842,
     41331,
     38984,
     19951,
     46573,
-    25542,
-    32648,
-    19696,
-    16590,
+    64066,
+    7767,
+    23794,
     51036,
-    5754,
-    14737,
+    23390,
+    17112,
+    44414,
+    64824,
+    49773,
+    10739,
     30565,
     35467,
-    21648,
-    7738,
     16785,
     59059,
     3336,
@@ -1566,6 +1609,8 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     10832,
     47495,
     64030,
+    46575,
+    25502,
     375,
     23493,
     21619,
@@ -1574,38 +1619,29 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     44042,
     10958,
     46569,
-    19947,
-    13128,
+    13414,
+    42301,
+    62410,
     28062,
     37624,
     10508,
     35451,
-    43101,
-    46564,
+    56081,
     15655,
     11536,
     11521,
     29529,
-    28203,
-    48573,
-    38692,
     57736,
-    7635,
     51099,
-    47982,
     35904,
     46166,
-    52127,
+    37181,
     16462,
     35198,
     33963,
+    49206,
     49260,
     55317,
-    23123,
-    14000,
-    55548,
-    72,
-    945,
     59689,
     2943,
     45260,
@@ -1615,24 +1651,27 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     43992,
     49433,
     37823,
+    29449,
     48556,
-    43412,
-    11580,
-    13417,
-    4379,
+    27384,
+    57278,
+    39204,
+    42431,
     54931,
     43202,
     43201,
     8958,
     55332,
-    43476,
     46951,
     20275,
     3756,
     36767,
     13798,
+    59644,
+    33593,
     5340,
     18870,
+    46570,
     37264,
     29537,
     21926,
@@ -1642,29 +1681,28 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     20997,
     6226,
     46581,
-    62041,
-    62039,
     29917,
-    5040,
-    60782,
+    16812,
+    3430,
+    3996,
     4753,
     6914,
     29890,
-    30327,
     52948,
     17277,
     36702,
     44241,
     45997,
     24957,
-    54286,
     18796,
     37072,
     45547,
     46583,
-    18386,
+    44647,
+    50440,
     31173,
-    890,
+    51768,
+    362,
     54648,
     57851,
     16312,
@@ -1673,7 +1711,6 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     25389,
     37902,
     54559,
-    34650,
     46582,
     29836,
     46356,
@@ -1681,15 +1718,19 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     23744,
     20437,
     30019,
+    61204,
+    61195,
     58030,
     42336,
     5052,
+    5205,
     39210,
     4596,
     17505,
     32182,
     32169,
     164,
+    116,
     7841,
     59568,
     65153,
@@ -1698,11 +1739,11 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     4353,
     10831,
     29725,
-    46623,
     30176,
     41439,
     31618,
     23749,
+    41378,
     57286,
     21795,
     58338,
@@ -1713,24 +1754,19 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     32216,
     46577,
     29736,
-    43145,
-    65164,
-    21628,
+    53312,
+    25342,
     8099,
-    59764,
     29790,
     36294,
     48621,
     40655,
-    41486,
+    4684,
     57529,
     64829,
     63373,
     42296,
-    13673,
     30731,
-    23580,
-    47982,
     24573,
     38642,
     29600,
@@ -1766,20 +1802,18 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     45199,
     54448,
     31029,
+    8244,
     61190,
+    63852,
     49820,
     6852,
-    30039,
-    11106,
-    50640,
     11062,
     43812,
     27245,
+    34064,
     12862,
     46931,
-    30030,
     34420,
-    43528,
     30018,
     30019,
     46532,
@@ -1791,17 +1825,16 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     9891,
     57024,
     4671,
-    37335,
     64914,
     2279,
     39169,
     50740,
     33956,
+    11005,
     16971,
     5716,
     28089,
     28264,
-    52841,
     2134,
     56333,
     14128,
@@ -1810,7 +1843,6 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     50834,
     20088,
     18046,
-    39516,
     51459,
     46680,
     53144,
@@ -1835,13 +1867,16 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     3662,
     56308,
     18160,
+    47863,
     10290,
     7658,
     18666,
+    25694,
     34689,
     8991,
     19269,
     45974,
+    40701,
     1064,
     15701,
     3451,
@@ -1852,6 +1887,7 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     2155,
     51313,
     58261,
+    55802,
     10298,
     11950,
     2621,
@@ -1862,7 +1898,6 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     28348,
     13511,
     32177,
-    3766,
     8749,
     35475,
     60865,
@@ -1877,14 +1912,10 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     49910,
     33655,
     49716,
-    14358,
-    36462,
     2198,
     2561,
+    46867,
     6949,
-    2558,
-    56471,
-    58756,
     47900,
     28388,
     19290,
@@ -1892,7 +1923,6 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     41830,
     27352,
     55059,
-    55226,
     19079,
     19580,
     36643,
@@ -1900,6 +1930,7 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     20742,
     59099,
     39305,
+    61892,
     62110,
     1621,
     6902,
@@ -1926,6 +1957,7 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     49280,
     13104,
     27557,
+    58614,
     13064,
     42786,
     22150,
@@ -1950,18 +1982,17 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     12212,
     61730,
     271,
-    161,
     26206,
     15763,
     48019,
     59408,
     22004,
     11648,
+    19582,
     17493,
-    46551,
     19786,
     2635,
-    42004,
+    15595,
     62107,
     38067,
     61868,
@@ -1970,6 +2001,7 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     28415,
     46529,
     56257,
+    2081,
     53502,
     51978,
     7666,
@@ -1991,6 +2023,7 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     32907,
     27279,
     24328,
+    27742,
     19267,
     28036,
     60049,
@@ -2004,11 +2037,10 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     56404,
     47019,
     27604,
-    7898,
-    20002,
     51751,
     11392,
     44339,
+    53288,
     55526,
     7915,
     51913,
@@ -2051,9 +2083,11 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     17844,
     53168,
     4541,
+    52126,
+    10906,
+    52246,
     43587,
     10446,
-    21799,
     26343,
     2574,
     34221,
@@ -2066,23 +2100,27 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     5427,
     6473,
     41626,
+    54635,
     42000,
     14302,
+    13292,
     46531,
     50239,
     6301,
     45080,
     5477,
     42254,
+    57824,
     60007,
     53026,
     52692,
     63548,
     28828,
+    13981,
     50962,
     27616,
-    10714,
-    13499,
+    59283,
+    38785,
     28237,
     11744,
     10291,
@@ -2095,10 +2133,12 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     35448,
     45508,
     17136,
+    1555,
     28251,
     28250,
     46530,
     55513,
+    19358,
     15145,
     41389,
     53251,
@@ -2117,9 +2157,7 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     34545,
     25888,
     47310,
-    34630,
     28654,
-    4648,
     21600,
     59530,
     57427,
@@ -2127,22 +2165,16 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     38030,
     44649,
     46541,
-    17382,
+    17304,
     40233,
     20404,
-    5055,
+    12290,
     20728,
     28555,
     4716,
     23680,
     23105,
     59807,
-    46195,
-    12464,
-    16535,
-    11950,
-    40726,
-    48410,
     57713,
     13605,
     50579,
@@ -2150,6 +2182,7 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     40926,
     46540,
     8865,
+    21595,
     21584,
     21557,
     53866,
@@ -2182,8 +2215,6 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     28565,
     27933,
     27517,
-    23717,
-    42754,
     5459,
     19086,
     46542,
@@ -2194,24 +2225,21 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     28662,
     28663,
     46537,
-    44299,
     10904,
     10898,
     3673,
     16175,
     11285,
+    46996,
     40245,
     343,
     50567,
-    4968,
     19963,
     31635,
     20091,
     26122,
     16100,
     32761,
-    40835,
-    38682,
     7384,
     37546,
     49766,
@@ -2245,11 +2273,10 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     46536,
     61331,
     58207,
-    43515,
     17317,
     60942,
     58625,
-    64051,
+    27780,
     47984,
     22666,
     54215,
@@ -2259,8 +2286,8 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     46586,
     20216,
     29225,
-    60751,
     58910,
+    58911,
     54366,
     51446,
     33167,
@@ -2272,8 +2299,9 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     52127,
     27897,
     23923,
-    42334,
+    29742,
     42015,
+    26396,
     47028,
     55816,
     63053,
@@ -2335,18 +2363,22 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     28336,
     28337,
     46539,
+    2915,
     10641,
     7712,
     36308,
     44747,
-    60084,
     12796,
     33313,
+    38382,
+    38384,
+    59033,
     13366,
     19921,
     22451,
     8236,
     11848,
+    24029,
     64640,
     23411,
     26637,
@@ -2362,6 +2394,7 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     28516,
     38698,
     28538,
+    38983,
     36571,
     36113,
     26873,
@@ -2382,7 +2415,6 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     19182,
     24265,
     10076,
-    31823,
     28537,
     23920,
     23926,
@@ -2390,8 +2422,6 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     28531,
     23990,
     46549,
-    53657,
-    53655,
     53838,
     17577,
     6436,
@@ -2414,12 +2444,13 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     64937,
     62384,
     29688,
-    53550,
-    25434,
-    61511,
+    29691,
     44268,
     43061,
     56865,
+    28696,
+    29495,
+    51895,
     15998,
     4995,
     26721,
@@ -2430,6 +2461,7 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     3848,
     38091,
     11865,
+    21406,
     24662,
     62306,
     12230,
@@ -2447,15 +2479,19 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     46548,
     5470,
     8835,
-    48175,
+    52004,
+    4400,
     57074,
     5978,
     46551,
+    2981,
     16092,
     31812,
     59185,
     28885,
     41174,
+    14433,
+    473,
     49761,
     40480,
     21109,
@@ -2479,7 +2515,6 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     6727,
     30130,
     35741,
-    890,
     762,
     35756,
     55204,
@@ -2495,6 +2530,7 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     30144,
     27557,
     34493,
+    36771,
     33700,
     15605,
     47116,
@@ -2545,6 +2581,7 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     24706,
     1062,
     28926,
+    14446,
     9605,
     43654,
     39428,
@@ -2559,6 +2596,8 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     29389,
     42272,
     28925,
+    52036,
+    21791,
     25079,
     39019,
     1938,
@@ -2580,38 +2619,46 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     533,
     28902,
     7969,
+    27516,
     36308,
     18023,
     55903,
     60961,
     19956,
+    20,
+    49506,
     1670,
     6467,
     21489,
     22106,
     39605,
     25253,
+    47647,
     28897,
     28910,
     28911,
     28616,
     16623,
-    61833,
     11670,
     25056,
     19923,
     40339,
     6442,
     55546,
-    4450,
+    25196,
+    52665,
+    34017,
     44952,
     58828,
     5163,
     39416,
+    2115,
     12527,
+    29881,
     14396,
     49648,
     61426,
+    49031,
     11674,
     34149,
     11533,
@@ -2620,7 +2667,6 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     6637,
     49184,
     696,
-    13710,
     21043,
     38410,
     28298,
@@ -2644,7 +2690,6 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     46547,
     57269,
     2891,
-    13443,
     21813,
     31456,
     16713,
@@ -2658,6 +2703,7 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     31742,
     64367,
     64479,
+    39529,
     27275,
     63747,
     62228,
@@ -2689,10 +2735,8 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
     29036,
     29037,
     28979,
-    35702,
-    55090,
-    15855,
-    49193,
+    64083,
+    14728,
     8991,
     34444,
     15183,
@@ -2701,6 +2745,7 @@ const qstr_hash_t mp_qstr_frozen_const_hashes[] = {
 
 const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     2,
+    4,
     1,
     8,
     6,
@@ -2709,13 +2754,12 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     6,
     11,
     5,
+    10,
     8,
-    8,
-    12,
     12,
     4,
+    8,
     10,
-    5,
     5,
     1,
     7,
@@ -2754,23 +2798,30 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     2,
     7,
     2,
-    1,
-    1,
+    18,
     2,
-    4,
-    4,
+    5,
+    1,
+    1,
+    6,
+    5,
+    2,
+    7,
+    7,
     7,
     5,
+    11,
+    7,
+    10,
     8,
-    5,
+    11,
     22,
-    7,
-    8,
-    5,
     5,
     6,
     16,
+    1,
     8,
+    6,
     15,
     3,
     5,
@@ -2780,14 +2831,14 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     22,
     6,
     20,
-    6,
-    4,
-    6,
-    8,
-    5,
-    11,
+    1,
     9,
+    3,
+    8,
+    4,
+    8,
     7,
+    4,
     3,
     4,
     4,
@@ -2796,95 +2847,109 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     9,
     11,
     12,
+    8,
     6,
     9,
     4,
     7,
+    4,
+    9,
+    9,
+    11,
+    8,
+    14,
+    21,
+    17,
+    20,
+    13,
+    21,
+    17,
+    9,
+    9,
+    23,
+    10,
+    17,
+    3,
+    1,
+    4,
     7,
+    3,
+    19,
+    10,
+    11,
+    10,
+    5,
+    9,
+    14,
+    4,
+    8,
+    2,
+    2,
+    23,
     11,
     6,
+    11,
+    11,
+    6,
+    12,
+    14,
+    3,
+    15,
+    16,
+    14,
+    5,
+    20,
+    5,
+    5,
+    6,
+    4,
+    11,
+    16,
+    4,
+    10,
+    2,
+    5,
+    7,
+    6,
+    5,
+    7,
+    7,
+    7,
+    6,
+    5,
+    5,
+    5,
+    5,
+    7,
+    6,
+    5,
     8,
     6,
     14,
     21,
     13,
-    17,
-    13,
-    13,
-    20,
-    13,
-    21,
-    17,
-    9,
-    9,
-    23,
-    10,
-    17,
-    7,
-    3,
-    4,
-    4,
-    7,
-    3,
-    19,
-    11,
-    8,
-    10,
     5,
     9,
-    14,
     4,
-    2,
     8,
-    6,
-    2,
-    2,
     23,
-    11,
     8,
-    14,
-    6,
-    6,
-    6,
+    7,
+    15,
+    15,
+    1,
+    5,
+    11,
+    9,
+    8,
     12,
-    14,
-    3,
-    15,
-    16,
-    19,
-    14,
-    5,
-    20,
-    5,
-    6,
-    6,
     11,
-    16,
+    12,
+    8,
+    11,
+    8,
     4,
     10,
-    17,
-    5,
-    9,
-    4,
-    5,
-    23,
-    5,
-    8,
-    7,
-    15,
-    15,
-    1,
-    5,
-    4,
-    6,
-    8,
-    8,
-    5,
-    5,
-    4,
-    10,
-    6,
-    5,
     5,
     7,
     15,
@@ -2895,6 +2960,8 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     4,
     8,
     10,
+    1,
+    6,
     5,
     7,
     9,
@@ -2903,38 +2970,29 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     7,
     10,
     1,
-    9,
-    5,
+    4,
+    7,
+    8,
     4,
     6,
     10,
     6,
-    11,
-    8,
+    3,
     4,
     6,
     6,
     2,
-    9,
-    17,
-    14,
     5,
-    7,
     3,
-    4,
     9,
     10,
-    4,
+    7,
     7,
     12,
     6,
     4,
+    4,
     5,
-    7,
-    14,
-    16,
-    14,
-    11,
     14,
     15,
     12,
@@ -2944,24 +3002,27 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     5,
     8,
     11,
+    2,
     7,
-    5,
-    6,
-    9,
-    8,
+    10,
+    12,
+    7,
+    4,
     3,
     4,
     4,
     11,
     3,
-    5,
     24,
     17,
     18,
     19,
     22,
+    15,
+    17,
     6,
     17,
+    1,
     6,
     2,
     7,
@@ -2971,28 +3032,27 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     5,
     6,
     1,
-    4,
-    4,
     2,
+    9,
     4,
-    6,
+    3,
     8,
     8,
     2,
-    4,
     10,
     11,
     19,
     14,
     8,
     19,
-    6,
     20,
     7,
     8,
     1,
-    7,
+    10,
+    6,
     5,
+    7,
     4,
     6,
     6,
@@ -3002,7 +3062,6 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     22,
     13,
     13,
-    4,
     1,
     2,
     5,
@@ -3011,13 +3070,17 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     6,
     4,
     6,
+    6,
+    6,
     4,
+    3,
     3,
     10,
     3,
     4,
     7,
     7,
+    5,
     5,
     11,
     6,
@@ -3027,11 +3090,11 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     3,
     8,
     9,
-    6,
     5,
     15,
     17,
     11,
+    15,
     12,
     15,
     18,
@@ -3042,23 +3105,18 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     7,
     1,
     2,
-    8,
-    3,
-    6,
-    5,
+    4,
+    9,
     5,
     2,
     18,
     7,
     6,
-    6,
+    9,
     5,
     3,
     8,
     7,
-    8,
-    6,
-    6,
     6,
     9,
     5,
@@ -3095,20 +3153,18 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     12,
     12,
     9,
+    3,
     6,
+    7,
     6,
     4,
-    2,
-    4,
-    6,
     4,
     7,
     8,
     8,
+    8,
     9,
-    2,
     11,
-    6,
     2,
     2,
     1,
@@ -3120,17 +3176,16 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     10,
     7,
     10,
-    4,
     5,
     10,
     11,
     6,
     6,
+    5,
     9,
     10,
     6,
     5,
-    8,
     8,
     15,
     14,
@@ -3139,7 +3194,6 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     4,
     9,
     9,
-    5,
     5,
     8,
     10,
@@ -3164,13 +3218,16 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     8,
     6,
     4,
+    6,
     4,
     6,
     3,
+    6,
     7,
     6,
     6,
     7,
+    11,
     9,
     4,
     6,
@@ -3181,6 +3238,7 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     7,
     9,
     6,
+    5,
     9,
     14,
     10,
@@ -3191,7 +3249,6 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     2,
     5,
     7,
-    6,
     7,
     12,
     9,
@@ -3206,21 +3263,16 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     4,
     8,
     4,
-    6,
-    11,
     8,
     6,
+    12,
     14,
-    5,
-    11,
-    13,
     7,
     2,
     3,
     3,
     7,
     7,
-    5,
     5,
     3,
     9,
@@ -3229,6 +3281,7 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     9,
     4,
     10,
+    7,
     5,
     7,
     11,
@@ -3255,6 +3308,7 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     8,
     13,
     8,
+    11,
     6,
     7,
     8,
@@ -3279,18 +3333,17 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     9,
     14,
     11,
-    7,
     6,
     7,
     7,
     9,
     12,
     8,
+    3,
     12,
-    7,
     3,
     6,
-    7,
+    12,
     6,
     12,
     7,
@@ -3299,6 +3352,7 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     2,
     1,
     4,
+    9,
     8,
     6,
     3,
@@ -3320,6 +3374,7 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     13,
     17,
     5,
+    10,
     7,
     2,
     4,
@@ -3333,11 +3388,10 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     11,
     7,
     7,
-    8,
-    13,
     12,
     11,
     15,
+    13,
     14,
     3,
     7,
@@ -3380,9 +3434,11 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     11,
     11,
     5,
+    7,
+    14,
+    7,
     8,
     9,
-    6,
     7,
     12,
     6,
@@ -3396,7 +3452,9 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     22,
     6,
     9,
+    9,
     7,
+    8,
     1,
     8,
     9,
@@ -3404,14 +3462,16 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     4,
     5,
     5,
+    5,
     8,
     5,
     10,
     6,
+    4,
     6,
     6,
-    13,
-    9,
+    7,
+    12,
     2,
     4,
     6,
@@ -3424,10 +3484,12 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     5,
     5,
     10,
+    10,
     2,
     2,
     1,
     4,
+    18,
     3,
     7,
     6,
@@ -3446,9 +3508,7 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     5,
     6,
     10,
-    5,
     6,
-    8,
     5,
     8,
     7,
@@ -3459,19 +3519,13 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     5,
     10,
     6,
-    8,
+    12,
     3,
     4,
     5,
     4,
     5,
     7,
-    11,
-    6,
-    11,
-    6,
-    11,
-    5,
     5,
     4,
     7,
@@ -3479,6 +3533,7 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     4,
     1,
     5,
+    3,
     3,
     3,
     7,
@@ -3511,8 +3566,6 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     2,
     4,
     3,
-    7,
-    13,
     9,
     5,
     1,
@@ -3523,7 +3576,6 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     2,
     2,
     1,
-    9,
     5,
     5,
     7,
@@ -3531,16 +3583,14 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     8,
     6,
     6,
+    6,
     7,
-    5,
     4,
     10,
     6,
     9,
     3,
     6,
-    14,
-    11,
     4,
     10,
     5,
@@ -3574,11 +3624,10 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     1,
     4,
     7,
-    6,
     3,
     10,
     13,
-    7,
+    6,
     4,
     6,
     10,
@@ -3601,8 +3650,9 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     4,
     6,
     5,
-    11,
+    14,
     4,
+    10,
     6,
     5,
     8,
@@ -3664,18 +3714,22 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     2,
     2,
     1,
+    9,
     5,
     13,
     12,
     12,
-    5,
     6,
     10,
+    8,
+    8,
+    11,
     6,
     4,
     3,
     5,
     13,
+    9,
     11,
     3,
     6,
@@ -3691,6 +3745,7 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     2,
     6,
     2,
+    8,
     12,
     12,
     17,
@@ -3711,7 +3766,6 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     17,
     3,
     8,
-    8,
     2,
     5,
     7,
@@ -3719,8 +3773,6 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     2,
     3,
     1,
-    4,
-    4,
     4,
     13,
     6,
@@ -3743,12 +3795,13 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     10,
     4,
     3,
-    6,
-    5,
-    8,
+    3,
     7,
     6,
     4,
+    2,
+    3,
+    24,
     13,
     5,
     11,
@@ -3759,6 +3812,7 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     7,
     8,
     9,
+    13,
     17,
     16,
     15,
@@ -3776,15 +3830,19 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     1,
     8,
     5,
-    6,
+    12,
+    11,
     15,
     10,
     1,
+    4,
     15,
     6,
     11,
     2,
     8,
+    6,
+    11,
     7,
     13,
     14,
@@ -3809,7 +3867,6 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     7,
     3,
     4,
-    4,
     3,
     9,
     6,
@@ -3824,6 +3881,7 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     5,
     7,
     4,
+    3,
     4,
     9,
     8,
@@ -3875,6 +3933,7 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     5,
     2,
     5,
+    5,
     4,
     10,
     8,
@@ -3888,6 +3947,8 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     5,
     4,
     2,
+    8,
+    12,
     6,
     14,
     6,
@@ -3909,38 +3970,46 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     6,
     2,
     5,
+    6,
     3,
     6,
     7,
     5,
     10,
     5,
+    11,
+    5,
     8,
     5,
     5,
     6,
     5,
+    6,
     2,
     2,
     2,
     2,
     5,
-    8,
     7,
     3,
     5,
     4,
     9,
     5,
-    10,
+    3,
+    16,
+    11,
     4,
     11,
     6,
     7,
+    5,
     6,
+    12,
     6,
     4,
     6,
+    4,
     6,
     11,
     9,
@@ -3949,7 +4018,6 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     5,
     8,
     12,
-    6,
     4,
     5,
     4,
@@ -3973,7 +4041,6 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     1,
     8,
     6,
-    5,
     7,
     3,
     7,
@@ -3987,6 +4054,7 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     3,
     8,
     4,
+    10,
     7,
     4,
     4,
@@ -4018,10 +4086,8 @@ const qstr_len_t mp_qstr_frozen_const_lengths[] = {
     2,
     2,
     2,
-    5,
-    8,
-    11,
-    12,
+    6,
+    10,
     4,
     5,
     10,
@@ -4034,11 +4100,12 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
     MP_QSTRnumber_of, // previous pool size
     true, // is_sorted
     10, // allocated entries
-    1326, // used entries
+    1348, // used entries
     (qstr_hash_t *)mp_qstr_frozen_const_hashes,
     (qstr_len_t *)mp_qstr_frozen_const_lengths,
     {
         " 0",
+        " x%d",
         "!",
         "%-11s %s",
         "%d  %s",
@@ -4047,14 +4114,13 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "%d jug",
         "%d-%d de %d",
         "%d/16",
-        "%s de %s",
+        "%s  <-  %s",
         "%s entra",
         "%s ha muerto",
-        "%s x%d  <-  ",
         "%s%d",
+        "%s%s <- ",
         "%s/%s.mc2d",
         "%s:%d",
-        "%s_%s",
         "+",
         "+1 hora",
         ",",
@@ -4092,23 +4158,30 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         ": ",
         "<%s> %s",
         "<-",
+        "<BHBBBBbbhHHbbHHHH",
+        "<H",
+        "<HH9H",
         "=",
         "?",
+        "ABEDUL",
+        "ABETO",
         "AC",
-        "AGUA",
-        "AIRE",
+        "AGUA_PM",
+        "AIRE_PM",
         "ALCANCE",
         "ANDAR",
-        "ANTORCHA",
-        "ARENA",
+        "ANTORCHA_PM",
+        "ARBOLES",
+        "ARCILLA_PM",
+        "ARENA_PM",
+        "AREN_PIEDRA",
         "Abriendo la partida...",
-        "Amapola",
-        "Antorcha",
-        "Arena",
         "Atras",
         "\x41\x74\x72\xc3\xa1\x73",
         "\x41\xc3\xb1\x61\x64\x69\x72\x20\x73\x65\x72\x76\x69\x64\x6f\x72",
+        "B",
         "BACKDROP",
+        "BIOMAS",
         "BROADCAST_INPUT",
         "BTN",
         "BTN_H",
@@ -4118,14 +4191,14 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "Bloques no soportados:",
         "Borrar",
         "Buscando partidas...",
-        "CACTUS",
-        "CAEN",
-        "CARBON",
+        "C",
+        "CACTUS_PM",
+        "CAE",
+        "CALABAZA",
+        "CANA",
         "CARBON_M",
-        "CARNE",
-        "CARNE_ASADA",
-        "CARNE_POD",
         "CARPETA",
+        "CERO",
         "CH:",
         "CH:E",
         "CH:e",
@@ -4134,21 +4207,19 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "CIELO_DIA",
         "CIELO_NOCHE",
         "CLONE_OPTION",
+        "COFRE_PM",
         "COMIDA",
         "CONDITION",
         "COPY",
         "COSTUME",
-        "CRISTAL",
+        "CUBO",
+        "CUBO_AGUA",
+        "CUBO_LAVA",
         "CURRENTMENU",
-        "Cactus",
         "Cancelar",
-        "Carbon",
         "Cargando %s...",
         "Cargar mundo guardado",
-        "Carne podrida",
         "Cavando cuevas...",
-        "Chuleta asada",
-        "Chuleta cruda",
         "Conectando con %s...",
         "Conectando...",
         "Conexion directa (IP)",
@@ -4158,71 +4229,87 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "Controles  (EXE vuelve)",
         "Controles:",
         "Crear mundo nuevo",
-        "Cristal",
         "Ctx",
-        "DANO",
+        "D",
         "DATE",
         "DEGREES",
         "DEL",
         "DEL  menu (guardar)",
+        "DEL: salir",
         "DEL: volver",
-        "DIAMANTE",
         "DIAMANTE_M",
         "DIA_S",
         "DIRECTION",
         "DISTANCETOMENU",
         "DOWN",
-        "DT",
         "DURATION",
-        "DUREZA",
         "DX",
         "DY",
         "Descargando el mundo...",
         "Desconectar",
-        "Diamante",
-        "Diente de leon",
         "EFFECT",
-        "ESPADA",
+        "ESCALERA_PM",
+        "ESMERALDA_M",
         "ESPERA",
         "ESPERA_MUNDO",
         "ESPERA_PARTIDA",
         "EXE",
         "EXE: reaparecer",
         "EXE: seguir solo",
-        "Edicion calculadora",
         "Elige un mundo",
         "Error",
         "Escondiendo menas...",
+        "FICHA",
         "FILAS",
-        "FLOR_A",
-        "FLOR_R",
+        "FLECHA",
+        "FLOR",
         "FONDO_CUEVA",
         "FORWARD_BACKWARD",
         "FROM",
         "FRONT_BACK",
-        "Fabricar (a mano)",
+        "FT",
+        "F_CAE",
+        "F_CREAT",
+        "F_DANO",
+        "F_DUR",
+        "F_DURAB",
+        "F_FUNDE",
+        "F_GRUPO",
+        "F_HERR",
+        "F_INV",
+        "F_LIQ",
+        "F_LUZ",
+        "F_NIV",
+        "F_QUEMA",
+        "F_RAIZ",
+        "F_SOL",
+        "F_SUELTA",
+        "F_TILE",
+        "Fabricar (2x2)",
+        "Falta Paper Minecraft",
+        "Fundir (EXE):",
         "GIROS",
         "GIROS_INV",
         "GRAV",
-        "GRAVA",
+        "GRAVA_PM",
         "Generando el terreno...",
-        "Grava",
         "Guardado",
         "Guardar",
         "Guardar partida",
         "Guardar y salir",
         "H",
-        "HACHA",
-        "HERR",
-        "HIERBA",
-        "HIERBA_A",
+        "HIELO",
+        "HIERBA_ALTA",
+        "HIERBA_PM",
         "HIERRO_M",
-        "HOJAS",
-        "HORNO",
+        "HOJAS_ABEDUL",
+        "HOJAS_ABETO",
+        "HOJAS_JUNGLA",
+        "HOJAS_PM",
+        "HORNO_ON_PM",
+        "HORNO_PM",
         "HOUR",
         "Has muerto",
-        "Hierba",
-        "Hojas",
         "Horno",
         "Hostear",
         "Hostear partida",
@@ -4233,6 +4320,8 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "ITEM",
         "Infinity",
         "Inventario",
+        "J",
+        "JUNGLA",
         "Juego",
         "Jugador",
         "Jugadores",
@@ -4241,38 +4330,29 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "KB_ROWS",
         "KEY_OPTION",
         "L",
-        "LADRILLOS",
-        "LECHO",
+        "L2PM",
+        "LAVA_PM",
+        "LECHO_PM",
         "LEFT",
         "LETRAS",
         "LETRAS_URL",
         "LETTER",
-        "LING_HIERRO",
-        "LING_ORO",
+        "LIQ",
         "LIST",
         "LIST_H",
         "LIST_Y",
         "LP",
-        "Ladrillos",
-        "Lingote de hierro",
-        "Lingote de oro",
         "Listo",
-        "MANZANA",
         "MAR",
-        "MATS",
         "MAX_CAIDA",
         "MAX_CLONES",
-        "MESA",
+        "MESA_PM",
         "MESSAGE",
         "MINECRAFT 2D",
         "MINUTE",
+        "MOBS",
         "MODO",
         "MONTH",
-        "Manzana",
-        "Mena de carbon",
-        "Mena de diamante",
-        "Mena de hierro",
-        "Mena de oro",
         "Menu del juego",
         "Mesa de trabajo",
         "Multijugador",
@@ -4282,24 +4362,27 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "Mundo",
         "Mundo %d",
         "Mundo nuevo",
+        "NB",
         "NHUECOS",
-        "NIEVE",
-        "NOMBRE",
-        "NO_SOLIDO",
-        "NO_SUELO",
+        "NIEVE_CAPA",
+        "NIEVE_HIERBA",
+        "NOSUELO",
+        "NREC",
         "NUM",
         "NUM1",
         "NUM2",
         "NUMBER_NAME",
         "NaN",
-        "Nieve",
         "No hay partidas abiertas",
         "\x4e\x6f\x20\x72\x65\x73\x70\x6f\x6e\x64\x65\x20\xc2\xb7\x20\x25\x73",
         "No se pudo abrir: ",
         "No se pudo conectar",
         "No se pudo guardar: %s",
+        "No se pudo unir",
+        "No se puede abrir",
         "Nombre",
         "Nombre del mundo:",
+        "O",
         "OBJECT",
         "OK",
         "OPERAND",
@@ -4309,29 +4392,28 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "ORO_M",
         "OSCURO",
         "P",
-        "PALA",
-        "PALO",
         "PH",
-        "PICO",
-        "PIEDRA",
+        "PIEDRA_PM",
+        "PM2L",
+        "PMD",
         "POS_CADA",
         "PROPERTY",
         "PW",
-        "Palo",
         "Pantalla: ",
         "PantallaRed",
         "Partida %d guardada",
         "Partida online",
         "Partidas",
         "Pausa del juego (P)",
-        "Piedra",
         "Plantando arboles...",
         "Project",
         "QUESTION",
         "R",
-        "RECETAS",
+        "REDSTONE_M",
+        "RETONO",
         "RIGHT",
-        "ROCA",
+        "ROCA_PM",
+        "ROSA",
         "ROW1_Y",
         "ROW2_Y",
         "ROW_H",
@@ -4340,7 +4422,6 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "Recetas (EXE fabrica):",
         "\x52\x65\x64\x20\x6c\x6f\x63\x61\x6c\x20\xc2\xb7\x20",
         "Rendimiento: ",
-        "Roca",
         "S",
         "S:",
         "S:EXE",
@@ -4348,15 +4429,19 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "SALTO",
         "SECOND",
         "SECS",
+        "SETA_M",
+        "SETA_R",
         "SHIFT+",
         "SIZE",
         "SND",
+        "SOL",
         "SOUND_MENU",
         "SPR",
         "SQRT",
         "STAGE_H",
         "STAGE_W",
         "STEPS",
+        "STEVE",
         "STOP_OPTION",
         "STRING",
         "STRING1",
@@ -4365,11 +4450,11 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "SUB",
         "SUBSTACK",
         "SUBSTACK2",
-        "SUELTA",
         "Salir",
         "Salir del juego",
         "Salir sin guardar",
         "Seguir solo",
+        "Sin combustible",
         "Sin conexion",
         "\x53\x69\x6e\x20\x63\x6f\x6e\x65\x78\x69\xc3\xb3\x6e\x3a\x20",
         "Sin multijugador: ",
@@ -4380,24 +4465,19 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "StuckIn",
         "T",
         "T9",
-        "TABLONES",
-        "TEX",
-        "TIERRA",
+        "TEXL",
+        "TIERRA_PM",
         "TIMES",
-        "TIPOS",
         "TO",
         "TOUCHINGOBJECTMENU",
         "TOWARDS",
         "TRANSP",
-        "TRONCO",
+        "TRONCO_PM",
         "TROZO",
         "TXT",
         "TXT_GRIS",
         "TXT_SEL",
-        "Tablones",
         "Thread",
-        "Tierra",
-        "Tronco",
         "Tu nombre",
         "\x54\xc3\xba\x3a\x20",
         "UP",
@@ -4433,20 +4513,18 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "_RedInvitado",
         "_SpriteCount",
         "_TimeReal",
+        "_bl",
         "_edge_",
+        "_fichas",
         "_hover",
         "_ids",
-        "_m",
-        "_mat",
-        "_medio",
         "_mon",
         "_mouse_",
         "_myself_",
+        "_nombres",
         "_random_",
         "_register",
-        "_t",
         "_uses_mouse",
-        "_vacio",
         "_x",
         "_y",
         "a",
@@ -4458,17 +4536,16 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "abrir_menu",
         "acercar",
         "after_save",
-        "agua",
         "alive",
         "all around",
         "all_sprites",
         "anadir",
         "anda_t",
+        "andar",
         "anfitrion",
         "\x61\x6e\x66\x69\x74\x72\x69\xc3\xb3\x6e",
         "answer",
         "antes",
-        "antorcha",
         "aparecer",
         "aplicar_bloques",
         "aplicar_cofres",
@@ -4477,7 +4554,6 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "area",
         "area_base",
         "area_mobs",
-        "arena",
         "arith",
         "armadura",
         "asdfghjkl/",
@@ -4502,13 +4578,16 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "backward",
         "barras",
         "base",
+        "base_x",
         "bbox",
         "bd_num",
         "bid",
+        "biomas",
         "blockID",
         "blocks",
         "bloque",
         "bloques",
+        "bloques.bin",
         "bocadillo",
         "body",
         "borrar",
@@ -4519,6 +4598,7 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "botones",
         "botones_e",
         "bounce",
+        "break",
         "broadcast",
         "broadcast_wait",
         "btn_titulo",
@@ -4529,7 +4609,6 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "c:",
         "c:%d:",
         "c:%d:%s",
-        "cactus",
         "caida_y",
         "caja_jugador",
         "calc_alto",
@@ -4544,14 +4623,10 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "capa",
         "capturar",
         "cara",
-        "carbon",
-        "carbon_mena",
         "cargando",
         "cargar",
+        "cargar_datos",
         "cargar_partida",
-        "carne",
-        "carne_asada",
-        "carne_podrida",
         "casilla",
         "cb",
         "cdx",
@@ -4559,7 +4634,6 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "ceiling",
         "centrar",
         "cerca",
-        "cerdo",
         "cfg",
         "cfg_icono",
         "change",
@@ -4567,6 +4641,7 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "changevar",
         "chat",
         "chat_local",
+        "chicken",
         "chunk",
         "chunk_t",
         "chunk_visto",
@@ -4593,6 +4668,7 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "cofres_t",
         "cofres_vistos",
         "coincide",
+        "combustible",
         "comida",
         "compare",
         "completo",
@@ -4617,18 +4693,17 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "controles",
         "controles.json",
         "copiar_mobs",
-        "corazon",
         "correr",
         "cos_num",
         "costume",
         "costume #",
         "costume name",
         "costumes",
+        "cow",
         "create_clone",
-        "cristal",
         "ctx",
         "cuadro",
-        "cuantos",
+        "cuantos_raiz",
         "cuerpo",
         "cuerpo_visto",
         "current",
@@ -4637,6 +4712,7 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "cy",
         "d",
         "dano",
+        "dano_arma",
         "dano_mob",
         "dano_t",
         "dar",
@@ -4658,6 +4734,7 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "data_showlist",
         "data_showvariable",
         "datos",
+        "datos.json",
         "datos_t",
         "de",
         "def3",
@@ -4671,11 +4748,10 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "desconectar",
         "destino",
         "detalle",
-        "diamante",
-        "diamante_mena",
         "dibujar_chat",
         "dibujar_hud",
         "dibujar_nombres",
+        "dibujar_steve",
         "dibujar_titulo",
         "dic",
         "directa",
@@ -4718,9 +4794,11 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "enviar_pose",
         "era_cliente",
         "error",
+        "es_agua",
+        "es_herramienta",
+        "es_lava",
         "es_noche",
         "escenario",
-        "espada",
         "esperar",
         "esperar_vars",
         "estado",
@@ -4733,23 +4811,27 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "event_whenkeypressed",
         "event_whenstageclicked",
         "events",
+        "explode%d",
         "explosion",
         "explota",
+        "explotar",
         "f",
         "fallbig1",
         "fallsmall",
         "false",
         "fast",
         "fence",
+        "ficha",
         "field",
         "fila_sel",
         "filas",
         "find_sound",
         "finite",
+        "fire",
         "fisica",
         "flecha",
-        "flor_amarilla",
-        "flor_roja",
+        "flechas",
+        "flechas_paso",
         "fn",
         "foco",
         "folder",
@@ -4762,10 +4844,12 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "frame",
         "front",
         "front_back",
+        "fuego: %ds",
         "fx",
         "fy",
         "g",
         "g:%d",
+        "gastar_herramienta",
         "gen",
         "generar",
         "getcwd",
@@ -4784,9 +4868,7 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "grass",
         "grass1",
         "grass1.wav",
-        "grava",
         "gravel",
-        "grieta%d",
         "guard",
         "guardado",
         "guardar",
@@ -4794,22 +4876,16 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "guardar_servidor",
         "guiones",
         "h",
-        "hacha",
+        "hacer",
         "had_bubble",
         "hambre",
-        "hambre_t",
+        "hambre%d.png",
         "hat",
         "hats",
         "hecho",
         "held",
         "herir",
         "herir_a",
-        "herramienta",
-        "hierba",
-        "hierba_alta",
-        "hierro",
-        "hierro_mena",
-        "hojas",
         "horno",
         "host",
         "hostear",
@@ -4817,6 +4893,7 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "hurt",
         "i",
         "icono",
+        "ids",
         "idx",
         "if_",
         "if_else",
@@ -4849,8 +4926,6 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "j:",
         "jkl5",
         "jug",
-        "jugador",
-        "jugador_andar",
         "jugadores",
         "jugar",
         "k",
@@ -4861,24 +4936,21 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "kx",
         "ky",
         "l",
-        "ladrillos",
         "large",
         "largo",
         "largo_t",
         "last",
         "last_tap",
+        "lava_t",
         "layers",
         "lbotin",
         "lcofres",
-        "lecho",
         "leer",
         "left-right",
         "letter",
         "libre_col",
         "lid",
         "lineas",
-        "lingote_hierro",
-        "lingote_oro",
         "linv",
         "list_saves",
         "lista",
@@ -4912,11 +4984,10 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "m",
         "m:%d",
         "m:%s:%d",
-        "madera",
         "mal",
         "manda_mobs",
         "mandar_cofres",
-        "manzana",
+        "marcos",
         "mark",
         "mathop",
         "max_pieces",
@@ -4926,8 +4997,8 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "mc2d.py",
         "mdmul",
         "me_explota",
-        "medio",
         "menor",
+        "menos",
         "mensaje",
         "menu",
         "menu_items",
@@ -4939,8 +5010,9 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "mesa",
         "mezcla",
         "mi_id",
-        "minecraft2d",
+        "minecraft2d-pm",
         "mno6",
+        "mob/%d.png",
         "mob100",
         "mobID",
         "mob_area",
@@ -5002,18 +5074,22 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "mx",
         "my",
         "n",
+        "n_recetas",
         "names",
         "next backdrop",
         "next costume",
         "next_costume",
-        "nieve",
         "nombre",
         "nombre_cfg",
+        "nombre_m",
+        "nombre_s",
+        "nombres.txt",
         "normal",
         "nota",
         "now",
         "nueva",
         "nueva_partida",
+        "nuevo_mob",
         "nuevo_mundo",
         "num",
         "num_de",
@@ -5029,6 +5105,7 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "on",
         "online",
         "op",
+        "opciones",
         "operator_add",
         "operator_and",
         "operator_contains",
@@ -5049,7 +5126,6 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "operator_subtract",
         "ops",
         "original",
-        "oro_mena",
         "os",
         "otros",
         "overlap",
@@ -5057,8 +5133,6 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "oy",
         "oye",
         "p",
-        "pala",
-        "palo",
         "pant",
         "parar_sonidos",
         "partes",
@@ -5081,12 +5155,13 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "picker_hit",
         "pico",
         "pid",
-        "piedra",
-        "pig%d",
-        "pigdeath",
+        "pig",
         "pintado",
         "pintar",
         "play",
+        "pm",
+        "pm/",
+        "pm/bloques.bin no valido",
         "point_towards",
         "poner",
         "poner_cofre",
@@ -5097,6 +5172,7 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "prefijo",
         "pregunta",
         "preguntar",
+        "preparar_mobs",
         "previous backdrop",
         "previous costume",
         "procedures_call",
@@ -5114,15 +5190,19 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "q",
         "quantity",
         "quien",
-        "quitar",
+        "quitar_hueco",
+        "quitar_raiz",
         "quitar_servidor",
         "qwertyuiop",
         "r",
+        "raiz",
         "random backdrop",
         "rapido",
         "raton_antes",
         "rb",
         "recargar",
+        "receta",
+        "recetas.bin",
         "recibir",
         "recibir_botin",
         "recibir_cambio",
@@ -5146,7 +5226,6 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "respuesta",
         "restart",
         "rnd",
-        "roca",
         "room",
         "rot",
         "rot_style",
@@ -5162,6 +5241,7 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "salir",
         "saltado",
         "sand",
+        "sat",
         "save",
         "save_game",
         "save_key",
@@ -5212,6 +5292,7 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "setvar",
         "setxy",
         "sh",
+        "sheep",
         "shift",
         "show",
         "show_toast",
@@ -5226,6 +5307,8 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "sitio",
         "size",
         "sk",
+        "skeleton",
+        "skeletonhurt",
         "solido",
         "solo_anfitrion",
         "soltar",
@@ -5247,38 +5330,46 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "sounds",
         "sp",
         "space",
+        "spider",
         "spr",
         "sprint",
         "sprites",
         "stage",
         "start_hats",
+        "steve",
+        "steve%d.png",
         "stone",
         "stop_all",
         "suave",
         "subir",
         "sucios",
         "suelo",
+        "suelta",
         "sw",
         "sx",
         "sy",
         "t9",
         "t9.py",
-        "tablones",
         "tam_max",
         "tap",
         "tapar",
         "taps",
         "target_xy",
         "tecla",
-        "tex/%s.png",
+        "tex",
+        "tex/grieta%d.png",
+        "tex/t%d.png",
         "text",
         "this script",
         "thread",
         "threads",
+        "ticks",
         "tiempo",
+        "tiempo_picar",
         "tierra",
         "time",
         "timer0",
+        "tipo",
         "titulo",
         "titulo_rect",
         "to_screen",
@@ -5287,7 +5378,6 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "toint",
         "touching",
         "tras_guardar",
-        "tronco",
         "true",
         "truth",
         "tuv8",
@@ -5311,7 +5401,6 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "v",
         "vabierto",
         "vaciar",
-        "valor",
         "valores",
         "var",
         "var_get",
@@ -5325,6 +5414,7 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "vid",
         "vid_clon",
         "vida",
+        "vida%d.png",
         "visible",
         "vivo",
         "vobj",
@@ -5356,10 +5446,8 @@ const qstr_pool_t mp_qstr_frozen_const_pool = {
         "y0",
         "y1",
         "yo",
-        "zombi",
-        "zombie%d",
-        "zombiedeath",
-        "zombiehurt%d",
+        "zombie",
+        "zombiehurt",
         "zona",
         "zonas",
         "zxcvbnm.-_",
@@ -48283,10 +48371,10 @@ static const mp_frozen_module_t frozen_module_t9 = {
 // - .mpy header: 4d:06:00:1f
 
 // frozen bytecode for file mc2d.py, scope mc2d__lt_module_gt_
-static const byte fun_data_mc2d__lt_module_gt_[2157] = {
-    0xcc,0x10,0xec,0x04, // prelude
+static const byte fun_data_mc2d__lt_module_gt_[1119] = {
+    0x84,0x10,0xca,0x04, // prelude
     0x01, // names: <module>
-    0x80,0x1d,0x26,0x26,0x26,0x26,0x34,0x22,0x56,0x66,0x40,0x1f,0x1f,0x38,0x1f,0x29,0x26,0x30,0x1f,0x21,0x3e,0x32,0x3e,0x38,0x32,0x38,0x38,0x2f,0x1f,0x21,0x38,0x32,0x32,0x38,0x38,0x32,0x32,0x2f,0x25,0x25,0x28,0x28,0x1f,0x25,0x1f,0x1f,0x4b,0x37,0x1f,0x21,0x6b,0x1f,0x2a,0x1f,0x28,0x1f,0x28,0x1f,0x28,0x1f,0x28,0x39,0x32,0x2f,0x3e,0x3f,0x39,0x6b,0x20,0x1f,0x2e,0x34,0x3e,0x1f,0x29,0x1f,0x4e,0x3f,0x1f,0x27,0x1f,0x27,0x1f,0x27,0x1f,0x6a,0x2a,0x24,0x24,0x26,0x3b,0x30,0x26,0x25,0x2f,0x6b,0x2a,0x2a,0x2a,0x26,0x64,0x64,0x60,0x64,0x20,0x64,0x20,0x1f,0x61,0x84,0x0a,0x65,0x84,0x13,0x69,0x60,0x89,0x08,0x84,0x08,0x84,0x5c,0x84,0x0f,0x24,0x2b,0x6b,0x64,0x20,0x88,0x13,0x84,0x08,0x88,0x0d,0x65,0x84,0x07,0x88,0x08,0xb9,0x60,0x64,0x40,0x64,0x20,0x84,0x08,0x65,0x84,0x0f,0x85,0x13,0x85,0x08,0x85,0x0e,0x85,0x0a,0x85,0x0c,0x85,0x18,0x89,0x0c,0x85,0x07,0x8a,0x17,0x85,0x07,0x8a,0x15,0x85,0x09,0x85,0x1a,0x85,0x46,0x85,0x10, // code info
+    0x80,0x23,0x26,0x26,0x26,0x26,0x26,0x26,0x2c,0x34,0x22,0x56,0x66,0x25,0x25,0x4c,0x20,0x1f,0x3c,0x67,0x40,0x24,0x24,0x29,0x29,0x39,0x29,0x24,0x25,0x25,0x25,0x25,0x65,0x39,0x30,0x33,0x30,0x2d,0x2d,0x30,0x36,0x33,0x2d,0x2d,0x66,0x84,0x0d,0x64,0x40,0x84,0x2a,0x65,0x84,0x15,0x64,0x40,0x64,0x60,0x64,0x60,0x29,0x24,0x24,0x26,0x3b,0x30,0x26,0x25,0x2e,0x6b,0x2a,0x2a,0x2a,0x64,0x64,0x60,0x64,0x20,0x64,0x20,0x64,0x20,0x64,0x20,0x84,0x0a,0x65,0x84,0x13,0x69,0x60,0x89,0x0a,0x84,0x08,0x84,0x74,0x38,0x79,0x84,0x12,0x24,0x2a,0x6a,0x88,0x1f,0x84,0x0a,0x88,0x0c,0x68,0x60,0x84,0x11,0x64,0x40,0x65,0x84,0x09,0x64,0x20,0x88,0x0f,0xc9,0x52,0x64,0x40,0x84,0x08,0x65,0x84,0x0f,0x84,0x1a,0x84,0x08,0x84,0x0e,0x84,0x0a,0x84,0x0c,0x85,0x1a,0x89,0x0c,0x85,0x0a,0x8a,0x17,0x85,0x07,0x8a,0x15,0x85,0x09,0x85,0x1d,0x85,0x47,0x85,0x10,0x85,0x0b, // code info
     0x80, // LOAD_CONST_SMALL_INT 0
     0x51, // LOAD_CONST_NONE
     0x1b,0x02, // IMPORT_NAME 'math'
@@ -48304,969 +48392,1367 @@ static const byte fun_data_mc2d__lt_module_gt_[2157] = {
     0x1b,0x05, // IMPORT_NAME 'os'
     0x16,0x05, // STORE_NAME 'os'
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x10,0x06, // LOAD_CONST_STRING 'pantalla'
-    0x10,0x07, // LOAD_CONST_STRING 'teclas'
+    0x51, // LOAD_CONST_NONE
+    0x1b,0x06, // IMPORT_NAME 'struct'
+    0x16,0x06, // STORE_NAME 'struct'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x51, // LOAD_CONST_NONE
+    0x1b,0x07, // IMPORT_NAME 'gc'
+    0x16,0x07, // STORE_NAME 'gc'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x10,0x08, // LOAD_CONST_STRING 'array'
+    0x2a,0x01, // BUILD_TUPLE 1
+    0x1b,0x08, // IMPORT_NAME 'array'
+    0x1c,0x08, // IMPORT_FROM 'array'
+    0x16,0x08, // STORE_NAME 'array'
+    0x59, // POP_TOP
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x10,0x09, // LOAD_CONST_STRING 'pantalla'
+    0x10,0x0a, // LOAD_CONST_STRING 'teclas'
     0x2a,0x02, // BUILD_TUPLE 2
-    0x1b,0x08, // IMPORT_NAME 'scicalc'
-    0x1c,0x06, // IMPORT_FROM 'pantalla'
-    0x16,0x82,0x55, // STORE_NAME 'P'
-    0x1c,0x07, // IMPORT_FROM 'teclas'
-    0x16,0x82,0x56, // STORE_NAME 'K'
+    0x1b,0x0b, // IMPORT_NAME 'scicalc'
+    0x1c,0x09, // IMPORT_FROM 'pantalla'
+    0x16,0x82,0x67, // STORE_NAME 'P'
+    0x1c,0x0a, // IMPORT_FROM 'teclas'
+    0x16,0x82,0x68, // STORE_NAME 'K'
     0x59, // POP_TOP
     0x48,0x0e, // SETUP_EXCEPT 14
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x10,0x09, // LOAD_CONST_STRING 'red'
+    0x10,0x0c, // LOAD_CONST_STRING 'red'
     0x2a,0x01, // BUILD_TUPLE 1
-    0x1b,0x08, // IMPORT_NAME 'scicalc'
-    0x1c,0x09, // IMPORT_FROM 'red'
-    0x16,0x09, // STORE_NAME 'red'
+    0x1b,0x0b, // IMPORT_NAME 'scicalc'
+    0x1c,0x0c, // IMPORT_FROM 'red'
+    0x16,0x0c, // STORE_NAME 'red'
     0x59, // POP_TOP
     0x4a,0x0e, // POP_EXCEPT_JUMP 14
     0x57, // DUP_TOP
-    0x11,0x82,0x57, // LOAD_NAME 'ImportError'
+    0x11,0x82,0x69, // LOAD_NAME 'ImportError'
     0xdf, // BINARY_OP 8 <exception match>
     0x44,0x46, // POP_JUMP_IF_FALSE 6
     0x59, // POP_TOP
     0x51, // LOAD_CONST_NONE
-    0x16,0x09, // STORE_NAME 'red'
+    0x16,0x0c, // STORE_NAME 'red'
     0x4a,0x01, // POP_EXCEPT_JUMP 1
     0x5d, // END_FINALLY
-    0x11,0x82,0x58, // LOAD_NAME 'range'
-    0x9a, // LOAD_CONST_SMALL_INT 26
-    0x34,0x01, // CALL_FUNCTION 1
-    0x30,0x1a, // UNPACK_SEQUENCE 26
-    0x16,0x82,0x59, // STORE_NAME 'AIRE'
-    0x16,0x82,0x5a, // STORE_NAME 'HIERBA'
-    0x16,0x82,0x5b, // STORE_NAME 'TIERRA'
-    0x16,0x82,0x5c, // STORE_NAME 'PIEDRA'
-    0x16,0x82,0x5d, // STORE_NAME 'ROCA'
-    0x16,0x82,0x5e, // STORE_NAME 'TRONCO'
-    0x16,0x82,0x5f, // STORE_NAME 'HOJAS'
-    0x16,0x82,0x60, // STORE_NAME 'TABLONES'
-    0x16,0x82,0x61, // STORE_NAME 'ARENA'
-    0x16,0x82,0x62, // STORE_NAME 'GRAVA'
-    0x16,0x82,0x63, // STORE_NAME 'CARBON_M'
-    0x16,0x82,0x64, // STORE_NAME 'HIERRO_M'
-    0x16,0x82,0x65, // STORE_NAME 'ORO_M'
-    0x16,0x82,0x66, // STORE_NAME 'DIAMANTE_M'
-    0x16,0x82,0x67, // STORE_NAME 'LECHO'
-    0x16,0x82,0x68, // STORE_NAME 'AGUA'
-    0x16,0x82,0x69, // STORE_NAME 'MESA'
-    0x16,0x82,0x6a, // STORE_NAME 'HORNO'
-    0x16,0x82,0x6b, // STORE_NAME 'CRISTAL'
-    0x16,0x82,0x6c, // STORE_NAME 'LADRILLOS'
-    0x16,0x82,0x6d, // STORE_NAME 'NIEVE'
-    0x16,0x82,0x6e, // STORE_NAME 'CACTUS'
-    0x16,0x82,0x6f, // STORE_NAME 'FLOR_R'
-    0x16,0x82,0x70, // STORE_NAME 'FLOR_A'
-    0x16,0x82,0x71, // STORE_NAME 'HIERBA_A'
-    0x16,0x82,0x72, // STORE_NAME 'ANTORCHA'
-    0x11,0x82,0x58, // LOAD_NAME 'range'
-    0x22,0x80,0x40, // LOAD_CONST_SMALL_INT 64
-    0x22,0x80,0x49, // LOAD_CONST_SMALL_INT 73
-    0x34,0x02, // CALL_FUNCTION 2
-    0x30,0x09, // UNPACK_SEQUENCE 9
-    0x16,0x82,0x73, // STORE_NAME 'PALO'
-    0x16,0x82,0x74, // STORE_NAME 'CARBON'
-    0x16,0x82,0x75, // STORE_NAME 'LING_HIERRO'
-    0x16,0x82,0x76, // STORE_NAME 'LING_ORO'
-    0x16,0x82,0x77, // STORE_NAME 'DIAMANTE'
-    0x16,0x82,0x78, // STORE_NAME 'MANZANA'
-    0x16,0x82,0x79, // STORE_NAME 'CARNE'
-    0x16,0x82,0x7a, // STORE_NAME 'CARNE_ASADA'
-    0x16,0x82,0x7b, // STORE_NAME 'CARNE_POD'
-    0x22,0x80,0x50, // LOAD_CONST_SMALL_INT 80
-    0x16,0x82,0x7c, // STORE_NAME 'HERR'
+    0x10,0x0d, // LOAD_CONST_STRING 'pm/'
+    0x16,0x82,0x6a, // STORE_NAME 'PMD'
     0x23,0x00, // LOAD_CONST_OBJ 0
-    0x30,0x04, // UNPACK_SEQUENCE 4
-    0x16,0x82,0x7d, // STORE_NAME 'PICO'
-    0x16,0x82,0x7e, // STORE_NAME 'HACHA'
-    0x16,0x82,0x7f, // STORE_NAME 'PALA'
-    0x16,0x83,0x00, // STORE_NAME 'ESPADA'
-    0x2c,0x23, // BUILD_MAP 35
-    0x10,0x0a, // LOAD_CONST_STRING ''
-    0x11,0x82,0x59, // LOAD_NAME 'AIRE'
-    0x62, // STORE_MAP
-    0x10,0x0b, // LOAD_CONST_STRING 'hierba'
-    0x11,0x82,0x5a, // LOAD_NAME 'HIERBA'
-    0x62, // STORE_MAP
-    0x10,0x0c, // LOAD_CONST_STRING 'tierra'
-    0x11,0x82,0x5b, // LOAD_NAME 'TIERRA'
-    0x62, // STORE_MAP
-    0x10,0x0d, // LOAD_CONST_STRING 'piedra'
-    0x11,0x82,0x5c, // LOAD_NAME 'PIEDRA'
-    0x62, // STORE_MAP
-    0x10,0x0e, // LOAD_CONST_STRING 'roca'
-    0x11,0x82,0x5d, // LOAD_NAME 'ROCA'
-    0x62, // STORE_MAP
-    0x10,0x0f, // LOAD_CONST_STRING 'tronco'
-    0x11,0x82,0x5e, // LOAD_NAME 'TRONCO'
-    0x62, // STORE_MAP
-    0x10,0x10, // LOAD_CONST_STRING 'hojas'
-    0x11,0x82,0x5f, // LOAD_NAME 'HOJAS'
-    0x62, // STORE_MAP
-    0x10,0x11, // LOAD_CONST_STRING 'tablones'
-    0x11,0x82,0x60, // LOAD_NAME 'TABLONES'
-    0x62, // STORE_MAP
-    0x10,0x12, // LOAD_CONST_STRING 'arena'
-    0x11,0x82,0x61, // LOAD_NAME 'ARENA'
-    0x62, // STORE_MAP
-    0x10,0x13, // LOAD_CONST_STRING 'grava'
-    0x11,0x82,0x62, // LOAD_NAME 'GRAVA'
-    0x62, // STORE_MAP
-    0x23,0x01, // LOAD_CONST_OBJ 1
-    0x11,0x82,0x63, // LOAD_NAME 'CARBON_M'
-    0x62, // STORE_MAP
-    0x23,0x02, // LOAD_CONST_OBJ 2
-    0x11,0x82,0x64, // LOAD_NAME 'HIERRO_M'
-    0x62, // STORE_MAP
-    0x10,0x14, // LOAD_CONST_STRING 'oro_mena'
-    0x11,0x82,0x65, // LOAD_NAME 'ORO_M'
-    0x62, // STORE_MAP
-    0x23,0x03, // LOAD_CONST_OBJ 3
-    0x11,0x82,0x66, // LOAD_NAME 'DIAMANTE_M'
-    0x62, // STORE_MAP
-    0x10,0x15, // LOAD_CONST_STRING 'lecho'
-    0x11,0x82,0x67, // LOAD_NAME 'LECHO'
-    0x62, // STORE_MAP
-    0x10,0x16, // LOAD_CONST_STRING 'agua'
-    0x11,0x82,0x68, // LOAD_NAME 'AGUA'
-    0x62, // STORE_MAP
-    0x10,0x17, // LOAD_CONST_STRING 'mesa'
-    0x11,0x82,0x69, // LOAD_NAME 'MESA'
-    0x62, // STORE_MAP
-    0x10,0x18, // LOAD_CONST_STRING 'horno'
-    0x11,0x82,0x6a, // LOAD_NAME 'HORNO'
-    0x62, // STORE_MAP
-    0x10,0x19, // LOAD_CONST_STRING 'cristal'
-    0x11,0x82,0x6b, // LOAD_NAME 'CRISTAL'
-    0x62, // STORE_MAP
-    0x10,0x1a, // LOAD_CONST_STRING 'ladrillos'
-    0x11,0x82,0x6c, // LOAD_NAME 'LADRILLOS'
-    0x62, // STORE_MAP
-    0x10,0x1b, // LOAD_CONST_STRING 'nieve'
-    0x11,0x82,0x6d, // LOAD_NAME 'NIEVE'
-    0x62, // STORE_MAP
-    0x10,0x1c, // LOAD_CONST_STRING 'cactus'
-    0x11,0x82,0x6e, // LOAD_NAME 'CACTUS'
-    0x62, // STORE_MAP
-    0x10,0x1d, // LOAD_CONST_STRING 'flor_roja'
-    0x11,0x82,0x6f, // LOAD_NAME 'FLOR_R'
-    0x62, // STORE_MAP
-    0x23,0x04, // LOAD_CONST_OBJ 4
-    0x11,0x82,0x70, // LOAD_NAME 'FLOR_A'
-    0x62, // STORE_MAP
-    0x23,0x05, // LOAD_CONST_OBJ 5
-    0x11,0x82,0x71, // LOAD_NAME 'HIERBA_A'
-    0x62, // STORE_MAP
-    0x10,0x1e, // LOAD_CONST_STRING 'antorcha'
-    0x11,0x82,0x72, // LOAD_NAME 'ANTORCHA'
-    0x62, // STORE_MAP
-    0x10,0x1f, // LOAD_CONST_STRING 'palo'
-    0x11,0x82,0x73, // LOAD_NAME 'PALO'
-    0x62, // STORE_MAP
-    0x10,0x20, // LOAD_CONST_STRING 'carbon'
-    0x11,0x82,0x74, // LOAD_NAME 'CARBON'
-    0x62, // STORE_MAP
-    0x23,0x06, // LOAD_CONST_OBJ 6
-    0x11,0x82,0x75, // LOAD_NAME 'LING_HIERRO'
-    0x62, // STORE_MAP
-    0x23,0x07, // LOAD_CONST_OBJ 7
-    0x11,0x82,0x76, // LOAD_NAME 'LING_ORO'
-    0x62, // STORE_MAP
-    0x10,0x21, // LOAD_CONST_STRING 'diamante'
-    0x11,0x82,0x77, // LOAD_NAME 'DIAMANTE'
-    0x62, // STORE_MAP
-    0x10,0x22, // LOAD_CONST_STRING 'manzana'
-    0x11,0x82,0x78, // LOAD_NAME 'MANZANA'
-    0x62, // STORE_MAP
-    0x10,0x23, // LOAD_CONST_STRING 'carne'
-    0x11,0x82,0x79, // LOAD_NAME 'CARNE'
-    0x62, // STORE_MAP
-    0x23,0x08, // LOAD_CONST_OBJ 8
-    0x11,0x82,0x7a, // LOAD_NAME 'CARNE_ASADA'
-    0x62, // STORE_MAP
-    0x23,0x09, // LOAD_CONST_OBJ 9
-    0x11,0x82,0x7b, // LOAD_NAME 'CARNE_POD'
-    0x62, // STORE_MAP
-    0x16,0x83,0x01, // STORE_NAME 'TEX'
-    0x2c,0x1f, // BUILD_MAP 31
-    0x10,0x24, // LOAD_CONST_STRING 'Hierba'
-    0x11,0x82,0x5a, // LOAD_NAME 'HIERBA'
-    0x62, // STORE_MAP
-    0x10,0x25, // LOAD_CONST_STRING 'Tierra'
-    0x11,0x82,0x5b, // LOAD_NAME 'TIERRA'
-    0x62, // STORE_MAP
-    0x10,0x26, // LOAD_CONST_STRING 'Piedra'
-    0x11,0x82,0x5c, // LOAD_NAME 'PIEDRA'
-    0x62, // STORE_MAP
-    0x10,0x27, // LOAD_CONST_STRING 'Roca'
-    0x11,0x82,0x5d, // LOAD_NAME 'ROCA'
-    0x62, // STORE_MAP
-    0x10,0x28, // LOAD_CONST_STRING 'Tronco'
-    0x11,0x82,0x5e, // LOAD_NAME 'TRONCO'
-    0x62, // STORE_MAP
-    0x10,0x29, // LOAD_CONST_STRING 'Hojas'
-    0x11,0x82,0x5f, // LOAD_NAME 'HOJAS'
-    0x62, // STORE_MAP
-    0x10,0x2a, // LOAD_CONST_STRING 'Tablones'
-    0x11,0x82,0x60, // LOAD_NAME 'TABLONES'
-    0x62, // STORE_MAP
-    0x10,0x2b, // LOAD_CONST_STRING 'Arena'
-    0x11,0x82,0x61, // LOAD_NAME 'ARENA'
-    0x62, // STORE_MAP
-    0x10,0x2c, // LOAD_CONST_STRING 'Grava'
-    0x11,0x82,0x62, // LOAD_NAME 'GRAVA'
-    0x62, // STORE_MAP
-    0x23,0x0a, // LOAD_CONST_OBJ 10
-    0x11,0x82,0x63, // LOAD_NAME 'CARBON_M'
-    0x62, // STORE_MAP
-    0x23,0x0b, // LOAD_CONST_OBJ 11
-    0x11,0x82,0x64, // LOAD_NAME 'HIERRO_M'
-    0x62, // STORE_MAP
-    0x23,0x0c, // LOAD_CONST_OBJ 12
-    0x11,0x82,0x65, // LOAD_NAME 'ORO_M'
-    0x62, // STORE_MAP
-    0x23,0x0d, // LOAD_CONST_OBJ 13
-    0x11,0x82,0x66, // LOAD_NAME 'DIAMANTE_M'
-    0x62, // STORE_MAP
-    0x23,0x0e, // LOAD_CONST_OBJ 14
-    0x11,0x82,0x69, // LOAD_NAME 'MESA'
-    0x62, // STORE_MAP
-    0x10,0x2d, // LOAD_CONST_STRING 'Horno'
-    0x11,0x82,0x6a, // LOAD_NAME 'HORNO'
-    0x62, // STORE_MAP
-    0x10,0x2e, // LOAD_CONST_STRING 'Cristal'
-    0x11,0x82,0x6b, // LOAD_NAME 'CRISTAL'
-    0x62, // STORE_MAP
-    0x10,0x2f, // LOAD_CONST_STRING 'Ladrillos'
-    0x11,0x82,0x6c, // LOAD_NAME 'LADRILLOS'
-    0x62, // STORE_MAP
-    0x10,0x30, // LOAD_CONST_STRING 'Nieve'
-    0x11,0x82,0x6d, // LOAD_NAME 'NIEVE'
-    0x62, // STORE_MAP
-    0x10,0x31, // LOAD_CONST_STRING 'Cactus'
-    0x11,0x82,0x6e, // LOAD_NAME 'CACTUS'
-    0x62, // STORE_MAP
-    0x10,0x32, // LOAD_CONST_STRING 'Amapola'
-    0x11,0x82,0x6f, // LOAD_NAME 'FLOR_R'
-    0x62, // STORE_MAP
-    0x23,0x0f, // LOAD_CONST_OBJ 15
-    0x11,0x82,0x70, // LOAD_NAME 'FLOR_A'
-    0x62, // STORE_MAP
-    0x10,0x33, // LOAD_CONST_STRING 'Antorcha'
-    0x11,0x82,0x72, // LOAD_NAME 'ANTORCHA'
-    0x62, // STORE_MAP
-    0x10,0x34, // LOAD_CONST_STRING 'Palo'
-    0x11,0x82,0x73, // LOAD_NAME 'PALO'
-    0x62, // STORE_MAP
-    0x10,0x35, // LOAD_CONST_STRING 'Carbon'
-    0x11,0x82,0x74, // LOAD_NAME 'CARBON'
-    0x62, // STORE_MAP
-    0x23,0x10, // LOAD_CONST_OBJ 16
-    0x11,0x82,0x75, // LOAD_NAME 'LING_HIERRO'
-    0x62, // STORE_MAP
-    0x23,0x11, // LOAD_CONST_OBJ 17
-    0x11,0x82,0x76, // LOAD_NAME 'LING_ORO'
-    0x62, // STORE_MAP
-    0x10,0x36, // LOAD_CONST_STRING 'Diamante'
-    0x11,0x82,0x77, // LOAD_NAME 'DIAMANTE'
-    0x62, // STORE_MAP
-    0x10,0x37, // LOAD_CONST_STRING 'Manzana'
-    0x11,0x82,0x78, // LOAD_NAME 'MANZANA'
-    0x62, // STORE_MAP
-    0x23,0x12, // LOAD_CONST_OBJ 18
-    0x11,0x82,0x79, // LOAD_NAME 'CARNE'
-    0x62, // STORE_MAP
-    0x23,0x13, // LOAD_CONST_OBJ 19
-    0x11,0x82,0x7a, // LOAD_NAME 'CARNE_ASADA'
-    0x62, // STORE_MAP
-    0x23,0x14, // LOAD_CONST_OBJ 20
-    0x11,0x82,0x7b, // LOAD_NAME 'CARNE_POD'
-    0x62, // STORE_MAP
-    0x16,0x83,0x02, // STORE_NAME 'NOMBRE'
-    0x23,0x15, // LOAD_CONST_OBJ 21
-    0x16,0x83,0x03, // STORE_NAME 'MATS'
-    0x23,0x16, // LOAD_CONST_OBJ 22
-    0x16,0x83,0x04, // STORE_NAME 'TIPOS'
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0x42,0xf2,0x80, // JUMP 114
-    0x57, // DUP_TOP
-    0x16,0x83,0x05, // STORE_NAME '_t'
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0x42,0xe1,0x80, // JUMP 97
-    0x57, // DUP_TOP
-    0x16,0x83,0x06, // STORE_NAME '_m'
-    0x10,0x38, // LOAD_CONST_STRING '%s_%s'
-    0x11,0x83,0x04, // LOAD_NAME 'TIPOS'
-    0x11,0x83,0x05, // LOAD_NAME '_t'
-    0x55, // LOAD_SUBSCR
-    0x11,0x83,0x03, // LOAD_NAME 'MATS'
-    0x11,0x83,0x06, // LOAD_NAME '_m'
-    0x55, // LOAD_SUBSCR
-    0x2a,0x02, // BUILD_TUPLE 2
-    0xf8, // BINARY_OP 33 __mod__
-    0x11,0x83,0x01, // LOAD_NAME 'TEX'
-    0x11,0x82,0x7c, // LOAD_NAME 'HERR'
-    0x11,0x83,0x05, // LOAD_NAME '_t'
-    0x84, // LOAD_CONST_SMALL_INT 4
-    0xf4, // BINARY_OP 29 __mul__
-    0xf2, // BINARY_OP 27 __add__
-    0x11,0x83,0x06, // LOAD_NAME '_m'
-    0xf2, // BINARY_OP 27 __add__
-    0x56, // STORE_SUBSCR
-    0x10,0x39, // LOAD_CONST_STRING '%s de %s'
-    0x11,0x83,0x04, // LOAD_NAME 'TIPOS'
-    0x11,0x83,0x05, // LOAD_NAME '_t'
-    0x55, // LOAD_SUBSCR
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0x55, // LOAD_SUBSCR
-    0x14,0x3a, // LOAD_METHOD 'upper'
-    0x36,0x00, // CALL_METHOD 0
-    0x11,0x83,0x04, // LOAD_NAME 'TIPOS'
-    0x11,0x83,0x05, // LOAD_NAME '_t'
-    0x55, // LOAD_SUBSCR
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x51, // LOAD_CONST_NONE
-    0x2e,0x02, // BUILD_SLICE 2
-    0x55, // LOAD_SUBSCR
-    0xf2, // BINARY_OP 27 __add__
-    0x11,0x83,0x03, // LOAD_NAME 'MATS'
-    0x11,0x83,0x06, // LOAD_NAME '_m'
-    0x55, // LOAD_SUBSCR
-    0x2a,0x02, // BUILD_TUPLE 2
-    0xf8, // BINARY_OP 33 __mod__
-    0x11,0x83,0x02, // LOAD_NAME 'NOMBRE'
-    0x11,0x82,0x7c, // LOAD_NAME 'HERR'
-    0x11,0x83,0x05, // LOAD_NAME '_t'
-    0x84, // LOAD_CONST_SMALL_INT 4
-    0xf4, // BINARY_OP 29 __mul__
-    0xf2, // BINARY_OP 27 __add__
-    0x11,0x83,0x06, // LOAD_NAME '_m'
-    0xf2, // BINARY_OP 27 __add__
-    0x56, // STORE_SUBSCR
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0xe5, // BINARY_OP 14 __iadd__
-    0x57, // DUP_TOP
-    0x84, // LOAD_CONST_SMALL_INT 4
-    0xd7, // BINARY_OP 0 __lt__
-    0x43,0x99,0x7f, // POP_JUMP_IF_TRUE -103
-    0x59, // POP_TOP
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0xe5, // BINARY_OP 14 __iadd__
-    0x57, // DUP_TOP
-    0x84, // LOAD_CONST_SMALL_INT 4
-    0xd7, // BINARY_OP 0 __lt__
-    0x43,0x88,0x7f, // POP_JUMP_IF_TRUE -120
-    0x59, // POP_TOP
-    0x11,0x82,0x59, // LOAD_NAME 'AIRE'
-    0x11,0x82,0x68, // LOAD_NAME 'AGUA'
-    0x11,0x82,0x6f, // LOAD_NAME 'FLOR_R'
-    0x11,0x82,0x70, // LOAD_NAME 'FLOR_A'
-    0x11,0x82,0x71, // LOAD_NAME 'HIERBA_A'
-    0x11,0x82,0x72, // LOAD_NAME 'ANTORCHA'
-    0x2a,0x06, // BUILD_TUPLE 6
-    0x16,0x83,0x07, // STORE_NAME 'NO_SOLIDO'
-    0x11,0x82,0x59, // LOAD_NAME 'AIRE'
-    0x11,0x82,0x68, // LOAD_NAME 'AGUA'
-    0x11,0x82,0x6f, // LOAD_NAME 'FLOR_R'
-    0x11,0x82,0x70, // LOAD_NAME 'FLOR_A'
-    0x11,0x82,0x71, // LOAD_NAME 'HIERBA_A'
-    0x11,0x82,0x72, // LOAD_NAME 'ANTORCHA'
-    0x11,0x82,0x5f, // LOAD_NAME 'HOJAS'
-    0x11,0x82,0x6b, // LOAD_NAME 'CRISTAL'
-    0x11,0x82,0x6e, // LOAD_NAME 'CACTUS'
-    0x2a,0x09, // BUILD_TUPLE 9
-    0x16,0x83,0x08, // STORE_NAME 'TRANSP'
-    0x11,0x82,0x61, // LOAD_NAME 'ARENA'
-    0x11,0x82,0x62, // LOAD_NAME 'GRAVA'
-    0x2a,0x02, // BUILD_TUPLE 2
-    0x16,0x83,0x09, // STORE_NAME 'CAEN'
-    0x2c,0x17, // BUILD_MAP 23
-    0x22,0x87,0x04, // LOAD_CONST_SMALL_INT 900
-    0x11,0x82,0x7f, // LOAD_NAME 'PALA'
-    0x7f, // LOAD_CONST_SMALL_INT -1
-    0x2a,0x03, // BUILD_TUPLE 3
-    0x11,0x82,0x5a, // LOAD_NAME 'HIERBA'
-    0x62, // STORE_MAP
-    0x22,0x85,0x6e, // LOAD_CONST_SMALL_INT 750
-    0x11,0x82,0x7f, // LOAD_NAME 'PALA'
-    0x7f, // LOAD_CONST_SMALL_INT -1
-    0x2a,0x03, // BUILD_TUPLE 3
-    0x11,0x82,0x5b, // LOAD_NAME 'TIERRA'
-    0x62, // STORE_MAP
-    0x22,0x85,0x6e, // LOAD_CONST_SMALL_INT 750
-    0x11,0x82,0x7f, // LOAD_NAME 'PALA'
-    0x7f, // LOAD_CONST_SMALL_INT -1
-    0x2a,0x03, // BUILD_TUPLE 3
-    0x11,0x82,0x61, // LOAD_NAME 'ARENA'
-    0x62, // STORE_MAP
-    0x22,0x87,0x04, // LOAD_CONST_SMALL_INT 900
-    0x11,0x82,0x7f, // LOAD_NAME 'PALA'
-    0x7f, // LOAD_CONST_SMALL_INT -1
-    0x2a,0x03, // BUILD_TUPLE 3
-    0x11,0x82,0x62, // LOAD_NAME 'GRAVA'
-    0x62, // STORE_MAP
-    0x22,0x83,0x74, // LOAD_CONST_SMALL_INT 500
-    0x11,0x82,0x7f, // LOAD_NAME 'PALA'
-    0x7f, // LOAD_CONST_SMALL_INT -1
-    0x2a,0x03, // BUILD_TUPLE 3
-    0x11,0x82,0x6d, // LOAD_NAME 'NIEVE'
-    0x62, // STORE_MAP
-    0x22,0x91,0x18, // LOAD_CONST_SMALL_INT 2200
-    0x11,0x82,0x7d, // LOAD_NAME 'PICO'
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0x2a,0x03, // BUILD_TUPLE 3
-    0x11,0x82,0x5c, // LOAD_NAME 'PIEDRA'
-    0x62, // STORE_MAP
-    0x22,0x94,0x28, // LOAD_CONST_SMALL_INT 2600
-    0x11,0x82,0x7d, // LOAD_NAME 'PICO'
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0x2a,0x03, // BUILD_TUPLE 3
-    0x11,0x82,0x5d, // LOAD_NAME 'ROCA'
-    0x62, // STORE_MAP
-    0x22,0x97,0x38, // LOAD_CONST_SMALL_INT 3000
-    0x11,0x82,0x7d, // LOAD_NAME 'PICO'
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0x2a,0x03, // BUILD_TUPLE 3
-    0x11,0x82,0x63, // LOAD_NAME 'CARBON_M'
-    0x62, // STORE_MAP
-    0x22,0x9c,0x10, // LOAD_CONST_SMALL_INT 3600
-    0x11,0x82,0x7d, // LOAD_NAME 'PICO'
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x2a,0x03, // BUILD_TUPLE 3
-    0x11,0x82,0x64, // LOAD_NAME 'HIERRO_M'
-    0x62, // STORE_MAP
-    0x22,0x9c,0x10, // LOAD_CONST_SMALL_INT 3600
-    0x11,0x82,0x7d, // LOAD_NAME 'PICO'
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0x2a,0x03, // BUILD_TUPLE 3
-    0x11,0x82,0x65, // LOAD_NAME 'ORO_M'
-    0x62, // STORE_MAP
-    0x22,0x9f,0x20, // LOAD_CONST_SMALL_INT 4000
-    0x11,0x82,0x7d, // LOAD_NAME 'PICO'
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0x2a,0x03, // BUILD_TUPLE 3
-    0x11,0x82,0x66, // LOAD_NAME 'DIAMANTE_M'
-    0x62, // STORE_MAP
-    0x22,0x94,0x28, // LOAD_CONST_SMALL_INT 2600
-    0x11,0x82,0x7d, // LOAD_NAME 'PICO'
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0x2a,0x03, // BUILD_TUPLE 3
-    0x11,0x82,0x6c, // LOAD_NAME 'LADRILLOS'
-    0x62, // STORE_MAP
-    0x22,0x94,0x28, // LOAD_CONST_SMALL_INT 2600
-    0x11,0x82,0x7d, // LOAD_NAME 'PICO'
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0x2a,0x03, // BUILD_TUPLE 3
-    0x11,0x82,0x6a, // LOAD_NAME 'HORNO'
-    0x62, // STORE_MAP
-    0x22,0x8f,0x50, // LOAD_CONST_SMALL_INT 2000
-    0x11,0x82,0x7e, // LOAD_NAME 'HACHA'
-    0x7f, // LOAD_CONST_SMALL_INT -1
-    0x2a,0x03, // BUILD_TUPLE 3
-    0x11,0x82,0x5e, // LOAD_NAME 'TRONCO'
-    0x62, // STORE_MAP
-    0x22,0x8e,0x08, // LOAD_CONST_SMALL_INT 1800
-    0x11,0x82,0x7e, // LOAD_NAME 'HACHA'
-    0x7f, // LOAD_CONST_SMALL_INT -1
-    0x2a,0x03, // BUILD_TUPLE 3
-    0x11,0x82,0x60, // LOAD_NAME 'TABLONES'
-    0x62, // STORE_MAP
-    0x22,0x8e,0x08, // LOAD_CONST_SMALL_INT 1800
-    0x11,0x82,0x7e, // LOAD_NAME 'HACHA'
-    0x7f, // LOAD_CONST_SMALL_INT -1
-    0x2a,0x03, // BUILD_TUPLE 3
-    0x11,0x82,0x69, // LOAD_NAME 'MESA'
-    0x62, // STORE_MAP
-    0x23,0x17, // LOAD_CONST_OBJ 23
-    0x11,0x82,0x5f, // LOAD_NAME 'HOJAS'
-    0x62, // STORE_MAP
-    0x23,0x18, // LOAD_CONST_OBJ 24
-    0x11,0x82,0x6b, // LOAD_NAME 'CRISTAL'
-    0x62, // STORE_MAP
-    0x23,0x19, // LOAD_CONST_OBJ 25
-    0x11,0x82,0x6e, // LOAD_NAME 'CACTUS'
-    0x62, // STORE_MAP
-    0x23,0x1a, // LOAD_CONST_OBJ 26
-    0x11,0x82,0x6f, // LOAD_NAME 'FLOR_R'
-    0x62, // STORE_MAP
-    0x23,0x1a, // LOAD_CONST_OBJ 26
-    0x11,0x82,0x70, // LOAD_NAME 'FLOR_A'
-    0x62, // STORE_MAP
-    0x23,0x1a, // LOAD_CONST_OBJ 26
-    0x11,0x82,0x71, // LOAD_NAME 'HIERBA_A'
-    0x62, // STORE_MAP
-    0x23,0x1a, // LOAD_CONST_OBJ 26
-    0x11,0x82,0x72, // LOAD_NAME 'ANTORCHA'
-    0x62, // STORE_MAP
-    0x16,0x83,0x0a, // STORE_NAME 'DUREZA'
-    0x2c,0x08, // BUILD_MAP 8
-    0x11,0x82,0x5b, // LOAD_NAME 'TIERRA'
-    0x11,0x82,0x5a, // LOAD_NAME 'HIERBA'
-    0x62, // STORE_MAP
-    0x11,0x82,0x5d, // LOAD_NAME 'ROCA'
-    0x11,0x82,0x5c, // LOAD_NAME 'PIEDRA'
-    0x62, // STORE_MAP
-    0x11,0x82,0x74, // LOAD_NAME 'CARBON'
-    0x11,0x82,0x63, // LOAD_NAME 'CARBON_M'
-    0x62, // STORE_MAP
-    0x11,0x82,0x77, // LOAD_NAME 'DIAMANTE'
-    0x11,0x82,0x66, // LOAD_NAME 'DIAMANTE_M'
-    0x62, // STORE_MAP
-    0x11,0x82,0x59, // LOAD_NAME 'AIRE'
-    0x11,0x82,0x71, // LOAD_NAME 'HIERBA_A'
-    0x62, // STORE_MAP
-    0x11,0x82,0x59, // LOAD_NAME 'AIRE'
-    0x11,0x82,0x6b, // LOAD_NAME 'CRISTAL'
-    0x62, // STORE_MAP
-    0x11,0x82,0x59, // LOAD_NAME 'AIRE'
-    0x11,0x82,0x5f, // LOAD_NAME 'HOJAS'
-    0x62, // STORE_MAP
-    0x11,0x82,0x6d, // LOAD_NAME 'NIEVE'
-    0x11,0x82,0x6d, // LOAD_NAME 'NIEVE'
-    0x62, // STORE_MAP
-    0x16,0x83,0x0b, // STORE_NAME 'SUELTA'
-    0x2c,0x04, // BUILD_MAP 4
-    0x84, // LOAD_CONST_SMALL_INT 4
-    0x11,0x82,0x78, // LOAD_NAME 'MANZANA'
-    0x62, // STORE_MAP
-    0x83, // LOAD_CONST_SMALL_INT 3
-    0x11,0x82,0x79, // LOAD_NAME 'CARNE'
-    0x62, // STORE_MAP
-    0x88, // LOAD_CONST_SMALL_INT 8
-    0x11,0x82,0x7a, // LOAD_NAME 'CARNE_ASADA'
-    0x62, // STORE_MAP
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0x11,0x82,0x7b, // LOAD_NAME 'CARNE_POD'
-    0x62, // STORE_MAP
-    0x16,0x83,0x0c, // STORE_NAME 'COMIDA'
-    0x2c,0x01, // BUILD_MAP 1
-    0x23,0x1b, // LOAD_CONST_OBJ 27
-    0x11,0x83,0x00, // LOAD_NAME 'ESPADA'
-    0x62, // STORE_MAP
-    0x16,0x83,0x0d, // STORE_NAME 'DANO'
-    0x11,0x82,0x60, // LOAD_NAME 'TABLONES'
-    0x84, // LOAD_CONST_SMALL_INT 4
-    0x2c,0x01, // BUILD_MAP 1
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x11,0x82,0x5e, // LOAD_NAME 'TRONCO'
-    0x62, // STORE_MAP
-    0x10,0x0a, // LOAD_CONST_STRING ''
-    0x2a,0x04, // BUILD_TUPLE 4
-    0x11,0x82,0x73, // LOAD_NAME 'PALO'
-    0x84, // LOAD_CONST_SMALL_INT 4
-    0x2c,0x01, // BUILD_MAP 1
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0x11,0x82,0x60, // LOAD_NAME 'TABLONES'
-    0x62, // STORE_MAP
-    0x10,0x0a, // LOAD_CONST_STRING ''
-    0x2a,0x04, // BUILD_TUPLE 4
-    0x11,0x82,0x69, // LOAD_NAME 'MESA'
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x2c,0x01, // BUILD_MAP 1
-    0x84, // LOAD_CONST_SMALL_INT 4
-    0x11,0x82,0x60, // LOAD_NAME 'TABLONES'
-    0x62, // STORE_MAP
-    0x10,0x0a, // LOAD_CONST_STRING ''
-    0x2a,0x04, // BUILD_TUPLE 4
-    0x11,0x82,0x72, // LOAD_NAME 'ANTORCHA'
-    0x84, // LOAD_CONST_SMALL_INT 4
-    0x2c,0x02, // BUILD_MAP 2
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x11,0x82,0x73, // LOAD_NAME 'PALO'
-    0x62, // STORE_MAP
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x11,0x82,0x74, // LOAD_NAME 'CARBON'
-    0x62, // STORE_MAP
-    0x10,0x0a, // LOAD_CONST_STRING ''
-    0x2a,0x04, // BUILD_TUPLE 4
-    0x11,0x82,0x6a, // LOAD_NAME 'HORNO'
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x2c,0x01, // BUILD_MAP 1
-    0x88, // LOAD_CONST_SMALL_INT 8
-    0x11,0x82,0x5d, // LOAD_NAME 'ROCA'
-    0x62, // STORE_MAP
-    0x10,0x17, // LOAD_CONST_STRING 'mesa'
-    0x2a,0x04, // BUILD_TUPLE 4
-    0x11,0x82,0x6c, // LOAD_NAME 'LADRILLOS'
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x2c,0x01, // BUILD_MAP 1
-    0x84, // LOAD_CONST_SMALL_INT 4
-    0x11,0x82,0x5d, // LOAD_NAME 'ROCA'
-    0x62, // STORE_MAP
-    0x10,0x17, // LOAD_CONST_STRING 'mesa'
-    0x2a,0x04, // BUILD_TUPLE 4
-    0x11,0x82,0x75, // LOAD_NAME 'LING_HIERRO'
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x2c,0x02, // BUILD_MAP 2
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x11,0x82,0x64, // LOAD_NAME 'HIERRO_M'
-    0x62, // STORE_MAP
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x11,0x82,0x74, // LOAD_NAME 'CARBON'
-    0x62, // STORE_MAP
-    0x10,0x18, // LOAD_CONST_STRING 'horno'
-    0x2a,0x04, // BUILD_TUPLE 4
-    0x11,0x82,0x76, // LOAD_NAME 'LING_ORO'
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x2c,0x02, // BUILD_MAP 2
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x11,0x82,0x65, // LOAD_NAME 'ORO_M'
-    0x62, // STORE_MAP
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x11,0x82,0x74, // LOAD_NAME 'CARBON'
-    0x62, // STORE_MAP
-    0x10,0x18, // LOAD_CONST_STRING 'horno'
-    0x2a,0x04, // BUILD_TUPLE 4
-    0x11,0x82,0x7a, // LOAD_NAME 'CARNE_ASADA'
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x2c,0x02, // BUILD_MAP 2
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x11,0x82,0x79, // LOAD_NAME 'CARNE'
-    0x62, // STORE_MAP
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x11,0x82,0x74, // LOAD_NAME 'CARBON'
-    0x62, // STORE_MAP
-    0x10,0x18, // LOAD_CONST_STRING 'horno'
-    0x2a,0x04, // BUILD_TUPLE 4
-    0x11,0x82,0x6b, // LOAD_NAME 'CRISTAL'
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x2c,0x02, // BUILD_MAP 2
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x11,0x82,0x61, // LOAD_NAME 'ARENA'
-    0x62, // STORE_MAP
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x11,0x82,0x74, // LOAD_NAME 'CARBON'
-    0x62, // STORE_MAP
-    0x10,0x18, // LOAD_CONST_STRING 'horno'
-    0x2a,0x04, // BUILD_TUPLE 4
-    0x2b,0x0a, // BUILD_LIST 10
-    0x16,0x83,0x0e, // STORE_NAME 'RECETAS'
-    0x11,0x83,0x0f, // LOAD_NAME 'enumerate'
-    0x11,0x82,0x60, // LOAD_NAME 'TABLONES'
-    0x11,0x82,0x5d, // LOAD_NAME 'ROCA'
-    0x11,0x82,0x75, // LOAD_NAME 'LING_HIERRO'
-    0x11,0x82,0x77, // LOAD_NAME 'DIAMANTE'
-    0x2a,0x04, // BUILD_TUPLE 4
+    0x16,0x82,0x6b, // STORE_NAME 'FICHA'
+    0x11,0x06, // LOAD_NAME 'struct'
+    0x14,0x0e, // LOAD_METHOD 'calcsize'
+    0x11,0x82,0x6b, // LOAD_NAME 'FICHA'
+    0x36,0x01, // CALL_METHOD 1
+    0x16,0x82,0x6c, // STORE_NAME 'FT'
+    0x11,0x82,0x6d, // LOAD_NAME 'range'
+    0x91, // LOAD_CONST_SMALL_INT 17
     0x34,0x01, // CALL_FUNCTION 1
-    0x5f, // GET_ITER_STACK
-    0x4b,0xa3,0x01, // FOR_ITER 163
+    0x30,0x11, // UNPACK_SEQUENCE 17
+    0x16,0x82,0x6e, // STORE_NAME 'F_SOL'
+    0x16,0x82,0x6f, // STORE_NAME 'F_DUR'
+    0x16,0x82,0x70, // STORE_NAME 'F_HERR'
+    0x16,0x82,0x71, // STORE_NAME 'F_NIV'
+    0x16,0x82,0x72, // STORE_NAME 'F_LIQ'
+    0x16,0x82,0x73, // STORE_NAME 'F_CAE'
+    0x16,0x82,0x74, // STORE_NAME 'F_LUZ'
+    0x16,0x82,0x75, // STORE_NAME 'F_GRUPO'
+    0x16,0x82,0x76, // STORE_NAME 'F_SUELTA'
+    0x16,0x82,0x77, // STORE_NAME 'F_FUNDE'
+    0x16,0x82,0x78, // STORE_NAME 'F_QUEMA'
+    0x16,0x82,0x79, // STORE_NAME 'F_DANO'
+    0x16,0x82,0x7a, // STORE_NAME 'F_CREAT'
+    0x16,0x82,0x7b, // STORE_NAME 'F_TILE'
+    0x16,0x82,0x7c, // STORE_NAME 'F_INV'
+    0x16,0x82,0x7d, // STORE_NAME 'F_DURAB'
+    0x16,0x82,0x7e, // STORE_NAME 'F_RAIZ'
+    0x23,0x01, // LOAD_CONST_OBJ 1
+    0x91, // LOAD_CONST_SMALL_INT 17
+    0xf4, // BINARY_OP 29 __mul__
+    0x16,0x82,0x7f, // STORE_NAME 'CERO'
+    0x51, // LOAD_CONST_NONE
+    0x17,0x83,0x00, // STORE_GLOBAL '_bl'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x17,0x83,0x01, // STORE_GLOBAL 'NB'
+    0x11,0x08, // LOAD_NAME 'array'
+    0x10,0x0f, // LOAD_CONST_STRING 'H'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x17,0x83,0x02, // STORE_GLOBAL 'L2PM'
+    0x11,0x83,0x03, // LOAD_NAME 'bytearray'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x34,0x01, // CALL_FUNCTION 1
+    0x17,0x83,0x04, // STORE_GLOBAL 'PM2L'
+    0x11,0x83,0x03, // LOAD_NAME 'bytearray'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x34,0x01, // CALL_FUNCTION 1
+    0x57, // DUP_TOP
+    0x17,0x83,0x05, // STORE_GLOBAL 'SOL'
+    0x57, // DUP_TOP
+    0x17,0x83,0x06, // STORE_GLOBAL 'TRANSP'
+    0x57, // DUP_TOP
+    0x17,0x83,0x07, // STORE_GLOBAL 'NOSUELO'
+    0x57, // DUP_TOP
+    0x17,0x83,0x08, // STORE_GLOBAL 'LIQ'
+    0x17,0x83,0x09, // STORE_GLOBAL 'CAE'
+    0x11,0x08, // LOAD_NAME 'array'
+    0x10,0x0f, // LOAD_CONST_STRING 'H'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x17,0x83,0x0a, // STORE_GLOBAL 'TEXL'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x17,0x83,0x0b, // STORE_GLOBAL 'NREC'
+    0x2c,0x00, // BUILD_MAP 0
+    0x16,0x83,0x0c, // STORE_NAME '_fichas'
+    0x2c,0x00, // BUILD_MAP 0
+    0x17,0x83,0x0d, // STORE_GLOBAL 'COMIDA'
+    0x2c,0x00, // BUILD_MAP 0
+    0x17,0x83,0x0e, // STORE_GLOBAL 'MOBS'
+    0x2b,0x00, // BUILD_LIST 0
+    0x17,0x83,0x0f, // STORE_GLOBAL 'BIOMAS'
+    0x2c,0x00, // BUILD_MAP 0
+    0x17,0x83,0x10, // STORE_GLOBAL 'STEVE'
+    0x23,0x02, // LOAD_CONST_OBJ 2
+    0x30,0x07, // UNPACK_SEQUENCE 7
+    0x16,0x83,0x11, // STORE_NAME 'AIRE_PM'
+    0x16,0x83,0x12, // STORE_NAME 'HIERBA_PM'
+    0x16,0x83,0x13, // STORE_NAME 'TIERRA_PM'
+    0x16,0x83,0x14, // STORE_NAME 'PIEDRA_PM'
+    0x16,0x83,0x15, // STORE_NAME 'GRAVA_PM'
+    0x16,0x83,0x16, // STORE_NAME 'LECHO_PM'
+    0x16,0x83,0x17, // STORE_NAME 'ARENA_PM'
+    0x23,0x03, // LOAD_CONST_OBJ 3
+    0x30,0x04, // UNPACK_SEQUENCE 4
+    0x16,0x83,0x18, // STORE_NAME 'TRONCO_PM'
+    0x16,0x83,0x19, // STORE_NAME 'HOJAS_PM'
+    0x16,0x83,0x1a, // STORE_NAME 'CACTUS_PM'
+    0x16,0x83,0x1b, // STORE_NAME 'COFRE_PM'
+    0x23,0x04, // LOAD_CONST_OBJ 4
+    0x30,0x05, // UNPACK_SEQUENCE 5
+    0x16,0x83,0x1c, // STORE_NAME 'CARBON_M'
+    0x16,0x83,0x1d, // STORE_NAME 'DIAMANTE_M'
+    0x16,0x83,0x1e, // STORE_NAME 'ORO_M'
+    0x16,0x83,0x1f, // STORE_NAME 'HIERRO_M'
+    0x16,0x83,0x20, // STORE_NAME 'ROCA_PM'
+    0x23,0x05, // LOAD_CONST_OBJ 5
+    0x30,0x04, // UNPACK_SEQUENCE 4
+    0x16,0x83,0x21, // STORE_NAME 'ESCALERA_PM'
+    0x16,0x83,0x22, // STORE_NAME 'ANTORCHA_PM'
+    0x16,0x83,0x23, // STORE_NAME 'AGUA_PM'
+    0x16,0x83,0x24, // STORE_NAME 'LAVA_PM'
+    0x23,0x06, // LOAD_CONST_OBJ 6
+    0x30,0x03, // UNPACK_SEQUENCE 3
+    0x16,0x83,0x25, // STORE_NAME 'MESA_PM'
+    0x16,0x83,0x26, // STORE_NAME 'HORNO_PM'
+    0x16,0x83,0x27, // STORE_NAME 'HORNO_ON_PM'
+    0x23,0x07, // LOAD_CONST_OBJ 7
+    0x30,0x03, // UNPACK_SEQUENCE 3
+    0x16,0x83,0x28, // STORE_NAME 'CUBO'
+    0x16,0x83,0x29, // STORE_NAME 'CUBO_AGUA'
+    0x16,0x83,0x2a, // STORE_NAME 'CUBO_LAVA'
+    0x23,0x08, // LOAD_CONST_OBJ 8
+    0x30,0x04, // UNPACK_SEQUENCE 4
+    0x16,0x83,0x2b, // STORE_NAME 'REDSTONE_M'
+    0x16,0x83,0x2c, // STORE_NAME 'ESMERALDA_M'
+    0x16,0x83,0x2d, // STORE_NAME 'ARCILLA_PM'
+    0x16,0x83,0x2e, // STORE_NAME 'AREN_PIEDRA'
+    0x23,0x09, // LOAD_CONST_OBJ 9
+    0x30,0x06, // UNPACK_SEQUENCE 6
+    0x16,0x83,0x2f, // STORE_NAME 'NIEVE_HIERBA'
+    0x16,0x83,0x30, // STORE_NAME 'NIEVE_CAPA'
+    0x16,0x83,0x31, // STORE_NAME 'HIELO'
+    0x16,0x83,0x32, // STORE_NAME 'ROSA'
+    0x16,0x83,0x33, // STORE_NAME 'FLOR'
+    0x16,0x83,0x34, // STORE_NAME 'HIERBA_ALTA'
+    0x23,0x0a, // LOAD_CONST_OBJ 10
+    0x30,0x05, // UNPACK_SEQUENCE 5
+    0x16,0x83,0x35, // STORE_NAME 'SETA_R'
+    0x16,0x83,0x36, // STORE_NAME 'SETA_M'
+    0x16,0x83,0x37, // STORE_NAME 'CALABAZA'
+    0x16,0x83,0x38, // STORE_NAME 'CANA'
+    0x16,0x83,0x39, // STORE_NAME 'RETONO'
+    0x23,0x0b, // LOAD_CONST_OBJ 11
+    0x30,0x03, // UNPACK_SEQUENCE 3
+    0x16,0x83,0x3a, // STORE_NAME 'ABEDUL'
+    0x16,0x83,0x3b, // STORE_NAME 'ABETO'
+    0x16,0x83,0x3c, // STORE_NAME 'JUNGLA'
+    0x23,0x0c, // LOAD_CONST_OBJ 12
+    0x30,0x03, // UNPACK_SEQUENCE 3
+    0x16,0x83,0x3d, // STORE_NAME 'HOJAS_ABEDUL'
+    0x16,0x83,0x3e, // STORE_NAME 'HOJAS_ABETO'
+    0x16,0x83,0x3f, // STORE_NAME 'HOJAS_JUNGLA'
+    0x22,0x81,0x03, // LOAD_CONST_SMALL_INT 131
+    0x16,0x83,0x40, // STORE_NAME 'FLECHA'
+    0x32,0x00, // MAKE_FUNCTION 0
+    0x16,0x18, // STORE_NAME 'ficha'
+    0x32,0x01, // MAKE_FUNCTION 1
+    0x16,0x12, // STORE_NAME 'B'
+    0x32,0x02, // MAKE_FUNCTION 2
+    0x16,0x1e, // STORE_NAME 'cargar_datos'
+    0x2c,0x00, // BUILD_MAP 0
+    0x16,0x83,0x41, // STORE_NAME '_nombres'
+    0x32,0x03, // MAKE_FUNCTION 3
+    0x16,0x2b, // STORE_NAME 'nombre'
+    0x32,0x04, // MAKE_FUNCTION 4
+    0x16,0x2d, // STORE_NAME 'es_herramienta'
+    0x32,0x05, // MAKE_FUNCTION 5
+    0x16,0x2e, // STORE_NAME 'max_pila'
+    0x32,0x06, // MAKE_FUNCTION 6
+    0x16,0x2f, // STORE_NAME 'raiz'
+    0x23,0x0d, // LOAD_CONST_OBJ 13
     0x30,0x02, // UNPACK_SEQUENCE 2
-    0x16,0x83,0x06, // STORE_NAME '_m'
-    0x16,0x83,0x10, // STORE_NAME '_mat'
-    0x11,0x83,0x0e, // LOAD_NAME 'RECETAS'
-    0x14,0x3b, // LOAD_METHOD 'append'
-    0x11,0x82,0x7c, // LOAD_NAME 'HERR'
-    0x11,0x82,0x7d, // LOAD_NAME 'PICO'
-    0x84, // LOAD_CONST_SMALL_INT 4
-    0xf4, // BINARY_OP 29 __mul__
-    0xf2, // BINARY_OP 27 __add__
-    0x11,0x83,0x06, // LOAD_NAME '_m'
-    0xf2, // BINARY_OP 27 __add__
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x2c,0x02, // BUILD_MAP 2
-    0x83, // LOAD_CONST_SMALL_INT 3
-    0x11,0x83,0x10, // LOAD_NAME '_mat'
-    0x62, // STORE_MAP
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0x11,0x82,0x73, // LOAD_NAME 'PALO'
-    0x62, // STORE_MAP
-    0x10,0x17, // LOAD_CONST_STRING 'mesa'
-    0x2a,0x04, // BUILD_TUPLE 4
-    0x36,0x01, // CALL_METHOD 1
-    0x59, // POP_TOP
-    0x11,0x83,0x0e, // LOAD_NAME 'RECETAS'
-    0x14,0x3b, // LOAD_METHOD 'append'
-    0x11,0x82,0x7c, // LOAD_NAME 'HERR'
-    0x11,0x82,0x7e, // LOAD_NAME 'HACHA'
-    0x84, // LOAD_CONST_SMALL_INT 4
-    0xf4, // BINARY_OP 29 __mul__
-    0xf2, // BINARY_OP 27 __add__
-    0x11,0x83,0x06, // LOAD_NAME '_m'
-    0xf2, // BINARY_OP 27 __add__
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x2c,0x02, // BUILD_MAP 2
-    0x83, // LOAD_CONST_SMALL_INT 3
-    0x11,0x83,0x10, // LOAD_NAME '_mat'
-    0x62, // STORE_MAP
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0x11,0x82,0x73, // LOAD_NAME 'PALO'
-    0x62, // STORE_MAP
-    0x10,0x17, // LOAD_CONST_STRING 'mesa'
-    0x2a,0x04, // BUILD_TUPLE 4
-    0x36,0x01, // CALL_METHOD 1
-    0x59, // POP_TOP
-    0x11,0x83,0x0e, // LOAD_NAME 'RECETAS'
-    0x14,0x3b, // LOAD_METHOD 'append'
-    0x11,0x82,0x7c, // LOAD_NAME 'HERR'
-    0x11,0x82,0x7f, // LOAD_NAME 'PALA'
-    0x84, // LOAD_CONST_SMALL_INT 4
-    0xf4, // BINARY_OP 29 __mul__
-    0xf2, // BINARY_OP 27 __add__
-    0x11,0x83,0x06, // LOAD_NAME '_m'
-    0xf2, // BINARY_OP 27 __add__
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x2c,0x02, // BUILD_MAP 2
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x11,0x83,0x10, // LOAD_NAME '_mat'
-    0x62, // STORE_MAP
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0x11,0x82,0x73, // LOAD_NAME 'PALO'
-    0x62, // STORE_MAP
-    0x10,0x17, // LOAD_CONST_STRING 'mesa'
-    0x2a,0x04, // BUILD_TUPLE 4
-    0x36,0x01, // CALL_METHOD 1
-    0x59, // POP_TOP
-    0x11,0x83,0x0e, // LOAD_NAME 'RECETAS'
-    0x14,0x3b, // LOAD_METHOD 'append'
-    0x11,0x82,0x7c, // LOAD_NAME 'HERR'
-    0x11,0x83,0x00, // LOAD_NAME 'ESPADA'
-    0x84, // LOAD_CONST_SMALL_INT 4
-    0xf4, // BINARY_OP 29 __mul__
-    0xf2, // BINARY_OP 27 __add__
-    0x11,0x83,0x06, // LOAD_NAME '_m'
-    0xf2, // BINARY_OP 27 __add__
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x2c,0x02, // BUILD_MAP 2
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0x11,0x83,0x10, // LOAD_NAME '_mat'
-    0x62, // STORE_MAP
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x11,0x82,0x73, // LOAD_NAME 'PALO'
-    0x62, // STORE_MAP
-    0x10,0x17, // LOAD_CONST_STRING 'mesa'
-    0x2a,0x04, // BUILD_TUPLE 4
-    0x36,0x01, // CALL_METHOD 1
-    0x59, // POP_TOP
-    0x42,0xda,0x7e, // JUMP -166
-    0x23,0x1c, // LOAD_CONST_OBJ 28
-    0x30,0x02, // UNPACK_SEQUENCE 2
-    0x16,0x83,0x11, // STORE_NAME 'W'
-    0x16,0x83,0x12, // STORE_NAME 'H'
+    0x16,0x83,0x42, // STORE_NAME 'W'
+    0x16,0x0f, // STORE_NAME 'H'
     0x9e, // LOAD_CONST_SMALL_INT 30
-    0x16,0x83,0x13, // STORE_NAME 'MAR'
+    0x16,0x83,0x43, // STORE_NAME 'MAR'
     0x90, // LOAD_CONST_SMALL_INT 16
-    0x16,0x83,0x14, // STORE_NAME 'T'
+    0x16,0x83,0x44, // STORE_NAME 'T'
     0x22,0x81,0x38, // LOAD_CONST_SMALL_INT 184
-    0x16,0x83,0x15, // STORE_NAME 'VIEW_H'
-    0x11,0x82,0x55, // LOAD_NAME 'P'
-    0x13,0x3c, // LOAD_ATTR 'ANCHO'
-    0x11,0x83,0x14, // LOAD_NAME 'T'
+    0x16,0x83,0x45, // STORE_NAME 'VIEW_H'
+    0x11,0x82,0x67, // LOAD_NAME 'P'
+    0x13,0x10, // LOAD_ATTR 'ANCHO'
+    0x11,0x83,0x44, // LOAD_NAME 'T'
     0xf6, // BINARY_OP 31 __floordiv__
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
-    0x11,0x83,0x15, // LOAD_NAME 'VIEW_H'
-    0x11,0x83,0x14, // LOAD_NAME 'T'
+    0x11,0x83,0x45, // LOAD_NAME 'VIEW_H'
+    0x11,0x83,0x44, // LOAD_NAME 'T'
     0xf6, // BINARY_OP 31 __floordiv__
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
     0x5a, // ROT_TWO
-    0x16,0x83,0x16, // STORE_NAME 'VW'
-    0x16,0x83,0x17, // STORE_NAME 'VH'
-    0x23,0x1d, // LOAD_CONST_OBJ 29
+    0x16,0x83,0x46, // STORE_NAME 'VW'
+    0x16,0x83,0x47, // STORE_NAME 'VH'
+    0x23,0x0e, // LOAD_CONST_OBJ 14
     0x30,0x04, // UNPACK_SEQUENCE 4
-    0x16,0x83,0x18, // STORE_NAME 'CIELO_DIA'
-    0x16,0x83,0x19, // STORE_NAME 'CIELO_NOCHE'
-    0x16,0x83,0x1a, // STORE_NAME 'FONDO_CUEVA'
-    0x16,0x83,0x1b, // STORE_NAME 'OSCURO'
+    0x16,0x83,0x48, // STORE_NAME 'CIELO_DIA'
+    0x16,0x83,0x49, // STORE_NAME 'CIELO_NOCHE'
+    0x16,0x83,0x4a, // STORE_NAME 'FONDO_CUEVA'
+    0x16,0x83,0x4b, // STORE_NAME 'OSCURO'
     0x22,0x84,0x58, // LOAD_CONST_SMALL_INT 600
-    0x16,0x83,0x1c, // STORE_NAME 'DIA_S'
-    0x23,0x1e, // LOAD_CONST_OBJ 30
-    0x16,0x83,0x1d, // STORE_NAME 'SALA'
-    0x11,0x83,0x1e, // LOAD_NAME 'bytearray'
-    0x11,0x83,0x11, // LOAD_NAME 'W'
-    0x11,0x83,0x12, // LOAD_NAME 'H'
+    0x16,0x83,0x4c, // STORE_NAME 'DIA_S'
+    0x23,0x0f, // LOAD_CONST_OBJ 15
+    0x16,0x83,0x4d, // STORE_NAME 'SALA'
+    0x11,0x83,0x03, // LOAD_NAME 'bytearray'
+    0x11,0x83,0x42, // LOAD_NAME 'W'
+    0x11,0x0f, // LOAD_NAME 'H'
     0xf4, // BINARY_OP 29 __mul__
     0x34,0x01, // CALL_FUNCTION 1
-    0x16,0x81,0x0e, // STORE_NAME 'mundo'
-    0x11,0x83,0x1e, // LOAD_NAME 'bytearray'
-    0x11,0x83,0x11, // LOAD_NAME 'W'
+    0x16,0x81,0x00, // STORE_NAME 'mundo'
+    0x11,0x83,0x03, // LOAD_NAME 'bytearray'
+    0x11,0x83,0x42, // LOAD_NAME 'W'
     0x34,0x01, // CALL_FUNCTION 1
-    0x16,0x83,0x1f, // STORE_NAME 'alto'
-    0x23,0x1f, // LOAD_CONST_OBJ 31
+    0x16,0x81,0x43, // STORE_NAME 'alto'
+    0x23,0x10, // LOAD_CONST_OBJ 16
     0x30,0x02, // UNPACK_SEQUENCE 2
-    0x16,0x83,0x20, // STORE_NAME 'PW'
-    0x16,0x83,0x21, // STORE_NAME 'PH'
-    0x23,0x20, // LOAD_CONST_OBJ 32
+    0x16,0x83,0x4e, // STORE_NAME 'PW'
+    0x16,0x83,0x4f, // STORE_NAME 'PH'
+    0x23,0x11, // LOAD_CONST_OBJ 17
     0x30,0x02, // UNPACK_SEQUENCE 2
-    0x16,0x83,0x22, // STORE_NAME 'GRAV'
-    0x16,0x83,0x23, // STORE_NAME 'MAX_CAIDA'
-    0x23,0x21, // LOAD_CONST_OBJ 33
+    0x16,0x83,0x50, // STORE_NAME 'GRAV'
+    0x16,0x83,0x51, // STORE_NAME 'MAX_CAIDA'
+    0x23,0x12, // LOAD_CONST_OBJ 18
     0x30,0x02, // UNPACK_SEQUENCE 2
-    0x16,0x83,0x24, // STORE_NAME 'ANDAR'
-    0x16,0x83,0x25, // STORE_NAME 'SALTO'
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x9e, // LOAD_CONST_SMALL_INT 30
-    0xf7, // BINARY_OP 32 __truediv__
-    0x16,0x83,0x26, // STORE_NAME 'DT'
+    0x16,0x83,0x52, // STORE_NAME 'ANDAR'
+    0x16,0x83,0x53, // STORE_NAME 'SALTO'
     0x84, // LOAD_CONST_SMALL_INT 4
-    0x16,0x83,0x27, // STORE_NAME 'ALCANCE'
-    0x32,0x00, // MAKE_FUNCTION 0
-    0x16,0x3f, // STORE_NAME 'g'
-    0x32,0x01, // MAKE_FUNCTION 1
-    0x16,0x40, // STORE_NAME 'sp'
-    0x32,0x02, // MAKE_FUNCTION 2
-    0x16,0x41, // STORE_NAME 'solido'
-    0x11,0x82,0x59, // LOAD_NAME 'AIRE'
-    0x11,0x82,0x68, // LOAD_NAME 'AGUA'
-    0x11,0x82,0x6f, // LOAD_NAME 'FLOR_R'
-    0x11,0x82,0x70, // LOAD_NAME 'FLOR_A'
-    0x11,0x82,0x71, // LOAD_NAME 'HIERBA_A'
-    0x11,0x82,0x72, // LOAD_NAME 'ANTORCHA'
-    0x11,0x82,0x5f, // LOAD_NAME 'HOJAS'
-    0x11,0x82,0x5e, // LOAD_NAME 'TRONCO'
-    0x11,0x82,0x6e, // LOAD_NAME 'CACTUS'
-    0x2a,0x09, // BUILD_TUPLE 9
-    0x16,0x83,0x28, // STORE_NAME 'NO_SUELO'
-    0x32,0x03, // MAKE_FUNCTION 3
-    0x16,0x42, // STORE_NAME 'calc_alto'
-    0x2c,0x00, // BUILD_MAP 0
-    0x16,0x83,0x29, // STORE_NAME 'SND'
-    0x32,0x04, // MAKE_FUNCTION 4
-    0x16,0x43, // STORE_NAME 'buscar_sonidos'
-    0x23,0x22, // LOAD_CONST_OBJ 34
-    0x2a,0x01, // BUILD_TUPLE 1
-    0x53, // LOAD_NULL
-    0x33,0x05, // MAKE_FUNCTION_DEFARGS 5
-    0x16,0x44, // STORE_NAME 'sonar'
-    0x23,0x23, // LOAD_CONST_OBJ 35
-    0x2a,0x01, // BUILD_TUPLE 1
-    0x53, // LOAD_NULL
-    0x33,0x06, // MAKE_FUNCTION_DEFARGS 6
-    0x16,0x4d, // STORE_NAME 'sonar_bloque'
+    0x16,0x83,0x54, // STORE_NAME 'ALCANCE'
     0x32,0x07, // MAKE_FUNCTION 7
-    0x16,0x55, // STORE_NAME 'progreso'
+    0x16,0x30, // STORE_NAME 'g'
     0x32,0x08, // MAKE_FUNCTION 8
-    0x16,0x59, // STORE_NAME 'generar'
+    0x16,0x31, // STORE_NAME 'sp'
     0x32,0x09, // MAKE_FUNCTION 9
-    0x16,0x61, // STORE_NAME 'arbol'
-    0x9b, // LOAD_CONST_SMALL_INT 27
-    0x16,0x83,0x2a, // STORE_NAME 'NHUECOS'
-    0x11,0x83,0x1e, // LOAD_NAME 'bytearray'
-    0x11,0x83,0x2a, // LOAD_NAME 'NHUECOS'
-    0x34,0x01, // CALL_FUNCTION 1
-    0x16,0x83,0x2b, // STORE_NAME 'inv_id'
-    0x11,0x83,0x1e, // LOAD_NAME 'bytearray'
-    0x11,0x83,0x2a, // LOAD_NAME 'NHUECOS'
-    0x34,0x01, // CALL_FUNCTION 1
-    0x16,0x83,0x2c, // STORE_NAME 'inv_n'
+    0x16,0x32, // STORE_NAME 'solido'
     0x32,0x0a, // MAKE_FUNCTION 10
-    0x16,0x62, // STORE_NAME 'max_pila'
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x2a,0x01, // BUILD_TUPLE 1
-    0x53, // LOAD_NULL
-    0x33,0x0b, // MAKE_FUNCTION_DEFARGS 11
-    0x16,0x63, // STORE_NAME 'dar'
+    0x16,0x33, // STORE_NAME 'es_agua'
+    0x32,0x0b, // MAKE_FUNCTION 11
+    0x16,0x34, // STORE_NAME 'es_lava'
     0x32,0x0c, // MAKE_FUNCTION 12
-    0x16,0x64, // STORE_NAME 'cuantos'
-    0x81, // LOAD_CONST_SMALL_INT 1
+    0x16,0x35, // STORE_NAME 'calc_alto'
+    0x2c,0x00, // BUILD_MAP 0
+    0x16,0x83,0x55, // STORE_NAME 'SND'
+    0x32,0x0d, // MAKE_FUNCTION 13
+    0x16,0x36, // STORE_NAME 'buscar_sonidos'
+    0x23,0x13, // LOAD_CONST_OBJ 19
     0x2a,0x01, // BUILD_TUPLE 1
     0x53, // LOAD_NULL
-    0x33,0x0d, // MAKE_FUNCTION_DEFARGS 13
-    0x16,0x65, // STORE_NAME 'quitar'
-    0x2c,0x00, // BUILD_MAP 0
-    0x16,0x83,0x2d, // STORE_NAME 'SPR'
-    0x32,0x0e, // MAKE_FUNCTION 14
-    0x16,0x66, // STORE_NAME 'spr'
-    0x80, // LOAD_CONST_SMALL_INT 0
+    0x33,0x0e, // MAKE_FUNCTION_DEFARGS 14
+    0x16,0x37, // STORE_NAME 'sonar'
+    0x23,0x14, // LOAD_CONST_OBJ 20
     0x2a,0x01, // BUILD_TUPLE 1
     0x53, // LOAD_NULL
     0x33,0x0f, // MAKE_FUNCTION_DEFARGS 15
-    0x16,0x69, // STORE_NAME 'icono'
-    0x54, // LOAD_BUILD_CLASS
+    0x16,0x3c, // STORE_NAME 'sonar_bloque'
     0x32,0x10, // MAKE_FUNCTION 16
-    0x10,0x3d, // LOAD_CONST_STRING 'Juego'
-    0x34,0x02, // CALL_FUNCTION 2
-    0x16,0x3d, // STORE_NAME 'Juego'
+    0x16,0x44, // STORE_NAME 'progreso'
     0x32,0x11, // MAKE_FUNCTION 17
-    0x16,0x6c, // STORE_NAME 'acercar'
+    0x16,0x48, // STORE_NAME 'generar'
+    0x2c,0x04, // BUILD_MAP 4
+    0x11,0x83,0x18, // LOAD_NAME 'TRONCO_PM'
+    0x11,0x83,0x19, // LOAD_NAME 'HOJAS_PM'
+    0x2a,0x02, // BUILD_TUPLE 2
+    0x10,0x11, // LOAD_CONST_STRING 'O'
+    0x62, // STORE_MAP
+    0x11,0x83,0x3a, // LOAD_NAME 'ABEDUL'
+    0x11,0x83,0x3d, // LOAD_NAME 'HOJAS_ABEDUL'
+    0x2a,0x02, // BUILD_TUPLE 2
+    0x10,0x12, // LOAD_CONST_STRING 'B'
+    0x62, // STORE_MAP
+    0x11,0x83,0x3b, // LOAD_NAME 'ABETO'
+    0x11,0x83,0x3e, // LOAD_NAME 'HOJAS_ABETO'
+    0x2a,0x02, // BUILD_TUPLE 2
+    0x10,0x13, // LOAD_CONST_STRING 'S'
+    0x62, // STORE_MAP
+    0x11,0x83,0x3c, // LOAD_NAME 'JUNGLA'
+    0x11,0x83,0x3f, // LOAD_NAME 'HOJAS_JUNGLA'
+    0x2a,0x02, // BUILD_TUPLE 2
+    0x10,0x14, // LOAD_CONST_STRING 'J'
+    0x62, // STORE_MAP
+    0x16,0x83,0x56, // STORE_NAME 'ARBOLES'
     0x32,0x12, // MAKE_FUNCTION 18
-    0x16,0x6d, // STORE_NAME 'medio'
-    0x32,0x13, // MAKE_FUNCTION 19
-    0x16,0x70, // STORE_NAME 'mezcla'
-    0x10,0x3e, // LOAD_CONST_STRING 'mundos'
-    0x16,0x83,0x2e, // STORE_NAME 'CARPETA'
+    0x16,0x52, // STORE_NAME 'arbol'
+    0x9b, // LOAD_CONST_SMALL_INT 27
+    0x16,0x83,0x57, // STORE_NAME 'NHUECOS'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x2b,0x01, // BUILD_LIST 1
+    0x11,0x83,0x57, // LOAD_NAME 'NHUECOS'
+    0xf4, // BINARY_OP 29 __mul__
+    0x16,0x83,0x58, // STORE_NAME 'inv_id'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x2b,0x01, // BUILD_LIST 1
+    0x11,0x83,0x57, // LOAD_NAME 'NHUECOS'
+    0xf4, // BINARY_OP 29 __mul__
+    0x16,0x83,0x59, // STORE_NAME 'inv_n'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x2a,0x01, // BUILD_TUPLE 1
+    0x53, // LOAD_NULL
+    0x33,0x13, // MAKE_FUNCTION_DEFARGS 19
+    0x16,0x53, // STORE_NAME 'dar'
     0x32,0x14, // MAKE_FUNCTION 20
-    0x16,0x71, // STORE_NAME 'guardar'
-    0x32,0x15, // MAKE_FUNCTION 21
-    0x16,0x81,0x02, // STORE_NAME 'cargar'
-    0x32,0x16, // MAKE_FUNCTION 22
-    0x16,0x81,0x07, // STORE_NAME 'lista_mundos'
+    0x16,0x54, // STORE_NAME 'cuantos_raiz'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x2a,0x01, // BUILD_TUPLE 1
+    0x53, // LOAD_NULL
+    0x33,0x15, // MAKE_FUNCTION_DEFARGS 21
+    0x16,0x55, // STORE_NAME 'quitar_raiz'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x2a,0x01, // BUILD_TUPLE 1
+    0x53, // LOAD_NULL
+    0x33,0x16, // MAKE_FUNCTION_DEFARGS 22
+    0x16,0x56, // STORE_NAME 'quitar_hueco'
     0x32,0x17, // MAKE_FUNCTION 23
-    0x16,0x81,0x08, // STORE_NAME 'comprimir'
+    0x16,0x57, // STORE_NAME 'receta'
     0x32,0x18, // MAKE_FUNCTION 24
-    0x16,0x81,0x09, // STORE_NAME 'descomprimir'
+    0x16,0x5a, // STORE_NAME 'n_recetas'
+    0x2c,0x00, // BUILD_MAP 0
+    0x16,0x83,0x5a, // STORE_NAME 'SPR'
     0x32,0x19, // MAKE_FUNCTION 25
-    0x16,0x81,0x0a, // STORE_NAME 'publicar'
+    0x16,0x5b, // STORE_NAME 'spr'
     0x32,0x1a, // MAKE_FUNCTION 26
-    0x16,0x81,0x10, // STORE_NAME 'recibir_mundo'
-    0x52, // LOAD_CONST_TRUE
+    0x16,0x5d, // STORE_NAME 'tex'
+    0x80, // LOAD_CONST_SMALL_INT 0
     0x2a,0x01, // BUILD_TUPLE 1
     0x53, // LOAD_NULL
     0x33,0x1b, // MAKE_FUNCTION_DEFARGS 27
-    0x16,0x81,0x17, // STORE_NAME 'boton'
+    0x16,0x5e, // STORE_NAME 'icono'
+    0x54, // LOAD_BUILD_CLASS
     0x32,0x1c, // MAKE_FUNCTION 28
-    0x16,0x81,0x19, // STORE_NAME 'fondo_tierra'
-    0x10,0x0a, // LOAD_CONST_STRING ''
-    0x2a,0x01, // BUILD_TUPLE 1
-    0x53, // LOAD_NULL
-    0x33,0x1d, // MAKE_FUNCTION_DEFARGS 29
-    0x16,0x81,0x1b, // STORE_NAME 'menu'
+    0x10,0x15, // LOAD_CONST_STRING 'Juego'
+    0x34,0x02, // CALL_FUNCTION 2
+    0x16,0x15, // STORE_NAME 'Juego'
+    0x32,0x1d, // MAKE_FUNCTION 29
+    0x16,0x61, // STORE_NAME 'acercar'
     0x32,0x1e, // MAKE_FUNCTION 30
-    0x16,0x81,0x20, // STORE_NAME 'mensaje'
-    0x10,0x0a, // LOAD_CONST_STRING ''
+    0x16,0x62, // STORE_NAME 'mezcla'
+    0x10,0x16, // LOAD_CONST_STRING 'mundos'
+    0x16,0x83,0x5b, // STORE_NAME 'CARPETA'
+    0x32,0x1f, // MAKE_FUNCTION 31
+    0x16,0x63, // STORE_NAME 'guardar'
+    0x32,0x20, // MAKE_FUNCTION 32
+    0x16,0x74, // STORE_NAME 'cargar'
+    0x32,0x21, // MAKE_FUNCTION 33
+    0x16,0x79, // STORE_NAME 'lista_mundos'
+    0x32,0x22, // MAKE_FUNCTION 34
+    0x16,0x7a, // STORE_NAME 'comprimir'
+    0x32,0x23, // MAKE_FUNCTION 35
+    0x16,0x7b, // STORE_NAME 'descomprimir'
+    0x32,0x24, // MAKE_FUNCTION 36
+    0x16,0x7c, // STORE_NAME 'publicar'
+    0x32,0x25, // MAKE_FUNCTION 37
+    0x16,0x81,0x02, // STORE_NAME 'recibir_mundo'
+    0x52, // LOAD_CONST_TRUE
     0x2a,0x01, // BUILD_TUPLE 1
     0x53, // LOAD_NULL
-    0x33,0x1f, // MAKE_FUNCTION_DEFARGS 31
-    0x16,0x81,0x21, // STORE_NAME 'preguntar'
-    0x32,0x20, // MAKE_FUNCTION 32
-    0x16,0x81,0x27, // STORE_NAME 'nuevo_mundo'
-    0x32,0x21, // MAKE_FUNCTION 33
-    0x16,0x81,0x2a, // STORE_NAME 'un_jugador'
-    0x32,0x22, // MAKE_FUNCTION 34
-    0x16,0x81,0x33, // STORE_NAME 'multijugador'
-    0x32,0x23, // MAKE_FUNCTION 35
-    0x16,0x81,0x47, // STORE_NAME 'jugar'
-    0x32,0x24, // MAKE_FUNCTION 36
-    0x16,0x81,0x4d, // STORE_NAME 'main'
+    0x33,0x26, // MAKE_FUNCTION_DEFARGS 38
+    0x16,0x81,0x09, // STORE_NAME 'boton'
+    0x32,0x27, // MAKE_FUNCTION 39
+    0x16,0x81,0x0b, // STORE_NAME 'fondo_tierra'
+    0x10,0x17, // LOAD_CONST_STRING ''
+    0x2a,0x01, // BUILD_TUPLE 1
+    0x53, // LOAD_NULL
+    0x33,0x28, // MAKE_FUNCTION_DEFARGS 40
+    0x16,0x81,0x0e, // STORE_NAME 'menu'
+    0x32,0x29, // MAKE_FUNCTION 41
+    0x16,0x81,0x13, // STORE_NAME 'mensaje'
+    0x10,0x17, // LOAD_CONST_STRING ''
+    0x2a,0x01, // BUILD_TUPLE 1
+    0x53, // LOAD_NULL
+    0x33,0x2a, // MAKE_FUNCTION_DEFARGS 42
+    0x16,0x81,0x14, // STORE_NAME 'preguntar'
+    0x32,0x2b, // MAKE_FUNCTION 43
+    0x16,0x81,0x1a, // STORE_NAME 'nuevo_mundo'
+    0x32,0x2c, // MAKE_FUNCTION 44
+    0x16,0x81,0x1d, // STORE_NAME 'un_jugador'
+    0x32,0x2d, // MAKE_FUNCTION 45
+    0x16,0x81,0x25, // STORE_NAME 'multijugador'
+    0x32,0x2e, // MAKE_FUNCTION 46
+    0x16,0x81,0x38, // STORE_NAME 'jugar'
+    0x32,0x2f, // MAKE_FUNCTION 47
+    0x16,0x81,0x3e, // STORE_NAME 'preparar_mobs'
+    0x32,0x30, // MAKE_FUNCTION 48
+    0x16,0x81,0x45, // STORE_NAME 'main'
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
 // child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_ficha
+static const byte fun_data_mc2d_ficha[114] = {
+    0x39,0x1c, // prelude
+    0x18,0x83,0x5c, // names: ficha, i
+    0x80,0x59,0x31,0x24,0x29,0x25,0x2f,0x34,0x2c,0x28,0x26, // code info
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xb0, // LOAD_FAST 0
+    0x57, // DUP_TOP
+    0x5b, // ROT_THREE
+    0xd7, // BINARY_OP 0 __lt__
+    0x46,0x06, // JUMP_IF_FALSE_OR_POP 6
+    0x12,0x83,0x01, // LOAD_GLOBAL 'NB'
+    0xd7, // BINARY_OP 0 __lt__
+    0x42,0x42, // JUMP 2
+    0x5a, // ROT_TWO
+    0x59, // POP_TOP
+    0x43,0x44, // POP_JUMP_IF_TRUE 4
+    0x12,0x82,0x7f, // LOAD_GLOBAL 'CERO'
+    0x63, // RETURN_VALUE
+    0x12,0x83,0x0c, // LOAD_GLOBAL '_fichas'
+    0x14,0x19, // LOAD_METHOD 'get'
+    0xb0, // LOAD_FAST 0
+    0x36,0x01, // CALL_METHOD 1
+    0xc1, // STORE_FAST 1
+    0xb1, // LOAD_FAST 1
+    0x51, // LOAD_CONST_NONE
+    0xde, // BINARY_OP 7 <is>
+    0x44,0x7d, // POP_JUMP_IF_FALSE 61
+    0x12,0x83,0x00, // LOAD_GLOBAL '_bl'
+    0x14,0x1a, // LOAD_METHOD 'seek'
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0xb0, // LOAD_FAST 0
+    0x12,0x82,0x6c, // LOAD_GLOBAL 'FT'
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x12,0x06, // LOAD_GLOBAL 'struct'
+    0x14,0x1b, // LOAD_METHOD 'unpack'
+    0x12,0x82,0x6b, // LOAD_GLOBAL 'FICHA'
+    0x12,0x83,0x00, // LOAD_GLOBAL '_bl'
+    0x14,0x1c, // LOAD_METHOD 'read'
+    0x12,0x82,0x6c, // LOAD_GLOBAL 'FT'
+    0x36,0x01, // CALL_METHOD 1
+    0x36,0x02, // CALL_METHOD 2
+    0xc1, // STORE_FAST 1
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x0c, // LOAD_GLOBAL '_fichas'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x98, // LOAD_CONST_SMALL_INT 24
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x48, // POP_JUMP_IF_FALSE 8
+    0x12,0x83,0x0c, // LOAD_GLOBAL '_fichas'
+    0x14,0x1d, // LOAD_METHOD 'clear'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0xb1, // LOAD_FAST 1
+    0x12,0x83,0x0c, // LOAD_GLOBAL '_fichas'
+    0xb0, // LOAD_FAST 0
+    0x56, // STORE_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_ficha = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_ficha,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 114,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 8,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 24,
+        .line_info = fun_data_mc2d_ficha + 5,
+        .line_info_top = fun_data_mc2d_ficha + 16,
+        .opcodes = fun_data_mc2d_ficha + 16,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_ficha fun_data_mc2d_ficha[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_B
+static const byte fun_data_mc2d_B[38] = {
+    0x19,0x0c, // prelude
+    0x12,0x83,0x5e, // names: B, pm
+    0x80,0x66,0x20, // code info
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xb0, // LOAD_FAST 0
+    0x57, // DUP_TOP
+    0x5b, // ROT_THREE
+    0xda, // BINARY_OP 3 __le__
+    0x46,0x0b, // JUMP_IF_FALSE_OR_POP 11
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x04, // LOAD_GLOBAL 'PM2L'
+    0x34,0x01, // CALL_FUNCTION 1
+    0xd7, // BINARY_OP 0 __lt__
+    0x42,0x42, // JUMP 2
+    0x5a, // ROT_TWO
+    0x59, // POP_TOP
+    0x44,0x46, // POP_JUMP_IF_FALSE 6
+    0x12,0x83,0x04, // LOAD_GLOBAL 'PM2L'
+    0xb0, // LOAD_FAST 0
+    0x55, // LOAD_SUBSCR
+    0x63, // RETURN_VALUE
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_B = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_B,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 38,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 4,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 18,
+        .line_info = fun_data_mc2d_B + 5,
+        .line_info_top = fun_data_mc2d_B + 8,
+        .opcodes = fun_data_mc2d_B + 8,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_B fun_data_mc2d_B[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_cargar_datos
+static const byte fun_data_mc2d_cargar_datos[474] = {
+    0xd8,0x02,0x51, // prelude
+    0x1e, // names: cargar_datos
+    0x80,0x6b,0x20,0x20,0x20,0x22,0x30,0x29,0x35,0x2e,0x59,0x24,0x2b,0x23,0x33,0x2d,0x26,0x2b,0x2a,0x3e,0x32,0x28,0x26,0x26,0x26,0x30,0x39,0x3a,0x2a,0x34,0x34,0x2c,0x2f,0x2f,0x27,0x27,0x28,0x22,0x27,0x05, // code info
+    0x48,0x4d, // SETUP_EXCEPT 77
+    0x12,0x83,0x5f, // LOAD_GLOBAL 'open'
+    0x12,0x82,0x6a, // LOAD_GLOBAL 'PMD'
+    0x23,0x15, // LOAD_CONST_OBJ 21
+    0xf2, // BINARY_OP 27 __add__
+    0x10,0x1f, // LOAD_CONST_STRING 'rb'
+    0x34,0x02, // CALL_FUNCTION 2
+    0x17,0x83,0x00, // STORE_GLOBAL '_bl'
+    0x12,0x83,0x00, // LOAD_GLOBAL '_bl'
+    0x14,0x1c, // LOAD_METHOD 'read'
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0x36,0x01, // CALL_METHOD 1
+    0xc0, // STORE_FAST 0
+    0x12,0x05, // LOAD_GLOBAL 'os'
+    0x14,0x20, // LOAD_METHOD 'stat'
+    0x12,0x82,0x6a, // LOAD_GLOBAL 'PMD'
+    0x23,0x16, // LOAD_CONST_OBJ 22
+    0xf2, // BINARY_OP 27 __add__
+    0x36,0x01, // CALL_METHOD 1
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0x55, // LOAD_SUBSCR
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0xf3, // BINARY_OP 28 __sub__
+    0x96, // LOAD_CONST_SMALL_INT 22
+    0xf6, // BINARY_OP 31 __floordiv__
+    0x17,0x83,0x0b, // STORE_GLOBAL 'NREC'
+    0x12,0x83,0x5f, // LOAD_GLOBAL 'open'
+    0x12,0x82,0x6a, // LOAD_GLOBAL 'PMD'
+    0x10,0x21, // LOAD_CONST_STRING 'datos.json'
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x47,0x0e, // SETUP_WITH 14
+    0xc1, // STORE_FAST 1
+    0x12,0x04, // LOAD_GLOBAL 'json'
+    0x14,0x22, // LOAD_METHOD 'loads'
+    0xb1, // LOAD_FAST 1
+    0x14,0x1c, // LOAD_METHOD 'read'
+    0x36,0x00, // CALL_METHOD 0
+    0x36,0x01, // CALL_METHOD 1
+    0xc2, // STORE_FAST 2
+    0x51, // LOAD_CONST_NONE
+    0x5c, // WITH_CLEANUP
+    0x5d, // END_FINALLY
+    0x4a,0x0c, // POP_EXCEPT_JUMP 12
+    0x57, // DUP_TOP
+    0x12,0x83,0x60, // LOAD_GLOBAL 'OSError'
+    0xdf, // BINARY_OP 8 <exception match>
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x59, // POP_TOP
+    0x23,0x17, // LOAD_CONST_OBJ 23
+    0x63, // RETURN_VALUE
+    0x5d, // END_FINALLY
+    0xb0, // LOAD_FAST 0
+    0x51, // LOAD_CONST_NONE
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x2e,0x02, // BUILD_SLICE 2
+    0x55, // LOAD_SUBSCR
+    0x23,0x18, // LOAD_CONST_OBJ 24
+    0xdc, // BINARY_OP 5 __ne__
+    0x44,0x43, // POP_JUMP_IF_FALSE 3
+    0x23,0x19, // LOAD_CONST_OBJ 25
+    0x63, // RETURN_VALUE
+    0x12,0x06, // LOAD_GLOBAL 'struct'
+    0x14,0x1b, // LOAD_METHOD 'unpack'
+    0x10,0x23, // LOAD_CONST_STRING '<H'
+    0xb0, // LOAD_FAST 0
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0x2e,0x02, // BUILD_SLICE 2
+    0x55, // LOAD_SUBSCR
+    0x36,0x02, // CALL_METHOD 2
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0x17,0x83,0x01, // STORE_GLOBAL 'NB'
+    0x12,0x08, // LOAD_GLOBAL 'array'
+    0x10,0x0f, // LOAD_CONST_STRING 'H'
+    0xb2, // LOAD_FAST 2
+    0x10,0x24, // LOAD_CONST_STRING 'en_mundo'
+    0x55, // LOAD_SUBSCR
+    0x34,0x02, // CALL_FUNCTION 2
+    0x17,0x83,0x02, // STORE_GLOBAL 'L2PM'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x12,0x83,0x02, // LOAD_GLOBAL 'L2PM'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x56, // STORE_SUBSCR
+    0x12,0x83,0x03, // LOAD_GLOBAL 'bytearray'
+    0x12,0x83,0x01, // LOAD_GLOBAL 'NB'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x17,0x83,0x04, // STORE_GLOBAL 'PM2L'
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x02, // LOAD_GLOBAL 'L2PM'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x27,0x05, // STORE_DEREF 5
+    0xb5, // LOAD_FAST 5
+    0x20,0x00,0x01, // MAKE_CLOSURE 0
+    0x12,0x82,0x6d, // LOAD_GLOBAL 'range'
+    0x85, // LOAD_CONST_SMALL_INT 5
+    0x34,0x01, // CALL_FUNCTION 1
+    0x5e, // GET_ITER
+    0x34,0x01, // CALL_FUNCTION 1
+    0x30,0x05, // UNPACK_SEQUENCE 5
+    0x17,0x83,0x05, // STORE_GLOBAL 'SOL'
+    0x17,0x83,0x06, // STORE_GLOBAL 'TRANSP'
+    0x17,0x83,0x07, // STORE_GLOBAL 'NOSUELO'
+    0x17,0x83,0x08, // STORE_GLOBAL 'LIQ'
+    0x17,0x83,0x09, // STORE_GLOBAL 'CAE'
+    0x12,0x08, // LOAD_GLOBAL 'array'
+    0x10,0x0f, // LOAD_CONST_STRING 'H'
+    0x12,0x83,0x61, // LOAD_GLOBAL 'bytes'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x25,0x05, // LOAD_DEREF 5
+    0xf4, // BINARY_OP 29 __mul__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x34,0x02, // CALL_FUNCTION 2
+    0x17,0x83,0x0a, // STORE_GLOBAL 'TEXL'
+    0x25,0x05, // LOAD_DEREF 5
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x42,0x81,0x81, // JUMP 129
+    0x57, // DUP_TOP
+    0xc3, // STORE_FAST 3
+    0x12,0x83,0x02, // LOAD_GLOBAL 'L2PM'
+    0xb3, // LOAD_FAST 3
+    0x55, // LOAD_SUBSCR
+    0xc4, // STORE_FAST 4
+    0xb3, // LOAD_FAST 3
+    0x12,0x83,0x04, // LOAD_GLOBAL 'PM2L'
+    0xb4, // LOAD_FAST 4
+    0x56, // STORE_SUBSCR
+    0x12,0x18, // LOAD_GLOBAL 'ficha'
+    0xb4, // LOAD_FAST 4
+    0x34,0x01, // CALL_FUNCTION 1
+    0xc1, // STORE_FAST 1
+    0xb1, // LOAD_FAST 1
+    0x12,0x82,0x6e, // LOAD_GLOBAL 'F_SOL'
+    0x55, // LOAD_SUBSCR
+    0x44,0x43, // POP_JUMP_IF_FALSE 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x42,0x41, // JUMP 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x12,0x83,0x05, // LOAD_GLOBAL 'SOL'
+    0xb3, // LOAD_FAST 3
+    0x56, // STORE_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0x12,0x82,0x6e, // LOAD_GLOBAL 'F_SOL'
+    0x55, // LOAD_SUBSCR
+    0x44,0x49, // POP_JUMP_IF_FALSE 9
+    0xb1, // LOAD_FAST 1
+    0x12,0x82,0x74, // LOAD_GLOBAL 'F_LUZ'
+    0x55, // LOAD_SUBSCR
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x43, // POP_JUMP_IF_FALSE 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x42,0x41, // JUMP 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x12,0x83,0x06, // LOAD_GLOBAL 'TRANSP'
+    0xb3, // LOAD_FAST 3
+    0x56, // STORE_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0x12,0x82,0x6e, // LOAD_GLOBAL 'F_SOL'
+    0x55, // LOAD_SUBSCR
+    0x44,0x4a, // POP_JUMP_IF_FALSE 10
+    0xb1, // LOAD_FAST 1
+    0x12,0x82,0x75, // LOAD_GLOBAL 'F_GRUPO'
+    0x55, // LOAD_SUBSCR
+    0x23,0x1a, // LOAD_CONST_OBJ 26
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x43, // POP_JUMP_IF_FALSE 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x42,0x41, // JUMP 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x12,0x83,0x07, // LOAD_GLOBAL 'NOSUELO'
+    0xb3, // LOAD_FAST 3
+    0x56, // STORE_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0x12,0x82,0x72, // LOAD_GLOBAL 'F_LIQ'
+    0x55, // LOAD_SUBSCR
+    0x12,0x83,0x08, // LOAD_GLOBAL 'LIQ'
+    0xb3, // LOAD_FAST 3
+    0x56, // STORE_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0x12,0x82,0x73, // LOAD_GLOBAL 'F_CAE'
+    0x55, // LOAD_SUBSCR
+    0x22,0x80,0x59, // LOAD_CONST_SMALL_INT 89
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x43, // POP_JUMP_IF_FALSE 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x42,0x41, // JUMP 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x12,0x83,0x09, // LOAD_GLOBAL 'CAE'
+    0xb3, // LOAD_FAST 3
+    0x56, // STORE_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0x12,0x82,0x7b, // LOAD_GLOBAL 'F_TILE'
+    0x55, // LOAD_SUBSCR
+    0x12,0x83,0x0a, // LOAD_GLOBAL 'TEXL'
+    0xb3, // LOAD_FAST 3
+    0x56, // STORE_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0xf9,0x7e, // POP_JUMP_IF_TRUE -135
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x57, // DUP_TOP
+    0x12,0x83,0x06, // LOAD_GLOBAL 'TRANSP'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x56, // STORE_SUBSCR
+    0x12,0x83,0x07, // LOAD_GLOBAL 'NOSUELO'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x56, // STORE_SUBSCR
+    0x32,0x01, // MAKE_FUNCTION 1
+    0xb2, // LOAD_FAST 2
+    0x10,0x25, // LOAD_CONST_STRING 'comida'
+    0x55, // LOAD_SUBSCR
+    0x14,0x26, // LOAD_METHOD 'items'
+    0x36,0x00, // CALL_METHOD 0
+    0x34,0x01, // CALL_FUNCTION 1
+    0x17,0x83,0x0d, // STORE_GLOBAL 'COMIDA'
+    0x32,0x02, // MAKE_FUNCTION 2
+    0xb2, // LOAD_FAST 2
+    0x10,0x27, // LOAD_CONST_STRING 'mobs'
+    0x55, // LOAD_SUBSCR
+    0x14,0x26, // LOAD_METHOD 'items'
+    0x36,0x00, // CALL_METHOD 0
+    0x34,0x01, // CALL_FUNCTION 1
+    0x17,0x83,0x0e, // STORE_GLOBAL 'MOBS'
+    0xb2, // LOAD_FAST 2
+    0x10,0x28, // LOAD_CONST_STRING 'biomas'
+    0x55, // LOAD_SUBSCR
+    0x17,0x83,0x0f, // STORE_GLOBAL 'BIOMAS'
+    0xb2, // LOAD_FAST 2
+    0x10,0x29, // LOAD_CONST_STRING 'steve'
+    0x55, // LOAD_SUBSCR
+    0x17,0x83,0x10, // STORE_GLOBAL 'STEVE'
+    0x12,0x83,0x0c, // LOAD_GLOBAL '_fichas'
+    0x14,0x1d, // LOAD_METHOD 'clear'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0xc2, // STORE_FAST 2
+    0x12,0x07, // LOAD_GLOBAL 'gc'
+    0x14,0x2a, // LOAD_METHOD 'collect'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+// child of mc2d_cargar_datos
+// frozen bytecode for file mc2d.py, scope mc2d_cargar_datos__lt_genexpr_gt_
+static const byte fun_data_mc2d_cargar_datos__lt_genexpr_gt_[31] = {
+    0xc2,0x40,0x10, // prelude
+    0x81,0x4a,0x84,0x04,0x84,0x04, // names: <genexpr>, *, *
+    0x80,0x7d, // code info
+    0x53, // LOAD_NULL
+    0xb1, // LOAD_FAST 1
+    0x53, // LOAD_NULL
+    0x53, // LOAD_NULL
+    0x4b,0x0c, // FOR_ITER 12
+    0xc2, // STORE_FAST 2
+    0x12,0x83,0x03, // LOAD_GLOBAL 'bytearray'
+    0x25,0x00, // LOAD_DEREF 0
+    0x34,0x01, // CALL_FUNCTION 1
+    0x67, // YIELD_VALUE
+    0x59, // POP_TOP
+    0x42,0x32, // JUMP -14
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_cargar_datos__lt_genexpr_gt_ = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 1,
+    .fun_data = fun_data_mc2d_cargar_datos__lt_genexpr_gt_,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 31,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 9,
+        .n_exc_stack = 0,
+        .scope_flags = 1,
+        .n_pos_args = 2,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 202,
+        .line_info = fun_data_mc2d_cargar_datos__lt_genexpr_gt_ + 9,
+        .line_info_top = fun_data_mc2d_cargar_datos__lt_genexpr_gt_ + 11,
+        .opcodes = fun_data_mc2d_cargar_datos__lt_genexpr_gt_ + 11,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_cargar_datos__lt_genexpr_gt_ fun_data_mc2d_cargar_datos__lt_genexpr_gt_[0]
+#endif
+
+// child of mc2d_cargar_datos
+// frozen bytecode for file mc2d.py, scope mc2d_cargar_datos__lt_dictcomp_gt_
+static const byte fun_data_mc2d_cargar_datos__lt_dictcomp_gt_[30] = {
+    0x51,0x0c, // prelude
+    0x81,0x4b,0x84,0x04, // names: <dictcomp>, *
+    0x80,0x8a, // code info
+    0x2c,0x00, // BUILD_MAP 0
+    0xb0, // LOAD_FAST 0
+    0x5f, // GET_ITER_STACK
+    0x4b,0x0f, // FOR_ITER 15
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc1, // STORE_FAST 1
+    0xc2, // STORE_FAST 2
+    0xb2, // LOAD_FAST 2
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
+    0xb1, // LOAD_FAST 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0x2f,0x19, // STORE_COMP 25
+    0x42,0x2f, // JUMP -17
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_cargar_datos__lt_dictcomp_gt_ = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_cargar_datos__lt_dictcomp_gt_,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 30,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 11,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 203,
+        .line_info = fun_data_mc2d_cargar_datos__lt_dictcomp_gt_ + 6,
+        .line_info_top = fun_data_mc2d_cargar_datos__lt_dictcomp_gt_ + 8,
+        .opcodes = fun_data_mc2d_cargar_datos__lt_dictcomp_gt_ + 8,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_cargar_datos__lt_dictcomp_gt_ fun_data_mc2d_cargar_datos__lt_dictcomp_gt_[0]
+#endif
+
+// child of mc2d_cargar_datos
+// frozen bytecode for file mc2d.py, scope mc2d_cargar_datos__lt_dictcomp_gt_2
+static const byte fun_data_mc2d_cargar_datos__lt_dictcomp_gt_2[30] = {
+    0x51,0x0c, // prelude
+    0x81,0x4b,0x84,0x04, // names: <dictcomp>, *
+    0x80,0x8b, // code info
+    0x2c,0x00, // BUILD_MAP 0
+    0xb0, // LOAD_FAST 0
+    0x5f, // GET_ITER_STACK
+    0x4b,0x0f, // FOR_ITER 15
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc1, // STORE_FAST 1
+    0xc2, // STORE_FAST 2
+    0xb2, // LOAD_FAST 2
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
+    0xb1, // LOAD_FAST 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0x2f,0x19, // STORE_COMP 25
+    0x42,0x2f, // JUMP -17
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_cargar_datos__lt_dictcomp_gt_2 = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_cargar_datos__lt_dictcomp_gt_2,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 30,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 11,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 203,
+        .line_info = fun_data_mc2d_cargar_datos__lt_dictcomp_gt_2 + 6,
+        .line_info_top = fun_data_mc2d_cargar_datos__lt_dictcomp_gt_2 + 8,
+        .opcodes = fun_data_mc2d_cargar_datos__lt_dictcomp_gt_2 + 8,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_cargar_datos__lt_dictcomp_gt_2 fun_data_mc2d_cargar_datos__lt_dictcomp_gt_2[0]
+#endif
+
+static const mp_raw_code_t *const children_mc2d_cargar_datos[] = {
+    (const mp_raw_code_t *)&proto_fun_mc2d_cargar_datos__lt_genexpr_gt_,
+    (const mp_raw_code_t *)&proto_fun_mc2d_cargar_datos__lt_dictcomp_gt_,
+    (const mp_raw_code_t *)&proto_fun_mc2d_cargar_datos__lt_dictcomp_gt_2,
+};
+
+static const mp_raw_code_truncated_t proto_fun_mc2d_cargar_datos = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_cargar_datos,
+    .children = (void *)&children_mc2d_cargar_datos,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 474,
+    .n_children = 3,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 12,
+        .n_exc_stack = 2,
+        .scope_flags = 0,
+        .n_pos_args = 0,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 30,
+        .line_info = fun_data_mc2d_cargar_datos + 4,
+        .line_info_top = fun_data_mc2d_cargar_datos + 43,
+        .opcodes = fun_data_mc2d_cargar_datos + 44,
+    },
+    #endif
+    #endif
+};
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_nombre
+static const byte fun_data_mc2d_nombre[140] = {
+    0xe1,0x02,0x2a, // prelude
+    0x2b,0x83,0x62, // names: nombre, it
+    0x80,0x98,0x20,0x23,0x23,0x29,0x26,0x23,0x22,0x2e,0x2d,0x25,0x26,0x55,0x23,0x2c,0x28,0x26, // code info
+    0xb0, // LOAD_FAST 0
+    0x43,0x43, // POP_JUMP_IF_TRUE 3
+    0x10,0x17, // LOAD_CONST_STRING ''
+    0x63, // RETURN_VALUE
+    0x12,0x83,0x41, // LOAD_GLOBAL '_nombres'
+    0x14,0x19, // LOAD_METHOD 'get'
+    0xb0, // LOAD_FAST 0
+    0x36,0x01, // CALL_METHOD 1
+    0xc1, // STORE_FAST 1
+    0xb1, // LOAD_FAST 1
+    0x51, // LOAD_CONST_NONE
+    0xde, // BINARY_OP 7 <is>
+    0x44,0xdd,0x80, // POP_JUMP_IF_FALSE 93
+    0x10,0x17, // LOAD_CONST_STRING ''
+    0xc1, // STORE_FAST 1
+    0x48,0x33, // SETUP_EXCEPT 51
+    0x12,0x83,0x5f, // LOAD_GLOBAL 'open'
+    0x12,0x82,0x6a, // LOAD_GLOBAL 'PMD'
+    0x23,0x1b, // LOAD_CONST_OBJ 27
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x47,0x22, // SETUP_WITH 34
+    0xc2, // STORE_FAST 2
+    0x12,0x83,0x63, // LOAD_GLOBAL 'enumerate'
+    0xb2, // LOAD_FAST 2
+    0x34,0x01, // CALL_FUNCTION 1
+    0x5f, // GET_ITER_STACK
+    0x4b,0x17, // FOR_ITER 23
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc3, // STORE_FAST 3
+    0xc4, // STORE_FAST 4
+    0xb3, // LOAD_FAST 3
+    0xb0, // LOAD_FAST 0
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x4c, // POP_JUMP_IF_FALSE 12
+    0xb4, // LOAD_FAST 4
+    0x14,0x2c, // LOAD_METHOD 'strip'
+    0x36,0x00, // CALL_METHOD 0
+    0xc1, // STORE_FAST 1
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x42,0x42, // JUMP 2
+    0x42,0x27, // JUMP -25
+    0x51, // LOAD_CONST_NONE
+    0x5c, // WITH_CLEANUP
+    0x5d, // END_FINALLY
+    0x4a,0x0b, // POP_EXCEPT_JUMP 11
+    0x57, // DUP_TOP
+    0x12,0x83,0x60, // LOAD_GLOBAL 'OSError'
+    0xdf, // BINARY_OP 8 <exception match>
+    0x44,0x43, // POP_JUMP_IF_FALSE 3
+    0x59, // POP_TOP
+    0x4a,0x01, // POP_EXCEPT_JUMP 1
+    0x5d, // END_FINALLY
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x41, // LOAD_GLOBAL '_nombres'
+    0x34,0x01, // CALL_FUNCTION 1
+    0xa8, // LOAD_CONST_SMALL_INT 40
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x48, // POP_JUMP_IF_FALSE 8
+    0x12,0x83,0x41, // LOAD_GLOBAL '_nombres'
+    0x14,0x1d, // LOAD_METHOD 'clear'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0xb1, // LOAD_FAST 1
+    0x12,0x83,0x41, // LOAD_GLOBAL '_nombres'
+    0xb0, // LOAD_FAST 0
+    0x56, // STORE_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_nombre = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_nombre,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 140,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 13,
+        .n_exc_stack = 2,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 43,
+        .line_info = fun_data_mc2d_nombre + 6,
+        .line_info_top = fun_data_mc2d_nombre + 24,
+        .opcodes = fun_data_mc2d_nombre + 24,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_nombre fun_data_mc2d_nombre[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_es_herramienta
+static const byte fun_data_mc2d_es_herramienta[31] = {
+    0x19,0x0c, // prelude
+    0x2d,0x83,0x62, // names: es_herramienta, it
+    0x80,0xad,0x26, // code info
+    0x12,0x18, // LOAD_GLOBAL 'ficha'
+    0xb0, // LOAD_FAST 0
+    0x34,0x01, // CALL_FUNCTION 1
+    0xc1, // STORE_FAST 1
+    0xb1, // LOAD_FAST 1
+    0x12,0x82,0x75, // LOAD_GLOBAL 'F_GRUPO'
+    0x55, // LOAD_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xd9, // BINARY_OP 2 __eq__
+    0x45,0x07, // JUMP_IF_TRUE_OR_POP 7
+    0xb1, // LOAD_FAST 1
+    0x12,0x82,0x7d, // LOAD_GLOBAL 'F_DURAB'
+    0x55, // LOAD_SUBSCR
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd8, // BINARY_OP 1 __gt__
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_es_herramienta = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_es_herramienta,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 31,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 4,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 45,
+        .line_info = fun_data_mc2d_es_herramienta + 5,
+        .line_info_top = fun_data_mc2d_es_herramienta + 8,
+        .opcodes = fun_data_mc2d_es_herramienta + 8,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_es_herramienta fun_data_mc2d_es_herramienta[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_max_pila
+static const byte fun_data_mc2d_max_pila[40] = {
+    0x19,0x0e, // prelude
+    0x2e,0x83,0x62, // names: max_pila, it
+    0x80,0xb2,0x20,0x26, // code info
+    0x12,0x18, // LOAD_GLOBAL 'ficha'
+    0xb0, // LOAD_FAST 0
+    0x34,0x01, // CALL_FUNCTION 1
+    0xc1, // STORE_FAST 1
+    0xb1, // LOAD_FAST 1
+    0x12,0x82,0x75, // LOAD_GLOBAL 'F_GRUPO'
+    0x55, // LOAD_SUBSCR
+    0x23,0x1c, // LOAD_CONST_OBJ 28
+    0xdd, // BINARY_OP 6 <in>
+    0x43,0x49, // POP_JUMP_IF_TRUE 9
+    0xb1, // LOAD_FAST 1
+    0x12,0x82,0x7d, // LOAD_GLOBAL 'F_DURAB'
+    0x55, // LOAD_SUBSCR
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x42, // POP_JUMP_IF_FALSE 2
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x63, // RETURN_VALUE
+    0x22,0x80,0x40, // LOAD_CONST_SMALL_INT 64
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_max_pila = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_max_pila,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 40,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 4,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 46,
+        .line_info = fun_data_mc2d_max_pila + 5,
+        .line_info_top = fun_data_mc2d_max_pila + 9,
+        .opcodes = fun_data_mc2d_max_pila + 9,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_max_pila fun_data_mc2d_max_pila[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_raiz
+static const byte fun_data_mc2d_raiz[23] = {
+    0x19,0x0c, // prelude
+    0x2f,0x83,0x62, // names: raiz, it
+    0x80,0xb8,0x2a, // code info
+    0x12,0x18, // LOAD_GLOBAL 'ficha'
+    0xb0, // LOAD_FAST 0
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x82,0x7e, // LOAD_GLOBAL 'F_RAIZ'
+    0x55, // LOAD_SUBSCR
+    0xc1, // STORE_FAST 1
+    0xb1, // LOAD_FAST 1
+    0x45,0x01, // JUMP_IF_TRUE_OR_POP 1
+    0xb0, // LOAD_FAST 0
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_raiz = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_raiz,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 23,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 4,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 47,
+        .line_info = fun_data_mc2d_raiz + 5,
+        .line_info_top = fun_data_mc2d_raiz + 8,
+        .opcodes = fun_data_mc2d_raiz + 8,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_raiz fun_data_mc2d_raiz[0]
+#endif
+
+// child of mc2d__lt_module_gt_
 // frozen bytecode for file mc2d.py, scope mc2d_g
-static const byte fun_data_mc2d_g[69] = {
+static const byte fun_data_mc2d_g[70] = {
     0x2a,0x10, // prelude
-    0x3f,0x75,0x76, // names: g, x, y
-    0x80,0x7c,0x1f,0x23,0x2c, // code info
+    0x30,0x66,0x67, // names: g, x, y
+    0x80,0xd0,0x1f,0x22,0x2c, // code info
     0x80, // LOAD_CONST_SMALL_INT 0
     0xb0, // LOAD_FAST 0
     0x57, // DUP_TOP
     0x5b, // ROT_THREE
     0xda, // BINARY_OP 3 __le__
     0x46,0x06, // JUMP_IF_FALSE_OR_POP 6
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0xd7, // BINARY_OP 0 __lt__
     0x42,0x42, // JUMP 2
     0x5a, // ROT_TWO
     0x59, // POP_TOP
-    0x44,0x5d, // POP_JUMP_IF_FALSE 29
+    0x44,0x5c, // POP_JUMP_IF_FALSE 28
     0x80, // LOAD_CONST_SMALL_INT 0
     0xb1, // LOAD_FAST 1
     0x57, // DUP_TOP
     0x5b, // ROT_THREE
     0xda, // BINARY_OP 3 __le__
-    0x46,0x06, // JUMP_IF_FALSE_OR_POP 6
-    0x12,0x83,0x12, // LOAD_GLOBAL 'H'
+    0x46,0x05, // JUMP_IF_FALSE_OR_POP 5
+    0x12,0x0f, // LOAD_GLOBAL 'H'
     0xd7, // BINARY_OP 0 __lt__
     0x42,0x42, // JUMP 2
     0x5a, // ROT_TWO
     0x59, // POP_TOP
     0x44,0x4c, // POP_JUMP_IF_FALSE 12
-    0x12,0x81,0x0e, // LOAD_GLOBAL 'mundo'
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
     0xb0, // LOAD_FAST 0
     0xb1, // LOAD_FAST 1
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0xf4, // BINARY_OP 29 __mul__
     0xf2, // BINARY_OP 27 __add__
     0x55, // LOAD_SUBSCR
@@ -49274,10 +49760,12 @@ static const byte fun_data_mc2d_g[69] = {
     0xb1, // LOAD_FAST 1
     0x80, // LOAD_CONST_SMALL_INT 0
     0xd7, // BINARY_OP 0 __lt__
-    0x44,0x44, // POP_JUMP_IF_FALSE 4
-    0x12,0x82,0x67, // LOAD_GLOBAL 'LECHO'
+    0x44,0x48, // POP_JUMP_IF_FALSE 8
+    0x12,0x12, // LOAD_GLOBAL 'B'
+    0x12,0x83,0x16, // LOAD_GLOBAL 'LECHO_PM'
+    0x34,0x01, // CALL_FUNCTION 1
     0x63, // RETURN_VALUE
-    0x12,0x82,0x59, // LOAD_GLOBAL 'AIRE'
+    0x80, // LOAD_CONST_SMALL_INT 0
     0x63, // RETURN_VALUE
 };
 #if MICROPY_PERSISTENT_CODE_SAVE
@@ -49289,7 +49777,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_g = {
     .fun_data = fun_data_mc2d_g,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 69,
+    .fun_data_len = 70,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -49303,7 +49791,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_g = {
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 63,
+        .qstr_block_name_idx = 48,
         .line_info = fun_data_mc2d_g + 5,
         .line_info_top = fun_data_mc2d_g + 10,
         .opcodes = fun_data_mc2d_g + 10,
@@ -49319,13 +49807,13 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_g = {
 // frozen bytecode for file mc2d.py, scope mc2d_sp
 static const byte fun_data_mc2d_sp[23] = {
     0x3b,0x0e, // prelude
-    0x40,0x75,0x76,0x83,0x2f, // names: sp, x, y, b
-    0x80,0x82, // code info
+    0x31,0x66,0x67,0x83,0x64, // names: sp, x, y, b
+    0x80,0xd6, // code info
     0xb2, // LOAD_FAST 2
-    0x12,0x81,0x0e, // LOAD_GLOBAL 'mundo'
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
     0xb0, // LOAD_FAST 0
     0xb1, // LOAD_FAST 1
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0xf4, // BINARY_OP 29 __mul__
     0xf2, // BINARY_OP 27 __add__
     0x56, // STORE_SUBSCR
@@ -49355,7 +49843,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_sp = {
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 64,
+        .qstr_block_name_idx = 49,
         .line_info = fun_data_mc2d_sp + 7,
         .line_info_top = fun_data_mc2d_sp + 9,
         .opcodes = fun_data_mc2d_sp + 9,
@@ -49369,14 +49857,13 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_sp = {
 
 // child of mc2d__lt_module_gt_
 // frozen bytecode for file mc2d.py, scope mc2d_solido
-static const byte fun_data_mc2d_solido[14] = {
+static const byte fun_data_mc2d_solido[13] = {
     0x11,0x0a, // prelude
-    0x41,0x83,0x2f, // names: solido, b
-    0x80,0x86, // code info
+    0x32,0x83,0x64, // names: solido, b
+    0x80,0xda, // code info
+    0x12,0x83,0x05, // LOAD_GLOBAL 'SOL'
     0xb0, // LOAD_FAST 0
-    0x12,0x83,0x07, // LOAD_GLOBAL 'NO_SOLIDO'
-    0xdd, // BINARY_OP 6 <in>
-    0xd3, // UNARY_OP 3 <not>
+    0x55, // LOAD_SUBSCR
     0x63, // RETURN_VALUE
 };
 #if MICROPY_PERSISTENT_CODE_SAVE
@@ -49388,7 +49875,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_solido = {
     .fun_data = fun_data_mc2d_solido,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 14,
+    .fun_data_len = 13,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -49402,7 +49889,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_solido = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 65,
+        .qstr_block_name_idx = 50,
         .line_info = fun_data_mc2d_solido + 5,
         .line_info_top = fun_data_mc2d_solido + 7,
         .opcodes = fun_data_mc2d_solido + 7,
@@ -49415,12 +49902,132 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_solido = {
 #endif
 
 // child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_es_agua
+static const byte fun_data_mc2d_es_agua[32] = {
+    0x19,0x0a, // prelude
+    0x33,0x83,0x64, // names: es_agua, b
+    0x80,0xde, // code info
+    0x12,0x83,0x08, // LOAD_GLOBAL 'LIQ'
+    0xb0, // LOAD_FAST 0
+    0x55, // LOAD_SUBSCR
+    0x46,0x11, // JUMP_IF_FALSE_OR_POP 17
+    0x95, // LOAD_CONST_SMALL_INT 21
+    0x12,0x83,0x02, // LOAD_GLOBAL 'L2PM'
+    0xb0, // LOAD_FAST 0
+    0x55, // LOAD_SUBSCR
+    0x57, // DUP_TOP
+    0x5b, // ROT_THREE
+    0xda, // BINARY_OP 3 __le__
+    0x46,0x04, // JUMP_IF_FALSE_OR_POP 4
+    0xa6, // LOAD_CONST_SMALL_INT 38
+    0xda, // BINARY_OP 3 __le__
+    0x42,0x42, // JUMP 2
+    0x5a, // ROT_TWO
+    0x59, // POP_TOP
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_es_agua = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_es_agua,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 32,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 4,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 51,
+        .line_info = fun_data_mc2d_es_agua + 5,
+        .line_info_top = fun_data_mc2d_es_agua + 7,
+        .opcodes = fun_data_mc2d_es_agua + 7,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_es_agua fun_data_mc2d_es_agua[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_es_lava
+static const byte fun_data_mc2d_es_lava[36] = {
+    0x19,0x0a, // prelude
+    0x34,0x83,0x64, // names: es_lava, b
+    0x80,0xe2, // code info
+    0x12,0x83,0x08, // LOAD_GLOBAL 'LIQ'
+    0xb0, // LOAD_FAST 0
+    0x55, // LOAD_SUBSCR
+    0x46,0x15, // JUMP_IF_FALSE_OR_POP 21
+    0x22,0x80,0x40, // LOAD_CONST_SMALL_INT 64
+    0x12,0x83,0x02, // LOAD_GLOBAL 'L2PM'
+    0xb0, // LOAD_FAST 0
+    0x55, // LOAD_SUBSCR
+    0x57, // DUP_TOP
+    0x5b, // ROT_THREE
+    0xda, // BINARY_OP 3 __le__
+    0x46,0x06, // JUMP_IF_FALSE_OR_POP 6
+    0x22,0x80,0x51, // LOAD_CONST_SMALL_INT 81
+    0xda, // BINARY_OP 3 __le__
+    0x42,0x42, // JUMP 2
+    0x5a, // ROT_TWO
+    0x59, // POP_TOP
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_es_lava = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_es_lava,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 36,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 4,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 52,
+        .line_info = fun_data_mc2d_es_lava + 5,
+        .line_info_top = fun_data_mc2d_es_lava + 7,
+        .opcodes = fun_data_mc2d_es_lava + 7,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_es_lava fun_data_mc2d_es_lava[0]
+#endif
+
+// child of mc2d__lt_module_gt_
 // frozen bytecode for file mc2d.py, scope mc2d_calc_alto
-static const byte fun_data_mc2d_calc_alto[51] = {
-    0x29,0x0e, // prelude
-    0x42,0x75, // names: calc_alto, x
-    0x80,0x8f,0x26,0x22,0x3a, // code info
-    0x12,0x83,0x12, // LOAD_GLOBAL 'H'
+static const byte fun_data_mc2d_calc_alto[50] = {
+    0x31,0x0e, // prelude
+    0x35,0x66, // names: calc_alto, x
+    0x80,0xe8,0x25,0x22,0x3a, // code info
+    0x12,0x0f, // LOAD_GLOBAL 'H'
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf3, // BINARY_OP 28 __sub__
     0xc1, // STORE_FAST 1
@@ -49433,18 +50040,18 @@ static const byte fun_data_mc2d_calc_alto[51] = {
     0x80, // LOAD_CONST_SMALL_INT 0
     0xd8, // BINARY_OP 1 __gt__
     0x44,0x51, // POP_JUMP_IF_FALSE 17
-    0x12,0x81,0x0e, // LOAD_GLOBAL 'mundo'
+    0x12,0x83,0x07, // LOAD_GLOBAL 'NOSUELO'
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
     0xb0, // LOAD_FAST 0
     0xb1, // LOAD_FAST 1
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0xf4, // BINARY_OP 29 __mul__
     0xf2, // BINARY_OP 27 __add__
     0x55, // LOAD_SUBSCR
-    0x12,0x83,0x28, // LOAD_GLOBAL 'NO_SUELO'
-    0xdd, // BINARY_OP 6 <in>
+    0x55, // LOAD_SUBSCR
     0x43,0x26, // POP_JUMP_IF_TRUE -26
     0xb1, // LOAD_FAST 1
-    0x12,0x83,0x1f, // LOAD_GLOBAL 'alto'
+    0x12,0x81,0x43, // LOAD_GLOBAL 'alto'
     0xb0, // LOAD_FAST 0
     0x56, // STORE_SUBSCR
     0x51, // LOAD_CONST_NONE
@@ -49459,7 +50066,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_calc_alto = {
     .fun_data = fun_data_mc2d_calc_alto,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 51,
+    .fun_data_len = 50,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -49467,13 +50074,13 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_calc_alto = {
     #if MICROPY_PY_SYS_SETTRACE
     .line_of_definition = 0,
     .prelude = {
-        .n_state = 6,
+        .n_state = 7,
         .n_exc_stack = 0,
         .scope_flags = 0,
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 66,
+        .qstr_block_name_idx = 53,
         .line_info = fun_data_mc2d_calc_alto + 4,
         .line_info_top = fun_data_mc2d_calc_alto + 9,
         .opcodes = fun_data_mc2d_calc_alto + 9,
@@ -49489,37 +50096,37 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_calc_alto = {
 // frozen bytecode for file mc2d.py, scope mc2d_buscar_sonidos
 static const byte fun_data_mc2d_buscar_sonidos[150] = {
     0x84,0x12,0x20, // prelude
-    0x43, // names: buscar_sonidos
-    0x80,0x9a,0x2c,0x22,0x22,0x2c,0x25,0x22,0x29,0x59,0x24,0x2c,0x2c,0x2e,0x4f, // code info
-    0x12,0x83,0x30, // LOAD_GLOBAL 'hasattr'
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x10,0x44, // LOAD_CONST_STRING 'sonar'
+    0x36, // names: buscar_sonidos
+    0x80,0xf3,0x2c,0x22,0x22,0x2c,0x25,0x22,0x29,0x59,0x24,0x2c,0x2c,0x2e,0x4f, // code info
+    0x12,0x83,0x65, // LOAD_GLOBAL 'hasattr'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x10,0x37, // LOAD_CONST_STRING 'sonar'
     0x34,0x02, // CALL_FUNCTION 2
     0x43,0x42, // POP_JUMP_IF_TRUE 2
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
     0x48,0x66, // SETUP_EXCEPT 102
     0x12,0x05, // LOAD_GLOBAL 'os'
-    0x14,0x45, // LOAD_METHOD 'listdir'
-    0x10,0x46, // LOAD_CONST_STRING '/scratch'
+    0x14,0x38, // LOAD_METHOD 'listdir'
+    0x10,0x39, // LOAD_CONST_STRING '/scratch'
     0x36,0x01, // CALL_METHOD 1
     0x5f, // GET_ITER_STACK
     0x4b,0x59, // FOR_ITER 89
     0xc0, // STORE_FAST 0
-    0x23,0x24, // LOAD_CONST_OBJ 36
+    0x23,0x1d, // LOAD_CONST_OBJ 29
     0xb0, // LOAD_FAST 0
     0xf8, // BINARY_OP 33 __mod__
     0xc1, // STORE_FAST 1
     0x48,0x1a, // SETUP_EXCEPT 26
-    0x12,0x83,0x31, // LOAD_GLOBAL 'open'
+    0x12,0x83,0x5f, // LOAD_GLOBAL 'open'
     0xb1, // LOAD_FAST 1
     0x34,0x01, // CALL_FUNCTION 1
     0x47,0x0e, // SETUP_WITH 14
     0xc2, // STORE_FAST 2
     0x12,0x04, // LOAD_GLOBAL 'json'
-    0x14,0x47, // LOAD_METHOD 'loads'
+    0x14,0x22, // LOAD_METHOD 'loads'
     0xb2, // LOAD_FAST 2
-    0x14,0x48, // LOAD_METHOD 'read'
+    0x14,0x1c, // LOAD_METHOD 'read'
     0x36,0x00, // CALL_METHOD 0
     0x36,0x01, // CALL_METHOD 1
     0xc3, // STORE_FAST 3
@@ -49528,34 +50135,34 @@ static const byte fun_data_mc2d_buscar_sonidos[150] = {
     0x5d, // END_FINALLY
     0x4a,0x0c, // POP_EXCEPT_JUMP 12
     0x57, // DUP_TOP
-    0x12,0x83,0x32, // LOAD_GLOBAL 'OSError'
+    0x12,0x83,0x60, // LOAD_GLOBAL 'OSError'
     0xdf, // BINARY_OP 8 <exception match>
     0x44,0x44, // POP_JUMP_IF_FALSE 4
     0x59, // POP_TOP
     0x40,0x12,0x01, // UNWIND_JUMP -46
     0x5d, // END_FINALLY
-    0x10,0x49, // LOAD_CONST_STRING 'grass1'
+    0x10,0x3a, // LOAD_CONST_STRING 'grass1'
     0xb3, // LOAD_FAST 3
     0xdd, // BINARY_OP 6 <in>
     0x43,0x46, // POP_JUMP_IF_TRUE 6
-    0x10,0x4a, // LOAD_CONST_STRING 'grass1.wav'
+    0x10,0x3b, // LOAD_CONST_STRING 'grass1.wav'
     0xb3, // LOAD_FAST 3
     0xdd, // BINARY_OP 6 <in>
     0x44,0x5c, // POP_JUMP_IF_FALSE 28
     0xb3, // LOAD_FAST 3
-    0x14,0x4b, // LOAD_METHOD 'items'
+    0x14,0x26, // LOAD_METHOD 'items'
     0x36,0x00, // CALL_METHOD 0
     0x5f, // GET_ITER_STACK
     0x4b,0x12, // FOR_ITER 18
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xc4, // STORE_FAST 4
     0xc5, // STORE_FAST 5
-    0x23,0x25, // LOAD_CONST_OBJ 37
+    0x23,0x1e, // LOAD_CONST_OBJ 30
     0xb0, // LOAD_FAST 0
     0xb5, // LOAD_FAST 5
     0x2a,0x02, // BUILD_TUPLE 2
     0xf8, // BINARY_OP 33 __mod__
-    0x12,0x83,0x29, // LOAD_GLOBAL 'SND'
+    0x12,0x83,0x55, // LOAD_GLOBAL 'SND'
     0xb4, // LOAD_FAST 4
     0x56, // STORE_SUBSCR
     0x42,0x2c, // JUMP -20
@@ -49564,7 +50171,7 @@ static const byte fun_data_mc2d_buscar_sonidos[150] = {
     0x42,0xa5,0x7f, // JUMP -91
     0x4a,0x0b, // POP_EXCEPT_JUMP 11
     0x57, // DUP_TOP
-    0x12,0x83,0x32, // LOAD_GLOBAL 'OSError'
+    0x12,0x83,0x60, // LOAD_GLOBAL 'OSError'
     0xdf, // BINARY_OP 8 <exception match>
     0x44,0x43, // POP_JUMP_IF_FALSE 3
     0x59, // POP_TOP
@@ -49596,7 +50203,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_buscar_sonidos = {
         .n_pos_args = 0,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 67,
+        .qstr_block_name_idx = 54,
         .line_info = fun_data_mc2d_buscar_sonidos + 4,
         .line_info_top = fun_data_mc2d_buscar_sonidos + 19,
         .opcodes = fun_data_mc2d_buscar_sonidos + 19,
@@ -49610,19 +50217,19 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_buscar_sonidos = {
 
 // child of mc2d__lt_module_gt_
 // frozen bytecode for file mc2d.py, scope mc2d_sonar
-static const byte fun_data_mc2d_sonar[35] = {
-    0xb2,0x01,0x10, // prelude
-    0x44,0x74,0x83,0x33, // names: sonar, nombre, vol
-    0x80,0xad,0x29,0x23, // code info
-    0x12,0x83,0x29, // LOAD_GLOBAL 'SND'
-    0x14,0x4c, // LOAD_METHOD 'get'
+static const byte fun_data_mc2d_sonar[36] = {
+    0xb2,0x01,0x12, // prelude
+    0x37,0x83,0x66,0x83,0x67, // names: sonar, nombre_s, vol
+    0x90,0x06,0x29,0x23, // code info
+    0x12,0x83,0x55, // LOAD_GLOBAL 'SND'
+    0x14,0x19, // LOAD_METHOD 'get'
     0xb0, // LOAD_FAST 0
     0x36,0x01, // CALL_METHOD 1
     0xc2, // STORE_FAST 2
     0xb2, // LOAD_FAST 2
     0x44,0x4a, // POP_JUMP_IF_FALSE 10
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x44, // LOAD_METHOD 'sonar'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x37, // LOAD_METHOD 'sonar'
     0xb2, // LOAD_FAST 2
     0xb1, // LOAD_FAST 1
     0x36,0x02, // CALL_METHOD 2
@@ -49639,7 +50246,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_sonar = {
     .fun_data = fun_data_mc2d_sonar,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 35,
+    .fun_data_len = 36,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -49653,10 +50260,10 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_sonar = {
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 1,
-        .qstr_block_name_idx = 68,
-        .line_info = fun_data_mc2d_sonar + 7,
-        .line_info_top = fun_data_mc2d_sonar + 11,
-        .opcodes = fun_data_mc2d_sonar + 11,
+        .qstr_block_name_idx = 55,
+        .line_info = fun_data_mc2d_sonar + 8,
+        .line_info_top = fun_data_mc2d_sonar + 12,
+        .opcodes = fun_data_mc2d_sonar + 12,
     },
     #endif
     #endif
@@ -49667,52 +50274,73 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_sonar = {
 
 // child of mc2d__lt_module_gt_
 // frozen bytecode for file mc2d.py, scope mc2d_sonar_bloque
-static const byte fun_data_mc2d_sonar_bloque[114] = {
-    0xda,0x01,0x16, // prelude
-    0x4d,0x83,0x2f,0x83,0x33, // names: sonar_bloque, b, vol
-    0x80,0xb3,0x1f,0x23,0x36,0x36, // code info
+static const byte fun_data_mc2d_sonar_bloque[141] = {
+    0xe2,0x01,0x18, // prelude
+    0x3c,0x83,0x64,0x83,0x67, // names: sonar_bloque, b, vol
+    0x90,0x0c,0x39,0x26,0x35,0x3b,0x39, // code info
+    0x12,0x18, // LOAD_GLOBAL 'ficha'
     0xb0, // LOAD_FAST 0
-    0x12,0x82,0x5a, // LOAD_GLOBAL 'HIERBA'
-    0x12,0x82,0x5b, // LOAD_GLOBAL 'TIERRA'
-    0x12,0x82,0x5f, // LOAD_GLOBAL 'HOJAS'
-    0x12,0x82,0x71, // LOAD_GLOBAL 'HIERBA_A'
-    0x12,0x82,0x6f, // LOAD_GLOBAL 'FLOR_R'
-    0x12,0x82,0x70, // LOAD_GLOBAL 'FLOR_A'
-    0x12,0x82,0x6d, // LOAD_GLOBAL 'NIEVE'
-    0x12,0x82,0x6e, // LOAD_GLOBAL 'CACTUS'
-    0x2a,0x08, // BUILD_TUPLE 8
-    0xdd, // BINARY_OP 6 <in>
-    0x44,0x44, // POP_JUMP_IF_FALSE 4
-    0x10,0x4e, // LOAD_CONST_STRING 'grass'
-    0x42,0x6b, // JUMP 43
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x02, // LOAD_GLOBAL 'L2PM'
+    0x34,0x01, // CALL_FUNCTION 1
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x47, // POP_JUMP_IF_FALSE 7
+    0x12,0x83,0x02, // LOAD_GLOBAL 'L2PM'
     0xb0, // LOAD_FAST 0
-    0x12,0x82,0x61, // LOAD_GLOBAL 'ARENA'
-    0xd9, // BINARY_OP 2 __eq__
-    0x44,0x44, // POP_JUMP_IF_FALSE 4
-    0x10,0x4f, // LOAD_CONST_STRING 'sand'
-    0x42,0x60, // JUMP 32
-    0xb0, // LOAD_FAST 0
-    0x12,0x82,0x62, // LOAD_GLOBAL 'GRAVA'
-    0xd9, // BINARY_OP 2 __eq__
-    0x44,0x44, // POP_JUMP_IF_FALSE 4
-    0x10,0x50, // LOAD_CONST_STRING 'gravel'
-    0x42,0x55, // JUMP 21
-    0xb0, // LOAD_FAST 0
-    0x12,0x82,0x5e, // LOAD_GLOBAL 'TRONCO'
-    0x12,0x82,0x60, // LOAD_GLOBAL 'TABLONES'
-    0x12,0x82,0x69, // LOAD_GLOBAL 'MESA'
-    0x2a,0x03, // BUILD_TUPLE 3
-    0xdd, // BINARY_OP 6 <in>
-    0x44,0x44, // POP_JUMP_IF_FALSE 4
-    0x10,0x51, // LOAD_CONST_STRING 'wood'
-    0x42,0x42, // JUMP 2
-    0x10,0x52, // LOAD_CONST_STRING 'stone'
+    0x55, // LOAD_SUBSCR
+    0x42,0x41, // JUMP 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x34,0x01, // CALL_FUNCTION 1
     0xc2, // STORE_FAST 2
-    0x12,0x44, // LOAD_GLOBAL 'sonar'
-    0x10,0x53, // LOAD_CONST_STRING '%s%d'
     0xb2, // LOAD_FAST 2
+    0x12,0x82,0x70, // LOAD_GLOBAL 'F_HERR'
+    0x55, // LOAD_SUBSCR
+    0xc3, // STORE_FAST 3
+    0xb0, // LOAD_FAST 0
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x02, // LOAD_GLOBAL 'L2PM'
+    0x34,0x01, // CALL_FUNCTION 1
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x47, // POP_JUMP_IF_FALSE 7
+    0x12,0x83,0x02, // LOAD_GLOBAL 'L2PM'
+    0xb0, // LOAD_FAST 0
+    0x55, // LOAD_SUBSCR
+    0x42,0x41, // JUMP 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xc4, // STORE_FAST 4
+    0xb4, // LOAD_FAST 4
+    0x12,0x83,0x17, // LOAD_GLOBAL 'ARENA_PM'
+    0x12,0x83,0x2e, // LOAD_GLOBAL 'AREN_PIEDRA'
+    0x2a,0x02, // BUILD_TUPLE 2
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x10,0x3d, // LOAD_CONST_STRING 'sand'
+    0x42,0x63, // JUMP 35
+    0xb4, // LOAD_FAST 4
+    0x12,0x83,0x15, // LOAD_GLOBAL 'GRAVA_PM'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x10,0x3e, // LOAD_CONST_STRING 'gravel'
+    0x42,0x58, // JUMP 24
+    0xb3, // LOAD_FAST 3
+    0x22,0x80,0x41, // LOAD_CONST_SMALL_INT 65
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x10,0x3f, // LOAD_CONST_STRING 'wood'
+    0x42,0x4d, // JUMP 13
+    0xb3, // LOAD_FAST 3
+    0x22,0x80,0x50, // LOAD_CONST_SMALL_INT 80
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x10,0x40, // LOAD_CONST_STRING 'stone'
+    0x42,0x42, // JUMP 2
+    0x10,0x41, // LOAD_CONST_STRING 'grass'
+    0xc5, // STORE_FAST 5
+    0x12,0x37, // LOAD_GLOBAL 'sonar'
+    0x10,0x42, // LOAD_CONST_STRING '%s%d'
+    0xb5, // LOAD_FAST 5
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x54, // LOAD_METHOD 'randint'
+    0x14,0x43, // LOAD_METHOD 'randint'
     0x81, // LOAD_CONST_SMALL_INT 1
     0x84, // LOAD_CONST_SMALL_INT 4
     0x36,0x02, // CALL_METHOD 2
@@ -49733,7 +50361,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_sonar_bloque = {
     .fun_data = fun_data_mc2d_sonar_bloque,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 114,
+    .fun_data_len = 141,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -49741,16 +50369,16 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_sonar_bloque = {
     #if MICROPY_PY_SYS_SETTRACE
     .line_of_definition = 0,
     .prelude = {
-        .n_state = 12,
+        .n_state = 13,
         .n_exc_stack = 0,
         .scope_flags = 0,
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 1,
-        .qstr_block_name_idx = 77,
+        .qstr_block_name_idx = 60,
         .line_info = fun_data_mc2d_sonar_bloque + 8,
-        .line_info_top = fun_data_mc2d_sonar_bloque + 14,
-        .opcodes = fun_data_mc2d_sonar_bloque + 14,
+        .line_info_top = fun_data_mc2d_sonar_bloque + 15,
+        .opcodes = fun_data_mc2d_sonar_bloque + 15,
     },
     #endif
     #endif
@@ -49763,10 +50391,10 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_sonar_bloque = {
 // frozen bytecode for file mc2d.py, scope mc2d_progreso
 static const byte fun_data_mc2d_progreso[111] = {
     0x42,0x14, // prelude
-    0x55,0x57,0x83,0x34, // names: progreso, texto, frac
-    0x80,0xbb,0x36,0x3d,0x33,0x33, // code info
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x56, // LOAD_METHOD 'rect'
+    0x44,0x46,0x83,0x68, // names: progreso, texto, frac
+    0x90,0x16,0x36,0x3d,0x33,0x33, // code info
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x45, // LOAD_METHOD 'rect'
     0x22,0x3c, // LOAD_CONST_SMALL_INT 60
     0x22,0x81,0x0c, // LOAD_CONST_SMALL_INT 140
     0x22,0x81,0x48, // LOAD_CONST_SMALL_INT 200
@@ -49774,11 +50402,11 @@ static const byte fun_data_mc2d_progreso[111] = {
     0x22,0x81,0xc0,0xe8,0x40, // LOAD_CONST_SMALL_INT 3159104
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x56, // LOAD_METHOD 'rect'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x45, // LOAD_METHOD 'rect'
     0x22,0x3c, // LOAD_CONST_SMALL_INT 60
     0x22,0x81,0x0c, // LOAD_CONST_SMALL_INT 140
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0x22,0x81,0x48, // LOAD_CONST_SMALL_INT 200
     0xb1, // LOAD_FAST 1
     0xf4, // BINARY_OP 29 __mul__
@@ -49787,26 +50415,26 @@ static const byte fun_data_mc2d_progreso[111] = {
     0x22,0x82,0xf2,0xfe,0x3a, // LOAD_CONST_SMALL_INT 6078266
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x56, // LOAD_METHOD 'rect'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x45, // LOAD_METHOD 'rect'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x22,0x81,0x1c, // LOAD_CONST_SMALL_INT 156
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x13,0x3c, // LOAD_ATTR 'ANCHO'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x13,0x10, // LOAD_ATTR 'ANCHO'
     0x8c, // LOAD_CONST_SMALL_INT 12
     0x80, // LOAD_CONST_SMALL_INT 0
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x57, // LOAD_METHOD 'texto'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x46, // LOAD_METHOD 'texto'
     0xb0, // LOAD_FAST 0
     0x22,0x3c, // LOAD_CONST_SMALL_INT 60
     0x22,0x81,0x1c, // LOAD_CONST_SMALL_INT 156
     0x22,0x85,0x82,0xc1,0x20, // LOAD_CONST_SMALL_INT 10526880
     0x36,0x04, // CALL_METHOD 4
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x58, // LOAD_METHOD 'mostrar'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x47, // LOAD_METHOD 'mostrar'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0x51, // LOAD_CONST_NONE
@@ -49835,7 +50463,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_progreso = {
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 85,
+        .qstr_block_name_idx = 68,
         .line_info = fun_data_mc2d_progreso + 6,
         .line_info_top = fun_data_mc2d_progreso + 12,
         .opcodes = fun_data_mc2d_progreso + 12,
@@ -49849,24 +50477,24 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_progreso = {
 
 // child of mc2d__lt_module_gt_
 // frozen bytecode for file mc2d.py, scope mc2d_generar
-static const byte fun_data_mc2d_generar[1403] = {
-    0xc9,0x20,0xc4,0x02, // prelude
-    0x59,0x83,0x36, // names: generar, semilla
-    0x80,0xc3,0x28,0x2c,0x51,0x29,0x22,0x22,0x2a,0x29,0x30,0x2d,0x2b,0x3a,0x3e,0x29,0x29,0x23,0x29,0x32,0x27,0x24,0x37,0x29,0x29,0x27,0x30,0x25,0x1f,0x48,0x24,0x36,0x28,0x2b,0x2c,0x2c,0x1f,0x22,0x29,0x2b,0x35,0x38,0x2f,0x27,0x27,0x37,0x1f,0x3c,0x3b,0x1f,0x23,0x30,0x2e,0x2e,0x1f,0x23,0x29,0x39,0x38,0x3a,0x27,0x35,0x28,0x31,0x2c,0x3b,0x1f,0x33,0x29,0x28,0x2f,0x22,0x23,0x26,0x2d,0x33,0x2e,0x24,0x23,0x1f,0x25,0x2d,0x2b,0x3b,0x24,0x23,0x33,0x28,0x27,0x32,0x27,0x3d,0x2e,0x28,0x2f, // code info
+static const byte fun_data_mc2d_generar[1906] = {
+    0xc1,0x30,0xfa,0x02, // prelude
+    0x48,0x83,0x6a, // names: generar, semilla
+    0x90,0x1e,0x28,0x2b,0x4f,0x29,0x22,0x22,0x2a,0x2f,0x30,0x2d,0x2c,0x3a,0x3e,0x1f,0x25,0x31,0x29,0x29,0x28,0x24,0x2a,0x2c,0x39,0x36,0x2a,0x32,0x32,0x2a,0x29,0x35,0x2e,0x4a,0x22,0x37,0x26,0x2b,0x2a,0x2d,0x36,0x2d,0x3e,0x29,0x34,0x29,0x2c,0x37,0x38,0x30,0x27,0x27,0x39,0x1f,0x3b,0x32,0x1f,0x2b,0x30,0x30,0x30,0x1f,0x25,0x49,0x39,0x38,0x39,0x1f,0x28,0x27,0x28,0x36,0x29,0x30,0x2d,0x3b,0x1f,0x34,0x29,0x28,0x2f,0x22,0x23,0x27,0x2e,0x28,0x2b,0x3d,0x32,0x27,0x2c,0x24,0x23,0x1f,0x25,0x2d,0x2b,0x1f,0x21,0x24,0x23,0x3d,0x28,0x27,0x27,0x38,0x27,0x1f,0x23,0x27,0x39,0x33,0x37,0x1f,0x2d,0x2d,0x2b,0x1f,0x21,0x2e,0x28,0x2f, // code info
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x5a, // LOAD_METHOD 'seed'
+    0x14,0x49, // LOAD_METHOD 'seed'
     0xb0, // LOAD_FAST 0
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
-    0x12,0x83,0x12, // LOAD_GLOBAL 'H'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
+    0x12,0x0f, // LOAD_GLOBAL 'H'
     0xf4, // BINARY_OP 29 __mul__
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x42,0x4c, // JUMP 12
+    0x42,0x4a, // JUMP 10
     0x57, // DUP_TOP
     0xc1, // STORE_FAST 1
-    0x12,0x82,0x59, // LOAD_GLOBAL 'AIRE'
-    0x12,0x81,0x0e, // LOAD_GLOBAL 'mundo'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
     0xb1, // LOAD_FAST 1
     0x56, // STORE_SUBSCR
     0x81, // LOAD_CONST_SMALL_INT 1
@@ -49874,29 +50502,31 @@ static const byte fun_data_mc2d_generar[1403] = {
     0x58, // DUP_TOP_TWO
     0x5a, // ROT_TWO
     0xd7, // BINARY_OP 0 __lt__
-    0x43,0x2f, // POP_JUMP_IF_TRUE -17
+    0x43,0x31, // POP_JUMP_IF_TRUE -15
     0x59, // POP_TOP
     0x59, // POP_TOP
-    0x12,0x83,0x1e, // LOAD_GLOBAL 'bytearray'
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x03, // LOAD_GLOBAL 'bytearray'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0x34,0x01, // CALL_FUNCTION 1
     0xc2, // STORE_FAST 2
     0x80, // LOAD_CONST_SMALL_INT 0
     0xc3, // STORE_FAST 3
-    0x42,0x74, // JUMP 52
+    0x42,0x7a, // JUMP 58
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x54, // LOAD_METHOD 'randint'
+    0x14,0x43, // LOAD_METHOD 'randint'
     0x9e, // LOAD_CONST_SMALL_INT 30
     0x22,0x3c, // LOAD_CONST_SMALL_INT 60
     0x36,0x02, // CALL_METHOD 2
     0xc4, // STORE_FAST 4
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x5b, // LOAD_METHOD 'choice'
-    0x23,0x26, // LOAD_CONST_OBJ 38
+    0x14,0x4a, // LOAD_METHOD 'randrange'
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x0f, // LOAD_GLOBAL 'BIOMAS'
+    0x34,0x01, // CALL_FUNCTION 1
     0x36,0x01, // CALL_METHOD 1
     0xc5, // STORE_FAST 5
-    0x12,0x83,0x37, // LOAD_GLOBAL 'min'
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x6b, // LOAD_GLOBAL 'min'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0xb3, // LOAD_FAST 3
     0xb4, // LOAD_FAST 4
     0xf2, // BINARY_OP 27 __add__
@@ -49922,163 +50552,212 @@ static const byte fun_data_mc2d_generar[1403] = {
     0xe5, // BINARY_OP 14 __iadd__
     0xc3, // STORE_FAST 3
     0xb3, // LOAD_FAST 3
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0xd7, // BINARY_OP 0 __lt__
-    0x43,0x05, // POP_JUMP_IF_TRUE -59
+    0x43,0xbe,0x7f, // POP_JUMP_IF_TRUE -66
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x5c, // LOAD_METHOD 'uniform'
+    0x14,0x4b, // LOAD_METHOD 'uniform'
     0x88, // LOAD_CONST_SMALL_INT 8
     0x94, // LOAD_CONST_SMALL_INT 20
     0x36,0x02, // CALL_METHOD 2
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x5c, // LOAD_METHOD 'uniform'
+    0x14,0x4b, // LOAD_METHOD 'uniform'
     0x81, // LOAD_CONST_SMALL_INT 1
     0x83, // LOAD_CONST_SMALL_INT 3
     0x36,0x02, // CALL_METHOD 2
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x5c, // LOAD_METHOD 'uniform'
+    0x14,0x4b, // LOAD_METHOD 'uniform'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x86, // LOAD_CONST_SMALL_INT 6
     0x36,0x02, // CALL_METHOD 2
     0x2a,0x03, // BUILD_TUPLE 3
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x5c, // LOAD_METHOD 'uniform'
+    0x14,0x4b, // LOAD_METHOD 'uniform'
     0x99, // LOAD_CONST_SMALL_INT 25
     0x22,0x32, // LOAD_CONST_SMALL_INT 50
     0x36,0x02, // CALL_METHOD 2
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x5c, // LOAD_METHOD 'uniform'
+    0x14,0x4b, // LOAD_METHOD 'uniform'
     0x83, // LOAD_CONST_SMALL_INT 3
     0x87, // LOAD_CONST_SMALL_INT 7
     0x36,0x02, // CALL_METHOD 2
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x5c, // LOAD_METHOD 'uniform'
+    0x14,0x4b, // LOAD_METHOD 'uniform'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x86, // LOAD_CONST_SMALL_INT 6
     0x36,0x02, // CALL_METHOD 2
     0x2a,0x03, // BUILD_TUPLE 3
     0x2b,0x02, // BUILD_LIST 2
     0xc6, // STORE_FAST 6
-    0x12,0x55, // LOAD_GLOBAL 'progreso'
-    0x23,0x27, // LOAD_CONST_OBJ 39
-    0x23,0x28, // LOAD_CONST_OBJ 40
-    0x34,0x02, // CALL_FUNCTION 2
-    0x59, // POP_TOP
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0x42,0xf5,0x81, // JUMP 245
-    0x57, // DUP_TOP
-    0xc3, // STORE_FAST 3
-    0x23,0x29, // LOAD_CONST_OBJ 41
+    0x12,0x12, // LOAD_GLOBAL 'B'
+    0x12,0x83,0x12, // LOAD_GLOBAL 'HIERBA_PM'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x12, // LOAD_GLOBAL 'B'
+    0x12,0x83,0x13, // LOAD_GLOBAL 'TIERRA_PM'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x12, // LOAD_GLOBAL 'B'
+    0x12,0x83,0x14, // LOAD_GLOBAL 'PIEDRA_PM'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x12, // LOAD_GLOBAL 'B'
+    0x12,0x83,0x17, // LOAD_GLOBAL 'ARENA_PM'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x30,0x04, // UNPACK_SEQUENCE 4
     0xc7, // STORE_FAST 7
-    0xb6, // LOAD_FAST 6
-    0x5f, // GET_ITER_STACK
-    0x4b,0x17, // FOR_ITER 23
-    0x30,0x03, // UNPACK_SEQUENCE 3
     0xc8, // STORE_FAST 8
     0xc9, // STORE_FAST 9
     0xca, // STORE_FAST 10
-    0xb7, // LOAD_FAST 7
-    0x12,0x02, // LOAD_GLOBAL 'math'
-    0x14,0x5d, // LOAD_METHOD 'sin'
-    0xb3, // LOAD_FAST 3
-    0xb8, // LOAD_FAST 8
-    0xf7, // BINARY_OP 32 __truediv__
-    0xba, // LOAD_FAST 10
-    0xf2, // BINARY_OP 27 __add__
-    0x36,0x01, // CALL_METHOD 1
-    0xb9, // LOAD_FAST 9
-    0xf4, // BINARY_OP 29 __mul__
-    0xe5, // BINARY_OP 14 __iadd__
-    0xc7, // STORE_FAST 7
-    0x42,0x27, // JUMP -25
+    0x12,0x12, // LOAD_GLOBAL 'B'
+    0x12,0x83,0x23, // LOAD_GLOBAL 'AGUA_PM'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x12, // LOAD_GLOBAL 'B'
+    0x12,0x83,0x16, // LOAD_GLOBAL 'LECHO_PM'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x5a, // ROT_TWO
+    0xcb, // STORE_FAST 11
+    0xcc, // STORE_FAST 12
+    0x12,0x44, // LOAD_GLOBAL 'progreso'
+    0x23,0x1f, // LOAD_CONST_OBJ 31
+    0x23,0x20, // LOAD_CONST_OBJ 32
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0xbb,0x82, // JUMP 315
+    0x57, // DUP_TOP
+    0xc3, // STORE_FAST 3
+    0x12,0x83,0x0f, // LOAD_GLOBAL 'BIOMAS'
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
     0x55, // LOAD_SUBSCR
+    0x55, // LOAD_SUBSCR
+    0xcd, // STORE_FAST 13
+    0xbd, // LOAD_FAST 13
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0xce, // STORE_FAST 14
+    0x23,0x21, // LOAD_CONST_OBJ 33
+    0xbd, // LOAD_FAST 13
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x55, // LOAD_SUBSCR
+    0x23,0x14, // LOAD_CONST_OBJ 20
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0xcf, // STORE_FAST 15
+    0xb6, // LOAD_FAST 6
+    0x5f, // GET_ITER_STACK
+    0x4b,0x21, // FOR_ITER 33
+    0x30,0x03, // UNPACK_SEQUENCE 3
+    0x26,0x10, // STORE_FAST_N 16
+    0x26,0x11, // STORE_FAST_N 17
+    0x26,0x12, // STORE_FAST_N 18
+    0xbf, // LOAD_FAST 15
+    0x12,0x02, // LOAD_GLOBAL 'math'
+    0x14,0x4c, // LOAD_METHOD 'sin'
+    0xb3, // LOAD_FAST 3
+    0x24,0x10, // LOAD_FAST_N 16
+    0xf7, // BINARY_OP 32 __truediv__
+    0x24,0x12, // LOAD_FAST_N 18
+    0xf2, // BINARY_OP 27 __add__
+    0x36,0x01, // CALL_METHOD 1
+    0x24,0x11, // LOAD_FAST_N 17
+    0xf4, // BINARY_OP 29 __mul__
+    0xbd, // LOAD_FAST 13
     0x82, // LOAD_CONST_SMALL_INT 2
-    0xd9, // BINARY_OP 2 __eq__
-    0x44,0x44, // POP_JUMP_IF_FALSE 4
-    0xb7, // LOAD_FAST 7
-    0x84, // LOAD_CONST_SMALL_INT 4
+    0x55, // LOAD_SUBSCR
+    0xf4, // BINARY_OP 29 __mul__
     0xe5, // BINARY_OP 14 __iadd__
-    0xc7, // STORE_FAST 7
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
-    0x12,0x83,0x38, // LOAD_GLOBAL 'max'
+    0xcf, // STORE_FAST 15
+    0x42,0x1d, // JUMP -35
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x6c, // LOAD_GLOBAL 'max'
     0x92, // LOAD_CONST_SMALL_INT 18
-    0x12,0x83,0x37, // LOAD_GLOBAL 'min'
-    0x12,0x83,0x12, // LOAD_GLOBAL 'H'
+    0x12,0x83,0x6b, // LOAD_GLOBAL 'min'
+    0x12,0x0f, // LOAD_GLOBAL 'H'
     0x8a, // LOAD_CONST_SMALL_INT 10
     0xf3, // BINARY_OP 28 __sub__
-    0xb7, // LOAD_FAST 7
+    0xbf, // LOAD_FAST 15
     0x34,0x02, // CALL_FUNCTION 2
     0x34,0x02, // CALL_FUNCTION 2
     0x34,0x01, // CALL_FUNCTION 1
-    0xc7, // STORE_FAST 7
+    0xcf, // STORE_FAST 15
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x54, // LOAD_METHOD 'randint'
+    0x14,0x43, // LOAD_METHOD 'randint'
     0x83, // LOAD_CONST_SMALL_INT 3
     0x84, // LOAD_CONST_SMALL_INT 4
     0x36,0x02, // CALL_METHOD 2
-    0xcb, // STORE_FAST 11
-    0xb7, // LOAD_FAST 7
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0xf2, // BINARY_OP 27 __add__
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x42,0xd7,0x80, // JUMP 87
-    0x57, // DUP_TOP
-    0xcc, // STORE_FAST 12
-    0xbc, // LOAD_FAST 12
-    0xb7, // LOAD_FAST 7
-    0xbb, // LOAD_FAST 11
-    0xf3, // BINARY_OP 28 __sub__
-    0xd8, // BINARY_OP 1 __gt__
-    0x44,0x7c, // POP_JUMP_IF_FALSE 60
-    0xb2, // LOAD_FAST 2
-    0xb3, // LOAD_FAST 3
-    0x55, // LOAD_SUBSCR
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0xd9, // BINARY_OP 2 __eq__
-    0x44,0x45, // POP_JUMP_IF_FALSE 5
-    0x12,0x82,0x61, // LOAD_GLOBAL 'ARENA'
-    0x42,0x43, // JUMP 3
-    0x12,0x82,0x5b, // LOAD_GLOBAL 'TIERRA'
-    0xc5, // STORE_FAST 5
-    0xbc, // LOAD_FAST 12
-    0xb7, // LOAD_FAST 7
-    0xd9, // BINARY_OP 2 __eq__
-    0x44,0x65, // POP_JUMP_IF_FALSE 37
-    0xb2, // LOAD_FAST 2
-    0xb3, // LOAD_FAST 3
-    0x55, // LOAD_SUBSCR
-    0x81, // LOAD_CONST_SMALL_INT 1
+    0x26,0x13, // STORE_FAST_N 19
+    0xbe, // LOAD_FAST 14
+    0x10,0x4d, // LOAD_CONST_STRING 'D'
     0xd9, // BINARY_OP 2 __eq__
     0x43,0x49, // POP_JUMP_IF_TRUE 9
-    0xb7, // LOAD_FAST 7
-    0x12,0x83,0x13, // LOAD_GLOBAL 'MAR'
+    0xbf, // LOAD_FAST 15
+    0x12,0x83,0x43, // LOAD_GLOBAL 'MAR'
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
     0xda, // BINARY_OP 3 __le__
-    0x44,0x45, // POP_JUMP_IF_FALSE 5
-    0x12,0x82,0x61, // LOAD_GLOBAL 'ARENA'
-    0x42,0x4f, // JUMP 15
-    0xb2, // LOAD_FAST 2
-    0xb3, // LOAD_FAST 3
-    0x55, // LOAD_SUBSCR
-    0x82, // LOAD_CONST_SMALL_INT 2
+    0x44,0x43, // POP_JUMP_IF_FALSE 3
+    0xba, // LOAD_FAST 10
+    0x42,0x50, // JUMP 16
+    0xbe, // LOAD_FAST 14
+    0x10,0x13, // LOAD_CONST_STRING 'S'
     0xd9, // BINARY_OP 2 __eq__
-    0x44,0x45, // POP_JUMP_IF_FALSE 5
-    0x12,0x82,0x6d, // LOAD_GLOBAL 'NIEVE'
-    0x42,0x43, // JUMP 3
-    0x12,0x82,0x5a, // LOAD_GLOBAL 'HIERBA'
+    0x44,0x49, // POP_JUMP_IF_FALSE 9
+    0x12,0x12, // LOAD_GLOBAL 'B'
+    0x12,0x83,0x2f, // LOAD_GLOBAL 'NIEVE_HIERBA'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x42,0x41, // JUMP 1
+    0xb7, // LOAD_FAST 7
+    0x26,0x14, // STORE_FAST_N 20
+    0xbf, // LOAD_FAST 15
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x42,0xca,0x80, // JUMP 74
+    0x57, // DUP_TOP
+    0x26,0x15, // STORE_FAST_N 21
+    0x24,0x15, // LOAD_FAST_N 21
+    0xbf, // LOAD_FAST 15
+    0x24,0x13, // LOAD_FAST_N 19
+    0xf3, // BINARY_OP 28 __sub__
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x6d, // POP_JUMP_IF_FALSE 45
+    0x24,0x15, // LOAD_FAST_N 21
+    0xbf, // LOAD_FAST 15
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x24,0x14, // LOAD_FAST_N 20
+    0x42,0x4a, // JUMP 10
+    0xbe, // LOAD_FAST 14
+    0x10,0x4d, // LOAD_CONST_STRING 'D'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x43, // POP_JUMP_IF_FALSE 3
+    0xba, // LOAD_FAST 10
+    0x42,0x41, // JUMP 1
+    0xb8, // LOAD_FAST 8
     0xc5, // STORE_FAST 5
-    0x42,0x44, // JUMP 4
-    0x12,0x82,0x5c, // LOAD_GLOBAL 'PIEDRA'
+    0xbe, // LOAD_FAST 14
+    0x10,0x4d, // LOAD_CONST_STRING 'D'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x50, // POP_JUMP_IF_FALSE 16
+    0x24,0x15, // LOAD_FAST_N 21
+    0xbf, // LOAD_FAST 15
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf3, // BINARY_OP 28 __sub__
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x48, // POP_JUMP_IF_FALSE 8
+    0x12,0x12, // LOAD_GLOBAL 'B'
+    0x12,0x83,0x2e, // LOAD_GLOBAL 'AREN_PIEDRA'
+    0x34,0x01, // CALL_FUNCTION 1
+    0xc5, // STORE_FAST 5
+    0x42,0x42, // JUMP 2
+    0xb9, // LOAD_FAST 9
     0xc5, // STORE_FAST 5
     0xb5, // LOAD_FAST 5
-    0x12,0x81,0x0e, // LOAD_GLOBAL 'mundo'
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
     0xb3, // LOAD_FAST 3
-    0xbc, // LOAD_FAST 12
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x24,0x15, // LOAD_FAST_N 21
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0xf4, // BINARY_OP 29 __mul__
     0xf2, // BINARY_OP 27 __add__
     0x56, // STORE_SUBSCR
@@ -50087,39 +50766,39 @@ static const byte fun_data_mc2d_generar[1403] = {
     0x58, // DUP_TOP_TWO
     0x5a, // ROT_TWO
     0xd7, // BINARY_OP 0 __lt__
-    0x43,0xa3,0x7f, // POP_JUMP_IF_TRUE -93
+    0x43,0xb0,0x7f, // POP_JUMP_IF_TRUE -80
     0x59, // POP_TOP
     0x59, // POP_TOP
-    0x12,0x82,0x67, // LOAD_GLOBAL 'LECHO'
-    0x12,0x81,0x0e, // LOAD_GLOBAL 'mundo'
+    0xbc, // LOAD_FAST 12
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
     0xb3, // LOAD_FAST 3
     0x56, // STORE_SUBSCR
     0x12,0x03, // LOAD_GLOBAL 'random'
     0x14,0x03, // LOAD_METHOD 'random'
     0x36,0x00, // CALL_METHOD 0
-    0x23,0x23, // LOAD_CONST_OBJ 35
+    0x23,0x14, // LOAD_CONST_OBJ 20
     0xd7, // BINARY_OP 0 __lt__
-    0x44,0x4c, // POP_JUMP_IF_FALSE 12
-    0x12,0x82,0x67, // LOAD_GLOBAL 'LECHO'
-    0x12,0x81,0x0e, // LOAD_GLOBAL 'mundo'
+    0x44,0x4a, // POP_JUMP_IF_FALSE 10
+    0xbc, // LOAD_FAST 12
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
     0xb3, // LOAD_FAST 3
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0xf2, // BINARY_OP 27 __add__
     0x56, // STORE_SUBSCR
-    0x12,0x83,0x13, // LOAD_GLOBAL 'MAR'
+    0x12,0x83,0x43, // LOAD_GLOBAL 'MAR'
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
-    0xb7, // LOAD_FAST 7
+    0xbf, // LOAD_FAST 15
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
     0x42,0x52, // JUMP 18
     0x57, // DUP_TOP
-    0xcc, // STORE_FAST 12
-    0x12,0x82,0x68, // LOAD_GLOBAL 'AGUA'
-    0x12,0x81,0x0e, // LOAD_GLOBAL 'mundo'
+    0x26,0x15, // STORE_FAST_N 21
+    0xbb, // LOAD_FAST 11
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
     0xb3, // LOAD_FAST 3
-    0xbc, // LOAD_FAST 12
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x24,0x15, // LOAD_FAST_N 21
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0xf4, // BINARY_OP 29 __mul__
     0xf2, // BINARY_OP 27 __add__
     0x56, // STORE_SUBSCR
@@ -50131,138 +50810,173 @@ static const byte fun_data_mc2d_generar[1403] = {
     0x43,0x29, // POP_JUMP_IF_TRUE -23
     0x59, // POP_TOP
     0x59, // POP_TOP
+    0xbe, // LOAD_FAST 14
+    0x10,0x13, // LOAD_CONST_STRING 'S'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x5b, // POP_JUMP_IF_FALSE 27
+    0xbf, // LOAD_FAST 15
+    0x12,0x83,0x43, // LOAD_GLOBAL 'MAR'
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x54, // POP_JUMP_IF_FALSE 20
+    0x12,0x12, // LOAD_GLOBAL 'B'
+    0x12,0x83,0x31, // LOAD_GLOBAL 'HIELO'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
+    0xb3, // LOAD_FAST 3
+    0x12,0x83,0x43, // LOAD_GLOBAL 'MAR'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x56, // STORE_SUBSCR
     0x81, // LOAD_CONST_SMALL_INT 1
     0xe5, // BINARY_OP 14 __iadd__
     0x58, // DUP_TOP_TWO
     0x5a, // ROT_TWO
     0xd7, // BINARY_OP 0 __lt__
-    0x43,0x85,0x7e, // POP_JUMP_IF_TRUE -251
+    0x43,0xbf,0x7d, // POP_JUMP_IF_TRUE -321
     0x59, // POP_TOP
     0x59, // POP_TOP
-    0x12,0x55, // LOAD_GLOBAL 'progreso'
-    0x23,0x2a, // LOAD_CONST_OBJ 42
-    0x23,0x2b, // LOAD_CONST_OBJ 43
+    0x12,0x44, // LOAD_GLOBAL 'progreso'
+    0x23,0x22, // LOAD_CONST_OBJ 34
+    0x23,0x23, // LOAD_CONST_OBJ 35
     0x34,0x02, // CALL_FUNCTION 2
     0x59, // POP_TOP
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0xb9, // LOAD_FAST 9
+    0xb8, // LOAD_FAST 8
+    0x12,0x12, // LOAD_GLOBAL 'B'
+    0x12,0x83,0x15, // LOAD_GLOBAL 'GRAVA_PM'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x12, // LOAD_GLOBAL 'B'
+    0x12,0x83,0x2e, // LOAD_GLOBAL 'AREN_PIEDRA'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x26,0x16, // STORE_FAST_N 22
+    0x12,0x12, // LOAD_GLOBAL 'B'
+    0x12,0x83,0x24, // LOAD_GLOBAL 'LAVA_PM'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x26,0x17, // STORE_FAST_N 23
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0x92, // LOAD_CONST_SMALL_INT 18
     0xf6, // BINARY_OP 31 __floordiv__
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x42,0xa1,0x82, // JUMP 289
+    0x42,0xab,0x82, // JUMP 299
     0x57, // DUP_TOP
-    0xcd, // STORE_FAST 13
+    0x26,0x18, // STORE_FAST_N 24
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x5c, // LOAD_METHOD 'uniform'
+    0x14,0x4b, // LOAD_METHOD 'uniform'
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0x36,0x02, // CALL_METHOD 2
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x5c, // LOAD_METHOD 'uniform'
+    0x14,0x4b, // LOAD_METHOD 'uniform'
     0x86, // LOAD_CONST_SMALL_INT 6
     0x9e, // LOAD_CONST_SMALL_INT 30
     0x36,0x02, // CALL_METHOD 2
     0x5a, // ROT_TWO
-    0xce, // STORE_FAST 14
-    0xcf, // STORE_FAST 15
+    0x26,0x19, // STORE_FAST_N 25
+    0x26,0x1a, // STORE_FAST_N 26
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x5c, // LOAD_METHOD 'uniform'
+    0x14,0x4b, // LOAD_METHOD 'uniform'
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x23,0x2c, // LOAD_CONST_OBJ 44
+    0x23,0x24, // LOAD_CONST_OBJ 36
     0x36,0x02, // CALL_METHOD 2
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x5c, // LOAD_METHOD 'uniform'
-    0x23,0x2d, // LOAD_CONST_OBJ 45
-    0x23,0x2e, // LOAD_CONST_OBJ 46
+    0x14,0x4b, // LOAD_METHOD 'uniform'
+    0x23,0x25, // LOAD_CONST_OBJ 37
+    0x23,0x26, // LOAD_CONST_OBJ 38
     0x36,0x02, // CALL_METHOD 2
     0x5a, // ROT_TWO
-    0x26,0x10, // STORE_FAST_N 16
-    0x26,0x11, // STORE_FAST_N 17
+    0x26,0x1b, // STORE_FAST_N 27
+    0x26,0x1c, // STORE_FAST_N 28
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x54, // LOAD_METHOD 'randint'
+    0x14,0x43, // LOAD_METHOD 'randint'
     0x99, // LOAD_CONST_SMALL_INT 25
     0x22,0x3c, // LOAD_CONST_SMALL_INT 60
     0x36,0x02, // CALL_METHOD 2
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x42,0xdb,0x81, // JUMP 219
+    0x42,0xe2,0x81, // JUMP 226
     0x57, // DUP_TOP
-    0xcd, // STORE_FAST 13
+    0x26,0x18, // STORE_FAST_N 24
     0x7e, // LOAD_CONST_SMALL_INT -2
     0x42,0x92,0x81, // JUMP 146
     0x57, // DUP_TOP
-    0x26,0x12, // STORE_FAST_N 18
+    0x26,0x1d, // STORE_FAST_N 29
     0x7e, // LOAD_CONST_SMALL_INT -2
     0x42,0x82,0x81, // JUMP 130
     0x57, // DUP_TOP
-    0x26,0x13, // STORE_FAST_N 19
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
-    0xbe, // LOAD_FAST 14
-    0x24,0x12, // LOAD_FAST_N 18
+    0x26,0x1e, // STORE_FAST_N 30
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
+    0x24,0x19, // LOAD_FAST_N 25
+    0x24,0x1d, // LOAD_FAST_N 29
     0xf2, // BINARY_OP 27 __add__
     0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
-    0xbf, // LOAD_FAST 15
-    0x24,0x13, // LOAD_FAST_N 19
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
+    0x24,0x1a, // LOAD_FAST_N 26
+    0x24,0x1e, // LOAD_FAST_N 30
     0xf2, // BINARY_OP 27 __add__
     0x34,0x01, // CALL_FUNCTION 1
     0x5a, // ROT_TWO
-    0x26,0x14, // STORE_FAST_N 20
-    0x26,0x15, // STORE_FAST_N 21
-    0x24,0x12, // LOAD_FAST_N 18
-    0x24,0x12, // LOAD_FAST_N 18
+    0x26,0x1f, // STORE_FAST_N 31
+    0x26,0x20, // STORE_FAST_N 32
+    0x24,0x1d, // LOAD_FAST_N 29
+    0x24,0x1d, // LOAD_FAST_N 29
     0xf4, // BINARY_OP 29 __mul__
-    0x24,0x13, // LOAD_FAST_N 19
-    0x24,0x13, // LOAD_FAST_N 19
+    0x24,0x1e, // LOAD_FAST_N 30
+    0x24,0x1e, // LOAD_FAST_N 30
     0xf4, // BINARY_OP 29 __mul__
     0xf2, // BINARY_OP 27 __add__
-    0x24,0x11, // LOAD_FAST_N 17
-    0x24,0x11, // LOAD_FAST_N 17
+    0x24,0x1c, // LOAD_FAST_N 28
+    0x24,0x1c, // LOAD_FAST_N 28
     0xf4, // BINARY_OP 29 __mul__
-    0x23,0x2f, // LOAD_CONST_OBJ 47
+    0x23,0x27, // LOAD_CONST_OBJ 39
     0xf4, // BINARY_OP 29 __mul__
     0xda, // BINARY_OP 3 __le__
-    0x44,0xcf,0x80, // POP_JUMP_IF_FALSE 79
+    0x44,0xcd,0x80, // POP_JUMP_IF_FALSE 77
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x24,0x14, // LOAD_FAST_N 20
+    0x24,0x1f, // LOAD_FAST_N 31
     0x57, // DUP_TOP
     0x5b, // ROT_THREE
     0xda, // BINARY_OP 3 __le__
     0x46,0x06, // JUMP_IF_FALSE_OR_POP 6
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0xd7, // BINARY_OP 0 __lt__
     0x42,0x42, // JUMP 2
     0x5a, // ROT_TWO
     0x59, // POP_TOP
-    0x44,0x7d, // POP_JUMP_IF_FALSE 61
+    0x44,0x7b, // POP_JUMP_IF_FALSE 59
     0x82, // LOAD_CONST_SMALL_INT 2
-    0x24,0x15, // LOAD_FAST_N 21
+    0x24,0x20, // LOAD_FAST_N 32
     0x57, // DUP_TOP
     0x5b, // ROT_THREE
     0xda, // BINARY_OP 3 __le__
-    0x46,0x06, // JUMP_IF_FALSE_OR_POP 6
-    0x12,0x83,0x12, // LOAD_GLOBAL 'H'
+    0x46,0x05, // JUMP_IF_FALSE_OR_POP 5
+    0x12,0x0f, // LOAD_GLOBAL 'H'
     0xd7, // BINARY_OP 0 __lt__
     0x42,0x42, // JUMP 2
     0x5a, // ROT_TWO
     0x59, // POP_TOP
-    0x44,0x6b, // POP_JUMP_IF_FALSE 43
-    0x12,0x81,0x0e, // LOAD_GLOBAL 'mundo'
-    0x24,0x14, // LOAD_FAST_N 20
-    0x24,0x15, // LOAD_FAST_N 21
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x44,0x6a, // POP_JUMP_IF_FALSE 42
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
+    0x24,0x1f, // LOAD_FAST_N 31
+    0x24,0x20, // LOAD_FAST_N 32
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0xf4, // BINARY_OP 29 __mul__
     0xf2, // BINARY_OP 27 __add__
     0x55, // LOAD_SUBSCR
-    0x12,0x82,0x5c, // LOAD_GLOBAL 'PIEDRA'
-    0x12,0x82,0x5b, // LOAD_GLOBAL 'TIERRA'
-    0x12,0x82,0x62, // LOAD_GLOBAL 'GRAVA'
-    0x2a,0x03, // BUILD_TUPLE 3
+    0x24,0x16, // LOAD_FAST_N 22
     0xdd, // BINARY_OP 6 <in>
-    0x44,0x50, // POP_JUMP_IF_FALSE 16
-    0x12,0x82,0x59, // LOAD_GLOBAL 'AIRE'
-    0x12,0x81,0x0e, // LOAD_GLOBAL 'mundo'
-    0x24,0x14, // LOAD_FAST_N 20
-    0x24,0x15, // LOAD_FAST_N 21
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x44,0x58, // POP_JUMP_IF_FALSE 24
+    0x24,0x20, // LOAD_FAST_N 32
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x24,0x17, // LOAD_FAST_N 23
+    0x42,0x41, // JUMP 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
+    0x24,0x1f, // LOAD_FAST_N 31
+    0x24,0x20, // LOAD_FAST_N 32
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0xf4, // BINARY_OP 29 __mul__
     0xf2, // BINARY_OP 27 __add__
     0x56, // STORE_SUBSCR
@@ -50280,47 +50994,47 @@ static const byte fun_data_mc2d_generar[1403] = {
     0xd7, // BINARY_OP 0 __lt__
     0x43,0xe8,0x7e, // POP_JUMP_IF_TRUE -152
     0x59, // POP_TOP
-    0x24,0x10, // LOAD_FAST_N 16
+    0x24,0x1b, // LOAD_FAST_N 27
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x5c, // LOAD_METHOD 'uniform'
-    0x23,0x30, // LOAD_CONST_OBJ 48
+    0x14,0x4b, // LOAD_METHOD 'uniform'
+    0x23,0x28, // LOAD_CONST_OBJ 40
     0xd1, // UNARY_OP 1 __neg__
-    0x23,0x30, // LOAD_CONST_OBJ 48
+    0x23,0x28, // LOAD_CONST_OBJ 40
     0x36,0x02, // CALL_METHOD 2
     0xe5, // BINARY_OP 14 __iadd__
-    0x26,0x10, // STORE_FAST_N 16
-    0xbe, // LOAD_FAST 14
+    0x26,0x1b, // STORE_FAST_N 27
+    0x24,0x19, // LOAD_FAST_N 25
     0x12,0x02, // LOAD_GLOBAL 'math'
-    0x14,0x5e, // LOAD_METHOD 'cos'
-    0x24,0x10, // LOAD_FAST_N 16
+    0x14,0x4e, // LOAD_METHOD 'cos'
+    0x24,0x1b, // LOAD_FAST_N 27
     0x36,0x01, // CALL_METHOD 1
-    0x23,0x31, // LOAD_CONST_OBJ 49
+    0x23,0x29, // LOAD_CONST_OBJ 41
     0xf4, // BINARY_OP 29 __mul__
     0xe5, // BINARY_OP 14 __iadd__
-    0xce, // STORE_FAST 14
-    0xbf, // LOAD_FAST 15
+    0x26,0x19, // STORE_FAST_N 25
+    0x24,0x1a, // LOAD_FAST_N 26
     0x12,0x02, // LOAD_GLOBAL 'math'
-    0x14,0x5d, // LOAD_METHOD 'sin'
-    0x24,0x10, // LOAD_FAST_N 16
+    0x14,0x4c, // LOAD_METHOD 'sin'
+    0x24,0x1b, // LOAD_FAST_N 27
     0x36,0x01, // CALL_METHOD 1
-    0x23,0x32, // LOAD_CONST_OBJ 50
+    0x23,0x2a, // LOAD_CONST_OBJ 42
     0xf4, // BINARY_OP 29 __mul__
     0xe5, // BINARY_OP 14 __iadd__
-    0xcf, // STORE_FAST 15
-    0x12,0x83,0x38, // LOAD_GLOBAL 'max'
+    0x26,0x1a, // STORE_FAST_N 26
+    0x12,0x83,0x6c, // LOAD_GLOBAL 'max'
     0x84, // LOAD_CONST_SMALL_INT 4
-    0x12,0x83,0x37, // LOAD_GLOBAL 'min'
+    0x12,0x83,0x6b, // LOAD_GLOBAL 'min'
     0xa8, // LOAD_CONST_SMALL_INT 40
-    0xbf, // LOAD_FAST 15
+    0x24,0x1a, // LOAD_FAST_N 26
     0x34,0x02, // CALL_FUNCTION 2
     0x34,0x02, // CALL_FUNCTION 2
-    0xcf, // STORE_FAST 15
+    0x26,0x1a, // STORE_FAST_N 26
     0x81, // LOAD_CONST_SMALL_INT 1
     0xe5, // BINARY_OP 14 __iadd__
     0x58, // DUP_TOP_TWO
     0x5a, // ROT_TWO
     0xd7, // BINARY_OP 0 __lt__
-    0x43,0x9f,0x7e, // POP_JUMP_IF_TRUE -225
+    0x43,0x98,0x7e, // POP_JUMP_IF_TRUE -232
     0x59, // POP_TOP
     0x59, // POP_TOP
     0x81, // LOAD_CONST_SMALL_INT 1
@@ -50328,106 +51042,131 @@ static const byte fun_data_mc2d_generar[1403] = {
     0x58, // DUP_TOP_TWO
     0x5a, // ROT_TWO
     0xd7, // BINARY_OP 0 __lt__
-    0x43,0xd9,0x7d, // POP_JUMP_IF_TRUE -295
+    0x43,0xcf,0x7d, // POP_JUMP_IF_TRUE -305
     0x59, // POP_TOP
     0x59, // POP_TOP
-    0x12,0x55, // LOAD_GLOBAL 'progreso'
-    0x23,0x33, // LOAD_CONST_OBJ 51
-    0x23,0x34, // LOAD_CONST_OBJ 52
+    0x12,0x44, // LOAD_GLOBAL 'progreso'
+    0x23,0x2b, // LOAD_CONST_OBJ 43
+    0x23,0x2c, // LOAD_CONST_OBJ 44
     0x34,0x02, // CALL_FUNCTION 2
     0x59, // POP_TOP
-    0x12,0x82,0x63, // LOAD_GLOBAL 'CARBON_M'
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x1c, // LOAD_GLOBAL 'CARBON_M'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0x83, // LOAD_CONST_SMALL_INT 3
     0xf6, // BINARY_OP 31 __floordiv__
     0x22,0x30, // LOAD_CONST_SMALL_INT 48
     0x85, // LOAD_CONST_SMALL_INT 5
     0x2a,0x04, // BUILD_TUPLE 4
-    0x12,0x82,0x64, // LOAD_GLOBAL 'HIERRO_M'
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x1f, // LOAD_GLOBAL 'HIERRO_M'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0x85, // LOAD_CONST_SMALL_INT 5
     0xf6, // BINARY_OP 31 __floordiv__
     0xa0, // LOAD_CONST_SMALL_INT 32
     0x84, // LOAD_CONST_SMALL_INT 4
     0x2a,0x04, // BUILD_TUPLE 4
-    0x12,0x82,0x65, // LOAD_GLOBAL 'ORO_M'
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x1e, // LOAD_GLOBAL 'ORO_M'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0x8c, // LOAD_CONST_SMALL_INT 12
     0xf6, // BINARY_OP 31 __floordiv__
     0x92, // LOAD_CONST_SMALL_INT 18
     0x83, // LOAD_CONST_SMALL_INT 3
     0x2a,0x04, // BUILD_TUPLE 4
-    0x12,0x82,0x66, // LOAD_GLOBAL 'DIAMANTE_M'
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x1d, // LOAD_GLOBAL 'DIAMANTE_M'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0x94, // LOAD_CONST_SMALL_INT 20
     0xf6, // BINARY_OP 31 __floordiv__
     0x8b, // LOAD_CONST_SMALL_INT 11
     0x83, // LOAD_CONST_SMALL_INT 3
     0x2a,0x04, // BUILD_TUPLE 4
-    0x12,0x82,0x62, // LOAD_GLOBAL 'GRAVA'
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x2b, // LOAD_GLOBAL 'REDSTONE_M'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
+    0x8e, // LOAD_CONST_SMALL_INT 14
+    0xf6, // BINARY_OP 31 __floordiv__
+    0x8e, // LOAD_CONST_SMALL_INT 14
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x12,0x83,0x2c, // LOAD_GLOBAL 'ESMERALDA_M'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
+    0x22,0x3c, // LOAD_CONST_SMALL_INT 60
+    0xf6, // BINARY_OP 31 __floordiv__
+    0x94, // LOAD_CONST_SMALL_INT 20
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x12,0x83,0x15, // LOAD_GLOBAL 'GRAVA_PM'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0x88, // LOAD_CONST_SMALL_INT 8
     0xf6, // BINARY_OP 31 __floordiv__
     0xa8, // LOAD_CONST_SMALL_INT 40
     0x85, // LOAD_CONST_SMALL_INT 5
     0x2a,0x04, // BUILD_TUPLE 4
-    0x2a,0x05, // BUILD_TUPLE 5
+    0x12,0x83,0x2d, // LOAD_GLOBAL 'ARCILLA_PM'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
+    0x99, // LOAD_CONST_SMALL_INT 25
+    0xf6, // BINARY_OP 31 __floordiv__
+    0x9e, // LOAD_CONST_SMALL_INT 30
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x2a,0x08, // BUILD_TUPLE 8
     0x5f, // GET_ITER_STACK
-    0x4b,0x96,0x01, // FOR_ITER 150
+    0x4b,0xa2,0x01, // FOR_ITER 162
     0x30,0x04, // UNPACK_SEQUENCE 4
-    0xc5, // STORE_FAST 5
+    0x26,0x21, // STORE_FAST_N 33
     0xc4, // STORE_FAST 4
-    0x26,0x16, // STORE_FAST_N 22
-    0x26,0x17, // STORE_FAST_N 23
+    0x26,0x22, // STORE_FAST_N 34
+    0x26,0x23, // STORE_FAST_N 35
+    0x12,0x12, // LOAD_GLOBAL 'B'
+    0x24,0x21, // LOAD_FAST_N 33
+    0x34,0x01, // CALL_FUNCTION 1
+    0xc5, // STORE_FAST 5
     0xb4, // LOAD_FAST 4
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x42,0xfe,0x80, // JUMP 126
+    0x42,0x82,0x81, // JUMP 130
     0x57, // DUP_TOP
-    0xcd, // STORE_FAST 13
+    0x26,0x18, // STORE_FAST_N 24
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x5f, // LOAD_METHOD 'randrange'
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x14,0x4a, // LOAD_METHOD 'randrange'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0x36,0x01, // CALL_METHOD 1
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x54, // LOAD_METHOD 'randint'
+    0x14,0x43, // LOAD_METHOD 'randint'
     0x82, // LOAD_CONST_SMALL_INT 2
-    0x24,0x16, // LOAD_FAST_N 22
+    0x24,0x22, // LOAD_FAST_N 34
     0x36,0x02, // CALL_METHOD 2
     0x5a, // ROT_TWO
     0xc3, // STORE_FAST 3
-    0xcc, // STORE_FAST 12
-    0x24,0x17, // LOAD_FAST_N 23
+    0x26,0x15, // STORE_FAST_N 21
+    0x24,0x23, // LOAD_FAST_N 35
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x42,0xd7,0x80, // JUMP 87
+    0x42,0xd9,0x80, // JUMP 89
     0x57, // DUP_TOP
-    0xcd, // STORE_FAST 13
-    0x12,0x81,0x0e, // LOAD_GLOBAL 'mundo'
+    0x26,0x18, // STORE_FAST_N 24
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
     0xb3, // LOAD_FAST 3
-    0xbc, // LOAD_FAST 12
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x24,0x15, // LOAD_FAST_N 21
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0xf4, // BINARY_OP 29 __mul__
     0xf2, // BINARY_OP 27 __add__
     0x55, // LOAD_SUBSCR
-    0x12,0x82,0x5c, // LOAD_GLOBAL 'PIEDRA'
+    0xb9, // LOAD_FAST 9
     0xd9, // BINARY_OP 2 __eq__
-    0x44,0x4c, // POP_JUMP_IF_FALSE 12
+    0x44,0x4d, // POP_JUMP_IF_FALSE 13
     0xb5, // LOAD_FAST 5
-    0x12,0x81,0x0e, // LOAD_GLOBAL 'mundo'
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
     0xb3, // LOAD_FAST 3
-    0xbc, // LOAD_FAST 12
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x24,0x15, // LOAD_FAST_N 21
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0xf4, // BINARY_OP 29 __mul__
     0xf2, // BINARY_OP 27 __add__
     0x56, // STORE_SUBSCR
-    0x12,0x83,0x38, // LOAD_GLOBAL 'max'
+    0x12,0x83,0x6c, // LOAD_GLOBAL 'max'
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x12,0x83,0x37, // LOAD_GLOBAL 'min'
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x6b, // LOAD_GLOBAL 'min'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf3, // BINARY_OP 28 __sub__
     0xb3, // LOAD_FAST 3
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x54, // LOAD_METHOD 'randint'
+    0x14,0x43, // LOAD_METHOD 'randint'
     0x7f, // LOAD_CONST_SMALL_INT -1
     0x81, // LOAD_CONST_SMALL_INT 1
     0x36,0x02, // CALL_METHOD 2
@@ -50435,28 +51174,28 @@ static const byte fun_data_mc2d_generar[1403] = {
     0x34,0x02, // CALL_FUNCTION 2
     0x34,0x02, // CALL_FUNCTION 2
     0xc3, // STORE_FAST 3
-    0x12,0x83,0x38, // LOAD_GLOBAL 'max'
+    0x12,0x83,0x6c, // LOAD_GLOBAL 'max'
     0x82, // LOAD_CONST_SMALL_INT 2
-    0x12,0x83,0x37, // LOAD_GLOBAL 'min'
-    0x12,0x83,0x12, // LOAD_GLOBAL 'H'
+    0x12,0x83,0x6b, // LOAD_GLOBAL 'min'
+    0x12,0x0f, // LOAD_GLOBAL 'H'
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf3, // BINARY_OP 28 __sub__
-    0xbc, // LOAD_FAST 12
+    0x24,0x15, // LOAD_FAST_N 21
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x54, // LOAD_METHOD 'randint'
+    0x14,0x43, // LOAD_METHOD 'randint'
     0x7f, // LOAD_CONST_SMALL_INT -1
     0x81, // LOAD_CONST_SMALL_INT 1
     0x36,0x02, // CALL_METHOD 2
     0xf2, // BINARY_OP 27 __add__
     0x34,0x02, // CALL_FUNCTION 2
     0x34,0x02, // CALL_FUNCTION 2
-    0xcc, // STORE_FAST 12
+    0x26,0x15, // STORE_FAST_N 21
     0x81, // LOAD_CONST_SMALL_INT 1
     0xe5, // BINARY_OP 14 __iadd__
     0x58, // DUP_TOP_TWO
     0x5a, // ROT_TWO
     0xd7, // BINARY_OP 0 __lt__
-    0x43,0xa3,0x7f, // POP_JUMP_IF_TRUE -93
+    0x43,0xa1,0x7f, // POP_JUMP_IF_TRUE -95
     0x59, // POP_TOP
     0x59, // POP_TOP
     0x81, // LOAD_CONST_SMALL_INT 1
@@ -50464,21 +51203,21 @@ static const byte fun_data_mc2d_generar[1403] = {
     0x58, // DUP_TOP_TWO
     0x5a, // ROT_TWO
     0xd7, // BINARY_OP 0 __lt__
-    0x43,0xfc,0x7e, // POP_JUMP_IF_TRUE -132
+    0x43,0xf8,0x7e, // POP_JUMP_IF_TRUE -136
     0x59, // POP_TOP
     0x59, // POP_TOP
-    0x42,0xe7,0x7e, // JUMP -153
-    0x12,0x55, // LOAD_GLOBAL 'progreso'
-    0x23,0x35, // LOAD_CONST_OBJ 53
-    0x23,0x36, // LOAD_CONST_OBJ 54
+    0x42,0xdb,0x7e, // JUMP -165
+    0x12,0x44, // LOAD_GLOBAL 'progreso'
+    0x23,0x2d, // LOAD_CONST_OBJ 45
+    0x23,0x2e, // LOAD_CONST_OBJ 46
     0x34,0x02, // CALL_FUNCTION 2
     0x59, // POP_TOP
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x42,0x4a, // JUMP 10
     0x57, // DUP_TOP
     0xc3, // STORE_FAST 3
-    0x12,0x42, // LOAD_GLOBAL 'calc_alto'
+    0x12,0x35, // LOAD_GLOBAL 'calc_alto'
     0xb3, // LOAD_FAST 3
     0x34,0x01, // CALL_FUNCTION 1
     0x59, // POP_TOP
@@ -50492,92 +51231,122 @@ static const byte fun_data_mc2d_generar[1403] = {
     0x59, // POP_TOP
     0x83, // LOAD_CONST_SMALL_INT 3
     0xc3, // STORE_FAST 3
-    0x42,0xf5,0x81, // JUMP 245
-    0x12,0x83,0x1f, // LOAD_GLOBAL 'alto'
+    0x42,0xfa,0x83, // JUMP 506
+    0x12,0x81,0x43, // LOAD_GLOBAL 'alto'
     0xb3, // LOAD_FAST 3
     0x55, // LOAD_SUBSCR
-    0xcc, // STORE_FAST 12
-    0x12,0x81,0x0e, // LOAD_GLOBAL 'mundo'
+    0x26,0x15, // STORE_FAST_N 21
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
     0xb3, // LOAD_FAST 3
-    0xbc, // LOAD_FAST 12
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x24,0x15, // LOAD_FAST_N 21
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0xf4, // BINARY_OP 29 __mul__
     0xf2, // BINARY_OP 27 __add__
     0x55, // LOAD_SUBSCR
-    0x26,0x18, // STORE_FAST_N 24
-    0x24,0x18, // LOAD_FAST_N 24
-    0x12,0x82,0x5a, // LOAD_GLOBAL 'HIERBA'
-    0xd9, // BINARY_OP 2 __eq__
-    0x44,0x60, // POP_JUMP_IF_FALSE 32
-    0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x03, // LOAD_METHOD 'random'
-    0x36,0x00, // CALL_METHOD 0
-    0x23,0x37, // LOAD_CONST_OBJ 55
-    0xd7, // BINARY_OP 0 __lt__
-    0x44,0x55, // POP_JUMP_IF_FALSE 21
-    0x12,0x61, // LOAD_GLOBAL 'arbol'
-    0xb3, // LOAD_FAST 3
-    0xbc, // LOAD_FAST 12
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0xf2, // BINARY_OP 27 __add__
+    0x26,0x24, // STORE_FAST_N 36
+    0x12,0x83,0x0f, // LOAD_GLOBAL 'BIOMAS'
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
     0x55, // LOAD_SUBSCR
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0xd9, // BINARY_OP 2 __eq__
+    0x55, // LOAD_SUBSCR
+    0xcd, // STORE_FAST 13
+    0xbd, // LOAD_FAST 13
+    0x85, // LOAD_CONST_SMALL_INT 5
+    0x55, // LOAD_SUBSCR
+    0xbd, // LOAD_FAST 13
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0x55, // LOAD_SUBSCR
+    0x5a, // ROT_TWO
+    0x26,0x25, // STORE_FAST_N 37
+    0x26,0x26, // STORE_FAST_N 38
+    0x24,0x24, // LOAD_FAST_N 36
+    0xb7, // LOAD_FAST 7
+    0x12,0x12, // LOAD_GLOBAL 'B'
+    0x12,0x83,0x2f, // LOAD_GLOBAL 'NIEVE_HIERBA'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x2a,0x02, // BUILD_TUPLE 2
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x7a, // POP_JUMP_IF_FALSE 58
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x03, // LOAD_METHOD 'random'
+    0x36,0x00, // CALL_METHOD 0
+    0x24,0x26, // LOAD_FAST_N 38
+    0x22,0x3c, // LOAD_CONST_SMALL_INT 60
+    0xf7, // BINARY_OP 32 __truediv__
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x6c, // POP_JUMP_IF_FALSE 44
+    0x24,0x25, // LOAD_FAST_N 37
+    0x44,0x4a, // POP_JUMP_IF_FALSE 10
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x4f, // LOAD_METHOD 'choice'
+    0x24,0x25, // LOAD_FAST_N 37
+    0x36,0x01, // CALL_METHOD 1
+    0x42,0x42, // JUMP 2
+    0x10,0x11, // LOAD_CONST_STRING 'O'
+    0x26,0x27, // STORE_FAST_N 39
+    0x24,0x27, // LOAD_FAST_N 39
+    0x10,0x50, // LOAD_CONST_STRING 'C'
+    0xdc, // BINARY_OP 5 __ne__
+    0x44,0x53, // POP_JUMP_IF_FALSE 19
+    0x12,0x52, // LOAD_GLOBAL 'arbol'
+    0xb3, // LOAD_FAST 3
+    0x24,0x15, // LOAD_FAST_N 21
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x24,0x27, // LOAD_FAST_N 39
     0x34,0x03, // CALL_FUNCTION 3
     0x59, // POP_TOP
     0xb3, // LOAD_FAST 3
     0x84, // LOAD_CONST_SMALL_INT 4
     0xe5, // BINARY_OP 14 __iadd__
     0xc3, // STORE_FAST 3
-    0x42,0xba,0x81, // JUMP 186
-    0x24,0x18, // LOAD_FAST_N 24
-    0x12,0x82,0x61, // LOAD_GLOBAL 'ARENA'
+    0x42,0x89,0x83, // JUMP 393
+    0x24,0x24, // LOAD_FAST_N 36
+    0xba, // LOAD_FAST 10
     0xd9, // BINARY_OP 2 __eq__
-    0x44,0xd5,0x80, // POP_JUMP_IF_FALSE 85
-    0xb2, // LOAD_FAST 2
-    0xb3, // LOAD_FAST 3
-    0x55, // LOAD_SUBSCR
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0xd9, // BINARY_OP 2 __eq__
-    0x44,0xcd,0x80, // POP_JUMP_IF_FALSE 77
-    0xbc, // LOAD_FAST 12
-    0x12,0x83,0x13, // LOAD_GLOBAL 'MAR'
+    0x44,0xdc,0x80, // POP_JUMP_IF_FALSE 92
+    0x10,0x50, // LOAD_CONST_STRING 'C'
+    0x24,0x25, // LOAD_FAST_N 37
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0xd4,0x80, // POP_JUMP_IF_FALSE 84
+    0x24,0x15, // LOAD_FAST_N 21
+    0x12,0x83,0x43, // LOAD_GLOBAL 'MAR'
     0xd8, // BINARY_OP 1 __gt__
-    0x44,0xc5,0x80, // POP_JUMP_IF_FALSE 69
+    0x44,0xcb,0x80, // POP_JUMP_IF_FALSE 75
     0x12,0x03, // LOAD_GLOBAL 'random'
     0x14,0x03, // LOAD_METHOD 'random'
     0x36,0x00, // CALL_METHOD 0
-    0x23,0x38, // LOAD_CONST_OBJ 56
+    0x23,0x2f, // LOAD_CONST_OBJ 47
     0xd7, // BINARY_OP 0 __lt__
-    0x44,0x7a, // POP_JUMP_IF_FALSE 58
+    0x44,0xbf,0x80, // POP_JUMP_IF_FALSE 63
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x54, // LOAD_METHOD 'randint'
+    0x14,0x43, // LOAD_METHOD 'randint'
     0x81, // LOAD_CONST_SMALL_INT 1
     0x83, // LOAD_CONST_SMALL_INT 3
     0x36,0x02, // CALL_METHOD 2
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x42,0x61, // JUMP 33
+    0x42,0x66, // JUMP 38
     0x57, // DUP_TOP
     0xc1, // STORE_FAST 1
-    0xbc, // LOAD_FAST 12
+    0x24,0x15, // LOAD_FAST_N 21
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
     0xb1, // LOAD_FAST 1
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x12, // LOAD_GLOBAL 'H'
+    0x12,0x0f, // LOAD_GLOBAL 'H'
     0xd7, // BINARY_OP 0 __lt__
-    0x44,0x52, // POP_JUMP_IF_FALSE 18
-    0x12,0x82,0x6e, // LOAD_GLOBAL 'CACTUS'
-    0x12,0x81,0x0e, // LOAD_GLOBAL 'mundo'
+    0x44,0x57, // POP_JUMP_IF_FALSE 23
+    0x12,0x12, // LOAD_GLOBAL 'B'
+    0x12,0x83,0x1a, // LOAD_GLOBAL 'CACTUS_PM'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
     0xb3, // LOAD_FAST 3
-    0xbc, // LOAD_FAST 12
+    0x24,0x15, // LOAD_FAST_N 21
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
     0xb1, // LOAD_FAST 1
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0xf4, // BINARY_OP 29 __mul__
     0xf2, // BINARY_OP 27 __add__
     0x56, // STORE_SUBSCR
@@ -50586,79 +51355,203 @@ static const byte fun_data_mc2d_generar[1403] = {
     0x58, // DUP_TOP_TWO
     0x5a, // ROT_TWO
     0xd7, // BINARY_OP 0 __lt__
-    0x43,0x1a, // POP_JUMP_IF_TRUE -38
+    0x43,0x15, // POP_JUMP_IF_TRUE -43
     0x59, // POP_TOP
     0x59, // POP_TOP
     0xb3, // LOAD_FAST 3
     0x83, // LOAD_CONST_SMALL_INT 3
     0xe5, // BINARY_OP 14 __iadd__
     0xc3, // STORE_FAST 3
-    0x42,0xdc,0x80, // JUMP 92
-    0x24,0x18, // LOAD_FAST_N 24
-    0x12,0x82,0x5a, // LOAD_GLOBAL 'HIERBA'
-    0xd9, // BINARY_OP 2 __eq__
-    0x44,0xcf,0x80, // POP_JUMP_IF_FALSE 79
-    0xbc, // LOAD_FAST 12
+    0x42,0xa6,0x82, // JUMP 294
+    0x24,0x15, // LOAD_FAST_N 21
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x12, // LOAD_GLOBAL 'H'
+    0x12,0x0f, // LOAD_GLOBAL 'H'
     0xd7, // BINARY_OP 0 __lt__
-    0x44,0xc5,0x80, // POP_JUMP_IF_FALSE 69
+    0x44,0x98,0x82, // POP_JUMP_IF_FALSE 280
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
+    0xb3, // LOAD_FAST 3
+    0x24,0x15, // LOAD_FAST_N 21
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x55, // LOAD_SUBSCR
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x85,0x82, // POP_JUMP_IF_FALSE 261
     0x12,0x03, // LOAD_GLOBAL 'random'
     0x14,0x03, // LOAD_METHOD 'random'
     0x36,0x00, // CALL_METHOD 0
-    0x26,0x11, // STORE_FAST_N 17
-    0x24,0x11, // LOAD_FAST_N 17
-    0x23,0x39, // LOAD_CONST_OBJ 57
+    0x26,0x1c, // STORE_FAST_N 28
+    0x24,0x24, // LOAD_FAST_N 36
+    0xb7, // LOAD_FAST 7
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0xe8,0x80, // POP_JUMP_IF_FALSE 104
+    0x24,0x1c, // LOAD_FAST_N 28
+    0x23,0x30, // LOAD_CONST_OBJ 48
     0xd7, // BINARY_OP 0 __lt__
-    0x44,0x52, // POP_JUMP_IF_FALSE 18
-    0x12,0x82,0x71, // LOAD_GLOBAL 'HIERBA_A'
-    0x12,0x81,0x0e, // LOAD_GLOBAL 'mundo'
+    0x44,0x58, // POP_JUMP_IF_FALSE 24
+    0x12,0x12, // LOAD_GLOBAL 'B'
+    0x12,0x83,0x34, // LOAD_GLOBAL 'HIERBA_ALTA'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
     0xb3, // LOAD_FAST 3
-    0xbc, // LOAD_FAST 12
+    0x24,0x15, // LOAD_FAST_N 21
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0xf4, // BINARY_OP 29 __mul__
     0xf2, // BINARY_OP 27 __add__
     0x56, // STORE_SUBSCR
-    0x42,0x64, // JUMP 36
-    0x24,0x11, // LOAD_FAST_N 17
-    0x23,0x3a, // LOAD_CONST_OBJ 58
+    0x42,0xc7,0x80, // JUMP 71
+    0x24,0x1c, // LOAD_FAST_N 28
+    0x23,0x31, // LOAD_CONST_OBJ 49
     0xd7, // BINARY_OP 0 __lt__
-    0x44,0x5d, // POP_JUMP_IF_FALSE 29
+    0x44,0x62, // POP_JUMP_IF_FALSE 34
+    0x12,0x12, // LOAD_GLOBAL 'B'
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x5b, // LOAD_METHOD 'choice'
-    0x12,0x82,0x6f, // LOAD_GLOBAL 'FLOR_R'
-    0x12,0x82,0x70, // LOAD_GLOBAL 'FLOR_A'
+    0x14,0x4f, // LOAD_METHOD 'choice'
+    0x12,0x83,0x32, // LOAD_GLOBAL 'ROSA'
+    0x12,0x83,0x33, // LOAD_GLOBAL 'FLOR'
     0x2a,0x02, // BUILD_TUPLE 2
     0x36,0x01, // CALL_METHOD 1
-    0x12,0x81,0x0e, // LOAD_GLOBAL 'mundo'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
     0xb3, // LOAD_FAST 3
-    0xbc, // LOAD_FAST 12
+    0x24,0x15, // LOAD_FAST_N 21
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x56, // STORE_SUBSCR
+    0x42,0x5e, // JUMP 30
+    0x24,0x1c, // LOAD_FAST_N 28
+    0x23,0x32, // LOAD_CONST_OBJ 50
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x57, // POP_JUMP_IF_FALSE 23
+    0x12,0x12, // LOAD_GLOBAL 'B'
+    0x12,0x83,0x37, // LOAD_GLOBAL 'CALABAZA'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
+    0xb3, // LOAD_FAST 3
+    0x24,0x15, // LOAD_FAST_N 21
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0xf4, // BINARY_OP 29 __mul__
     0xf2, // BINARY_OP 27 __add__
     0x56, // STORE_SUBSCR
     0x42,0x40, // JUMP 0
+    0x42,0x6a, // JUMP 42
+    0x24,0x24, // LOAD_FAST_N 36
+    0x12,0x12, // LOAD_GLOBAL 'B'
+    0x12,0x83,0x2f, // LOAD_GLOBAL 'NIEVE_HIERBA'
+    0x34,0x01, // CALL_FUNCTION 1
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x5e, // POP_JUMP_IF_FALSE 30
+    0x24,0x1c, // LOAD_FAST_N 28
+    0x23,0x14, // LOAD_CONST_OBJ 20
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x57, // POP_JUMP_IF_FALSE 23
+    0x12,0x12, // LOAD_GLOBAL 'B'
+    0x12,0x83,0x30, // LOAD_GLOBAL 'NIEVE_CAPA'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
+    0xb3, // LOAD_FAST 3
+    0x24,0x15, // LOAD_FAST_N 21
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x56, // STORE_SUBSCR
+    0x42,0x40, // JUMP 0
+    0x24,0x24, // LOAD_FAST_N 36
+    0xb7, // LOAD_FAST 7
+    0xba, // LOAD_FAST 10
+    0x2a,0x02, // BUILD_TUPLE 2
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0xda,0x80, // POP_JUMP_IF_FALSE 90
+    0x24,0x1c, // LOAD_FAST_N 28
+    0x23,0x33, // LOAD_CONST_OBJ 51
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0xd2,0x80, // POP_JUMP_IF_FALSE 82
+    0x12,0x30, // LOAD_GLOBAL 'g'
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf3, // BINARY_OP 28 __sub__
+    0x24,0x15, // LOAD_FAST_N 21
+    0x34,0x02, // CALL_FUNCTION 2
+    0xbb, // LOAD_FAST 11
+    0xd9, // BINARY_OP 2 __eq__
+    0x43,0x4d, // POP_JUMP_IF_TRUE 13
+    0x12,0x30, // LOAD_GLOBAL 'g'
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x24,0x15, // LOAD_FAST_N 21
+    0x34,0x02, // CALL_FUNCTION 2
+    0xbb, // LOAD_FAST 11
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x78, // POP_JUMP_IF_FALSE 56
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x43, // LOAD_METHOD 'randint'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x36,0x02, // CALL_METHOD 2
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0x66, // JUMP 38
+    0x57, // DUP_TOP
+    0xc1, // STORE_FAST 1
+    0x24,0x15, // LOAD_FAST_N 21
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb1, // LOAD_FAST 1
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x0f, // LOAD_GLOBAL 'H'
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x57, // POP_JUMP_IF_FALSE 23
+    0x12,0x12, // LOAD_GLOBAL 'B'
+    0x12,0x83,0x38, // LOAD_GLOBAL 'CANA'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
+    0xb3, // LOAD_FAST 3
+    0x24,0x15, // LOAD_FAST_N 21
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb1, // LOAD_FAST 1
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x56, // STORE_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x15, // POP_JUMP_IF_TRUE -43
+    0x59, // POP_TOP
+    0x59, // POP_TOP
     0xb3, // LOAD_FAST 3
     0x81, // LOAD_CONST_SMALL_INT 1
     0xe5, // BINARY_OP 14 __iadd__
     0xc3, // STORE_FAST 3
     0xb3, // LOAD_FAST 3
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0x83, // LOAD_CONST_SMALL_INT 3
     0xf3, // BINARY_OP 28 __sub__
     0xd7, // BINARY_OP 0 __lt__
-    0x43,0x81,0x7e, // POP_JUMP_IF_TRUE -255
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x43,0xfc,0x7b, // POP_JUMP_IF_TRUE -516
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x42,0x4a, // JUMP 10
     0x57, // DUP_TOP
     0xc3, // STORE_FAST 3
-    0x12,0x42, // LOAD_GLOBAL 'calc_alto'
+    0x12,0x35, // LOAD_GLOBAL 'calc_alto'
     0xb3, // LOAD_FAST 3
     0x34,0x01, // CALL_FUNCTION 1
     0x59, // POP_TOP
@@ -50670,9 +51563,9 @@ static const byte fun_data_mc2d_generar[1403] = {
     0x43,0x31, // POP_JUMP_IF_TRUE -15
     0x59, // POP_TOP
     0x59, // POP_TOP
-    0x12,0x55, // LOAD_GLOBAL 'progreso'
-    0x10,0x60, // LOAD_CONST_STRING 'Listo'
-    0x23,0x2d, // LOAD_CONST_OBJ 45
+    0x12,0x44, // LOAD_GLOBAL 'progreso'
+    0x10,0x51, // LOAD_CONST_STRING 'Listo'
+    0x23,0x25, // LOAD_CONST_OBJ 37
     0x34,0x02, // CALL_FUNCTION 2
     0x59, // POP_TOP
     0x51, // LOAD_CONST_NONE
@@ -50687,7 +51580,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_generar = {
     .fun_data = fun_data_mc2d_generar,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 1403,
+    .fun_data_len = 1906,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -50695,16 +51588,16 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_generar = {
     #if MICROPY_PY_SYS_SETTRACE
     .line_of_definition = 0,
     .prelude = {
-        .n_state = 42,
+        .n_state = 57,
         .n_exc_stack = 0,
         .scope_flags = 0,
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 89,
+        .qstr_block_name_idx = 72,
         .line_info = fun_data_mc2d_generar + 7,
-        .line_info_top = fun_data_mc2d_generar + 102,
-        .opcodes = fun_data_mc2d_generar + 102,
+        .line_info_top = fun_data_mc2d_generar + 129,
+        .opcodes = fun_data_mc2d_generar + 129,
     },
     #endif
     #endif
@@ -50715,117 +51608,61 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_generar = {
 
 // child of mc2d__lt_module_gt_
 // frozen bytecode for file mc2d.py, scope mc2d_arbol
-static const byte fun_data_mc2d_arbol[194] = {
-    0x93,0x10,0x22, // prelude
-    0x61,0x75,0x76,0x1b, // names: arbol, x, y, nieve
-    0x90,0x1f,0x29,0x26,0x29,0x39,0x24,0x26,0x2a,0x2a,0x29,0x1f,0x34, // code info
+static const byte fun_data_mc2d_arbol[231] = {
+    0xc3,0x10,0x2a, // prelude
+    0x52,0x66,0x67,0x83,0x6d, // names: arbol, x, y, tipo
+    0x90,0x96,0x32,0x2d,0x34,0x26,0x28,0x37,0x24,0x2a,0x23,0x28,0x2a,0x29,0x1f,0x31, // code info
+    0x12,0x83,0x56, // LOAD_GLOBAL 'ARBOLES'
+    0x14,0x19, // LOAD_METHOD 'get'
+    0xb2, // LOAD_FAST 2
+    0x12,0x83,0x56, // LOAD_GLOBAL 'ARBOLES'
+    0x10,0x11, // LOAD_CONST_STRING 'O'
+    0x55, // LOAD_SUBSCR
+    0x36,0x02, // CALL_METHOD 2
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc3, // STORE_FAST 3
+    0xc4, // STORE_FAST 4
+    0x12,0x12, // LOAD_GLOBAL 'B'
+    0xb3, // LOAD_FAST 3
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x12, // LOAD_GLOBAL 'B'
+    0xb4, // LOAD_FAST 4
+    0x34,0x01, // CALL_FUNCTION 1
+    0x5a, // ROT_TWO
+    0xc3, // STORE_FAST 3
+    0xc4, // STORE_FAST 4
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x54, // LOAD_METHOD 'randint'
+    0x14,0x43, // LOAD_METHOD 'randint'
     0x84, // LOAD_CONST_SMALL_INT 4
     0x86, // LOAD_CONST_SMALL_INT 6
     0x36,0x02, // CALL_METHOD 2
-    0xc3, // STORE_FAST 3
-    0xb3, // LOAD_FAST 3
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0x42,0x5d, // JUMP 29
-    0x57, // DUP_TOP
-    0xc4, // STORE_FAST 4
-    0xb1, // LOAD_FAST 1
-    0xb4, // LOAD_FAST 4
-    0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x12, // LOAD_GLOBAL 'H'
-    0xd7, // BINARY_OP 0 __lt__
-    0x44,0x50, // POP_JUMP_IF_FALSE 16
-    0x12,0x82,0x5e, // LOAD_GLOBAL 'TRONCO'
-    0x12,0x81,0x0e, // LOAD_GLOBAL 'mundo'
-    0xb0, // LOAD_FAST 0
-    0xb1, // LOAD_FAST 1
-    0xb4, // LOAD_FAST 4
-    0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
-    0xf4, // BINARY_OP 29 __mul__
-    0xf2, // BINARY_OP 27 __add__
-    0x56, // STORE_SUBSCR
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0xe5, // BINARY_OP 14 __iadd__
-    0x58, // DUP_TOP_TWO
-    0x5a, // ROT_TWO
-    0xd7, // BINARY_OP 0 __lt__
-    0x43,0x1e, // POP_JUMP_IF_TRUE -34
-    0x59, // POP_TOP
-    0x59, // POP_TOP
-    0xb1, // LOAD_FAST 1
-    0xb3, // LOAD_FAST 3
-    0xf2, // BINARY_OP 27 __add__
-    0xc5, // STORE_FAST 5
-    0x7e, // LOAD_CONST_SMALL_INT -2
-    0x42,0xec,0x80, // JUMP 108
-    0x57, // DUP_TOP
-    0xc6, // STORE_FAST 6
-    0xb6, // LOAD_FAST 6
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0xd7, // BINARY_OP 0 __lt__
+    0xb2, // LOAD_FAST 2
+    0x10,0x13, // LOAD_CONST_STRING 'S'
+    0xd9, // BINARY_OP 2 __eq__
     0x44,0x43, // POP_JUMP_IF_FALSE 3
     0x82, // LOAD_CONST_SMALL_INT 2
     0x42,0x41, // JUMP 1
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0xc7, // STORE_FAST 7
-    0xb7, // LOAD_FAST 7
-    0x81, // LOAD_CONST_SMALL_INT 1
+    0x80, // LOAD_CONST_SMALL_INT 0
     0xf2, // BINARY_OP 27 __add__
-    0xb7, // LOAD_FAST 7
-    0xd1, // UNARY_OP 1 __neg__
-    0x42,0xce,0x80, // JUMP 78
-    0x57, // DUP_TOP
-    0xc8, // STORE_FAST 8
-    0xb0, // LOAD_FAST 0
-    0xb8, // LOAD_FAST 8
-    0xf2, // BINARY_OP 27 __add__
+    0xc5, // STORE_FAST 5
     0xb5, // LOAD_FAST 5
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0x5a, // JUMP 26
+    0x57, // DUP_TOP
+    0xc6, // STORE_FAST 6
+    0xb1, // LOAD_FAST 1
     0xb6, // LOAD_FAST 6
     0xf2, // BINARY_OP 27 __add__
-    0x5a, // ROT_TWO
-    0xc9, // STORE_FAST 9
-    0xca, // STORE_FAST 10
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0xb9, // LOAD_FAST 9
-    0x57, // DUP_TOP
-    0x5b, // ROT_THREE
-    0xda, // BINARY_OP 3 __le__
-    0x46,0x06, // JUMP_IF_FALSE_OR_POP 6
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x0f, // LOAD_GLOBAL 'H'
     0xd7, // BINARY_OP 0 __lt__
-    0x42,0x42, // JUMP 2
-    0x5a, // ROT_TWO
-    0x59, // POP_TOP
-    0x44,0x70, // POP_JUMP_IF_FALSE 48
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0xba, // LOAD_FAST 10
-    0x57, // DUP_TOP
-    0x5b, // ROT_THREE
-    0xda, // BINARY_OP 3 __le__
-    0x46,0x06, // JUMP_IF_FALSE_OR_POP 6
-    0x12,0x83,0x12, // LOAD_GLOBAL 'H'
-    0xd7, // BINARY_OP 0 __lt__
-    0x42,0x42, // JUMP 2
-    0x5a, // ROT_TWO
-    0x59, // POP_TOP
-    0x44,0x5f, // POP_JUMP_IF_FALSE 31
-    0x12,0x81,0x0e, // LOAD_GLOBAL 'mundo'
-    0xb9, // LOAD_FAST 9
-    0xba, // LOAD_FAST 10
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
-    0xf4, // BINARY_OP 29 __mul__
-    0xf2, // BINARY_OP 27 __add__
-    0x55, // LOAD_SUBSCR
-    0x12,0x82,0x59, // LOAD_GLOBAL 'AIRE'
-    0xd9, // BINARY_OP 2 __eq__
     0x44,0x4e, // POP_JUMP_IF_FALSE 14
-    0x12,0x82,0x5f, // LOAD_GLOBAL 'HOJAS'
-    0x12,0x81,0x0e, // LOAD_GLOBAL 'mundo'
-    0xb9, // LOAD_FAST 9
-    0xba, // LOAD_FAST 10
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0xb3, // LOAD_FAST 3
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
+    0xb0, // LOAD_FAST 0
+    0xb1, // LOAD_FAST 1
+    0xb6, // LOAD_FAST 6
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0xf4, // BINARY_OP 29 __mul__
     0xf2, // BINARY_OP 27 __add__
     0x56, // STORE_SUBSCR
@@ -50834,16 +51671,95 @@ static const byte fun_data_mc2d_arbol[194] = {
     0x58, // DUP_TOP_TWO
     0x5a, // ROT_TWO
     0xd7, // BINARY_OP 0 __lt__
-    0x43,0xac,0x7f, // POP_JUMP_IF_TRUE -84
+    0x43,0x21, // POP_JUMP_IF_TRUE -31
     0x59, // POP_TOP
     0x59, // POP_TOP
+    0xb1, // LOAD_FAST 1
+    0xb5, // LOAD_FAST 5
+    0xf2, // BINARY_OP 27 __add__
+    0xc7, // STORE_FAST 7
+    0xb2, // LOAD_FAST 2
+    0x10,0x13, // LOAD_CONST_STRING 'S'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x23,0x34, // LOAD_CONST_OBJ 52
+    0x42,0x42, // JUMP 2
+    0x23,0x35, // LOAD_CONST_OBJ 53
+    0xc8, // STORE_FAST 8
+    0xb8, // LOAD_FAST 8
+    0x5f, // GET_ITER_STACK
+    0x4b,0x60, // FOR_ITER 96
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc9, // STORE_FAST 9
+    0xca, // STORE_FAST 10
+    0xba, // LOAD_FAST 10
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xba, // LOAD_FAST 10
+    0xd1, // UNARY_OP 1 __neg__
+    0x42,0xc9,0x80, // JUMP 73
+    0x57, // DUP_TOP
+    0xcb, // STORE_FAST 11
+    0xb0, // LOAD_FAST 0
+    0xbb, // LOAD_FAST 11
+    0xf2, // BINARY_OP 27 __add__
+    0xb7, // LOAD_FAST 7
+    0xb9, // LOAD_FAST 9
+    0xf2, // BINARY_OP 27 __add__
+    0x5a, // ROT_TWO
+    0xcc, // STORE_FAST 12
+    0xcd, // STORE_FAST 13
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xbc, // LOAD_FAST 12
+    0x57, // DUP_TOP
+    0x5b, // ROT_THREE
+    0xda, // BINARY_OP 3 __le__
+    0x46,0x06, // JUMP_IF_FALSE_OR_POP 6
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
+    0xd7, // BINARY_OP 0 __lt__
+    0x42,0x42, // JUMP 2
+    0x5a, // ROT_TWO
+    0x59, // POP_TOP
+    0x44,0x6b, // POP_JUMP_IF_FALSE 43
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xbd, // LOAD_FAST 13
+    0x57, // DUP_TOP
+    0x5b, // ROT_THREE
+    0xda, // BINARY_OP 3 __le__
+    0x46,0x05, // JUMP_IF_FALSE_OR_POP 5
+    0x12,0x0f, // LOAD_GLOBAL 'H'
+    0xd7, // BINARY_OP 0 __lt__
+    0x42,0x42, // JUMP 2
+    0x5a, // ROT_TWO
+    0x59, // POP_TOP
+    0x44,0x5b, // POP_JUMP_IF_FALSE 27
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
+    0xbc, // LOAD_FAST 12
+    0xbd, // LOAD_FAST 13
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x55, // LOAD_SUBSCR
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x4c, // POP_JUMP_IF_FALSE 12
+    0xb4, // LOAD_FAST 4
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
+    0xbc, // LOAD_FAST 12
+    0xbd, // LOAD_FAST 13
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x56, // STORE_SUBSCR
     0x81, // LOAD_CONST_SMALL_INT 1
     0xe5, // BINARY_OP 14 __iadd__
-    0x57, // DUP_TOP
-    0x82, // LOAD_CONST_SMALL_INT 2
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
     0xd7, // BINARY_OP 0 __lt__
-    0x43,0x8e,0x7f, // POP_JUMP_IF_TRUE -114
+    0x43,0xb1,0x7f, // POP_JUMP_IF_TRUE -79
     0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x42,0x9e,0x7f, // JUMP -98
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -50856,7 +51772,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_arbol = {
     .fun_data = fun_data_mc2d_arbol,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 194,
+    .fun_data_len = 231,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -50864,16 +51780,16 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_arbol = {
     #if MICROPY_PY_SYS_SETTRACE
     .line_of_definition = 0,
     .prelude = {
-        .n_state = 19,
+        .n_state = 25,
         .n_exc_stack = 0,
         .scope_flags = 0,
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 97,
-        .line_info = fun_data_mc2d_arbol + 7,
-        .line_info_top = fun_data_mc2d_arbol + 20,
-        .opcodes = fun_data_mc2d_arbol + 20,
+        .qstr_block_name_idx = 82,
+        .line_info = fun_data_mc2d_arbol + 8,
+        .line_info_top = fun_data_mc2d_arbol + 24,
+        .opcodes = fun_data_mc2d_arbol + 24,
     },
     #endif
     #endif
@@ -50883,101 +51799,113 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_arbol = {
 #endif
 
 // child of mc2d__lt_module_gt_
-// frozen bytecode for file mc2d.py, scope mc2d_max_pila
-static const byte fun_data_mc2d_max_pila[20] = {
-    0x11,0x0a, // prelude
-    0x62,0x83,0x39, // names: max_pila, it
-    0x90,0x33, // code info
-    0xb0, // LOAD_FAST 0
-    0x12,0x82,0x7c, // LOAD_GLOBAL 'HERR'
-    0xdb, // BINARY_OP 4 __ge__
-    0x44,0x42, // POP_JUMP_IF_FALSE 2
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x63, // RETURN_VALUE
-    0x22,0x80,0x40, // LOAD_CONST_SMALL_INT 64
-    0x63, // RETURN_VALUE
-};
-#if MICROPY_PERSISTENT_CODE_SAVE
-static const mp_raw_code_truncated_t proto_fun_mc2d_max_pila = {
-    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
-    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
-    .kind = MP_CODE_BYTECODE,
-    .is_generator = 0,
-    .fun_data = fun_data_mc2d_max_pila,
-    .children = NULL,
-    #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 20,
-    .n_children = 0,
-    #if MICROPY_EMIT_MACHINE_CODE
-    .prelude_offset = 0,
-    #endif
-    #if MICROPY_PY_SYS_SETTRACE
-    .line_of_definition = 0,
-    .prelude = {
-        .n_state = 3,
-        .n_exc_stack = 0,
-        .scope_flags = 0,
-        .n_pos_args = 1,
-        .n_kwonly_args = 0,
-        .n_def_pos_args = 0,
-        .qstr_block_name_idx = 98,
-        .line_info = fun_data_mc2d_max_pila + 5,
-        .line_info_top = fun_data_mc2d_max_pila + 7,
-        .opcodes = fun_data_mc2d_max_pila + 7,
-    },
-    #endif
-    #endif
-};
-#else
-#define proto_fun_mc2d_max_pila fun_data_mc2d_max_pila[0]
-#endif
-
-// child of mc2d__lt_module_gt_
 // frozen bytecode for file mc2d.py, scope mc2d_dar
-static const byte fun_data_mc2d_dar[163] = {
-    0xd2,0x01,0x2c, // prelude
-    0x63,0x83,0x39,0x81,0x0f, // names: dar, it, n
-    0x90,0x37,0x20,0x29,0x36,0x32,0x2a,0x24,0x23,0x2c,0x28,0x27,0x2c,0x2d,0x24,0x23,0x2b, // code info
-    0x12,0x83,0x2a, // LOAD_GLOBAL 'NHUECOS'
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0x42,0xbf,0x80, // JUMP 63
-    0x57, // DUP_TOP
+static const byte fun_data_mc2d_dar[251] = {
+    0xf2,0x01,0x42, // prelude
+    0x53,0x83,0x62,0x81,0x01, // names: dar, it, n
+    0x90,0xad,0x20,0x28,0x2d,0x26,0x28,0x27,0x2d,0x4b,0x24,0x2d,0x22,0x26,0x28,0x32,0x2e,0x2a,0x24,0x23,0x2b,0x28,0x27,0x28,0x2d,0x24,0x23,0x2b, // code info
+    0x12,0x2d, // LOAD_GLOBAL 'es_herramienta'
+    0xb0, // LOAD_FAST 0
+    0x34,0x01, // CALL_FUNCTION 1
+    0x44,0xcd,0x80, // POP_JUMP_IF_FALSE 77
+    0x12,0x18, // LOAD_GLOBAL 'ficha'
+    0xb0, // LOAD_FAST 0
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x82,0x7d, // LOAD_GLOBAL 'F_DURAB'
+    0x55, // LOAD_SUBSCR
+    0x45,0x01, // JUMP_IF_TRUE_OR_POP 1
+    0x81, // LOAD_CONST_SMALL_INT 1
     0xc2, // STORE_FAST 2
-    0x12,0x83,0x2b, // LOAD_GLOBAL 'inv_id'
+    0xb1, // LOAD_FAST 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0x73, // JUMP 51
+    0x57, // DUP_TOP
+    0xc3, // STORE_FAST 3
+    0x12,0x83,0x57, // LOAD_GLOBAL 'NHUECOS'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0x5a, // JUMP 26
+    0x57, // DUP_TOP
+    0xc4, // STORE_FAST 4
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0xb4, // LOAD_FAST 4
+    0x55, // LOAD_SUBSCR
+    0x43,0x4f, // POP_JUMP_IF_TRUE 15
+    0xb0, // LOAD_FAST 0
     0xb2, // LOAD_FAST 2
+    0x5a, // ROT_TWO
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0xb4, // LOAD_FAST 4
+    0x56, // STORE_SUBSCR
+    0x12,0x83,0x59, // LOAD_GLOBAL 'inv_n'
+    0xb4, // LOAD_FAST 4
+    0x56, // STORE_SUBSCR
+    0x42,0x4b, // JUMP 11
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x21, // POP_JUMP_IF_TRUE -31
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0xb1, // LOAD_FAST 1
+    0x63, // RETURN_VALUE
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0xb1, // LOAD_FAST 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe6, // BINARY_OP 15 __isub__
+    0xc1, // STORE_FAST 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x08, // POP_JUMP_IF_TRUE -56
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x63, // RETURN_VALUE
+    0x12,0x2e, // LOAD_GLOBAL 'max_pila'
+    0xb0, // LOAD_FAST 0
+    0x34,0x01, // CALL_FUNCTION 1
+    0xc5, // STORE_FAST 5
+    0x12,0x83,0x57, // LOAD_GLOBAL 'NHUECOS'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0x77, // JUMP 55
+    0x57, // DUP_TOP
+    0xc4, // STORE_FAST 4
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0xb4, // LOAD_FAST 4
     0x55, // LOAD_SUBSCR
     0xb0, // LOAD_FAST 0
     0xd9, // BINARY_OP 2 __eq__
-    0x44,0x72, // POP_JUMP_IF_FALSE 50
-    0x12,0x83,0x2c, // LOAD_GLOBAL 'inv_n'
-    0xb2, // LOAD_FAST 2
+    0x44,0x6a, // POP_JUMP_IF_FALSE 42
+    0x12,0x83,0x59, // LOAD_GLOBAL 'inv_n'
+    0xb4, // LOAD_FAST 4
     0x55, // LOAD_SUBSCR
-    0x12,0x62, // LOAD_GLOBAL 'max_pila'
-    0xb0, // LOAD_FAST 0
-    0x34,0x01, // CALL_FUNCTION 1
+    0xb5, // LOAD_FAST 5
     0xd7, // BINARY_OP 0 __lt__
-    0x44,0x65, // POP_JUMP_IF_FALSE 37
-    0x12,0x83,0x37, // LOAD_GLOBAL 'min'
+    0x44,0x61, // POP_JUMP_IF_FALSE 33
+    0x12,0x83,0x6b, // LOAD_GLOBAL 'min'
     0xb1, // LOAD_FAST 1
-    0x12,0x62, // LOAD_GLOBAL 'max_pila'
-    0xb0, // LOAD_FAST 0
-    0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x83,0x2c, // LOAD_GLOBAL 'inv_n'
-    0xb2, // LOAD_FAST 2
+    0xb5, // LOAD_FAST 5
+    0x12,0x83,0x59, // LOAD_GLOBAL 'inv_n'
+    0xb4, // LOAD_FAST 4
     0x55, // LOAD_SUBSCR
     0xf3, // BINARY_OP 28 __sub__
     0x34,0x02, // CALL_FUNCTION 2
-    0xc3, // STORE_FAST 3
-    0x12,0x83,0x2c, // LOAD_GLOBAL 'inv_n'
-    0xb2, // LOAD_FAST 2
+    0xc6, // STORE_FAST 6
+    0x12,0x83,0x59, // LOAD_GLOBAL 'inv_n'
+    0xb4, // LOAD_FAST 4
     0x58, // DUP_TOP_TWO
     0x55, // LOAD_SUBSCR
-    0xb3, // LOAD_FAST 3
+    0xb6, // LOAD_FAST 6
     0xe5, // BINARY_OP 14 __iadd__
     0x5b, // ROT_THREE
     0x56, // STORE_SUBSCR
     0xb1, // LOAD_FAST 1
-    0xb3, // LOAD_FAST 3
+    0xb6, // LOAD_FAST 6
     0xe6, // BINARY_OP 15 __isub__
     0xc1, // STORE_FAST 1
     0xb1, // LOAD_FAST 1
@@ -50989,36 +51917,34 @@ static const byte fun_data_mc2d_dar[163] = {
     0x58, // DUP_TOP_TWO
     0x5a, // ROT_TWO
     0xd7, // BINARY_OP 0 __lt__
-    0x43,0xbb,0x7f, // POP_JUMP_IF_TRUE -69
+    0x43,0x04, // POP_JUMP_IF_TRUE -60
     0x59, // POP_TOP
     0x59, // POP_TOP
-    0x12,0x83,0x2a, // LOAD_GLOBAL 'NHUECOS'
+    0x12,0x83,0x57, // LOAD_GLOBAL 'NHUECOS'
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x42,0x6d, // JUMP 45
+    0x42,0x69, // JUMP 41
     0x57, // DUP_TOP
-    0xc2, // STORE_FAST 2
-    0x12,0x83,0x2b, // LOAD_GLOBAL 'inv_id'
-    0xb2, // LOAD_FAST 2
+    0xc4, // STORE_FAST 4
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0xb4, // LOAD_FAST 4
     0x55, // LOAD_SUBSCR
-    0x43,0x62, // POP_JUMP_IF_TRUE 34
-    0x12,0x83,0x37, // LOAD_GLOBAL 'min'
+    0x43,0x5e, // POP_JUMP_IF_TRUE 30
+    0x12,0x83,0x6b, // LOAD_GLOBAL 'min'
     0xb1, // LOAD_FAST 1
-    0x12,0x62, // LOAD_GLOBAL 'max_pila'
-    0xb0, // LOAD_FAST 0
-    0x34,0x01, // CALL_FUNCTION 1
+    0xb5, // LOAD_FAST 5
     0x34,0x02, // CALL_FUNCTION 2
-    0xc3, // STORE_FAST 3
+    0xc6, // STORE_FAST 6
     0xb0, // LOAD_FAST 0
-    0xb3, // LOAD_FAST 3
+    0xb6, // LOAD_FAST 6
     0x5a, // ROT_TWO
-    0x12,0x83,0x2b, // LOAD_GLOBAL 'inv_id'
-    0xb2, // LOAD_FAST 2
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0xb4, // LOAD_FAST 4
     0x56, // STORE_SUBSCR
-    0x12,0x83,0x2c, // LOAD_GLOBAL 'inv_n'
-    0xb2, // LOAD_FAST 2
+    0x12,0x83,0x59, // LOAD_GLOBAL 'inv_n'
+    0xb4, // LOAD_FAST 4
     0x56, // STORE_SUBSCR
     0xb1, // LOAD_FAST 1
-    0xb3, // LOAD_FAST 3
+    0xb6, // LOAD_FAST 6
     0xe6, // BINARY_OP 15 __isub__
     0xc1, // STORE_FAST 1
     0xb1, // LOAD_FAST 1
@@ -51030,7 +51956,7 @@ static const byte fun_data_mc2d_dar[163] = {
     0x58, // DUP_TOP_TWO
     0x5a, // ROT_TWO
     0xd7, // BINARY_OP 0 __lt__
-    0x43,0x0e, // POP_JUMP_IF_TRUE -50
+    0x43,0x12, // POP_JUMP_IF_TRUE -46
     0x59, // POP_TOP
     0x59, // POP_TOP
     0xb1, // LOAD_FAST 1
@@ -51045,7 +51971,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_dar = {
     .fun_data = fun_data_mc2d_dar,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 163,
+    .fun_data_len = 251,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -51053,16 +51979,16 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_dar = {
     #if MICROPY_PY_SYS_SETTRACE
     .line_of_definition = 0,
     .prelude = {
-        .n_state = 11,
+        .n_state = 15,
         .n_exc_stack = 0,
         .scope_flags = 0,
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 1,
-        .qstr_block_name_idx = 99,
+        .qstr_block_name_idx = 83,
         .line_info = fun_data_mc2d_dar + 8,
-        .line_info_top = fun_data_mc2d_dar + 25,
-        .opcodes = fun_data_mc2d_dar + 25,
+        .line_info_top = fun_data_mc2d_dar + 36,
+        .opcodes = fun_data_mc2d_dar + 36,
     },
     #endif
     #endif
@@ -51072,26 +51998,38 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_dar = {
 #endif
 
 // child of mc2d__lt_module_gt_
-// frozen bytecode for file mc2d.py, scope mc2d_cuantos
-static const byte fun_data_mc2d_cuantos[49] = {
-    0x39,0x12, // prelude
-    0x64,0x83,0x39, // names: cuantos, it
-    0x90,0x4a,0x22,0x28,0x29,0x31, // code info
+// frozen bytecode for file mc2d.py, scope mc2d_cuantos_raiz
+static const byte fun_data_mc2d_cuantos_raiz[72] = {
+    0x39,0x14, // prelude
+    0x54,0x83,0x6e, // names: cuantos_raiz, r
+    0x90,0xcc,0x40,0x22,0x28,0x3f,0x31, // code info
     0x80, // LOAD_CONST_SMALL_INT 0
     0xc1, // STORE_FAST 1
-    0x12,0x83,0x2a, // LOAD_GLOBAL 'NHUECOS'
+    0x12,0x83,0x57, // LOAD_GLOBAL 'NHUECOS'
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x42,0x55, // JUMP 21
+    0x42,0x6b, // JUMP 43
     0x57, // DUP_TOP
     0xc2, // STORE_FAST 2
-    0x12,0x83,0x2b, // LOAD_GLOBAL 'inv_id'
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
     0xb2, // LOAD_FAST 2
     0x55, // LOAD_SUBSCR
+    0x44,0x60, // POP_JUMP_IF_FALSE 32
+    0x12,0x2d, // LOAD_GLOBAL 'es_herramienta'
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0xb2, // LOAD_FAST 2
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0x43,0x55, // POP_JUMP_IF_TRUE 21
+    0x12,0x2f, // LOAD_GLOBAL 'raiz'
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0xb2, // LOAD_FAST 2
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
     0xb0, // LOAD_FAST 0
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x48, // POP_JUMP_IF_FALSE 8
     0xb1, // LOAD_FAST 1
-    0x12,0x83,0x2c, // LOAD_GLOBAL 'inv_n'
+    0x12,0x83,0x59, // LOAD_GLOBAL 'inv_n'
     0xb2, // LOAD_FAST 2
     0x55, // LOAD_SUBSCR
     0xe5, // BINARY_OP 14 __iadd__
@@ -51101,22 +52039,22 @@ static const byte fun_data_mc2d_cuantos[49] = {
     0x58, // DUP_TOP_TWO
     0x5a, // ROT_TWO
     0xd7, // BINARY_OP 0 __lt__
-    0x43,0x26, // POP_JUMP_IF_TRUE -26
+    0x43,0x10, // POP_JUMP_IF_TRUE -48
     0x59, // POP_TOP
     0x59, // POP_TOP
     0xb1, // LOAD_FAST 1
     0x63, // RETURN_VALUE
 };
 #if MICROPY_PERSISTENT_CODE_SAVE
-static const mp_raw_code_truncated_t proto_fun_mc2d_cuantos = {
+static const mp_raw_code_truncated_t proto_fun_mc2d_cuantos_raiz = {
     .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
     .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
     .kind = MP_CODE_BYTECODE,
     .is_generator = 0,
-    .fun_data = fun_data_mc2d_cuantos,
+    .fun_data = fun_data_mc2d_cuantos_raiz,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 49,
+    .fun_data_len = 72,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -51130,44 +52068,56 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_cuantos = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 100,
-        .line_info = fun_data_mc2d_cuantos + 5,
-        .line_info_top = fun_data_mc2d_cuantos + 11,
-        .opcodes = fun_data_mc2d_cuantos + 11,
+        .qstr_block_name_idx = 84,
+        .line_info = fun_data_mc2d_cuantos_raiz + 5,
+        .line_info_top = fun_data_mc2d_cuantos_raiz + 12,
+        .opcodes = fun_data_mc2d_cuantos_raiz + 12,
     },
     #endif
     #endif
 };
 #else
-#define proto_fun_mc2d_cuantos fun_data_mc2d_cuantos[0]
+#define proto_fun_mc2d_cuantos_raiz fun_data_mc2d_cuantos_raiz[0]
 #endif
 
 // child of mc2d__lt_module_gt_
-// frozen bytecode for file mc2d.py, scope mc2d_quitar
-static const byte fun_data_mc2d_quitar[90] = {
-    0xc2,0x01,0x1e, // prelude
-    0x65,0x83,0x39,0x81,0x0f, // names: quitar, it, n
-    0x90,0x52,0x29,0x29,0x2c,0x2a,0x24,0x27,0x26,0x23, // code info
-    0x12,0x83,0x2a, // LOAD_GLOBAL 'NHUECOS'
+// frozen bytecode for file mc2d.py, scope mc2d_quitar_raiz
+static const byte fun_data_mc2d_quitar_raiz[116] = {
+    0xc2,0x01,0x20, // prelude
+    0x55,0x83,0x6e,0x81,0x01, // names: quitar_raiz, r, n
+    0x90,0xd6,0x2a,0x1f,0x21,0x2c,0x2a,0x24,0x27,0x26,0x23, // code info
+    0x12,0x83,0x57, // LOAD_GLOBAL 'NHUECOS'
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf3, // BINARY_OP 28 __sub__
-    0x42,0x79, // JUMP 57
+    0x42,0xd0,0x80, // JUMP 80
     0x57, // DUP_TOP
     0xc2, // STORE_FAST 2
-    0x12,0x83,0x2b, // LOAD_GLOBAL 'inv_id'
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
     0xb2, // LOAD_FAST 2
     0x55, // LOAD_SUBSCR
+    0x44,0xc4,0x80, // POP_JUMP_IF_FALSE 68
+    0x12,0x2d, // LOAD_GLOBAL 'es_herramienta'
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0xb2, // LOAD_FAST 2
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0x43,0x79, // POP_JUMP_IF_TRUE 57
+    0x12,0x2f, // LOAD_GLOBAL 'raiz'
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0xb2, // LOAD_FAST 2
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
     0xb0, // LOAD_FAST 0
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x6c, // POP_JUMP_IF_FALSE 44
-    0x12,0x83,0x37, // LOAD_GLOBAL 'min'
+    0x12,0x83,0x6b, // LOAD_GLOBAL 'min'
     0xb1, // LOAD_FAST 1
-    0x12,0x83,0x2c, // LOAD_GLOBAL 'inv_n'
+    0x12,0x83,0x59, // LOAD_GLOBAL 'inv_n'
     0xb2, // LOAD_FAST 2
     0x55, // LOAD_SUBSCR
     0x34,0x02, // CALL_FUNCTION 2
     0xc3, // STORE_FAST 3
-    0x12,0x83,0x2c, // LOAD_GLOBAL 'inv_n'
+    0x12,0x83,0x59, // LOAD_GLOBAL 'inv_n'
     0xb2, // LOAD_FAST 2
     0x58, // DUP_TOP_TWO
     0x55, // LOAD_SUBSCR
@@ -51179,12 +52129,12 @@ static const byte fun_data_mc2d_quitar[90] = {
     0xb3, // LOAD_FAST 3
     0xe6, // BINARY_OP 15 __isub__
     0xc1, // STORE_FAST 1
-    0x12,0x83,0x2c, // LOAD_GLOBAL 'inv_n'
+    0x12,0x83,0x59, // LOAD_GLOBAL 'inv_n'
     0xb2, // LOAD_FAST 2
     0x55, // LOAD_SUBSCR
     0x43,0x46, // POP_JUMP_IF_TRUE 6
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x12,0x83,0x2b, // LOAD_GLOBAL 'inv_id'
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
     0xb2, // LOAD_FAST 2
     0x56, // STORE_SUBSCR
     0xb1, // LOAD_FAST 1
@@ -51196,21 +52146,21 @@ static const byte fun_data_mc2d_quitar[90] = {
     0x57, // DUP_TOP
     0x7f, // LOAD_CONST_SMALL_INT -1
     0xd8, // BINARY_OP 1 __gt__
-    0x43,0x02, // POP_JUMP_IF_TRUE -62
+    0x43,0xaa,0x7f, // POP_JUMP_IF_TRUE -86
     0x59, // POP_TOP
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
 #if MICROPY_PERSISTENT_CODE_SAVE
-static const mp_raw_code_truncated_t proto_fun_mc2d_quitar = {
+static const mp_raw_code_truncated_t proto_fun_mc2d_quitar_raiz = {
     .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
     .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
     .kind = MP_CODE_BYTECODE,
     .is_generator = 0,
-    .fun_data = fun_data_mc2d_quitar,
+    .fun_data = fun_data_mc2d_quitar_raiz,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 90,
+    .fun_data_len = 116,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -51224,42 +52174,317 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_quitar = {
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 1,
-        .qstr_block_name_idx = 101,
-        .line_info = fun_data_mc2d_quitar + 8,
-        .line_info_top = fun_data_mc2d_quitar + 18,
-        .opcodes = fun_data_mc2d_quitar + 18,
+        .qstr_block_name_idx = 85,
+        .line_info = fun_data_mc2d_quitar_raiz + 8,
+        .line_info_top = fun_data_mc2d_quitar_raiz + 19,
+        .opcodes = fun_data_mc2d_quitar_raiz + 19,
     },
     #endif
     #endif
 };
 #else
-#define proto_fun_mc2d_quitar fun_data_mc2d_quitar[0]
+#define proto_fun_mc2d_quitar_raiz fun_data_mc2d_quitar_raiz[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_quitar_hueco
+static const byte fun_data_mc2d_quitar_hueco[45] = {
+    0xaa,0x01,0x12, // prelude
+    0x56,0x83,0x5c,0x81,0x01, // names: quitar_hueco, i, n
+    0x90,0xe2,0x2a,0x29, // code info
+    0x12,0x83,0x59, // LOAD_GLOBAL 'inv_n'
+    0xb0, // LOAD_FAST 0
+    0x58, // DUP_TOP_TWO
+    0x55, // LOAD_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0xe6, // BINARY_OP 15 __isub__
+    0x5b, // ROT_THREE
+    0x56, // STORE_SUBSCR
+    0x12,0x83,0x59, // LOAD_GLOBAL 'inv_n'
+    0xb0, // LOAD_FAST 0
+    0x55, // LOAD_SUBSCR
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xda, // BINARY_OP 3 __le__
+    0x44,0x4c, // POP_JUMP_IF_FALSE 12
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x57, // DUP_TOP
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0xb0, // LOAD_FAST 0
+    0x56, // STORE_SUBSCR
+    0x12,0x83,0x59, // LOAD_GLOBAL 'inv_n'
+    0xb0, // LOAD_FAST 0
+    0x56, // STORE_SUBSCR
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_quitar_hueco = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_quitar_hueco,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 45,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 6,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 2,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 1,
+        .qstr_block_name_idx = 86,
+        .line_info = fun_data_mc2d_quitar_hueco + 8,
+        .line_info_top = fun_data_mc2d_quitar_hueco + 12,
+        .opcodes = fun_data_mc2d_quitar_hueco + 12,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_quitar_hueco fun_data_mc2d_quitar_hueco[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_receta
+static const byte fun_data_mc2d_receta[179] = {
+    0x85,0x10,0x26, // prelude
+    0x57,0x83,0x6f, // names: receta, k
+    0x90,0xe8,0x20,0x30,0x2b,0x32,0x23,0x27,0x25,0x26,0x23,0x2c,0x29,0x31,0x1f,0x28, // code info
+    0x12,0x83,0x5f, // LOAD_GLOBAL 'open'
+    0x12,0x82,0x6a, // LOAD_GLOBAL 'PMD'
+    0x23,0x16, // LOAD_CONST_OBJ 22
+    0xf2, // BINARY_OP 27 __add__
+    0x10,0x1f, // LOAD_CONST_STRING 'rb'
+    0x34,0x02, // CALL_FUNCTION 2
+    0x47,0x1c, // SETUP_WITH 28
+    0xc1, // STORE_FAST 1
+    0xb1, // LOAD_FAST 1
+    0x14,0x1a, // LOAD_METHOD 'seek'
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0xb0, // LOAD_FAST 0
+    0x96, // LOAD_CONST_SMALL_INT 22
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x12,0x06, // LOAD_GLOBAL 'struct'
+    0x14,0x1b, // LOAD_METHOD 'unpack'
+    0x10,0x58, // LOAD_CONST_STRING '<HH9H'
+    0xb1, // LOAD_FAST 1
+    0x14,0x1c, // LOAD_METHOD 'read'
+    0x96, // LOAD_CONST_SMALL_INT 22
+    0x36,0x01, // CALL_METHOD 1
+    0x36,0x02, // CALL_METHOD 2
+    0xc2, // STORE_FAST 2
+    0x51, // LOAD_CONST_NONE
+    0x5c, // WITH_CLEANUP
+    0x5d, // END_FINALLY
+    0x2c,0x00, // BUILD_MAP 0
+    0xc3, // STORE_FAST 3
+    0x2b,0x00, // BUILD_LIST 0
+    0x2b,0x00, // BUILD_LIST 0
+    0x5a, // ROT_TWO
+    0xc4, // STORE_FAST 4
+    0xc5, // STORE_FAST 5
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0x6b, // JUMP 43
+    0x57, // DUP_TOP
+    0xc6, // STORE_FAST 6
+    0xb2, // LOAD_FAST 2
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xb6, // LOAD_FAST 6
+    0xf2, // BINARY_OP 27 __add__
+    0x55, // LOAD_SUBSCR
+    0xc7, // STORE_FAST 7
+    0xb7, // LOAD_FAST 7
+    0x44,0x5e, // POP_JUMP_IF_FALSE 30
+    0xb3, // LOAD_FAST 3
+    0x14,0x19, // LOAD_METHOD 'get'
+    0xb7, // LOAD_FAST 7
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x36,0x02, // CALL_METHOD 2
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb3, // LOAD_FAST 3
+    0xb7, // LOAD_FAST 7
+    0x56, // STORE_SUBSCR
+    0xb4, // LOAD_FAST 4
+    0x14,0x59, // LOAD_METHOD 'append'
+    0xb6, // LOAD_FAST 6
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0xf8, // BINARY_OP 33 __mod__
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0xb5, // LOAD_FAST 5
+    0x14,0x59, // LOAD_METHOD 'append'
+    0xb6, // LOAD_FAST 6
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0xf6, // BINARY_OP 31 __floordiv__
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x57, // DUP_TOP
+    0x89, // LOAD_CONST_SMALL_INT 9
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x10, // POP_JUMP_IF_TRUE -48
+    0x59, // POP_TOP
+    0xb4, // LOAD_FAST 4
+    0x44,0x62, // POP_JUMP_IF_FALSE 34
+    0x12,0x83,0x6c, // LOAD_GLOBAL 'max'
+    0xb4, // LOAD_FAST 4
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x83,0x6b, // LOAD_GLOBAL 'min'
+    0xb4, // LOAD_FAST 4
+    0x34,0x01, // CALL_FUNCTION 1
+    0xf3, // BINARY_OP 28 __sub__
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xd8, // BINARY_OP 1 __gt__
+    0x45,0x0f, // JUMP_IF_TRUE_OR_POP 15
+    0x12,0x83,0x6c, // LOAD_GLOBAL 'max'
+    0xb5, // LOAD_FAST 5
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x83,0x6b, // LOAD_GLOBAL 'min'
+    0xb5, // LOAD_FAST 5
+    0x34,0x01, // CALL_FUNCTION 1
+    0xf3, // BINARY_OP 28 __sub__
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xd8, // BINARY_OP 1 __gt__
+    0x42,0x41, // JUMP 1
+    0x50, // LOAD_CONST_FALSE
+    0xc8, // STORE_FAST 8
+    0xb2, // LOAD_FAST 2
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0xb2, // LOAD_FAST 2
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0xb3, // LOAD_FAST 3
+    0xb8, // LOAD_FAST 8
+    0x2a,0x04, // BUILD_TUPLE 4
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_receta = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_receta,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 179,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 17,
+        .n_exc_stack = 1,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 87,
+        .line_info = fun_data_mc2d_receta + 6,
+        .line_info_top = fun_data_mc2d_receta + 22,
+        .opcodes = fun_data_mc2d_receta + 22,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_receta fun_data_mc2d_receta[0]
+#endif
+
+// child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_n_recetas
+static const byte fun_data_mc2d_n_recetas[9] = {
+    0x00,0x06, // prelude
+    0x5a, // names: n_recetas
+    0x90,0xf9, // code info
+    0x12,0x83,0x0b, // LOAD_GLOBAL 'NREC'
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_n_recetas = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_n_recetas,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 9,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 1,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 0,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 90,
+        .line_info = fun_data_mc2d_n_recetas + 3,
+        .line_info_top = fun_data_mc2d_n_recetas + 5,
+        .opcodes = fun_data_mc2d_n_recetas + 5,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_n_recetas fun_data_mc2d_n_recetas[0]
 #endif
 
 // child of mc2d__lt_module_gt_
 // frozen bytecode for file mc2d.py, scope mc2d_spr
-static const byte fun_data_mc2d_spr[43] = {
-    0x29,0x0e, // prelude
-    0x66,0x74, // names: spr, nombre
-    0x90,0x62,0x29,0x25,0x32, // code info
-    0x12,0x83,0x2d, // LOAD_GLOBAL 'SPR'
-    0x14,0x4c, // LOAD_METHOD 'get'
+static const byte fun_data_mc2d_spr[69] = {
+    0x29,0x14, // prelude
+    0x5b,0x83,0x70, // names: spr, ruta
+    0xa0,0x01,0x29,0x25,0x2e,0x28,0x33, // code info
+    0x12,0x83,0x5a, // LOAD_GLOBAL 'SPR'
+    0x14,0x19, // LOAD_METHOD 'get'
     0xb0, // LOAD_FAST 0
     0x36,0x01, // CALL_METHOD 1
     0xc1, // STORE_FAST 1
     0xb1, // LOAD_FAST 1
     0x51, // LOAD_CONST_NONE
     0xde, // BINARY_OP 7 <is>
-    0x44,0x52, // POP_JUMP_IF_FALSE 18
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x67, // LOAD_METHOD 'sprite'
-    0x10,0x68, // LOAD_CONST_STRING 'tex/%s.png'
+    0x44,0x69, // POP_JUMP_IF_FALSE 41
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x5a, // LOAD_GLOBAL 'SPR'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x22,0x80,0x78, // LOAD_CONST_SMALL_INT 120
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x48, // POP_JUMP_IF_FALSE 8
+    0x12,0x83,0x5a, // LOAD_GLOBAL 'SPR'
+    0x14,0x1d, // LOAD_METHOD 'clear'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x5c, // LOAD_METHOD 'sprite'
+    0x12,0x82,0x6a, // LOAD_GLOBAL 'PMD'
     0xb0, // LOAD_FAST 0
-    0xf8, // BINARY_OP 33 __mod__
+    0xf2, // BINARY_OP 27 __add__
     0x36,0x01, // CALL_METHOD 1
     0x57, // DUP_TOP
     0xc1, // STORE_FAST 1
-    0x12,0x83,0x2d, // LOAD_GLOBAL 'SPR'
+    0x12,0x83,0x5a, // LOAD_GLOBAL 'SPR'
     0xb0, // LOAD_FAST 0
     0x56, // STORE_SUBSCR
     0xb1, // LOAD_FAST 1
@@ -51274,7 +52499,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_spr = {
     .fun_data = fun_data_mc2d_spr,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 43,
+    .fun_data_len = 69,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -51288,10 +52513,10 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_spr = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 102,
-        .line_info = fun_data_mc2d_spr + 4,
-        .line_info_top = fun_data_mc2d_spr + 9,
-        .opcodes = fun_data_mc2d_spr + 9,
+        .qstr_block_name_idx = 91,
+        .line_info = fun_data_mc2d_spr + 5,
+        .line_info_top = fun_data_mc2d_spr + 12,
+        .opcodes = fun_data_mc2d_spr + 12,
     },
     #endif
     #endif
@@ -51301,39 +52526,159 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_spr = {
 #endif
 
 // child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_tex
+static const byte fun_data_mc2d_tex[16] = {
+    0x19,0x0a, // prelude
+    0x5d,0x81,0x01, // names: tex, n
+    0xa0,0x0a, // code info
+    0x12,0x5b, // LOAD_GLOBAL 'spr'
+    0x23,0x36, // LOAD_CONST_OBJ 54
+    0xb0, // LOAD_FAST 0
+    0xf8, // BINARY_OP 33 __mod__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_tex = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_tex,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 16,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 4,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 93,
+        .line_info = fun_data_mc2d_tex + 5,
+        .line_info_top = fun_data_mc2d_tex + 7,
+        .opcodes = fun_data_mc2d_tex + 7,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_tex fun_data_mc2d_tex[0]
+#endif
+
+// child of mc2d__lt_module_gt_
 // frozen bytecode for file mc2d.py, scope mc2d_icono
-static const byte fun_data_mc2d_icono[84] = {
-    0xd8,0x05,0x18, // prelude
-    0x69,0x83,0x39,0x75,0x76,0x81,0x0f, // names: icono, it, x, y, n
-    0x90,0x69,0x24,0x33,0x25, // code info
+static const byte fun_data_mc2d_icono[207] = {
+    0xe8,0x05,0x28, // prelude
+    0x5e,0x83,0x62,0x66,0x67,0x81,0x01, // names: icono, it, x, y, n
+    0xa0,0x0e,0x23,0x22,0x37,0x28,0x2a,0x2a,0x2c,0x31,0x1f,0x34,0x25, // code info
     0xb0, // LOAD_FAST 0
-    0x44,0xbf,0x80, // POP_JUMP_IF_FALSE 63
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x6a, // LOAD_METHOD 'dibujar'
-    0x12,0x66, // LOAD_GLOBAL 'spr'
-    0x12,0x83,0x01, // LOAD_GLOBAL 'TEX'
+    0x43,0x42, // POP_JUMP_IF_TRUE 2
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x5f, // LOAD_METHOD 'dibujar'
+    0x12,0x5d, // LOAD_GLOBAL 'tex'
+    0x12,0x18, // LOAD_GLOBAL 'ficha'
     0xb0, // LOAD_FAST 0
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x82,0x7c, // LOAD_GLOBAL 'F_INV'
     0x55, // LOAD_SUBSCR
     0x34,0x01, // CALL_FUNCTION 1
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0x36,0x03, // CALL_METHOD 3
     0x59, // POP_TOP
+    0x12,0x2d, // LOAD_GLOBAL 'es_herramienta'
+    0xb0, // LOAD_FAST 0
+    0x34,0x01, // CALL_FUNCTION 1
+    0x44,0xe4,0x80, // POP_JUMP_IF_FALSE 100
+    0x12,0x18, // LOAD_GLOBAL 'ficha'
+    0xb0, // LOAD_FAST 0
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x82,0x7d, // LOAD_GLOBAL 'F_DURAB'
+    0x55, // LOAD_SUBSCR
+    0xc4, // STORE_FAST 4
+    0xb4, // LOAD_FAST 4
+    0x44,0xd4,0x80, // POP_JUMP_IF_FALSE 84
+    0xb3, // LOAD_FAST 3
+    0xb4, // LOAD_FAST 4
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0xce,0x80, // POP_JUMP_IF_FALSE 78
+    0x12,0x83,0x6c, // LOAD_GLOBAL 'max'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xb3, // LOAD_FAST 3
+    0x8d, // LOAD_CONST_SMALL_INT 13
+    0xf4, // BINARY_OP 29 __mul__
+    0xb4, // LOAD_FAST 4
+    0xf6, // BINARY_OP 31 __floordiv__
+    0x34,0x02, // CALL_FUNCTION 2
+    0xc5, // STORE_FAST 5
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x45, // LOAD_METHOD 'rect'
+    0xb1, // LOAD_FAST 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb2, // LOAD_FAST 2
+    0x8d, // LOAD_CONST_SMALL_INT 13
+    0xf2, // BINARY_OP 27 __add__
+    0x8e, // LOAD_CONST_SMALL_INT 14
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x45, // LOAD_METHOD 'rect'
+    0xb1, // LOAD_FAST 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb2, // LOAD_FAST 2
+    0x8d, // LOAD_CONST_SMALL_INT 13
+    0xf2, // BINARY_OP 27 __add__
+    0xb5, // LOAD_FAST 5
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xb3, // LOAD_FAST 3
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf4, // BINARY_OP 29 __mul__
+    0xb4, // LOAD_FAST 4
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x47, // POP_JUMP_IF_FALSE 7
+    0x22,0x82,0x83,0xc0,0x40, // LOAD_CONST_SMALL_INT 4251712
+    0x42,0x53, // JUMP 19
+    0xb3, // LOAD_FAST 3
+    0x85, // LOAD_CONST_SMALL_INT 5
+    0xf4, // BINARY_OP 29 __mul__
+    0xb4, // LOAD_FAST 4
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x47, // POP_JUMP_IF_FALSE 7
+    0x22,0x87,0x83,0xc0,0x40, // LOAD_CONST_SMALL_INT 14737472
+    0x42,0x45, // JUMP 5
+    0x22,0x87,0x81,0x80,0x40, // LOAD_CONST_SMALL_INT 14696512
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0x42,0x6e, // JUMP 46
     0xb3, // LOAD_FAST 3
     0x81, // LOAD_CONST_SMALL_INT 1
     0xd8, // BINARY_OP 1 __gt__
-    0x44,0x67, // POP_JUMP_IF_FALSE 39
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x57, // LOAD_METHOD 'texto'
-    0x12,0x83,0x3a, // LOAD_GLOBAL 'str'
+    0x44,0x69, // POP_JUMP_IF_FALSE 41
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x46, // LOAD_METHOD 'texto'
+    0x12,0x83,0x71, // LOAD_GLOBAL 'str'
     0xb3, // LOAD_FAST 3
     0x34,0x01, // CALL_FUNCTION 1
     0xb1, // LOAD_FAST 1
     0x90, // LOAD_CONST_SMALL_INT 16
     0xf2, // BINARY_OP 27 __add__
     0x86, // LOAD_CONST_SMALL_INT 6
-    0x12,0x83,0x3b, // LOAD_GLOBAL 'len'
-    0x12,0x83,0x3a, // LOAD_GLOBAL 'str'
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x71, // LOAD_GLOBAL 'str'
     0xb3, // LOAD_FAST 3
     0x34,0x01, // CALL_FUNCTION 1
     0x34,0x01, // CALL_FUNCTION 1
@@ -51345,6 +52690,7 @@ static const byte fun_data_mc2d_icono[84] = {
     0x22,0x87,0xff,0xff,0x7f, // LOAD_CONST_SMALL_INT 16777215
     0x36,0x04, // CALL_METHOD 4
     0x59, // POP_TOP
+    0x42,0x40, // JUMP 0
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -51357,7 +52703,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_icono = {
     .fun_data = fun_data_mc2d_icono,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 84,
+    .fun_data_len = 207,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -51365,16 +52711,16 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_icono = {
     #if MICROPY_PY_SYS_SETTRACE
     .line_of_definition = 0,
     .prelude = {
-        .n_state = 12,
+        .n_state = 14,
         .n_exc_stack = 0,
         .scope_flags = 0,
         .n_pos_args = 4,
         .n_kwonly_args = 0,
         .n_def_pos_args = 1,
-        .qstr_block_name_idx = 105,
+        .qstr_block_name_idx = 94,
         .line_info = fun_data_mc2d_icono + 10,
-        .line_info_top = fun_data_mc2d_icono + 15,
-        .opcodes = fun_data_mc2d_icono + 15,
+        .line_info_top = fun_data_mc2d_icono + 23,
+        .opcodes = fun_data_mc2d_icono + 23,
     },
     #endif
     #endif
@@ -51385,233 +52731,268 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_icono = {
 
 // child of mc2d__lt_module_gt_
 // frozen bytecode for file mc2d.py, scope mc2d_Juego
-static const byte fun_data_mc2d_Juego[327] = {
-    0x08,0xa2,0x02, // prelude
-    0x3d, // names: Juego
-    0x9b,0x71,0x89,0x23,0x85,0x10,0x65,0x40,0x65,0x65,0x40,0x85,0x09,0x85,0x0e,0x65,0x40,0x65,0x85,0x15,0x65,0x20,0x85,0x08,0x85,0x3d,0x89,0x0f,0x85,0x09,0x65,0x65,0x60,0x85,0x24,0x85,0x1e,0x65,0x60,0x85,0x17,0x65,0x60,0x85,0x14,0x85,0x13,0x85,0x33,0x8a,0x09,0x65,0x65,0x20,0x85,0x08,0x85,0x07,0x65,0x20,0x85,0x07,0x85,0x4d,0x89,0x13,0x85,0x41,0x85,0x08,0x89,0x5d,0x85,0x20,0x84,0x2a,0x85,0x26,0x85,0x0c, // code info
-    0x11,0x83,0x3c, // LOAD_NAME '__name__'
-    0x16,0x83,0x3d, // STORE_NAME '__module__'
-    0x10,0x3d, // LOAD_CONST_STRING 'Juego'
-    0x16,0x83,0x3e, // STORE_NAME '__qualname__'
+static const byte fun_data_mc2d_Juego[400] = {
+    0x08,0xca,0x02, // prelude
+    0x15, // names: Juego
+    0xab,0x1d,0x89,0x27,0x85,0x10,0x64,0x40,0x65,0x65,0x40,0x85,0x09,0x85,0x0e,0x65,0x40,0x65,0x85,0x15,0x65,0x20,0x85,0x08,0x85,0x0d,0x85,0x3a,0x89,0x0f,0x85,0x0a,0x65,0x85,0x08,0x85,0x12,0x85,0x16,0x85,0x1d,0x85,0x3d,0x85,0x08,0x65,0x40,0x85,0x16,0x65,0x60,0x85,0x14,0x85,0x13,0x85,0x3f,0x8a,0x09,0x65,0x65,0x20,0x85,0x08,0x85,0x07,0x65,0x20,0x65,0x60,0x65,0x20,0x85,0x74,0x85,0x0e,0x85,0x12,0x89,0x16,0x85,0x41,0x85,0x08,0x85,0x12,0x89,0x0a,0x85,0x1f,0x89,0x63,0x85,0x20,0x84,0x29,0x85,0x28,0x85,0x0c, // code info
+    0x11,0x83,0x72, // LOAD_NAME '__name__'
+    0x16,0x83,0x73, // STORE_NAME '__module__'
+    0x10,0x15, // LOAD_CONST_STRING 'Juego'
+    0x16,0x83,0x74, // STORE_NAME '__qualname__'
     0x50, // LOAD_CONST_FALSE
     0x2a,0x01, // BUILD_TUPLE 1
     0x53, // LOAD_NULL
     0x33,0x00, // MAKE_FUNCTION_DEFARGS 0
-    0x16,0x81,0x51, // STORE_NAME '__init__'
+    0x16,0x81,0x4c, // STORE_NAME '__init__'
     0x32,0x01, // MAKE_FUNCTION 1
-    0x16,0x81,0x29, // STORE_NAME 'aparecer'
+    0x16,0x81,0x1c, // STORE_NAME 'aparecer'
     0x32,0x02, // MAKE_FUNCTION 2
-    0x16,0x81,0x06, // STORE_NAME 'centrar'
+    0x16,0x78, // STORE_NAME 'centrar'
     0x32,0x03, // MAKE_FUNCTION 3
-    0x16,0x81,0x6f, // STORE_NAME 'pant'
+    0x16,0x81,0x6d, // STORE_NAME 'pant'
     0x32,0x04, // MAKE_FUNCTION 4
-    0x16,0x81,0x70, // STORE_NAME 'fondo'
+    0x16,0x81,0x6e, // STORE_NAME 'fondo'
     0x32,0x05, // MAKE_FUNCTION 5
-    0x16,0x81,0x71, // STORE_NAME 'encerrado'
+    0x16,0x81,0x6f, // STORE_NAME 'encerrado'
     0x32,0x06, // MAKE_FUNCTION 6
-    0x16,0x81,0x72, // STORE_NAME 'bloque'
+    0x16,0x81,0x70, // STORE_NAME 'bloque'
     0x32,0x07, // MAKE_FUNCTION 7
-    0x16,0x81,0x73, // STORE_NAME 'zona'
+    0x16,0x81,0x71, // STORE_NAME 'zona'
     0x32,0x08, // MAKE_FUNCTION 8
-    0x16,0x81,0x74, // STORE_NAME 'objetivo'
+    0x16,0x81,0x72, // STORE_NAME 'objetivo'
     0x32,0x09, // MAKE_FUNCTION 9
-    0x16,0x81,0x75, // STORE_NAME 'dibujar_hud'
+    0x16,0x81,0x73, // STORE_NAME 'dibujar_hud'
     0x32,0x0a, // MAKE_FUNCTION 10
-    0x16,0x81,0x7b, // STORE_NAME 'caja_jugador'
+    0x16,0x81,0x78, // STORE_NAME 'caja_jugador'
     0x32,0x0b, // MAKE_FUNCTION 11
-    0x16,0x81,0x7c, // STORE_NAME 'a_bloques'
+    0x16,0x81,0x79, // STORE_NAME 'a_bloques'
     0x32,0x0c, // MAKE_FUNCTION 12
-    0x16,0x81,0x4b, // STORE_NAME 'pintar'
+    0x16,0x81,0x7a, // STORE_NAME 'dibujar_steve'
+    0x32,0x0d, // MAKE_FUNCTION 13
+    0x16,0x81,0x3c, // STORE_NAME 'pintar'
     0x52, // LOAD_CONST_TRUE
     0x2a,0x01, // BUILD_TUPLE 1
     0x53, // LOAD_NULL
-    0x33,0x0d, // MAKE_FUNCTION_DEFARGS 13
-    0x16,0x82,0x02, // STORE_NAME 'poner'
-    0x32,0x0e, // MAKE_FUNCTION 14
-    0x16,0x82,0x04, // STORE_NAME 'asentar'
+    0x33,0x0e, // MAKE_FUNCTION_DEFARGS 14
+    0x16,0x81,0x7d, // STORE_NAME 'poner'
     0x32,0x0f, // MAKE_FUNCTION 15
-    0x16,0x82,0x05, // STORE_NAME 'toca_jugador'
+    0x16,0x81,0x7f, // STORE_NAME 'asentar'
     0x32,0x10, // MAKE_FUNCTION 16
-    0x16,0x82,0x06, // STORE_NAME 'herramienta'
+    0x16,0x82,0x00, // STORE_NAME 'toca_jugador'
     0x32,0x11, // MAKE_FUNCTION 17
-    0x16,0x82,0x07, // STORE_NAME 'picar'
+    0x16,0x82,0x01, // STORE_NAME 'gastar_herramienta'
     0x32,0x12, // MAKE_FUNCTION 18
-    0x16,0x82,0x08, // STORE_NAME 'usar'
+    0x16,0x82,0x03, // STORE_NAME 'tiempo_picar'
     0x32,0x13, // MAKE_FUNCTION 19
-    0x16,0x82,0x0b, // STORE_NAME 'mob_en'
+    0x16,0x82,0x04, // STORE_NAME 'suelta'
     0x32,0x14, // MAKE_FUNCTION 20
-    0x16,0x82,0x0c, // STORE_NAME 'golpear'
+    0x16,0x82,0x05, // STORE_NAME 'picar'
     0x32,0x15, // MAKE_FUNCTION 21
-    0x16,0x82,0x13, // STORE_NAME 'libre_col'
+    0x16,0x82,0x06, // STORE_NAME 'usar'
     0x32,0x16, // MAKE_FUNCTION 22
-    0x16,0x82,0x14, // STORE_NAME 'mover_x'
+    0x16,0x82,0x0c, // STORE_NAME 'mob_en'
     0x32,0x17, // MAKE_FUNCTION 23
-    0x16,0x82,0x16, // STORE_NAME 'mover_y'
+    0x16,0x82,0x0d, // STORE_NAME 'dano_arma'
     0x32,0x18, // MAKE_FUNCTION 24
-    0x16,0x82,0x17, // STORE_NAME 'fisica'
-    0x10,0x6b, // LOAD_CONST_STRING 'hurt'
-    0x2a,0x01, // BUILD_TUPLE 1
-    0x53, // LOAD_NULL
-    0x33,0x19, // MAKE_FUNCTION_DEFARGS 25
-    0x16,0x82,0x20, // STORE_NAME 'herir'
+    0x16,0x82,0x0e, // STORE_NAME 'golpear'
+    0x32,0x19, // MAKE_FUNCTION 25
+    0x16,0x82,0x13, // STORE_NAME 'libre_col'
     0x32,0x1a, // MAKE_FUNCTION 26
-    0x16,0x82,0x23, // STORE_NAME 'es_noche'
+    0x16,0x82,0x14, // STORE_NAME 'mover_x'
     0x32,0x1b, // MAKE_FUNCTION 27
-    0x16,0x82,0x0d, // STORE_NAME 'manda_mobs'
+    0x16,0x82,0x16, // STORE_NAME 'mover_y'
     0x32,0x1c, // MAKE_FUNCTION 28
-    0x16,0x81,0x7a, // STORE_NAME 'jugadores'
-    0x32,0x1d, // MAKE_FUNCTION 29
-    0x16,0x82,0x25, // STORE_NAME 'herir_a'
+    0x16,0x82,0x17, // STORE_NAME 'fisica'
+    0x10,0x60, // LOAD_CONST_STRING 'hurt'
+    0x2a,0x01, // BUILD_TUPLE 1
+    0x53, // LOAD_NULL
+    0x33,0x1d, // MAKE_FUNCTION_DEFARGS 29
+    0x16,0x82,0x1f, // STORE_NAME 'herir'
     0x32,0x1e, // MAKE_FUNCTION 30
-    0x16,0x82,0x26, // STORE_NAME 'oye'
+    0x16,0x82,0x22, // STORE_NAME 'es_noche'
     0x32,0x1f, // MAKE_FUNCTION 31
-    0x16,0x82,0x27, // STORE_NAME 'ruido_mob'
+    0x16,0x82,0x0a, // STORE_NAME 'manda_mobs'
     0x32,0x20, // MAKE_FUNCTION 32
-    0x16,0x82,0x29, // STORE_NAME 'mobs_paso'
-    0x51, // LOAD_CONST_NONE
-    0x2a,0x01, // BUILD_TUPLE 1
-    0x53, // LOAD_NULL
-    0x33,0x21, // MAKE_FUNCTION_DEFARGS 33
-    0x16,0x82,0x0e, // STORE_NAME 'dano_mob'
+    0x16,0x81,0x77, // STORE_NAME 'jugadores'
+    0x32,0x21, // MAKE_FUNCTION 33
+    0x16,0x82,0x24, // STORE_NAME 'herir_a'
     0x32,0x22, // MAKE_FUNCTION 34
-    0x16,0x81,0x44, // STORE_NAME 'red_paso'
+    0x16,0x82,0x25, // STORE_NAME 'oye'
     0x32,0x23, // MAKE_FUNCTION 35
-    0x16,0x82,0x38, // STORE_NAME 'cerca'
+    0x16,0x82,0x26, // STORE_NAME 'ruido_mob'
+    0x32,0x24, // MAKE_FUNCTION 36
+    0x16,0x82,0x0b, // STORE_NAME 'nuevo_mob'
+    0x32,0x25, // MAKE_FUNCTION 37
+    0x16,0x82,0x2e, // STORE_NAME 'mobs_paso'
+    0x32,0x26, // MAKE_FUNCTION 38
+    0x16,0x82,0x2f, // STORE_NAME 'flechas_paso'
+    0x32,0x27, // MAKE_FUNCTION 39
+    0x16,0x82,0x30, // STORE_NAME 'explotar'
     0x51, // LOAD_CONST_NONE
     0x2a,0x01, // BUILD_TUPLE 1
     0x53, // LOAD_NULL
-    0x33,0x24, // MAKE_FUNCTION_DEFARGS 36
-    0x16,0x82,0x09, // STORE_NAME 'abrir_inventario'
-    0x32,0x25, // MAKE_FUNCTION 37
-    0x16,0x82,0x3f, // STORE_NAME 'pausa'
-    0x32,0x26, // MAKE_FUNCTION 38
-    0x16,0x07, // STORE_NAME 'teclas'
-    0x32,0x27, // MAKE_FUNCTION 39
-    0x16,0x81,0x49, // STORE_NAME 'paso'
-    0x32,0x28, // MAKE_FUNCTION 40
-    0x16,0x82,0x3a, // STORE_NAME 'fondo_paso'
+    0x33,0x28, // MAKE_FUNCTION_DEFARGS 40
+    0x16,0x82,0x0f, // STORE_NAME 'dano_mob'
     0x32,0x29, // MAKE_FUNCTION 41
-    0x16,0x81,0x4a, // STORE_NAME 'morir'
+    0x16,0x81,0x35, // STORE_NAME 'red_paso'
+    0x32,0x2a, // MAKE_FUNCTION 42
+    0x16,0x82,0x42, // STORE_NAME 'cerca'
+    0x32,0x2b, // MAKE_FUNCTION 43
+    0x16,0x82,0x43, // STORE_NAME 'opciones'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x2a,0x01, // BUILD_TUPLE 1
+    0x53, // LOAD_NULL
+    0x33,0x2c, // MAKE_FUNCTION_DEFARGS 44
+    0x16,0x82,0x45, // STORE_NAME 'combustible'
+    0x32,0x2d, // MAKE_FUNCTION 45
+    0x16,0x82,0x46, // STORE_NAME 'hacer'
+    0x51, // LOAD_CONST_NONE
+    0x2a,0x01, // BUILD_TUPLE 1
+    0x53, // LOAD_NULL
+    0x33,0x2e, // MAKE_FUNCTION_DEFARGS 46
+    0x16,0x82,0x07, // STORE_NAME 'abrir_inventario'
+    0x32,0x2f, // MAKE_FUNCTION 47
+    0x16,0x82,0x53, // STORE_NAME 'pausa'
+    0x32,0x30, // MAKE_FUNCTION 48
+    0x16,0x0a, // STORE_NAME 'teclas'
+    0x32,0x31, // MAKE_FUNCTION 49
+    0x16,0x81,0x3a, // STORE_NAME 'paso'
+    0x32,0x32, // MAKE_FUNCTION 50
+    0x16,0x82,0x4a, // STORE_NAME 'fondo_paso'
+    0x32,0x33, // MAKE_FUNCTION 51
+    0x16,0x81,0x3b, // STORE_NAME 'morir'
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
 // child of mc2d_Juego
 // frozen bytecode for file mc2d.py, scope mc2d_Juego___init__
-static const byte fun_data_mc2d_Juego___init__[244] = {
-    0xab,0x01,0x50, // prelude
-    0x81,0x51,0x83,0x4e,0x74,0x81,0x39, // names: __init__, self, nombre, online
-    0x90,0x72,0x24,0x25,0x2e,0x2b,0x25,0x25,0x2a,0x26,0x25,0x2c,0x25,0x25,0x26,0x26,0x26,0x26,0x26,0x26,0x25,0x25,0x25,0x26,0x25,0x25,0x25,0x26,0x26,0x25,0x25,0x27,0x26, // code info
+static const byte fun_data_mc2d_Juego___init__[272] = {
+    0xab,0x01,0x5a, // prelude
+    0x81,0x4c,0x84,0x05,0x83,0x79,0x81,0x2a, // names: __init__, self, nombre_m, online
+    0xa0,0x1e,0x24,0x25,0x2e,0x2b,0x25,0x25,0x2a,0x26,0x26,0x25,0x2c,0x25,0x25,0x26,0x26,0x26,0x26,0x26,0x26,0x26,0x25,0x26,0x25,0x25,0x25,0x26,0x25,0x25,0x25,0x26,0x26,0x25,0x25,0x27,0x26, // code info
     0xb1, // LOAD_FAST 1
     0xb0, // LOAD_FAST 0
-    0x18,0x74, // STORE_ATTR 'nombre'
+    0x18,0x2b, // STORE_ATTR 'nombre'
     0xb2, // LOAD_FAST 2
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x39, // STORE_ATTR 'online'
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x18,0x81,0x2a, // STORE_ATTR 'online'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0x82, // LOAD_CONST_SMALL_INT 2
     0xf7, // BINARY_OP 32 __truediv__
-    0x23,0x65, // LOAD_CONST_OBJ 101
+    0x23,0x6c, // LOAD_CONST_OBJ 108
     0x5a, // ROT_TWO
     0xb0, // LOAD_FAST 0
-    0x18,0x75, // STORE_ATTR 'x'
+    0x18,0x66, // STORE_ATTR 'x'
     0xb0, // LOAD_FAST 0
-    0x18,0x76, // STORE_ATTR 'y'
-    0x23,0x65, // LOAD_CONST_OBJ 101
+    0x18,0x67, // STORE_ATTR 'y'
+    0x23,0x6c, // LOAD_CONST_OBJ 108
     0x57, // DUP_TOP
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x52, // STORE_ATTR 'vx'
+    0x18,0x81,0x4d, // STORE_ATTR 'vx'
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x53, // STORE_ATTR 'vy'
+    0x18,0x81,0x4e, // STORE_ATTR 'vy'
     0x50, // LOAD_CONST_FALSE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x54, // STORE_ATTR 'suelo'
+    0x18,0x81,0x4f, // STORE_ATTR 'suelo'
     0x81, // LOAD_CONST_SMALL_INT 1
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x55, // STORE_ATTR 'cara'
-    0x23,0x66, // LOAD_CONST_OBJ 102
+    0x18,0x81,0x50, // STORE_ATTR 'cara'
+    0x23,0x6d, // LOAD_CONST_OBJ 109
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xb0, // LOAD_FAST 0
-    0x18,0x77, // STORE_ATTR 'vida'
+    0x18,0x68, // STORE_ATTR 'vida'
     0xb0, // LOAD_FAST 0
-    0x18,0x78, // STORE_ATTR 'hambre'
-    0x23,0x65, // LOAD_CONST_OBJ 101
+    0x18,0x69, // STORE_ATTR 'hambre'
+    0x23,0x6e, // LOAD_CONST_OBJ 110
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x56, // STORE_ATTR 'hambre_t'
+    0x18,0x81,0x51, // STORE_ATTR 'sat'
+    0x23,0x6c, // LOAD_CONST_OBJ 108
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x52, // STORE_ATTR 'ticks'
     0x51, // LOAD_CONST_NONE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x57, // STORE_ATTR 'caida_y'
-    0x23,0x67, // LOAD_CONST_OBJ 103
+    0x18,0x81,0x53, // STORE_ATTR 'caida_y'
+    0x23,0x6f, // LOAD_CONST_OBJ 111
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x58, // STORE_ATTR 'cdx'
+    0x18,0x81,0x54, // STORE_ATTR 'cdx'
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x59, // STORE_ATTR 'cdy'
+    0x18,0x81,0x55, // STORE_ATTR 'cdy'
     0x80, // LOAD_CONST_SMALL_INT 0
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x5a, // STORE_ATTR 'sel'
-    0x23,0x57, // LOAD_CONST_OBJ 87
+    0x18,0x81,0x56, // STORE_ATTR 'sel'
+    0x23,0x59, // LOAD_CONST_OBJ 89
     0xb0, // LOAD_FAST 0
-    0x18,0x79, // STORE_ATTR 'tiempo'
-    0x23,0x68, // LOAD_CONST_OBJ 104
+    0x18,0x6a, // STORE_ATTR 'tiempo'
+    0x23,0x70, // LOAD_CONST_OBJ 112
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x5b, // STORE_ATTR 'pico'
-    0x23,0x65, // LOAD_CONST_OBJ 101
+    0x18,0x81,0x57, // STORE_ATTR 'pico'
+    0x23,0x6c, // LOAD_CONST_OBJ 108
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x5c, // STORE_ATTR 'anda_t'
-    0x23,0x65, // LOAD_CONST_OBJ 101
+    0x18,0x81,0x58, // STORE_ATTR 'anda_t'
+    0x23,0x6c, // LOAD_CONST_OBJ 108
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x5d, // STORE_ATTR 'paso_t'
-    0x23,0x65, // LOAD_CONST_OBJ 101
+    0x18,0x81,0x59, // STORE_ATTR 'paso_t'
+    0x23,0x6c, // LOAD_CONST_OBJ 108
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x5e, // STORE_ATTR 'golpe_t'
-    0x23,0x65, // LOAD_CONST_OBJ 101
+    0x18,0x81,0x5a, // STORE_ATTR 'golpe_t'
+    0x23,0x6c, // LOAD_CONST_OBJ 108
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x5f, // STORE_ATTR 'dano_t'
+    0x18,0x81,0x5b, // STORE_ATTR 'dano_t'
+    0x23,0x6c, // LOAD_CONST_OBJ 108
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x5c, // STORE_ATTR 'lava_t'
+    0x23,0x6c, // LOAD_CONST_OBJ 108
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x5d, // STORE_ATTR 'horno'
     0x2b,0x00, // BUILD_LIST 0
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x60, // STORE_ATTR 'mobs'
+    0x18,0x27, // STORE_ATTR 'mobs'
+    0x2b,0x00, // BUILD_LIST 0
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x5e, // STORE_ATTR 'flechas'
     0x80, // LOAD_CONST_SMALL_INT 0
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x61, // STORE_ATTR 'mob_id'
+    0x18,0x81,0x5f, // STORE_ATTR 'mob_id'
     0x50, // LOAD_CONST_FALSE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x62, // STORE_ATTR 'muerto'
+    0x18,0x81,0x60, // STORE_ATTR 'muerto'
     0x50, // LOAD_CONST_FALSE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x63, // STORE_ATTR 'era_cliente'
+    0x18,0x81,0x61, // STORE_ATTR 'era_cliente'
     0x2c,0x00, // BUILD_MAP 0
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x46, // STORE_ATTR 'otros'
+    0x18,0x81,0x37, // STORE_ATTR 'otros'
     0x51, // LOAD_CONST_NONE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x64, // STORE_ATTR 'enviado'
+    0x18,0x81,0x62, // STORE_ATTR 'enviado'
     0x80, // LOAD_CONST_SMALL_INT 0
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x65, // STORE_ATTR 'cuadro'
+    0x18,0x81,0x63, // STORE_ATTR 'cuadro'
     0x52, // LOAD_CONST_TRUE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x66, // STORE_ATTR 'completo'
+    0x18,0x81,0x64, // STORE_ATTR 'completo'
     0x2b,0x00, // BUILD_LIST 0
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x67, // STORE_ATTR 'sucios'
+    0x18,0x81,0x65, // STORE_ATTR 'sucios'
     0x2b,0x00, // BUILD_LIST 0
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x68, // STORE_ATTR 'pintado'
+    0x18,0x81,0x66, // STORE_ATTR 'pintado'
     0x51, // LOAD_CONST_NONE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x69, // STORE_ATTR 'hud'
+    0x18,0x81,0x67, // STORE_ATTR 'hud'
     0x51, // LOAD_CONST_NONE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x6a, // STORE_ATTR 'aviso'
-    0x12,0x83,0x18, // LOAD_GLOBAL 'CIELO_DIA'
+    0x18,0x81,0x68, // STORE_ATTR 'aviso'
+    0x12,0x83,0x48, // LOAD_GLOBAL 'CIELO_DIA'
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x6b, // STORE_ATTR 'cielo'
+    0x18,0x81,0x69, // STORE_ATTR 'cielo'
     0x2c,0x00, // BUILD_MAP 0
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x6c, // STORE_ATTR 'tap'
+    0x18,0x81,0x6a, // STORE_ATTR 'tap'
     0x50, // LOAD_CONST_FALSE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x4c, // STORE_ATTR 'salir'
+    0x18,0x81,0x3d, // STORE_ATTR 'salir'
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -51624,7 +53005,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego___init__ = {
     .fun_data = fun_data_mc2d_Juego___init__,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 244,
+    .fun_data_len = 272,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -51638,10 +53019,10 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego___init__ = {
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 1,
-        .qstr_block_name_idx = 209,
-        .line_info = fun_data_mc2d_Juego___init__ + 10,
-        .line_info_top = fun_data_mc2d_Juego___init__ + 43,
-        .opcodes = fun_data_mc2d_Juego___init__ + 43,
+        .qstr_block_name_idx = 204,
+        .line_info = fun_data_mc2d_Juego___init__ + 11,
+        .line_info_top = fun_data_mc2d_Juego___init__ + 48,
+        .opcodes = fun_data_mc2d_Juego___init__ + 48,
     },
     #endif
     #endif
@@ -51652,27 +53033,27 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego___init__ = {
 
 // child of mc2d_Juego
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_aparecer
-static const byte fun_data_mc2d_Juego_aparecer[185] = {
+static const byte fun_data_mc2d_Juego_aparecer[184] = {
     0x71,0x24, // prelude
-    0x81,0x29,0x83,0x4e, // names: aparecer, self
-    0x90,0x95,0x26,0x2b,0x34,0x1f,0x2f,0x32,0x22,0x49,0x22,0x2c,0x33,0x2b, // code info
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x81,0x1c,0x84,0x05, // names: aparecer, self
+    0xa0,0x45,0x26,0x2b,0x34,0x1f,0x2f,0x32,0x22,0x49,0x22,0x2c,0x33,0x2b, // code info
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0x82, // LOAD_CONST_SMALL_INT 2
     0xf6, // BINARY_OP 31 __floordiv__
     0xc1, // STORE_FAST 1
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0x82, // LOAD_CONST_SMALL_INT 2
     0xf6, // BINARY_OP 31 __floordiv__
     0x80, // LOAD_CONST_SMALL_INT 0
     0x42,0xe7,0x80, // JUMP 103
     0x57, // DUP_TOP
     0xc2, // STORE_FAST 2
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0x82, // LOAD_CONST_SMALL_INT 2
     0xf6, // BINARY_OP 31 __floordiv__
     0xb2, // LOAD_FAST 2
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0x82, // LOAD_CONST_SMALL_INT 2
     0xf6, // BINARY_OP 31 __floordiv__
     0xb2, // LOAD_FAST 2
@@ -51687,22 +53068,22 @@ static const byte fun_data_mc2d_Juego_aparecer[185] = {
     0x5b, // ROT_THREE
     0xda, // BINARY_OP 3 __le__
     0x46,0x06, // JUMP_IF_FALSE_OR_POP 6
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0xd7, // BINARY_OP 0 __lt__
     0x42,0x42, // JUMP 2
     0x5a, // ROT_TWO
     0x59, // POP_TOP
     0x44,0x77, // POP_JUMP_IF_FALSE 55
-    0x12,0x83,0x1f, // LOAD_GLOBAL 'alto'
+    0x12,0x81,0x43, // LOAD_GLOBAL 'alto'
     0xb3, // LOAD_FAST 3
     0x55, // LOAD_SUBSCR
-    0x12,0x83,0x13, // LOAD_GLOBAL 'MAR'
+    0x12,0x83,0x43, // LOAD_GLOBAL 'MAR'
     0xd8, // BINARY_OP 1 __gt__
     0x44,0x6c, // POP_JUMP_IF_FALSE 44
-    0x12,0x41, // LOAD_GLOBAL 'solido'
-    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0x12,0x32, // LOAD_GLOBAL 'solido'
+    0x12,0x30, // LOAD_GLOBAL 'g'
     0xb3, // LOAD_FAST 3
-    0x12,0x83,0x1f, // LOAD_GLOBAL 'alto'
+    0x12,0x81,0x43, // LOAD_GLOBAL 'alto'
     0xb3, // LOAD_FAST 3
     0x55, // LOAD_SUBSCR
     0x81, // LOAD_CONST_SMALL_INT 1
@@ -51710,10 +53091,10 @@ static const byte fun_data_mc2d_Juego_aparecer[185] = {
     0x34,0x02, // CALL_FUNCTION 2
     0x34,0x01, // CALL_FUNCTION 1
     0x43,0x5a, // POP_JUMP_IF_TRUE 26
-    0x12,0x41, // LOAD_GLOBAL 'solido'
-    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0x12,0x32, // LOAD_GLOBAL 'solido'
+    0x12,0x30, // LOAD_GLOBAL 'g'
     0xb3, // LOAD_FAST 3
-    0x12,0x83,0x1f, // LOAD_GLOBAL 'alto'
+    0x12,0x81,0x43, // LOAD_GLOBAL 'alto'
     0xb3, // LOAD_FAST 3
     0x55, // LOAD_SUBSCR
     0x82, // LOAD_CONST_SMALL_INT 2
@@ -51740,26 +53121,26 @@ static const byte fun_data_mc2d_Juego_aparecer[185] = {
     0x59, // POP_TOP
     0x59, // POP_TOP
     0xb1, // LOAD_FAST 1
-    0x23,0x3a, // LOAD_CONST_OBJ 58
+    0x23,0x31, // LOAD_CONST_OBJ 49
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x1f, // LOAD_GLOBAL 'alto'
+    0x12,0x81,0x43, // LOAD_GLOBAL 'alto'
     0xb1, // LOAD_FAST 1
     0x55, // LOAD_SUBSCR
-    0x23,0x2d, // LOAD_CONST_OBJ 45
+    0x23,0x25, // LOAD_CONST_OBJ 37
     0xf2, // BINARY_OP 27 __add__
     0x5a, // ROT_TWO
     0xb0, // LOAD_FAST 0
-    0x18,0x75, // STORE_ATTR 'x'
+    0x18,0x66, // STORE_ATTR 'x'
     0xb0, // LOAD_FAST 0
-    0x18,0x76, // STORE_ATTR 'y'
-    0x23,0x65, // LOAD_CONST_OBJ 101
+    0x18,0x67, // STORE_ATTR 'y'
+    0x23,0x6c, // LOAD_CONST_OBJ 108
     0x57, // DUP_TOP
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x52, // STORE_ATTR 'vx'
+    0x18,0x81,0x4d, // STORE_ATTR 'vx'
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x53, // STORE_ATTR 'vy'
+    0x18,0x81,0x4e, // STORE_ATTR 'vy'
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x06, // LOAD_METHOD 'centrar'
+    0x14,0x78, // LOAD_METHOD 'centrar'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0x51, // LOAD_CONST_NONE
@@ -51774,7 +53155,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_aparecer = {
     .fun_data = fun_data_mc2d_Juego_aparecer,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 185,
+    .fun_data_len = 184,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -51788,7 +53169,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_aparecer = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 169,
+        .qstr_block_name_idx = 156,
         .line_info = fun_data_mc2d_Juego_aparecer + 6,
         .line_info_top = fun_data_mc2d_Juego_aparecer + 20,
         .opcodes = fun_data_mc2d_Juego_aparecer + 20,
@@ -51802,35 +53183,35 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_aparecer = {
 
 // child of mc2d_Juego
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_centrar
-static const byte fun_data_mc2d_Juego_centrar[55] = {
-    0x19,0x10, // prelude
-    0x81,0x06,0x83,0x4e, // names: centrar, self
-    0x90,0xa5,0x32,0x34, // code info
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+static const byte fun_data_mc2d_Juego_centrar[54] = {
+    0x19,0x0e, // prelude
+    0x78,0x84,0x05, // names: centrar, self
+    0xa0,0x55,0x32,0x34, // code info
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
-    0x13,0x75, // LOAD_ATTR 'x'
+    0x13,0x66, // LOAD_ATTR 'x'
     0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x83,0x16, // LOAD_GLOBAL 'VW'
+    0x12,0x83,0x46, // LOAD_GLOBAL 'VW'
     0x82, // LOAD_CONST_SMALL_INT 2
     0xf6, // BINARY_OP 31 __floordiv__
     0xf3, // BINARY_OP 28 __sub__
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x6d, // STORE_ATTR 'cam_x'
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x18,0x81,0x6b, // STORE_ATTR 'cam_x'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
-    0x13,0x76, // LOAD_ATTR 'y'
+    0x13,0x67, // LOAD_ATTR 'y'
     0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x83,0x17, // LOAD_GLOBAL 'VH'
+    0x12,0x83,0x47, // LOAD_GLOBAL 'VH'
     0x82, // LOAD_CONST_SMALL_INT 2
     0xf6, // BINARY_OP 31 __floordiv__
     0xf2, // BINARY_OP 27 __add__
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x6e, // STORE_ATTR 'cam_top'
+    0x18,0x81,0x6c, // STORE_ATTR 'cam_top'
     0x52, // LOAD_CONST_TRUE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x66, // STORE_ATTR 'completo'
+    0x18,0x81,0x64, // STORE_ATTR 'completo'
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -51843,7 +53224,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_centrar = {
     .fun_data = fun_data_mc2d_Juego_centrar,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 55,
+    .fun_data_len = 54,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -51857,10 +53238,10 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_centrar = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 134,
-        .line_info = fun_data_mc2d_Juego_centrar + 6,
-        .line_info_top = fun_data_mc2d_Juego_centrar + 10,
-        .opcodes = fun_data_mc2d_Juego_centrar + 10,
+        .qstr_block_name_idx = 120,
+        .line_info = fun_data_mc2d_Juego_centrar + 5,
+        .line_info_top = fun_data_mc2d_Juego_centrar + 9,
+        .opcodes = fun_data_mc2d_Juego_centrar + 9,
     },
     #endif
     #endif
@@ -51873,22 +53254,22 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_centrar = {
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_pant
 static const byte fun_data_mc2d_Juego_pant[45] = {
     0x33,0x14, // prelude
-    0x81,0x6f,0x83,0x4e,0x83,0x4f,0x83,0x50, // names: pant, self, wx, wy
-    0x90,0xaa, // code info
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x81,0x6d,0x84,0x05,0x84,0x06,0x84,0x07, // names: pant, self, wx, wy
+    0xa0,0x5a, // code info
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb1, // LOAD_FAST 1
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x6d, // LOAD_ATTR 'cam_x'
+    0x13,0x81,0x6b, // LOAD_ATTR 'cam_x'
     0xf3, // BINARY_OP 28 __sub__
-    0x12,0x83,0x14, // LOAD_GLOBAL 'T'
+    0x12,0x83,0x44, // LOAD_GLOBAL 'T'
     0xf4, // BINARY_OP 29 __mul__
     0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x6e, // LOAD_ATTR 'cam_top'
+    0x13,0x81,0x6c, // LOAD_ATTR 'cam_top'
     0xb2, // LOAD_FAST 2
     0xf3, // BINARY_OP 28 __sub__
-    0x12,0x83,0x14, // LOAD_GLOBAL 'T'
+    0x12,0x83,0x44, // LOAD_GLOBAL 'T'
     0xf4, // BINARY_OP 29 __mul__
     0x34,0x01, // CALL_FUNCTION 1
     0x2a,0x02, // BUILD_TUPLE 2
@@ -51917,7 +53298,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_pant = {
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 239,
+        .qstr_block_name_idx = 237,
         .line_info = fun_data_mc2d_Juego_pant + 10,
         .line_info_top = fun_data_mc2d_Juego_pant + 12,
         .opcodes = fun_data_mc2d_Juego_pant + 12,
@@ -51933,22 +53314,22 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_pant = {
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_fondo
 static const byte fun_data_mc2d_Juego_fondo[52] = {
     0x2b,0x18, // prelude
-    0x81,0x70,0x83,0x4e,0x83,0x51,0x83,0x52, // names: fondo, self, tx, ty
-    0x90,0xad,0x3d,0x25, // code info
+    0x81,0x6e,0x84,0x05,0x84,0x08,0x84,0x09, // names: fondo, self, tx, ty
+    0xa0,0x5d,0x3d,0x25, // code info
     0x80, // LOAD_CONST_SMALL_INT 0
     0xb1, // LOAD_FAST 1
     0x57, // DUP_TOP
     0x5b, // ROT_THREE
     0xda, // BINARY_OP 3 __le__
     0x46,0x06, // JUMP_IF_FALSE_OR_POP 6
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0xd7, // BINARY_OP 0 __lt__
     0x42,0x42, // JUMP 2
     0x5a, // ROT_TWO
     0x59, // POP_TOP
     0x44,0x49, // POP_JUMP_IF_FALSE 9
     0xb2, // LOAD_FAST 2
-    0x12,0x83,0x1f, // LOAD_GLOBAL 'alto'
+    0x12,0x81,0x43, // LOAD_GLOBAL 'alto'
     0xb1, // LOAD_FAST 1
     0x55, // LOAD_SUBSCR
     0xd8, // BINARY_OP 1 __gt__
@@ -51956,9 +53337,9 @@ static const byte fun_data_mc2d_Juego_fondo[52] = {
     0x52, // LOAD_CONST_TRUE
     0x44,0x45, // POP_JUMP_IF_FALSE 5
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x6b, // LOAD_ATTR 'cielo'
+    0x13,0x81,0x69, // LOAD_ATTR 'cielo'
     0x63, // RETURN_VALUE
-    0x12,0x83,0x1a, // LOAD_GLOBAL 'FONDO_CUEVA'
+    0x12,0x83,0x4a, // LOAD_GLOBAL 'FONDO_CUEVA'
     0x63, // RETURN_VALUE
 };
 #if MICROPY_PERSISTENT_CODE_SAVE
@@ -51984,7 +53365,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_fondo = {
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 240,
+        .qstr_block_name_idx = 238,
         .line_info = fun_data_mc2d_Juego_fondo + 10,
         .line_info_top = fun_data_mc2d_Juego_fondo + 14,
         .opcodes = fun_data_mc2d_Juego_fondo + 14,
@@ -51999,9 +53380,9 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_fondo = {
 // child of mc2d_Juego
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_encerrado
 static const byte fun_data_mc2d_Juego_encerrado[81] = {
-    0x63,0x1e, // prelude
-    0x81,0x71,0x83,0x4e,0x83,0x51,0x83,0x52, // names: encerrado, self, tx, ty
-    0x90,0xb3,0x3f,0x22,0x29,0x30,0x24, // code info
+    0x6b,0x1e, // prelude
+    0x81,0x6f,0x84,0x05,0x84,0x08,0x84,0x09, // names: encerrado, self, tx, ty
+    0xa0,0x63,0x3f,0x22,0x29,0x30,0x24, // code info
     0xb2, // LOAD_FAST 2
     0x80, // LOAD_CONST_SMALL_INT 0
     0xb1, // LOAD_FAST 1
@@ -52009,13 +53390,13 @@ static const byte fun_data_mc2d_Juego_encerrado[81] = {
     0x5b, // ROT_THREE
     0xda, // BINARY_OP 3 __le__
     0x46,0x06, // JUMP_IF_FALSE_OR_POP 6
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0xd7, // BINARY_OP 0 __lt__
     0x42,0x42, // JUMP 2
     0x5a, // ROT_TWO
     0x59, // POP_TOP
     0x44,0x47, // POP_JUMP_IF_FALSE 7
-    0x12,0x83,0x1f, // LOAD_GLOBAL 'alto'
+    0x12,0x81,0x43, // LOAD_GLOBAL 'alto'
     0xb1, // LOAD_FAST 1
     0x55, // LOAD_SUBSCR
     0x42,0x41, // JUMP 1
@@ -52026,13 +53407,14 @@ static const byte fun_data_mc2d_Juego_encerrado[81] = {
     0x44,0x42, // POP_JUMP_IF_FALSE 2
     0x50, // LOAD_CONST_FALSE
     0x63, // RETURN_VALUE
-    0x23,0x69, // LOAD_CONST_OBJ 105
+    0x23,0x71, // LOAD_CONST_OBJ 113
     0x5f, // GET_ITER_STACK
     0x4b,0x18, // FOR_ITER 24
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xc3, // STORE_FAST 3
     0xc4, // STORE_FAST 4
-    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0x12,0x83,0x06, // LOAD_GLOBAL 'TRANSP'
+    0x12,0x30, // LOAD_GLOBAL 'g'
     0xb1, // LOAD_FAST 1
     0xb3, // LOAD_FAST 3
     0xf2, // BINARY_OP 27 __add__
@@ -52040,8 +53422,7 @@ static const byte fun_data_mc2d_Juego_encerrado[81] = {
     0xb4, // LOAD_FAST 4
     0xf2, // BINARY_OP 27 __add__
     0x34,0x02, // CALL_FUNCTION 2
-    0x12,0x83,0x08, // LOAD_GLOBAL 'TRANSP'
-    0xdd, // BINARY_OP 6 <in>
+    0x55, // LOAD_SUBSCR
     0x44,0x42, // POP_JUMP_IF_FALSE 2
     0x50, // LOAD_CONST_FALSE
     0x63, // RETURN_VALUE
@@ -52066,13 +53447,13 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_encerrado = {
     #if MICROPY_PY_SYS_SETTRACE
     .line_of_definition = 0,
     .prelude = {
-        .n_state = 13,
+        .n_state = 14,
         .n_exc_stack = 0,
         .scope_flags = 0,
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 241,
+        .qstr_block_name_idx = 239,
         .line_info = fun_data_mc2d_Juego_encerrado + 10,
         .line_info_top = fun_data_mc2d_Juego_encerrado + 17,
         .opcodes = fun_data_mc2d_Juego_encerrado + 17,
@@ -52088,10 +53469,10 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_encerrado = {
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_bloque
 static const byte fun_data_mc2d_Juego_bloque[187] = {
     0x7b,0x2a, // prelude
-    0x81,0x72,0x83,0x4e,0x83,0x51,0x83,0x52, // names: bloque, self, tx, ty
-    0x90,0xbb,0x2e,0x1f,0x23,0x22,0x27,0x27,0x38,0x23,0x35,0x2a,0x55, // code info
+    0x81,0x70,0x84,0x05,0x84,0x08,0x84,0x09, // names: bloque, self, tx, ty
+    0xa0,0x6b,0x2e,0x1f,0x23,0x22,0x27,0x27,0x38,0x23,0x35,0x2a,0x55, // code info
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x6f, // LOAD_METHOD 'pant'
+    0x14,0x81,0x6d, // LOAD_METHOD 'pant'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0x81, // LOAD_CONST_SMALL_INT 1
@@ -52101,45 +53482,45 @@ static const byte fun_data_mc2d_Juego_bloque[187] = {
     0xc3, // STORE_FAST 3
     0xc4, // STORE_FAST 4
     0xb4, // LOAD_FAST 4
-    0x12,0x83,0x15, // LOAD_GLOBAL 'VIEW_H'
+    0x12,0x83,0x45, // LOAD_GLOBAL 'VIEW_H'
     0xdb, // BINARY_OP 4 __ge__
     0x43,0x5b, // POP_JUMP_IF_TRUE 27
     0xb3, // LOAD_FAST 3
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x13,0x3c, // LOAD_ATTR 'ANCHO'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x13,0x10, // LOAD_ATTR 'ANCHO'
     0xdb, // BINARY_OP 4 __ge__
     0x43,0x52, // POP_JUMP_IF_TRUE 18
     0xb3, // LOAD_FAST 3
-    0x12,0x83,0x14, // LOAD_GLOBAL 'T'
+    0x12,0x83,0x44, // LOAD_GLOBAL 'T'
     0xf2, // BINARY_OP 27 __add__
     0x80, // LOAD_CONST_SMALL_INT 0
     0xda, // BINARY_OP 3 __le__
     0x43,0x49, // POP_JUMP_IF_TRUE 9
     0xb4, // LOAD_FAST 4
-    0x12,0x83,0x14, // LOAD_GLOBAL 'T'
+    0x12,0x83,0x44, // LOAD_GLOBAL 'T'
     0xf2, // BINARY_OP 27 __add__
     0x80, // LOAD_CONST_SMALL_INT 0
     0xda, // BINARY_OP 3 __le__
     0x44,0x42, // POP_JUMP_IF_FALSE 2
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
-    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0x12,0x30, // LOAD_GLOBAL 'g'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0x34,0x02, // CALL_FUNCTION 2
     0xc5, // STORE_FAST 5
+    0x12,0x83,0x06, // LOAD_GLOBAL 'TRANSP'
     0xb5, // LOAD_FAST 5
-    0x12,0x83,0x08, // LOAD_GLOBAL 'TRANSP'
-    0xdd, // BINARY_OP 6 <in>
+    0x55, // LOAD_SUBSCR
     0x44,0x70, // POP_JUMP_IF_FALSE 48
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x56, // LOAD_METHOD 'rect'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x45, // LOAD_METHOD 'rect'
     0xb3, // LOAD_FAST 3
     0xb4, // LOAD_FAST 4
-    0x12,0x83,0x14, // LOAD_GLOBAL 'T'
-    0x12,0x83,0x14, // LOAD_GLOBAL 'T'
+    0x12,0x83,0x44, // LOAD_GLOBAL 'T'
+    0x12,0x83,0x44, // LOAD_GLOBAL 'T'
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x70, // LOAD_METHOD 'fondo'
+    0x14,0x81,0x6e, // LOAD_METHOD 'fondo'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0x36,0x02, // CALL_METHOD 2
@@ -52147,10 +53528,10 @@ static const byte fun_data_mc2d_Juego_bloque[187] = {
     0x59, // POP_TOP
     0xb5, // LOAD_FAST 5
     0x44,0x53, // POP_JUMP_IF_FALSE 19
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x6a, // LOAD_METHOD 'dibujar'
-    0x12,0x66, // LOAD_GLOBAL 'spr'
-    0x12,0x83,0x01, // LOAD_GLOBAL 'TEX'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x5f, // LOAD_METHOD 'dibujar'
+    0x12,0x5d, // LOAD_GLOBAL 'tex'
+    0x12,0x83,0x0a, // LOAD_GLOBAL 'TEXL'
     0xb5, // LOAD_FAST 5
     0x55, // LOAD_SUBSCR
     0x34,0x01, // CALL_FUNCTION 1
@@ -52160,25 +53541,25 @@ static const byte fun_data_mc2d_Juego_bloque[187] = {
     0x59, // POP_TOP
     0x42,0x72, // JUMP 50
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x71, // LOAD_METHOD 'encerrado'
+    0x14,0x81,0x6f, // LOAD_METHOD 'encerrado'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0x36,0x02, // CALL_METHOD 2
     0x44,0x55, // POP_JUMP_IF_FALSE 21
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x56, // LOAD_METHOD 'rect'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x45, // LOAD_METHOD 'rect'
     0xb3, // LOAD_FAST 3
     0xb4, // LOAD_FAST 4
-    0x12,0x83,0x14, // LOAD_GLOBAL 'T'
-    0x12,0x83,0x14, // LOAD_GLOBAL 'T'
-    0x12,0x83,0x1b, // LOAD_GLOBAL 'OSCURO'
+    0x12,0x83,0x44, // LOAD_GLOBAL 'T'
+    0x12,0x83,0x44, // LOAD_GLOBAL 'T'
+    0x12,0x83,0x4b, // LOAD_GLOBAL 'OSCURO'
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
     0x42,0x53, // JUMP 19
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x6a, // LOAD_METHOD 'dibujar'
-    0x12,0x66, // LOAD_GLOBAL 'spr'
-    0x12,0x83,0x01, // LOAD_GLOBAL 'TEX'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x5f, // LOAD_METHOD 'dibujar'
+    0x12,0x5d, // LOAD_GLOBAL 'tex'
+    0x12,0x83,0x0a, // LOAD_GLOBAL 'TEXL'
     0xb5, // LOAD_FAST 5
     0x55, // LOAD_SUBSCR
     0x34,0x01, // CALL_FUNCTION 1
@@ -52212,7 +53593,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_bloque = {
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 242,
+        .qstr_block_name_idx = 240,
         .line_info = fun_data_mc2d_Juego_bloque + 10,
         .line_info_top = fun_data_mc2d_Juego_bloque + 23,
         .opcodes = fun_data_mc2d_Juego_bloque + 23,
@@ -52228,8 +53609,8 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_bloque = {
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_zona
 static const byte fun_data_mc2d_Juego_zona[64] = {
     0xf1,0x04,0x20, // prelude
-    0x81,0x73,0x83,0x4e,0x83,0x53,0x83,0x54,0x83,0x55,0x83,0x56, // names: zona, self, x0, y0, x1, y1
-    0x90,0xc9,0x28,0x28, // code info
+    0x81,0x71,0x84,0x05,0x84,0x0a,0x84,0x0b,0x84,0x0c,0x84,0x0d, // names: zona, self, x0, y0, x1, y1
+    0xa0,0x79,0x28,0x28, // code info
     0xb4, // LOAD_FAST 4
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
@@ -52245,7 +53626,7 @@ static const byte fun_data_mc2d_Juego_zona[64] = {
     0x57, // DUP_TOP
     0xc6, // STORE_FAST 6
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x72, // LOAD_METHOD 'bloque'
+    0x14,0x81,0x70, // LOAD_METHOD 'bloque'
     0xb6, // LOAD_FAST 6
     0xb5, // LOAD_FAST 5
     0x36,0x02, // CALL_METHOD 2
@@ -52292,7 +53673,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_zona = {
         .n_pos_args = 5,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 243,
+        .qstr_block_name_idx = 241,
         .line_info = fun_data_mc2d_Juego_zona + 15,
         .line_info_top = fun_data_mc2d_Juego_zona + 19,
         .opcodes = fun_data_mc2d_Juego_zona + 19,
@@ -52308,27 +53689,27 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_zona = {
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_objetivo
 static const byte fun_data_mc2d_Juego_objetivo[46] = {
     0x21,0x0c, // prelude
-    0x81,0x74,0x83,0x4e, // names: objetivo, self
-    0x90,0xce, // code info
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x81,0x72,0x84,0x05, // names: objetivo, self
+    0xa0,0x7e, // code info
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
-    0x13,0x75, // LOAD_ATTR 'x'
-    0x12,0x83,0x20, // LOAD_GLOBAL 'PW'
+    0x13,0x66, // LOAD_ATTR 'x'
+    0x12,0x83,0x4e, // LOAD_GLOBAL 'PW'
     0x82, // LOAD_CONST_SMALL_INT 2
     0xf7, // BINARY_OP 32 __truediv__
     0xf2, // BINARY_OP 27 __add__
     0x34,0x01, // CALL_FUNCTION 1
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x58, // LOAD_ATTR 'cdx'
+    0x13,0x81,0x54, // LOAD_ATTR 'cdx'
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
-    0x13,0x76, // LOAD_ATTR 'y'
-    0x23,0x6a, // LOAD_CONST_OBJ 106
+    0x13,0x67, // LOAD_ATTR 'y'
+    0x23,0x72, // LOAD_CONST_OBJ 114
     0xf2, // BINARY_OP 27 __add__
     0x34,0x01, // CALL_FUNCTION 1
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x59, // LOAD_ATTR 'cdy'
+    0x13,0x81,0x55, // LOAD_ATTR 'cdy'
     0xf2, // BINARY_OP 27 __add__
     0x2a,0x02, // BUILD_TUPLE 2
     0x63, // RETURN_VALUE
@@ -52356,7 +53737,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_objetivo = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 244,
+        .qstr_block_name_idx = 242,
         .line_info = fun_data_mc2d_Juego_objetivo + 6,
         .line_info_top = fun_data_mc2d_Juego_objetivo + 8,
         .opcodes = fun_data_mc2d_Juego_objetivo + 8,
@@ -52370,137 +53751,124 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_objetivo = {
 
 // child of mc2d_Juego
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_dibujar_hud
-static const byte fun_data_mc2d_Juego_dibujar_hud[437] = {
-    0x71,0x3e, // prelude
-    0x81,0x75,0x83,0x4e, // names: dibujar_hud, self
-    0x90,0xd1,0x1f,0x2c,0x28,0x22,0x25,0x29,0x1f,0x21,0x26,0x1f,0x25,0x1f,0x2e,0x24,0x26,0x26,0x1f,0x25,0x37,0x1f,0x21,0x32,0x1f,0x2d,0x2a, // code info
+static const byte fun_data_mc2d_Juego_dibujar_hud[421] = {
+    0x71,0x3c, // prelude
+    0x81,0x73,0x84,0x05, // names: dibujar_hud, self
+    0xa0,0x81,0x1f,0x2c,0x28,0x22,0x25,0x29,0x1f,0x41,0x1f,0x28,0x1f,0x27,0x24,0x26,0x26,0x1f,0x25,0x37,0x1f,0x21,0x2d,0x1f,0x2d,0x2a, // code info
     0xb0, // LOAD_FAST 0
-    0x13,0x77, // LOAD_ATTR 'vida'
+    0x13,0x68, // LOAD_ATTR 'vida'
     0xb0, // LOAD_FAST 0
-    0x13,0x78, // LOAD_ATTR 'hambre'
+    0x13,0x69, // LOAD_ATTR 'hambre'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x5a, // LOAD_ATTR 'sel'
-    0x12,0x83,0x57, // LOAD_GLOBAL 'bytes'
-    0x12,0x83,0x2b, // LOAD_GLOBAL 'inv_id'
+    0x13,0x81,0x56, // LOAD_ATTR 'sel'
+    0x12,0x84,0x0e, // LOAD_GLOBAL 'tuple'
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
     0x51, // LOAD_CONST_NONE
     0x89, // LOAD_CONST_SMALL_INT 9
     0x2e,0x02, // BUILD_SLICE 2
     0x55, // LOAD_SUBSCR
     0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x83,0x57, // LOAD_GLOBAL 'bytes'
-    0x12,0x83,0x2c, // LOAD_GLOBAL 'inv_n'
+    0x12,0x84,0x0e, // LOAD_GLOBAL 'tuple'
+    0x12,0x83,0x59, // LOAD_GLOBAL 'inv_n'
     0x51, // LOAD_CONST_NONE
     0x89, // LOAD_CONST_SMALL_INT 9
     0x2e,0x02, // BUILD_SLICE 2
     0x55, // LOAD_SUBSCR
     0x34,0x01, // CALL_FUNCTION 1
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x6a, // LOAD_ATTR 'aviso'
+    0x13,0x81,0x68, // LOAD_ATTR 'aviso'
     0x2a,0x06, // BUILD_TUPLE 6
     0xc1, // STORE_FAST 1
     0xb1, // LOAD_FAST 1
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x69, // LOAD_ATTR 'hud'
+    0x13,0x81,0x67, // LOAD_ATTR 'hud'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x42, // POP_JUMP_IF_FALSE 2
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
     0xb1, // LOAD_FAST 1
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x69, // STORE_ATTR 'hud'
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x81,0x76, // LOAD_METHOD 'recorte'
+    0x18,0x81,0x67, // STORE_ATTR 'hud'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x74, // LOAD_METHOD 'recorte'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x56, // LOAD_METHOD 'rect'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x45, // LOAD_METHOD 'rect'
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x12,0x83,0x15, // LOAD_GLOBAL 'VIEW_H'
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x13,0x3c, // LOAD_ATTR 'ANCHO'
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x13,0x81,0x1a, // LOAD_ATTR 'ALTO'
-    0x12,0x83,0x15, // LOAD_GLOBAL 'VIEW_H'
+    0x12,0x83,0x45, // LOAD_GLOBAL 'VIEW_H'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x13,0x10, // LOAD_ATTR 'ANCHO'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x13,0x81,0x0c, // LOAD_ATTR 'ALTO'
+    0x12,0x83,0x45, // LOAD_GLOBAL 'VIEW_H'
     0xf3, // BINARY_OP 28 __sub__
     0x22,0x80,0xe8,0xb4,0x1a, // LOAD_CONST_SMALL_INT 1710618
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x5f, // LOAD_METHOD 'dibujar'
+    0x12,0x5b, // LOAD_GLOBAL 'spr'
+    0x10,0x81,0x75, // LOAD_CONST_STRING 'vida%d.png'
+    0x12,0x83,0x6c, // LOAD_GLOBAL 'max'
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x42,0xcc,0x80, // JUMP 76
-    0x57, // DUP_TOP
+    0x12,0x83,0x6b, // LOAD_GLOBAL 'min'
+    0x94, // LOAD_CONST_SMALL_INT 20
+    0xb0, // LOAD_FAST 0
+    0x13,0x68, // LOAD_ATTR 'vida'
+    0x34,0x02, // CALL_FUNCTION 2
+    0x34,0x02, // CALL_FUNCTION 2
+    0xf8, // BINARY_OP 33 __mod__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x22,0x80,0x46, // LOAD_CONST_SMALL_INT 70
+    0x12,0x83,0x45, // LOAD_GLOBAL 'VIEW_H'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf2, // BINARY_OP 27 __add__
+    0x36,0x03, // CALL_METHOD 3
+    0x59, // POP_TOP
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x5f, // LOAD_METHOD 'dibujar'
+    0x12,0x5b, // LOAD_GLOBAL 'spr'
+    0x23,0x73, // LOAD_CONST_OBJ 115
+    0x12,0x83,0x6c, // LOAD_GLOBAL 'max'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x12,0x83,0x6b, // LOAD_GLOBAL 'min'
+    0x94, // LOAD_CONST_SMALL_INT 20
+    0xb0, // LOAD_FAST 0
+    0x13,0x69, // LOAD_ATTR 'hambre'
+    0x34,0x02, // CALL_FUNCTION 2
+    0x34,0x02, // CALL_FUNCTION 2
+    0xf8, // BINARY_OP 33 __mod__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x22,0x81,0x2a, // LOAD_CONST_SMALL_INT 170
+    0x12,0x83,0x45, // LOAD_GLOBAL 'VIEW_H'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf2, // BINARY_OP 27 __add__
+    0x36,0x03, // CALL_METHOD 3
+    0x59, // POP_TOP
+    0x22,0x80,0x46, // LOAD_CONST_SMALL_INT 70
     0xc2, // STORE_FAST 2
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x6a, // LOAD_METHOD 'dibujar'
-    0x12,0x66, // LOAD_GLOBAL 'spr'
-    0x10,0x81,0x77, // LOAD_CONST_STRING 'corazon'
-    0x12,0x6d, // LOAD_GLOBAL 'medio'
-    0xb0, // LOAD_FAST 0
-    0x13,0x77, // LOAD_ATTR 'vida'
-    0xb2, // LOAD_FAST 2
-    0x34,0x02, // CALL_FUNCTION 2
-    0xf2, // BINARY_OP 27 __add__
-    0x34,0x01, // CALL_FUNCTION 1
-    0x22,0x80,0x46, // LOAD_CONST_SMALL_INT 70
-    0xb2, // LOAD_FAST 2
-    0x89, // LOAD_CONST_SMALL_INT 9
-    0xf4, // BINARY_OP 29 __mul__
-    0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x15, // LOAD_GLOBAL 'VIEW_H'
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0xf2, // BINARY_OP 27 __add__
-    0x36,0x03, // CALL_METHOD 3
-    0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x6a, // LOAD_METHOD 'dibujar'
-    0x12,0x66, // LOAD_GLOBAL 'spr'
-    0x10,0x81,0x78, // LOAD_CONST_STRING 'comida'
-    0x12,0x6d, // LOAD_GLOBAL 'medio'
-    0xb0, // LOAD_FAST 0
-    0x13,0x78, // LOAD_ATTR 'hambre'
-    0xb2, // LOAD_FAST 2
-    0x34,0x02, // CALL_FUNCTION 2
-    0xf2, // BINARY_OP 27 __add__
-    0x34,0x01, // CALL_FUNCTION 1
-    0x22,0x81,0x72, // LOAD_CONST_SMALL_INT 242
-    0xb2, // LOAD_FAST 2
-    0x89, // LOAD_CONST_SMALL_INT 9
-    0xf4, // BINARY_OP 29 __mul__
-    0xf3, // BINARY_OP 28 __sub__
-    0x12,0x83,0x15, // LOAD_GLOBAL 'VIEW_H'
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0xf2, // BINARY_OP 27 __add__
-    0x36,0x03, // CALL_METHOD 3
-    0x59, // POP_TOP
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0xe5, // BINARY_OP 14 __iadd__
-    0x57, // DUP_TOP
-    0x8a, // LOAD_CONST_SMALL_INT 10
-    0xd7, // BINARY_OP 0 __lt__
-    0x43,0xae,0x7f, // POP_JUMP_IF_TRUE -82
-    0x59, // POP_TOP
-    0x22,0x80,0x46, // LOAD_CONST_SMALL_INT 70
-    0xc3, // STORE_FAST 3
     0x80, // LOAD_CONST_SMALL_INT 0
     0x42,0xdc,0x80, // JUMP 92
     0x57, // DUP_TOP
-    0xc2, // STORE_FAST 2
-    0xb3, // LOAD_FAST 3
+    0xc3, // STORE_FAST 3
     0xb2, // LOAD_FAST 2
+    0xb3, // LOAD_FAST 3
     0x94, // LOAD_CONST_SMALL_INT 20
     0xf4, // BINARY_OP 29 __mul__
     0xf2, // BINARY_OP 27 __add__
     0xc4, // STORE_FAST 4
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x56, // LOAD_METHOD 'rect'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x45, // LOAD_METHOD 'rect'
     0xb4, // LOAD_FAST 4
-    0x12,0x83,0x15, // LOAD_GLOBAL 'VIEW_H'
+    0x12,0x83,0x45, // LOAD_GLOBAL 'VIEW_H'
     0x8c, // LOAD_CONST_SMALL_INT 12
     0xf2, // BINARY_OP 27 __add__
     0x94, // LOAD_CONST_SMALL_INT 20
     0x96, // LOAD_CONST_SMALL_INT 22
-    0xb2, // LOAD_FAST 2
+    0xb3, // LOAD_FAST 3
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x5a, // LOAD_ATTR 'sel'
+    0x13,0x81,0x56, // LOAD_ATTR 'sel'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x47, // POP_JUMP_IF_FALSE 7
     0x22,0x84,0xae,0x97,0x0b, // LOAD_CONST_SMALL_INT 9145227
@@ -52508,12 +53876,12 @@ static const byte fun_data_mc2d_Juego_dibujar_hud[437] = {
     0x22,0x82,0xa9,0x94,0x4a, // LOAD_CONST_SMALL_INT 4868682
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x56, // LOAD_METHOD 'rect'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x45, // LOAD_METHOD 'rect'
     0xb4, // LOAD_FAST 4
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x15, // LOAD_GLOBAL 'VIEW_H'
+    0x12,0x83,0x45, // LOAD_GLOBAL 'VIEW_H'
     0x8d, // LOAD_CONST_SMALL_INT 13
     0xf2, // BINARY_OP 27 __add__
     0x92, // LOAD_CONST_SMALL_INT 18
@@ -52521,18 +53889,18 @@ static const byte fun_data_mc2d_Juego_dibujar_hud[437] = {
     0x22,0x81,0xa8,0xd4,0x2a, // LOAD_CONST_SMALL_INT 2763306
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x69, // LOAD_GLOBAL 'icono'
-    0x12,0x83,0x2b, // LOAD_GLOBAL 'inv_id'
-    0xb2, // LOAD_FAST 2
+    0x12,0x5e, // LOAD_GLOBAL 'icono'
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0xb3, // LOAD_FAST 3
     0x55, // LOAD_SUBSCR
     0xb4, // LOAD_FAST 4
     0x82, // LOAD_CONST_SMALL_INT 2
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x15, // LOAD_GLOBAL 'VIEW_H'
+    0x12,0x83,0x45, // LOAD_GLOBAL 'VIEW_H'
     0x8f, // LOAD_CONST_SMALL_INT 15
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x2c, // LOAD_GLOBAL 'inv_n'
-    0xb2, // LOAD_FAST 2
+    0x12,0x83,0x59, // LOAD_GLOBAL 'inv_n'
+    0xb3, // LOAD_FAST 3
     0x55, // LOAD_SUBSCR
     0x34,0x04, // CALL_FUNCTION 4
     0x59, // POP_TOP
@@ -52543,31 +53911,29 @@ static const byte fun_data_mc2d_Juego_dibujar_hud[437] = {
     0xd7, // BINARY_OP 0 __lt__
     0x43,0x9e,0x7f, // POP_JUMP_IF_TRUE -98
     0x59, // POP_TOP
-    0x12,0x83,0x02, // LOAD_GLOBAL 'NOMBRE'
-    0x14,0x4c, // LOAD_METHOD 'get'
-    0x12,0x83,0x2b, // LOAD_GLOBAL 'inv_id'
+    0x12,0x2b, // LOAD_GLOBAL 'nombre'
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x5a, // LOAD_ATTR 'sel'
+    0x13,0x81,0x56, // LOAD_ATTR 'sel'
     0x55, // LOAD_SUBSCR
-    0x10,0x0a, // LOAD_CONST_STRING ''
-    0x36,0x02, // CALL_METHOD 2
+    0x34,0x01, // CALL_FUNCTION 1
     0xc5, // STORE_FAST 5
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x57, // LOAD_METHOD 'texto'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x46, // LOAD_METHOD 'texto'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x6a, // LOAD_ATTR 'aviso'
+    0x13,0x81,0x68, // LOAD_ATTR 'aviso'
     0x45,0x01, // JUMP_IF_TRUE_OR_POP 1
     0xb5, // LOAD_FAST 5
     0x51, // LOAD_CONST_NONE
-    0x8a, // LOAD_CONST_SMALL_INT 10
+    0x8b, // LOAD_CONST_SMALL_INT 11
     0x2e,0x02, // BUILD_SLICE 2
     0x55, // LOAD_SUBSCR
     0x82, // LOAD_CONST_SMALL_INT 2
-    0x12,0x83,0x15, // LOAD_GLOBAL 'VIEW_H'
+    0x12,0x83,0x45, // LOAD_GLOBAL 'VIEW_H'
     0x94, // LOAD_CONST_SMALL_INT 20
     0xf2, // BINARY_OP 27 __add__
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x6a, // LOAD_ATTR 'aviso'
+    0x13,0x81,0x68, // LOAD_ATTR 'aviso'
     0x44,0x47, // POP_JUMP_IF_FALSE 7
     0x22,0x87,0xff,0xff,0x20, // LOAD_CONST_SMALL_INT 16777120
     0x42,0x45, // JUMP 5
@@ -52575,21 +53941,21 @@ static const byte fun_data_mc2d_Juego_dibujar_hud[437] = {
     0x36,0x04, // CALL_METHOD 4
     0x59, // POP_TOP
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x39, // LOAD_ATTR 'online'
+    0x13,0x81,0x2a, // LOAD_ATTR 'online'
     0x44,0x69, // POP_JUMP_IF_FALSE 41
-    0x12,0x09, // LOAD_GLOBAL 'red'
+    0x12,0x0c, // LOAD_GLOBAL 'red'
     0x44,0x65, // POP_JUMP_IF_FALSE 37
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x57, // LOAD_METHOD 'texto'
-    0x10,0x81,0x79, // LOAD_CONST_STRING '%d jug'
-    0x12,0x83,0x3b, // LOAD_GLOBAL 'len'
-    0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x81,0x7a, // LOAD_METHOD 'jugadores'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x46, // LOAD_METHOD 'texto'
+    0x10,0x81,0x76, // LOAD_CONST_STRING '%d jug'
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
+    0x12,0x0c, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x77, // LOAD_METHOD 'jugadores'
     0x36,0x00, // CALL_METHOD 0
     0x34,0x01, // CALL_FUNCTION 1
     0xf8, // BINARY_OP 33 __mod__
     0x22,0x82,0x16, // LOAD_CONST_SMALL_INT 278
-    0x12,0x83,0x15, // LOAD_GLOBAL 'VIEW_H'
+    0x12,0x83,0x45, // LOAD_GLOBAL 'VIEW_H'
     0x94, // LOAD_CONST_SMALL_INT 20
     0xf2, // BINARY_OP 27 __add__
     0x22,0x82,0xc3,0xb8,0x78, // LOAD_CONST_SMALL_INT 5299320
@@ -52607,7 +53973,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_dibujar_hud = {
     .fun_data = fun_data_mc2d_Juego_dibujar_hud,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 437,
+    .fun_data_len = 421,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -52621,10 +53987,10 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_dibujar_hud = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 245,
+        .qstr_block_name_idx = 243,
         .line_info = fun_data_mc2d_Juego_dibujar_hud + 6,
-        .line_info_top = fun_data_mc2d_Juego_dibujar_hud + 33,
-        .opcodes = fun_data_mc2d_Juego_dibujar_hud + 33,
+        .line_info_top = fun_data_mc2d_Juego_dibujar_hud + 32,
+        .opcodes = fun_data_mc2d_Juego_dibujar_hud + 32,
     },
     #endif
     #endif
@@ -52635,14 +54001,14 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_dibujar_hud = {
 
 // child of mc2d_Juego
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_caja_jugador
-static const byte fun_data_mc2d_Juego_caja_jugador[44] = {
+static const byte fun_data_mc2d_Juego_caja_jugador[50] = {
     0x4b,0x12, // prelude
-    0x81,0x7b,0x83,0x4e,0x75,0x76, // names: caja_jugador, self, x, y
-    0x90,0xe6,0x32, // code info
+    0x81,0x78,0x84,0x05,0x66,0x67, // names: caja_jugador, self, x, y
+    0xa0,0x96,0x32, // code info
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x6f, // LOAD_METHOD 'pant'
+    0x14,0x81,0x6d, // LOAD_METHOD 'pant'
     0xb1, // LOAD_FAST 1
-    0x12,0x83,0x20, // LOAD_GLOBAL 'PW'
+    0x12,0x83,0x4e, // LOAD_GLOBAL 'PW'
     0x82, // LOAD_CONST_SMALL_INT 2
     0xf7, // BINARY_OP 32 __truediv__
     0xf2, // BINARY_OP 27 __add__
@@ -52652,13 +54018,15 @@ static const byte fun_data_mc2d_Juego_caja_jugador[44] = {
     0xc3, // STORE_FAST 3
     0xc4, // STORE_FAST 4
     0xb3, // LOAD_FAST 3
-    0x87, // LOAD_CONST_SMALL_INT 7
+    0x89, // LOAD_CONST_SMALL_INT 9
     0xf3, // BINARY_OP 28 __sub__
     0xb4, // LOAD_FAST 4
-    0x9d, // LOAD_CONST_SMALL_INT 29
+    0x12,0x83,0x10, // LOAD_GLOBAL 'STEVE'
+    0x10,0x81,0x43, // LOAD_CONST_STRING 'alto'
+    0x55, // LOAD_SUBSCR
     0xf3, // BINARY_OP 28 __sub__
     0xb3, // LOAD_FAST 3
-    0x87, // LOAD_CONST_SMALL_INT 7
+    0x89, // LOAD_CONST_SMALL_INT 9
     0xf2, // BINARY_OP 27 __add__
     0xb4, // LOAD_FAST 4
     0x81, // LOAD_CONST_SMALL_INT 1
@@ -52675,7 +54043,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_caja_jugador = {
     .fun_data = fun_data_mc2d_Juego_caja_jugador,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 44,
+    .fun_data_len = 50,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -52689,7 +54057,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_caja_jugador = {
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 251,
+        .qstr_block_name_idx = 248,
         .line_info = fun_data_mc2d_Juego_caja_jugador + 8,
         .line_info_top = fun_data_mc2d_Juego_caja_jugador + 11,
         .opcodes = fun_data_mc2d_Juego_caja_jugador + 11,
@@ -52705,35 +54073,35 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_caja_jugador = {
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_a_bloques
 static const byte fun_data_mc2d_Juego_a_bloques[80] = {
     0xe1,0x04,0x24, // prelude
-    0x81,0x7c,0x83,0x4e,0x83,0x53,0x83,0x54,0x83,0x55,0x83,0x56, // names: a_bloques, self, x0, y0, x1, y1
-    0x90,0xeb,0x2b,0x2b,0x2b,0x2f, // code info
+    0x81,0x79,0x84,0x05,0x84,0x0a,0x84,0x0b,0x84,0x0c,0x84,0x0d, // names: a_bloques, self, x0, y0, x1, y1
+    0xa0,0x9b,0x2b,0x2b,0x2b,0x2f, // code info
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x6d, // LOAD_ATTR 'cam_x'
+    0x13,0x81,0x6b, // LOAD_ATTR 'cam_x'
     0xb1, // LOAD_FAST 1
-    0x12,0x83,0x14, // LOAD_GLOBAL 'T'
+    0x12,0x83,0x44, // LOAD_GLOBAL 'T'
     0xf6, // BINARY_OP 31 __floordiv__
     0xf2, // BINARY_OP 27 __add__
     0xc5, // STORE_FAST 5
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x6d, // LOAD_ATTR 'cam_x'
+    0x13,0x81,0x6b, // LOAD_ATTR 'cam_x'
     0xb3, // LOAD_FAST 3
-    0x12,0x83,0x14, // LOAD_GLOBAL 'T'
+    0x12,0x83,0x44, // LOAD_GLOBAL 'T'
     0xf6, // BINARY_OP 31 __floordiv__
     0xf2, // BINARY_OP 27 __add__
     0xc6, // STORE_FAST 6
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x6e, // LOAD_ATTR 'cam_top'
+    0x13,0x81,0x6c, // LOAD_ATTR 'cam_top'
     0xb2, // LOAD_FAST 2
-    0x12,0x83,0x14, // LOAD_GLOBAL 'T'
+    0x12,0x83,0x44, // LOAD_GLOBAL 'T'
     0xf6, // BINARY_OP 31 __floordiv__
     0xf3, // BINARY_OP 28 __sub__
     0xc7, // STORE_FAST 7
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x6e, // LOAD_ATTR 'cam_top'
+    0x13,0x81,0x6c, // LOAD_ATTR 'cam_top'
     0xb4, // LOAD_FAST 4
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf3, // BINARY_OP 28 __sub__
-    0x12,0x83,0x14, // LOAD_GLOBAL 'T'
+    0x12,0x83,0x44, // LOAD_GLOBAL 'T'
     0xf6, // BINARY_OP 31 __floordiv__
     0xf3, // BINARY_OP 28 __sub__
     0x81, // LOAD_CONST_SMALL_INT 1
@@ -52773,7 +54141,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_a_bloques = {
         .n_pos_args = 5,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 252,
+        .qstr_block_name_idx = 249,
         .line_info = fun_data_mc2d_Juego_a_bloques + 15,
         .line_info_top = fun_data_mc2d_Juego_a_bloques + 21,
         .opcodes = fun_data_mc2d_Juego_a_bloques + 21,
@@ -52786,474 +54154,94 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_a_bloques = {
 #endif
 
 // child of mc2d_Juego
-// frozen bytecode for file mc2d.py, scope mc2d_Juego_pintar
-static const byte fun_data_mc2d_Juego_pintar[1037] = {
-    0xb1,0x20,0x84,0x02, // prelude
-    0x81,0x4b,0x83,0x4e, // names: pintar, self
-    0x90,0xf2,0x34,0x1f,0x35,0x27,0x33,0x26,0x25,0x26,0x26,0x1f,0x42,0x28,0x2b,0x2b,0x2b,0x26,0x46,0x29,0x30,0x28,0x33,0x37,0x5b,0x32,0x39,0x56,0x2e,0x32,0x33,0x22,0x1f,0x25,0x25,0x1f,0x28,0x2b,0x1f,0x22,0x3e,0x5a,0x32,0x1f,0x24,0x1f,0x25,0x2a,0x25,0x3d,0x1f,0x2e,0x57,0x2c,0x32,0x2a,0x33,0x1f,0x2c,0x34,0x33,0x29, // code info
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_dibujar_steve
+static const byte fun_data_mc2d_Juego_dibujar_steve[233] = {
+    0xb3,0x14,0x36, // prelude
+    0x81,0x7a,0x84,0x05,0x66,0x67,0x81,0x50,0x81,0x58,0x84,0x0f,0x83,0x62, // names: dibujar_steve, self, x, y, cara, anda_t, andar, it
+    0xa0,0xa2,0x20,0x32,0x3b,0x3a,0x2e,0x38,0x24,0x3c,0x1f,0x24,0x2a, // code info
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x6f, // LOAD_METHOD 'pant'
-    0xb0, // LOAD_FAST 0
-    0x13,0x75, // LOAD_ATTR 'x'
-    0xb0, // LOAD_FAST 0
-    0x13,0x76, // LOAD_ATTR 'y'
-    0x12,0x83,0x21, // LOAD_GLOBAL 'PH'
+    0x14,0x81,0x6d, // LOAD_METHOD 'pant'
+    0xb1, // LOAD_FAST 1
+    0x12,0x83,0x4e, // LOAD_GLOBAL 'PW'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf7, // BINARY_OP 32 __truediv__
     0xf2, // BINARY_OP 27 __add__
+    0xb2, // LOAD_FAST 2
     0x36,0x02, // CALL_METHOD 2
     0x30,0x02, // UNPACK_SEQUENCE 2
-    0xc1, // STORE_FAST 1
-    0xc2, // STORE_FAST 2
-    0xb1, // LOAD_FAST 1
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x13,0x3c, // LOAD_ATTR 'ANCHO'
-    0x23,0x6b, // LOAD_CONST_OBJ 107
-    0xf4, // BINARY_OP 29 __mul__
-    0xd7, // BINARY_OP 0 __lt__
-    0x43,0x68, // POP_JUMP_IF_TRUE 40
-    0xb1, // LOAD_FAST 1
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x13,0x3c, // LOAD_ATTR 'ANCHO'
-    0x23,0x22, // LOAD_CONST_OBJ 34
-    0xf4, // BINARY_OP 29 __mul__
-    0xd8, // BINARY_OP 1 __gt__
-    0x43,0x5c, // POP_JUMP_IF_TRUE 28
-    0xb2, // LOAD_FAST 2
-    0x12,0x83,0x15, // LOAD_GLOBAL 'VIEW_H'
-    0x23,0x39, // LOAD_CONST_OBJ 57
-    0xf4, // BINARY_OP 29 __mul__
-    0xd7, // BINARY_OP 0 __lt__
-    0x43,0x52, // POP_JUMP_IF_TRUE 18
-    0xb2, // LOAD_FAST 2
-    0x12,0x83,0x21, // LOAD_GLOBAL 'PH'
-    0x12,0x83,0x14, // LOAD_GLOBAL 'T'
-    0xf4, // BINARY_OP 29 __mul__
-    0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x15, // LOAD_GLOBAL 'VIEW_H'
-    0x23,0x6c, // LOAD_CONST_OBJ 108
-    0xf4, // BINARY_OP 29 __mul__
-    0xd8, // BINARY_OP 1 __gt__
-    0x44,0x47, // POP_JUMP_IF_FALSE 7
-    0xb0, // LOAD_FAST 0
-    0x14,0x81,0x06, // LOAD_METHOD 'centrar'
-    0x36,0x00, // CALL_METHOD 0
-    0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x81,0x76, // LOAD_METHOD 'recorte'
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x13,0x3c, // LOAD_ATTR 'ANCHO'
-    0x12,0x83,0x15, // LOAD_GLOBAL 'VIEW_H'
-    0x36,0x04, // CALL_METHOD 4
-    0x59, // POP_TOP
-    0xb0, // LOAD_FAST 0
-    0x13,0x81,0x66, // LOAD_ATTR 'completo'
-    0x44,0x72, // POP_JUMP_IF_FALSE 50
-    0x50, // LOAD_CONST_FALSE
-    0xb0, // LOAD_FAST 0
-    0x18,0x81,0x66, // STORE_ATTR 'completo'
-    0x2b,0x00, // BUILD_LIST 0
-    0xb0, // LOAD_FAST 0
-    0x18,0x81,0x67, // STORE_ATTR 'sucios'
-    0x2b,0x00, // BUILD_LIST 0
-    0xb0, // LOAD_FAST 0
-    0x18,0x81,0x68, // STORE_ATTR 'pintado'
-    0xb0, // LOAD_FAST 0
-    0x14,0x81,0x73, // LOAD_METHOD 'zona'
-    0xb0, // LOAD_FAST 0
-    0x13,0x81,0x6d, // LOAD_ATTR 'cam_x'
-    0xb0, // LOAD_FAST 0
-    0x13,0x81,0x6e, // LOAD_ATTR 'cam_top'
-    0x12,0x83,0x17, // LOAD_GLOBAL 'VH'
-    0xf3, // BINARY_OP 28 __sub__
-    0xb0, // LOAD_FAST 0
-    0x13,0x81,0x6d, // LOAD_ATTR 'cam_x'
-    0x12,0x83,0x16, // LOAD_GLOBAL 'VW'
-    0xf2, // BINARY_OP 27 __add__
-    0xb0, // LOAD_FAST 0
-    0x13,0x81,0x6e, // LOAD_ATTR 'cam_top'
-    0x36,0x04, // CALL_METHOD 4
-    0x59, // POP_TOP
-    0x42,0x6f, // JUMP 47
-    0xb0, // LOAD_FAST 0
-    0x13,0x81,0x68, // LOAD_ATTR 'pintado'
-    0x5f, // GET_ITER_STACK
-    0x4b,0x0c, // FOR_ITER 12
-    0xc3, // STORE_FAST 3
-    0xb0, // LOAD_FAST 0
-    0x14,0x81,0x73, // LOAD_METHOD 'zona'
-    0xb3, // LOAD_FAST 3
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x37,0x01, // CALL_METHOD_VAR_KW 1
-    0x59, // POP_TOP
-    0x42,0x32, // JUMP -14
-    0xb0, // LOAD_FAST 0
-    0x13,0x81,0x67, // LOAD_ATTR 'sucios'
-    0x5f, // GET_ITER_STACK
-    0x4b,0x0f, // FOR_ITER 15
-    0x30,0x02, // UNPACK_SEQUENCE 2
-    0xc4, // STORE_FAST 4
-    0xc5, // STORE_FAST 5
-    0xb0, // LOAD_FAST 0
-    0x14,0x81,0x72, // LOAD_METHOD 'bloque'
-    0xb4, // LOAD_FAST 4
-    0xb5, // LOAD_FAST 5
-    0x36,0x02, // CALL_METHOD 2
-    0x59, // POP_TOP
-    0x42,0x2f, // JUMP -17
-    0x2b,0x00, // BUILD_LIST 0
-    0xb0, // LOAD_FAST 0
-    0x18,0x81,0x67, // STORE_ATTR 'sucios'
-    0x2b,0x00, // BUILD_LIST 0
-    0xb0, // LOAD_FAST 0
-    0x18,0x81,0x68, // STORE_ATTR 'pintado'
-    0xb0, // LOAD_FAST 0
-    0x13,0x81,0x60, // LOAD_ATTR 'mobs'
-    0x5f, // GET_ITER_STACK
-    0x4b,0x9f,0x01, // FOR_ITER 159
-    0xc6, // STORE_FAST 6
-    0xb6, // LOAD_FAST 6
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0x55, // LOAD_SUBSCR
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0xd9, // BINARY_OP 2 __eq__
-    0x44,0x45, // POP_JUMP_IF_FALSE 5
-    0x10,0x81,0x7d, // LOAD_CONST_STRING 'cerdo'
-    0x42,0x43, // JUMP 3
-    0x10,0x81,0x7e, // LOAD_CONST_STRING 'zombi'
     0xc7, // STORE_FAST 7
-    0xb6, // LOAD_FAST 6
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0x55, // LOAD_SUBSCR
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0xd9, // BINARY_OP 2 __eq__
-    0x44,0xc5,0x80, // POP_JUMP_IF_FALSE 69
-    0xb0, // LOAD_FAST 0
-    0x14,0x81,0x6f, // LOAD_METHOD 'pant'
-    0xb6, // LOAD_FAST 6
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x55, // LOAD_SUBSCR
-    0xb6, // LOAD_FAST 6
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0x55, // LOAD_SUBSCR
-    0x23,0x36, // LOAD_CONST_OBJ 54
-    0xf2, // BINARY_OP 27 __add__
-    0x36,0x02, // CALL_METHOD 2
-    0x30,0x02, // UNPACK_SEQUENCE 2
     0xc8, // STORE_FAST 8
-    0xc9, // STORE_FAST 9
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x6a, // LOAD_METHOD 'dibujar'
-    0x12,0x66, // LOAD_GLOBAL 'spr'
-    0xb7, // LOAD_FAST 7
-    0x34,0x01, // CALL_FUNCTION 1
-    0xb8, // LOAD_FAST 8
-    0x88, // LOAD_CONST_SMALL_INT 8
-    0xf3, // BINARY_OP 28 __sub__
-    0xb9, // LOAD_FAST 9
+    0xb5, // LOAD_FAST 5
+    0x44,0x56, // POP_JUMP_IF_FALSE 22
     0x81, // LOAD_CONST_SMALL_INT 1
-    0xb6, // LOAD_FAST 6
-    0x86, // LOAD_CONST_SMALL_INT 6
-    0x55, // LOAD_SUBSCR
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0xd7, // BINARY_OP 0 __lt__
-    0x36,0x05, // CALL_METHOD 5
-    0x59, // POP_TOP
-    0xb0, // LOAD_FAST 0
-    0x13,0x81,0x68, // LOAD_ATTR 'pintado'
-    0x14,0x3b, // LOAD_METHOD 'append'
-    0xb0, // LOAD_FAST 0
-    0x14,0x81,0x7c, // LOAD_METHOD 'a_bloques'
-    0xb8, // LOAD_FAST 8
-    0x88, // LOAD_CONST_SMALL_INT 8
-    0xf3, // BINARY_OP 28 __sub__
-    0xb9, // LOAD_FAST 9
-    0xb8, // LOAD_FAST 8
-    0x88, // LOAD_CONST_SMALL_INT 8
-    0xf2, // BINARY_OP 27 __add__
-    0xb9, // LOAD_FAST 9
-    0x8c, // LOAD_CONST_SMALL_INT 12
-    0xf2, // BINARY_OP 27 __add__
-    0x36,0x04, // CALL_METHOD 4
-    0x36,0x01, // CALL_METHOD 1
-    0x59, // POP_TOP
-    0x42,0x7e, // JUMP 62
-    0xb0, // LOAD_FAST 0
-    0x14,0x81,0x7b, // LOAD_METHOD 'caja_jugador'
-    0xb6, // LOAD_FAST 6
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x55, // LOAD_SUBSCR
-    0xb6, // LOAD_FAST 6
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0x55, // LOAD_SUBSCR
-    0x36,0x02, // CALL_METHOD 2
-    0x30,0x04, // UNPACK_SEQUENCE 4
-    0xca, // STORE_FAST 10
-    0xcb, // STORE_FAST 11
-    0xcc, // STORE_FAST 12
-    0xcd, // STORE_FAST 13
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x6a, // LOAD_METHOD 'dibujar'
-    0x12,0x66, // LOAD_GLOBAL 'spr'
-    0xb7, // LOAD_FAST 7
-    0x34,0x01, // CALL_FUNCTION 1
-    0xba, // LOAD_FAST 10
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0xf2, // BINARY_OP 27 __add__
-    0xbb, // LOAD_FAST 11
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0xf2, // BINARY_OP 27 __add__
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0xb6, // LOAD_FAST 6
-    0x86, // LOAD_CONST_SMALL_INT 6
-    0x55, // LOAD_SUBSCR
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0xd7, // BINARY_OP 0 __lt__
-    0x36,0x05, // CALL_METHOD 5
-    0x59, // POP_TOP
-    0xb0, // LOAD_FAST 0
-    0x13,0x81,0x68, // LOAD_ATTR 'pintado'
-    0x14,0x3b, // LOAD_METHOD 'append'
-    0xb0, // LOAD_FAST 0
-    0x14,0x81,0x7c, // LOAD_METHOD 'a_bloques'
-    0xba, // LOAD_FAST 10
-    0xbb, // LOAD_FAST 11
-    0xbc, // LOAD_FAST 12
-    0xbd, // LOAD_FAST 13
-    0x36,0x04, // CALL_METHOD 4
-    0x36,0x01, // CALL_METHOD 1
-    0x59, // POP_TOP
-    0x42,0xde,0x7e, // JUMP -162
-    0xb0, // LOAD_FAST 0
-    0x13,0x81,0x46, // LOAD_ATTR 'otros'
-    0x14,0x81,0x7f, // LOAD_METHOD 'values'
-    0x36,0x00, // CALL_METHOD 0
-    0x5f, // GET_ITER_STACK
-    0x4b,0xdc,0x01, // FOR_ITER 220
-    0xce, // STORE_FAST 14
-    0xb0, // LOAD_FAST 0
-    0x14,0x81,0x7b, // LOAD_METHOD 'caja_jugador'
-    0xbe, // LOAD_FAST 14
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0x55, // LOAD_SUBSCR
-    0xbe, // LOAD_FAST 14
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x55, // LOAD_SUBSCR
-    0x36,0x02, // CALL_METHOD 2
-    0x30,0x04, // UNPACK_SEQUENCE 4
-    0xca, // STORE_FAST 10
-    0xcb, // STORE_FAST 11
-    0xcc, // STORE_FAST 12
-    0xcd, // STORE_FAST 13
-    0xbc, // LOAD_FAST 12
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0xd7, // BINARY_OP 0 __lt__
-    0x43,0x4e, // POP_JUMP_IF_TRUE 14
-    0xba, // LOAD_FAST 10
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x13,0x3c, // LOAD_ATTR 'ANCHO'
-    0xd8, // BINARY_OP 1 __gt__
-    0x43,0x45, // POP_JUMP_IF_TRUE 5
-    0xbe, // LOAD_FAST 14
-    0x86, // LOAD_CONST_SMALL_INT 6
-    0x55, // LOAD_SUBSCR
-    0x44,0x42, // POP_JUMP_IF_FALSE 2
-    0x42,0x15, // JUMP -43
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x6a, // LOAD_METHOD 'dibujar'
-    0x12,0x66, // LOAD_GLOBAL 'spr'
-    0xbe, // LOAD_FAST 14
-    0x83, // LOAD_CONST_SMALL_INT 3
-    0x55, // LOAD_SUBSCR
-    0x44,0x44, // POP_JUMP_IF_FALSE 4
-    0x23,0x6d, // LOAD_CONST_OBJ 109
-    0x42,0x43, // JUMP 3
-    0x10,0x82,0x00, // LOAD_CONST_STRING 'jugador'
-    0x34,0x01, // CALL_FUNCTION 1
-    0xba, // LOAD_FAST 10
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0xf2, // BINARY_OP 27 __add__
-    0xbb, // LOAD_FAST 11
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0xf2, // BINARY_OP 27 __add__
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0xbe, // LOAD_FAST 14
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0x55, // LOAD_SUBSCR
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0xd7, // BINARY_OP 0 __lt__
-    0x36,0x05, // CALL_METHOD 5
-    0x59, // POP_TOP
-    0xbe, // LOAD_FAST 14
-    0x84, // LOAD_CONST_SMALL_INT 4
-    0x55, // LOAD_SUBSCR
-    0x44,0x67, // POP_JUMP_IF_FALSE 39
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x6a, // LOAD_METHOD 'dibujar'
-    0x12,0x66, // LOAD_GLOBAL 'spr'
-    0x12,0x83,0x01, // LOAD_GLOBAL 'TEX'
-    0xbe, // LOAD_FAST 14
-    0x84, // LOAD_CONST_SMALL_INT 4
-    0x55, // LOAD_SUBSCR
-    0x55, // LOAD_SUBSCR
-    0x34,0x01, // CALL_FUNCTION 1
-    0xbe, // LOAD_FAST 14
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0x55, // LOAD_SUBSCR
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0xd8, // BINARY_OP 1 __gt__
-    0x44,0x45, // POP_JUMP_IF_FALSE 5
-    0xba, // LOAD_FAST 10
-    0x88, // LOAD_CONST_SMALL_INT 8
-    0xf2, // BINARY_OP 27 __add__
-    0x42,0x43, // JUMP 3
-    0xba, // LOAD_FAST 10
-    0x88, // LOAD_CONST_SMALL_INT 8
-    0xf3, // BINARY_OP 28 __sub__
-    0xbb, // LOAD_FAST 11
-    0x8c, // LOAD_CONST_SMALL_INT 12
-    0xf2, // BINARY_OP 27 __add__
-    0x23,0x36, // LOAD_CONST_OBJ 54
-    0x36,0x04, // CALL_METHOD 4
-    0x59, // POP_TOP
-    0x12,0x83,0x3b, // LOAD_GLOBAL 'len'
-    0xbe, // LOAD_FAST 14
-    0x85, // LOAD_CONST_SMALL_INT 5
-    0x55, // LOAD_SUBSCR
-    0x34,0x01, // CALL_FUNCTION 1
-    0x86, // LOAD_CONST_SMALL_INT 6
-    0xf4, // BINARY_OP 29 __mul__
-    0xcf, // STORE_FAST 15
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x57, // LOAD_METHOD 'texto'
-    0xbe, // LOAD_FAST 14
-    0x85, // LOAD_CONST_SMALL_INT 5
-    0x55, // LOAD_SUBSCR
-    0xba, // LOAD_FAST 10
-    0xbc, // LOAD_FAST 12
-    0xf2, // BINARY_OP 27 __add__
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0xf6, // BINARY_OP 31 __floordiv__
-    0xbf, // LOAD_FAST 15
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0xf6, // BINARY_OP 31 __floordiv__
-    0xf3, // BINARY_OP 28 __sub__
-    0xbb, // LOAD_FAST 11
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
+    0xb4, // LOAD_FAST 4
     0x8a, // LOAD_CONST_SMALL_INT 10
-    0xf3, // BINARY_OP 28 __sub__
-    0x22,0x87,0xff,0xff,0x7f, // LOAD_CONST_SMALL_INT 16777215
-    0x22,0x81,0x80,0xc0,0x20, // LOAD_CONST_SMALL_INT 2105376
-    0x36,0x05, // CALL_METHOD 5
-    0x59, // POP_TOP
-    0xb0, // LOAD_FAST 0
-    0x13,0x81,0x68, // LOAD_ATTR 'pintado'
-    0x14,0x3b, // LOAD_METHOD 'append'
-    0xb0, // LOAD_FAST 0
-    0x14,0x81,0x7c, // LOAD_METHOD 'a_bloques'
-    0x12,0x83,0x37, // LOAD_GLOBAL 'min'
-    0xba, // LOAD_FAST 10
-    0x88, // LOAD_CONST_SMALL_INT 8
-    0xf3, // BINARY_OP 28 __sub__
-    0xba, // LOAD_FAST 10
-    0xbc, // LOAD_FAST 12
-    0xf2, // BINARY_OP 27 __add__
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0xf6, // BINARY_OP 31 __floordiv__
-    0xbf, // LOAD_FAST 15
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0xf6, // BINARY_OP 31 __floordiv__
-    0xf3, // BINARY_OP 28 __sub__
-    0x34,0x02, // CALL_FUNCTION 2
-    0xbb, // LOAD_FAST 11
-    0x8a, // LOAD_CONST_SMALL_INT 10
-    0xf3, // BINARY_OP 28 __sub__
-    0x12,0x83,0x38, // LOAD_GLOBAL 'max'
-    0xbc, // LOAD_FAST 12
-    0x88, // LOAD_CONST_SMALL_INT 8
-    0xf2, // BINARY_OP 27 __add__
-    0xba, // LOAD_FAST 10
-    0xbc, // LOAD_FAST 12
-    0xf2, // BINARY_OP 27 __add__
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0xf6, // BINARY_OP 31 __floordiv__
-    0xbf, // LOAD_FAST 15
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0xf6, // BINARY_OP 31 __floordiv__
-    0xf2, // BINARY_OP 27 __add__
-    0x34,0x02, // CALL_FUNCTION 2
-    0xbd, // LOAD_FAST 13
-    0x36,0x04, // CALL_METHOD 4
-    0x36,0x01, // CALL_METHOD 1
-    0x59, // POP_TOP
-    0x42,0xa1,0x7e, // JUMP -223
-    0xb0, // LOAD_FAST 0
-    0x14,0x81,0x7b, // LOAD_METHOD 'caja_jugador'
-    0xb0, // LOAD_FAST 0
-    0x13,0x75, // LOAD_ATTR 'x'
-    0xb0, // LOAD_FAST 0
-    0x13,0x76, // LOAD_ATTR 'y'
-    0x36,0x02, // CALL_METHOD 2
-    0x30,0x04, // UNPACK_SEQUENCE 4
-    0xca, // STORE_FAST 10
-    0xcb, // STORE_FAST 11
-    0xcc, // STORE_FAST 12
-    0xcd, // STORE_FAST 13
-    0x12,0x83,0x3f, // LOAD_GLOBAL 'abs'
-    0xb0, // LOAD_FAST 0
-    0x13,0x81,0x52, // LOAD_ATTR 'vx'
-    0x34,0x01, // CALL_FUNCTION 1
-    0x23,0x23, // LOAD_CONST_OBJ 35
-    0xd8, // BINARY_OP 1 __gt__
-    0x46,0x13, // JUMP_IF_FALSE_OR_POP 19
-    0xb0, // LOAD_FAST 0
-    0x13,0x81,0x54, // LOAD_ATTR 'suelo'
-    0x46,0x0d, // JUMP_IF_FALSE_OR_POP 13
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
-    0xb0, // LOAD_FAST 0
-    0x13,0x81,0x5c, // LOAD_ATTR 'anda_t'
-    0x86, // LOAD_CONST_SMALL_INT 6
     0xf4, // BINARY_OP 29 __mul__
     0x34,0x01, // CALL_FUNCTION 1
-    0x82, // LOAD_CONST_SMALL_INT 2
+    0x12,0x83,0x10, // LOAD_GLOBAL 'STEVE'
+    0x10,0x81,0x3f, // LOAD_CONST_STRING 'marcos'
+    0x55, // LOAD_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf3, // BINARY_OP 28 __sub__
     0xf8, // BINARY_OP 33 __mod__
-    0x26,0x10, // STORE_FAST_N 16
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x6a, // LOAD_METHOD 'dibujar'
-    0x12,0x66, // LOAD_GLOBAL 'spr'
-    0x24,0x10, // LOAD_FAST_N 16
-    0x44,0x44, // POP_JUMP_IF_FALSE 4
-    0x23,0x6d, // LOAD_CONST_OBJ 109
+    0xf2, // BINARY_OP 27 __add__
+    0x42,0x41, // JUMP 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xc9, // STORE_FAST 9
+    0x12,0x83,0x10, // LOAD_GLOBAL 'STEVE'
+    0x10,0x81,0x41, // LOAD_CONST_STRING 'ancho'
+    0x55, // LOAD_SUBSCR
+    0x12,0x83,0x10, // LOAD_GLOBAL 'STEVE'
+    0x10,0x81,0x43, // LOAD_CONST_STRING 'alto'
+    0x55, // LOAD_SUBSCR
+    0x12,0x83,0x10, // LOAD_GLOBAL 'STEVE'
+    0x10,0x81,0x7b, // LOAD_CONST_STRING 'base_x'
+    0x55, // LOAD_SUBSCR
+    0x5b, // ROT_THREE
+    0x5a, // ROT_TWO
+    0xca, // STORE_FAST 10
+    0xcb, // STORE_FAST 11
+    0xcc, // STORE_FAST 12
+    0xb7, // LOAD_FAST 7
+    0xb3, // LOAD_FAST 3
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x43, // POP_JUMP_IF_FALSE 3
+    0xbc, // LOAD_FAST 12
     0x42,0x43, // JUMP 3
-    0x10,0x82,0x00, // LOAD_CONST_STRING 'jugador'
-    0x34,0x01, // CALL_FUNCTION 1
     0xba, // LOAD_FAST 10
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0xf2, // BINARY_OP 27 __add__
+    0xbc, // LOAD_FAST 12
+    0xf3, // BINARY_OP 28 __sub__
+    0xf3, // BINARY_OP 28 __sub__
+    0xcd, // STORE_FAST 13
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x5f, // LOAD_METHOD 'dibujar'
+    0x12,0x5b, // LOAD_GLOBAL 'spr'
+    0x23,0x74, // LOAD_CONST_OBJ 116
+    0xb9, // LOAD_FAST 9
+    0xf8, // BINARY_OP 33 __mod__
+    0x34,0x01, // CALL_FUNCTION 1
+    0xbd, // LOAD_FAST 13
+    0xb8, // LOAD_FAST 8
     0xbb, // LOAD_FAST 11
+    0xf3, // BINARY_OP 28 __sub__
     0x81, // LOAD_CONST_SMALL_INT 1
-    0xf2, // BINARY_OP 27 __add__
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0xb0, // LOAD_FAST 0
-    0x13,0x81,0x55, // LOAD_ATTR 'cara'
+    0xb3, // LOAD_FAST 3
     0x80, // LOAD_CONST_SMALL_INT 0
     0xd7, // BINARY_OP 0 __lt__
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x83,0x2b, // LOAD_GLOBAL 'inv_id'
+    0xb6, // LOAD_FAST 6
+    0x44,0xc9,0x80, // POP_JUMP_IF_FALSE 73
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x5a, // LOAD_ATTR 'sel'
-    0x55, // LOAD_SUBSCR
-    0x26,0x11, // STORE_FAST_N 17
-    0x24,0x11, // LOAD_FAST_N 17
-    0x44,0xca,0x80, // POP_JUMP_IF_FALSE 74
-    0xb0, // LOAD_FAST 0
-    0x13,0x81,0x5e, // LOAD_ATTR 'golpe_t'
+    0x13,0x81,0x5a, // LOAD_ATTR 'golpe_t'
     0x80, // LOAD_CONST_SMALL_INT 0
     0xd8, // BINARY_OP 1 __gt__
     0x44,0x52, // POP_JUMP_IF_FALSE 18
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x5e, // LOAD_ATTR 'golpe_t'
+    0x13,0x81,0x5a, // LOAD_ATTR 'golpe_t'
     0x94, // LOAD_CONST_SMALL_INT 20
     0xf4, // BINARY_OP 29 __mul__
     0x34,0x01, // CALL_FUNCTION 1
@@ -53263,97 +54251,602 @@ static const byte fun_data_mc2d_Juego_pintar[1037] = {
     0x82, // LOAD_CONST_SMALL_INT 2
     0x42,0x41, // JUMP 1
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x26,0x12, // STORE_FAST_N 18
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x6a, // LOAD_METHOD 'dibujar'
-    0x12,0x66, // LOAD_GLOBAL 'spr'
-    0x12,0x83,0x01, // LOAD_GLOBAL 'TEX'
-    0x24,0x11, // LOAD_FAST_N 17
+    0xce, // STORE_FAST 14
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x5f, // LOAD_METHOD 'dibujar'
+    0x12,0x5d, // LOAD_GLOBAL 'tex'
+    0x12,0x18, // LOAD_GLOBAL 'ficha'
+    0xb6, // LOAD_FAST 6
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x82,0x7c, // LOAD_GLOBAL 'F_INV'
     0x55, // LOAD_SUBSCR
     0x34,0x01, // CALL_FUNCTION 1
-    0xb0, // LOAD_FAST 0
-    0x13,0x81,0x55, // LOAD_ATTR 'cara'
+    0xb3, // LOAD_FAST 3
     0x80, // LOAD_CONST_SMALL_INT 0
     0xd8, // BINARY_OP 1 __gt__
-    0x44,0x48, // POP_JUMP_IF_FALSE 8
-    0xba, // LOAD_FAST 10
-    0x88, // LOAD_CONST_SMALL_INT 8
+    0x44,0x47, // POP_JUMP_IF_FALSE 7
+    0xb7, // LOAD_FAST 7
+    0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
-    0x24,0x12, // LOAD_FAST_N 18
+    0xbe, // LOAD_FAST 14
     0xf2, // BINARY_OP 27 __add__
-    0x42,0x46, // JUMP 6
-    0xba, // LOAD_FAST 10
-    0x88, // LOAD_CONST_SMALL_INT 8
+    0x42,0x45, // JUMP 5
+    0xb7, // LOAD_FAST 7
+    0x8d, // LOAD_CONST_SMALL_INT 13
     0xf3, // BINARY_OP 28 __sub__
-    0x24,0x12, // LOAD_FAST_N 18
+    0xbe, // LOAD_FAST 14
     0xf3, // BINARY_OP 28 __sub__
+    0xb8, // LOAD_FAST 8
     0xbb, // LOAD_FAST 11
-    0x8c, // LOAD_CONST_SMALL_INT 12
+    0xf3, // BINARY_OP 28 __sub__
+    0x8b, // LOAD_CONST_SMALL_INT 11
     0xf2, // BINARY_OP 27 __add__
-    0x23,0x36, // LOAD_CONST_OBJ 54
+    0x23,0x2e, // LOAD_CONST_OBJ 46
     0x36,0x04, // CALL_METHOD 4
     0x59, // POP_TOP
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x68, // LOAD_ATTR 'pintado'
-    0x14,0x3b, // LOAD_METHOD 'append'
-    0xb0, // LOAD_FAST 0
-    0x14,0x81,0x7c, // LOAD_METHOD 'a_bloques'
-    0xba, // LOAD_FAST 10
-    0x8a, // LOAD_CONST_SMALL_INT 10
+    0x14,0x81,0x79, // LOAD_METHOD 'a_bloques'
+    0xb7, // LOAD_FAST 7
+    0x8e, // LOAD_CONST_SMALL_INT 14
     0xf3, // BINARY_OP 28 __sub__
+    0xb8, // LOAD_FAST 8
     0xbb, // LOAD_FAST 11
-    0xbc, // LOAD_FAST 12
-    0x8a, // LOAD_CONST_SMALL_INT 10
+    0xf3, // BINARY_OP 28 __sub__
+    0xb7, // LOAD_FAST 7
+    0x8e, // LOAD_CONST_SMALL_INT 14
     0xf2, // BINARY_OP 27 __add__
-    0xbd, // LOAD_FAST 13
+    0xb8, // LOAD_FAST 8
+    0x36,0x04, // CALL_METHOD 4
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_dibujar_steve = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_dibujar_steve,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 233,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 23,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 7,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 250,
+        .line_info = fun_data_mc2d_Juego_dibujar_steve + 17,
+        .line_info_top = fun_data_mc2d_Juego_dibujar_steve + 30,
+        .opcodes = fun_data_mc2d_Juego_dibujar_steve + 30,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_dibujar_steve fun_data_mc2d_Juego_dibujar_steve[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_pintar
+static const byte fun_data_mc2d_Juego_pintar[966] = {
+    0xc1,0x20,0x80,0x02, // prelude
+    0x81,0x3c,0x84,0x05, // names: pintar, self
+    0xa0,0xaf,0x34,0x1f,0x35,0x26,0x33,0x26,0x25,0x26,0x26,0x1f,0x42,0x28,0x2b,0x2b,0x2b,0x26,0x46,0x28,0x2b,0x2a,0x22,0x38,0x31,0x23,0x26,0x1f,0x28,0x2c,0x3d,0x1f,0x2e,0x28,0x30,0x3f,0x5e,0x2e,0x35,0x34,0x22,0x1f,0x22,0x2c,0x1f,0x25,0x1f,0x4f,0x34,0x1f,0x48,0x2c,0x32,0x2a,0x33,0x1f,0x2b,0x34,0x33,0x29, // code info
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x6d, // LOAD_METHOD 'pant'
+    0xb0, // LOAD_FAST 0
+    0x13,0x66, // LOAD_ATTR 'x'
+    0xb0, // LOAD_FAST 0
+    0x13,0x67, // LOAD_ATTR 'y'
+    0x12,0x83,0x4f, // LOAD_GLOBAL 'PH'
+    0xf2, // BINARY_OP 27 __add__
+    0x36,0x02, // CALL_METHOD 2
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc1, // STORE_FAST 1
+    0xc2, // STORE_FAST 2
+    0xb1, // LOAD_FAST 1
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x13,0x10, // LOAD_ATTR 'ANCHO'
+    0x23,0x75, // LOAD_CONST_OBJ 117
+    0xf4, // BINARY_OP 29 __mul__
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x68, // POP_JUMP_IF_TRUE 40
+    0xb1, // LOAD_FAST 1
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x13,0x10, // LOAD_ATTR 'ANCHO'
+    0x23,0x13, // LOAD_CONST_OBJ 19
+    0xf4, // BINARY_OP 29 __mul__
+    0xd8, // BINARY_OP 1 __gt__
+    0x43,0x5c, // POP_JUMP_IF_TRUE 28
+    0xb2, // LOAD_FAST 2
+    0x12,0x83,0x45, // LOAD_GLOBAL 'VIEW_H'
+    0x23,0x30, // LOAD_CONST_OBJ 48
+    0xf4, // BINARY_OP 29 __mul__
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x52, // POP_JUMP_IF_TRUE 18
+    0xb2, // LOAD_FAST 2
+    0x12,0x83,0x4f, // LOAD_GLOBAL 'PH'
+    0x12,0x83,0x44, // LOAD_GLOBAL 'T'
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x45, // LOAD_GLOBAL 'VIEW_H'
+    0x23,0x76, // LOAD_CONST_OBJ 118
+    0xf4, // BINARY_OP 29 __mul__
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x46, // POP_JUMP_IF_FALSE 6
+    0xb0, // LOAD_FAST 0
+    0x14,0x78, // LOAD_METHOD 'centrar'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x74, // LOAD_METHOD 'recorte'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x13,0x10, // LOAD_ATTR 'ANCHO'
+    0x12,0x83,0x45, // LOAD_GLOBAL 'VIEW_H'
+    0x36,0x04, // CALL_METHOD 4
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x64, // LOAD_ATTR 'completo'
+    0x44,0x72, // POP_JUMP_IF_FALSE 50
+    0x50, // LOAD_CONST_FALSE
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x64, // STORE_ATTR 'completo'
+    0x2b,0x00, // BUILD_LIST 0
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x65, // STORE_ATTR 'sucios'
+    0x2b,0x00, // BUILD_LIST 0
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x66, // STORE_ATTR 'pintado'
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x71, // LOAD_METHOD 'zona'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x6b, // LOAD_ATTR 'cam_x'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x6c, // LOAD_ATTR 'cam_top'
+    0x12,0x83,0x47, // LOAD_GLOBAL 'VH'
+    0xf3, // BINARY_OP 28 __sub__
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x6b, // LOAD_ATTR 'cam_x'
+    0x12,0x83,0x46, // LOAD_GLOBAL 'VW'
+    0xf2, // BINARY_OP 27 __add__
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x6c, // LOAD_ATTR 'cam_top'
+    0x36,0x04, // CALL_METHOD 4
+    0x59, // POP_TOP
+    0x42,0x6f, // JUMP 47
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x66, // LOAD_ATTR 'pintado'
+    0x5f, // GET_ITER_STACK
+    0x4b,0x0c, // FOR_ITER 12
+    0xc3, // STORE_FAST 3
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x71, // LOAD_METHOD 'zona'
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x37,0x01, // CALL_METHOD_VAR_KW 1
+    0x59, // POP_TOP
+    0x42,0x32, // JUMP -14
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x65, // LOAD_ATTR 'sucios'
+    0x5f, // GET_ITER_STACK
+    0x4b,0x0f, // FOR_ITER 15
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc4, // STORE_FAST 4
+    0xc5, // STORE_FAST 5
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x70, // LOAD_METHOD 'bloque'
+    0xb4, // LOAD_FAST 4
+    0xb5, // LOAD_FAST 5
+    0x36,0x02, // CALL_METHOD 2
+    0x59, // POP_TOP
+    0x42,0x2f, // JUMP -17
+    0x2b,0x00, // BUILD_LIST 0
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x65, // STORE_ATTR 'sucios'
+    0x2b,0x00, // BUILD_LIST 0
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x66, // STORE_ATTR 'pintado'
+    0xb0, // LOAD_FAST 0
+    0x13,0x27, // LOAD_ATTR 'mobs'
+    0x5f, // GET_ITER_STACK
+    0x4b,0xc7,0x01, // FOR_ITER 199
+    0xc6, // STORE_FAST 6
+    0x12,0x83,0x0e, // LOAD_GLOBAL 'MOBS'
+    0x14,0x19, // LOAD_METHOD 'get'
+    0xb6, // LOAD_FAST 6
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0x36,0x01, // CALL_METHOD 1
+    0xc7, // STORE_FAST 7
+    0xb7, // LOAD_FAST 7
+    0x44,0x47, // POP_JUMP_IF_FALSE 7
+    0xb7, // LOAD_FAST 7
+    0x10,0x81,0x3f, // LOAD_CONST_STRING 'marcos'
+    0x55, // LOAD_SUBSCR
+    0x43,0x42, // POP_JUMP_IF_TRUE 2
+    0x42,0x25, // JUMP -27
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x6d, // LOAD_METHOD 'pant'
+    0xb6, // LOAD_FAST 6
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0xb7, // LOAD_FAST 7
+    0x10,0x81,0x42, // LOAD_CONST_STRING 'w'
+    0x55, // LOAD_SUBSCR
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf7, // BINARY_OP 32 __truediv__
+    0xf2, // BINARY_OP 27 __add__
+    0xb6, // LOAD_FAST 6
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0x36,0x02, // CALL_METHOD 2
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc8, // STORE_FAST 8
+    0xc9, // STORE_FAST 9
+    0xb8, // LOAD_FAST 8
+    0x22,0x58, // LOAD_CONST_SMALL_INT -40
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x4b, // POP_JUMP_IF_TRUE 11
+    0xb8, // LOAD_FAST 8
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x13,0x10, // LOAD_ATTR 'ANCHO'
+    0xa8, // LOAD_CONST_SMALL_INT 40
+    0xf2, // BINARY_OP 27 __add__
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x43, // POP_JUMP_IF_FALSE 3
+    0x42,0xb9,0x7f, // JUMP -71
+    0xb7, // LOAD_FAST 7
+    0x10,0x81,0x3f, // LOAD_CONST_STRING 'marcos'
+    0x55, // LOAD_SUBSCR
+    0xca, // STORE_FAST 10
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
+    0xba, // LOAD_FAST 10
+    0x34,0x01, // CALL_FUNCTION 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x5b, // POP_JUMP_IF_FALSE 27
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
+    0xb0, // LOAD_FAST 0
+    0x13,0x6a, // LOAD_ATTR 'tiempo'
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0xf4, // BINARY_OP 29 __mul__
+    0xb6, // LOAD_FAST 6
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0x55, // LOAD_SUBSCR
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
+    0xba, // LOAD_FAST 10
+    0x34,0x01, // CALL_FUNCTION 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf3, // BINARY_OP 28 __sub__
+    0xf8, // BINARY_OP 33 __mod__
+    0xf2, // BINARY_OP 27 __add__
+    0x42,0x41, // JUMP 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xcb, // STORE_FAST 11
+    0x12,0x5b, // LOAD_GLOBAL 'spr'
+    0x10,0x81,0x40, // LOAD_CONST_STRING 'mob/%d.png'
+    0xba, // LOAD_FAST 10
+    0xbb, // LOAD_FAST 11
+    0x55, // LOAD_SUBSCR
+    0xf8, // BINARY_OP 33 __mod__
+    0x34,0x01, // CALL_FUNCTION 1
+    0xcc, // STORE_FAST 12
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x5f, // LOAD_METHOD 'dibujar'
+    0xbc, // LOAD_FAST 12
+    0xb8, // LOAD_FAST 8
+    0xbc, // LOAD_FAST 12
+    0x13,0x81,0x41, // LOAD_ATTR 'ancho'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf6, // BINARY_OP 31 __floordiv__
+    0xf3, // BINARY_OP 28 __sub__
+    0xb9, // LOAD_FAST 9
+    0xbc, // LOAD_FAST 12
+    0x13,0x81,0x43, // LOAD_ATTR 'alto'
+    0xf3, // BINARY_OP 28 __sub__
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xb6, // LOAD_FAST 6
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0x55, // LOAD_SUBSCR
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd7, // BINARY_OP 0 __lt__
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x66, // LOAD_ATTR 'pintado'
+    0x14,0x59, // LOAD_METHOD 'append'
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x79, // LOAD_METHOD 'a_bloques'
+    0xb8, // LOAD_FAST 8
+    0xbc, // LOAD_FAST 12
+    0x13,0x81,0x41, // LOAD_ATTR 'ancho'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf6, // BINARY_OP 31 __floordiv__
+    0xf3, // BINARY_OP 28 __sub__
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf3, // BINARY_OP 28 __sub__
+    0xb9, // LOAD_FAST 9
+    0xbc, // LOAD_FAST 12
+    0x13,0x81,0x43, // LOAD_ATTR 'alto'
+    0xf3, // BINARY_OP 28 __sub__
+    0xb8, // LOAD_FAST 8
+    0xbc, // LOAD_FAST 12
+    0x13,0x81,0x41, // LOAD_ATTR 'ancho'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf6, // BINARY_OP 31 __floordiv__
+    0xf2, // BINARY_OP 27 __add__
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf2, // BINARY_OP 27 __add__
+    0xb9, // LOAD_FAST 9
     0x36,0x04, // CALL_METHOD 4
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
+    0x42,0xb6,0x7e, // JUMP -202
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x74, // LOAD_METHOD 'objetivo'
-    0x36,0x00, // CALL_METHOD 0
+    0x13,0x81,0x5e, // LOAD_ATTR 'flechas'
+    0x5f, // GET_ITER_STACK
+    0x4b,0x4e, // FOR_ITER 78
+    0xcd, // STORE_FAST 13
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x6d, // LOAD_METHOD 'pant'
+    0xbd, // LOAD_FAST 13
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0xbd, // LOAD_FAST 13
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0x36,0x02, // CALL_METHOD 2
     0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc8, // STORE_FAST 8
+    0xc9, // STORE_FAST 9
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x5f, // LOAD_METHOD 'dibujar'
+    0x12,0x5d, // LOAD_GLOBAL 'tex'
+    0x12,0x18, // LOAD_GLOBAL 'ficha'
+    0x12,0x83,0x40, // LOAD_GLOBAL 'FLECHA'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x82,0x7c, // LOAD_GLOBAL 'F_INV'
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0xb8, // LOAD_FAST 8
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0xf3, // BINARY_OP 28 __sub__
+    0xb9, // LOAD_FAST 9
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0xf3, // BINARY_OP 28 __sub__
+    0x23,0x2e, // LOAD_CONST_OBJ 46
+    0x36,0x04, // CALL_METHOD 4
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x66, // LOAD_ATTR 'pintado'
+    0x14,0x59, // LOAD_METHOD 'append'
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x79, // LOAD_METHOD 'a_bloques'
+    0xb8, // LOAD_FAST 8
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0xf3, // BINARY_OP 28 __sub__
+    0xb9, // LOAD_FAST 9
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0xf3, // BINARY_OP 28 __sub__
+    0xb8, // LOAD_FAST 8
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0xf2, // BINARY_OP 27 __add__
+    0xb9, // LOAD_FAST 9
+    0x88, // LOAD_CONST_SMALL_INT 8
+    0xf2, // BINARY_OP 27 __add__
+    0x36,0x04, // CALL_METHOD 4
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x42,0xb0,0x7f, // JUMP -80
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x37, // LOAD_ATTR 'otros'
+    0x14,0x81,0x7c, // LOAD_METHOD 'values'
+    0x36,0x00, // CALL_METHOD 0
+    0x5f, // GET_ITER_STACK
+    0x4b,0xab,0x01, // FOR_ITER 171
+    0xce, // STORE_FAST 14
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x78, // LOAD_METHOD 'caja_jugador'
+    0xbe, // LOAD_FAST 14
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0xbe, // LOAD_FAST 14
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0x36,0x02, // CALL_METHOD 2
+    0x30,0x04, // UNPACK_SEQUENCE 4
+    0xcf, // STORE_FAST 15
+    0x26,0x10, // STORE_FAST_N 16
+    0x26,0x11, // STORE_FAST_N 17
+    0x26,0x12, // STORE_FAST_N 18
+    0x24,0x11, // LOAD_FAST_N 17
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x4e, // POP_JUMP_IF_TRUE 14
+    0xbf, // LOAD_FAST 15
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x13,0x10, // LOAD_ATTR 'ANCHO'
+    0xd8, // BINARY_OP 1 __gt__
+    0x43,0x45, // POP_JUMP_IF_TRUE 5
+    0xbe, // LOAD_FAST 14
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0x55, // LOAD_SUBSCR
+    0x44,0x42, // POP_JUMP_IF_FALSE 2
+    0x42,0x11, // JUMP -47
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x66, // LOAD_ATTR 'pintado'
+    0x14,0x59, // LOAD_METHOD 'append'
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x7a, // LOAD_METHOD 'dibujar_steve'
+    0xbe, // LOAD_FAST 14
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0xbe, // LOAD_FAST 14
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0xbe, // LOAD_FAST 14
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0xb0, // LOAD_FAST 0
+    0x13,0x6a, // LOAD_ATTR 'tiempo'
+    0xbe, // LOAD_FAST 14
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x55, // LOAD_SUBSCR
+    0xbe, // LOAD_FAST 14
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x55, // LOAD_SUBSCR
+    0x36,0x06, // CALL_METHOD 6
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
+    0xbe, // LOAD_FAST 14
+    0x85, // LOAD_CONST_SMALL_INT 5
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0xf4, // BINARY_OP 29 __mul__
     0x26,0x13, // STORE_FAST_N 19
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x46, // LOAD_METHOD 'texto'
+    0xbe, // LOAD_FAST 14
+    0x85, // LOAD_CONST_SMALL_INT 5
+    0x55, // LOAD_SUBSCR
+    0xbf, // LOAD_FAST 15
+    0x24,0x11, // LOAD_FAST_N 17
+    0xf2, // BINARY_OP 27 __add__
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf6, // BINARY_OP 31 __floordiv__
+    0x24,0x13, // LOAD_FAST_N 19
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf6, // BINARY_OP 31 __floordiv__
+    0xf3, // BINARY_OP 28 __sub__
+    0x24,0x10, // LOAD_FAST_N 16
+    0x8a, // LOAD_CONST_SMALL_INT 10
+    0xf3, // BINARY_OP 28 __sub__
+    0x22,0x87,0xff,0xff,0x7f, // LOAD_CONST_SMALL_INT 16777215
+    0x22,0x81,0x80,0xc0,0x20, // LOAD_CONST_SMALL_INT 2105376
+    0x36,0x05, // CALL_METHOD 5
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x66, // LOAD_ATTR 'pintado'
+    0x14,0x59, // LOAD_METHOD 'append'
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x79, // LOAD_METHOD 'a_bloques'
+    0xbf, // LOAD_FAST 15
+    0x24,0x11, // LOAD_FAST_N 17
+    0xf2, // BINARY_OP 27 __add__
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf6, // BINARY_OP 31 __floordiv__
+    0x24,0x13, // LOAD_FAST_N 19
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf6, // BINARY_OP 31 __floordiv__
+    0xf3, // BINARY_OP 28 __sub__
+    0x24,0x10, // LOAD_FAST_N 16
+    0x8a, // LOAD_CONST_SMALL_INT 10
+    0xf3, // BINARY_OP 28 __sub__
+    0xbf, // LOAD_FAST 15
+    0x24,0x11, // LOAD_FAST_N 17
+    0xf2, // BINARY_OP 27 __add__
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf6, // BINARY_OP 31 __floordiv__
+    0x24,0x13, // LOAD_FAST_N 19
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf6, // BINARY_OP 31 __floordiv__
+    0xf2, // BINARY_OP 27 __add__
+    0x24,0x10, // LOAD_FAST_N 16
+    0x36,0x04, // CALL_METHOD 4
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x42,0xd2,0x7e, // JUMP -174
+    0x12,0x83,0x75, // LOAD_GLOBAL 'abs'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x4d, // LOAD_ATTR 'vx'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x23,0x14, // LOAD_CONST_OBJ 20
+    0xd8, // BINARY_OP 1 __gt__
+    0x46,0x04, // JUMP_IF_FALSE_OR_POP 4
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x4f, // LOAD_ATTR 'suelo'
     0x26,0x14, // STORE_FAST_N 20
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x6f, // LOAD_METHOD 'pant'
-    0x24,0x13, // LOAD_FAST_N 19
+    0x13,0x81,0x66, // LOAD_ATTR 'pintado'
+    0x14,0x59, // LOAD_METHOD 'append'
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x7a, // LOAD_METHOD 'dibujar_steve'
+    0xb0, // LOAD_FAST 0
+    0x13,0x66, // LOAD_ATTR 'x'
+    0xb0, // LOAD_FAST 0
+    0x13,0x67, // LOAD_ATTR 'y'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x50, // LOAD_ATTR 'cara'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x58, // LOAD_ATTR 'anda_t'
     0x24,0x14, // LOAD_FAST_N 20
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0xf2, // BINARY_OP 27 __add__
-    0x36,0x02, // CALL_METHOD 2
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x56, // LOAD_ATTR 'sel'
+    0x55, // LOAD_SUBSCR
+    0x36,0x06, // CALL_METHOD 6
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x72, // LOAD_METHOD 'objetivo'
+    0x36,0x00, // CALL_METHOD 0
     0x30,0x02, // UNPACK_SEQUENCE 2
     0x26,0x15, // STORE_FAST_N 21
     0x26,0x16, // STORE_FAST_N 22
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x5b, // LOAD_ATTR 'pico'
+    0x14,0x81,0x6d, // LOAD_METHOD 'pant'
+    0x24,0x15, // LOAD_FAST_N 21
+    0x24,0x16, // LOAD_FAST_N 22
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x36,0x02, // CALL_METHOD 2
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0x26,0x17, // STORE_FAST_N 23
+    0x26,0x18, // STORE_FAST_N 24
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x57, // LOAD_ATTR 'pico'
     0x30,0x03, // UNPACK_SEQUENCE 3
     0xc4, // STORE_FAST 4
     0xc5, // STORE_FAST 5
-    0x26,0x17, // STORE_FAST_N 23
+    0x26,0x19, // STORE_FAST_N 25
     0xb4, // LOAD_FAST 4
     0xb5, // LOAD_FAST 5
     0x2a,0x02, // BUILD_TUPLE 2
-    0x24,0x13, // LOAD_FAST_N 19
-    0x24,0x14, // LOAD_FAST_N 20
+    0x24,0x15, // LOAD_FAST_N 21
+    0x24,0x16, // LOAD_FAST_N 22
     0x2a,0x02, // BUILD_TUPLE 2
     0xd9, // BINARY_OP 2 __eq__
-    0x44,0x71, // POP_JUMP_IF_FALSE 49
-    0x24,0x17, // LOAD_FAST_N 23
+    0x44,0x70, // POP_JUMP_IF_FALSE 48
+    0x24,0x19, // LOAD_FAST_N 25
     0x80, // LOAD_CONST_SMALL_INT 0
     0xd8, // BINARY_OP 1 __gt__
-    0x44,0x6b, // POP_JUMP_IF_FALSE 43
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x6a, // LOAD_METHOD 'dibujar'
-    0x12,0x66, // LOAD_GLOBAL 'spr'
-    0x10,0x82,0x01, // LOAD_CONST_STRING 'grieta%d'
-    0x12,0x83,0x38, // LOAD_GLOBAL 'max'
+    0x44,0x6a, // POP_JUMP_IF_FALSE 42
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x5f, // LOAD_METHOD 'dibujar'
+    0x12,0x5b, // LOAD_GLOBAL 'spr'
+    0x23,0x77, // LOAD_CONST_OBJ 119
+    0x12,0x83,0x6c, // LOAD_GLOBAL 'max'
     0x81, // LOAD_CONST_SMALL_INT 1
-    0x12,0x83,0x37, // LOAD_GLOBAL 'min'
-    0x88, // LOAD_CONST_SMALL_INT 8
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
-    0x24,0x17, // LOAD_FAST_N 23
-    0x88, // LOAD_CONST_SMALL_INT 8
+    0x12,0x83,0x6b, // LOAD_GLOBAL 'min'
+    0x8a, // LOAD_CONST_SMALL_INT 10
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
+    0x24,0x19, // LOAD_FAST_N 25
+    0x8a, // LOAD_CONST_SMALL_INT 10
     0xf4, // BINARY_OP 29 __mul__
     0x34,0x01, // CALL_FUNCTION 1
     0x81, // LOAD_CONST_SMALL_INT 1
@@ -53362,35 +54855,35 @@ static const byte fun_data_mc2d_Juego_pintar[1037] = {
     0x34,0x02, // CALL_FUNCTION 2
     0xf8, // BINARY_OP 33 __mod__
     0x34,0x01, // CALL_FUNCTION 1
-    0x24,0x15, // LOAD_FAST_N 21
-    0x24,0x16, // LOAD_FAST_N 22
+    0x24,0x17, // LOAD_FAST_N 23
+    0x24,0x18, // LOAD_FAST_N 24
     0x36,0x03, // CALL_METHOD 3
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x81,0x18, // LOAD_METHOD 'marco'
-    0x24,0x15, // LOAD_FAST_N 21
-    0x24,0x16, // LOAD_FAST_N 22
-    0x12,0x83,0x14, // LOAD_GLOBAL 'T'
-    0x12,0x83,0x14, // LOAD_GLOBAL 'T'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x0a, // LOAD_METHOD 'marco'
+    0x24,0x17, // LOAD_FAST_N 23
+    0x24,0x18, // LOAD_FAST_N 24
+    0x12,0x83,0x44, // LOAD_GLOBAL 'T'
+    0x12,0x83,0x44, // LOAD_GLOBAL 'T'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x68, // LOAD_ATTR 'pintado'
-    0x14,0x3b, // LOAD_METHOD 'append'
-    0x24,0x13, // LOAD_FAST_N 19
-    0x24,0x14, // LOAD_FAST_N 20
-    0x24,0x13, // LOAD_FAST_N 19
-    0x24,0x14, // LOAD_FAST_N 20
+    0x13,0x81,0x66, // LOAD_ATTR 'pintado'
+    0x14,0x59, // LOAD_METHOD 'append'
+    0x24,0x15, // LOAD_FAST_N 21
+    0x24,0x16, // LOAD_FAST_N 22
+    0x24,0x15, // LOAD_FAST_N 21
+    0x24,0x16, // LOAD_FAST_N 22
     0x2a,0x04, // BUILD_TUPLE 4
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x81,0x76, // LOAD_METHOD 'recorte'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x74, // LOAD_METHOD 'recorte'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x75, // LOAD_METHOD 'dibujar_hud'
+    0x14,0x81,0x73, // LOAD_METHOD 'dibujar_hud'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0x51, // LOAD_CONST_NONE
@@ -53405,7 +54898,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_pintar = {
     .fun_data = fun_data_mc2d_Juego_pintar,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 1037,
+    .fun_data_len = 966,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -53413,16 +54906,16 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_pintar = {
     #if MICROPY_PY_SYS_SETTRACE
     .line_of_definition = 0,
     .prelude = {
-        .n_state = 39,
+        .n_state = 41,
         .n_exc_stack = 0,
         .scope_flags = 0,
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 203,
+        .qstr_block_name_idx = 188,
         .line_info = fun_data_mc2d_Juego_pintar + 8,
-        .line_info_top = fun_data_mc2d_Juego_pintar + 70,
-        .opcodes = fun_data_mc2d_Juego_pintar + 70,
+        .line_info_top = fun_data_mc2d_Juego_pintar + 68,
+        .opcodes = fun_data_mc2d_Juego_pintar + 68,
     },
     #endif
     #endif
@@ -53433,29 +54926,29 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_pintar = {
 
 // child of mc2d_Juego
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_poner
-static const byte fun_data_mc2d_Juego_poner[184] = {
+static const byte fun_data_mc2d_Juego_poner[181] = {
     0xa5,0x15,0x30, // prelude
-    0x82,0x02,0x83,0x4e,0x75,0x76,0x83,0x2f,0x83,0x58, // names: poner, self, x, y, b, red_tambien
-    0xa0,0x2f,0x1f,0x23,0x22,0x27,0x28,0x26,0x26,0x26,0x35,0x29,0x22,0x5f, // code info
+    0x81,0x7d,0x84,0x05,0x66,0x67,0x83,0x64,0x84,0x10, // names: poner, self, x, y, b, red_tambien
+    0xa0,0xe9,0x1f,0x22,0x22,0x27,0x28,0x26,0x26,0x26,0x35,0x29,0x22,0x5e, // code info
     0x80, // LOAD_CONST_SMALL_INT 0
     0xb1, // LOAD_FAST 1
     0x57, // DUP_TOP
     0x5b, // ROT_THREE
     0xda, // BINARY_OP 3 __le__
     0x46,0x06, // JUMP_IF_FALSE_OR_POP 6
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0xd7, // BINARY_OP 0 __lt__
     0x42,0x42, // JUMP 2
     0x5a, // ROT_TWO
     0x59, // POP_TOP
-    0x44,0x51, // POP_JUMP_IF_FALSE 17
+    0x44,0x50, // POP_JUMP_IF_FALSE 16
     0x80, // LOAD_CONST_SMALL_INT 0
     0xb2, // LOAD_FAST 2
     0x57, // DUP_TOP
     0x5b, // ROT_THREE
     0xda, // BINARY_OP 3 __le__
-    0x46,0x06, // JUMP_IF_FALSE_OR_POP 6
-    0x12,0x83,0x12, // LOAD_GLOBAL 'H'
+    0x46,0x05, // JUMP_IF_FALSE_OR_POP 5
+    0x12,0x0f, // LOAD_GLOBAL 'H'
     0xd7, // BINARY_OP 0 __lt__
     0x42,0x42, // JUMP 2
     0x5a, // ROT_TWO
@@ -53463,32 +54956,32 @@ static const byte fun_data_mc2d_Juego_poner[184] = {
     0x43,0x42, // POP_JUMP_IF_TRUE 2
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
-    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0x12,0x30, // LOAD_GLOBAL 'g'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0x34,0x02, // CALL_FUNCTION 2
     0xc5, // STORE_FAST 5
-    0x12,0x40, // LOAD_GLOBAL 'sp'
+    0x12,0x31, // LOAD_GLOBAL 'sp'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
     0x34,0x03, // CALL_FUNCTION 3
     0x59, // POP_TOP
-    0x12,0x42, // LOAD_GLOBAL 'calc_alto'
+    0x12,0x35, // LOAD_GLOBAL 'calc_alto'
     0xb1, // LOAD_FAST 1
     0x34,0x01, // CALL_FUNCTION 1
     0x59, // POP_TOP
-    0x23,0x6e, // LOAD_CONST_OBJ 110
+    0x23,0x78, // LOAD_CONST_OBJ 120
     0x5f, // GET_ITER_STACK
     0x4b,0x1c, // FOR_ITER 28
     0xc6, // STORE_FAST 6
-    0x23,0x6e, // LOAD_CONST_OBJ 110
+    0x23,0x78, // LOAD_CONST_OBJ 120
     0x5f, // GET_ITER_STACK
     0x4b,0x14, // FOR_ITER 20
     0xc7, // STORE_FAST 7
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x67, // LOAD_ATTR 'sucios'
-    0x14,0x3b, // LOAD_METHOD 'append'
+    0x13,0x81,0x65, // LOAD_ATTR 'sucios'
+    0x14,0x59, // LOAD_METHOD 'append'
     0xb1, // LOAD_FAST 1
     0xb6, // LOAD_FAST 6
     0xf2, // BINARY_OP 27 __add__
@@ -53501,17 +54994,17 @@ static const byte fun_data_mc2d_Juego_poner[184] = {
     0x42,0x2a, // JUMP -22
     0x42,0x22, // JUMP -30
     0xb4, // LOAD_FAST 4
-    0x44,0x7e, // POP_JUMP_IF_FALSE 62
+    0x44,0x7c, // POP_JUMP_IF_FALSE 60
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x39, // LOAD_ATTR 'online'
-    0x44,0x78, // POP_JUMP_IF_FALSE 56
-    0x48,0x17, // SETUP_EXCEPT 23
-    0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x81,0x0c, // LOAD_METHOD 'var'
-    0x10,0x82,0x03, // LOAD_CONST_STRING 'b:%d'
+    0x13,0x81,0x2a, // LOAD_ATTR 'online'
+    0x44,0x76, // POP_JUMP_IF_FALSE 54
+    0x48,0x16, // SETUP_EXCEPT 22
+    0x12,0x0c, // LOAD_GLOBAL 'red'
+    0x14,0x7e, // LOAD_METHOD 'var'
+    0x10,0x81,0x7e, // LOAD_CONST_STRING 'b:%d'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0xf4, // BINARY_OP 29 __mul__
     0xf2, // BINARY_OP 27 __add__
     0xf8, // BINARY_OP 33 __mod__
@@ -53519,18 +55012,18 @@ static const byte fun_data_mc2d_Juego_poner[184] = {
     0xb5, // LOAD_FAST 5
     0x36,0x03, // CALL_METHOD 3
     0x59, // POP_TOP
-    0x4a,0x1f, // POP_EXCEPT_JUMP 31
+    0x4a,0x1e, // POP_EXCEPT_JUMP 30
     0x57, // DUP_TOP
-    0x12,0x83,0x59, // LOAD_GLOBAL 'TypeError'
+    0x12,0x84,0x11, // LOAD_GLOBAL 'TypeError'
     0xdf, // BINARY_OP 8 <exception match>
-    0x44,0x57, // POP_JUMP_IF_FALSE 23
+    0x44,0x56, // POP_JUMP_IF_FALSE 22
     0x59, // POP_TOP
-    0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x81,0x0c, // LOAD_METHOD 'var'
-    0x10,0x82,0x03, // LOAD_CONST_STRING 'b:%d'
+    0x12,0x0c, // LOAD_GLOBAL 'red'
+    0x14,0x7e, // LOAD_METHOD 'var'
+    0x10,0x81,0x7e, // LOAD_CONST_STRING 'b:%d'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0xf4, // BINARY_OP 29 __mul__
     0xf2, // BINARY_OP 27 __add__
     0xf8, // BINARY_OP 33 __mod__
@@ -53551,7 +55044,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_poner = {
     .fun_data = fun_data_mc2d_Juego_poner,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 184,
+    .fun_data_len = 181,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -53565,7 +55058,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_poner = {
         .n_pos_args = 5,
         .n_kwonly_args = 0,
         .n_def_pos_args = 1,
-        .qstr_block_name_idx = 258,
+        .qstr_block_name_idx = 253,
         .line_info = fun_data_mc2d_Juego_poner + 13,
         .line_info_top = fun_data_mc2d_Juego_poner + 27,
         .opcodes = fun_data_mc2d_Juego_poner + 27,
@@ -53579,31 +55072,31 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_poner = {
 
 // child of mc2d_Juego
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_asentar
-static const byte fun_data_mc2d_Juego_asentar[109] = {
-    0x53,0x1c, // prelude
-    0x82,0x04,0x83,0x4e,0x75,0x76, // names: asentar, self, x, y
-    0xa0,0x3e,0x23,0x22,0x22,0x31,0x2c,0x3f, // code info
-    0x42,0xc4,0x80, // JUMP 68
+static const byte fun_data_mc2d_Juego_asentar[114] = {
+    0x53,0x20, // prelude
+    0x81,0x7f,0x84,0x05,0x66,0x67, // names: asentar, self, x, y
+    0xa0,0xf8,0x20,0x23,0x22,0x22,0x31,0x2a,0x1f,0x26, // code info
+    0x42,0xc8,0x80, // JUMP 72
     0xb2, // LOAD_FAST 2
     0xc3, // STORE_FAST 3
-    0x42,0x61, // JUMP 33
+    0x42,0x5f, // JUMP 31
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x02, // LOAD_METHOD 'poner'
+    0x14,0x81,0x7d, // LOAD_METHOD 'poner'
     0xb1, // LOAD_FAST 1
     0xb3, // LOAD_FAST 3
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf3, // BINARY_OP 28 __sub__
-    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0x12,0x30, // LOAD_GLOBAL 'g'
     0xb1, // LOAD_FAST 1
     0xb3, // LOAD_FAST 3
     0x34,0x02, // CALL_FUNCTION 2
     0x36,0x03, // CALL_METHOD 3
     0x59, // POP_TOP
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x02, // LOAD_METHOD 'poner'
+    0x14,0x81,0x7d, // LOAD_METHOD 'poner'
     0xb1, // LOAD_FAST 1
     0xb3, // LOAD_FAST 3
-    0x12,0x82,0x59, // LOAD_GLOBAL 'AIRE'
+    0x80, // LOAD_CONST_SMALL_INT 0
     0x36,0x03, // CALL_METHOD 3
     0x59, // POP_TOP
     0xb3, // LOAD_FAST 3
@@ -53613,34 +55106,40 @@ static const byte fun_data_mc2d_Juego_asentar[109] = {
     0xb3, // LOAD_FAST 3
     0x81, // LOAD_CONST_SMALL_INT 1
     0xd8, // BINARY_OP 1 __gt__
-    0x44,0x56, // POP_JUMP_IF_FALSE 22
-    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0x44,0x5c, // POP_JUMP_IF_FALSE 28
+    0x12,0x32, // LOAD_GLOBAL 'solido'
+    0x12,0x30, // LOAD_GLOBAL 'g'
     0xb1, // LOAD_FAST 1
     0xb3, // LOAD_FAST 3
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf3, // BINARY_OP 28 __sub__
     0x34,0x02, // CALL_FUNCTION 2
-    0x12,0x82,0x59, // LOAD_GLOBAL 'AIRE'
-    0x12,0x82,0x68, // LOAD_GLOBAL 'AGUA'
-    0x12,0x82,0x71, // LOAD_GLOBAL 'HIERBA_A'
-    0x2a,0x03, // BUILD_TUPLE 3
-    0xdd, // BINARY_OP 6 <in>
-    0x43,0x04, // POP_JUMP_IF_TRUE -60
+    0x34,0x01, // CALL_FUNCTION 1
+    0x43,0x4e, // POP_JUMP_IF_TRUE 14
+    0x12,0x83,0x09, // LOAD_GLOBAL 'CAE'
+    0x12,0x30, // LOAD_GLOBAL 'g'
+    0xb1, // LOAD_FAST 1
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x02, // CALL_FUNCTION 2
+    0x55, // LOAD_SUBSCR
+    0x44,0x00, // POP_JUMP_IF_FALSE -64
     0xb2, // LOAD_FAST 2
     0x81, // LOAD_CONST_SMALL_INT 1
     0xe5, // BINARY_OP 14 __iadd__
     0xc2, // STORE_FAST 2
     0xb2, // LOAD_FAST 2
-    0x12,0x83,0x12, // LOAD_GLOBAL 'H'
+    0x12,0x0f, // LOAD_GLOBAL 'H'
     0xd7, // BINARY_OP 0 __lt__
     0x44,0x4d, // POP_JUMP_IF_FALSE 13
-    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0x12,0x83,0x09, // LOAD_GLOBAL 'CAE'
+    0x12,0x30, // LOAD_GLOBAL 'g'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0x34,0x02, // CALL_FUNCTION 2
-    0x12,0x83,0x09, // LOAD_GLOBAL 'CAEN'
-    0xdd, // BINARY_OP 6 <in>
-    0x43,0xa8,0x7f, // POP_JUMP_IF_TRUE -88
+    0x55, // LOAD_SUBSCR
+    0x43,0xa5,0x7f, // POP_JUMP_IF_TRUE -91
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -53653,7 +55152,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_asentar = {
     .fun_data = fun_data_mc2d_Juego_asentar,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 109,
+    .fun_data_len = 114,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -53667,10 +55166,10 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_asentar = {
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 260,
+        .qstr_block_name_idx = 255,
         .line_info = fun_data_mc2d_Juego_asentar + 8,
-        .line_info_top = fun_data_mc2d_Juego_asentar + 16,
-        .opcodes = fun_data_mc2d_Juego_asentar + 16,
+        .line_info_top = fun_data_mc2d_Juego_asentar + 18,
+        .opcodes = fun_data_mc2d_Juego_asentar + 18,
     },
     #endif
     #endif
@@ -53683,19 +55182,19 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_asentar = {
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_toca_jugador
 static const byte fun_data_mc2d_Juego_toca_jugador[51] = {
     0x2b,0x14, // prelude
-    0x82,0x05,0x83,0x4e,0x83,0x51,0x83,0x52, // names: toca_jugador, self, tx, ty
-    0xa0,0x47, // code info
+    0x82,0x00,0x84,0x05,0x84,0x08,0x84,0x09, // names: toca_jugador, self, tx, ty
+    0xb0,0x02, // code info
     0xb1, // LOAD_FAST 1
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
     0xb0, // LOAD_FAST 0
-    0x13,0x75, // LOAD_ATTR 'x'
+    0x13,0x66, // LOAD_ATTR 'x'
     0xd8, // BINARY_OP 1 __gt__
     0x46,0x1d, // JUMP_IF_FALSE_OR_POP 29
     0xb1, // LOAD_FAST 1
     0xb0, // LOAD_FAST 0
-    0x13,0x75, // LOAD_ATTR 'x'
-    0x12,0x83,0x20, // LOAD_GLOBAL 'PW'
+    0x13,0x66, // LOAD_ATTR 'x'
+    0x12,0x83,0x4e, // LOAD_GLOBAL 'PW'
     0xf2, // BINARY_OP 27 __add__
     0xd7, // BINARY_OP 0 __lt__
     0x46,0x12, // JUMP_IF_FALSE_OR_POP 18
@@ -53703,13 +55202,13 @@ static const byte fun_data_mc2d_Juego_toca_jugador[51] = {
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
     0xb0, // LOAD_FAST 0
-    0x13,0x76, // LOAD_ATTR 'y'
+    0x13,0x67, // LOAD_ATTR 'y'
     0xd8, // BINARY_OP 1 __gt__
     0x46,0x09, // JUMP_IF_FALSE_OR_POP 9
     0xb2, // LOAD_FAST 2
     0xb0, // LOAD_FAST 0
-    0x13,0x76, // LOAD_ATTR 'y'
-    0x12,0x83,0x21, // LOAD_GLOBAL 'PH'
+    0x13,0x67, // LOAD_ATTR 'y'
+    0x12,0x83,0x4f, // LOAD_GLOBAL 'PH'
     0xf2, // BINARY_OP 27 __add__
     0xd7, // BINARY_OP 0 __lt__
     0x63, // RETURN_VALUE
@@ -53737,7 +55236,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_toca_jugador = {
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 261,
+        .qstr_block_name_idx = 256,
         .line_info = fun_data_mc2d_Juego_toca_jugador + 10,
         .line_info_top = fun_data_mc2d_Juego_toca_jugador + 12,
         .opcodes = fun_data_mc2d_Juego_toca_jugador + 12,
@@ -53750,45 +55249,60 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_toca_jugador = {
 #endif
 
 // child of mc2d_Juego
-// frozen bytecode for file mc2d.py, scope mc2d_Juego_herramienta
-static const byte fun_data_mc2d_Juego_herramienta[47] = {
-    0x21,0x12, // prelude
-    0x82,0x06,0x83,0x4e, // names: herramienta, self
-    0xa0,0x4a,0x29,0x27,0x31, // code info
-    0x12,0x83,0x2b, // LOAD_GLOBAL 'inv_id'
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_gastar_herramienta
+static const byte fun_data_mc2d_Juego_gastar_herramienta[80] = {
+    0x21,0x16, // prelude
+    0x82,0x01,0x84,0x05, // names: gastar_herramienta, self
+    0xb0,0x05,0x20,0x29,0x3b,0x29,0x2a, // code info
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x5a, // LOAD_ATTR 'sel'
+    0x13,0x81,0x56, // LOAD_ATTR 'sel'
     0x55, // LOAD_SUBSCR
     0xc1, // STORE_FAST 1
     0xb1, // LOAD_FAST 1
-    0x12,0x82,0x7c, // LOAD_GLOBAL 'HERR'
-    0xdb, // BINARY_OP 4 __ge__
-    0x44,0x51, // POP_JUMP_IF_FALSE 17
+    0x44,0x75, // POP_JUMP_IF_FALSE 53
+    0x12,0x18, // LOAD_GLOBAL 'ficha'
     0xb1, // LOAD_FAST 1
-    0x12,0x82,0x7c, // LOAD_GLOBAL 'HERR'
-    0xf3, // BINARY_OP 28 __sub__
-    0x84, // LOAD_CONST_SMALL_INT 4
-    0xf6, // BINARY_OP 31 __floordiv__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x82,0x75, // LOAD_GLOBAL 'F_GRUPO'
+    0x55, // LOAD_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x68, // POP_JUMP_IF_FALSE 40
+    0x12,0x18, // LOAD_GLOBAL 'ficha'
     0xb1, // LOAD_FAST 1
-    0x12,0x82,0x7c, // LOAD_GLOBAL 'HERR'
-    0xf3, // BINARY_OP 28 __sub__
-    0x84, // LOAD_CONST_SMALL_INT 4
-    0xf8, // BINARY_OP 33 __mod__
-    0x2a,0x02, // BUILD_TUPLE 2
-    0x63, // RETURN_VALUE
-    0x23,0x6f, // LOAD_CONST_OBJ 111
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x82,0x7d, // LOAD_GLOBAL 'F_DURAB'
+    0x55, // LOAD_SUBSCR
+    0x44,0x5d, // POP_JUMP_IF_FALSE 29
+    0x12,0x56, // LOAD_GLOBAL 'quitar_hueco'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x56, // LOAD_ATTR 'sel'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x56, // LOAD_ATTR 'sel'
+    0x55, // LOAD_SUBSCR
+    0x43,0x4a, // POP_JUMP_IF_TRUE 10
+    0x12,0x37, // LOAD_GLOBAL 'sonar'
+    0x10,0x82,0x02, // LOAD_CONST_STRING 'break'
+    0x23,0x13, // LOAD_CONST_OBJ 19
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
 #if MICROPY_PERSISTENT_CODE_SAVE
-static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_herramienta = {
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_gastar_herramienta = {
     .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
     .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
     .kind = MP_CODE_BYTECODE,
     .is_generator = 0,
-    .fun_data = fun_data_mc2d_Juego_herramienta,
+    .fun_data = fun_data_mc2d_Juego_gastar_herramienta,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 47,
+    .fun_data_len = 80,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -53802,255 +55316,503 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_herramienta = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 262,
-        .line_info = fun_data_mc2d_Juego_herramienta + 6,
-        .line_info_top = fun_data_mc2d_Juego_herramienta + 11,
-        .opcodes = fun_data_mc2d_Juego_herramienta + 11,
+        .qstr_block_name_idx = 257,
+        .line_info = fun_data_mc2d_Juego_gastar_herramienta + 6,
+        .line_info_top = fun_data_mc2d_Juego_gastar_herramienta + 13,
+        .opcodes = fun_data_mc2d_Juego_gastar_herramienta + 13,
     },
     #endif
     #endif
 };
 #else
-#define proto_fun_mc2d_Juego_herramienta fun_data_mc2d_Juego_herramienta[0]
+#define proto_fun_mc2d_Juego_gastar_herramienta fun_data_mc2d_Juego_gastar_herramienta[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_tiempo_picar
+static const byte fun_data_mc2d_Juego_tiempo_picar[181] = {
+    0x4a,0x2e, // prelude
+    0x82,0x03,0x84,0x05,0x83,0x64, // names: tiempo_picar, self, b
+    0xb0,0x0d,0x20,0x2a,0x26,0x2d,0x22,0x2f,0x28,0x2d,0x36,0x34,0x27,0x27,0x2e,0x27,0x27, // code info
+    0x12,0x18, // LOAD_GLOBAL 'ficha'
+    0x12,0x83,0x02, // LOAD_GLOBAL 'L2PM'
+    0xb1, // LOAD_FAST 1
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0xc2, // STORE_FAST 2
+    0xb2, // LOAD_FAST 2
+    0x12,0x82,0x6f, // LOAD_GLOBAL 'F_DUR'
+    0x55, // LOAD_SUBSCR
+    0xc3, // STORE_FAST 3
+    0xb3, // LOAD_FAST 3
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd9, // BINARY_OP 2 __eq__
+    0x43,0x48, // POP_JUMP_IF_TRUE 8
+    0xb3, // LOAD_FAST 3
+    0x22,0x83,0xff,0x7f, // LOAD_CONST_SMALL_INT 65535
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x42, // POP_JUMP_IF_FALSE 2
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x23,0x5b, // LOAD_CONST_OBJ 91
+    0x42,0x45, // JUMP 5
+    0xb3, // LOAD_FAST 3
+    0x22,0x80,0x64, // LOAD_CONST_SMALL_INT 100
+    0xf7, // BINARY_OP 32 __truediv__
+    0xc4, // STORE_FAST 4
+    0xb2, // LOAD_FAST 2
+    0x12,0x82,0x70, // LOAD_GLOBAL 'F_HERR'
+    0x55, // LOAD_SUBSCR
+    0x44,0xe1,0x80, // POP_JUMP_IF_FALSE 97
+    0x12,0x18, // LOAD_GLOBAL 'ficha'
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x56, // LOAD_ATTR 'sel'
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0xc5, // STORE_FAST 5
+    0xb5, // LOAD_FAST 5
+    0x12,0x82,0x75, // LOAD_GLOBAL 'F_GRUPO'
+    0x55, // LOAD_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x7d, // POP_JUMP_IF_FALSE 61
+    0xb5, // LOAD_FAST 5
+    0x12,0x82,0x70, // LOAD_GLOBAL 'F_HERR'
+    0x55, // LOAD_SUBSCR
+    0xb2, // LOAD_FAST 2
+    0x12,0x82,0x70, // LOAD_GLOBAL 'F_HERR'
+    0x55, // LOAD_SUBSCR
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x70, // POP_JUMP_IF_FALSE 48
+    0xb2, // LOAD_FAST 2
+    0x12,0x82,0x71, // LOAD_GLOBAL 'F_NIV'
+    0x55, // LOAD_SUBSCR
+    0x44,0x54, // POP_JUMP_IF_FALSE 20
+    0xb5, // LOAD_FAST 5
+    0x12,0x82,0x71, // LOAD_GLOBAL 'F_NIV'
+    0x55, // LOAD_SUBSCR
+    0xb2, // LOAD_FAST 2
+    0x12,0x82,0x71, // LOAD_GLOBAL 'F_NIV'
+    0x55, // LOAD_SUBSCR
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x47, // POP_JUMP_IF_FALSE 7
+    0xb4, // LOAD_FAST 4
+    0x23,0x79, // LOAD_CONST_OBJ 121
+    0xe7, // BINARY_OP 16 __imul__
+    0xc4, // STORE_FAST 4
+    0x42,0x53, // JUMP 19
+    0xb5, // LOAD_FAST 5
+    0x12,0x82,0x71, // LOAD_GLOBAL 'F_NIV'
+    0x55, // LOAD_SUBSCR
+    0x44,0x4c, // POP_JUMP_IF_FALSE 12
+    0xb4, // LOAD_FAST 4
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0xb5, // LOAD_FAST 5
+    0x12,0x82,0x71, // LOAD_GLOBAL 'F_NIV'
+    0x55, // LOAD_SUBSCR
+    0xf4, // BINARY_OP 29 __mul__
+    0xea, // BINARY_OP 19 __itruediv__
+    0xc4, // STORE_FAST 4
+    0x42,0x40, // JUMP 0
+    0x42,0x4e, // JUMP 14
+    0xb2, // LOAD_FAST 2
+    0x12,0x82,0x71, // LOAD_GLOBAL 'F_NIV'
+    0x55, // LOAD_SUBSCR
+    0x44,0x47, // POP_JUMP_IF_FALSE 7
+    0xb4, // LOAD_FAST 4
+    0x23,0x79, // LOAD_CONST_OBJ 121
+    0xe7, // BINARY_OP 16 __imul__
+    0xc4, // STORE_FAST 4
+    0x42,0x40, // JUMP 0
+    0xb4, // LOAD_FAST 4
+    0x23,0x29, // LOAD_CONST_OBJ 41
+    0xf4, // BINARY_OP 29 __mul__
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_tiempo_picar = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_tiempo_picar,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 181,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 10,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 2,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 259,
+        .line_info = fun_data_mc2d_Juego_tiempo_picar + 8,
+        .line_info_top = fun_data_mc2d_Juego_tiempo_picar + 25,
+        .opcodes = fun_data_mc2d_Juego_tiempo_picar + 25,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_tiempo_picar fun_data_mc2d_Juego_tiempo_picar[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_suelta
+static const byte fun_data_mc2d_Juego_suelta[228] = {
+    0x6a,0x38, // prelude
+    0x82,0x04,0x84,0x05,0x83,0x64, // names: suelta, self, b
+    0xb0,0x1f,0x20,0x26,0x26,0x2e,0x2d,0x1f,0x24,0x23,0x26,0x32,0x24,0x25,0x24,0x25,0x33,0x25,0x23,0x38,0x27,0x33, // code info
+    0x12,0x83,0x02, // LOAD_GLOBAL 'L2PM'
+    0xb1, // LOAD_FAST 1
+    0x55, // LOAD_SUBSCR
+    0xc2, // STORE_FAST 2
+    0x12,0x18, // LOAD_GLOBAL 'ficha'
+    0xb2, // LOAD_FAST 2
+    0x34,0x01, // CALL_FUNCTION 1
+    0xc3, // STORE_FAST 3
+    0xb3, // LOAD_FAST 3
+    0x12,0x82,0x70, // LOAD_GLOBAL 'F_HERR'
+    0x55, // LOAD_SUBSCR
+    0x44,0x7a, // POP_JUMP_IF_FALSE 58
+    0xb3, // LOAD_FAST 3
+    0x12,0x82,0x71, // LOAD_GLOBAL 'F_NIV'
+    0x55, // LOAD_SUBSCR
+    0x44,0x73, // POP_JUMP_IF_FALSE 51
+    0x12,0x18, // LOAD_GLOBAL 'ficha'
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x56, // LOAD_ATTR 'sel'
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0xc4, // STORE_FAST 4
+    0xb4, // LOAD_FAST 4
+    0x12,0x82,0x75, // LOAD_GLOBAL 'F_GRUPO'
+    0x55, // LOAD_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x5a, // POP_JUMP_IF_FALSE 26
+    0xb4, // LOAD_FAST 4
+    0x12,0x82,0x70, // LOAD_GLOBAL 'F_HERR'
+    0x55, // LOAD_SUBSCR
+    0xb3, // LOAD_FAST 3
+    0x12,0x82,0x70, // LOAD_GLOBAL 'F_HERR'
+    0x55, // LOAD_SUBSCR
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x4d, // POP_JUMP_IF_FALSE 13
+    0xb4, // LOAD_FAST 4
+    0x12,0x82,0x71, // LOAD_GLOBAL 'F_NIV'
+    0x55, // LOAD_SUBSCR
+    0xb3, // LOAD_FAST 3
+    0x12,0x82,0x71, // LOAD_GLOBAL 'F_NIV'
+    0x55, // LOAD_SUBSCR
+    0xdb, // BINARY_OP 4 __ge__
+    0x43,0x43, // POP_JUMP_IF_TRUE 3
+    0x2b,0x00, // BUILD_LIST 0
+    0x63, // RETURN_VALUE
+    0xb3, // LOAD_FAST 3
+    0x12,0x82,0x76, // LOAD_GLOBAL 'F_SUELTA'
+    0x55, // LOAD_SUBSCR
+    0xc5, // STORE_FAST 5
+    0xb2, // LOAD_FAST 2
+    0x12,0x83,0x15, // LOAD_GLOBAL 'GRAVA_PM'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x4f, // POP_JUMP_IF_FALSE 15
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x03, // LOAD_METHOD 'random'
+    0x36,0x00, // CALL_METHOD 0
+    0x23,0x7a, // LOAD_CONST_OBJ 122
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x22,0x80,0x65, // LOAD_CONST_SMALL_INT 101
+    0xc5, // STORE_FAST 5
+    0xb5, // LOAD_FAST 5
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0xb2, // LOAD_FAST 2
+    0xc5, // STORE_FAST 5
+    0x42,0x58, // JUMP 24
+    0xb5, // LOAD_FAST 5
+    0x7f, // LOAD_CONST_SMALL_INT -1
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x53, // POP_JUMP_IF_FALSE 19
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x03, // LOAD_METHOD 'random'
+    0x36,0x00, // CALL_METHOD 0
+    0x23,0x20, // LOAD_CONST_OBJ 32
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0xb5, // LOAD_FAST 5
+    0xd1, // UNARY_OP 1 __neg__
+    0x42,0x41, // JUMP 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xc5, // STORE_FAST 5
+    0x42,0x40, // JUMP 0
+    0xb5, // LOAD_FAST 5
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xda, // BINARY_OP 3 __le__
+    0x44,0x43, // POP_JUMP_IF_FALSE 3
+    0x2b,0x00, // BUILD_LIST 0
+    0x63, // RETURN_VALUE
+    0xb5, // LOAD_FAST 5
+    0xb2, // LOAD_FAST 2
+    0x12,0x83,0x2b, // LOAD_GLOBAL 'REDSTONE_M'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x4a, // POP_JUMP_IF_FALSE 10
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x43, // LOAD_METHOD 'randint'
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x85, // LOAD_CONST_SMALL_INT 5
+    0x36,0x02, // CALL_METHOD 2
+    0x42,0x41, // JUMP 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x2a,0x02, // BUILD_TUPLE 2
+    0x2b,0x01, // BUILD_LIST 1
+    0xc6, // STORE_FAST 6
+    0xb5, // LOAD_FAST 5
+    0x22,0x81,0x0f, // LOAD_CONST_SMALL_INT 143
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x53, // POP_JUMP_IF_FALSE 19
+    0xb6, // LOAD_FAST 6
+    0x14,0x59, // LOAD_METHOD 'append'
+    0x22,0x81,0x0e, // LOAD_CONST_SMALL_INT 142
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x43, // LOAD_METHOD 'randint'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x36,0x02, // CALL_METHOD 2
+    0x2a,0x02, // BUILD_TUPLE 2
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0xb6, // LOAD_FAST 6
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_suelta = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_suelta,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 228,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 14,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 2,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 260,
+        .line_info = fun_data_mc2d_Juego_suelta + 8,
+        .line_info_top = fun_data_mc2d_Juego_suelta + 30,
+        .opcodes = fun_data_mc2d_Juego_suelta + 30,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_suelta fun_data_mc2d_Juego_suelta[0]
 #endif
 
 // child of mc2d_Juego
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_picar
-static const byte fun_data_mc2d_Juego_picar[413] = {
-    0xa2,0x10,0x56, // prelude
-    0x82,0x07,0x83,0x4e,0x83,0x5a, // names: picar, self, dt
-    0xa0,0x50,0x2a,0x27,0x37,0x26,0x22,0x2a,0x2a,0x2a,0x28,0x29,0x2b,0x23,0x2a,0x26,0x1f,0x24,0x28,0x2d,0x27,0x2c,0x30,0x23,0x2a,0x32,0x24,0x23,0x26,0x28,0x2b,0x1f,0x24,0x20,0x39,0x2e,0x23, // code info
+static const byte fun_data_mc2d_Juego_picar[301] = {
+    0x92,0x10,0x46, // prelude
+    0x82,0x05,0x84,0x05,0x84,0x12, // names: picar, self, dt
+    0xb0,0x35,0x2a,0x27,0x2e,0x25,0x26,0x22,0x29,0x2b,0x23,0x2d,0x26,0x1f,0x24,0x28,0x2d,0x27,0x2a,0x2e,0x23,0x29,0x27,0x28,0x2b,0x29,0x31,0x2c,0x23, // code info
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x74, // LOAD_METHOD 'objetivo'
+    0x14,0x81,0x72, // LOAD_METHOD 'objetivo'
     0x36,0x00, // CALL_METHOD 0
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xc2, // STORE_FAST 2
     0xc3, // STORE_FAST 3
-    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0x12,0x30, // LOAD_GLOBAL 'g'
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
     0x34,0x02, // CALL_FUNCTION 2
     0xc4, // STORE_FAST 4
     0xb4, // LOAD_FAST 4
-    0x44,0x54, // POP_JUMP_IF_FALSE 20
-    0xb4, // LOAD_FAST 4
-    0x12,0x82,0x68, // LOAD_GLOBAL 'AGUA'
-    0x12,0x82,0x67, // LOAD_GLOBAL 'LECHO'
-    0x2a,0x02, // BUILD_TUPLE 2
-    0xdd, // BINARY_OP 6 <in>
-    0x43,0x48, // POP_JUMP_IF_TRUE 8
-    0xb4, // LOAD_FAST 4
-    0x12,0x83,0x0a, // LOAD_GLOBAL 'DUREZA'
-    0xdd, // BINARY_OP 6 <in>
-    0xd3, // UNARY_OP 3 <not>
-    0x44,0x48, // POP_JUMP_IF_FALSE 8
-    0x23,0x68, // LOAD_CONST_OBJ 104
+    0x44,0x49, // POP_JUMP_IF_FALSE 9
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x5b, // STORE_ATTR 'pico'
+    0x14,0x82,0x03, // LOAD_METHOD 'tiempo_picar'
+    0xb4, // LOAD_FAST 4
+    0x36,0x01, // CALL_METHOD 1
+    0x42,0x41, // JUMP 1
+    0x51, // LOAD_CONST_NONE
+    0xc5, // STORE_FAST 5
+    0xb5, // LOAD_FAST 5
+    0x51, // LOAD_CONST_NONE
+    0xde, // BINARY_OP 7 <is>
+    0x44,0x48, // POP_JUMP_IF_FALSE 8
+    0x23,0x70, // LOAD_CONST_OBJ 112
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x57, // STORE_ATTR 'pico'
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x06, // LOAD_METHOD 'herramienta'
-    0x36,0x00, // CALL_METHOD 0
-    0x30,0x02, // UNPACK_SEQUENCE 2
-    0xc5, // STORE_FAST 5
-    0xc6, // STORE_FAST 6
-    0x12,0x83,0x0a, // LOAD_GLOBAL 'DUREZA'
-    0xb4, // LOAD_FAST 4
-    0x55, // LOAD_SUBSCR
+    0x13,0x81,0x57, // LOAD_ATTR 'pico'
     0x30,0x03, // UNPACK_SEQUENCE 3
+    0xc6, // STORE_FAST 6
     0xc7, // STORE_FAST 7
     0xc8, // STORE_FAST 8
-    0xc9, // STORE_FAST 9
-    0xb5, // LOAD_FAST 5
-    0xb8, // LOAD_FAST 8
-    0xd9, // BINARY_OP 2 __eq__
-    0x44,0x4d, // POP_JUMP_IF_FALSE 13
-    0xb5, // LOAD_FAST 5
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0xdb, // BINARY_OP 4 __ge__
-    0x44,0x48, // POP_JUMP_IF_FALSE 8
-    0xb7, // LOAD_FAST 7
-    0x82, // LOAD_CONST_SMALL_INT 2
     0xb6, // LOAD_FAST 6
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0xf4, // BINARY_OP 29 __mul__
-    0xf2, // BINARY_OP 27 __add__
-    0xf7, // BINARY_OP 32 __truediv__
-    0xc7, // STORE_FAST 7
-    0xb0, // LOAD_FAST 0
-    0x13,0x81,0x5b, // LOAD_ATTR 'pico'
-    0x30,0x03, // UNPACK_SEQUENCE 3
-    0xca, // STORE_FAST 10
-    0xcb, // STORE_FAST 11
-    0xcc, // STORE_FAST 12
-    0xba, // LOAD_FAST 10
-    0xbb, // LOAD_FAST 11
+    0xb7, // LOAD_FAST 7
     0x2a,0x02, // BUILD_TUPLE 2
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
     0x2a,0x02, // BUILD_TUPLE 2
     0xdc, // BINARY_OP 5 __ne__
     0x44,0x43, // POP_JUMP_IF_FALSE 3
-    0x23,0x65, // LOAD_CONST_OBJ 101
-    0xcc, // STORE_FAST 12
-    0xbc, // LOAD_FAST 12
+    0x23,0x6c, // LOAD_CONST_OBJ 108
+    0xc8, // STORE_FAST 8
+    0xb8, // LOAD_FAST 8
     0xb1, // LOAD_FAST 1
-    0x22,0x87,0x68, // LOAD_CONST_SMALL_INT 1000
-    0xf4, // BINARY_OP 29 __mul__
-    0xb7, // LOAD_FAST 7
+    0x12,0x83,0x6c, // LOAD_GLOBAL 'max'
+    0x23,0x7b, // LOAD_CONST_OBJ 123
+    0xb5, // LOAD_FAST 5
+    0x34,0x02, // CALL_FUNCTION 2
     0xf7, // BINARY_OP 32 __truediv__
     0xe5, // BINARY_OP 14 __iadd__
-    0xcc, // STORE_FAST 12
-    0x23,0x6b, // LOAD_CONST_OBJ 107
+    0xc8, // STORE_FAST 8
+    0x23,0x75, // LOAD_CONST_OBJ 117
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x5e, // STORE_ATTR 'golpe_t'
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
-    0xbc, // LOAD_FAST 12
-    0x88, // LOAD_CONST_SMALL_INT 8
+    0x18,0x81,0x5a, // STORE_ATTR 'golpe_t'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
+    0xb8, // LOAD_FAST 8
+    0x89, // LOAD_CONST_SMALL_INT 9
     0xf4, // BINARY_OP 29 __mul__
     0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x5b, // LOAD_ATTR 'pico'
+    0x13,0x81,0x57, // LOAD_ATTR 'pico'
     0x82, // LOAD_CONST_SMALL_INT 2
     0x55, // LOAD_SUBSCR
-    0x88, // LOAD_CONST_SMALL_INT 8
+    0x89, // LOAD_CONST_SMALL_INT 9
     0xf4, // BINARY_OP 29 __mul__
     0x34,0x01, // CALL_FUNCTION 1
     0xdc, // BINARY_OP 5 __ne__
     0x43,0x4b, // POP_JUMP_IF_TRUE 11
-    0xba, // LOAD_FAST 10
-    0xbb, // LOAD_FAST 11
+    0xb6, // LOAD_FAST 6
+    0xb7, // LOAD_FAST 7
     0x2a,0x02, // BUILD_TUPLE 2
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
     0x2a,0x02, // BUILD_TUPLE 2
     0xdc, // BINARY_OP 5 __ne__
     0x44,0x55, // POP_JUMP_IF_FALSE 21
-    0x12,0x4d, // LOAD_GLOBAL 'sonar_bloque'
+    0x12,0x3c, // LOAD_GLOBAL 'sonar_bloque'
     0xb4, // LOAD_FAST 4
-    0x23,0x6b, // LOAD_CONST_OBJ 107
+    0x23,0x75, // LOAD_CONST_OBJ 117
     0x34,0x02, // CALL_FUNCTION 2
     0x59, // POP_TOP
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x67, // LOAD_ATTR 'sucios'
-    0x14,0x3b, // LOAD_METHOD 'append'
+    0x13,0x81,0x65, // LOAD_ATTR 'sucios'
+    0x14,0x59, // LOAD_METHOD 'append'
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
     0x2a,0x02, // BUILD_TUPLE 2
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
-    0xbc, // LOAD_FAST 12
-    0x23,0x2d, // LOAD_CONST_OBJ 45
+    0xb8, // LOAD_FAST 8
+    0x23,0x25, // LOAD_CONST_OBJ 37
     0xdb, // BINARY_OP 4 __ge__
-    0x44,0xa8,0x81, // POP_JUMP_IF_FALSE 168
+    0x44,0xe7,0x80, // POP_JUMP_IF_FALSE 103
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x02, // LOAD_METHOD 'poner'
+    0x14,0x81,0x7d, // LOAD_METHOD 'poner'
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
-    0x12,0x82,0x59, // LOAD_GLOBAL 'AIRE'
-    0x36,0x03, // CALL_METHOD 3
-    0x59, // POP_TOP
-    0xb9, // LOAD_FAST 9
     0x80, // LOAD_CONST_SMALL_INT 0
-    0xd7, // BINARY_OP 0 __lt__
-    0x45,0x0a, // JUMP_IF_TRUE_OR_POP 10
-    0xb5, // LOAD_FAST 5
-    0x12,0x82,0x7d, // LOAD_GLOBAL 'PICO'
-    0xd9, // BINARY_OP 2 __eq__
-    0x46,0x03, // JUMP_IF_FALSE_OR_POP 3
-    0xb6, // LOAD_FAST 6
-    0xb9, // LOAD_FAST 9
-    0xdb, // BINARY_OP 4 __ge__
-    0xcd, // STORE_FAST 13
-    0xbd, // LOAD_FAST 13
-    0x44,0x69, // POP_JUMP_IF_FALSE 41
-    0x12,0x83,0x0b, // LOAD_GLOBAL 'SUELTA'
-    0x14,0x4c, // LOAD_METHOD 'get'
-    0xb4, // LOAD_FAST 4
-    0xb4, // LOAD_FAST 4
-    0x36,0x02, // CALL_METHOD 2
-    0xce, // STORE_FAST 14
-    0xb4, // LOAD_FAST 4
-    0x12,0x82,0x5f, // LOAD_GLOBAL 'HOJAS'
-    0xd9, // BINARY_OP 2 __eq__
-    0x44,0x4f, // POP_JUMP_IF_FALSE 15
-    0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x03, // LOAD_METHOD 'random'
-    0x36,0x00, // CALL_METHOD 0
-    0x23,0x70, // LOAD_CONST_OBJ 112
-    0xd7, // BINARY_OP 0 __lt__
-    0x44,0x44, // POP_JUMP_IF_FALSE 4
-    0x12,0x82,0x78, // LOAD_GLOBAL 'MANZANA'
-    0xce, // STORE_FAST 14
-    0xbe, // LOAD_FAST 14
-    0x44,0x46, // POP_JUMP_IF_FALSE 6
-    0x12,0x63, // LOAD_GLOBAL 'dar'
-    0xbe, // LOAD_FAST 14
-    0x34,0x01, // CALL_FUNCTION 1
-    0x59, // POP_TOP
-    0x12,0x4d, // LOAD_GLOBAL 'sonar_bloque'
-    0xb4, // LOAD_FAST 4
-    0x23,0x22, // LOAD_CONST_OBJ 34
-    0x34,0x02, // CALL_FUNCTION 2
-    0x59, // POP_TOP
-    0xb0, // LOAD_FAST 0
-    0x14,0x82,0x04, // LOAD_METHOD 'asentar'
-    0xb2, // LOAD_FAST 2
-    0xb3, // LOAD_FAST 3
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0xf2, // BINARY_OP 27 __add__
-    0x36,0x02, // CALL_METHOD 2
-    0x59, // POP_TOP
-    0x12,0x3f, // LOAD_GLOBAL 'g'
-    0xb2, // LOAD_FAST 2
-    0xb3, // LOAD_FAST 3
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0xf2, // BINARY_OP 27 __add__
-    0x34,0x02, // CALL_FUNCTION 2
-    0x12,0x82,0x6f, // LOAD_GLOBAL 'FLOR_R'
-    0x12,0x82,0x70, // LOAD_GLOBAL 'FLOR_A'
-    0x12,0x82,0x71, // LOAD_GLOBAL 'HIERBA_A'
-    0x12,0x82,0x72, // LOAD_GLOBAL 'ANTORCHA'
-    0x12,0x82,0x6e, // LOAD_GLOBAL 'CACTUS'
-    0x2a,0x05, // BUILD_TUPLE 5
-    0xdd, // BINARY_OP 6 <in>
-    0x44,0x47, // POP_JUMP_IF_FALSE 7
-    0xb4, // LOAD_FAST 4
-    0x12,0x82,0x6e, // LOAD_GLOBAL 'CACTUS'
-    0xdc, // BINARY_OP 5 __ne__
-    0x44,0x40, // POP_JUMP_IF_FALSE 0
-    0x12,0x3f, // LOAD_GLOBAL 'g'
-    0xb2, // LOAD_FAST 2
-    0xb3, // LOAD_FAST 3
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0xf2, // BINARY_OP 27 __add__
-    0x34,0x02, // CALL_FUNCTION 2
-    0x12,0x82,0x6f, // LOAD_GLOBAL 'FLOR_R'
-    0x12,0x82,0x70, // LOAD_GLOBAL 'FLOR_A'
-    0x12,0x82,0x71, // LOAD_GLOBAL 'HIERBA_A'
-    0x12,0x82,0x72, // LOAD_GLOBAL 'ANTORCHA'
-    0x2a,0x04, // BUILD_TUPLE 4
-    0xdd, // BINARY_OP 6 <in>
-    0x44,0x4e, // POP_JUMP_IF_FALSE 14
-    0xb0, // LOAD_FAST 0
-    0x14,0x82,0x02, // LOAD_METHOD 'poner'
-    0xb2, // LOAD_FAST 2
-    0xb3, // LOAD_FAST 3
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0xf2, // BINARY_OP 27 __add__
-    0x12,0x82,0x59, // LOAD_GLOBAL 'AIRE'
     0x36,0x03, // CALL_METHOD 3
     0x59, // POP_TOP
-    0x23,0x65, // LOAD_CONST_OBJ 101
-    0xcc, // STORE_FAST 12
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x04, // LOAD_METHOD 'suelta'
+    0xb4, // LOAD_FAST 4
+    0x36,0x01, // CALL_METHOD 1
+    0x5f, // GET_ITER_STACK
+    0x4b,0x10, // FOR_ITER 16
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc9, // STORE_FAST 9
+    0xca, // STORE_FAST 10
+    0xba, // LOAD_FAST 10
+    0x44,0x47, // POP_JUMP_IF_FALSE 7
+    0x12,0x53, // LOAD_GLOBAL 'dar'
+    0xb9, // LOAD_FAST 9
+    0xba, // LOAD_FAST 10
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0x42,0x2e, // JUMP -18
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x01, // LOAD_METHOD 'gastar_herramienta'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x12,0x3c, // LOAD_GLOBAL 'sonar_bloque'
+    0xb4, // LOAD_FAST 4
+    0x23,0x13, // LOAD_CONST_OBJ 19
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x7f, // LOAD_METHOD 'asentar'
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
-    0xbc, // LOAD_FAST 12
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x36,0x02, // CALL_METHOD 2
+    0x59, // POP_TOP
+    0x12,0x30, // LOAD_GLOBAL 'g'
+    0xb2, // LOAD_FAST 2
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x02, // CALL_FUNCTION 2
+    0xcb, // STORE_FAST 11
+    0xbb, // LOAD_FAST 11
+    0x44,0x5a, // POP_JUMP_IF_FALSE 26
+    0x12,0x32, // LOAD_GLOBAL 'solido'
+    0xbb, // LOAD_FAST 11
+    0x34,0x01, // CALL_FUNCTION 1
+    0x43,0x53, // POP_JUMP_IF_TRUE 19
+    0x12,0x83,0x08, // LOAD_GLOBAL 'LIQ'
+    0xbb, // LOAD_FAST 11
+    0x55, // LOAD_SUBSCR
+    0x43,0x4c, // POP_JUMP_IF_TRUE 12
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x7d, // LOAD_METHOD 'poner'
+    0xb2, // LOAD_FAST 2
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x36,0x03, // CALL_METHOD 3
+    0x59, // POP_TOP
+    0x23,0x6c, // LOAD_CONST_OBJ 108
+    0xc8, // STORE_FAST 8
+    0xb2, // LOAD_FAST 2
+    0xb3, // LOAD_FAST 3
+    0xb8, // LOAD_FAST 8
     0x2a,0x03, // BUILD_TUPLE 3
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x5b, // STORE_ATTR 'pico'
+    0x18,0x81,0x57, // STORE_ATTR 'pico'
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -54063,7 +55825,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_picar = {
     .fun_data = fun_data_mc2d_Juego_picar,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 413,
+    .fun_data_len = 301,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -54071,16 +55833,16 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_picar = {
     #if MICROPY_PY_SYS_SETTRACE
     .line_of_definition = 0,
     .prelude = {
-        .n_state = 21,
+        .n_state = 19,
         .n_exc_stack = 0,
         .scope_flags = 0,
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 263,
+        .qstr_block_name_idx = 261,
         .line_info = fun_data_mc2d_Juego_picar + 9,
-        .line_info_top = fun_data_mc2d_Juego_picar + 46,
-        .opcodes = fun_data_mc2d_Juego_picar + 46,
+        .line_info_top = fun_data_mc2d_Juego_picar + 38,
+        .opcodes = fun_data_mc2d_Juego_picar + 38,
     },
     #endif
     #endif
@@ -54091,73 +55853,136 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_picar = {
 
 // child of mc2d_Juego
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_usar
-static const byte fun_data_mc2d_Juego_usar[301] = {
-    0x79,0x42, // prelude
-    0x82,0x08,0x83,0x4e, // names: usar, self
-    0xa0,0x74,0x2a,0x27,0x2c,0x34,0x22,0x29,0x2e,0x32,0x26,0x31,0x22,0x31,0x22,0x30,0x22,0x3b,0x22,0x22,0x29,0x36,0x24,0x23,0x22,0x26,0x2a,0x28,0x29, // code info
+static const byte fun_data_mc2d_Juego_usar[617] = {
+    0xa1,0x10,0x80,0x02, // prelude
+    0x82,0x06,0x84,0x05, // names: usar, self
+    0xb0,0x52,0x2a,0x27,0x2c,0x27,0x2a,0x22,0x2c,0x2a,0x22,0x29,0x23,0x22,0x28,0x28,0x26,0x35,0x34,0x2c,0x2e,0x29,0x25,0x28,0x31,0x22,0x2e,0x2a,0x29,0x28,0x22,0x33,0x3c,0x29,0x28,0x22,0x26,0x3d,0x2b,0x3e,0x29,0x22,0x26,0x23,0x22,0x2a,0x22,0x3b,0x22,0x22,0x29,0x2b,0x2a,0x24,0x23,0x22,0x29,0x2a,0x28,0x29, // code info
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x74, // LOAD_METHOD 'objetivo'
+    0x14,0x81,0x72, // LOAD_METHOD 'objetivo'
     0x36,0x00, // CALL_METHOD 0
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xc1, // STORE_FAST 1
     0xc2, // STORE_FAST 2
-    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0x12,0x30, // LOAD_GLOBAL 'g'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0x34,0x02, // CALL_FUNCTION 2
     0xc3, // STORE_FAST 3
     0xb3, // LOAD_FAST 3
-    0x12,0x82,0x69, // LOAD_GLOBAL 'MESA'
-    0x12,0x82,0x6a, // LOAD_GLOBAL 'HORNO'
-    0x2a,0x02, // BUILD_TUPLE 2
-    0xdd, // BINARY_OP 6 <in>
-    0x44,0x56, // POP_JUMP_IF_FALSE 22
-    0xb0, // LOAD_FAST 0
-    0x14,0x82,0x09, // LOAD_METHOD 'abrir_inventario'
+    0x44,0x47, // POP_JUMP_IF_FALSE 7
+    0x12,0x83,0x02, // LOAD_GLOBAL 'L2PM'
     0xb3, // LOAD_FAST 3
-    0x12,0x82,0x69, // LOAD_GLOBAL 'MESA'
+    0x55, // LOAD_SUBSCR
+    0x42,0x41, // JUMP 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xc4, // STORE_FAST 4
+    0xb4, // LOAD_FAST 4
+    0x12,0x83,0x25, // LOAD_GLOBAL 'MESA_PM'
     0xd9, // BINARY_OP 2 __eq__
-    0x44,0x44, // POP_JUMP_IF_FALSE 4
-    0x10,0x17, // LOAD_CONST_STRING 'mesa'
-    0x42,0x42, // JUMP 2
-    0x10,0x18, // LOAD_CONST_STRING 'horno'
+    0x44,0x4c, // POP_JUMP_IF_FALSE 12
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x07, // LOAD_METHOD 'abrir_inventario'
+    0x10,0x82,0x08, // LOAD_CONST_STRING 'mesa'
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
-    0x12,0x83,0x2b, // LOAD_GLOBAL 'inv_id'
-    0xb0, // LOAD_FAST 0
-    0x13,0x81,0x5a, // LOAD_ATTR 'sel'
-    0x55, // LOAD_SUBSCR
-    0xc4, // STORE_FAST 4
     0xb4, // LOAD_FAST 4
-    0x12,0x83,0x0c, // LOAD_GLOBAL 'COMIDA'
+    0x12,0x83,0x26, // LOAD_GLOBAL 'HORNO_PM'
+    0x12,0x83,0x27, // LOAD_GLOBAL 'HORNO_ON_PM'
+    0x2a,0x02, // BUILD_TUPLE 2
     0xdd, // BINARY_OP 6 <in>
-    0x44,0x72, // POP_JUMP_IF_FALSE 50
+    0x44,0x4c, // POP_JUMP_IF_FALSE 12
     0xb0, // LOAD_FAST 0
-    0x13,0x78, // LOAD_ATTR 'hambre'
+    0x14,0x82,0x07, // LOAD_METHOD 'abrir_inventario'
+    0x10,0x81,0x5d, // LOAD_CONST_STRING 'horno'
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x56, // LOAD_ATTR 'sel'
+    0x55, // LOAD_SUBSCR
+    0xc5, // STORE_FAST 5
+    0xb5, // LOAD_FAST 5
+    0x43,0x42, // POP_JUMP_IF_TRUE 2
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0xb5, // LOAD_FAST 5
+    0x12,0x83,0x0d, // LOAD_GLOBAL 'COMIDA'
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0xfa,0x80, // POP_JUMP_IF_FALSE 122
+    0xb0, // LOAD_FAST 0
+    0x13,0x69, // LOAD_ATTR 'hambre'
     0x94, // LOAD_CONST_SMALL_INT 20
     0xd7, // BINARY_OP 0 __lt__
-    0x44,0x6b, // POP_JUMP_IF_FALSE 43
-    0x12,0x83,0x37, // LOAD_GLOBAL 'min'
+    0x44,0xf0,0x80, // POP_JUMP_IF_FALSE 112
+    0x12,0x83,0x0d, // LOAD_GLOBAL 'COMIDA'
+    0xb5, // LOAD_FAST 5
+    0x55, // LOAD_SUBSCR
+    0xc6, // STORE_FAST 6
+    0x12,0x83,0x6b, // LOAD_GLOBAL 'min'
     0x94, // LOAD_CONST_SMALL_INT 20
     0xb0, // LOAD_FAST 0
-    0x13,0x78, // LOAD_ATTR 'hambre'
-    0x12,0x83,0x0c, // LOAD_GLOBAL 'COMIDA'
-    0xb4, // LOAD_FAST 4
+    0x13,0x69, // LOAD_ATTR 'hambre'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
+    0xb6, // LOAD_FAST 6
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0xf2, // BINARY_OP 27 __add__
+    0x34,0x02, // CALL_FUNCTION 2
+    0xb0, // LOAD_FAST 0
+    0x18,0x69, // STORE_ATTR 'hambre'
+    0x12,0x83,0x6b, // LOAD_GLOBAL 'min'
+    0xb0, // LOAD_FAST 0
+    0x13,0x69, // LOAD_ATTR 'hambre'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x51, // LOAD_ATTR 'sat'
+    0xb6, // LOAD_FAST 6
+    0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
     0xf2, // BINARY_OP 27 __add__
     0x34,0x02, // CALL_FUNCTION 2
     0xb0, // LOAD_FAST 0
-    0x18,0x78, // STORE_ATTR 'hambre'
-    0x12,0x65, // LOAD_GLOBAL 'quitar'
-    0xb4, // LOAD_FAST 4
+    0x18,0x81,0x51, // STORE_ATTR 'sat'
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x03, // LOAD_METHOD 'random'
+    0x36,0x00, // CALL_METHOD 0
+    0xb6, // LOAD_FAST 6
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x4e, // POP_JUMP_IF_FALSE 14
+    0x12,0x83,0x6c, // LOAD_GLOBAL 'max'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xb0, // LOAD_FAST 0
+    0x13,0x69, // LOAD_ATTR 'hambre'
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x02, // CALL_FUNCTION 2
+    0xb0, // LOAD_FAST 0
+    0x18,0x69, // STORE_ATTR 'hambre'
+    0x12,0x56, // LOAD_GLOBAL 'quitar_hueco'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x56, // LOAD_ATTR 'sel'
     0x34,0x01, // CALL_FUNCTION 1
     0x59, // POP_TOP
-    0x12,0x44, // LOAD_GLOBAL 'sonar'
-    0x10,0x82,0x0a, // LOAD_CONST_STRING 'eat%d'
+    0xb6, // LOAD_FAST 6
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x55, // LOAD_SUBSCR
+    0x44,0x48, // POP_JUMP_IF_FALSE 8
+    0x12,0x53, // LOAD_GLOBAL 'dar'
+    0xb6, // LOAD_FAST 6
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0x12,0x37, // LOAD_GLOBAL 'sonar'
+    0x10,0x82,0x09, // LOAD_CONST_STRING 'eat%d'
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x54, // LOAD_METHOD 'randint'
+    0x14,0x43, // LOAD_METHOD 'randint'
     0x81, // LOAD_CONST_SMALL_INT 1
     0x83, // LOAD_CONST_SMALL_INT 3
     0x36,0x02, // CALL_METHOD 2
@@ -54166,40 +55991,148 @@ static const byte fun_data_mc2d_Juego_usar[301] = {
     0x59, // POP_TOP
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
-    0xb4, // LOAD_FAST 4
-    0x44,0x4e, // POP_JUMP_IF_FALSE 14
-    0xb4, // LOAD_FAST 4
-    0x22,0x80,0x40, // LOAD_CONST_SMALL_INT 64
-    0xdb, // BINARY_OP 4 __ge__
-    0x43,0x47, // POP_JUMP_IF_TRUE 7
-    0xb4, // LOAD_FAST 4
-    0x12,0x82,0x68, // LOAD_GLOBAL 'AGUA'
+    0xb5, // LOAD_FAST 5
+    0x12,0x83,0x28, // LOAD_GLOBAL 'CUBO'
     0xd9, // BINARY_OP 2 __eq__
-    0x44,0x42, // POP_JUMP_IF_FALSE 2
+    0x44,0x64, // POP_JUMP_IF_FALSE 36
+    0x12,0x33, // LOAD_GLOBAL 'es_agua'
+    0xb3, // LOAD_FAST 3
+    0x34,0x01, // CALL_FUNCTION 1
+    0x44,0x5d, // POP_JUMP_IF_FALSE 29
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x7d, // LOAD_METHOD 'poner'
+    0xb1, // LOAD_FAST 1
+    0xb2, // LOAD_FAST 2
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x36,0x03, // CALL_METHOD 3
+    0x59, // POP_TOP
+    0x12,0x56, // LOAD_GLOBAL 'quitar_hueco'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x56, // LOAD_ATTR 'sel'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0x12,0x53, // LOAD_GLOBAL 'dar'
+    0x12,0x83,0x29, // LOAD_GLOBAL 'CUBO_AGUA'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0xb5, // LOAD_FAST 5
+    0x12,0x83,0x29, // LOAD_GLOBAL 'CUBO_AGUA'
+    0x12,0x83,0x2a, // LOAD_GLOBAL 'CUBO_LAVA'
+    0x2a,0x02, // BUILD_TUPLE 2
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x76, // POP_JUMP_IF_FALSE 54
+    0x12,0x32, // LOAD_GLOBAL 'solido'
+    0xb3, // LOAD_FAST 3
+    0x34,0x01, // CALL_FUNCTION 1
+    0x43,0x6f, // POP_JUMP_IF_TRUE 47
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x7d, // LOAD_METHOD 'poner'
+    0xb1, // LOAD_FAST 1
+    0xb2, // LOAD_FAST 2
+    0x12,0x12, // LOAD_GLOBAL 'B'
+    0xb5, // LOAD_FAST 5
+    0x12,0x83,0x29, // LOAD_GLOBAL 'CUBO_AGUA'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x45, // POP_JUMP_IF_FALSE 5
+    0x12,0x83,0x23, // LOAD_GLOBAL 'AGUA_PM'
+    0x42,0x43, // JUMP 3
+    0x12,0x83,0x24, // LOAD_GLOBAL 'LAVA_PM'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x36,0x03, // CALL_METHOD 3
+    0x59, // POP_TOP
+    0x12,0x56, // LOAD_GLOBAL 'quitar_hueco'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x56, // LOAD_ATTR 'sel'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0x12,0x53, // LOAD_GLOBAL 'dar'
+    0x12,0x83,0x28, // LOAD_GLOBAL 'CUBO'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0x12,0x18, // LOAD_GLOBAL 'ficha'
+    0xb5, // LOAD_FAST 5
+    0x34,0x01, // CALL_FUNCTION 1
+    0xc7, // STORE_FAST 7
+    0xb7, // LOAD_FAST 7
+    0x12,0x82,0x75, // LOAD_GLOBAL 'F_GRUPO'
+    0x55, // LOAD_SUBSCR
+    0x8c, // LOAD_CONST_SMALL_INT 12
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0xc7,0x80, // POP_JUMP_IF_FALSE 71
+    0xb7, // LOAD_FAST 7
+    0x12,0x82,0x76, // LOAD_GLOBAL 'F_SUELTA'
+    0x55, // LOAD_SUBSCR
+    0x12,0x83,0x0e, // LOAD_GLOBAL 'MOBS'
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x7c, // POP_JUMP_IF_FALSE 60
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x0a, // LOAD_METHOD 'manda_mobs'
+    0x36,0x00, // CALL_METHOD 0
+    0x44,0x74, // POP_JUMP_IF_FALSE 52
+    0xb0, // LOAD_FAST 0
+    0x57, // DUP_TOP
+    0x13,0x81,0x5f, // LOAD_ATTR 'mob_id'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x5a, // ROT_TWO
+    0x18,0x81,0x5f, // STORE_ATTR 'mob_id'
+    0xb0, // LOAD_FAST 0
+    0x13,0x27, // LOAD_ATTR 'mobs'
+    0x14,0x59, // LOAD_METHOD 'append'
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x0b, // LOAD_METHOD 'nuevo_mob'
+    0xb7, // LOAD_FAST 7
+    0x12,0x82,0x76, // LOAD_GLOBAL 'F_SUELTA'
+    0x55, // LOAD_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0x23,0x20, // LOAD_CONST_OBJ 32
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x84,0x13, // LOAD_GLOBAL 'float'
+    0xb2, // LOAD_FAST 2
+    0x34,0x01, // CALL_FUNCTION 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x36,0x04, // CALL_METHOD 4
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x12,0x56, // LOAD_GLOBAL 'quitar_hueco'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x56, // LOAD_ATTR 'sel'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0x12,0x12, // LOAD_GLOBAL 'B'
+    0xb5, // LOAD_FAST 5
+    0x34,0x01, // CALL_FUNCTION 1
+    0xc8, // STORE_FAST 8
+    0xb8, // LOAD_FAST 8
+    0x43,0x42, // POP_JUMP_IF_TRUE 2
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
     0xb3, // LOAD_FAST 3
-    0x12,0x82,0x59, // LOAD_GLOBAL 'AIRE'
-    0x12,0x82,0x68, // LOAD_GLOBAL 'AGUA'
-    0x12,0x82,0x71, // LOAD_GLOBAL 'HIERBA_A'
-    0x2a,0x03, // BUILD_TUPLE 3
-    0xdd, // BINARY_OP 6 <in>
-    0xd3, // UNARY_OP 3 <not>
+    0x44,0x49, // POP_JUMP_IF_FALSE 9
+    0x12,0x32, // LOAD_GLOBAL 'solido'
+    0xb3, // LOAD_FAST 3
+    0x34,0x01, // CALL_FUNCTION 1
     0x44,0x42, // POP_JUMP_IF_FALSE 2
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
-    0x12,0x41, // LOAD_GLOBAL 'solido'
-    0xb4, // LOAD_FAST 4
+    0x12,0x32, // LOAD_GLOBAL 'solido'
+    0xb8, // LOAD_FAST 8
     0x34,0x01, // CALL_FUNCTION 1
     0x44,0x56, // POP_JUMP_IF_FALSE 22
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x05, // LOAD_METHOD 'toca_jugador'
+    0x14,0x82,0x00, // LOAD_METHOD 'toca_jugador'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0x36,0x02, // CALL_METHOD 2
     0x43,0x4a, // POP_JUMP_IF_TRUE 10
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x0b, // LOAD_METHOD 'mob_en'
+    0x14,0x82,0x0c, // LOAD_METHOD 'mob_en'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0x36,0x02, // CALL_METHOD 2
@@ -54207,59 +56140,61 @@ static const byte fun_data_mc2d_Juego_usar[301] = {
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
     0x50, // LOAD_CONST_FALSE
-    0xc5, // STORE_FAST 5
-    0x23,0x69, // LOAD_CONST_OBJ 105
+    0xc9, // STORE_FAST 9
+    0x23,0x71, // LOAD_CONST_OBJ 113
     0x5f, // GET_ITER_STACK
-    0x4b,0x1e, // FOR_ITER 30
+    0x4b,0x1d, // FOR_ITER 29
     0x30,0x02, // UNPACK_SEQUENCE 2
-    0xc6, // STORE_FAST 6
-    0xc7, // STORE_FAST 7
-    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0xca, // STORE_FAST 10
+    0xcb, // STORE_FAST 11
+    0x12,0x30, // LOAD_GLOBAL 'g'
     0xb1, // LOAD_FAST 1
-    0xb6, // LOAD_FAST 6
+    0xba, // LOAD_FAST 10
     0xf2, // BINARY_OP 27 __add__
     0xb2, // LOAD_FAST 2
-    0xb7, // LOAD_FAST 7
+    0xbb, // LOAD_FAST 11
     0xf2, // BINARY_OP 27 __add__
     0x34,0x02, // CALL_FUNCTION 2
-    0x12,0x82,0x59, // LOAD_GLOBAL 'AIRE'
-    0x12,0x82,0x68, // LOAD_GLOBAL 'AGUA'
-    0x2a,0x02, // BUILD_TUPLE 2
-    0xdd, // BINARY_OP 6 <in>
-    0xd3, // UNARY_OP 3 <not>
-    0x44,0x42, // POP_JUMP_IF_FALSE 2
+    0xcc, // STORE_FAST 12
+    0xbc, // LOAD_FAST 12
+    0x44,0x49, // POP_JUMP_IF_FALSE 9
+    0x12,0x83,0x08, // LOAD_GLOBAL 'LIQ'
+    0xbc, // LOAD_FAST 12
+    0x55, // LOAD_SUBSCR
+    0x43,0x42, // POP_JUMP_IF_TRUE 2
     0x52, // LOAD_CONST_TRUE
-    0xc5, // STORE_FAST 5
-    0x42,0x20, // JUMP -32
-    0xb5, // LOAD_FAST 5
+    0xc9, // STORE_FAST 9
+    0x42,0x21, // JUMP -31
+    0xb9, // LOAD_FAST 9
     0x43,0x42, // POP_JUMP_IF_TRUE 2
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
-    0x12,0x65, // LOAD_GLOBAL 'quitar'
-    0xb4, // LOAD_FAST 4
+    0x12,0x56, // LOAD_GLOBAL 'quitar_hueco'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x56, // LOAD_ATTR 'sel'
     0x34,0x01, // CALL_FUNCTION 1
     0x59, // POP_TOP
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x02, // LOAD_METHOD 'poner'
+    0x14,0x81,0x7d, // LOAD_METHOD 'poner'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
-    0xb4, // LOAD_FAST 4
+    0xb8, // LOAD_FAST 8
     0x36,0x03, // CALL_METHOD 3
     0x59, // POP_TOP
-    0x12,0x4d, // LOAD_GLOBAL 'sonar_bloque'
-    0xb4, // LOAD_FAST 4
-    0x23,0x30, // LOAD_CONST_OBJ 48
+    0x12,0x3c, // LOAD_GLOBAL 'sonar_bloque'
+    0xb8, // LOAD_FAST 8
+    0x23,0x28, // LOAD_CONST_OBJ 40
     0x34,0x02, // CALL_FUNCTION 2
     0x59, // POP_TOP
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x04, // LOAD_METHOD 'asentar'
+    0x14,0x81,0x7f, // LOAD_METHOD 'asentar'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0x36,0x02, // CALL_METHOD 2
     0x59, // POP_TOP
-    0x23,0x3a, // LOAD_CONST_OBJ 58
+    0x23,0x31, // LOAD_CONST_OBJ 49
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x5e, // STORE_ATTR 'golpe_t'
+    0x18,0x81,0x5a, // STORE_ATTR 'golpe_t'
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -54272,7 +56207,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_usar = {
     .fun_data = fun_data_mc2d_Juego_usar,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 301,
+    .fun_data_len = 617,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -54280,16 +56215,16 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_usar = {
     #if MICROPY_PY_SYS_SETTRACE
     .line_of_definition = 0,
     .prelude = {
-        .n_state = 16,
+        .n_state = 21,
         .n_exc_stack = 0,
         .scope_flags = 0,
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 264,
-        .line_info = fun_data_mc2d_Juego_usar + 6,
-        .line_info_top = fun_data_mc2d_Juego_usar + 35,
-        .opcodes = fun_data_mc2d_Juego_usar + 35,
+        .qstr_block_name_idx = 262,
+        .line_info = fun_data_mc2d_Juego_usar + 8,
+        .line_info_top = fun_data_mc2d_Juego_usar + 68,
+        .opcodes = fun_data_mc2d_Juego_usar + 68,
     },
     #endif
     #endif
@@ -54300,40 +56235,74 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_usar = {
 
 // child of mc2d_Juego
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_mob_en
-static const byte fun_data_mc2d_Juego_mob_en[73] = {
-    0x5b,0x1c, // prelude
-    0x82,0x0b,0x83,0x4e,0x83,0x51,0x83,0x52, // names: mob_en, self, tx, ty
-    0xa0,0x92,0x28,0x1f,0x2c,0x24, // code info
+static const byte fun_data_mc2d_Juego_mob_en[122] = {
+    0x73,0x22, // prelude
+    0x82,0x0c,0x84,0x05,0x84,0x08,0x84,0x09, // names: mob_en, self, tx, ty
+    0xb0,0x8f,0x27,0x2d,0x1f,0x27,0x1f,0x27,0x25, // code info
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x60, // LOAD_ATTR 'mobs'
+    0x13,0x27, // LOAD_ATTR 'mobs'
     0x5f, // GET_ITER_STACK
-    0x4b,0x30, // FOR_ITER 48
+    0x4b,0x5f, // FOR_ITER 95
     0xc3, // STORE_FAST 3
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x0e, // LOAD_GLOBAL 'MOBS'
+    0x14,0x19, // LOAD_METHOD 'get'
+    0xb3, // LOAD_FAST 3
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0x2c,0x00, // BUILD_MAP 0
+    0x36,0x02, // CALL_METHOD 2
+    0xc4, // STORE_FAST 4
     0xb3, // LOAD_FAST 3
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
-    0x34,0x01, // CALL_FUNCTION 1
+    0x23,0x31, // LOAD_CONST_OBJ 49
+    0xf3, // BINARY_OP 28 __sub__
     0xb1, // LOAD_FAST 1
-    0xd9, // BINARY_OP 2 __eq__
-    0x44,0x61, // POP_JUMP_IF_FALSE 33
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
-    0xb3, // LOAD_FAST 3
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0x55, // LOAD_SUBSCR
-    0x34,0x01, // CALL_FUNCTION 1
-    0xb2, // LOAD_FAST 2
+    0x23,0x14, // LOAD_CONST_OBJ 20
+    0xf2, // BINARY_OP 27 __add__
     0x57, // DUP_TOP
     0x5b, // ROT_THREE
     0xda, // BINARY_OP 3 __le__
-    0x46,0x0d, // JUMP_IF_FALSE_OR_POP 13
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x46,0x13, // JUMP_IF_FALSE_OR_POP 19
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0xb4, // LOAD_FAST 4
+    0x14,0x19, // LOAD_METHOD 'get'
+    0x10,0x81,0x42, // LOAD_CONST_STRING 'w'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x36,0x02, // CALL_METHOD 2
+    0xf2, // BINARY_OP 27 __add__
+    0x23,0x31, // LOAD_CONST_OBJ 49
+    0xf2, // BINARY_OP 27 __add__
+    0xda, // BINARY_OP 3 __le__
+    0x42,0x42, // JUMP 2
+    0x5a, // ROT_TWO
+    0x59, // POP_TOP
+    0x44,0x68, // POP_JUMP_IF_FALSE 40
     0xb3, // LOAD_FAST 3
     0x82, // LOAD_CONST_SMALL_INT 2
     0x55, // LOAD_SUBSCR
-    0x81, // LOAD_CONST_SMALL_INT 1
+    0x23,0x31, // LOAD_CONST_OBJ 49
+    0xf3, // BINARY_OP 28 __sub__
+    0xb2, // LOAD_FAST 2
+    0x23,0x14, // LOAD_CONST_OBJ 20
     0xf2, // BINARY_OP 27 __add__
-    0x34,0x01, // CALL_FUNCTION 1
+    0x57, // DUP_TOP
+    0x5b, // ROT_THREE
+    0xda, // BINARY_OP 3 __le__
+    0x46,0x13, // JUMP_IF_FALSE_OR_POP 19
+    0xb3, // LOAD_FAST 3
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0xb4, // LOAD_FAST 4
+    0x14,0x19, // LOAD_METHOD 'get'
+    0x10,0x81,0x44, // LOAD_CONST_STRING 'h'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x36,0x02, // CALL_METHOD 2
+    0xf2, // BINARY_OP 27 __add__
+    0x23,0x31, // LOAD_CONST_OBJ 49
+    0xf2, // BINARY_OP 27 __add__
     0xda, // BINARY_OP 3 __le__
     0x42,0x42, // JUMP 2
     0x5a, // ROT_TWO
@@ -54341,7 +56310,7 @@ static const byte fun_data_mc2d_Juego_mob_en[73] = {
     0x44,0x42, // POP_JUMP_IF_FALSE 2
     0xb3, // LOAD_FAST 3
     0x63, // RETURN_VALUE
-    0x42,0x0e, // JUMP -50
+    0x42,0x9f,0x7f, // JUMP -97
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -54354,7 +56323,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_mob_en = {
     .fun_data = fun_data_mc2d_Juego_mob_en,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 73,
+    .fun_data_len = 122,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -54362,16 +56331,16 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_mob_en = {
     #if MICROPY_PY_SYS_SETTRACE
     .line_of_definition = 0,
     .prelude = {
-        .n_state = 12,
+        .n_state = 15,
         .n_exc_stack = 0,
         .scope_flags = 0,
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 267,
+        .qstr_block_name_idx = 268,
         .line_info = fun_data_mc2d_Juego_mob_en + 10,
-        .line_info_top = fun_data_mc2d_Juego_mob_en + 16,
-        .opcodes = fun_data_mc2d_Juego_mob_en + 16,
+        .line_info_top = fun_data_mc2d_Juego_mob_en + 19,
+        .opcodes = fun_data_mc2d_Juego_mob_en + 19,
     },
     #endif
     #endif
@@ -54381,51 +56350,95 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_mob_en = {
 #endif
 
 // child of mc2d_Juego
-// frozen bytecode for file mc2d.py, scope mc2d_Juego_golpear
-static const byte fun_data_mc2d_Juego_golpear[324] = {
-    0x91,0x10,0x34, // prelude
-    0x82,0x0c,0x83,0x4e, // names: golpear, self
-    0xa0,0x98,0x2a,0x2a,0x3c,0x1f,0x23,0x24,0x26,0x28,0x4f,0x38,0x3e,0x42,0x2f,0x1f,0x1f,0x23,0x36,0x26,0x29,0x25, // code info
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_dano_arma
+static const byte fun_data_mc2d_Juego_dano_arma[46] = {
+    0x29,0x10, // prelude
+    0x82,0x0d,0x84,0x05, // names: dano_arma, self
+    0xb0,0x97,0x20,0x2d, // code info
+    0x12,0x18, // LOAD_GLOBAL 'ficha'
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x74, // LOAD_METHOD 'objetivo'
+    0x13,0x81,0x56, // LOAD_ATTR 'sel'
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0xc1, // STORE_FAST 1
+    0xb1, // LOAD_FAST 1
+    0x12,0x82,0x75, // LOAD_GLOBAL 'F_GRUPO'
+    0x55, // LOAD_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x4c, // POP_JUMP_IF_FALSE 12
+    0x12,0x83,0x6c, // LOAD_GLOBAL 'max'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xb1, // LOAD_FAST 1
+    0x12,0x82,0x79, // LOAD_GLOBAL 'F_DANO'
+    0x55, // LOAD_SUBSCR
+    0x34,0x02, // CALL_FUNCTION 2
+    0x63, // RETURN_VALUE
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_dano_arma = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_dano_arma,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 46,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 6,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 269,
+        .line_info = fun_data_mc2d_Juego_dano_arma + 6,
+        .line_info_top = fun_data_mc2d_Juego_dano_arma + 10,
+        .opcodes = fun_data_mc2d_Juego_dano_arma + 10,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_dano_arma fun_data_mc2d_Juego_dano_arma[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_golpear
+static const byte fun_data_mc2d_Juego_golpear[268] = {
+    0x81,0x10,0x32, // prelude
+    0x82,0x0e,0x84,0x05, // names: golpear, self
+    0xb0,0x9c,0x2a,0x27,0x1f,0x23,0x23,0x26,0x27,0x28,0x4f,0x38,0x42,0x2f,0x1f,0x1f,0x23,0x36,0x26,0x29,0x25, // code info
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x72, // LOAD_METHOD 'objetivo'
     0x36,0x00, // CALL_METHOD 0
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xc1, // STORE_FAST 1
     0xc2, // STORE_FAST 2
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x06, // LOAD_METHOD 'herramienta'
+    0x14,0x82,0x0d, // LOAD_METHOD 'dano_arma'
     0x36,0x00, // CALL_METHOD 0
-    0x30,0x02, // UNPACK_SEQUENCE 2
     0xc3, // STORE_FAST 3
-    0xc4, // STORE_FAST 4
-    0xb3, // LOAD_FAST 3
-    0x12,0x83,0x00, // LOAD_GLOBAL 'ESPADA'
-    0xd9, // BINARY_OP 2 __eq__
-    0x44,0x4b, // POP_JUMP_IF_FALSE 11
-    0x12,0x83,0x0d, // LOAD_GLOBAL 'DANO'
-    0x12,0x83,0x00, // LOAD_GLOBAL 'ESPADA'
-    0x55, // LOAD_SUBSCR
-    0xb4, // LOAD_FAST 4
-    0x55, // LOAD_SUBSCR
-    0x42,0x49, // JUMP 9
-    0xb3, // LOAD_FAST 3
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0xdb, // BINARY_OP 4 __ge__
-    0x44,0x43, // POP_JUMP_IF_FALSE 3
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0x42,0x41, // JUMP 1
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0xc5, // STORE_FAST 5
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x0b, // LOAD_METHOD 'mob_en'
+    0x14,0x82,0x0c, // LOAD_METHOD 'mob_en'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0x36,0x02, // CALL_METHOD 2
     0x45,0x17, // JUMP_IF_TRUE_OR_POP 23
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x0b, // LOAD_METHOD 'mob_en'
+    0x14,0x82,0x0c, // LOAD_METHOD 'mob_en'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x55, // LOAD_ATTR 'cara'
+    0x13,0x81,0x50, // LOAD_ATTR 'cara'
     0x80, // LOAD_CONST_SMALL_INT 0
     0xd7, // BINARY_OP 0 __lt__
     0x44,0x45, // POP_JUMP_IF_FALSE 5
@@ -54438,78 +56451,63 @@ static const byte fun_data_mc2d_Juego_golpear[324] = {
     0xf2, // BINARY_OP 27 __add__
     0xb2, // LOAD_FAST 2
     0x36,0x02, // CALL_METHOD 2
-    0xc6, // STORE_FAST 6
-    0xb6, // LOAD_FAST 6
-    0x44,0xd5,0x80, // POP_JUMP_IF_FALSE 85
-    0x23,0x6b, // LOAD_CONST_OBJ 107
+    0xc4, // STORE_FAST 4
+    0xb4, // LOAD_FAST 4
+    0x44,0x7e, // POP_JUMP_IF_FALSE 62
+    0x23,0x75, // LOAD_CONST_OBJ 117
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x5e, // STORE_ATTR 'golpe_t'
+    0x18,0x81,0x5a, // STORE_ATTR 'golpe_t'
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x0d, // LOAD_METHOD 'manda_mobs'
+    0x14,0x82,0x01, // LOAD_METHOD 'gastar_herramienta'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x0a, // LOAD_METHOD 'manda_mobs'
     0x36,0x00, // CALL_METHOD 0
     0x44,0x4f, // POP_JUMP_IF_FALSE 15
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x0e, // LOAD_METHOD 'dano_mob'
-    0xb6, // LOAD_FAST 6
-    0xb5, // LOAD_FAST 5
+    0x14,0x82,0x0f, // LOAD_METHOD 'dano_mob'
+    0xb4, // LOAD_FAST 4
+    0xb3, // LOAD_FAST 3
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x55, // LOAD_ATTR 'cara'
+    0x13,0x81,0x50, // LOAD_ATTR 'cara'
     0x36,0x03, // CALL_METHOD 3
     0x59, // POP_TOP
-    0x42,0x76, // JUMP 54
-    0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x82,0x0f, // LOAD_METHOD 'enviar'
+    0x42,0x58, // JUMP 24
+    0x12,0x0c, // LOAD_GLOBAL 'red'
+    0x14,0x82,0x10, // LOAD_METHOD 'enviar'
     0x2c,0x01, // BUILD_MAP 1
-    0xb6, // LOAD_FAST 6
+    0xb4, // LOAD_FAST 4
     0x88, // LOAD_CONST_SMALL_INT 8
     0x55, // LOAD_SUBSCR
-    0xb5, // LOAD_FAST 5
+    0xb3, // LOAD_FAST 3
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x55, // LOAD_ATTR 'cara'
+    0x13,0x81,0x50, // LOAD_ATTR 'cara'
     0x2b,0x03, // BUILD_LIST 3
-    0x10,0x82,0x10, // LOAD_CONST_STRING 'golpe'
+    0x10,0x82,0x11, // LOAD_CONST_STRING 'golpe'
     0x62, // STORE_MAP
     0x36,0x01, // CALL_METHOD 1
-    0x59, // POP_TOP
-    0x12,0x44, // LOAD_GLOBAL 'sonar'
-    0xb6, // LOAD_FAST 6
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0x55, // LOAD_SUBSCR
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0xd9, // BINARY_OP 2 __eq__
-    0x44,0x45, // POP_JUMP_IF_FALSE 5
-    0x10,0x82,0x11, // LOAD_CONST_STRING 'pig%d'
-    0x42,0x42, // JUMP 2
-    0x23,0x71, // LOAD_CONST_OBJ 113
-    0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x54, // LOAD_METHOD 'randint'
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0x36,0x02, // CALL_METHOD 2
-    0xf8, // BINARY_OP 33 __mod__
-    0x23,0x30, // LOAD_CONST_OBJ 48
-    0x34,0x02, // CALL_FUNCTION 2
     0x59, // POP_TOP
     0x52, // LOAD_CONST_TRUE
     0x63, // RETURN_VALUE
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x46, // LOAD_ATTR 'otros'
-    0x14,0x4b, // LOAD_METHOD 'items'
+    0x13,0x81,0x37, // LOAD_ATTR 'otros'
+    0x14,0x26, // LOAD_METHOD 'items'
     0x36,0x00, // CALL_METHOD 0
     0x5f, // GET_ITER_STACK
     0x4b,0x6f, // FOR_ITER 111
     0x30,0x02, // UNPACK_SEQUENCE 2
-    0xc7, // STORE_FAST 7
-    0xc8, // STORE_FAST 8
-    0xb8, // LOAD_FAST 8
+    0xc5, // STORE_FAST 5
+    0xc6, // STORE_FAST 6
+    0xb6, // LOAD_FAST 6
     0x86, // LOAD_CONST_SMALL_INT 6
     0x55, // LOAD_SUBSCR
     0x43,0xe2,0x80, // POP_JUMP_IF_TRUE 98
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
-    0xb8, // LOAD_FAST 8
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
+    0xb6, // LOAD_FAST 6
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
-    0x12,0x83,0x20, // LOAD_GLOBAL 'PW'
+    0x12,0x83,0x4e, // LOAD_GLOBAL 'PW'
     0x82, // LOAD_CONST_SMALL_INT 2
     0xf7, // BINARY_OP 32 __truediv__
     0xf2, // BINARY_OP 27 __add__
@@ -54517,13 +56515,13 @@ static const byte fun_data_mc2d_Juego_golpear[324] = {
     0xb1, // LOAD_FAST 1
     0xb1, // LOAD_FAST 1
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x55, // LOAD_ATTR 'cara'
+    0x13,0x81,0x50, // LOAD_ATTR 'cara'
     0xf3, // BINARY_OP 28 __sub__
     0x2a,0x02, // BUILD_TUPLE 2
     0xdd, // BINARY_OP 6 <in>
     0x44,0xc7,0x80, // POP_JUMP_IF_FALSE 71
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
-    0xb8, // LOAD_FAST 8
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
+    0xb6, // LOAD_FAST 6
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
     0x34,0x01, // CALL_FUNCTION 1
@@ -54532,11 +56530,11 @@ static const byte fun_data_mc2d_Juego_golpear[324] = {
     0x5b, // ROT_THREE
     0xda, // BINARY_OP 3 __le__
     0x46,0x0e, // JUMP_IF_FALSE_OR_POP 14
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
-    0xb8, // LOAD_FAST 8
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
+    0xb6, // LOAD_FAST 6
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
-    0x23,0x2e, // LOAD_CONST_OBJ 46
+    0x23,0x26, // LOAD_CONST_OBJ 38
     0xf2, // BINARY_OP 27 __add__
     0x34,0x01, // CALL_FUNCTION 1
     0xda, // BINARY_OP 3 __le__
@@ -54544,24 +56542,24 @@ static const byte fun_data_mc2d_Juego_golpear[324] = {
     0x5a, // ROT_TWO
     0x59, // POP_TOP
     0x44,0x67, // POP_JUMP_IF_FALSE 39
-    0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x82,0x0f, // LOAD_METHOD 'enviar'
+    0x12,0x0c, // LOAD_GLOBAL 'red'
+    0x14,0x82,0x10, // LOAD_METHOD 'enviar'
     0x2c,0x01, // BUILD_MAP 1
-    0xb7, // LOAD_FAST 7
     0xb5, // LOAD_FAST 5
+    0xb3, // LOAD_FAST 3
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x55, // LOAD_ATTR 'cara'
+    0x13,0x81,0x50, // LOAD_ATTR 'cara'
     0x2b,0x03, // BUILD_LIST 3
     0x10,0x82,0x12, // LOAD_CONST_STRING 'dano'
     0x62, // STORE_MAP
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
-    0x23,0x6b, // LOAD_CONST_OBJ 107
+    0x23,0x75, // LOAD_CONST_OBJ 117
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x5e, // STORE_ATTR 'golpe_t'
-    0x12,0x44, // LOAD_GLOBAL 'sonar'
-    0x10,0x6b, // LOAD_CONST_STRING 'hurt'
-    0x23,0x23, // LOAD_CONST_OBJ 35
+    0x18,0x81,0x5a, // STORE_ATTR 'golpe_t'
+    0x12,0x37, // LOAD_GLOBAL 'sonar'
+    0x10,0x60, // LOAD_CONST_STRING 'hurt'
+    0x23,0x14, // LOAD_CONST_OBJ 20
     0x34,0x02, // CALL_FUNCTION 2
     0x59, // POP_TOP
     0x52, // LOAD_CONST_TRUE
@@ -54579,7 +56577,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_golpear = {
     .fun_data = fun_data_mc2d_Juego_golpear,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 324,
+    .fun_data_len = 268,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -54587,16 +56585,16 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_golpear = {
     #if MICROPY_PY_SYS_SETTRACE
     .line_of_definition = 0,
     .prelude = {
-        .n_state = 19,
+        .n_state = 17,
         .n_exc_stack = 0,
         .scope_flags = 0,
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 268,
+        .qstr_block_name_idx = 270,
         .line_info = fun_data_mc2d_Juego_golpear + 7,
-        .line_info_top = fun_data_mc2d_Juego_golpear + 29,
-        .opcodes = fun_data_mc2d_Juego_golpear + 29,
+        .line_info_top = fun_data_mc2d_Juego_golpear + 28,
+        .opcodes = fun_data_mc2d_Juego_golpear + 28,
     },
     #endif
     #endif
@@ -54609,8 +56607,8 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_golpear = {
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_libre_col
 static const byte fun_data_mc2d_Juego_libre_col[51] = {
     0xd0,0x04,0x1e, // prelude
-    0x82,0x13,0x83,0x4e,0x83,0x51,0x83,0x54,0x83,0x56, // names: libre_col, self, tx, y0, y1
-    0xa0,0xaf,0x28,0x2c,0x2b, // code info
+    0x82,0x13,0x84,0x05,0x84,0x08,0x84,0x0b,0x84,0x0d, // names: libre_col, self, tx, y0, y1
+    0xb0,0xb2,0x28,0x2c,0x2b, // code info
     0xb3, // LOAD_FAST 3
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
@@ -54618,8 +56616,8 @@ static const byte fun_data_mc2d_Juego_libre_col[51] = {
     0x42,0x52, // JUMP 18
     0x57, // DUP_TOP
     0xc4, // STORE_FAST 4
-    0x12,0x41, // LOAD_GLOBAL 'solido'
-    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0x12,0x32, // LOAD_GLOBAL 'solido'
+    0x12,0x30, // LOAD_GLOBAL 'g'
     0xb1, // LOAD_FAST 1
     0xb4, // LOAD_FAST 4
     0x34,0x02, // CALL_FUNCTION 2
@@ -54677,8 +56675,8 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_libre_col = {
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_mover_x
 static const byte fun_data_mc2d_Juego_mover_x[224] = {
     0x7b,0x36, // prelude
-    0x82,0x14,0x83,0x4e,0x82,0x36,0x83,0x5b, // names: mover_x, self, e, dx
-    0xa0,0xb5,0x28,0x29,0x29,0x25,0x2e,0x25,0x4b,0x22,0x34,0x2b,0x22,0x1f,0x2a,0x39,0x27,0x22,0x31, // code info
+    0x82,0x14,0x84,0x05,0x82,0x40,0x84,0x14, // names: mover_x, self, e, dx
+    0xb0,0xb8,0x28,0x29,0x29,0x25,0x2e,0x25,0x4b,0x22,0x34,0x2b,0x22,0x1f,0x2a,0x39,0x27,0x22,0x31, // code info
     0xb1, // LOAD_FAST 1
     0x80, // LOAD_CONST_SMALL_INT 0
     0x58, // DUP_TOP_TWO
@@ -54709,11 +56707,11 @@ static const byte fun_data_mc2d_Juego_mover_x[224] = {
     0x80, // LOAD_CONST_SMALL_INT 0
     0xd8, // BINARY_OP 1 __gt__
     0x44,0x4e, // POP_JUMP_IF_FALSE 14
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb3, // LOAD_FAST 3
     0xb5, // LOAD_FAST 5
     0xf2, // BINARY_OP 27 __add__
-    0x23,0x72, // LOAD_CONST_OBJ 114
+    0x23,0x7c, // LOAD_CONST_OBJ 124
     0xf3, // BINARY_OP 28 __sub__
     0x34,0x01, // CALL_FUNCTION 1
     0xc7, // STORE_FAST 7
@@ -54730,14 +56728,14 @@ static const byte fun_data_mc2d_Juego_mover_x[224] = {
     0x42,0x42, // JUMP 2
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb4, // LOAD_FAST 4
     0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb4, // LOAD_FAST 4
     0xb6, // LOAD_FAST 6
     0xf2, // BINARY_OP 27 __add__
-    0x23,0x72, // LOAD_CONST_OBJ 114
+    0x23,0x7c, // LOAD_CONST_OBJ 124
     0xf3, // BINARY_OP 28 __sub__
     0x34,0x01, // CALL_FUNCTION 1
     0x5a, // ROT_TWO
@@ -54769,7 +56767,7 @@ static const byte fun_data_mc2d_Juego_mover_x[224] = {
     0x44,0x76, // POP_JUMP_IF_FALSE 54
     0xb0, // LOAD_FAST 0
     0x14,0x82,0x13, // LOAD_METHOD 'libre_col'
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb3, // LOAD_FAST 3
     0x34,0x01, // CALL_FUNCTION 1
     0xb9, // LOAD_FAST 9
@@ -54782,11 +56780,11 @@ static const byte fun_data_mc2d_Juego_mover_x[224] = {
     0x44,0x62, // POP_JUMP_IF_FALSE 34
     0xb0, // LOAD_FAST 0
     0x14,0x82,0x13, // LOAD_METHOD 'libre_col'
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb3, // LOAD_FAST 3
     0xb5, // LOAD_FAST 5
     0xf2, // BINARY_OP 27 __add__
-    0x23,0x72, // LOAD_CONST_OBJ 114
+    0x23,0x7c, // LOAD_CONST_OBJ 124
     0xf3, // BINARY_OP 28 __sub__
     0x34,0x01, // CALL_FUNCTION 1
     0xb9, // LOAD_FAST 9
@@ -54798,7 +56796,7 @@ static const byte fun_data_mc2d_Juego_mover_x[224] = {
     0x36,0x03, // CALL_METHOD 3
     0x44,0x49, // POP_JUMP_IF_FALSE 9
     0xb8, // LOAD_FAST 8
-    0x23,0x2d, // LOAD_CONST_OBJ 45
+    0x23,0x25, // LOAD_CONST_OBJ 37
     0xf2, // BINARY_OP 27 __add__
     0xb1, // LOAD_FAST 1
     0x81, // LOAD_CONST_SMALL_INT 1
@@ -54814,12 +56812,12 @@ static const byte fun_data_mc2d_Juego_mover_x[224] = {
     0xf3, // BINARY_OP 28 __sub__
     0x42,0x44, // JUMP 4
     0xb7, // LOAD_FAST 7
-    0x23,0x2d, // LOAD_CONST_OBJ 45
+    0x23,0x25, // LOAD_CONST_OBJ 37
     0xf2, // BINARY_OP 27 __add__
     0xb1, // LOAD_FAST 1
     0x80, // LOAD_CONST_SMALL_INT 0
     0x56, // STORE_SUBSCR
-    0x23,0x65, // LOAD_CONST_OBJ 101
+    0x23,0x6c, // LOAD_CONST_OBJ 108
     0xb1, // LOAD_FAST 1
     0x82, // LOAD_CONST_SMALL_INT 2
     0x56, // STORE_SUBSCR
@@ -54865,8 +56863,8 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_mover_x = {
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_mover_y
 static const byte fun_data_mc2d_Juego_mover_y[195] = {
     0x7b,0x34, // prelude
-    0x82,0x16,0x83,0x4e,0x82,0x36,0x83,0x5c, // names: mover_y, self, e, dy
-    0xa0,0xc9,0x28,0x2e,0x34,0x25,0x2b,0x28,0x2c,0x2c,0x2d,0x25,0x2e,0x28,0x2c,0x26,0x2d,0x24, // code info
+    0x82,0x16,0x84,0x05,0x82,0x40,0x84,0x15, // names: mover_y, self, e, dy
+    0xb0,0xcc,0x28,0x2e,0x34,0x25,0x2b,0x28,0x2c,0x2c,0x2d,0x25,0x2e,0x28,0x2c,0x26,0x2d,0x24, // code info
     0xb1, // LOAD_FAST 1
     0x81, // LOAD_CONST_SMALL_INT 1
     0x58, // DUP_TOP_TWO
@@ -54889,14 +56887,14 @@ static const byte fun_data_mc2d_Juego_mover_y[195] = {
     0xc3, // STORE_FAST 3
     0xc4, // STORE_FAST 4
     0xc5, // STORE_FAST 5
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb3, // LOAD_FAST 3
     0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb3, // LOAD_FAST 3
     0xb4, // LOAD_FAST 4
     0xf2, // BINARY_OP 27 __add__
-    0x23,0x72, // LOAD_CONST_OBJ 114
+    0x23,0x7c, // LOAD_CONST_OBJ 124
     0xf3, // BINARY_OP 28 __sub__
     0x34,0x01, // CALL_FUNCTION 1
     0x5a, // ROT_TWO
@@ -54920,15 +56918,15 @@ static const byte fun_data_mc2d_Juego_mover_y[195] = {
     0x42,0x5e, // JUMP 30
     0x57, // DUP_TOP
     0xc9, // STORE_FAST 9
-    0x12,0x41, // LOAD_GLOBAL 'solido'
-    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0x12,0x32, // LOAD_GLOBAL 'solido'
+    0x12,0x30, // LOAD_GLOBAL 'g'
     0xb9, // LOAD_FAST 9
     0xb8, // LOAD_FAST 8
     0x34,0x02, // CALL_FUNCTION 2
     0x34,0x01, // CALL_FUNCTION 1
     0x44,0x4e, // POP_JUMP_IF_FALSE 14
     0xb8, // LOAD_FAST 8
-    0x23,0x2d, // LOAD_CONST_OBJ 45
+    0x23,0x25, // LOAD_CONST_OBJ 37
     0xf2, // BINARY_OP 27 __add__
     0x52, // LOAD_CONST_TRUE
     0x5a, // ROT_TWO
@@ -54953,13 +56951,13 @@ static const byte fun_data_mc2d_Juego_mover_y[195] = {
     0x80, // LOAD_CONST_SMALL_INT 0
     0xd8, // BINARY_OP 1 __gt__
     0x44,0x75, // POP_JUMP_IF_FALSE 53
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb1, // LOAD_FAST 1
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
     0xb5, // LOAD_FAST 5
     0xf2, // BINARY_OP 27 __add__
-    0x23,0x72, // LOAD_CONST_OBJ 114
+    0x23,0x7c, // LOAD_CONST_OBJ 124
     0xf3, // BINARY_OP 28 __sub__
     0x34,0x01, // CALL_FUNCTION 1
     0xc8, // STORE_FAST 8
@@ -54970,8 +56968,8 @@ static const byte fun_data_mc2d_Juego_mover_y[195] = {
     0x42,0x58, // JUMP 24
     0x57, // DUP_TOP
     0xc9, // STORE_FAST 9
-    0x12,0x41, // LOAD_GLOBAL 'solido'
-    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0x12,0x32, // LOAD_GLOBAL 'solido'
+    0x12,0x30, // LOAD_GLOBAL 'g'
     0xb9, // LOAD_FAST 9
     0xb8, // LOAD_FAST 8
     0x34,0x02, // CALL_FUNCTION 2
@@ -55038,365 +57036,430 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_mover_y = {
 
 // child of mc2d_Juego
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_fisica
-static const byte fun_data_mc2d_Juego_fisica[682] = {
-    0x82,0x10,0x6e, // prelude
-    0x82,0x17,0x83,0x4e,0x83,0x5a, // names: fisica, self, dt
-    0xa0,0xdc,0x3c,0x3c,0x1f,0x2d,0x1f,0x23,0x2e,0x26,0x54,0x4d,0x26,0x23,0x39,0x23,0x26,0x47,0x29,0x27,0x25,0x37,0x37,0x2e,0x25,0x2e,0x3e,0x23,0x46,0x29,0x32,0x27,0x32,0x29,0x26,0x3c,0x25,0x36,0x2b,0x2b,0x28,0x26,0x1f,0x25,0x27,0x25,0x2d,0x2a,0x27, // code info
-    0x12,0x82,0x56, // LOAD_GLOBAL 'K'
+static const byte fun_data_mc2d_Juego_fisica[802] = {
+    0x92,0x10,0x82,0x02, // prelude
+    0x82,0x17,0x84,0x05,0x84,0x12, // names: fisica, self, dt
+    0xb0,0xdf,0x3c,0x3c,0x1f,0x2d,0x3e,0x26,0x2a,0x2e,0x26,0x54,0x4d,0x26,0x23,0x2e,0x4b,0x39,0x23,0x26,0x47,0x29,0x27,0x25,0x2c,0x37,0x37,0x2e,0x25,0x2e,0x3e,0x23,0x46,0x2c,0x32,0x27,0x32,0x29,0x26,0x3c,0x25,0x36,0x2b,0x2b,0x2e,0x28,0x27,0x1f,0x25,0x27,0x2b,0x28,0x26,0x2a,0x27,0x25,0x2d,0x2a,0x27, // code info
+    0x12,0x82,0x68, // LOAD_GLOBAL 'K'
     0x14,0x82,0x18, // LOAD_METHOD 'pulsada'
     0x10,0x82,0x19, // LOAD_CONST_STRING 'LEFT'
     0x36,0x01, // CALL_METHOD 1
     0x45,0x0e, // JUMP_IF_TRUE_OR_POP 14
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x6c, // LOAD_ATTR 'tap'
-    0x14,0x4c, // LOAD_METHOD 'get'
+    0x13,0x81,0x6a, // LOAD_ATTR 'tap'
+    0x14,0x19, // LOAD_METHOD 'get'
     0x10,0x82,0x1a, // LOAD_CONST_STRING 'a'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x36,0x02, // CALL_METHOD 2
     0x80, // LOAD_CONST_SMALL_INT 0
     0xd8, // BINARY_OP 1 __gt__
     0xc2, // STORE_FAST 2
-    0x12,0x82,0x56, // LOAD_GLOBAL 'K'
+    0x12,0x82,0x68, // LOAD_GLOBAL 'K'
     0x14,0x82,0x18, // LOAD_METHOD 'pulsada'
     0x10,0x82,0x1b, // LOAD_CONST_STRING 'RIGHT'
     0x36,0x01, // CALL_METHOD 1
     0x45,0x0e, // JUMP_IF_TRUE_OR_POP 14
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x6c, // LOAD_ATTR 'tap'
-    0x14,0x4c, // LOAD_METHOD 'get'
+    0x13,0x81,0x6a, // LOAD_ATTR 'tap'
+    0x14,0x19, // LOAD_METHOD 'get'
     0x10,0x82,0x1c, // LOAD_CONST_STRING 'd'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x36,0x02, // CALL_METHOD 2
     0x80, // LOAD_CONST_SMALL_INT 0
     0xd8, // BINARY_OP 1 __gt__
     0xc3, // STORE_FAST 3
-    0x12,0x82,0x56, // LOAD_GLOBAL 'K'
+    0x12,0x82,0x68, // LOAD_GLOBAL 'K'
     0x14,0x82,0x18, // LOAD_METHOD 'pulsada'
     0x10,0x82,0x1d, // LOAD_CONST_STRING 'UP'
     0x36,0x01, // CALL_METHOD 1
     0x45,0x1e, // JUMP_IF_TRUE_OR_POP 30
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x6c, // LOAD_ATTR 'tap'
-    0x14,0x4c, // LOAD_METHOD 'get'
-    0x10,0x82,0x1e, // LOAD_CONST_STRING 'w'
+    0x13,0x81,0x6a, // LOAD_ATTR 'tap'
+    0x14,0x19, // LOAD_METHOD 'get'
+    0x10,0x81,0x42, // LOAD_CONST_STRING 'w'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x36,0x02, // CALL_METHOD 2
     0x80, // LOAD_CONST_SMALL_INT 0
     0xd8, // BINARY_OP 1 __gt__
     0x45,0x0e, // JUMP_IF_TRUE_OR_POP 14
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x6c, // LOAD_ATTR 'tap'
-    0x14,0x4c, // LOAD_METHOD 'get'
-    0x10,0x82,0x1f, // LOAD_CONST_STRING ' '
+    0x13,0x81,0x6a, // LOAD_ATTR 'tap'
+    0x14,0x19, // LOAD_METHOD 'get'
+    0x10,0x82,0x1e, // LOAD_CONST_STRING ' '
     0x80, // LOAD_CONST_SMALL_INT 0
     0x36,0x02, // CALL_METHOD 2
     0x80, // LOAD_CONST_SMALL_INT 0
     0xd8, // BINARY_OP 1 __gt__
     0xc4, // STORE_FAST 4
-    0x12,0x3f, // LOAD_GLOBAL 'g'
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x12,0x30, // LOAD_GLOBAL 'g'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
-    0x13,0x75, // LOAD_ATTR 'x'
-    0x12,0x83,0x20, // LOAD_GLOBAL 'PW'
+    0x13,0x66, // LOAD_ATTR 'x'
+    0x12,0x83,0x4e, // LOAD_GLOBAL 'PW'
     0x82, // LOAD_CONST_SMALL_INT 2
     0xf7, // BINARY_OP 32 __truediv__
     0xf2, // BINARY_OP 27 __add__
     0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
-    0x13,0x76, // LOAD_ATTR 'y'
-    0x23,0x23, // LOAD_CONST_OBJ 35
+    0x13,0x67, // LOAD_ATTR 'y'
+    0x23,0x14, // LOAD_CONST_OBJ 20
     0xf2, // BINARY_OP 27 __add__
     0x34,0x01, // CALL_FUNCTION 1
     0x34,0x02, // CALL_FUNCTION 2
-    0x12,0x82,0x68, // LOAD_GLOBAL 'AGUA'
-    0xd9, // BINARY_OP 2 __eq__
     0xc5, // STORE_FAST 5
-    0x12,0x83,0x24, // LOAD_GLOBAL 'ANDAR'
+    0x12,0x83,0x08, // LOAD_GLOBAL 'LIQ'
     0xb5, // LOAD_FAST 5
-    0x44,0x44, // POP_JUMP_IF_FALSE 4
-    0x23,0x30, // LOAD_CONST_OBJ 48
-    0x42,0x42, // JUMP 2
-    0x23,0x2d, // LOAD_CONST_OBJ 45
-    0xf4, // BINARY_OP 29 __mul__
+    0x55, // LOAD_SUBSCR
     0xc6, // STORE_FAST 6
+    0x12,0x83,0x02, // LOAD_GLOBAL 'L2PM'
+    0xb5, // LOAD_FAST 5
+    0x55, // LOAD_SUBSCR
+    0x12,0x83,0x21, // LOAD_GLOBAL 'ESCALERA_PM'
+    0xd9, // BINARY_OP 2 __eq__
+    0xc7, // STORE_FAST 7
+    0x12,0x83,0x52, // LOAD_GLOBAL 'ANDAR'
+    0xb6, // LOAD_FAST 6
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x23,0x28, // LOAD_CONST_OBJ 40
+    0x42,0x42, // JUMP 2
+    0x23,0x25, // LOAD_CONST_OBJ 37
+    0xf4, // BINARY_OP 29 __mul__
+    0xc8, // STORE_FAST 8
     0xb2, // LOAD_FAST 2
     0x44,0x51, // POP_JUMP_IF_FALSE 17
     0xb3, // LOAD_FAST 3
     0x43,0x4e, // POP_JUMP_IF_TRUE 14
-    0xb6, // LOAD_FAST 6
+    0xb8, // LOAD_FAST 8
     0xd1, // UNARY_OP 1 __neg__
     0x7f, // LOAD_CONST_SMALL_INT -1
     0x5a, // ROT_TWO
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x52, // STORE_ATTR 'vx'
+    0x18,0x81,0x4d, // STORE_ATTR 'vx'
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x55, // STORE_ATTR 'cara'
+    0x18,0x81,0x50, // STORE_ATTR 'cara'
     0x42,0x59, // JUMP 25
     0xb3, // LOAD_FAST 3
     0x44,0x50, // POP_JUMP_IF_FALSE 16
     0xb2, // LOAD_FAST 2
     0x43,0x4d, // POP_JUMP_IF_TRUE 13
-    0xb6, // LOAD_FAST 6
+    0xb8, // LOAD_FAST 8
     0x81, // LOAD_CONST_SMALL_INT 1
     0x5a, // ROT_TWO
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x52, // STORE_ATTR 'vx'
+    0x18,0x81,0x4d, // STORE_ATTR 'vx'
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x55, // STORE_ATTR 'cara'
+    0x18,0x81,0x50, // STORE_ATTR 'cara'
     0x42,0x46, // JUMP 6
-    0x23,0x65, // LOAD_CONST_OBJ 101
+    0x23,0x6c, // LOAD_CONST_OBJ 108
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x52, // STORE_ATTR 'vx'
-    0xb5, // LOAD_FAST 5
-    0x44,0x69, // POP_JUMP_IF_FALSE 41
-    0x12,0x83,0x38, // LOAD_GLOBAL 'max'
-    0x23,0x73, // LOAD_CONST_OBJ 115
+    0x18,0x81,0x4d, // STORE_ATTR 'vx'
+    0xb7, // LOAD_FAST 7
+    0x44,0x56, // POP_JUMP_IF_FALSE 22
+    0xb4, // LOAD_FAST 4
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x23,0x7d, // LOAD_CONST_OBJ 125
+    0x42,0x43, // JUMP 3
+    0x23,0x29, // LOAD_CONST_OBJ 41
     0xd1, // UNARY_OP 1 __neg__
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x53, // LOAD_ATTR 'vy'
-    0x12,0x83,0x22, // LOAD_GLOBAL 'GRAV'
-    0x23,0x6b, // LOAD_CONST_OBJ 107
-    0xf4, // BINARY_OP 29 __mul__
-    0xb1, // LOAD_FAST 1
-    0xf4, // BINARY_OP 29 __mul__
-    0xf3, // BINARY_OP 28 __sub__
-    0x34,0x02, // CALL_FUNCTION 2
-    0xb0, // LOAD_FAST 0
-    0x18,0x81,0x53, // STORE_ATTR 'vy'
-    0xb4, // LOAD_FAST 4
-    0x44,0x46, // POP_JUMP_IF_FALSE 6
-    0x23,0x74, // LOAD_CONST_OBJ 116
-    0xb0, // LOAD_FAST 0
-    0x18,0x81,0x53, // STORE_ATTR 'vy'
+    0x18,0x81,0x4e, // STORE_ATTR 'vy'
     0x51, // LOAD_CONST_NONE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x57, // STORE_ATTR 'caida_y'
-    0x42,0x6c, // JUMP 44
-    0xb4, // LOAD_FAST 4
-    0x44,0x52, // POP_JUMP_IF_FALSE 18
-    0xb0, // LOAD_FAST 0
-    0x13,0x81,0x54, // LOAD_ATTR 'suelo'
-    0x44,0x4c, // POP_JUMP_IF_FALSE 12
-    0x12,0x83,0x25, // LOAD_GLOBAL 'SALTO'
-    0xb0, // LOAD_FAST 0
-    0x18,0x81,0x53, // STORE_ATTR 'vy'
-    0x50, // LOAD_CONST_FALSE
-    0xb0, // LOAD_FAST 0
-    0x18,0x81,0x54, // STORE_ATTR 'suelo'
-    0x12,0x83,0x38, // LOAD_GLOBAL 'max'
-    0x12,0x83,0x23, // LOAD_GLOBAL 'MAX_CAIDA'
+    0x18,0x81,0x53, // STORE_ATTR 'caida_y'
+    0x42,0xe4,0x80, // JUMP 100
+    0xb6, // LOAD_FAST 6
+    0x44,0x69, // POP_JUMP_IF_FALSE 41
+    0x12,0x83,0x6c, // LOAD_GLOBAL 'max'
+    0x23,0x7d, // LOAD_CONST_OBJ 125
     0xd1, // UNARY_OP 1 __neg__
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x53, // LOAD_ATTR 'vy'
-    0x12,0x83,0x22, // LOAD_GLOBAL 'GRAV'
+    0x13,0x81,0x4e, // LOAD_ATTR 'vy'
+    0x12,0x83,0x50, // LOAD_GLOBAL 'GRAV'
+    0x23,0x75, // LOAD_CONST_OBJ 117
+    0xf4, // BINARY_OP 29 __mul__
     0xb1, // LOAD_FAST 1
     0xf4, // BINARY_OP 29 __mul__
     0xf3, // BINARY_OP 28 __sub__
     0x34,0x02, // CALL_FUNCTION 2
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x53, // STORE_ATTR 'vy'
+    0x18,0x81,0x4e, // STORE_ATTR 'vy'
+    0xb4, // LOAD_FAST 4
+    0x44,0x46, // POP_JUMP_IF_FALSE 6
+    0x23,0x7e, // LOAD_CONST_OBJ 126
     0xb0, // LOAD_FAST 0
-    0x13,0x75, // LOAD_ATTR 'x'
+    0x18,0x81,0x4e, // STORE_ATTR 'vy'
+    0x51, // LOAD_CONST_NONE
     0xb0, // LOAD_FAST 0
-    0x13,0x76, // LOAD_ATTR 'y'
+    0x18,0x81,0x53, // STORE_ATTR 'caida_y'
+    0x42,0x78, // JUMP 56
+    0xb4, // LOAD_FAST 4
+    0x44,0x5e, // POP_JUMP_IF_FALSE 30
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x52, // LOAD_ATTR 'vx'
+    0x13,0x81,0x4f, // LOAD_ATTR 'suelo'
+    0x44,0x58, // POP_JUMP_IF_FALSE 24
+    0x12,0x83,0x53, // LOAD_GLOBAL 'SALTO'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x54, // LOAD_ATTR 'suelo'
-    0x12,0x83,0x20, // LOAD_GLOBAL 'PW'
-    0x12,0x83,0x21, // LOAD_GLOBAL 'PH'
+    0x18,0x81,0x4e, // STORE_ATTR 'vy'
+    0x50, // LOAD_CONST_FALSE
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x4f, // STORE_ATTR 'suelo'
+    0xb0, // LOAD_FAST 0
+    0x57, // DUP_TOP
+    0x13,0x81,0x51, // LOAD_ATTR 'sat'
+    0x23,0x31, // LOAD_CONST_OBJ 49
+    0xe6, // BINARY_OP 15 __isub__
+    0x5a, // ROT_TWO
+    0x18,0x81,0x51, // STORE_ATTR 'sat'
+    0x12,0x83,0x6c, // LOAD_GLOBAL 'max'
+    0x12,0x83,0x51, // LOAD_GLOBAL 'MAX_CAIDA'
+    0xd1, // UNARY_OP 1 __neg__
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x4e, // LOAD_ATTR 'vy'
+    0x12,0x83,0x50, // LOAD_GLOBAL 'GRAV'
+    0xb1, // LOAD_FAST 1
+    0xf4, // BINARY_OP 29 __mul__
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x02, // CALL_FUNCTION 2
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x4e, // STORE_ATTR 'vy'
+    0xb0, // LOAD_FAST 0
+    0x13,0x66, // LOAD_ATTR 'x'
+    0xb0, // LOAD_FAST 0
+    0x13,0x67, // LOAD_ATTR 'y'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x4d, // LOAD_ATTR 'vx'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x4f, // LOAD_ATTR 'suelo'
+    0x12,0x83,0x4e, // LOAD_GLOBAL 'PW'
+    0x12,0x83,0x4f, // LOAD_GLOBAL 'PH'
     0x2b,0x06, // BUILD_LIST 6
-    0xc7, // STORE_FAST 7
+    0xc9, // STORE_FAST 9
     0xb0, // LOAD_FAST 0
     0x14,0x82,0x14, // LOAD_METHOD 'mover_x'
-    0xb7, // LOAD_FAST 7
+    0xb9, // LOAD_FAST 9
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x52, // LOAD_ATTR 'vx'
+    0x13,0x81,0x4d, // LOAD_ATTR 'vx'
     0xb1, // LOAD_FAST 1
     0xf4, // BINARY_OP 29 __mul__
     0x36,0x02, // CALL_METHOD 2
     0x59, // POP_TOP
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x54, // LOAD_ATTR 'suelo'
-    0xc8, // STORE_FAST 8
+    0x13,0x81,0x4f, // LOAD_ATTR 'suelo'
+    0xca, // STORE_FAST 10
     0xb0, // LOAD_FAST 0
     0x14,0x82,0x16, // LOAD_METHOD 'mover_y'
-    0xb7, // LOAD_FAST 7
+    0xb9, // LOAD_FAST 9
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x53, // LOAD_ATTR 'vy'
+    0x13,0x81,0x4e, // LOAD_ATTR 'vy'
     0xb1, // LOAD_FAST 1
     0xf4, // BINARY_OP 29 __mul__
     0x36,0x02, // CALL_METHOD 2
-    0xc9, // STORE_FAST 9
-    0xb7, // LOAD_FAST 7
+    0xcb, // STORE_FAST 11
+    0xb9, // LOAD_FAST 9
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
-    0xb7, // LOAD_FAST 7
+    0xb9, // LOAD_FAST 9
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
-    0xb7, // LOAD_FAST 7
+    0xb9, // LOAD_FAST 9
     0x82, // LOAD_CONST_SMALL_INT 2
     0x55, // LOAD_SUBSCR
-    0xb7, // LOAD_FAST 7
+    0xb9, // LOAD_FAST 9
     0x83, // LOAD_CONST_SMALL_INT 3
     0x55, // LOAD_SUBSCR
     0x2a,0x04, // BUILD_TUPLE 4
     0x30,0x04, // UNPACK_SEQUENCE 4
     0xb0, // LOAD_FAST 0
-    0x18,0x75, // STORE_ATTR 'x'
+    0x18,0x66, // STORE_ATTR 'x'
     0xb0, // LOAD_FAST 0
-    0x18,0x76, // STORE_ATTR 'y'
+    0x18,0x67, // STORE_ATTR 'y'
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x52, // STORE_ATTR 'vx'
+    0x18,0x81,0x4d, // STORE_ATTR 'vx'
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x54, // STORE_ATTR 'suelo'
-    0xb9, // LOAD_FAST 9
+    0x18,0x81,0x4f, // STORE_ATTR 'suelo'
+    0xbb, // LOAD_FAST 11
     0x44,0x46, // POP_JUMP_IF_FALSE 6
-    0x23,0x65, // LOAD_CONST_OBJ 101
+    0x23,0x6c, // LOAD_CONST_OBJ 108
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x53, // STORE_ATTR 'vy'
+    0x18,0x81,0x4e, // STORE_ATTR 'vy'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x54, // LOAD_ATTR 'suelo'
+    0x13,0x81,0x4f, // LOAD_ATTR 'suelo'
+    0x43,0x5f, // POP_JUMP_IF_TRUE 31
+    0xb6, // LOAD_FAST 6
     0x43,0x5c, // POP_JUMP_IF_TRUE 28
-    0xb5, // LOAD_FAST 5
+    0xb7, // LOAD_FAST 7
     0x43,0x59, // POP_JUMP_IF_TRUE 25
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x57, // LOAD_ATTR 'caida_y'
+    0x13,0x81,0x53, // LOAD_ATTR 'caida_y'
     0x51, // LOAD_CONST_NONE
     0xde, // BINARY_OP 7 <is>
     0x43,0x4a, // POP_JUMP_IF_TRUE 10
     0xb0, // LOAD_FAST 0
-    0x13,0x76, // LOAD_ATTR 'y'
+    0x13,0x67, // LOAD_ATTR 'y'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x57, // LOAD_ATTR 'caida_y'
+    0x13,0x81,0x53, // LOAD_ATTR 'caida_y'
     0xd8, // BINARY_OP 1 __gt__
     0x44,0x47, // POP_JUMP_IF_FALSE 7
     0xb0, // LOAD_FAST 0
-    0x13,0x76, // LOAD_ATTR 'y'
+    0x13,0x67, // LOAD_ATTR 'y'
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x57, // STORE_ATTR 'caida_y'
+    0x18,0x81,0x53, // STORE_ATTR 'caida_y'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x54, // LOAD_ATTR 'suelo'
+    0x13,0x81,0x4f, // LOAD_ATTR 'suelo'
     0x44,0x7c, // POP_JUMP_IF_FALSE 60
-    0xb8, // LOAD_FAST 8
+    0xba, // LOAD_FAST 10
     0x43,0x79, // POP_JUMP_IF_TRUE 57
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x57, // LOAD_ATTR 'caida_y'
+    0x13,0x81,0x53, // LOAD_ATTR 'caida_y'
     0x51, // LOAD_CONST_NONE
     0xde, // BINARY_OP 7 <is>
     0xd3, // UNARY_OP 3 <not>
     0x44,0x70, // POP_JUMP_IF_FALSE 48
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x57, // LOAD_ATTR 'caida_y'
+    0x13,0x81,0x53, // LOAD_ATTR 'caida_y'
     0xb0, // LOAD_FAST 0
-    0x13,0x76, // LOAD_ATTR 'y'
+    0x13,0x67, // LOAD_ATTR 'y'
     0xf3, // BINARY_OP 28 __sub__
-    0xca, // STORE_FAST 10
-    0xba, // LOAD_FAST 10
-    0x23,0x74, // LOAD_CONST_OBJ 116
+    0xcc, // STORE_FAST 12
+    0xbc, // LOAD_FAST 12
+    0x23,0x7e, // LOAD_CONST_OBJ 126
     0xd8, // BINARY_OP 1 __gt__
     0x44,0x5c, // POP_JUMP_IF_FALSE 28
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x20, // LOAD_METHOD 'herir'
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
-    0xba, // LOAD_FAST 10
+    0x14,0x82,0x1f, // LOAD_METHOD 'herir'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
+    0xbc, // LOAD_FAST 12
     0x83, // LOAD_CONST_SMALL_INT 3
     0xf3, // BINARY_OP 28 __sub__
     0x34,0x01, // CALL_FUNCTION 1
-    0xba, // LOAD_FAST 10
+    0xbc, // LOAD_FAST 12
     0x86, // LOAD_CONST_SMALL_INT 6
     0xd8, // BINARY_OP 1 __gt__
     0x44,0x45, // POP_JUMP_IF_FALSE 5
-    0x10,0x82,0x21, // LOAD_CONST_STRING 'fallbig1'
+    0x10,0x82,0x20, // LOAD_CONST_STRING 'fallbig1'
     0x42,0x43, // JUMP 3
-    0x10,0x82,0x22, // LOAD_CONST_STRING 'fallsmall'
+    0x10,0x82,0x21, // LOAD_CONST_STRING 'fallsmall'
     0x36,0x02, // CALL_METHOD 2
     0x59, // POP_TOP
     0x51, // LOAD_CONST_NONE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x57, // STORE_ATTR 'caida_y'
+    0x18,0x81,0x53, // STORE_ATTR 'caida_y'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x54, // LOAD_ATTR 'suelo'
-    0x44,0xd7,0x80, // POP_JUMP_IF_FALSE 87
-    0x12,0x83,0x3f, // LOAD_GLOBAL 'abs'
+    0x13,0x81,0x4f, // LOAD_ATTR 'suelo'
+    0x44,0xe6,0x80, // POP_JUMP_IF_FALSE 102
+    0x12,0x83,0x75, // LOAD_GLOBAL 'abs'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x52, // LOAD_ATTR 'vx'
+    0x13,0x81,0x4d, // LOAD_ATTR 'vx'
     0x34,0x01, // CALL_FUNCTION 1
-    0x23,0x28, // LOAD_CONST_OBJ 40
+    0x23,0x20, // LOAD_CONST_OBJ 32
     0xd8, // BINARY_OP 1 __gt__
-    0x44,0xc8,0x80, // POP_JUMP_IF_FALSE 72
+    0x44,0xd7,0x80, // POP_JUMP_IF_FALSE 87
     0xb0, // LOAD_FAST 0
     0x57, // DUP_TOP
-    0x13,0x81,0x5c, // LOAD_ATTR 'anda_t'
+    0x13,0x81,0x58, // LOAD_ATTR 'anda_t'
     0xb1, // LOAD_FAST 1
     0xe5, // BINARY_OP 14 __iadd__
     0x5a, // ROT_TWO
-    0x18,0x81,0x5c, // STORE_ATTR 'anda_t'
+    0x18,0x81,0x58, // STORE_ATTR 'anda_t'
     0xb0, // LOAD_FAST 0
     0x57, // DUP_TOP
-    0x13,0x81,0x5d, // LOAD_ATTR 'paso_t'
+    0x13,0x81,0x59, // LOAD_ATTR 'paso_t'
     0xb1, // LOAD_FAST 1
     0xe6, // BINARY_OP 15 __isub__
     0x5a, // ROT_TWO
-    0x18,0x81,0x5d, // STORE_ATTR 'paso_t'
+    0x18,0x81,0x59, // STORE_ATTR 'paso_t'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x5d, // LOAD_ATTR 'paso_t'
+    0x57, // DUP_TOP
+    0x13,0x81,0x51, // LOAD_ATTR 'sat'
+    0x23,0x7f, // LOAD_CONST_OBJ 127
+    0xb1, // LOAD_FAST 1
+    0xf4, // BINARY_OP 29 __mul__
+    0xe6, // BINARY_OP 15 __isub__
+    0x5a, // ROT_TWO
+    0x18,0x81,0x51, // STORE_ATTR 'sat'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x59, // LOAD_ATTR 'paso_t'
     0x80, // LOAD_CONST_SMALL_INT 0
     0xda, // BINARY_OP 3 __le__
-    0x44,0x6a, // POP_JUMP_IF_FALSE 42
-    0x23,0x75, // LOAD_CONST_OBJ 117
+    0x44,0x6b, // POP_JUMP_IF_FALSE 43
+    0x23,0x81,0x00, // LOAD_CONST_OBJ 128
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x5d, // STORE_ATTR 'paso_t'
-    0x12,0x4d, // LOAD_GLOBAL 'sonar_bloque'
-    0x12,0x3f, // LOAD_GLOBAL 'g'
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x18,0x81,0x59, // STORE_ATTR 'paso_t'
+    0x12,0x3c, // LOAD_GLOBAL 'sonar_bloque'
+    0x12,0x30, // LOAD_GLOBAL 'g'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
-    0x13,0x75, // LOAD_ATTR 'x'
-    0x12,0x83,0x20, // LOAD_GLOBAL 'PW'
+    0x13,0x66, // LOAD_ATTR 'x'
+    0x12,0x83,0x4e, // LOAD_GLOBAL 'PW'
     0x82, // LOAD_CONST_SMALL_INT 2
     0xf7, // BINARY_OP 32 __truediv__
     0xf2, // BINARY_OP 27 __add__
     0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
-    0x13,0x76, // LOAD_ATTR 'y'
-    0x23,0x23, // LOAD_CONST_OBJ 35
+    0x13,0x67, // LOAD_ATTR 'y'
+    0x23,0x14, // LOAD_CONST_OBJ 20
     0xf3, // BINARY_OP 28 __sub__
     0x34,0x01, // CALL_FUNCTION 1
     0x34,0x02, // CALL_FUNCTION 2
-    0x23,0x6b, // LOAD_CONST_OBJ 107
+    0x23,0x75, // LOAD_CONST_OBJ 117
     0x34,0x02, // CALL_FUNCTION 2
     0x59, // POP_TOP
+    0x12,0x34, // LOAD_GLOBAL 'es_lava'
+    0xb5, // LOAD_FAST 5
+    0x34,0x01, // CALL_FUNCTION 1
+    0x44,0x63, // POP_JUMP_IF_FALSE 35
     0xb0, // LOAD_FAST 0
-    0x13,0x75, // LOAD_ATTR 'x'
+    0x57, // DUP_TOP
+    0x13,0x81,0x5c, // LOAD_ATTR 'lava_t'
+    0xb1, // LOAD_FAST 1
+    0xe6, // BINARY_OP 15 __isub__
+    0x5a, // ROT_TWO
+    0x18,0x81,0x5c, // STORE_ATTR 'lava_t'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x5c, // LOAD_ATTR 'lava_t'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xda, // BINARY_OP 3 __le__
+    0x44,0x50, // POP_JUMP_IF_FALSE 16
+    0x23,0x14, // LOAD_CONST_OBJ 20
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x5c, // STORE_ATTR 'lava_t'
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x1f, // LOAD_METHOD 'herir'
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x10,0x60, // LOAD_CONST_STRING 'hurt'
+    0x36,0x02, // CALL_METHOD 2
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x13,0x66, // LOAD_ATTR 'x'
     0x80, // LOAD_CONST_SMALL_INT 0
     0xd7, // BINARY_OP 0 __lt__
     0x44,0x45, // POP_JUMP_IF_FALSE 5
-    0x23,0x65, // LOAD_CONST_OBJ 101
+    0x23,0x6c, // LOAD_CONST_OBJ 108
     0xb0, // LOAD_FAST 0
-    0x18,0x75, // STORE_ATTR 'x'
+    0x18,0x66, // STORE_ATTR 'x'
     0xb0, // LOAD_FAST 0
-    0x13,0x75, // LOAD_ATTR 'x'
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
-    0x12,0x83,0x20, // LOAD_GLOBAL 'PW'
+    0x13,0x66, // LOAD_ATTR 'x'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x4e, // LOAD_GLOBAL 'PW'
     0xf3, // BINARY_OP 28 __sub__
     0xd8, // BINARY_OP 1 __gt__
     0x44,0x4a, // POP_JUMP_IF_FALSE 10
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
-    0x12,0x83,0x20, // LOAD_GLOBAL 'PW'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x4e, // LOAD_GLOBAL 'PW'
     0xf3, // BINARY_OP 28 __sub__
     0xb0, // LOAD_FAST 0
-    0x18,0x75, // STORE_ATTR 'x'
+    0x18,0x66, // STORE_ATTR 'x'
     0xb0, // LOAD_FAST 0
-    0x13,0x76, // LOAD_ATTR 'y'
+    0x13,0x67, // LOAD_ATTR 'y'
     0x7b, // LOAD_CONST_SMALL_INT -5
     0xd7, // BINARY_OP 0 __lt__
     0x44,0x4a, // POP_JUMP_IF_FALSE 10
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x20, // LOAD_METHOD 'herir'
+    0x14,0x82,0x1f, // LOAD_METHOD 'herir'
     0x94, // LOAD_CONST_SMALL_INT 20
-    0x10,0x6b, // LOAD_CONST_STRING 'hurt'
+    0x10,0x60, // LOAD_CONST_STRING 'hurt'
     0x36,0x02, // CALL_METHOD 2
     0x59, // POP_TOP
     0x51, // LOAD_CONST_NONE
@@ -55411,7 +57474,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_fisica = {
     .fun_data = fun_data_mc2d_Juego_fisica,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 682,
+    .fun_data_len = 802,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -55419,16 +57482,16 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_fisica = {
     #if MICROPY_PY_SYS_SETTRACE
     .line_of_definition = 0,
     .prelude = {
-        .n_state = 17,
+        .n_state = 19,
         .n_exc_stack = 0,
         .scope_flags = 0,
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
         .qstr_block_name_idx = 279,
-        .line_info = fun_data_mc2d_Juego_fisica + 9,
-        .line_info_top = fun_data_mc2d_Juego_fisica + 58,
-        .opcodes = fun_data_mc2d_Juego_fisica + 58,
+        .line_info = fun_data_mc2d_Juego_fisica + 10,
+        .line_info_top = fun_data_mc2d_Juego_fisica + 69,
+        .opcodes = fun_data_mc2d_Juego_fisica + 69,
     },
     #endif
     #endif
@@ -55441,34 +57504,34 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_fisica = {
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_herir
 static const byte fun_data_mc2d_Juego_herir[63] = {
     0xb3,0x01,0x1e, // prelude
-    0x82,0x20,0x83,0x4e,0x81,0x0f,0x83,0x5d, // names: herir, self, n, sonido
-    0xb0,0x0f,0x2d,0x22,0x2e,0x26,0x28, // code info
+    0x82,0x1f,0x84,0x05,0x81,0x01,0x84,0x16, // names: herir, self, n, sonido
+    0xc0,0x1e,0x2d,0x22,0x2e,0x26,0x28, // code info
     0xb1, // LOAD_FAST 1
     0x80, // LOAD_CONST_SMALL_INT 0
     0xda, // BINARY_OP 3 __le__
     0x43,0x48, // POP_JUMP_IF_TRUE 8
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x5f, // LOAD_ATTR 'dano_t'
+    0x13,0x81,0x5b, // LOAD_ATTR 'dano_t'
     0x80, // LOAD_CONST_SMALL_INT 0
     0xd8, // BINARY_OP 1 __gt__
     0x44,0x42, // POP_JUMP_IF_FALSE 2
     0x50, // LOAD_CONST_FALSE
     0x63, // RETURN_VALUE
-    0x12,0x83,0x38, // LOAD_GLOBAL 'max'
+    0x12,0x83,0x6c, // LOAD_GLOBAL 'max'
     0x80, // LOAD_CONST_SMALL_INT 0
     0xb0, // LOAD_FAST 0
-    0x13,0x77, // LOAD_ATTR 'vida'
+    0x13,0x68, // LOAD_ATTR 'vida'
     0xb1, // LOAD_FAST 1
     0xf3, // BINARY_OP 28 __sub__
     0x34,0x02, // CALL_FUNCTION 2
     0xb0, // LOAD_FAST 0
-    0x18,0x77, // STORE_ATTR 'vida'
-    0x23,0x23, // LOAD_CONST_OBJ 35
+    0x18,0x68, // STORE_ATTR 'vida'
+    0x23,0x14, // LOAD_CONST_OBJ 20
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x5f, // STORE_ATTR 'dano_t'
-    0x12,0x44, // LOAD_GLOBAL 'sonar'
+    0x18,0x81,0x5b, // STORE_ATTR 'dano_t'
+    0x12,0x37, // LOAD_GLOBAL 'sonar'
     0xb2, // LOAD_FAST 2
-    0x23,0x32, // LOAD_CONST_OBJ 50
+    0x23,0x2a, // LOAD_CONST_OBJ 42
     0x34,0x02, // CALL_FUNCTION 2
     0x59, // POP_TOP
     0x52, // LOAD_CONST_TRUE
@@ -55497,7 +57560,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_herir = {
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 1,
-        .qstr_block_name_idx = 288,
+        .qstr_block_name_idx = 287,
         .line_info = fun_data_mc2d_Juego_herir + 11,
         .line_info_top = fun_data_mc2d_Juego_herir + 18,
         .opcodes = fun_data_mc2d_Juego_herir + 18,
@@ -55513,14 +57576,14 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_herir = {
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_es_noche
 static const byte fun_data_mc2d_Juego_es_noche[23] = {
     0x19,0x0c, // prelude
-    0x82,0x23,0x83,0x4e, // names: es_noche, self
-    0xb0,0x18, // code info
+    0x82,0x22,0x84,0x05, // names: es_noche, self
+    0xc0,0x27, // code info
     0xb0, // LOAD_FAST 0
-    0x13,0x79, // LOAD_ATTR 'tiempo'
-    0x12,0x83,0x1c, // LOAD_GLOBAL 'DIA_S'
+    0x13,0x6a, // LOAD_ATTR 'tiempo'
+    0x12,0x83,0x4c, // LOAD_GLOBAL 'DIA_S'
     0xf8, // BINARY_OP 33 __mod__
-    0x12,0x83,0x1c, // LOAD_GLOBAL 'DIA_S'
-    0x23,0x22, // LOAD_CONST_OBJ 34
+    0x12,0x83,0x4c, // LOAD_GLOBAL 'DIA_S'
+    0x23,0x13, // LOAD_CONST_OBJ 19
     0xf4, // BINARY_OP 29 __mul__
     0xd8, // BINARY_OP 1 __gt__
     0x63, // RETURN_VALUE
@@ -55548,7 +57611,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_es_noche = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 291,
+        .qstr_block_name_idx = 290,
         .line_info = fun_data_mc2d_Juego_es_noche + 6,
         .line_info_top = fun_data_mc2d_Juego_es_noche + 8,
         .opcodes = fun_data_mc2d_Juego_es_noche + 8,
@@ -55564,17 +57627,17 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_es_noche = {
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_manda_mobs
 static const byte fun_data_mc2d_Juego_manda_mobs[32] = {
     0x19,0x0e, // prelude
-    0x82,0x0d,0x83,0x4e, // names: manda_mobs, self
-    0xb0,0x1b,0x20, // code info
+    0x82,0x0a,0x84,0x05, // names: manda_mobs, self
+    0xc0,0x2a,0x20, // code info
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x39, // LOAD_ATTR 'online'
+    0x13,0x81,0x2a, // LOAD_ATTR 'online'
     0xd3, // UNARY_OP 3 <not>
     0x45,0x0f, // JUMP_IF_TRUE_OR_POP 15
-    0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x81,0x45, // LOAD_METHOD 'anfitrion'
+    0x12,0x0c, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x36, // LOAD_METHOD 'anfitrion'
     0x36,0x00, // CALL_METHOD 0
-    0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x82,0x24, // LOAD_METHOD 'mi_id'
+    0x12,0x0c, // LOAD_GLOBAL 'red'
+    0x14,0x82,0x23, // LOAD_METHOD 'mi_id'
     0x36,0x00, // CALL_METHOD 0
     0xd9, // BINARY_OP 2 __eq__
     0x63, // RETURN_VALUE
@@ -55602,7 +57665,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_manda_mobs = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 269,
+        .qstr_block_name_idx = 266,
         .line_info = fun_data_mc2d_Juego_manda_mobs + 6,
         .line_info_top = fun_data_mc2d_Juego_manda_mobs + 9,
         .opcodes = fun_data_mc2d_Juego_manda_mobs + 9,
@@ -55618,24 +57681,24 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_manda_mobs = {
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_jugadores
 static const byte fun_data_mc2d_Juego_jugadores[74] = {
     0x69,0x16, // prelude
-    0x81,0x7a,0x83,0x4e, // names: jugadores, self
-    0xb0,0x1f,0x20,0x36,0x2f,0x25,0x31, // code info
+    0x81,0x77,0x84,0x05, // names: jugadores, self
+    0xc0,0x2e,0x20,0x36,0x2f,0x25,0x31, // code info
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x62, // LOAD_ATTR 'muerto'
+    0x13,0x81,0x60, // LOAD_ATTR 'muerto'
     0x44,0x44, // POP_JUMP_IF_FALSE 4
     0x2b,0x00, // BUILD_LIST 0
     0x42,0x4b, // JUMP 11
     0x51, // LOAD_CONST_NONE
     0xb0, // LOAD_FAST 0
-    0x13,0x75, // LOAD_ATTR 'x'
+    0x13,0x66, // LOAD_ATTR 'x'
     0xb0, // LOAD_FAST 0
-    0x13,0x76, // LOAD_ATTR 'y'
+    0x13,0x67, // LOAD_ATTR 'y'
     0x2a,0x03, // BUILD_TUPLE 3
     0x2b,0x01, // BUILD_LIST 1
     0xc1, // STORE_FAST 1
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x46, // LOAD_ATTR 'otros'
-    0x14,0x4b, // LOAD_METHOD 'items'
+    0x13,0x81,0x37, // LOAD_ATTR 'otros'
+    0x14,0x26, // LOAD_METHOD 'items'
     0x36,0x00, // CALL_METHOD 0
     0x5f, // GET_ITER_STACK
     0x4b,0x1a, // FOR_ITER 26
@@ -55647,7 +57710,7 @@ static const byte fun_data_mc2d_Juego_jugadores[74] = {
     0x55, // LOAD_SUBSCR
     0x43,0x4f, // POP_JUMP_IF_TRUE 15
     0xb1, // LOAD_FAST 1
-    0x14,0x3b, // LOAD_METHOD 'append'
+    0x14,0x59, // LOAD_METHOD 'append'
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
     0x80, // LOAD_CONST_SMALL_INT 0
@@ -55685,7 +57748,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_jugadores = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 250,
+        .qstr_block_name_idx = 247,
         .line_info = fun_data_mc2d_Juego_jugadores + 6,
         .line_info_top = fun_data_mc2d_Juego_jugadores + 13,
         .opcodes = fun_data_mc2d_Juego_jugadores + 13,
@@ -55699,27 +57762,27 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_jugadores = {
 
 // child of mc2d_Juego
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_herir_a
-static const byte fun_data_mc2d_Juego_herir_a[63] = {
+static const byte fun_data_mc2d_Juego_herir_a[64] = {
     0xc8,0x04,0x1e, // prelude
-    0x82,0x25,0x83,0x4e,0x83,0x5e,0x81,0x0f,0x81,0x55, // names: herir_a, self, pid, n, cara
-    0xb0,0x27,0x25,0x29,0x4a, // code info
+    0x82,0x24,0x84,0x05,0x84,0x17,0x81,0x01,0x81,0x50, // names: herir_a, self, pid, n, cara
+    0xc0,0x36,0x25,0x29,0x4b, // code info
     0xb1, // LOAD_FAST 1
     0x51, // LOAD_CONST_NONE
     0xde, // BINARY_OP 7 <is>
-    0x44,0x53, // POP_JUMP_IF_FALSE 19
+    0x44,0x54, // POP_JUMP_IF_FALSE 20
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x20, // LOAD_METHOD 'herir'
+    0x14,0x82,0x1f, // LOAD_METHOD 'herir'
     0xb2, // LOAD_FAST 2
     0x36,0x01, // CALL_METHOD 1
-    0x44,0x48, // POP_JUMP_IF_FALSE 8
-    0x23,0x76, // LOAD_CONST_OBJ 118
+    0x44,0x49, // POP_JUMP_IF_FALSE 9
+    0x23,0x81,0x01, // LOAD_CONST_OBJ 129
     0xb3, // LOAD_FAST 3
     0xf4, // BINARY_OP 29 __mul__
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x52, // STORE_ATTR 'vx'
+    0x18,0x81,0x4d, // STORE_ATTR 'vx'
     0x42,0x53, // JUMP 19
-    0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x82,0x0f, // LOAD_METHOD 'enviar'
+    0x12,0x0c, // LOAD_GLOBAL 'red'
+    0x14,0x82,0x10, // LOAD_METHOD 'enviar'
     0x2c,0x01, // BUILD_MAP 1
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
@@ -55741,7 +57804,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_herir_a = {
     .fun_data = fun_data_mc2d_Juego_herir_a,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 63,
+    .fun_data_len = 64,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -55755,7 +57818,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_herir_a = {
         .n_pos_args = 4,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 293,
+        .qstr_block_name_idx = 292,
         .line_info = fun_data_mc2d_Juego_herir_a + 13,
         .line_info_top = fun_data_mc2d_Juego_herir_a + 18,
         .opcodes = fun_data_mc2d_Juego_herir_a + 18,
@@ -55771,25 +57834,25 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_herir_a = {
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_oye
 static const byte fun_data_mc2d_Juego_oye[42] = {
     0x22,0x12, // prelude
-    0x82,0x26,0x83,0x4e,0x82,0x2c, // names: oye, self, m
-    0xb0,0x2e,0x20, // code info
-    0x12,0x83,0x3f, // LOAD_GLOBAL 'abs'
+    0x82,0x25,0x84,0x05,0x82,0x36, // names: oye, self, m
+    0xc0,0x3d,0x20, // code info
+    0x12,0x83,0x75, // LOAD_GLOBAL 'abs'
     0xb1, // LOAD_FAST 1
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
     0xb0, // LOAD_FAST 0
-    0x13,0x75, // LOAD_ATTR 'x'
+    0x13,0x66, // LOAD_ATTR 'x'
     0xf3, // BINARY_OP 28 __sub__
     0x34,0x01, // CALL_FUNCTION 1
     0x8e, // LOAD_CONST_SMALL_INT 14
     0xd7, // BINARY_OP 0 __lt__
     0x46,0x0e, // JUMP_IF_FALSE_OR_POP 14
-    0x12,0x83,0x3f, // LOAD_GLOBAL 'abs'
+    0x12,0x83,0x75, // LOAD_GLOBAL 'abs'
     0xb1, // LOAD_FAST 1
     0x82, // LOAD_CONST_SMALL_INT 2
     0x55, // LOAD_SUBSCR
     0xb0, // LOAD_FAST 0
-    0x13,0x76, // LOAD_ATTR 'y'
+    0x13,0x67, // LOAD_ATTR 'y'
     0xf3, // BINARY_OP 28 __sub__
     0x34,0x01, // CALL_FUNCTION 1
     0x8a, // LOAD_CONST_SMALL_INT 10
@@ -55819,7 +57882,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_oye = {
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 294,
+        .qstr_block_name_idx = 293,
         .line_info = fun_data_mc2d_Juego_oye + 8,
         .line_info_top = fun_data_mc2d_Juego_oye + 11,
         .opcodes = fun_data_mc2d_Juego_oye + 11,
@@ -55833,66 +57896,74 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_oye = {
 
 // child of mc2d_Juego
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_ruido_mob
-static const byte fun_data_mc2d_Juego_ruido_mob[111] = {
-    0x43,0x1c, // prelude
-    0x82,0x27,0x83,0x4e,0x82,0x2c,0x83,0x5a, // names: ruido_mob, self, m, dt
-    0xb0,0x32,0x27,0x36,0x35,0x36, // code info
+static const byte fun_data_mc2d_Juego_ruido_mob[130] = {
+    0x53,0x1e, // prelude
+    0x82,0x26,0x84,0x05,0x82,0x36,0x84,0x12, // names: ruido_mob, self, m, dt
+    0xc0,0x41,0x1f,0x25,0x2f,0x1f,0x27, // code info
+    0x2c,0x07, // BUILD_MAP 7
+    0x10,0x82,0x27, // LOAD_CONST_STRING 'pig'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x62, // STORE_MAP
+    0x10,0x82,0x28, // LOAD_CONST_STRING 'sheep'
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x62, // STORE_MAP
+    0x10,0x82,0x29, // LOAD_CONST_STRING 'cow'
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x62, // STORE_MAP
+    0x10,0x82,0x2a, // LOAD_CONST_STRING 'chicken'
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x62, // STORE_MAP
+    0x10,0x82,0x2b, // LOAD_CONST_STRING 'zombie'
+    0x22,0x80,0x64, // LOAD_CONST_SMALL_INT 100
+    0x62, // STORE_MAP
+    0x10,0x82,0x2c, // LOAD_CONST_STRING 'spider'
+    0x22,0x80,0x66, // LOAD_CONST_SMALL_INT 102
+    0x62, // STORE_MAP
+    0x10,0x82,0x2d, // LOAD_CONST_STRING 'skeleton'
+    0x22,0x80,0x67, // LOAD_CONST_SMALL_INT 103
+    0x62, // STORE_MAP
+    0x14,0x19, // LOAD_METHOD 'get'
     0xb1, // LOAD_FAST 1
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0xd9, // BINARY_OP 2 __eq__
-    0x44,0x6b, // POP_JUMP_IF_FALSE 43
+    0x36,0x01, // CALL_METHOD 1
+    0xc3, // STORE_FAST 3
+    0xb3, // LOAD_FAST 3
+    0x44,0x79, // POP_JUMP_IF_FALSE 57
     0x12,0x03, // LOAD_GLOBAL 'random'
     0x14,0x03, // LOAD_METHOD 'random'
     0x36,0x00, // CALL_METHOD 0
     0xb2, // LOAD_FAST 2
-    0x23,0x58, // LOAD_CONST_OBJ 88
+    0xb1, // LOAD_FAST 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0x22,0x80,0x64, // LOAD_CONST_SMALL_INT 100
+    0xdb, // BINARY_OP 4 __ge__
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x23,0x5a, // LOAD_CONST_OBJ 90
+    0x42,0x42, // JUMP 2
+    0x23,0x7b, // LOAD_CONST_OBJ 123
     0xf4, // BINARY_OP 29 __mul__
     0xd7, // BINARY_OP 0 __lt__
-    0x44,0x5c, // POP_JUMP_IF_FALSE 28
+    0x44,0x5f, // POP_JUMP_IF_FALSE 31
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x26, // LOAD_METHOD 'oye'
+    0x14,0x82,0x25, // LOAD_METHOD 'oye'
     0xb1, // LOAD_FAST 1
     0x36,0x01, // CALL_METHOD 1
-    0x44,0x53, // POP_JUMP_IF_FALSE 19
-    0x12,0x44, // LOAD_GLOBAL 'sonar'
-    0x10,0x82,0x28, // LOAD_CONST_STRING 'zombie%d'
+    0x44,0x56, // POP_JUMP_IF_FALSE 22
+    0x12,0x37, // LOAD_GLOBAL 'sonar'
+    0x10,0x42, // LOAD_CONST_STRING '%s%d'
+    0xb3, // LOAD_FAST 3
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x54, // LOAD_METHOD 'randint'
+    0x14,0x43, // LOAD_METHOD 'randint'
     0x81, // LOAD_CONST_SMALL_INT 1
     0x83, // LOAD_CONST_SMALL_INT 3
     0x36,0x02, // CALL_METHOD 2
+    0x2a,0x02, // BUILD_TUPLE 2
     0xf8, // BINARY_OP 33 __mod__
-    0x23,0x77, // LOAD_CONST_OBJ 119
+    0x23,0x81,0x02, // LOAD_CONST_OBJ 130
     0x34,0x02, // CALL_FUNCTION 2
     0x59, // POP_TOP
-    0x42,0x6b, // JUMP 43
-    0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x03, // LOAD_METHOD 'random'
-    0x36,0x00, // CALL_METHOD 0
-    0xb2, // LOAD_FAST 2
-    0x23,0x78, // LOAD_CONST_OBJ 120
-    0xf4, // BINARY_OP 29 __mul__
-    0xd7, // BINARY_OP 0 __lt__
-    0x44,0x5e, // POP_JUMP_IF_FALSE 30
-    0xb0, // LOAD_FAST 0
-    0x14,0x82,0x26, // LOAD_METHOD 'oye'
-    0xb1, // LOAD_FAST 1
-    0x36,0x01, // CALL_METHOD 1
-    0x44,0x55, // POP_JUMP_IF_FALSE 21
-    0x12,0x44, // LOAD_GLOBAL 'sonar'
-    0x10,0x82,0x11, // LOAD_CONST_STRING 'pig%d'
-    0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x54, // LOAD_METHOD 'randint'
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x83, // LOAD_CONST_SMALL_INT 3
-    0x36,0x02, // CALL_METHOD 2
-    0xf8, // BINARY_OP 33 __mod__
-    0x23,0x58, // LOAD_CONST_OBJ 88
-    0x34,0x02, // CALL_FUNCTION 2
-    0x59, // POP_TOP
-    0x42,0x40, // JUMP 0
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -55905,7 +57976,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_ruido_mob = {
     .fun_data = fun_data_mc2d_Juego_ruido_mob,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 111,
+    .fun_data_len = 130,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -55913,16 +57984,16 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_ruido_mob = {
     #if MICROPY_PY_SYS_SETTRACE
     .line_of_definition = 0,
     .prelude = {
-        .n_state = 9,
+        .n_state = 11,
         .n_exc_stack = 0,
         .scope_flags = 0,
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 295,
+        .qstr_block_name_idx = 294,
         .line_info = fun_data_mc2d_Juego_ruido_mob + 10,
-        .line_info_top = fun_data_mc2d_Juego_ruido_mob + 16,
-        .opcodes = fun_data_mc2d_Juego_ruido_mob + 16,
+        .line_info_top = fun_data_mc2d_Juego_ruido_mob + 17,
+        .opcodes = fun_data_mc2d_Juego_ruido_mob + 17,
     },
     #endif
     #endif
@@ -55932,19 +58003,80 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_ruido_mob = {
 #endif
 
 // child of mc2d_Juego
-// frozen bytecode for file mc2d.py, scope mc2d_Juego_mobs_paso
-static const byte fun_data_mc2d_Juego_mobs_paso[1011] = {
-    0xaa,0x20,0xa6,0x02, // prelude
-    0x82,0x29,0x83,0x4e,0x83,0x5a, // names: mobs_paso, self, dt
-    0xb0,0x39,0x2d,0x3d,0x28,0x28,0x29,0x3d,0x25,0x22,0x26,0x25,0x28,0x2b,0x27,0x23,0x42,0x2f,0x3a,0x3a,0x2c,0x29,0x32,0x32,0x28,0x2b,0x2b,0x28,0x2f,0x1f,0x26,0x27,0x1f,0x25,0x4e,0x26,0x25,0x3e,0x26,0x28,0x25,0x2b,0x23,0x1f,0x32,0x2b,0x23,0x28,0x28,0x29,0x28,0x2d,0x38,0x1f,0x24,0x2d,0x47,0x27,0x2d,0x2b,0x28,0x29,0x2d,0x25,0x29,0x30,0x2d,0x3e,0x35,0x2d,0x31,0x26,0x2f,0x24,0x25,0x2f,0x27, // code info
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_nuevo_mob
+static const byte fun_data_mc2d_Juego_nuevo_mob[45] = {
+    0xf9,0x04,0x1a, // prelude
+    0x82,0x0b,0x84,0x05,0x83,0x6d,0x66,0x67,0x81,0x50, // names: nuevo_mob, self, tipo, x, y, cara
+    0xc0,0x47,0x26, // code info
+    0x12,0x83,0x0e, // LOAD_GLOBAL 'MOBS'
+    0xb1, // LOAD_FAST 1
+    0x55, // LOAD_SUBSCR
+    0xc5, // STORE_FAST 5
+    0xb1, // LOAD_FAST 1
+    0xb2, // LOAD_FAST 2
+    0xb3, // LOAD_FAST 3
+    0x23,0x6c, // LOAD_CONST_OBJ 108
+    0x23,0x6c, // LOAD_CONST_OBJ 108
+    0xb5, // LOAD_FAST 5
+    0x10,0x68, // LOAD_CONST_STRING 'vida'
+    0x55, // LOAD_SUBSCR
+    0xb4, // LOAD_FAST 4
+    0x23,0x6c, // LOAD_CONST_OBJ 108
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x46, // LOAD_ATTR 'otros'
-    0x14,0x81,0x7f, // LOAD_METHOD 'values'
+    0x13,0x81,0x5f, // LOAD_ATTR 'mob_id'
+    0x23,0x6c, // LOAD_CONST_OBJ 108
+    0x2b,0x0a, // BUILD_LIST 10
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_nuevo_mob = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_nuevo_mob,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 45,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 16,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 5,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 267,
+        .line_info = fun_data_mc2d_Juego_nuevo_mob + 13,
+        .line_info_top = fun_data_mc2d_Juego_nuevo_mob + 16,
+        .opcodes = fun_data_mc2d_Juego_nuevo_mob + 16,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_nuevo_mob fun_data_mc2d_Juego_nuevo_mob[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_mobs_paso
+static const byte fun_data_mc2d_Juego_mobs_paso[1560] = {
+    0xd2,0x20,0xf4,0x02, // prelude
+    0x82,0x2e,0x84,0x05,0x84,0x12, // names: mobs_paso, self, dt
+    0xc0,0x4b,0x2d,0x3d,0x28,0x27,0x29,0x3d,0x25,0x22,0x26,0x25,0x27,0x2b,0x27,0x23,0x22,0x69,0x20,0x2e,0x1f,0x28,0x2c,0x2a,0x32,0x32,0x28,0x2f,0x2b,0x29,0x30,0x27,0x1f,0x29,0x27,0x3d,0x27,0x2a,0x27,0x3c,0x2d,0x2b,0x23,0x2a,0x42,0x29,0x26,0x1f,0x21,0x27,0x2b,0x33,0x2a,0x23,0x3a,0x3d,0x28,0x27,0x2a,0x23,0x28,0x2a,0x24,0x31,0x28,0x2d,0x2a,0x1f,0x2e,0x1f,0x24,0x26,0x1f,0x30,0x2a,0x3a,0x3d,0x28,0x28,0x34,0x2a,0x45,0x48,0x1f,0x28,0x1f,0x24,0x2d,0x48,0x23,0x26,0x2c,0x29,0x2d,0x35,0x2f,0x5f,0x27,0x2e,0x2b,0x29,0x29,0x2d,0x25,0x29,0x2d,0x38,0x35,0x2d,0x31,0x26,0x2f,0x24,0x25,0x2f,0x27, // code info
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x37, // LOAD_ATTR 'otros'
+    0x14,0x81,0x7c, // LOAD_METHOD 'values'
     0x36,0x00, // CALL_METHOD 0
     0x5f, // GET_ITER_STACK
     0x4b,0x1e, // FOR_ITER 30
     0xc2, // STORE_FAST 2
-    0x12,0x6c, // LOAD_GLOBAL 'acercar'
+    0x12,0x61, // LOAD_GLOBAL 'acercar'
     0xb2, // LOAD_FAST 2
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
@@ -55952,7 +58084,7 @@ static const byte fun_data_mc2d_Juego_mobs_paso[1011] = {
     0x87, // LOAD_CONST_SMALL_INT 7
     0x55, // LOAD_SUBSCR
     0x34,0x02, // CALL_FUNCTION 2
-    0x12,0x6c, // LOAD_GLOBAL 'acercar'
+    0x12,0x61, // LOAD_GLOBAL 'acercar'
     0xb2, // LOAD_FAST 2
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
@@ -55969,21 +58101,21 @@ static const byte fun_data_mc2d_Juego_mobs_paso[1011] = {
     0x56, // STORE_SUBSCR
     0x42,0x20, // JUMP -32
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x0d, // LOAD_METHOD 'manda_mobs'
+    0x14,0x82,0x0a, // LOAD_METHOD 'manda_mobs'
     0x36,0x00, // CALL_METHOD 0
-    0x43,0x75, // POP_JUMP_IF_TRUE 53
+    0x43,0x74, // POP_JUMP_IF_TRUE 52
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x60, // LOAD_ATTR 'mobs'
+    0x13,0x27, // LOAD_ATTR 'mobs'
     0x5f, // GET_ITER_STACK
     0x4b,0x27, // FOR_ITER 39
     0xc3, // STORE_FAST 3
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x27, // LOAD_METHOD 'ruido_mob'
+    0x14,0x82,0x26, // LOAD_METHOD 'ruido_mob'
     0xb3, // LOAD_FAST 3
     0xb1, // LOAD_FAST 1
     0x36,0x02, // CALL_METHOD 2
     0x59, // POP_TOP
-    0x12,0x6c, // LOAD_GLOBAL 'acercar'
+    0x12,0x61, // LOAD_GLOBAL 'acercar'
     0xb3, // LOAD_FAST 3
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
@@ -55991,7 +58123,7 @@ static const byte fun_data_mc2d_Juego_mobs_paso[1011] = {
     0x83, // LOAD_CONST_SMALL_INT 3
     0x55, // LOAD_SUBSCR
     0x34,0x02, // CALL_FUNCTION 2
-    0x12,0x6c, // LOAD_GLOBAL 'acercar'
+    0x12,0x61, // LOAD_GLOBAL 'acercar'
     0xb3, // LOAD_FAST 3
     0x82, // LOAD_CONST_SMALL_INT 2
     0x55, // LOAD_SUBSCR
@@ -56009,21 +58141,21 @@ static const byte fun_data_mc2d_Juego_mobs_paso[1011] = {
     0x42,0x17, // JUMP -41
     0x52, // LOAD_CONST_TRUE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x63, // STORE_ATTR 'era_cliente'
+    0x18,0x81,0x61, // STORE_ATTR 'era_cliente'
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x63, // LOAD_ATTR 'era_cliente'
-    0x44,0x58, // POP_JUMP_IF_FALSE 24
+    0x13,0x81,0x61, // LOAD_ATTR 'era_cliente'
+    0x44,0x57, // POP_JUMP_IF_FALSE 23
     0x50, // LOAD_CONST_FALSE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x63, // STORE_ATTR 'era_cliente'
+    0x18,0x81,0x61, // STORE_ATTR 'era_cliente'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x60, // LOAD_ATTR 'mobs'
+    0x13,0x27, // LOAD_ATTR 'mobs'
     0x5f, // GET_ITER_STACK
     0x4b,0x0c, // FOR_ITER 12
     0xc3, // STORE_FAST 3
-    0x23,0x65, // LOAD_CONST_OBJ 101
+    0x23,0x6c, // LOAD_CONST_OBJ 108
     0x57, // DUP_TOP
     0xb3, // LOAD_FAST 3
     0x83, // LOAD_CONST_SMALL_INT 3
@@ -56033,51 +58165,51 @@ static const byte fun_data_mc2d_Juego_mobs_paso[1011] = {
     0x56, // STORE_SUBSCR
     0x42,0x32, // JUMP -14
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x7a, // LOAD_METHOD 'jugadores'
+    0x14,0x81,0x77, // LOAD_METHOD 'jugadores'
     0x36,0x00, // CALL_METHOD 0
     0xc4, // STORE_FAST 4
     0xb4, // LOAD_FAST 4
     0x43,0x42, // POP_JUMP_IF_TRUE 2
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
-    0x12,0x83,0x5f, // LOAD_GLOBAL 'sum'
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x2f, // LOAD_METHOD 'flechas_paso'
+    0xb1, // LOAD_FAST 1
+    0xb4, // LOAD_FAST 4
+    0x36,0x02, // CALL_METHOD 2
+    0x59, // POP_TOP
+    0x12,0x84,0x18, // LOAD_GLOBAL 'sum'
     0x32,0x00, // MAKE_FUNCTION 0
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x60, // LOAD_ATTR 'mobs'
+    0x13,0x27, // LOAD_ATTR 'mobs'
     0x5e, // GET_ITER
     0x34,0x01, // CALL_FUNCTION 1
     0x34,0x01, // CALL_FUNCTION 1
     0xc5, // STORE_FAST 5
-    0x12,0x83,0x3b, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x60, // LOAD_ATTR 'mobs'
+    0x13,0x27, // LOAD_ATTR 'mobs'
     0x34,0x01, // CALL_FUNCTION 1
-    0x84, // LOAD_CONST_SMALL_INT 4
+    0x86, // LOAD_CONST_SMALL_INT 6
     0x82, // LOAD_CONST_SMALL_INT 2
-    0x12,0x83,0x3b, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x46, // LOAD_ATTR 'otros'
+    0x13,0x81,0x37, // LOAD_ATTR 'otros'
     0x34,0x01, // CALL_FUNCTION 1
     0xf4, // BINARY_OP 29 __mul__
     0xf2, // BINARY_OP 27 __add__
     0xd7, // BINARY_OP 0 __lt__
-    0x44,0xd8,0x81, // POP_JUMP_IF_FALSE 216
+    0x44,0x8a,0x82, // POP_JUMP_IF_FALSE 266
     0x12,0x03, // LOAD_GLOBAL 'random'
     0x14,0x03, // LOAD_METHOD 'random'
     0x36,0x00, // CALL_METHOD 0
     0xb1, // LOAD_FAST 1
-    0xb0, // LOAD_FAST 0
-    0x14,0x82,0x23, // LOAD_METHOD 'es_noche'
-    0x36,0x00, // CALL_METHOD 0
-    0x44,0x44, // POP_JUMP_IF_FALSE 4
-    0x23,0x79, // LOAD_CONST_OBJ 121
-    0x42,0x42, // JUMP 2
-    0x23,0x6b, // LOAD_CONST_OBJ 107
+    0x23,0x75, // LOAD_CONST_OBJ 117
     0xf4, // BINARY_OP 29 __mul__
     0xd7, // BINARY_OP 0 __lt__
-    0x44,0xbe,0x81, // POP_JUMP_IF_FALSE 190
+    0x44,0xfc,0x81, // POP_JUMP_IF_FALSE 252
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x5b, // LOAD_METHOD 'choice'
+    0x14,0x4f, // LOAD_METHOD 'choice'
     0xb4, // LOAD_FAST 4
     0x36,0x01, // CALL_METHOD 1
     0x30,0x03, // UNPACK_SEQUENCE 3
@@ -56085,16 +58217,16 @@ static const byte fun_data_mc2d_Juego_mobs_paso[1011] = {
     0xc7, // STORE_FAST 7
     0xc8, // STORE_FAST 8
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x5b, // LOAD_METHOD 'choice'
-    0x23,0x7a, // LOAD_CONST_OBJ 122
+    0x14,0x4f, // LOAD_METHOD 'choice'
+    0x23,0x81,0x03, // LOAD_CONST_OBJ 131
     0x36,0x01, // CALL_METHOD 1
     0xc9, // STORE_FAST 9
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb7, // LOAD_FAST 7
     0x34,0x01, // CALL_FUNCTION 1
     0xb9, // LOAD_FAST 9
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x54, // LOAD_METHOD 'randint'
+    0x14,0x43, // LOAD_METHOD 'randint'
     0x8c, // LOAD_CONST_SMALL_INT 12
     0x92, // LOAD_CONST_SMALL_INT 18
     0x36,0x02, // CALL_METHOD 2
@@ -56107,109 +58239,156 @@ static const byte fun_data_mc2d_Juego_mobs_paso[1011] = {
     0x5b, // ROT_THREE
     0xda, // BINARY_OP 3 __le__
     0x46,0x06, // JUMP_IF_FALSE_OR_POP 6
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0xd7, // BINARY_OP 0 __lt__
     0x42,0x42, // JUMP 2
     0x5a, // ROT_TWO
     0x59, // POP_TOP
-    0x44,0x85,0x81, // POP_JUMP_IF_FALSE 133
-    0x12,0x83,0x1f, // LOAD_GLOBAL 'alto'
+    0x44,0xc2,0x81, // POP_JUMP_IF_FALSE 194
+    0x12,0x81,0x43, // LOAD_GLOBAL 'alto'
     0xba, // LOAD_FAST 10
     0x55, // LOAD_SUBSCR
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
     0xcb, // STORE_FAST 11
-    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0x12,0x83,0x02, // LOAD_GLOBAL 'L2PM'
+    0x12,0x30, // LOAD_GLOBAL 'g'
     0xba, // LOAD_FAST 10
-    0x12,0x83,0x1f, // LOAD_GLOBAL 'alto'
+    0x12,0x81,0x43, // LOAD_GLOBAL 'alto'
     0xba, // LOAD_FAST 10
     0x55, // LOAD_SUBSCR
     0x34,0x02, // CALL_FUNCTION 2
+    0x55, // LOAD_SUBSCR
     0xcc, // STORE_FAST 12
     0xb0, // LOAD_FAST 0
     0x57, // DUP_TOP
-    0x13,0x81,0x61, // LOAD_ATTR 'mob_id'
+    0x13,0x81,0x5f, // LOAD_ATTR 'mob_id'
     0x81, // LOAD_CONST_SMALL_INT 1
     0xe5, // BINARY_OP 14 __iadd__
     0x5a, // ROT_TWO
-    0x18,0x81,0x61, // STORE_ATTR 'mob_id'
+    0x18,0x81,0x5f, // STORE_ATTR 'mob_id'
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x23, // LOAD_METHOD 'es_noche'
+    0x14,0x82,0x22, // LOAD_METHOD 'es_noche'
     0x36,0x00, // CALL_METHOD 0
-    0x44,0x74, // POP_JUMP_IF_FALSE 52
+    0x44,0xe3,0x80, // POP_JUMP_IF_FALSE 99
     0xb5, // LOAD_FAST 5
     0x83, // LOAD_CONST_SMALL_INT 3
-    0x12,0x83,0x3b, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x46, // LOAD_ATTR 'otros'
+    0x13,0x81,0x37, // LOAD_ATTR 'otros'
     0x34,0x01, // CALL_FUNCTION 1
     0xf2, // BINARY_OP 27 __add__
     0xd7, // BINARY_OP 0 __lt__
-    0x44,0x63, // POP_JUMP_IF_FALSE 35
+    0x44,0xd1,0x80, // POP_JUMP_IF_FALSE 81
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x03, // LOAD_METHOD 'random'
+    0x36,0x00, // CALL_METHOD 0
+    0xcd, // STORE_FAST 13
+    0xbd, // LOAD_FAST 13
+    0x23,0x81,0x04, // LOAD_CONST_OBJ 132
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x45, // POP_JUMP_IF_FALSE 5
+    0x22,0x80,0x64, // LOAD_CONST_SMALL_INT 100
+    0x42,0x5b, // JUMP 27
+    0xbd, // LOAD_FAST 13
+    0x23,0x81,0x05, // LOAD_CONST_OBJ 133
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x45, // POP_JUMP_IF_FALSE 5
+    0x22,0x80,0x67, // LOAD_CONST_SMALL_INT 103
+    0x42,0x4f, // JUMP 15
+    0xbd, // LOAD_FAST 13
+    0x23,0x81,0x06, // LOAD_CONST_OBJ 134
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x45, // POP_JUMP_IF_FALSE 5
+    0x22,0x80,0x66, // LOAD_CONST_SMALL_INT 102
+    0x42,0x43, // JUMP 3
+    0x22,0x80,0x65, // LOAD_CONST_SMALL_INT 101
+    0xce, // STORE_FAST 14
+    0xbe, // LOAD_FAST 14
+    0x12,0x83,0x0e, // LOAD_GLOBAL 'MOBS'
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x5b, // POP_JUMP_IF_FALSE 27
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x60, // LOAD_ATTR 'mobs'
-    0x14,0x3b, // LOAD_METHOD 'append'
-    0x81, // LOAD_CONST_SMALL_INT 1
+    0x13,0x27, // LOAD_ATTR 'mobs'
+    0x14,0x59, // LOAD_METHOD 'append'
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x0b, // LOAD_METHOD 'nuevo_mob'
+    0xbe, // LOAD_FAST 14
     0xba, // LOAD_FAST 10
-    0x23,0x3a, // LOAD_CONST_OBJ 58
+    0x23,0x31, // LOAD_CONST_OBJ 49
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x60, // LOAD_GLOBAL 'float'
+    0x12,0x84,0x13, // LOAD_GLOBAL 'float'
     0xbb, // LOAD_FAST 11
     0x34,0x01, // CALL_FUNCTION 1
-    0x23,0x65, // LOAD_CONST_OBJ 101
-    0x23,0x65, // LOAD_CONST_OBJ 101
-    0x94, // LOAD_CONST_SMALL_INT 20
     0xb9, // LOAD_FAST 9
     0xd1, // UNARY_OP 1 __neg__
-    0x23,0x65, // LOAD_CONST_OBJ 101
-    0xb0, // LOAD_FAST 0
-    0x13,0x81,0x61, // LOAD_ATTR 'mob_id'
-    0x2b,0x09, // BUILD_LIST 9
+    0x36,0x04, // CALL_METHOD 4
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
-    0x42,0x6b, // JUMP 43
+    0x42,0x74, // JUMP 52
     0xbc, // LOAD_FAST 12
-    0x12,0x82,0x5a, // LOAD_GLOBAL 'HIERBA'
+    0x12,0x83,0x12, // LOAD_GLOBAL 'HIERBA_PM'
     0xd9, // BINARY_OP 2 __eq__
-    0x44,0x64, // POP_JUMP_IF_FALSE 36
+    0x44,0x6d, // POP_JUMP_IF_FALSE 45
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x4f, // LOAD_METHOD 'choice'
+    0x23,0x81,0x07, // LOAD_CONST_OBJ 135
+    0x36,0x01, // CALL_METHOD 1
+    0xce, // STORE_FAST 14
+    0xbe, // LOAD_FAST 14
+    0x12,0x83,0x0e, // LOAD_GLOBAL 'MOBS'
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x5a, // POP_JUMP_IF_FALSE 26
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x60, // LOAD_ATTR 'mobs'
-    0x14,0x3b, // LOAD_METHOD 'append'
-    0x80, // LOAD_CONST_SMALL_INT 0
+    0x13,0x27, // LOAD_ATTR 'mobs'
+    0x14,0x59, // LOAD_METHOD 'append'
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x0b, // LOAD_METHOD 'nuevo_mob'
+    0xbe, // LOAD_FAST 14
     0xba, // LOAD_FAST 10
-    0x23,0x3a, // LOAD_CONST_OBJ 58
+    0x23,0x31, // LOAD_CONST_OBJ 49
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x60, // LOAD_GLOBAL 'float'
+    0x12,0x84,0x13, // LOAD_GLOBAL 'float'
     0xbb, // LOAD_FAST 11
     0x34,0x01, // CALL_FUNCTION 1
-    0x23,0x65, // LOAD_CONST_OBJ 101
-    0x23,0x65, // LOAD_CONST_OBJ 101
-    0x8a, // LOAD_CONST_SMALL_INT 10
     0x81, // LOAD_CONST_SMALL_INT 1
-    0x23,0x65, // LOAD_CONST_OBJ 101
-    0xb0, // LOAD_FAST 0
-    0x13,0x81,0x61, // LOAD_ATTR 'mob_id'
-    0x2b,0x09, // BUILD_LIST 9
+    0x36,0x04, // CALL_METHOD 4
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0x42,0x40, // JUMP 0
-    0x12,0x83,0x4d, // LOAD_GLOBAL 'list'
+    0x12,0x83,0x78, // LOAD_GLOBAL 'list'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x60, // LOAD_ATTR 'mobs'
+    0x13,0x27, // LOAD_ATTR 'mobs'
     0x34,0x01, // CALL_FUNCTION 1
     0x5f, // GET_ITER_STACK
-    0x4b,0xfb,0x03, // FOR_ITER 507
+    0x4b,0xc3,0x07, // FOR_ITER 963
     0xc3, // STORE_FAST 3
-    0x23,0x7b, // LOAD_CONST_OBJ 123
+    0x12,0x83,0x0e, // LOAD_GLOBAL 'MOBS'
+    0x14,0x19, // LOAD_METHOD 'get'
+    0xb3, // LOAD_FAST 3
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0x36,0x01, // CALL_METHOD 1
+    0xcf, // STORE_FAST 15
+    0xbf, // LOAD_FAST 15
+    0x43,0x4c, // POP_JUMP_IF_TRUE 12
+    0xb0, // LOAD_FAST 0
+    0x13,0x27, // LOAD_ATTR 'mobs'
+    0x14,0x81,0x24, // LOAD_METHOD 'remove'
+    0xb3, // LOAD_FAST 3
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x42,0x22, // JUMP -30
+    0x23,0x81,0x08, // LOAD_CONST_OBJ 136
     0x30,0x02, // UNPACK_SEQUENCE 2
-    0xcd, // STORE_FAST 13
-    0xce, // STORE_FAST 14
+    0x26,0x10, // STORE_FAST_N 16
+    0x26,0x11, // STORE_FAST_N 17
     0xb4, // LOAD_FAST 4
     0x5f, // GET_ITER_STACK
-    0x4b,0x2d, // FOR_ITER 45
-    0xcf, // STORE_FAST 15
-    0x12,0x83,0x3f, // LOAD_GLOBAL 'abs'
-    0xbf, // LOAD_FAST 15
+    0x4b,0x34, // FOR_ITER 52
+    0x26,0x12, // STORE_FAST_N 18
+    0x12,0x83,0x75, // LOAD_GLOBAL 'abs'
+    0x24,0x12, // LOAD_FAST_N 18
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
     0xb3, // LOAD_FAST 3
@@ -56217,8 +58396,8 @@ static const byte fun_data_mc2d_Juego_mobs_paso[1011] = {
     0x55, // LOAD_SUBSCR
     0xf3, // BINARY_OP 28 __sub__
     0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x83,0x3f, // LOAD_GLOBAL 'abs'
-    0xbf, // LOAD_FAST 15
+    0x12,0x83,0x75, // LOAD_GLOBAL 'abs'
+    0x24,0x12, // LOAD_FAST_N 18
     0x82, // LOAD_CONST_SMALL_INT 2
     0x55, // LOAD_SUBSCR
     0xb3, // LOAD_FAST 3
@@ -56226,68 +58405,92 @@ static const byte fun_data_mc2d_Juego_mobs_paso[1011] = {
     0x55, // LOAD_SUBSCR
     0xf3, // BINARY_OP 28 __sub__
     0x34,0x01, // CALL_FUNCTION 1
-    0x23,0x23, // LOAD_CONST_OBJ 35
+    0x23,0x14, // LOAD_CONST_OBJ 20
     0xf4, // BINARY_OP 29 __mul__
     0xf2, // BINARY_OP 27 __add__
-    0x26,0x10, // STORE_FAST_N 16
-    0x24,0x10, // LOAD_FAST_N 16
-    0xbe, // LOAD_FAST 14
+    0x26,0x13, // STORE_FAST_N 19
+    0x24,0x13, // LOAD_FAST_N 19
+    0x24,0x11, // LOAD_FAST_N 17
     0xd7, // BINARY_OP 0 __lt__
-    0x44,0x46, // POP_JUMP_IF_FALSE 6
-    0xbf, // LOAD_FAST 15
-    0x24,0x10, // LOAD_FAST_N 16
+    0x44,0x49, // POP_JUMP_IF_FALSE 9
+    0x24,0x12, // LOAD_FAST_N 18
+    0x24,0x13, // LOAD_FAST_N 19
     0x5a, // ROT_TWO
-    0xcd, // STORE_FAST 13
-    0xce, // STORE_FAST 14
-    0x42,0x11, // JUMP -47
-    0xbe, // LOAD_FAST 14
-    0xa8, // LOAD_CONST_SMALL_INT 40
+    0x26,0x10, // STORE_FAST_N 16
+    0x26,0x11, // STORE_FAST_N 17
+    0x42,0x0a, // JUMP -54
+    0x24,0x11, // LOAD_FAST_N 17
+    0xb3, // LOAD_FAST 3
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0x22,0x80,0x64, // LOAD_CONST_SMALL_INT 100
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x22,0x3c, // LOAD_CONST_SMALL_INT 60
+    0x42,0x41, // JUMP 1
+    0xad, // LOAD_CONST_SMALL_INT 45
     0xd8, // BINARY_OP 1 __gt__
-    0x44,0x4e, // POP_JUMP_IF_FALSE 14
+    0x44,0x4d, // POP_JUMP_IF_FALSE 13
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x60, // LOAD_ATTR 'mobs'
-    0x14,0x81,0x32, // LOAD_METHOD 'remove'
+    0x13,0x27, // LOAD_ATTR 'mobs'
+    0x14,0x81,0x24, // LOAD_METHOD 'remove'
     0xb3, // LOAD_FAST 3
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
-    0x42,0xb2,0x7f, // JUMP -78
-    0xb3, // LOAD_FAST 3
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0x55, // LOAD_SUBSCR
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0xd9, // BINARY_OP 2 __eq__
-    0x44,0x78, // POP_JUMP_IF_FALSE 56
-    0xb0, // LOAD_FAST 0
-    0x14,0x82,0x23, // LOAD_METHOD 'es_noche'
-    0x36,0x00, // CALL_METHOD 0
-    0x43,0x70, // POP_JUMP_IF_TRUE 48
-    0xb3, // LOAD_FAST 3
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0x55, // LOAD_SUBSCR
-    0x12,0x83,0x1f, // LOAD_GLOBAL 'alto'
-    0x12,0x83,0x37, // LOAD_GLOBAL 'min'
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x42,0x81,0x7f, // JUMP -127
+    0x12,0x83,0x6b, // LOAD_GLOBAL 'min'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf3, // BINARY_OP 28 __sub__
-    0x12,0x83,0x38, // LOAD_GLOBAL 'max'
+    0x12,0x83,0x6c, // LOAD_GLOBAL 'max'
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb3, // LOAD_FAST 3
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
     0x34,0x01, // CALL_FUNCTION 1
     0x34,0x02, // CALL_FUNCTION 2
     0x34,0x02, // CALL_FUNCTION 2
+    0x26,0x14, // STORE_FAST_N 20
+    0xb3, // LOAD_FAST 3
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0x23,0x81,0x09, // LOAD_CONST_OBJ 137
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x70, // POP_JUMP_IF_FALSE 48
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x22, // LOAD_METHOD 'es_noche'
+    0x36,0x00, // CALL_METHOD 0
+    0x43,0x68, // POP_JUMP_IF_TRUE 40
+    0xb3, // LOAD_FAST 3
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0x12,0x81,0x43, // LOAD_GLOBAL 'alto'
+    0x24,0x14, // LOAD_FAST_N 20
     0x55, // LOAD_SUBSCR
     0xdb, // BINARY_OP 4 __ge__
-    0x44,0x4e, // POP_JUMP_IF_FALSE 14
+    0x44,0x5c, // POP_JUMP_IF_FALSE 28
+    0xb3, // LOAD_FAST 3
+    0x85, // LOAD_CONST_SMALL_INT 5
+    0x58, // DUP_TOP_TWO
+    0x55, // LOAD_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0xe6, // BINARY_OP 15 __isub__
+    0x5b, // ROT_THREE
+    0x56, // STORE_SUBSCR
+    0xb3, // LOAD_FAST 3
+    0x85, // LOAD_CONST_SMALL_INT 5
+    0x55, // LOAD_SUBSCR
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xda, // BINARY_OP 3 __le__
+    0x44,0x4d, // POP_JUMP_IF_FALSE 13
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x60, // LOAD_ATTR 'mobs'
-    0x14,0x81,0x32, // LOAD_METHOD 'remove'
+    0x13,0x27, // LOAD_ATTR 'mobs'
+    0x14,0x81,0x24, // LOAD_METHOD 'remove'
     0xb3, // LOAD_FAST 3
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
-    0x42,0xf3,0x7e, // JUMP -141
+    0x42,0xae,0x7e, // JUMP -210
     0xb3, // LOAD_FAST 3
     0x87, // LOAD_CONST_SMALL_INT 7
     0x58, // DUP_TOP_TWO
@@ -56296,24 +58499,30 @@ static const byte fun_data_mc2d_Juego_mobs_paso[1011] = {
     0xe6, // BINARY_OP 15 __isub__
     0x5b, // ROT_THREE
     0x56, // STORE_SUBSCR
+    0x24,0x10, // LOAD_FAST_N 16
+    0x30,0x03, // UNPACK_SEQUENCE 3
+    0x26,0x15, // STORE_FAST_N 21
+    0x26,0x16, // STORE_FAST_N 22
+    0x26,0x17, // STORE_FAST_N 23
+    0x23,0x6c, // LOAD_CONST_OBJ 108
+    0x26,0x18, // STORE_FAST_N 24
     0xb3, // LOAD_FAST 3
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0xd9, // BINARY_OP 2 __eq__
-    0x44,0xed,0x80, // POP_JUMP_IF_FALSE 109
-    0xbd, // LOAD_FAST 13
-    0x30,0x03, // UNPACK_SEQUENCE 3
-    0x26,0x11, // STORE_FAST_N 17
-    0x26,0x12, // STORE_FAST_N 18
-    0x26,0x13, // STORE_FAST_N 19
-    0x24,0x12, // LOAD_FAST_N 18
+    0x22,0x80,0x64, // LOAD_CONST_SMALL_INT 100
+    0xdb, // BINARY_OP 4 __ge__
+    0x44,0x86,0x83, // POP_JUMP_IF_FALSE 390
+    0x24,0x11, // LOAD_FAST_N 17
+    0x90, // LOAD_CONST_SMALL_INT 16
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0xff,0x82, // POP_JUMP_IF_FALSE 383
+    0x24,0x16, // LOAD_FAST_N 22
     0xb3, // LOAD_FAST 3
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
     0xf3, // BINARY_OP 28 __sub__
-    0x26,0x10, // STORE_FAST_N 16
-    0x24,0x10, // LOAD_FAST_N 16
+    0x26,0x19, // STORE_FAST_N 25
+    0x24,0x19, // LOAD_FAST_N 25
     0x80, // LOAD_CONST_SMALL_INT 0
     0xd8, // BINARY_OP 1 __gt__
     0x44,0x43, // POP_JUMP_IF_FALSE 3
@@ -56323,34 +58532,212 @@ static const byte fun_data_mc2d_Juego_mobs_paso[1011] = {
     0xb3, // LOAD_FAST 3
     0x86, // LOAD_CONST_SMALL_INT 6
     0x56, // STORE_SUBSCR
-    0x12,0x83,0x3f, // LOAD_GLOBAL 'abs'
-    0x24,0x10, // LOAD_FAST_N 16
+    0xb3, // LOAD_FAST 3
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0x22,0x80,0x67, // LOAD_CONST_SMALL_INT 103
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x85,0x81, // POP_JUMP_IF_FALSE 133
+    0x12,0x83,0x75, // LOAD_GLOBAL 'abs'
+    0x24,0x19, // LOAD_FAST_N 25
     0x34,0x01, // CALL_FUNCTION 1
-    0x23,0x23, // LOAD_CONST_OBJ 35
+    0x87, // LOAD_CONST_SMALL_INT 7
     0xd8, // BINARY_OP 1 __gt__
-    0x44,0x48, // POP_JUMP_IF_FALSE 8
-    0x23,0x7c, // LOAD_CONST_OBJ 124
+    0x44,0x49, // POP_JUMP_IF_FALSE 9
+    0x23,0x81,0x0a, // LOAD_CONST_OBJ 138
+    0xb3, // LOAD_FAST 3
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0x55, // LOAD_SUBSCR
+    0xf4, // BINARY_OP 29 __mul__
+    0x42,0x57, // JUMP 23
+    0x12,0x83,0x75, // LOAD_GLOBAL 'abs'
+    0x24,0x19, // LOAD_FAST_N 25
+    0x34,0x01, // CALL_FUNCTION 1
+    0x85, // LOAD_CONST_SMALL_INT 5
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x4a, // POP_JUMP_IF_FALSE 10
+    0x23,0x81,0x0a, // LOAD_CONST_OBJ 138
+    0xd1, // UNARY_OP 1 __neg__
     0xb3, // LOAD_FAST 3
     0x86, // LOAD_CONST_SMALL_INT 6
     0x55, // LOAD_SUBSCR
     0xf4, // BINARY_OP 29 __mul__
     0x42,0x42, // JUMP 2
-    0x23,0x65, // LOAD_CONST_OBJ 101
-    0x26,0x14, // STORE_FAST_N 20
-    0x12,0x83,0x3f, // LOAD_GLOBAL 'abs'
-    0x24,0x10, // LOAD_FAST_N 16
+    0x23,0x6c, // LOAD_CONST_OBJ 108
+    0x26,0x18, // STORE_FAST_N 24
+    0xb3, // LOAD_FAST 3
+    0x87, // LOAD_CONST_SMALL_INT 7
+    0x55, // LOAD_SUBSCR
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xda, // BINARY_OP 3 __le__
+    0x44,0xcd,0x80, // POP_JUMP_IF_FALSE 77
+    0x12,0x83,0x75, // LOAD_GLOBAL 'abs'
+    0x24,0x19, // LOAD_FAST_N 25
     0x34,0x01, // CALL_FUNCTION 1
-    0x23,0x32, // LOAD_CONST_OBJ 50
+    0x8a, // LOAD_CONST_SMALL_INT 10
     0xd7, // BINARY_OP 0 __lt__
-    0x44,0x69, // POP_JUMP_IF_FALSE 41
-    0x12,0x83,0x3f, // LOAD_GLOBAL 'abs'
-    0x24,0x13, // LOAD_FAST_N 19
+    0x44,0xc1,0x80, // POP_JUMP_IF_FALSE 65
+    0x12,0x83,0x75, // LOAD_GLOBAL 'abs'
+    0x24,0x17, // LOAD_FAST_N 23
     0xb3, // LOAD_FAST 3
     0x82, // LOAD_CONST_SMALL_INT 2
     0x55, // LOAD_SUBSCR
     0xf3, // BINARY_OP 28 __sub__
     0x34,0x01, // CALL_FUNCTION 1
-    0x23,0x31, // LOAD_CONST_OBJ 49
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x72, // POP_JUMP_IF_FALSE 50
+    0x23,0x81,0x0a, // LOAD_CONST_OBJ 138
+    0xb3, // LOAD_FAST 3
+    0x87, // LOAD_CONST_SMALL_INT 7
+    0x56, // STORE_SUBSCR
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x5e, // LOAD_ATTR 'flechas'
+    0x14,0x59, // LOAD_METHOD 'append'
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0xbf, // LOAD_FAST 15
+    0x10,0x81,0x42, // LOAD_CONST_STRING 'w'
+    0x55, // LOAD_SUBSCR
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf7, // BINARY_OP 32 __truediv__
+    0xf2, // BINARY_OP 27 __add__
+    0xb3, // LOAD_FAST 3
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0x23,0x27, // LOAD_CONST_OBJ 39
+    0xf2, // BINARY_OP 27 __add__
+    0x23,0x81,0x0b, // LOAD_CONST_OBJ 139
+    0xb3, // LOAD_FAST 3
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0x55, // LOAD_SUBSCR
+    0xf4, // BINARY_OP 29 __mul__
+    0x23,0x7d, // LOAD_CONST_OBJ 125
+    0x24,0x17, // LOAD_FAST_N 23
+    0xb3, // LOAD_FAST 3
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0xf3, // BINARY_OP 28 __sub__
+    0xf2, // BINARY_OP 27 __add__
+    0x2b,0x04, // BUILD_LIST 4
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x42,0xd8,0x81, // JUMP 216
+    0xb3, // LOAD_FAST 3
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0x22,0x80,0x65, // LOAD_CONST_SMALL_INT 101
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0xf2,0x80, // POP_JUMP_IF_FALSE 114
+    0x12,0x83,0x75, // LOAD_GLOBAL 'abs'
+    0x24,0x19, // LOAD_FAST_N 25
+    0x34,0x01, // CALL_FUNCTION 1
+    0x23,0x81,0x0c, // LOAD_CONST_OBJ 140
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x49, // POP_JUMP_IF_FALSE 9
+    0x23,0x81,0x0a, // LOAD_CONST_OBJ 138
+    0xb3, // LOAD_FAST 3
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0x55, // LOAD_SUBSCR
+    0xf4, // BINARY_OP 29 __mul__
+    0x42,0x42, // JUMP 2
+    0x23,0x6c, // LOAD_CONST_OBJ 108
+    0x26,0x18, // STORE_FAST_N 24
+    0x12,0x83,0x75, // LOAD_GLOBAL 'abs'
+    0x24,0x19, // LOAD_FAST_N 25
+    0x34,0x01, // CALL_FUNCTION 1
+    0x23,0x29, // LOAD_CONST_OBJ 41
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0xc3,0x80, // POP_JUMP_IF_FALSE 67
+    0x12,0x83,0x75, // LOAD_GLOBAL 'abs'
+    0x24,0x17, // LOAD_FAST_N 23
+    0xb3, // LOAD_FAST 3
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x23,0x26, // LOAD_CONST_OBJ 38
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x73, // POP_JUMP_IF_FALSE 51
+    0xb3, // LOAD_FAST 3
+    0x89, // LOAD_CONST_SMALL_INT 9
+    0x58, // DUP_TOP_TWO
+    0x55, // LOAD_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x5b, // ROT_THREE
+    0x56, // STORE_SUBSCR
+    0xb3, // LOAD_FAST 3
+    0x89, // LOAD_CONST_SMALL_INT 9
+    0x55, // LOAD_SUBSCR
+    0x23,0x29, // LOAD_CONST_OBJ 41
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x61, // POP_JUMP_IF_FALSE 33
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x30, // LOAD_METHOD 'explotar'
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0x23,0x5a, // LOAD_CONST_OBJ 90
+    0xf2, // BINARY_OP 27 __add__
+    0xb3, // LOAD_FAST 3
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0x23,0x2a, // LOAD_CONST_OBJ 42
+    0xf2, // BINARY_OP 27 __add__
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x36,0x03, // CALL_METHOD 3
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x13,0x27, // LOAD_ATTR 'mobs'
+    0x14,0x81,0x24, // LOAD_METHOD 'remove'
+    0xb3, // LOAD_FAST 3
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x42,0xf1,0x7b, // JUMP -527
+    0x42,0x45, // JUMP 5
+    0x23,0x6c, // LOAD_CONST_OBJ 108
+    0xb3, // LOAD_FAST 3
+    0x89, // LOAD_CONST_SMALL_INT 9
+    0x56, // STORE_SUBSCR
+    0x42,0xdc,0x80, // JUMP 92
+    0x12,0x83,0x75, // LOAD_GLOBAL 'abs'
+    0x24,0x19, // LOAD_FAST_N 25
+    0x34,0x01, // CALL_FUNCTION 1
+    0x23,0x14, // LOAD_CONST_OBJ 20
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x57, // POP_JUMP_IF_FALSE 23
+    0xb3, // LOAD_FAST 3
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0x22,0x80,0x66, // LOAD_CONST_SMALL_INT 102
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x45, // POP_JUMP_IF_FALSE 5
+    0x23,0x81,0x0d, // LOAD_CONST_OBJ 141
+    0x42,0x43, // JUMP 3
+    0x23,0x81,0x0e, // LOAD_CONST_OBJ 142
+    0xb3, // LOAD_FAST 3
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0x55, // LOAD_SUBSCR
+    0xf4, // BINARY_OP 29 __mul__
+    0x42,0x42, // JUMP 2
+    0x23,0x6c, // LOAD_CONST_OBJ 108
+    0x26,0x18, // STORE_FAST_N 24
+    0x12,0x83,0x75, // LOAD_GLOBAL 'abs'
+    0x24,0x19, // LOAD_FAST_N 25
+    0x34,0x01, // CALL_FUNCTION 1
+    0x23,0x33, // LOAD_CONST_OBJ 51
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x69, // POP_JUMP_IF_FALSE 41
+    0x12,0x83,0x75, // LOAD_GLOBAL 'abs'
+    0x24,0x17, // LOAD_FAST_N 23
+    0xb3, // LOAD_FAST 3
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x23,0x29, // LOAD_CONST_OBJ 41
     0xd7, // BINARY_OP 0 __lt__
     0x44,0x59, // POP_JUMP_IF_FALSE 25
     0xb3, // LOAD_FAST 3
@@ -56360,117 +58747,173 @@ static const byte fun_data_mc2d_Juego_mobs_paso[1011] = {
     0xda, // BINARY_OP 3 __le__
     0x44,0x52, // POP_JUMP_IF_FALSE 18
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x25, // LOAD_METHOD 'herir_a'
-    0x24,0x11, // LOAD_FAST_N 17
-    0x82, // LOAD_CONST_SMALL_INT 2
+    0x14,0x82,0x24, // LOAD_METHOD 'herir_a'
+    0x24,0x15, // LOAD_FAST_N 21
+    0x83, // LOAD_CONST_SMALL_INT 3
     0xb3, // LOAD_FAST 3
     0x86, // LOAD_CONST_SMALL_INT 6
     0x55, // LOAD_SUBSCR
     0x36,0x03, // CALL_METHOD 3
     0x59, // POP_TOP
-    0x23,0x7d, // LOAD_CONST_OBJ 125
+    0x23,0x29, // LOAD_CONST_OBJ 41
     0xb3, // LOAD_FAST 3
     0x87, // LOAD_CONST_SMALL_INT 7
     0x56, // STORE_SUBSCR
-    0x42,0x67, // JUMP 39
+    0x42,0x97,0x81, // JUMP 151
+    0x51, // LOAD_CONST_NONE
+    0x26,0x1a, // STORE_FAST_N 26
+    0x24,0x15, // LOAD_FAST_N 21
+    0x51, // LOAD_CONST_NONE
+    0xde, // BINARY_OP 7 <is>
+    0x44,0x4c, // POP_JUMP_IF_FALSE 12
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x56, // LOAD_ATTR 'sel'
+    0x55, // LOAD_SUBSCR
+    0x26,0x1a, // STORE_FAST_N 26
+    0x42,0x56, // JUMP 22
+    0x24,0x15, // LOAD_FAST_N 21
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x37, // LOAD_ATTR 'otros'
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x4d, // POP_JUMP_IF_FALSE 13
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x37, // LOAD_ATTR 'otros'
+    0x24,0x15, // LOAD_FAST_N 21
+    0x55, // LOAD_SUBSCR
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x55, // LOAD_SUBSCR
+    0x26,0x1a, // STORE_FAST_N 26
+    0x42,0x40, // JUMP 0
+    0xbf, // LOAD_FAST 15
+    0x10,0x25, // LOAD_CONST_STRING 'comida'
+    0x55, // LOAD_SUBSCR
+    0x44,0x7d, // POP_JUMP_IF_FALSE 61
+    0x24,0x1a, // LOAD_FAST_N 26
+    0xbf, // LOAD_FAST 15
+    0x10,0x25, // LOAD_CONST_STRING 'comida'
+    0x55, // LOAD_SUBSCR
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x74, // POP_JUMP_IF_FALSE 52
+    0x24,0x11, // LOAD_FAST_N 17
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x6e, // POP_JUMP_IF_FALSE 46
+    0x24,0x16, // LOAD_FAST_N 22
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x43, // POP_JUMP_IF_FALSE 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x42,0x41, // JUMP 1
+    0x7f, // LOAD_CONST_SMALL_INT -1
+    0xb3, // LOAD_FAST 3
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0x56, // STORE_SUBSCR
+    0x12,0x83,0x75, // LOAD_GLOBAL 'abs'
+    0x24,0x16, // LOAD_FAST_N 22
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x01, // CALL_FUNCTION 1
+    0x23,0x81,0x0c, // LOAD_CONST_OBJ 140
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x48, // POP_JUMP_IF_FALSE 8
+    0x23,0x27, // LOAD_CONST_OBJ 39
+    0xb3, // LOAD_FAST 3
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0x55, // LOAD_SUBSCR
+    0xf4, // BINARY_OP 29 __mul__
+    0x42,0x42, // JUMP 2
+    0x23,0x6c, // LOAD_CONST_OBJ 108
+    0x26,0x18, // STORE_FAST_N 24
+    0x42,0x69, // JUMP 41
     0xb3, // LOAD_FAST 3
     0x87, // LOAD_CONST_SMALL_INT 7
     0x55, // LOAD_SUBSCR
     0x80, // LOAD_CONST_SMALL_INT 0
     0xda, // BINARY_OP 3 __le__
-    0x44,0x58, // POP_JUMP_IF_FALSE 24
+    0x44,0x59, // POP_JUMP_IF_FALSE 25
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x5c, // LOAD_METHOD 'uniform'
-    0x23,0x31, // LOAD_CONST_OBJ 49
-    0x23,0x7e, // LOAD_CONST_OBJ 126
+    0x14,0x4b, // LOAD_METHOD 'uniform'
+    0x23,0x29, // LOAD_CONST_OBJ 41
+    0x23,0x81,0x0f, // LOAD_CONST_OBJ 143
     0x36,0x02, // CALL_METHOD 2
     0xb3, // LOAD_FAST 3
     0x87, // LOAD_CONST_SMALL_INT 7
     0x56, // STORE_SUBSCR
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x5b, // LOAD_METHOD 'choice'
-    0x23,0x6e, // LOAD_CONST_OBJ 110
+    0x14,0x4f, // LOAD_METHOD 'choice'
+    0x23,0x78, // LOAD_CONST_OBJ 120
     0x36,0x01, // CALL_METHOD 1
     0xb3, // LOAD_FAST 3
     0x86, // LOAD_CONST_SMALL_INT 6
     0x56, // STORE_SUBSCR
-    0x23,0x7d, // LOAD_CONST_OBJ 125
+    0x23,0x81,0x0c, // LOAD_CONST_OBJ 140
     0xb3, // LOAD_FAST 3
     0x86, // LOAD_CONST_SMALL_INT 6
     0x55, // LOAD_SUBSCR
     0xf4, // BINARY_OP 29 __mul__
-    0x26,0x14, // STORE_FAST_N 20
+    0x26,0x18, // STORE_FAST_N 24
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x27, // LOAD_METHOD 'ruido_mob'
+    0x14,0x82,0x26, // LOAD_METHOD 'ruido_mob'
     0xb3, // LOAD_FAST 3
     0xb1, // LOAD_FAST 1
     0x36,0x02, // CALL_METHOD 2
     0x59, // POP_TOP
-    0x12,0x83,0x3f, // LOAD_GLOBAL 'abs'
+    0x12,0x83,0x75, // LOAD_GLOBAL 'abs'
     0xb3, // LOAD_FAST 3
     0x83, // LOAD_CONST_SMALL_INT 3
     0x55, // LOAD_SUBSCR
     0x34,0x01, // CALL_FUNCTION 1
-    0x23,0x28, // LOAD_CONST_OBJ 40
+    0x23,0x20, // LOAD_CONST_OBJ 32
     0xd8, // BINARY_OP 1 __gt__
     0x44,0x4e, // POP_JUMP_IF_FALSE 14
     0xb3, // LOAD_FAST 3
     0x83, // LOAD_CONST_SMALL_INT 3
     0x55, // LOAD_SUBSCR
-    0x26,0x14, // STORE_FAST_N 20
+    0x26,0x18, // STORE_FAST_N 24
     0xb3, // LOAD_FAST 3
     0x83, // LOAD_CONST_SMALL_INT 3
     0x58, // DUP_TOP_TWO
     0x55, // LOAD_SUBSCR
-    0x23,0x6c, // LOAD_CONST_OBJ 108
+    0x23,0x76, // LOAD_CONST_OBJ 118
     0xe7, // BINARY_OP 16 __imul__
     0x5b, // ROT_THREE
     0x56, // STORE_SUBSCR
-    0xb3, // LOAD_FAST 3
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0x55, // LOAD_SUBSCR
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0xd9, // BINARY_OP 2 __eq__
-    0x44,0x44, // POP_JUMP_IF_FALSE 4
-    0x23,0x36, // LOAD_CONST_OBJ 54
-    0x42,0x43, // JUMP 3
-    0x12,0x83,0x21, // LOAD_GLOBAL 'PH'
-    0x26,0x15, // STORE_FAST_N 21
-    0x12,0x83,0x3f, // LOAD_GLOBAL 'abs'
+    0x12,0x83,0x75, // LOAD_GLOBAL 'abs'
     0xb3, // LOAD_FAST 3
     0x84, // LOAD_CONST_SMALL_INT 4
     0x55, // LOAD_SUBSCR
     0x34,0x01, // CALL_FUNCTION 1
-    0x23,0x6a, // LOAD_CONST_OBJ 106
+    0x23,0x72, // LOAD_CONST_OBJ 114
     0xd7, // BINARY_OP 0 __lt__
-    0x26,0x16, // STORE_FAST_N 22
+    0x26,0x1b, // STORE_FAST_N 27
     0xb3, // LOAD_FAST 3
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
     0xb3, // LOAD_FAST 3
     0x82, // LOAD_CONST_SMALL_INT 2
     0x55, // LOAD_SUBSCR
-    0x24,0x14, // LOAD_FAST_N 20
-    0x24,0x16, // LOAD_FAST_N 22
-    0xb3, // LOAD_FAST 3
-    0x80, // LOAD_CONST_SMALL_INT 0
+    0x24,0x18, // LOAD_FAST_N 24
+    0x24,0x1b, // LOAD_FAST_N 27
+    0xbf, // LOAD_FAST 15
+    0x10,0x81,0x42, // LOAD_CONST_STRING 'w'
     0x55, // LOAD_SUBSCR
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0xd9, // BINARY_OP 2 __eq__
-    0x44,0x44, // POP_JUMP_IF_FALSE 4
-    0x23,0x32, // LOAD_CONST_OBJ 50
-    0x42,0x43, // JUMP 3
-    0x12,0x83,0x20, // LOAD_GLOBAL 'PW'
-    0x24,0x15, // LOAD_FAST_N 21
+    0xbf, // LOAD_FAST 15
+    0x10,0x81,0x44, // LOAD_CONST_STRING 'h'
+    0x55, // LOAD_SUBSCR
     0x2b,0x06, // BUILD_LIST 6
-    0x26,0x17, // STORE_FAST_N 23
-    0x12,0x83,0x38, // LOAD_GLOBAL 'max'
-    0x12,0x83,0x23, // LOAD_GLOBAL 'MAX_CAIDA'
+    0x26,0x1c, // STORE_FAST_N 28
+    0x12,0x83,0x6c, // LOAD_GLOBAL 'max'
+    0x12,0x83,0x51, // LOAD_GLOBAL 'MAX_CAIDA'
     0xd1, // UNARY_OP 1 __neg__
     0xb3, // LOAD_FAST 3
     0x84, // LOAD_CONST_SMALL_INT 4
     0x55, // LOAD_SUBSCR
-    0x12,0x83,0x22, // LOAD_GLOBAL 'GRAV'
+    0x12,0x83,0x50, // LOAD_GLOBAL 'GRAV'
     0xb1, // LOAD_FAST 1
     0xf4, // BINARY_OP 29 __mul__
     0xf3, // BINARY_OP 28 __sub__
@@ -56480,46 +58923,46 @@ static const byte fun_data_mc2d_Juego_mobs_paso[1011] = {
     0x56, // STORE_SUBSCR
     0xb0, // LOAD_FAST 0
     0x14,0x82,0x14, // LOAD_METHOD 'mover_x'
-    0x24,0x17, // LOAD_FAST_N 23
-    0x24,0x14, // LOAD_FAST_N 20
+    0x24,0x1c, // LOAD_FAST_N 28
+    0x24,0x18, // LOAD_FAST_N 24
     0xb1, // LOAD_FAST 1
     0xf4, // BINARY_OP 29 __mul__
     0x36,0x02, // CALL_METHOD 2
     0x59, // POP_TOP
-    0x24,0x17, // LOAD_FAST_N 23
+    0x24,0x1c, // LOAD_FAST_N 28
     0x82, // LOAD_CONST_SMALL_INT 2
     0x55, // LOAD_SUBSCR
-    0x23,0x65, // LOAD_CONST_OBJ 101
+    0x23,0x6c, // LOAD_CONST_OBJ 108
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x4e, // POP_JUMP_IF_FALSE 14
-    0x24,0x14, // LOAD_FAST_N 20
+    0x24,0x18, // LOAD_FAST_N 24
     0x44,0x4a, // POP_JUMP_IF_FALSE 10
-    0x24,0x16, // LOAD_FAST_N 22
+    0x24,0x1b, // LOAD_FAST_N 27
     0x44,0x46, // POP_JUMP_IF_FALSE 6
-    0x12,0x83,0x25, // LOAD_GLOBAL 'SALTO'
+    0x12,0x83,0x53, // LOAD_GLOBAL 'SALTO'
     0xb3, // LOAD_FAST 3
     0x84, // LOAD_CONST_SMALL_INT 4
     0x56, // STORE_SUBSCR
     0xb0, // LOAD_FAST 0
     0x14,0x82,0x16, // LOAD_METHOD 'mover_y'
-    0x24,0x17, // LOAD_FAST_N 23
+    0x24,0x1c, // LOAD_FAST_N 28
     0xb3, // LOAD_FAST 3
     0x84, // LOAD_CONST_SMALL_INT 4
     0x55, // LOAD_SUBSCR
     0xb1, // LOAD_FAST 1
     0xf4, // BINARY_OP 29 __mul__
     0x36,0x02, // CALL_METHOD 2
-    0x26,0x18, // STORE_FAST_N 24
-    0x24,0x18, // LOAD_FAST_N 24
+    0x26,0x1d, // STORE_FAST_N 29
+    0x24,0x1d, // LOAD_FAST_N 29
     0x44,0x45, // POP_JUMP_IF_FALSE 5
-    0x23,0x65, // LOAD_CONST_OBJ 101
+    0x23,0x6c, // LOAD_CONST_OBJ 108
     0xb3, // LOAD_FAST 3
     0x84, // LOAD_CONST_SMALL_INT 4
     0x56, // STORE_SUBSCR
-    0x24,0x17, // LOAD_FAST_N 23
+    0x24,0x1c, // LOAD_FAST_N 28
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
-    0x24,0x17, // LOAD_FAST_N 23
+    0x24,0x1c, // LOAD_FAST_N 28
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
     0x5a, // ROT_TWO
@@ -56539,32 +58982,32 @@ static const byte fun_data_mc2d_Juego_mobs_paso[1011] = {
     0xb3, // LOAD_FAST 3
     0x86, // LOAD_CONST_SMALL_INT 6
     0x56, // STORE_SUBSCR
-    0x42,0x82,0x7c, // JUMP -510
+    0x42,0xba,0x78, // JUMP -966
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
 // child of mc2d_Juego_mobs_paso
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_mobs_paso__lt_genexpr_gt_
-static const byte fun_data_mc2d_Juego_mobs_paso__lt_genexpr_gt_[30] = {
+static const byte fun_data_mc2d_Juego_mobs_paso__lt_genexpr_gt_[32] = {
     0xb9,0x40,0x0c, // prelude
-    0x82,0x52,0x83,0x66, // names: <genexpr>, *
-    0xb0,0x49, // code info
+    0x81,0x4a,0x84,0x04, // names: <genexpr>, *
+    0xc0,0x5e, // code info
     0x53, // LOAD_NULL
     0xb0, // LOAD_FAST 0
     0x53, // LOAD_NULL
     0x53, // LOAD_NULL
-    0x4b,0x0d, // FOR_ITER 13
+    0x4b,0x0f, // FOR_ITER 15
     0xc1, // STORE_FAST 1
     0xb1, // LOAD_FAST 1
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0xd9, // BINARY_OP 2 __eq__
-    0x44,0x36, // POP_JUMP_IF_FALSE -10
+    0x22,0x80,0x64, // LOAD_CONST_SMALL_INT 100
+    0xdb, // BINARY_OP 4 __ge__
+    0x44,0x34, // POP_JUMP_IF_FALSE -12
     0x81, // LOAD_CONST_SMALL_INT 1
     0x67, // YIELD_VALUE
     0x59, // POP_TOP
-    0x42,0x31, // JUMP -15
+    0x42,0x2f, // JUMP -17
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -56577,7 +59020,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_mobs_paso__lt_genexpr_
     .fun_data = fun_data_mc2d_Juego_mobs_paso__lt_genexpr_gt_,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 30,
+    .fun_data_len = 32,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -56591,7 +59034,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_mobs_paso__lt_genexpr_
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 338,
+        .qstr_block_name_idx = 202,
         .line_info = fun_data_mc2d_Juego_mobs_paso__lt_genexpr_gt_ + 7,
         .line_info_top = fun_data_mc2d_Juego_mobs_paso__lt_genexpr_gt_ + 9,
         .opcodes = fun_data_mc2d_Juego_mobs_paso__lt_genexpr_gt_ + 9,
@@ -56615,7 +59058,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_mobs_paso = {
     .fun_data = fun_data_mc2d_Juego_mobs_paso,
     .children = (void *)&children_mc2d_Juego_mobs_paso,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 1011,
+    .fun_data_len = 1560,
     .n_children = 1,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -56623,27 +59066,416 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_mobs_paso = {
     #if MICROPY_PY_SYS_SETTRACE
     .line_of_definition = 0,
     .prelude = {
-        .n_state = 38,
+        .n_state = 43,
         .n_exc_stack = 0,
         .scope_flags = 0,
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 297,
+        .qstr_block_name_idx = 302,
         .line_info = fun_data_mc2d_Juego_mobs_paso + 10,
-        .line_info_top = fun_data_mc2d_Juego_mobs_paso + 87,
-        .opcodes = fun_data_mc2d_Juego_mobs_paso + 87,
+        .line_info_top = fun_data_mc2d_Juego_mobs_paso + 126,
+        .opcodes = fun_data_mc2d_Juego_mobs_paso + 126,
     },
     #endif
     #endif
 };
 
 // child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_flechas_paso
+static const byte fun_data_mc2d_Juego_flechas_paso[229] = {
+    0xa3,0x10,0x2e, // prelude
+    0x82,0x2f,0x84,0x05,0x84,0x12,0x84,0x19, // names: flechas_paso, self, dt, jug
+    0xc0,0xbf,0x2e,0x30,0x2c,0x2c,0x1f,0x22,0x2b,0x23,0x29,0x1f,0x31,0x34,0x2b, // code info
+    0x12,0x83,0x78, // LOAD_GLOBAL 'list'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x5e, // LOAD_ATTR 'flechas'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x5f, // GET_ITER_STACK
+    0x4b,0xbc,0x01, // FOR_ITER 188
+    0xc3, // STORE_FAST 3
+    0xb3, // LOAD_FAST 3
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x58, // DUP_TOP_TWO
+    0x55, // LOAD_SUBSCR
+    0x12,0x83,0x50, // LOAD_GLOBAL 'GRAV'
+    0x23,0x81,0x02, // LOAD_CONST_OBJ 130
+    0xf4, // BINARY_OP 29 __mul__
+    0xb1, // LOAD_FAST 1
+    0xf4, // BINARY_OP 29 __mul__
+    0xe6, // BINARY_OP 15 __isub__
+    0x5b, // ROT_THREE
+    0x56, // STORE_SUBSCR
+    0xb3, // LOAD_FAST 3
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x58, // DUP_TOP_TWO
+    0x55, // LOAD_SUBSCR
+    0xb3, // LOAD_FAST 3
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0xf4, // BINARY_OP 29 __mul__
+    0xe5, // BINARY_OP 14 __iadd__
+    0x5b, // ROT_THREE
+    0x56, // STORE_SUBSCR
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x58, // DUP_TOP_TWO
+    0x55, // LOAD_SUBSCR
+    0xb3, // LOAD_FAST 3
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0x55, // LOAD_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0xf4, // BINARY_OP 29 __mul__
+    0xe5, // BINARY_OP 14 __iadd__
+    0x5b, // ROT_THREE
+    0x56, // STORE_SUBSCR
+    0x12,0x32, // LOAD_GLOBAL 'solido'
+    0x12,0x30, // LOAD_GLOBAL 'g'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
+    0xb3, // LOAD_FAST 3
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0x34,0x02, // CALL_FUNCTION 2
+    0x34,0x01, // CALL_FUNCTION 1
+    0x43,0x47, // POP_JUMP_IF_TRUE 7
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x4e, // POP_JUMP_IF_FALSE 14
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x5e, // LOAD_ATTR 'flechas'
+    0x14,0x81,0x24, // LOAD_METHOD 'remove'
+    0xb3, // LOAD_FAST 3
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x42,0xa5,0x7f, // JUMP -91
+    0xb2, // LOAD_FAST 2
+    0x5f, // GET_ITER_STACK
+    0x4b,0x5d, // FOR_ITER 93
+    0x30,0x03, // UNPACK_SEQUENCE 3
+    0xc4, // STORE_FAST 4
+    0xc5, // STORE_FAST 5
+    0xc6, // STORE_FAST 6
+    0xb5, // LOAD_FAST 5
+    0x23,0x20, // LOAD_CONST_OBJ 32
+    0xf3, // BINARY_OP 28 __sub__
+    0xb3, // LOAD_FAST 3
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0x57, // DUP_TOP
+    0x5b, // ROT_THREE
+    0xda, // BINARY_OP 3 __le__
+    0x46,0x0b, // JUMP_IF_FALSE_OR_POP 11
+    0xb5, // LOAD_FAST 5
+    0x12,0x83,0x4e, // LOAD_GLOBAL 'PW'
+    0xf2, // BINARY_OP 27 __add__
+    0x23,0x20, // LOAD_CONST_OBJ 32
+    0xf2, // BINARY_OP 27 __add__
+    0xda, // BINARY_OP 3 __le__
+    0x42,0x42, // JUMP 2
+    0x5a, // ROT_TWO
+    0x59, // POP_TOP
+    0x44,0x7a, // POP_JUMP_IF_FALSE 58
+    0xb6, // LOAD_FAST 6
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0x57, // DUP_TOP
+    0x5b, // ROT_THREE
+    0xda, // BINARY_OP 3 __le__
+    0x46,0x08, // JUMP_IF_FALSE_OR_POP 8
+    0xb6, // LOAD_FAST 6
+    0x12,0x83,0x4f, // LOAD_GLOBAL 'PH'
+    0xf2, // BINARY_OP 27 __add__
+    0xda, // BINARY_OP 3 __le__
+    0x42,0x42, // JUMP 2
+    0x5a, // ROT_TWO
+    0x59, // POP_TOP
+    0x44,0x65, // POP_JUMP_IF_FALSE 37
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x24, // LOAD_METHOD 'herir_a'
+    0xb4, // LOAD_FAST 4
+    0x83, // LOAD_CONST_SMALL_INT 3
+    0xb3, // LOAD_FAST 3
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x43, // POP_JUMP_IF_FALSE 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x42,0x41, // JUMP 1
+    0x7f, // LOAD_CONST_SMALL_INT -1
+    0x36,0x03, // CALL_METHOD 3
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x5e, // LOAD_ATTR 'flechas'
+    0x14,0x81,0x24, // LOAD_METHOD 'remove'
+    0xb3, // LOAD_FAST 3
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x42,0x43, // JUMP 3
+    0x42,0xa1,0x7f, // JUMP -95
+    0x42,0xc1,0x7e, // JUMP -191
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_flechas_paso = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_flechas_paso,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 229,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 21,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 3,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 303,
+        .line_info = fun_data_mc2d_Juego_flechas_paso + 11,
+        .line_info_top = fun_data_mc2d_Juego_flechas_paso + 26,
+        .opcodes = fun_data_mc2d_Juego_flechas_paso + 26,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_flechas_paso fun_data_mc2d_Juego_flechas_paso[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_explotar
+static const byte fun_data_mc2d_Juego_explotar[254] = {
+    0xc0,0x14,0x30, // prelude
+    0x82,0x30,0x84,0x05,0x66,0x67,0x83,0x6e, // names: explotar, self, x, y, r
+    0xc0,0xcd,0x40,0x28,0x2a,0x2a,0x2d,0x33,0x32,0x3e,0x33,0x2e,0x3a,0x25,0x3e,0x28, // code info
+    0x12,0x12, // LOAD_GLOBAL 'B'
+    0x12,0x83,0x16, // LOAD_GLOBAL 'LECHO_PM'
+    0x34,0x01, // CALL_FUNCTION 1
+    0xc4, // STORE_FAST 4
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb3, // LOAD_FAST 3
+    0xd1, // UNARY_OP 1 __neg__
+    0x42,0xd4,0x80, // JUMP 84
+    0x57, // DUP_TOP
+    0xc5, // STORE_FAST 5
+    0xb3, // LOAD_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf2, // BINARY_OP 27 __add__
+    0xb3, // LOAD_FAST 3
+    0xd1, // UNARY_OP 1 __neg__
+    0x42,0xc0,0x80, // JUMP 64
+    0x57, // DUP_TOP
+    0xc6, // STORE_FAST 6
+    0xb6, // LOAD_FAST 6
+    0xb6, // LOAD_FAST 6
+    0xf4, // BINARY_OP 29 __mul__
+    0xb5, // LOAD_FAST 5
+    0xb5, // LOAD_FAST 5
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0xb3, // LOAD_FAST 3
+    0xb3, // LOAD_FAST 3
+    0xf4, // BINARY_OP 29 __mul__
+    0xda, // BINARY_OP 3 __le__
+    0x44,0x6f, // POP_JUMP_IF_FALSE 47
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
+    0xb1, // LOAD_FAST 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0xb6, // LOAD_FAST 6
+    0xf2, // BINARY_OP 27 __add__
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
+    0xb2, // LOAD_FAST 2
+    0x34,0x01, // CALL_FUNCTION 1
+    0xb5, // LOAD_FAST 5
+    0xf2, // BINARY_OP 27 __add__
+    0x5a, // ROT_TWO
+    0xc7, // STORE_FAST 7
+    0xc8, // STORE_FAST 8
+    0x12,0x30, // LOAD_GLOBAL 'g'
+    0xb7, // LOAD_FAST 7
+    0xb8, // LOAD_FAST 8
+    0x34,0x02, // CALL_FUNCTION 2
+    0x44,0x54, // POP_JUMP_IF_FALSE 20
+    0x12,0x30, // LOAD_GLOBAL 'g'
+    0xb7, // LOAD_FAST 7
+    0xb8, // LOAD_FAST 8
+    0x34,0x02, // CALL_FUNCTION 2
+    0xb4, // LOAD_FAST 4
+    0xdc, // BINARY_OP 5 __ne__
+    0x44,0x4a, // POP_JUMP_IF_FALSE 10
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x7d, // LOAD_METHOD 'poner'
+    0xb7, // LOAD_FAST 7
+    0xb8, // LOAD_FAST 8
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x36,0x03, // CALL_METHOD 3
+    0x59, // POP_TOP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0xba,0x7f, // POP_JUMP_IF_TRUE -70
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0xa6,0x7f, // POP_JUMP_IF_TRUE -90
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x12,0x37, // LOAD_GLOBAL 'sonar'
+    0x10,0x82,0x31, // LOAD_CONST_STRING 'explode%d'
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x43, // LOAD_METHOD 'randint'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x36,0x02, // CALL_METHOD 2
+    0xf8, // BINARY_OP 33 __mod__
+    0x23,0x33, // LOAD_CONST_OBJ 51
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x14,0x81,0x77, // LOAD_METHOD 'jugadores'
+    0x36,0x00, // CALL_METHOD 0
+    0x5f, // GET_ITER_STACK
+    0x4b,0x42, // FOR_ITER 66
+    0x30,0x03, // UNPACK_SEQUENCE 3
+    0xc9, // STORE_FAST 9
+    0xca, // STORE_FAST 10
+    0xcb, // STORE_FAST 11
+    0x12,0x83,0x6c, // LOAD_GLOBAL 'max'
+    0x23,0x25, // LOAD_CONST_OBJ 37
+    0x12,0x02, // LOAD_GLOBAL 'math'
+    0x14,0x82,0x32, // LOAD_METHOD 'sqrt'
+    0xba, // LOAD_FAST 10
+    0xb1, // LOAD_FAST 1
+    0xf3, // BINARY_OP 28 __sub__
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf9, // BINARY_OP 34 __pow__
+    0xbb, // LOAD_FAST 11
+    0xb2, // LOAD_FAST 2
+    0xf3, // BINARY_OP 28 __sub__
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0xf9, // BINARY_OP 34 __pow__
+    0xf2, // BINARY_OP 27 __add__
+    0x36,0x01, // CALL_METHOD 1
+    0x34,0x02, // CALL_FUNCTION 2
+    0xcc, // STORE_FAST 12
+    0xbc, // LOAD_FAST 12
+    0xb3, // LOAD_FAST 3
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x5b, // POP_JUMP_IF_FALSE 27
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x24, // LOAD_METHOD 'herir_a'
+    0xb9, // LOAD_FAST 9
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
+    0xb3, // LOAD_FAST 3
+    0xbc, // LOAD_FAST 12
+    0xf3, // BINARY_OP 28 __sub__
+    0x90, // LOAD_CONST_SMALL_INT 16
+    0xf4, // BINARY_OP 29 __mul__
+    0x34,0x01, // CALL_FUNCTION 1
+    0xba, // LOAD_FAST 10
+    0xb1, // LOAD_FAST 1
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x43, // POP_JUMP_IF_FALSE 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x42,0x41, // JUMP 1
+    0x7f, // LOAD_CONST_SMALL_INT -1
+    0x36,0x03, // CALL_METHOD 3
+    0x59, // POP_TOP
+    0x42,0xbc,0x7f, // JUMP -68
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0x4a, // JUMP 10
+    0x57, // DUP_TOP
+    0xcd, // STORE_FAST 13
+    0x12,0x35, // LOAD_GLOBAL 'calc_alto'
+    0xbd, // LOAD_FAST 13
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x31, // POP_JUMP_IF_TRUE -15
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_explotar = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_explotar,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 254,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 25,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 4,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 304,
+        .line_info = fun_data_mc2d_Juego_explotar + 11,
+        .line_info_top = fun_data_mc2d_Juego_explotar + 27,
+        .opcodes = fun_data_mc2d_Juego_explotar + 27,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_explotar fun_data_mc2d_Juego_explotar[0]
+#endif
+
+// child of mc2d_Juego
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_dano_mob
-static const byte fun_data_mc2d_Juego_dano_mob[196] = {
-    0xe9,0x05,0x38, // prelude
-    0x82,0x0e,0x83,0x4e,0x82,0x2c,0x82,0x12,0x81,0x55,0x83,0x61, // names: dano_mob, self, m, dano, cara, quien
-    0xb0,0x86,0x20,0x28,0x27,0x25,0x28,0x23,0x3e,0x28,0x2b,0x23,0x36,0x3a,0x25,0x49, // code info
+static const byte fun_data_mc2d_Juego_dano_mob[230] = {
+    0xa1,0x15,0x40, // prelude
+    0x82,0x0f,0x84,0x05,0x82,0x36,0x82,0x12,0x81,0x50,0x84,0x1a, // names: dano_mob, self, m, dano, cara, quien
+    0xc0,0xdf,0x20,0x28,0x27,0x25,0x29,0x2a,0x28,0x1f,0x25,0x26,0x35,0x28,0x2a,0x33,0x29,0x23,0x25,0x49, // code info
     0xb1, // LOAD_FAST 1
     0x85, // LOAD_CONST_SMALL_INT 5
     0x58, // DUP_TOP_TWO
@@ -56652,40 +59484,70 @@ static const byte fun_data_mc2d_Juego_dano_mob[196] = {
     0xe6, // BINARY_OP 15 __isub__
     0x5b, // ROT_THREE
     0x56, // STORE_SUBSCR
-    0x23,0x7f, // LOAD_CONST_OBJ 127
+    0x23,0x6e, // LOAD_CONST_OBJ 110
     0xb3, // LOAD_FAST 3
     0xf4, // BINARY_OP 29 __mul__
     0xb1, // LOAD_FAST 1
     0x83, // LOAD_CONST_SMALL_INT 3
     0x56, // STORE_SUBSCR
-    0x23,0x7f, // LOAD_CONST_OBJ 127
+    0x23,0x6e, // LOAD_CONST_OBJ 110
     0xb1, // LOAD_FAST 1
     0x84, // LOAD_CONST_SMALL_INT 4
     0x56, // STORE_SUBSCR
-    0xb0, // LOAD_FAST 0
-    0x14,0x82,0x26, // LOAD_METHOD 'oye'
-    0xb1, // LOAD_FAST 1
-    0x36,0x01, // CALL_METHOD 1
-    0xc5, // STORE_FAST 5
-    0xb5, // LOAD_FAST 5
-    0x44,0x5e, // POP_JUMP_IF_FALSE 30
-    0x12,0x44, // LOAD_GLOBAL 'sonar'
     0xb1, // LOAD_FAST 1
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
+    0x22,0x80,0x64, // LOAD_CONST_SMALL_INT 100
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x4a, // POP_JUMP_IF_FALSE 10
+    0xb3, // LOAD_FAST 3
+    0x23,0x7d, // LOAD_CONST_OBJ 125
+    0x5a, // ROT_TWO
+    0xb1, // LOAD_FAST 1
+    0x86, // LOAD_CONST_SMALL_INT 6
+    0x56, // STORE_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0x87, // LOAD_CONST_SMALL_INT 7
+    0x56, // STORE_SUBSCR
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x25, // LOAD_METHOD 'oye'
+    0xb1, // LOAD_FAST 1
+    0x36,0x01, // CALL_METHOD 1
+    0xc5, // STORE_FAST 5
+    0x2c,0x04, // BUILD_MAP 4
+    0x10,0x82,0x27, // LOAD_CONST_STRING 'pig'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x62, // STORE_MAP
+    0x10,0x82,0x33, // LOAD_CONST_STRING 'zombiehurt'
+    0x22,0x80,0x64, // LOAD_CONST_SMALL_INT 100
+    0x62, // STORE_MAP
+    0x10,0x82,0x2c, // LOAD_CONST_STRING 'spider'
+    0x22,0x80,0x66, // LOAD_CONST_SMALL_INT 102
+    0x62, // STORE_MAP
+    0x23,0x81,0x10, // LOAD_CONST_OBJ 144
+    0x22,0x80,0x67, // LOAD_CONST_SMALL_INT 103
+    0x62, // STORE_MAP
+    0x14,0x19, // LOAD_METHOD 'get'
+    0xb1, // LOAD_FAST 1
     0x80, // LOAD_CONST_SMALL_INT 0
-    0xd9, // BINARY_OP 2 __eq__
-    0x44,0x45, // POP_JUMP_IF_FALSE 5
-    0x10,0x82,0x11, // LOAD_CONST_STRING 'pig%d'
-    0x42,0x42, // JUMP 2
-    0x23,0x71, // LOAD_CONST_OBJ 113
+    0x55, // LOAD_SUBSCR
+    0x36,0x01, // CALL_METHOD 1
+    0xc6, // STORE_FAST 6
+    0xb5, // LOAD_FAST 5
+    0x44,0x58, // POP_JUMP_IF_FALSE 24
+    0xb6, // LOAD_FAST 6
+    0x44,0x55, // POP_JUMP_IF_FALSE 21
+    0x12,0x37, // LOAD_GLOBAL 'sonar'
+    0x10,0x42, // LOAD_CONST_STRING '%s%d'
+    0xb6, // LOAD_FAST 6
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x54, // LOAD_METHOD 'randint'
+    0x14,0x43, // LOAD_METHOD 'randint'
     0x81, // LOAD_CONST_SMALL_INT 1
     0x82, // LOAD_CONST_SMALL_INT 2
     0x36,0x02, // CALL_METHOD 2
+    0x2a,0x02, // BUILD_TUPLE 2
     0xf8, // BINARY_OP 33 __mod__
-    0x23,0x30, // LOAD_CONST_OBJ 48
+    0x23,0x28, // LOAD_CONST_OBJ 40
     0x34,0x02, // CALL_FUNCTION 2
     0x59, // POP_TOP
     0xb1, // LOAD_FAST 1
@@ -56693,66 +59555,56 @@ static const byte fun_data_mc2d_Juego_dano_mob[196] = {
     0x55, // LOAD_SUBSCR
     0x80, // LOAD_CONST_SMALL_INT 0
     0xda, // BINARY_OP 3 __le__
-    0x44,0xde,0x80, // POP_JUMP_IF_FALSE 94
+    0x44,0xcb,0x80, // POP_JUMP_IF_FALSE 75
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x60, // LOAD_ATTR 'mobs'
-    0x14,0x81,0x32, // LOAD_METHOD 'remove'
+    0x13,0x27, // LOAD_ATTR 'mobs'
+    0x14,0x81,0x24, // LOAD_METHOD 'remove'
     0xb1, // LOAD_FAST 1
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
-    0xb5, // LOAD_FAST 5
-    0x44,0x56, // POP_JUMP_IF_FALSE 22
-    0x12,0x44, // LOAD_GLOBAL 'sonar'
+    0x12,0x83,0x0e, // LOAD_GLOBAL 'MOBS'
     0xb1, // LOAD_FAST 1
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0xd9, // BINARY_OP 2 __eq__
-    0x44,0x45, // POP_JUMP_IF_FALSE 5
-    0x10,0x82,0x2a, // LOAD_CONST_STRING 'pigdeath'
-    0x42,0x43, // JUMP 3
-    0x23,0x81,0x00, // LOAD_CONST_OBJ 128
-    0x23,0x22, // LOAD_CONST_OBJ 34
-    0x34,0x02, // CALL_FUNCTION 2
-    0x59, // POP_TOP
-    0xb1, // LOAD_FAST 1
-    0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0xd9, // BINARY_OP 2 __eq__
-    0x44,0x45, // POP_JUMP_IF_FALSE 5
-    0x12,0x82,0x79, // LOAD_GLOBAL 'CARNE'
-    0x42,0x43, // JUMP 3
-    0x12,0x82,0x7b, // LOAD_GLOBAL 'CARNE_POD'
-    0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x54, // LOAD_METHOD 'randint'
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0x36,0x02, // CALL_METHOD 2
-    0x5a, // ROT_TWO
-    0xc6, // STORE_FAST 6
+    0x10,0x82,0x34, // LOAD_CONST_STRING 'botin'
+    0x55, // LOAD_SUBSCR
+    0x5f, // GET_ITER_STACK
+    0x4b,0x33, // FOR_ITER 51
+    0x30,0x03, // UNPACK_SEQUENCE 3
     0xc7, // STORE_FAST 7
+    0xc8, // STORE_FAST 8
+    0xc9, // STORE_FAST 9
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x43, // LOAD_METHOD 'randint'
+    0xb8, // LOAD_FAST 8
+    0xb9, // LOAD_FAST 9
+    0x36,0x02, // CALL_METHOD 2
+    0xca, // STORE_FAST 10
+    0xba, // LOAD_FAST 10
+    0x44,0x60, // POP_JUMP_IF_FALSE 32
     0xb4, // LOAD_FAST 4
     0x51, // LOAD_CONST_NONE
     0xde, // BINARY_OP 7 <is>
     0x44,0x49, // POP_JUMP_IF_FALSE 9
-    0x12,0x63, // LOAD_GLOBAL 'dar'
-    0xb6, // LOAD_FAST 6
+    0x12,0x53, // LOAD_GLOBAL 'dar'
     0xb7, // LOAD_FAST 7
+    0xba, // LOAD_FAST 10
     0x34,0x02, // CALL_FUNCTION 2
     0x59, // POP_TOP
     0x42,0x52, // JUMP 18
-    0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x82,0x0f, // LOAD_METHOD 'enviar'
+    0x12,0x0c, // LOAD_GLOBAL 'red'
+    0x14,0x82,0x10, // LOAD_METHOD 'enviar'
     0x2c,0x01, // BUILD_MAP 1
     0xb4, // LOAD_FAST 4
-    0xb6, // LOAD_FAST 6
     0xb7, // LOAD_FAST 7
+    0xba, // LOAD_FAST 10
     0x2b,0x03, // BUILD_LIST 3
-    0x10,0x63, // LOAD_CONST_STRING 'dar'
+    0x10,0x53, // LOAD_CONST_STRING 'dar'
     0x62, // STORE_MAP
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
+    0x42,0x0b, // JUMP -53
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -56765,7 +59617,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_dano_mob = {
     .fun_data = fun_data_mc2d_Juego_dano_mob,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 196,
+    .fun_data_len = 230,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -56773,16 +59625,16 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_dano_mob = {
     #if MICROPY_PY_SYS_SETTRACE
     .line_of_definition = 0,
     .prelude = {
-        .n_state = 14,
+        .n_state = 21,
         .n_exc_stack = 0,
         .scope_flags = 0,
         .n_pos_args = 5,
         .n_kwonly_args = 0,
         .n_def_pos_args = 1,
-        .qstr_block_name_idx = 270,
+        .qstr_block_name_idx = 271,
         .line_info = fun_data_mc2d_Juego_dano_mob + 15,
-        .line_info_top = fun_data_mc2d_Juego_dano_mob + 31,
-        .opcodes = fun_data_mc2d_Juego_dano_mob + 31,
+        .line_info_top = fun_data_mc2d_Juego_dano_mob + 35,
+        .opcodes = fun_data_mc2d_Juego_dano_mob + 35,
     },
     #endif
     #endif
@@ -56793,147 +59645,147 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_dano_mob = {
 
 // child of mc2d_Juego
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_red_paso
-static const byte fun_data_mc2d_Juego_red_paso[984] = {
-    0xb1,0x20,0x8c,0x02, // prelude
-    0x81,0x44,0x83,0x4e, // names: red_paso, self
-    0xb0,0x99,0x26,0x22,0x2b,0x2b,0x38,0x1f,0x2c,0x28,0x29,0x25,0x2e,0x29,0x39,0x28,0x2c,0x28,0x2d,0x30,0x26,0x3e,0x2e,0x39,0x2c,0x1f,0x26,0x79,0x29,0x23,0x29,0x29,0x39,0x3f,0x25,0x26,0x2a,0x38,0x2b,0x29,0x28,0x31,0x2b,0x3f,0x2f,0x31,0x37,0x34,0x1f,0x23,0x31,0x1f,0x26,0x1f,0x21,0x27,0x25,0x32,0x29,0x27,0x33,0x27,0x35,0x25,0x26,0x27, // code info
+static const byte fun_data_mc2d_Juego_red_paso[981] = {
+    0xb1,0x20,0x8e,0x02, // prelude
+    0x81,0x35,0x84,0x05, // names: red_paso, self
+    0xc0,0xf5,0x26,0x22,0x2b,0x2b,0x38,0x1f,0x2c,0x28,0x29,0x25,0x2e,0x29,0x38,0x28,0x2c,0x28,0x2d,0x30,0x26,0x3e,0x2e,0x39,0x2c,0x1f,0x26,0x79,0x28,0x23,0x29,0x29,0x39,0x1f,0x22,0x24,0x26,0x2a,0x38,0x2b,0x28,0x28,0x31,0x2b,0x3f,0x2f,0x32,0x37,0x34,0x1f,0x21,0x31,0x1f,0x25,0x1f,0x21,0x27,0x25,0x32,0x29,0x27,0x33,0x27,0x35,0x25,0x26,0x27, // code info
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x39, // LOAD_ATTR 'online'
+    0x13,0x81,0x2a, // LOAD_ATTR 'online'
     0x43,0x42, // POP_JUMP_IF_TRUE 2
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
     0xb0, // LOAD_FAST 0
     0x57, // DUP_TOP
-    0x13,0x81,0x65, // LOAD_ATTR 'cuadro'
+    0x13,0x81,0x63, // LOAD_ATTR 'cuadro'
     0x81, // LOAD_CONST_SMALL_INT 1
     0xe5, // BINARY_OP 14 __iadd__
     0x5a, // ROT_TWO
-    0x18,0x81,0x65, // STORE_ATTR 'cuadro'
+    0x18,0x81,0x63, // STORE_ATTR 'cuadro'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x65, // LOAD_ATTR 'cuadro'
+    0x13,0x81,0x63, // LOAD_ATTR 'cuadro'
     0x83, // LOAD_CONST_SMALL_INT 3
     0xf8, // BINARY_OP 33 __mod__
     0x80, // LOAD_CONST_SMALL_INT 0
     0xd9, // BINARY_OP 2 __eq__
-    0x44,0x89,0x81, // POP_JUMP_IF_FALSE 137
+    0x44,0x88,0x81, // POP_JUMP_IF_FALSE 136
     0x2c,0x01, // BUILD_MAP 1
-    0x12,0x83,0x62, // LOAD_GLOBAL 'round'
+    0x12,0x84,0x1b, // LOAD_GLOBAL 'round'
     0xb0, // LOAD_FAST 0
-    0x13,0x75, // LOAD_ATTR 'x'
+    0x13,0x66, // LOAD_ATTR 'x'
     0x82, // LOAD_CONST_SMALL_INT 2
     0x34,0x02, // CALL_FUNCTION 2
-    0x12,0x83,0x62, // LOAD_GLOBAL 'round'
+    0x12,0x84,0x1b, // LOAD_GLOBAL 'round'
     0xb0, // LOAD_FAST 0
-    0x13,0x76, // LOAD_ATTR 'y'
+    0x13,0x67, // LOAD_ATTR 'y'
     0x82, // LOAD_CONST_SMALL_INT 2
     0x34,0x02, // CALL_FUNCTION 2
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x55, // LOAD_ATTR 'cara'
-    0x12,0x83,0x3f, // LOAD_GLOBAL 'abs'
+    0x13,0x81,0x50, // LOAD_ATTR 'cara'
+    0x12,0x83,0x75, // LOAD_GLOBAL 'abs'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x52, // LOAD_ATTR 'vx'
+    0x13,0x81,0x4d, // LOAD_ATTR 'vx'
     0x34,0x01, // CALL_FUNCTION 1
-    0x23,0x23, // LOAD_CONST_OBJ 35
+    0x23,0x14, // LOAD_CONST_OBJ 20
     0xd8, // BINARY_OP 1 __gt__
     0x44,0x43, // POP_JUMP_IF_FALSE 3
     0x81, // LOAD_CONST_SMALL_INT 1
     0x42,0x41, // JUMP 1
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x12,0x83,0x2b, // LOAD_GLOBAL 'inv_id'
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x5a, // LOAD_ATTR 'sel'
+    0x13,0x81,0x56, // LOAD_ATTR 'sel'
     0x55, // LOAD_SUBSCR
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x62, // LOAD_ATTR 'muerto'
+    0x13,0x81,0x60, // LOAD_ATTR 'muerto'
     0x44,0x43, // POP_JUMP_IF_FALSE 3
     0x81, // LOAD_CONST_SMALL_INT 1
     0x42,0x41, // JUMP 1
     0x80, // LOAD_CONST_SMALL_INT 0
     0x2b,0x06, // BUILD_LIST 6
-    0x10,0x82,0x2b, // LOAD_CONST_STRING 'p'
+    0x10,0x82,0x35, // LOAD_CONST_STRING 'p'
     0x62, // STORE_MAP
     0xc1, // STORE_FAST 1
     0xb1, // LOAD_FAST 1
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x64, // LOAD_ATTR 'enviado'
+    0x13,0x81,0x62, // LOAD_ATTR 'enviado'
     0xdc, // BINARY_OP 5 __ne__
     0x44,0x4e, // POP_JUMP_IF_FALSE 14
-    0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x82,0x0f, // LOAD_METHOD 'enviar'
+    0x12,0x0c, // LOAD_GLOBAL 'red'
+    0x14,0x82,0x10, // LOAD_METHOD 'enviar'
     0xb1, // LOAD_FAST 1
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0xb1, // LOAD_FAST 1
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x64, // STORE_ATTR 'enviado'
+    0x18,0x81,0x62, // STORE_ATTR 'enviado'
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x0d, // LOAD_METHOD 'manda_mobs'
+    0x14,0x82,0x0a, // LOAD_METHOD 'manda_mobs'
     0x36,0x00, // CALL_METHOD 0
-    0x44,0x68, // POP_JUMP_IF_FALSE 40
+    0x44,0x67, // POP_JUMP_IF_FALSE 39
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x46, // LOAD_ATTR 'otros'
-    0x44,0x62, // POP_JUMP_IF_FALSE 34
-    0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x82,0x0f, // LOAD_METHOD 'enviar'
+    0x13,0x81,0x37, // LOAD_ATTR 'otros'
+    0x44,0x61, // POP_JUMP_IF_FALSE 33
+    0x12,0x0c, // LOAD_GLOBAL 'red'
+    0x14,0x82,0x10, // LOAD_METHOD 'enviar'
     0x2c,0x02, // BUILD_MAP 2
     0x32,0x00, // MAKE_FUNCTION 0
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x60, // LOAD_ATTR 'mobs'
+    0x13,0x27, // LOAD_ATTR 'mobs'
     0x34,0x01, // CALL_FUNCTION 1
-    0x10,0x82,0x2c, // LOAD_CONST_STRING 'm'
+    0x10,0x82,0x36, // LOAD_CONST_STRING 'm'
     0x62, // STORE_MAP
-    0x12,0x83,0x62, // LOAD_GLOBAL 'round'
+    0x12,0x84,0x1b, // LOAD_GLOBAL 'round'
     0xb0, // LOAD_FAST 0
-    0x13,0x79, // LOAD_ATTR 'tiempo'
+    0x13,0x6a, // LOAD_ATTR 'tiempo'
     0x81, // LOAD_CONST_SMALL_INT 1
     0x34,0x02, // CALL_FUNCTION 2
-    0x10,0x7a, // LOAD_CONST_STRING 't'
+    0x10,0x6b, // LOAD_CONST_STRING 't'
     0x62, // STORE_MAP
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
-    0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x82,0x24, // LOAD_METHOD 'mi_id'
+    0x12,0x0c, // LOAD_GLOBAL 'red'
+    0x14,0x82,0x23, // LOAD_METHOD 'mi_id'
     0x36,0x00, // CALL_METHOD 0
     0xc2, // STORE_FAST 2
-    0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x81,0x16, // LOAD_METHOD 'recibir'
+    0x12,0x0c, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x08, // LOAD_METHOD 'recibir'
     0x36,0x00, // CALL_METHOD 0
     0x5f, // GET_ITER_STACK
-    0x4b,0xd2,0x05, // FOR_ITER 722
+    0x4b,0xcf,0x05, // FOR_ITER 719
     0xc3, // STORE_FAST 3
     0xb3, // LOAD_FAST 3
-    0x14,0x4c, // LOAD_METHOD 'get'
-    0x10,0x7a, // LOAD_CONST_STRING 't'
+    0x14,0x19, // LOAD_METHOD 'get'
+    0x10,0x6b, // LOAD_CONST_STRING 't'
     0x36,0x01, // CALL_METHOD 1
     0xc4, // STORE_FAST 4
     0xb3, // LOAD_FAST 3
-    0x14,0x4c, // LOAD_METHOD 'get'
+    0x14,0x19, // LOAD_METHOD 'get'
     0x10,0x82,0x1c, // LOAD_CONST_STRING 'd'
     0x36,0x01, // CALL_METHOD 1
     0x45,0x02, // JUMP_IF_TRUE_OR_POP 2
     0x2c,0x00, // BUILD_MAP 0
     0xc1, // STORE_FAST 1
     0xb4, // LOAD_FAST 4
-    0x10,0x82,0x2d, // LOAD_CONST_STRING 'de'
+    0x10,0x82,0x37, // LOAD_CONST_STRING 'de'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x84,0x81, // POP_JUMP_IF_FALSE 132
-    0x10,0x82,0x2b, // LOAD_CONST_STRING 'p'
+    0x10,0x82,0x35, // LOAD_CONST_STRING 'p'
     0xb1, // LOAD_FAST 1
     0xdd, // BINARY_OP 6 <in>
     0x44,0xfc,0x80, // POP_JUMP_IF_FALSE 124
     0xb1, // LOAD_FAST 1
-    0x10,0x82,0x2b, // LOAD_CONST_STRING 'p'
+    0x10,0x82,0x35, // LOAD_CONST_STRING 'p'
     0x55, // LOAD_SUBSCR
     0xc5, // STORE_FAST 5
-    0x12,0x83,0x3a, // LOAD_GLOBAL 'str'
-    0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x81,0x7a, // LOAD_METHOD 'jugadores'
+    0x12,0x83,0x71, // LOAD_GLOBAL 'str'
+    0x12,0x0c, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x77, // LOAD_METHOD 'jugadores'
     0x36,0x00, // CALL_METHOD 0
-    0x14,0x4c, // LOAD_METHOD 'get'
+    0x14,0x19, // LOAD_METHOD 'get'
     0xb3, // LOAD_FAST 3
-    0x10,0x82,0x2e, // LOAD_CONST_STRING 'id'
+    0x10,0x82,0x38, // LOAD_CONST_STRING 'id'
     0x55, // LOAD_SUBSCR
-    0x10,0x82,0x2f, // LOAD_CONST_STRING '?'
+    0x10,0x82,0x39, // LOAD_CONST_STRING '?'
     0x36,0x02, // CALL_METHOD 2
     0x34,0x01, // CALL_FUNCTION 1
     0x51, // LOAD_CONST_NONE
@@ -56942,10 +59794,10 @@ static const byte fun_data_mc2d_Juego_red_paso[984] = {
     0x55, // LOAD_SUBSCR
     0xc6, // STORE_FAST 6
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x46, // LOAD_ATTR 'otros'
-    0x14,0x4c, // LOAD_METHOD 'get'
+    0x13,0x81,0x37, // LOAD_ATTR 'otros'
+    0x14,0x19, // LOAD_METHOD 'get'
     0xb3, // LOAD_FAST 3
-    0x10,0x82,0x2e, // LOAD_CONST_STRING 'id'
+    0x10,0x82,0x38, // LOAD_CONST_STRING 'id'
     0x55, // LOAD_SUBSCR
     0x36,0x01, // CALL_METHOD 1
     0xc7, // STORE_FAST 7
@@ -56981,7 +59833,7 @@ static const byte fun_data_mc2d_Juego_red_paso[984] = {
     0x84, // LOAD_CONST_SMALL_INT 4
     0x55, // LOAD_SUBSCR
     0xb6, // LOAD_FAST 6
-    0x12,0x83,0x3b, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
     0xb5, // LOAD_FAST 5
     0x34,0x01, // CALL_FUNCTION 1
     0x85, // LOAD_CONST_SMALL_INT 5
@@ -57000,39 +59852,39 @@ static const byte fun_data_mc2d_Juego_red_paso[984] = {
     0x55, // LOAD_SUBSCR
     0x2b,0x09, // BUILD_LIST 9
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x46, // LOAD_ATTR 'otros'
+    0x13,0x81,0x37, // LOAD_ATTR 'otros'
     0xb3, // LOAD_FAST 3
-    0x10,0x82,0x2e, // LOAD_CONST_STRING 'id'
+    0x10,0x82,0x38, // LOAD_CONST_STRING 'id'
     0x55, // LOAD_SUBSCR
     0x56, // STORE_SUBSCR
-    0x42,0xad,0x84, // JUMP 557
+    0x42,0xaa,0x84, // JUMP 554
     0xb4, // LOAD_FAST 4
-    0x10,0x82,0x2d, // LOAD_CONST_STRING 'de'
+    0x10,0x82,0x37, // LOAD_CONST_STRING 'de'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0xfc,0x80, // POP_JUMP_IF_FALSE 124
-    0x10,0x82,0x2c, // LOAD_CONST_STRING 'm'
+    0x10,0x82,0x36, // LOAD_CONST_STRING 'm'
     0xb1, // LOAD_FAST 1
     0xdd, // BINARY_OP 6 <in>
     0x44,0xf4,0x80, // POP_JUMP_IF_FALSE 116
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x0d, // LOAD_METHOD 'manda_mobs'
+    0x14,0x82,0x0a, // LOAD_METHOD 'manda_mobs'
     0x36,0x00, // CALL_METHOD 0
     0x43,0xeb,0x80, // POP_JUMP_IF_TRUE 107
     0x32,0x01, // MAKE_FUNCTION 1
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x60, // LOAD_ATTR 'mobs'
+    0x13,0x27, // LOAD_ATTR 'mobs'
     0x34,0x01, // CALL_FUNCTION 1
     0xca, // STORE_FAST 10
     0x2b,0x00, // BUILD_LIST 0
     0xcb, // STORE_FAST 11
     0xb1, // LOAD_FAST 1
-    0x10,0x82,0x2c, // LOAD_CONST_STRING 'm'
+    0x10,0x82,0x36, // LOAD_CONST_STRING 'm'
     0x55, // LOAD_SUBSCR
     0x5f, // GET_ITER_STACK
-    0x4b,0x42, // FOR_ITER 66
+    0x4b,0x44, // FOR_ITER 68
     0xcc, // STORE_FAST 12
     0xba, // LOAD_FAST 10
-    0x14,0x4c, // LOAD_METHOD 'get'
+    0x14,0x19, // LOAD_METHOD 'get'
     0xbc, // LOAD_FAST 12
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
@@ -57059,7 +59911,7 @@ static const byte fun_data_mc2d_Juego_red_paso[984] = {
     0xc8, // STORE_FAST 8
     0xc9, // STORE_FAST 9
     0xbb, // LOAD_FAST 11
-    0x14,0x3b, // LOAD_METHOD 'append'
+    0x14,0x59, // LOAD_METHOD 'append'
     0xbc, // LOAD_FAST 12
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
@@ -57075,48 +59927,49 @@ static const byte fun_data_mc2d_Juego_red_paso[984] = {
     0xbc, // LOAD_FAST 12
     0x84, // LOAD_CONST_SMALL_INT 4
     0x55, // LOAD_SUBSCR
-    0x23,0x65, // LOAD_CONST_OBJ 101
+    0x23,0x6c, // LOAD_CONST_OBJ 108
     0xbc, // LOAD_FAST 12
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
-    0x2b,0x09, // BUILD_LIST 9
+    0x23,0x6c, // LOAD_CONST_OBJ 108
+    0x2b,0x0a, // BUILD_LIST 10
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
-    0x42,0xbc,0x7f, // JUMP -68
+    0x42,0xba,0x7f, // JUMP -70
     0xbb, // LOAD_FAST 11
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x60, // STORE_ATTR 'mobs'
-    0x10,0x7a, // LOAD_CONST_STRING 't'
+    0x18,0x27, // STORE_ATTR 'mobs'
+    0x10,0x6b, // LOAD_CONST_STRING 't'
     0xb1, // LOAD_FAST 1
     0xdd, // BINARY_OP 6 <in>
     0x44,0x47, // POP_JUMP_IF_FALSE 7
     0xb1, // LOAD_FAST 1
-    0x10,0x7a, // LOAD_CONST_STRING 't'
+    0x10,0x6b, // LOAD_CONST_STRING 't'
     0x55, // LOAD_SUBSCR
     0xb0, // LOAD_FAST 0
-    0x18,0x79, // STORE_ATTR 'tiempo'
-    0x42,0xa9,0x83, // JUMP 425
+    0x18,0x6a, // STORE_ATTR 'tiempo'
+    0x42,0xa6,0x83, // JUMP 422
     0xb4, // LOAD_FAST 4
-    0x10,0x82,0x2d, // LOAD_CONST_STRING 'de'
+    0x10,0x82,0x37, // LOAD_CONST_STRING 'de'
     0xd9, // BINARY_OP 2 __eq__
-    0x44,0xc8,0x80, // POP_JUMP_IF_FALSE 72
-    0x10,0x82,0x10, // LOAD_CONST_STRING 'golpe'
+    0x44,0xc7,0x80, // POP_JUMP_IF_FALSE 71
+    0x10,0x82,0x11, // LOAD_CONST_STRING 'golpe'
     0xb1, // LOAD_FAST 1
     0xdd, // BINARY_OP 6 <in>
-    0x44,0xc0,0x80, // POP_JUMP_IF_FALSE 64
+    0x44,0xbf,0x80, // POP_JUMP_IF_FALSE 63
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x0d, // LOAD_METHOD 'manda_mobs'
+    0x14,0x82,0x0a, // LOAD_METHOD 'manda_mobs'
     0x36,0x00, // CALL_METHOD 0
-    0x44,0x78, // POP_JUMP_IF_FALSE 56
+    0x44,0x77, // POP_JUMP_IF_FALSE 55
     0xb1, // LOAD_FAST 1
-    0x10,0x82,0x10, // LOAD_CONST_STRING 'golpe'
+    0x10,0x82,0x11, // LOAD_CONST_STRING 'golpe'
     0x55, // LOAD_SUBSCR
     0x30,0x03, // UNPACK_SEQUENCE 3
     0xce, // STORE_FAST 14
     0xcf, // STORE_FAST 15
     0x26,0x10, // STORE_FAST_N 16
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x60, // LOAD_ATTR 'mobs'
+    0x13,0x27, // LOAD_ATTR 'mobs'
     0x5f, // GET_ITER_STACK
     0x4b,0x23, // FOR_ITER 35
     0x26,0x11, // STORE_FAST_N 17
@@ -57127,12 +59980,12 @@ static const byte fun_data_mc2d_Juego_red_paso[984] = {
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x57, // POP_JUMP_IF_FALSE 23
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x0e, // LOAD_METHOD 'dano_mob'
+    0x14,0x82,0x0f, // LOAD_METHOD 'dano_mob'
     0x24,0x11, // LOAD_FAST_N 17
     0xbf, // LOAD_FAST 15
     0x24,0x10, // LOAD_FAST_N 16
     0xb3, // LOAD_FAST 3
-    0x10,0x82,0x2e, // LOAD_CONST_STRING 'id'
+    0x10,0x82,0x38, // LOAD_CONST_STRING 'id'
     0x55, // LOAD_SUBSCR
     0x36,0x04, // CALL_METHOD 4
     0x59, // POP_TOP
@@ -57142,15 +59995,15 @@ static const byte fun_data_mc2d_Juego_red_paso[984] = {
     0x59, // POP_TOP
     0x42,0x42, // JUMP 2
     0x42,0x1b, // JUMP -37
-    0x42,0xd9,0x82, // JUMP 345
+    0x42,0xd7,0x82, // JUMP 343
     0xb4, // LOAD_FAST 4
-    0x10,0x82,0x2d, // LOAD_CONST_STRING 'de'
+    0x10,0x82,0x37, // LOAD_CONST_STRING 'de'
     0xd9, // BINARY_OP 2 __eq__
-    0x44,0x78, // POP_JUMP_IF_FALSE 56
+    0x44,0x79, // POP_JUMP_IF_FALSE 57
     0x10,0x82,0x12, // LOAD_CONST_STRING 'dano'
     0xb1, // LOAD_FAST 1
     0xdd, // BINARY_OP 6 <in>
-    0x44,0x71, // POP_JUMP_IF_FALSE 49
+    0x44,0x72, // POP_JUMP_IF_FALSE 50
     0xb1, // LOAD_FAST 1
     0x10,0x82,0x12, // LOAD_CONST_STRING 'dano'
     0x55, // LOAD_SUBSCR
@@ -57158,20 +60011,20 @@ static const byte fun_data_mc2d_Juego_red_paso[984] = {
     0x55, // LOAD_SUBSCR
     0xb2, // LOAD_FAST 2
     0xd9, // BINARY_OP 2 __eq__
-    0x44,0x66, // POP_JUMP_IF_FALSE 38
+    0x44,0x67, // POP_JUMP_IF_FALSE 39
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x62, // LOAD_ATTR 'muerto'
-    0x43,0x60, // POP_JUMP_IF_TRUE 32
+    0x13,0x81,0x60, // LOAD_ATTR 'muerto'
+    0x43,0x61, // POP_JUMP_IF_TRUE 33
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x20, // LOAD_METHOD 'herir'
+    0x14,0x82,0x1f, // LOAD_METHOD 'herir'
     0xb1, // LOAD_FAST 1
     0x10,0x82,0x12, // LOAD_CONST_STRING 'dano'
     0x55, // LOAD_SUBSCR
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
     0x36,0x01, // CALL_METHOD 1
-    0x44,0x4e, // POP_JUMP_IF_FALSE 14
-    0x23,0x76, // LOAD_CONST_OBJ 118
+    0x44,0x4f, // POP_JUMP_IF_FALSE 15
+    0x23,0x81,0x01, // LOAD_CONST_OBJ 129
     0xb1, // LOAD_FAST 1
     0x10,0x82,0x12, // LOAD_CONST_STRING 'dano'
     0x55, // LOAD_SUBSCR
@@ -57179,56 +60032,56 @@ static const byte fun_data_mc2d_Juego_red_paso[984] = {
     0x55, // LOAD_SUBSCR
     0xf4, // BINARY_OP 29 __mul__
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x52, // STORE_ATTR 'vx'
-    0x42,0x9a,0x82, // JUMP 282
+    0x18,0x81,0x4d, // STORE_ATTR 'vx'
+    0x42,0x97,0x82, // JUMP 279
     0xb4, // LOAD_FAST 4
-    0x10,0x82,0x2d, // LOAD_CONST_STRING 'de'
+    0x10,0x82,0x37, // LOAD_CONST_STRING 'de'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x64, // POP_JUMP_IF_FALSE 36
-    0x10,0x63, // LOAD_CONST_STRING 'dar'
+    0x10,0x53, // LOAD_CONST_STRING 'dar'
     0xb1, // LOAD_FAST 1
     0xdd, // BINARY_OP 6 <in>
     0x44,0x5e, // POP_JUMP_IF_FALSE 30
     0xb1, // LOAD_FAST 1
-    0x10,0x63, // LOAD_CONST_STRING 'dar'
+    0x10,0x53, // LOAD_CONST_STRING 'dar'
     0x55, // LOAD_SUBSCR
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
     0xb2, // LOAD_FAST 2
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x54, // POP_JUMP_IF_FALSE 20
-    0x12,0x63, // LOAD_GLOBAL 'dar'
+    0x12,0x53, // LOAD_GLOBAL 'dar'
     0xb1, // LOAD_FAST 1
-    0x10,0x63, // LOAD_CONST_STRING 'dar'
+    0x10,0x53, // LOAD_CONST_STRING 'dar'
     0x55, // LOAD_SUBSCR
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
     0xb1, // LOAD_FAST 1
-    0x10,0x63, // LOAD_CONST_STRING 'dar'
+    0x10,0x53, // LOAD_CONST_STRING 'dar'
     0x55, // LOAD_SUBSCR
     0x82, // LOAD_CONST_SMALL_INT 2
     0x55, // LOAD_SUBSCR
     0x34,0x02, // CALL_FUNCTION 2
     0x59, // POP_TOP
-    0x42,0xef,0x81, // JUMP 239
+    0x42,0xec,0x81, // JUMP 236
     0xb4, // LOAD_FAST 4
-    0x10,0x81,0x0c, // LOAD_CONST_STRING 'var'
+    0x10,0x7e, // LOAD_CONST_STRING 'var'
     0xd9, // BINARY_OP 2 __eq__
-    0x44,0xf0,0x80, // POP_JUMP_IF_FALSE 112
-    0x12,0x83,0x3a, // LOAD_GLOBAL 'str'
+    0x44,0xee,0x80, // POP_JUMP_IF_FALSE 110
+    0x12,0x83,0x71, // LOAD_GLOBAL 'str'
     0xb3, // LOAD_FAST 3
-    0x14,0x4c, // LOAD_METHOD 'get'
-    0x10,0x81,0x0f, // LOAD_CONST_STRING 'n'
-    0x10,0x0a, // LOAD_CONST_STRING ''
+    0x14,0x19, // LOAD_METHOD 'get'
+    0x10,0x81,0x01, // LOAD_CONST_STRING 'n'
+    0x10,0x17, // LOAD_CONST_STRING ''
     0x36,0x02, // CALL_METHOD 2
     0x34,0x01, // CALL_FUNCTION 1
-    0x14,0x81,0x14, // LOAD_METHOD 'startswith'
-    0x10,0x81,0x15, // LOAD_CONST_STRING 'b:'
+    0x14,0x75, // LOAD_METHOD 'startswith'
+    0x10,0x81,0x07, // LOAD_CONST_STRING 'b:'
     0x36,0x01, // CALL_METHOD 1
-    0x44,0xd6,0x80, // POP_JUMP_IF_FALSE 86
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x44,0xd5,0x80, // POP_JUMP_IF_FALSE 85
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb3, // LOAD_FAST 3
-    0x10,0x81,0x0f, // LOAD_CONST_STRING 'n'
+    0x10,0x81,0x01, // LOAD_CONST_STRING 'n'
     0x55, // LOAD_SUBSCR
     0x82, // LOAD_CONST_SMALL_INT 2
     0x51, // LOAD_CONST_NONE
@@ -57241,9 +60094,9 @@ static const byte fun_data_mc2d_Juego_red_paso[984] = {
     0x57, // DUP_TOP
     0x5b, // ROT_THREE
     0xda, // BINARY_OP 3 __le__
-    0x46,0x0a, // JUMP_IF_FALSE_OR_POP 10
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
-    0x12,0x83,0x12, // LOAD_GLOBAL 'H'
+    0x46,0x09, // JUMP_IF_FALSE_OR_POP 9
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
+    0x12,0x0f, // LOAD_GLOBAL 'H'
     0xf4, // BINARY_OP 29 __mul__
     0xd7, // BINARY_OP 0 __lt__
     0x42,0x42, // JUMP 2
@@ -57251,24 +60104,24 @@ static const byte fun_data_mc2d_Juego_red_paso[984] = {
     0x59, // POP_TOP
     0x44,0x6c, // POP_JUMP_IF_FALSE 44
     0xb3, // LOAD_FAST 3
-    0x10,0x82,0x2e, // LOAD_CONST_STRING 'id'
+    0x10,0x82,0x38, // LOAD_CONST_STRING 'id'
     0x55, // LOAD_SUBSCR
-    0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x82,0x24, // LOAD_METHOD 'mi_id'
+    0x12,0x0c, // LOAD_GLOBAL 'red'
+    0x14,0x82,0x23, // LOAD_METHOD 'mi_id'
     0x36,0x00, // CALL_METHOD 0
     0xdc, // BINARY_OP 5 __ne__
     0x44,0x5d, // POP_JUMP_IF_FALSE 29
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x02, // LOAD_METHOD 'poner'
+    0x14,0x81,0x7d, // LOAD_METHOD 'poner'
     0x24,0x12, // LOAD_FAST_N 18
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0xf8, // BINARY_OP 33 __mod__
     0x24,0x12, // LOAD_FAST_N 18
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0xf6, // BINARY_OP 31 __floordiv__
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb3, // LOAD_FAST 3
-    0x10,0x73, // LOAD_CONST_STRING 'v'
+    0x10,0x65, // LOAD_CONST_STRING 'v'
     0x55, // LOAD_SUBSCR
     0x34,0x01, // CALL_FUNCTION 1
     0x50, // LOAD_CONST_FALSE
@@ -57276,68 +60129,68 @@ static const byte fun_data_mc2d_Juego_red_paso[984] = {
     0x59, // POP_TOP
     0x42,0xf7,0x80, // JUMP 119
     0xb4, // LOAD_FAST 4
-    0x10,0x82,0x30, // LOAD_CONST_STRING 'entra'
+    0x10,0x82,0x3a, // LOAD_CONST_STRING 'entra'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x60, // POP_JUMP_IF_FALSE 32
     0x51, // LOAD_CONST_NONE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x64, // STORE_ATTR 'enviado'
-    0x10,0x82,0x31, // LOAD_CONST_STRING '%s entra'
+    0x18,0x81,0x62, // STORE_ATTR 'enviado'
+    0x10,0x82,0x3b, // LOAD_CONST_STRING '%s entra'
     0xb3, // LOAD_FAST 3
-    0x14,0x4c, // LOAD_METHOD 'get'
-    0x10,0x74, // LOAD_CONST_STRING 'nombre'
-    0x10,0x82,0x2f, // LOAD_CONST_STRING '?'
+    0x14,0x19, // LOAD_METHOD 'get'
+    0x10,0x2b, // LOAD_CONST_STRING 'nombre'
+    0x10,0x82,0x39, // LOAD_CONST_STRING '?'
     0x36,0x02, // CALL_METHOD 2
     0xf8, // BINARY_OP 33 __mod__
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x6a, // STORE_ATTR 'aviso'
-    0x23,0x73, // LOAD_CONST_OBJ 115
+    0x18,0x81,0x68, // STORE_ATTR 'aviso'
+    0x23,0x7d, // LOAD_CONST_OBJ 125
     0xb0, // LOAD_FAST 0
-    0x18,0x82,0x32, // STORE_ATTR 'aviso_t'
+    0x18,0x82,0x3c, // STORE_ATTR 'aviso_t'
     0x42,0xd0,0x80, // JUMP 80
     0xb4, // LOAD_FAST 4
-    0x10,0x82,0x33, // LOAD_CONST_STRING 'sale'
+    0x10,0x82,0x3d, // LOAD_CONST_STRING 'sale'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x5a, // POP_JUMP_IF_FALSE 26
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x46, // LOAD_ATTR 'otros'
-    0x14,0x82,0x34, // LOAD_METHOD 'pop'
+    0x13,0x81,0x37, // LOAD_ATTR 'otros'
+    0x14,0x82,0x3e, // LOAD_METHOD 'pop'
     0xb3, // LOAD_FAST 3
-    0x14,0x4c, // LOAD_METHOD 'get'
-    0x10,0x82,0x2e, // LOAD_CONST_STRING 'id'
+    0x14,0x19, // LOAD_METHOD 'get'
+    0x10,0x82,0x38, // LOAD_CONST_STRING 'id'
     0x36,0x01, // CALL_METHOD 1
     0x51, // LOAD_CONST_NONE
     0x36,0x02, // CALL_METHOD 2
     0x59, // POP_TOP
     0x52, // LOAD_CONST_TRUE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x66, // STORE_ATTR 'completo'
+    0x18,0x81,0x64, // STORE_ATTR 'completo'
     0x42,0x6f, // JUMP 47
     0xb4, // LOAD_FAST 4
-    0x10,0x82,0x35, // LOAD_CONST_STRING 'estado'
+    0x10,0x82,0x3f, // LOAD_CONST_STRING 'estado'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x68, // POP_JUMP_IF_FALSE 40
     0xb3, // LOAD_FAST 3
-    0x14,0x4c, // LOAD_METHOD 'get'
-    0x10,0x82,0x36, // LOAD_CONST_STRING 'e'
+    0x14,0x19, // LOAD_METHOD 'get'
+    0x10,0x82,0x40, // LOAD_CONST_STRING 'e'
     0x36,0x01, // CALL_METHOD 1
-    0x10,0x82,0x37, // LOAD_CONST_STRING 'conectado'
+    0x10,0x82,0x41, // LOAD_CONST_STRING 'conectado'
     0xdc, // BINARY_OP 5 __ne__
     0x44,0x5a, // POP_JUMP_IF_FALSE 26
     0x50, // LOAD_CONST_FALSE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x39, // STORE_ATTR 'online'
+    0x18,0x81,0x2a, // STORE_ATTR 'online'
     0x2c,0x00, // BUILD_MAP 0
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x46, // STORE_ATTR 'otros'
-    0x23,0x81,0x01, // LOAD_CONST_OBJ 129
+    0x18,0x81,0x37, // STORE_ATTR 'otros'
+    0x23,0x81,0x11, // LOAD_CONST_OBJ 145
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x6a, // STORE_ATTR 'aviso'
-    0x23,0x73, // LOAD_CONST_OBJ 115
+    0x18,0x81,0x68, // STORE_ATTR 'aviso'
+    0x23,0x7d, // LOAD_CONST_OBJ 125
     0xb0, // LOAD_FAST 0
-    0x18,0x82,0x32, // STORE_ATTR 'aviso_t'
+    0x18,0x82,0x3c, // STORE_ATTR 'aviso_t'
     0x42,0x40, // JUMP 0
-    0x42,0xab,0x7a, // JUMP -725
+    0x42,0xae,0x7a, // JUMP -722
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -57345,8 +60198,8 @@ static const byte fun_data_mc2d_Juego_red_paso[984] = {
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_red_paso__lt_listcomp_gt_
 static const byte fun_data_mc2d_Juego_red_paso__lt_listcomp_gt_[49] = {
     0x61,0x0c, // prelude
-    0x82,0x4f,0x83,0x66, // names: <listcomp>, *
-    0xb0,0xa3, // code info
+    0x82,0x63,0x84,0x04, // names: <listcomp>, *
+    0xc0,0xff, // code info
     0x2b,0x00, // BUILD_LIST 0
     0xb0, // LOAD_FAST 0
     0x5f, // GET_ITER_STACK
@@ -57358,13 +60211,13 @@ static const byte fun_data_mc2d_Juego_red_paso__lt_listcomp_gt_[49] = {
     0xb1, // LOAD_FAST 1
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
-    0x12,0x83,0x62, // LOAD_GLOBAL 'round'
+    0x12,0x84,0x1b, // LOAD_GLOBAL 'round'
     0xb1, // LOAD_FAST 1
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
     0x82, // LOAD_CONST_SMALL_INT 2
     0x34,0x02, // CALL_FUNCTION 2
-    0x12,0x83,0x62, // LOAD_GLOBAL 'round'
+    0x12,0x84,0x1b, // LOAD_GLOBAL 'round'
     0xb1, // LOAD_FAST 1
     0x82, // LOAD_CONST_SMALL_INT 2
     0x55, // LOAD_SUBSCR
@@ -57401,7 +60254,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_red_paso__lt_listcomp_
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 335,
+        .qstr_block_name_idx = 355,
         .line_info = fun_data_mc2d_Juego_red_paso__lt_listcomp_gt_ + 6,
         .line_info_top = fun_data_mc2d_Juego_red_paso__lt_listcomp_gt_ + 8,
         .opcodes = fun_data_mc2d_Juego_red_paso__lt_listcomp_gt_ + 8,
@@ -57417,8 +60270,8 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_red_paso__lt_listcomp_
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_red_paso__lt_dictcomp_gt_
 static const byte fun_data_mc2d_Juego_red_paso__lt_dictcomp_gt_[24] = {
     0x49,0x0c, // prelude
-    0x82,0x53,0x83,0x66, // names: <dictcomp>, *
-    0xb0,0xb3, // code info
+    0x81,0x4b,0x84,0x04, // names: <dictcomp>, *
+    0xd0,0x0f, // code info
     0x2c,0x00, // BUILD_MAP 0
     0xb0, // LOAD_FAST 0
     0x5f, // GET_ITER_STACK
@@ -57455,7 +60308,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_red_paso__lt_dictcomp_
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 339,
+        .qstr_block_name_idx = 203,
         .line_info = fun_data_mc2d_Juego_red_paso__lt_dictcomp_gt_ + 6,
         .line_info_top = fun_data_mc2d_Juego_red_paso__lt_dictcomp_gt_ + 8,
         .opcodes = fun_data_mc2d_Juego_red_paso__lt_dictcomp_gt_ + 8,
@@ -57480,7 +60333,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_red_paso = {
     .fun_data = fun_data_mc2d_Juego_red_paso,
     .children = (void *)&children_mc2d_Juego_red_paso,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 984,
+    .fun_data_len = 981,
     .n_children = 2,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -57494,10 +60347,10 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_red_paso = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 196,
+        .qstr_block_name_idx = 181,
         .line_info = fun_data_mc2d_Juego_red_paso + 8,
-        .line_info_top = fun_data_mc2d_Juego_red_paso + 74,
-        .opcodes = fun_data_mc2d_Juego_red_paso + 74,
+        .line_info_top = fun_data_mc2d_Juego_red_paso + 75,
+        .opcodes = fun_data_mc2d_Juego_red_paso + 75,
     },
     #endif
     #endif
@@ -57505,30 +60358,31 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_red_paso = {
 
 // child of mc2d_Juego
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_cerca
-static const byte fun_data_mc2d_Juego_cerca[78] = {
-    0x5a,0x1a, // prelude
-    0x82,0x38,0x83,0x4e,0x83,0x2f, // names: cerca, self, b
-    0xb0,0xda,0x33,0x25,0x25,0x2e,0x32, // code info
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+static const byte fun_data_mc2d_Juego_cerca[82] = {
+    0x62,0x1a, // prelude
+    0x82,0x42,0x84,0x05,0x83,0x5e, // names: cerca, self, pm
+    0xd0,0x36,0x33,0x25,0x25,0x32,0x32, // code info
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
-    0x13,0x75, // LOAD_ATTR 'x'
+    0x13,0x66, // LOAD_ATTR 'x'
     0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
-    0x13,0x76, // LOAD_ATTR 'y'
+    0x13,0x67, // LOAD_ATTR 'y'
     0x34,0x01, // CALL_FUNCTION 1
     0x5a, // ROT_TWO
     0xc2, // STORE_FAST 2
     0xc3, // STORE_FAST 3
     0x7c, // LOAD_CONST_SMALL_INT -4
-    0x42,0x61, // JUMP 33
+    0x42,0x65, // JUMP 37
     0x57, // DUP_TOP
     0xc4, // STORE_FAST 4
     0x7d, // LOAD_CONST_SMALL_INT -3
-    0x42,0x54, // JUMP 20
+    0x42,0x58, // JUMP 24
     0x57, // DUP_TOP
     0xc5, // STORE_FAST 5
-    0x12,0x3f, // LOAD_GLOBAL 'g'
+    0x12,0x83,0x02, // LOAD_GLOBAL 'L2PM'
+    0x12,0x30, // LOAD_GLOBAL 'g'
     0xb2, // LOAD_FAST 2
     0xb4, // LOAD_FAST 4
     0xf2, // BINARY_OP 27 __add__
@@ -57536,6 +60390,7 @@ static const byte fun_data_mc2d_Juego_cerca[78] = {
     0xb5, // LOAD_FAST 5
     0xf2, // BINARY_OP 27 __add__
     0x34,0x02, // CALL_FUNCTION 2
+    0x55, // LOAD_SUBSCR
     0xb1, // LOAD_FAST 1
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x42, // POP_JUMP_IF_FALSE 2
@@ -57546,14 +60401,14 @@ static const byte fun_data_mc2d_Juego_cerca[78] = {
     0x57, // DUP_TOP
     0x84, // LOAD_CONST_SMALL_INT 4
     0xd7, // BINARY_OP 0 __lt__
-    0x43,0x27, // POP_JUMP_IF_TRUE -25
+    0x43,0x23, // POP_JUMP_IF_TRUE -29
     0x59, // POP_TOP
     0x81, // LOAD_CONST_SMALL_INT 1
     0xe5, // BINARY_OP 14 __iadd__
     0x57, // DUP_TOP
     0x85, // LOAD_CONST_SMALL_INT 5
     0xd7, // BINARY_OP 0 __lt__
-    0x43,0x1a, // POP_JUMP_IF_TRUE -38
+    0x43,0x16, // POP_JUMP_IF_TRUE -42
     0x59, // POP_TOP
     0x50, // LOAD_CONST_FALSE
     0x63, // RETURN_VALUE
@@ -57567,7 +60422,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_cerca = {
     .fun_data = fun_data_mc2d_Juego_cerca,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 78,
+    .fun_data_len = 82,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -57575,13 +60430,13 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_cerca = {
     #if MICROPY_PY_SYS_SETTRACE
     .line_of_definition = 0,
     .prelude = {
-        .n_state = 12,
+        .n_state = 13,
         .n_exc_stack = 0,
         .scope_flags = 0,
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 312,
+        .qstr_block_name_idx = 322,
         .line_info = fun_data_mc2d_Juego_cerca + 8,
         .line_info_top = fun_data_mc2d_Juego_cerca + 15,
         .opcodes = fun_data_mc2d_Juego_cerca + 15,
@@ -57594,80 +60449,540 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_cerca = {
 #endif
 
 // child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_opciones
+static const byte fun_data_mc2d_Juego_opciones[172] = {
+    0xa2,0x10,0x2e, // prelude
+    0x82,0x43,0x84,0x05,0x84,0x1c, // names: opciones, self, sitio
+    0xd0,0x3e,0x20,0x28,0x23,0x26,0x27,0x34,0x28,0x37,0x22,0x31,0x23,0x29,0x2b,0x26,0x35, // code info
+    0xb1, // LOAD_FAST 1
+    0x10,0x81,0x5d, // LOAD_CONST_STRING 'horno'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0xc5,0x80, // POP_JUMP_IF_FALSE 69
+    0x2b,0x00, // BUILD_LIST 0
+    0xc2, // STORE_FAST 2
+    0x12,0x84,0x1d, // LOAD_GLOBAL 'set'
+    0x34,0x00, // CALL_FUNCTION 0
+    0xc3, // STORE_FAST 3
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0x5f, // GET_ITER_STACK
+    0x4b,0x34, // FOR_ITER 52
+    0xc4, // STORE_FAST 4
+    0xb4, // LOAD_FAST 4
+    0x44,0x6e, // POP_JUMP_IF_FALSE 46
+    0xb4, // LOAD_FAST 4
+    0xb3, // LOAD_FAST 3
+    0xdd, // BINARY_OP 6 <in>
+    0xd3, // UNARY_OP 3 <not>
+    0x44,0x68, // POP_JUMP_IF_FALSE 40
+    0x12,0x18, // LOAD_GLOBAL 'ficha'
+    0xb4, // LOAD_FAST 4
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x82,0x77, // LOAD_GLOBAL 'F_FUNDE'
+    0x55, // LOAD_SUBSCR
+    0x44,0x5d, // POP_JUMP_IF_FALSE 29
+    0xb3, // LOAD_FAST 3
+    0x14,0x82,0x44, // LOAD_METHOD 'add'
+    0xb4, // LOAD_FAST 4
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0xb2, // LOAD_FAST 2
+    0x14,0x59, // LOAD_METHOD 'append'
+    0x10,0x81,0x5d, // LOAD_CONST_STRING 'horno'
+    0xb4, // LOAD_FAST 4
+    0x12,0x18, // LOAD_GLOBAL 'ficha'
+    0xb4, // LOAD_FAST 4
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x82,0x77, // LOAD_GLOBAL 'F_FUNDE'
+    0x55, // LOAD_SUBSCR
+    0x2a,0x03, // BUILD_TUPLE 3
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x42,0x0a, // JUMP -54
+    0xb2, // LOAD_FAST 2
+    0x63, // RETURN_VALUE
+    0xb1, // LOAD_FAST 1
+    0x10,0x82,0x08, // LOAD_CONST_STRING 'mesa'
+    0xd9, // BINARY_OP 2 __eq__
+    0x45,0x09, // JUMP_IF_TRUE_OR_POP 9
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x42, // LOAD_METHOD 'cerca'
+    0x12,0x83,0x25, // LOAD_GLOBAL 'MESA_PM'
+    0x36,0x01, // CALL_METHOD 1
+    0xc5, // STORE_FAST 5
+    0x2b,0x00, // BUILD_LIST 0
+    0xc2, // STORE_FAST 2
+    0x12,0x5a, // LOAD_GLOBAL 'n_recetas'
+    0x34,0x00, // CALL_FUNCTION 0
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0x61, // JUMP 33
+    0x57, // DUP_TOP
+    0xc6, // STORE_FAST 6
+    0x12,0x57, // LOAD_GLOBAL 'receta'
+    0xb6, // LOAD_FAST 6
+    0x34,0x01, // CALL_FUNCTION 1
+    0x30,0x04, // UNPACK_SEQUENCE 4
+    0xc7, // STORE_FAST 7
+    0xc8, // STORE_FAST 8
+    0xc9, // STORE_FAST 9
+    0xca, // STORE_FAST 10
+    0xb5, // LOAD_FAST 5
+    0x43,0x43, // POP_JUMP_IF_TRUE 3
+    0xba, // LOAD_FAST 10
+    0x43,0x4c, // POP_JUMP_IF_TRUE 12
+    0xb2, // LOAD_FAST 2
+    0x14,0x59, // LOAD_METHOD 'append'
+    0x10,0x57, // LOAD_CONST_STRING 'receta'
+    0xb6, // LOAD_FAST 6
+    0xb7, // LOAD_FAST 7
+    0x2a,0x03, // BUILD_TUPLE 3
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x1a, // POP_JUMP_IF_TRUE -38
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0xb2, // LOAD_FAST 2
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_opciones = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_opciones,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 172,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 21,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 2,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 323,
+        .line_info = fun_data_mc2d_Juego_opciones + 9,
+        .line_info_top = fun_data_mc2d_Juego_opciones + 26,
+        .opcodes = fun_data_mc2d_Juego_opciones + 26,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_opciones fun_data_mc2d_Juego_opciones[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_combustible
+static const byte fun_data_mc2d_Juego_combustible[83] = {
+    0xd2,0x01,0x1c, // prelude
+    0x82,0x45,0x84,0x05,0x84,0x1e, // names: combustible, self, menos
+    0xd0,0x50,0x40,0x27,0x28,0x26,0x35,0x36, // code info
+    0x23,0x81,0x12, // LOAD_CONST_OBJ 146
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc2, // STORE_FAST 2
+    0xc3, // STORE_FAST 3
+    0x12,0x83,0x57, // LOAD_GLOBAL 'NHUECOS'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0x6c, // JUMP 44
+    0x57, // DUP_TOP
+    0xc4, // STORE_FAST 4
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0xb4, // LOAD_FAST 4
+    0x55, // LOAD_SUBSCR
+    0xc5, // STORE_FAST 5
+    0xb5, // LOAD_FAST 5
+    0x44,0x5f, // POP_JUMP_IF_FALSE 31
+    0xb5, // LOAD_FAST 5
+    0xb1, // LOAD_FAST 1
+    0xdc, // BINARY_OP 5 __ne__
+    0x44,0x5a, // POP_JUMP_IF_FALSE 26
+    0x12,0x18, // LOAD_GLOBAL 'ficha'
+    0xb5, // LOAD_FAST 5
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x82,0x78, // LOAD_GLOBAL 'F_QUEMA'
+    0x55, // LOAD_SUBSCR
+    0xb3, // LOAD_FAST 3
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x4d, // POP_JUMP_IF_FALSE 13
+    0xb4, // LOAD_FAST 4
+    0x12,0x18, // LOAD_GLOBAL 'ficha'
+    0xb5, // LOAD_FAST 5
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x82,0x78, // LOAD_GLOBAL 'F_QUEMA'
+    0x55, // LOAD_SUBSCR
+    0x5a, // ROT_TWO
+    0xc2, // STORE_FAST 2
+    0xc3, // STORE_FAST 3
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x0f, // POP_JUMP_IF_TRUE -49
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0xb2, // LOAD_FAST 2
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_combustible = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_combustible,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 83,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 11,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 2,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 1,
+        .qstr_block_name_idx = 325,
+        .line_info = fun_data_mc2d_Juego_combustible + 9,
+        .line_info_top = fun_data_mc2d_Juego_combustible + 17,
+        .opcodes = fun_data_mc2d_Juego_combustible + 17,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_combustible fun_data_mc2d_Juego_combustible[0]
+#endif
+
+// child of mc2d_Juego
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_hacer
+static const byte fun_data_mc2d_Juego_hacer[297] = {
+    0x8a,0x10,0x46, // prelude
+    0x82,0x46,0x84,0x05,0x84,0x1f, // names: hacer, self, op
+    0xd0,0x5a,0x2a,0x24,0x29,0x28,0x25,0x2d,0x22,0x26,0x33,0x26,0x27,0x28,0x28,0x29,0x26,0x2b,0x2b,0x28,0x2b,0x22,0x2d,0x32,0x2c,0x29,0x27,0x48,0x27, // code info
+    0xb1, // LOAD_FAST 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0x10,0x81,0x5d, // LOAD_CONST_STRING 'horno'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x99,0x81, // POP_JUMP_IF_FALSE 153
+    0xb1, // LOAD_FAST 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0xc2, // STORE_FAST 2
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x5d, // LOAD_ATTR 'horno'
+    0x8a, // LOAD_CONST_SMALL_INT 10
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0xca,0x80, // POP_JUMP_IF_FALSE 74
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x45, // LOAD_METHOD 'combustible'
+    0xb2, // LOAD_FAST 2
+    0x36,0x01, // CALL_METHOD 1
+    0xc3, // STORE_FAST 3
+    0xb3, // LOAD_FAST 3
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x4f, // POP_JUMP_IF_FALSE 15
+    0x23,0x81,0x13, // LOAD_CONST_OBJ 147
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x68, // STORE_ATTR 'aviso'
+    0xb0, // LOAD_FAST 0
+    0x18,0x82,0x3c, // STORE_ATTR 'aviso_t'
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0xb3, // LOAD_FAST 3
+    0x55, // LOAD_SUBSCR
+    0xc4, // STORE_FAST 4
+    0xb0, // LOAD_FAST 0
+    0x57, // DUP_TOP
+    0x13,0x81,0x5d, // LOAD_ATTR 'horno'
+    0x12,0x18, // LOAD_GLOBAL 'ficha'
+    0xb4, // LOAD_FAST 4
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x82,0x78, // LOAD_GLOBAL 'F_QUEMA'
+    0x55, // LOAD_SUBSCR
+    0xe5, // BINARY_OP 14 __iadd__
+    0x5a, // ROT_TWO
+    0x18,0x81,0x5d, // STORE_ATTR 'horno'
+    0x12,0x56, // LOAD_GLOBAL 'quitar_hueco'
+    0xb3, // LOAD_FAST 3
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0xb4, // LOAD_FAST 4
+    0x12,0x83,0x2a, // LOAD_GLOBAL 'CUBO_LAVA'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x48, // POP_JUMP_IF_FALSE 8
+    0x12,0x53, // LOAD_GLOBAL 'dar'
+    0x12,0x83,0x28, // LOAD_GLOBAL 'CUBO'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0x12,0x83,0x57, // LOAD_GLOBAL 'NHUECOS'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0x55, // JUMP 21
+    0x57, // DUP_TOP
+    0xc3, // STORE_FAST 3
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0xb3, // LOAD_FAST 3
+    0x55, // LOAD_SUBSCR
+    0xb2, // LOAD_FAST 2
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x48, // POP_JUMP_IF_FALSE 8
+    0x12,0x56, // LOAD_GLOBAL 'quitar_hueco'
+    0xb3, // LOAD_FAST 3
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0x42,0x47, // JUMP 7
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x26, // POP_JUMP_IF_TRUE -26
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x57, // DUP_TOP
+    0x13,0x81,0x5d, // LOAD_ATTR 'horno'
+    0x8a, // LOAD_CONST_SMALL_INT 10
+    0xe6, // BINARY_OP 15 __isub__
+    0x5a, // ROT_TWO
+    0x18,0x81,0x5d, // STORE_ATTR 'horno'
+    0x12,0x53, // LOAD_GLOBAL 'dar'
+    0xb1, // LOAD_FAST 1
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0x12,0x37, // LOAD_GLOBAL 'sonar'
+    0x10,0x82,0x47, // LOAD_CONST_STRING 'fire'
+    0x23,0x81,0x02, // LOAD_CONST_OBJ 130
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0x12,0x57, // LOAD_GLOBAL 'receta'
+    0xb1, // LOAD_FAST 1
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0x30,0x04, // UNPACK_SEQUENCE 4
+    0xc5, // STORE_FAST 5
+    0xc6, // STORE_FAST 6
+    0xc7, // STORE_FAST 7
+    0xc8, // STORE_FAST 8
+    0x12,0x84,0x20, // LOAD_GLOBAL 'all'
+    0x32,0x00, // MAKE_FUNCTION 0
+    0xb7, // LOAD_FAST 7
+    0x14,0x26, // LOAD_METHOD 'items'
+    0x36,0x00, // CALL_METHOD 0
+    0x5e, // GET_ITER
+    0x34,0x01, // CALL_FUNCTION 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0x44,0xbf,0x80, // POP_JUMP_IF_FALSE 63
+    0xb7, // LOAD_FAST 7
+    0x14,0x26, // LOAD_METHOD 'items'
+    0x36,0x00, // CALL_METHOD 0
+    0x5f, // GET_ITER_STACK
+    0x4b,0x0d, // FOR_ITER 13
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc9, // STORE_FAST 9
+    0xca, // STORE_FAST 10
+    0x12,0x55, // LOAD_GLOBAL 'quitar_raiz'
+    0xb9, // LOAD_FAST 9
+    0xba, // LOAD_FAST 10
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0x42,0x31, // JUMP -15
+    0x12,0x2d, // LOAD_GLOBAL 'es_herramienta'
+    0xb5, // LOAD_FAST 5
+    0x34,0x01, // CALL_FUNCTION 1
+    0x44,0x48, // POP_JUMP_IF_FALSE 8
+    0x12,0x53, // LOAD_GLOBAL 'dar'
+    0xb5, // LOAD_FAST 5
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
+    0x42,0x47, // JUMP 7
+    0x12,0x53, // LOAD_GLOBAL 'dar'
+    0xb5, // LOAD_FAST 5
+    0xb6, // LOAD_FAST 6
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0x12,0x37, // LOAD_GLOBAL 'sonar'
+    0x10,0x82,0x48, // LOAD_CONST_STRING 'wood%d'
+    0x12,0x03, // LOAD_GLOBAL 'random'
+    0x14,0x43, // LOAD_METHOD 'randint'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0x36,0x02, // CALL_METHOD 2
+    0xf8, // BINARY_OP 33 __mod__
+    0x23,0x81,0x02, // LOAD_CONST_OBJ 130
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+// child of mc2d_Juego_hacer
+// frozen bytecode for file mc2d.py, scope mc2d_Juego_hacer__lt_genexpr_gt_
+static const byte fun_data_mc2d_Juego_hacer__lt_genexpr_gt_[32] = {
+    0xc1,0x40,0x0c, // prelude
+    0x81,0x4a,0x84,0x04, // names: <genexpr>, *
+    0xd0,0x6f, // code info
+    0x53, // LOAD_NULL
+    0xb0, // LOAD_FAST 0
+    0x53, // LOAD_NULL
+    0x53, // LOAD_NULL
+    0x4b,0x0f, // FOR_ITER 15
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc1, // STORE_FAST 1
+    0xc2, // STORE_FAST 2
+    0x12,0x54, // LOAD_GLOBAL 'cuantos_raiz'
+    0xb1, // LOAD_FAST 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0xb2, // LOAD_FAST 2
+    0xdb, // BINARY_OP 4 __ge__
+    0x67, // YIELD_VALUE
+    0x59, // POP_TOP
+    0x42,0x2f, // JUMP -17
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_hacer__lt_genexpr_gt_ = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 1,
+    .fun_data = fun_data_mc2d_Juego_hacer__lt_genexpr_gt_,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 32,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 9,
+        .n_exc_stack = 0,
+        .scope_flags = 1,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 202,
+        .line_info = fun_data_mc2d_Juego_hacer__lt_genexpr_gt_ + 7,
+        .line_info_top = fun_data_mc2d_Juego_hacer__lt_genexpr_gt_ + 9,
+        .opcodes = fun_data_mc2d_Juego_hacer__lt_genexpr_gt_ + 9,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_Juego_hacer__lt_genexpr_gt_ fun_data_mc2d_Juego_hacer__lt_genexpr_gt_[0]
+#endif
+
+static const mp_raw_code_t *const children_mc2d_Juego_hacer[] = {
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_hacer__lt_genexpr_gt_,
+};
+
+static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_hacer = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_Juego_hacer,
+    .children = (void *)&children_mc2d_Juego_hacer,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 297,
+    .n_children = 1,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 18,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 2,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 326,
+        .line_info = fun_data_mc2d_Juego_hacer + 9,
+        .line_info_top = fun_data_mc2d_Juego_hacer + 38,
+        .opcodes = fun_data_mc2d_Juego_hacer + 38,
+    },
+    #endif
+    #endif
+};
+
+// child of mc2d_Juego
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_abrir_inventario
-static const byte fun_data_mc2d_Juego_abrir_inventario[1247] = {
-    0x82,0x21,0xc7,0x02, // prelude
-    0x82,0x09,0x83,0x4e,0x83,0x63, // names: abrir_inventario, self, sitio
-    0xb0,0xe2,0x25,0x1f,0x22,0x1f,0x22,0x27,0x2b,0x27,0x27,0x2c,0x20,0x27,0x29,0x35,0x32,0x32,0x1f,0x46,0x29,0x3b,0x25,0x46,0x2a,0x31,0x1f,0x22,0x35,0x25,0x1f,0x41,0x24,0x34,0x38,0x2f,0x24,0x28,0x32,0x1f,0x24,0x2a,0x3d,0x2e,0x1f,0x2c,0x3a,0x35,0x37,0x28,0x23,0x32,0x28,0x26,0x2f,0x2b,0x2f,0x2b,0x28,0x27,0x30,0x25,0x26,0x25,0x29,0x29,0x27,0x32,0x2f,0x26,0x25,0x46,0x2d,0x29,0x28,0x28,0x33,0x30,0x2b,0x2b,0x35,0x25,0x44,0x35,0x35,0x24,0x36,0x2a,0x27,0x2b,0x24,0x25,0x25,0x15, // code info
+static const byte fun_data_mc2d_Juego_abrir_inventario[1373] = {
+    0xa2,0x21,0xd4,0x02, // prelude
+    0x82,0x07,0x84,0x05,0x84,0x1c, // names: abrir_inventario, self, sitio
+    0xd0,0x79,0x25,0x33,0x28,0x27,0x27,0x2c,0x20,0x27,0x29,0x35,0x32,0x32,0x1f,0x4a,0x29,0x28,0x34,0x31,0x1f,0x22,0x35,0x25,0x1f,0x21,0x24,0x1f,0x21,0x27,0x1f,0x21,0x38,0x2f,0x24,0x28,0x29,0x28,0x3f,0x47,0x30,0x31,0x3e,0x29,0x35,0x1f,0x24,0x28,0x1f,0x2c,0x36,0x35,0x38,0x28,0x23,0x32,0x28,0x26,0x2f,0x2b,0x2f,0x2b,0x28,0x27,0x30,0x25,0x26,0x25,0x29,0x29,0x27,0x32,0x2f,0x26,0x25,0x46,0x2d,0x29,0x27,0x2e,0x27,0x28,0x27,0x37,0x25,0x45,0x27,0x1f,0x25,0x3e,0x2c,0x4b,0x39,0x39,0x24,0x36,0x2b,0x24,0x25,0x25, // code info
     0xb1, // LOAD_FAST 1
     0x51, // LOAD_CONST_NONE
     0xde, // BINARY_OP 7 <is>
-    0x44,0x61, // POP_JUMP_IF_FALSE 33
+    0x44,0x53, // POP_JUMP_IF_FALSE 19
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x38, // LOAD_METHOD 'cerca'
-    0x12,0x82,0x6a, // LOAD_GLOBAL 'HORNO'
+    0x14,0x82,0x42, // LOAD_METHOD 'cerca'
+    0x12,0x83,0x25, // LOAD_GLOBAL 'MESA_PM'
     0x36,0x01, // CALL_METHOD 1
-    0x44,0x44, // POP_JUMP_IF_FALSE 4
-    0x10,0x18, // LOAD_CONST_STRING 'horno'
-    0x42,0x51, // JUMP 17
-    0xb0, // LOAD_FAST 0
-    0x14,0x82,0x38, // LOAD_METHOD 'cerca'
-    0x12,0x82,0x69, // LOAD_GLOBAL 'MESA'
-    0x36,0x01, // CALL_METHOD 1
-    0x44,0x44, // POP_JUMP_IF_FALSE 4
-    0x10,0x17, // LOAD_CONST_STRING 'mesa'
+    0x44,0x45, // POP_JUMP_IF_FALSE 5
+    0x10,0x82,0x08, // LOAD_CONST_STRING 'mesa'
     0x42,0x42, // JUMP 2
-    0x10,0x0a, // LOAD_CONST_STRING ''
+    0x10,0x17, // LOAD_CONST_STRING ''
     0xc1, // STORE_FAST 1
-    0xb1, // LOAD_FAST 1
-    0x10,0x17, // LOAD_CONST_STRING 'mesa'
-    0xd9, // BINARY_OP 2 __eq__
-    0x44,0x45, // POP_JUMP_IF_FALSE 5
-    0x23,0x81,0x02, // LOAD_CONST_OBJ 130
-    0x42,0x5b, // JUMP 27
-    0xb1, // LOAD_FAST 1
-    0x10,0x18, // LOAD_CONST_STRING 'horno'
-    0xd9, // BINARY_OP 2 __eq__
-    0x44,0x50, // POP_JUMP_IF_FALSE 16
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x38, // LOAD_METHOD 'cerca'
-    0x12,0x82,0x69, // LOAD_GLOBAL 'MESA'
-    0x36,0x01, // CALL_METHOD 1
-    0x44,0x45, // POP_JUMP_IF_FALSE 5
-    0x23,0x81,0x03, // LOAD_CONST_OBJ 131
-    0x42,0x45, // JUMP 5
-    0x10,0x0a, // LOAD_CONST_STRING ''
+    0x14,0x82,0x43, // LOAD_METHOD 'opciones'
     0xb1, // LOAD_FAST 1
-    0x2a,0x02, // BUILD_TUPLE 2
-    0x27,0x15, // STORE_DEREF 21
-    0x24,0x15, // LOAD_FAST_N 21
-    0x20,0x00,0x01, // MAKE_CLOSURE 0
-    0x12,0x83,0x0e, // LOAD_GLOBAL 'RECETAS'
-    0x34,0x01, // CALL_FUNCTION 1
+    0x36,0x01, // CALL_METHOD 1
     0xc2, // STORE_FAST 2
-    0x23,0x81,0x04, // LOAD_CONST_OBJ 132
+    0x23,0x81,0x14, // LOAD_CONST_OBJ 148
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xc3, // STORE_FAST 3
     0xc4, // STORE_FAST 4
-    0x12,0x83,0x3b, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
     0xb2, // LOAD_FAST 2
     0x34,0x01, // CALL_FUNCTION 1
     0xc5, // STORE_FAST 5
-    0x12,0x82,0x56, // LOAD_GLOBAL 'K'
-    0x14,0x81,0x11, // LOAD_METHOD 'ms'
+    0x12,0x82,0x68, // LOAD_GLOBAL 'K'
+    0x14,0x81,0x03, // LOAD_METHOD 'ms'
     0x36,0x00, // CALL_METHOD 0
     0xb0, // LOAD_FAST 0
-    0x18,0x82,0x39, // STORE_ATTR 'fondo_t'
+    0x18,0x82,0x49, // STORE_ATTR 'fondo_t'
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x3a, // LOAD_METHOD 'fondo_paso'
+    0x14,0x82,0x4a, // LOAD_METHOD 'fondo_paso'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x81,0x76, // LOAD_METHOD 'recorte'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x74, // LOAD_METHOD 'recorte'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x56, // LOAD_METHOD 'rect'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x45, // LOAD_METHOD 'rect'
     0x8a, // LOAD_CONST_SMALL_INT 10
     0x86, // LOAD_CONST_SMALL_INT 6
     0x22,0x82,0x2c, // LOAD_CONST_SMALL_INT 300
@@ -57675,8 +60990,8 @@ static const byte fun_data_mc2d_Juego_abrir_inventario[1247] = {
     0x22,0x86,0x9b,0x8d,0x46, // LOAD_CONST_SMALL_INT 13027014
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x81,0x18, // LOAD_METHOD 'marco'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x0a, // LOAD_METHOD 'marco'
     0x8a, // LOAD_CONST_SMALL_INT 10
     0x86, // LOAD_CONST_SMALL_INT 6
     0x22,0x82,0x2c, // LOAD_CONST_SMALL_INT 300
@@ -57684,25 +60999,25 @@ static const byte fun_data_mc2d_Juego_abrir_inventario[1247] = {
     0x80, // LOAD_CONST_SMALL_INT 0
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x57, // LOAD_METHOD 'texto'
-    0x10,0x82,0x3b, // LOAD_CONST_STRING 'Inventario'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x46, // LOAD_METHOD 'texto'
+    0x10,0x82,0x4b, // LOAD_CONST_STRING 'Inventario'
     0x92, // LOAD_CONST_SMALL_INT 18
     0x8c, // LOAD_CONST_SMALL_INT 12
     0x22,0x82,0x81,0x80,0x40, // LOAD_CONST_SMALL_INT 4210752
     0x36,0x04, // CALL_METHOD 4
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x57, // LOAD_METHOD 'texto'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x46, // LOAD_METHOD 'texto'
     0x2c,0x03, // BUILD_MAP 3
-    0x23,0x81,0x05, // LOAD_CONST_OBJ 133
-    0x10,0x0a, // LOAD_CONST_STRING ''
+    0x23,0x81,0x15, // LOAD_CONST_OBJ 149
+    0x10,0x17, // LOAD_CONST_STRING ''
     0x62, // STORE_MAP
-    0x23,0x0e, // LOAD_CONST_OBJ 14
-    0x10,0x17, // LOAD_CONST_STRING 'mesa'
+    0x23,0x81,0x16, // LOAD_CONST_OBJ 150
+    0x10,0x82,0x08, // LOAD_CONST_STRING 'mesa'
     0x62, // STORE_MAP
-    0x10,0x2d, // LOAD_CONST_STRING 'Horno'
-    0x10,0x18, // LOAD_CONST_STRING 'horno'
+    0x10,0x82,0x4c, // LOAD_CONST_STRING 'Horno'
+    0x10,0x81,0x5d, // LOAD_CONST_STRING 'horno'
     0x62, // STORE_MAP
     0xb1, // LOAD_FAST 1
     0x55, // LOAD_SUBSCR
@@ -57711,9 +61026,9 @@ static const byte fun_data_mc2d_Juego_abrir_inventario[1247] = {
     0x22,0x82,0x81,0x80,0x40, // LOAD_CONST_SMALL_INT 4210752
     0x36,0x04, // CALL_METHOD 4
     0x59, // POP_TOP
-    0x12,0x83,0x2a, // LOAD_GLOBAL 'NHUECOS'
+    0x12,0x83,0x57, // LOAD_GLOBAL 'NHUECOS'
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x42,0x96,0x81, // JUMP 150
+    0x42,0x82,0x81, // JUMP 130
     0x57, // DUP_TOP
     0xc6, // STORE_FAST 6
     0x92, // LOAD_CONST_SMALL_INT 18
@@ -57723,31 +61038,13 @@ static const byte fun_data_mc2d_Juego_abrir_inventario[1247] = {
     0x94, // LOAD_CONST_SMALL_INT 20
     0xf4, // BINARY_OP 29 __mul__
     0xf2, // BINARY_OP 27 __add__
-    0x9a, // LOAD_CONST_SMALL_INT 26
-    0xb6, // LOAD_FAST 6
-    0x89, // LOAD_CONST_SMALL_INT 9
-    0xf6, // BINARY_OP 31 __floordiv__
-    0x96, // LOAD_CONST_SMALL_INT 22
-    0xf4, // BINARY_OP 29 __mul__
-    0xf2, // BINARY_OP 27 __add__
-    0xb6, // LOAD_FAST 6
-    0x89, // LOAD_CONST_SMALL_INT 9
-    0xd7, // BINARY_OP 0 __lt__
-    0x44,0x43, // POP_JUMP_IF_FALSE 3
-    0x86, // LOAD_CONST_SMALL_INT 6
-    0x42,0x41, // JUMP 1
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0xf2, // BINARY_OP 27 __add__
-    0x5a, // ROT_TWO
     0xc7, // STORE_FAST 7
-    0xc8, // STORE_FAST 8
     0xb6, // LOAD_FAST 6
     0x89, // LOAD_CONST_SMALL_INT 9
     0xd7, // BINARY_OP 0 __lt__
-    0x44,0x46, // POP_JUMP_IF_FALSE 6
+    0x44,0x45, // POP_JUMP_IF_FALSE 5
     0x22,0x80,0x50, // LOAD_CONST_SMALL_INT 80
-    0xc8, // STORE_FAST 8
-    0x42,0x4a, // JUMP 10
+    0x42,0x49, // JUMP 9
     0x9a, // LOAD_CONST_SMALL_INT 26
     0xb6, // LOAD_FAST 6
     0x89, // LOAD_CONST_SMALL_INT 9
@@ -57758,8 +61055,8 @@ static const byte fun_data_mc2d_Juego_abrir_inventario[1247] = {
     0xf4, // BINARY_OP 29 __mul__
     0xf2, // BINARY_OP 27 __add__
     0xc8, // STORE_FAST 8
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x56, // LOAD_METHOD 'rect'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x45, // LOAD_METHOD 'rect'
     0xb7, // LOAD_FAST 7
     0xb8, // LOAD_FAST 8
     0x93, // LOAD_CONST_SMALL_INT 19
@@ -57767,8 +61064,8 @@ static const byte fun_data_mc2d_Juego_abrir_inventario[1247] = {
     0x22,0x84,0xae,0x97,0x0b, // LOAD_CONST_SMALL_INT 9145227
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x56, // LOAD_METHOD 'rect'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x45, // LOAD_METHOD 'rect'
     0xb7, // LOAD_FAST 7
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
@@ -57786,8 +61083,8 @@ static const byte fun_data_mc2d_Juego_abrir_inventario[1247] = {
     0x22,0x85,0x82,0xc0,0x50, // LOAD_CONST_SMALL_INT 10526800
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x69, // LOAD_GLOBAL 'icono'
-    0x12,0x83,0x2b, // LOAD_GLOBAL 'inv_id'
+    0x12,0x5e, // LOAD_GLOBAL 'icono'
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
     0xb6, // LOAD_FAST 6
     0x55, // LOAD_SUBSCR
     0xb7, // LOAD_FAST 7
@@ -57796,7 +61093,7 @@ static const byte fun_data_mc2d_Juego_abrir_inventario[1247] = {
     0xb8, // LOAD_FAST 8
     0x82, // LOAD_CONST_SMALL_INT 2
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x2c, // LOAD_GLOBAL 'inv_n'
+    0x12,0x83,0x59, // LOAD_GLOBAL 'inv_n'
     0xb6, // LOAD_FAST 6
     0x55, // LOAD_SUBSCR
     0x34,0x04, // CALL_FUNCTION 4
@@ -57805,8 +61102,8 @@ static const byte fun_data_mc2d_Juego_abrir_inventario[1247] = {
     0xb6, // LOAD_FAST 6
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x56, // POP_JUMP_IF_FALSE 22
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x81,0x18, // LOAD_METHOD 'marco'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x0a, // LOAD_METHOD 'marco'
     0xb7, // LOAD_FAST 7
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf3, // BINARY_OP 28 __sub__
@@ -57823,14 +61120,20 @@ static const byte fun_data_mc2d_Juego_abrir_inventario[1247] = {
     0x58, // DUP_TOP_TWO
     0x5a, // ROT_TWO
     0xd7, // BINARY_OP 0 __lt__
-    0x43,0xe4,0x7e, // POP_JUMP_IF_TRUE -156
+    0x43,0xf8,0x7e, // POP_JUMP_IF_TRUE -136
     0x59, // POP_TOP
     0x59, // POP_TOP
     0x22,0x80,0x70, // LOAD_CONST_SMALL_INT 112
     0xc9, // STORE_FAST 9
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x57, // LOAD_METHOD 'texto'
-    0x23,0x81,0x06, // LOAD_CONST_OBJ 134
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x46, // LOAD_METHOD 'texto'
+    0xb1, // LOAD_FAST 1
+    0x10,0x81,0x5d, // LOAD_CONST_STRING 'horno'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x45, // POP_JUMP_IF_FALSE 5
+    0x23,0x81,0x17, // LOAD_CONST_OBJ 151
+    0x42,0x43, // JUMP 3
+    0x23,0x81,0x18, // LOAD_CONST_OBJ 152
     0x92, // LOAD_CONST_SMALL_INT 18
     0xb9, // LOAD_FAST 9
     0x8a, // LOAD_CONST_SMALL_INT 10
@@ -57838,14 +61141,33 @@ static const byte fun_data_mc2d_Juego_abrir_inventario[1247] = {
     0x22,0x82,0x81,0x80,0x40, // LOAD_CONST_SMALL_INT 4210752
     0x36,0x04, // CALL_METHOD 4
     0x59, // POP_TOP
+    0xb1, // LOAD_FAST 1
+    0x10,0x81,0x5d, // LOAD_CONST_STRING 'horno'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x60, // POP_JUMP_IF_FALSE 32
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x46, // LOAD_METHOD 'texto'
+    0x10,0x82,0x4d, // LOAD_CONST_STRING 'fuego: %ds'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x5d, // LOAD_ATTR 'horno'
+    0x34,0x01, // CALL_FUNCTION 1
+    0xf8, // BINARY_OP 33 __mod__
+    0x22,0x81,0x66, // LOAD_CONST_SMALL_INT 230
+    0xb9, // LOAD_FAST 9
+    0x8a, // LOAD_CONST_SMALL_INT 10
+    0xf3, // BINARY_OP 28 __sub__
+    0x22,0x84,0x81,0x80,0x00, // LOAD_CONST_SMALL_INT 8404992
+    0x36,0x04, // CALL_METHOD 4
+    0x59, // POP_TOP
     0xb3, // LOAD_FAST 3
-    0x12,0x83,0x2a, // LOAD_GLOBAL 'NHUECOS'
+    0x12,0x83,0x57, // LOAD_GLOBAL 'NHUECOS'
     0xdb, // BINARY_OP 4 __ge__
     0x44,0x4f, // POP_JUMP_IF_FALSE 15
-    0x12,0x83,0x38, // LOAD_GLOBAL 'max'
+    0x12,0x83,0x6c, // LOAD_GLOBAL 'max'
     0x80, // LOAD_CONST_SMALL_INT 0
     0xb3, // LOAD_FAST 3
-    0x12,0x83,0x2a, // LOAD_GLOBAL 'NHUECOS'
+    0x12,0x83,0x57, // LOAD_GLOBAL 'NHUECOS'
     0xf3, // BINARY_OP 28 __sub__
     0x83, // LOAD_CONST_SMALL_INT 3
     0xf3, // BINARY_OP 28 __sub__
@@ -57853,14 +61175,14 @@ static const byte fun_data_mc2d_Juego_abrir_inventario[1247] = {
     0x42,0x41, // JUMP 1
     0x80, // LOAD_CONST_SMALL_INT 0
     0xca, // STORE_FAST 10
-    0x12,0x83,0x37, // LOAD_GLOBAL 'min'
+    0x12,0x83,0x6b, // LOAD_GLOBAL 'min'
     0xb5, // LOAD_FAST 5
     0xba, // LOAD_FAST 10
     0x85, // LOAD_CONST_SMALL_INT 5
     0xf2, // BINARY_OP 27 __add__
     0x34,0x02, // CALL_FUNCTION 2
     0xba, // LOAD_FAST 10
-    0x42,0x9b,0x81, // JUMP 155
+    0x42,0xf0,0x81, // JUMP 240
     0x57, // DUP_TOP
     0xcb, // STORE_FAST 11
     0xb2, // LOAD_FAST 2
@@ -57875,25 +61197,106 @@ static const byte fun_data_mc2d_Juego_abrir_inventario[1247] = {
     0xf4, // BINARY_OP 29 __mul__
     0xf2, // BINARY_OP 27 __add__
     0xc8, // STORE_FAST 8
-    0x12,0x83,0x64, // LOAD_GLOBAL 'all'
-    0x32,0x01, // MAKE_FUNCTION 1
+    0xbc, // LOAD_FAST 12
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0x10,0x81,0x5d, // LOAD_CONST_STRING 'horno'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x6e, // POP_JUMP_IF_FALSE 46
+    0xbc, // LOAD_FAST 12
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0xdd, // BINARY_OP 6 <in>
+    0xcd, // STORE_FAST 13
+    0x10,0x82,0x4e, // LOAD_CONST_STRING '%s  <-  %s'
+    0x12,0x2b, // LOAD_GLOBAL 'nombre'
     0xbc, // LOAD_FAST 12
     0x82, // LOAD_CONST_SMALL_INT 2
     0x55, // LOAD_SUBSCR
-    0x14,0x4b, // LOAD_METHOD 'items'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x51, // LOAD_CONST_NONE
+    0x90, // LOAD_CONST_SMALL_INT 16
+    0x2e,0x02, // BUILD_SLICE 2
+    0x55, // LOAD_SUBSCR
+    0x12,0x2b, // LOAD_GLOBAL 'nombre'
+    0xbc, // LOAD_FAST 12
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0x51, // LOAD_CONST_NONE
+    0x90, // LOAD_CONST_SMALL_INT 16
+    0x2e,0x02, // BUILD_SLICE 2
+    0x55, // LOAD_SUBSCR
+    0x2a,0x02, // BUILD_TUPLE 2
+    0xf8, // BINARY_OP 33 __mod__
+    0xce, // STORE_FAST 14
+    0xbc, // LOAD_FAST 12
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x55, // LOAD_SUBSCR
+    0xcf, // STORE_FAST 15
+    0x42,0xdd,0x80, // JUMP 93
+    0x12,0x57, // LOAD_GLOBAL 'receta'
+    0xbc, // LOAD_FAST 12
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0x30,0x04, // UNPACK_SEQUENCE 4
+    0xcf, // STORE_FAST 15
+    0x26,0x10, // STORE_FAST_N 16
+    0x26,0x11, // STORE_FAST_N 17
+    0x26,0x12, // STORE_FAST_N 18
+    0x12,0x84,0x20, // LOAD_GLOBAL 'all'
+    0x32,0x00, // MAKE_FUNCTION 0
+    0x24,0x11, // LOAD_FAST_N 17
+    0x14,0x26, // LOAD_METHOD 'items'
     0x36,0x00, // CALL_METHOD 0
     0x5e, // GET_ITER
     0x34,0x01, // CALL_FUNCTION 1
     0x34,0x01, // CALL_FUNCTION 1
     0xcd, // STORE_FAST 13
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x56, // LOAD_METHOD 'rect'
+    0x10,0x82,0x4f, // LOAD_CONST_STRING '%s%s <- '
+    0x12,0x2b, // LOAD_GLOBAL 'nombre'
+    0xbf, // LOAD_FAST 15
+    0x34,0x01, // CALL_FUNCTION 1
+    0x51, // LOAD_CONST_NONE
+    0x8e, // LOAD_CONST_SMALL_INT 14
+    0x2e,0x02, // BUILD_SLICE 2
+    0x55, // LOAD_SUBSCR
+    0x12,0x2d, // LOAD_GLOBAL 'es_herramienta'
+    0xbf, // LOAD_FAST 15
+    0x34,0x01, // CALL_FUNCTION 1
+    0x43,0x46, // POP_JUMP_IF_TRUE 6
+    0x24,0x10, // LOAD_FAST_N 16
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x10,0x17, // LOAD_CONST_STRING ''
+    0x42,0x46, // JUMP 6
+    0x10,0x82,0x50, // LOAD_CONST_STRING ' x%d'
+    0x24,0x10, // LOAD_FAST_N 16
+    0xf8, // BINARY_OP 33 __mod__
+    0x2a,0x02, // BUILD_TUPLE 2
+    0xf8, // BINARY_OP 33 __mod__
+    0x10,0x82,0x51, // LOAD_CONST_STRING ', '
+    0x14,0x82,0x52, // LOAD_METHOD 'join'
+    0x32,0x01, // MAKE_FUNCTION 1
+    0x24,0x11, // LOAD_FAST_N 17
+    0x14,0x26, // LOAD_METHOD 'items'
+    0x36,0x00, // CALL_METHOD 0
+    0x5e, // GET_ITER
+    0x34,0x01, // CALL_FUNCTION 1
+    0x36,0x01, // CALL_METHOD 1
+    0xf2, // BINARY_OP 27 __add__
+    0xce, // STORE_FAST 14
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x45, // LOAD_METHOD 'rect'
     0x92, // LOAD_CONST_SMALL_INT 18
     0xb8, // LOAD_FAST 8
     0x22,0x82,0x1c, // LOAD_CONST_SMALL_INT 284
     0x90, // LOAD_CONST_SMALL_INT 16
     0xb3, // LOAD_FAST 3
-    0x12,0x83,0x2a, // LOAD_GLOBAL 'NHUECOS'
+    0x12,0x83,0x57, // LOAD_GLOBAL 'NHUECOS'
     0xbb, // LOAD_FAST 11
     0xf2, // BINARY_OP 27 __add__
     0xd9, // BINARY_OP 2 __eq__
@@ -57903,47 +61306,17 @@ static const byte fun_data_mc2d_Juego_abrir_inventario[1247] = {
     0x22,0x85,0xc2,0xe1,0x30, // LOAD_CONST_SMALL_INT 11579568
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x69, // LOAD_GLOBAL 'icono'
-    0xbc, // LOAD_FAST 12
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0x55, // LOAD_SUBSCR
+    0x12,0x5e, // LOAD_GLOBAL 'icono'
+    0xbf, // LOAD_FAST 15
     0x94, // LOAD_CONST_SMALL_INT 20
     0xb8, // LOAD_FAST 8
     0x34,0x03, // CALL_FUNCTION 3
     0x59, // POP_TOP
-    0x23,0x81,0x07, // LOAD_CONST_OBJ 135
-    0x12,0x83,0x02, // LOAD_GLOBAL 'NOMBRE'
-    0xbc, // LOAD_FAST 12
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0x55, // LOAD_SUBSCR
-    0x55, // LOAD_SUBSCR
-    0x51, // LOAD_CONST_NONE
-    0x90, // LOAD_CONST_SMALL_INT 16
-    0x2e,0x02, // BUILD_SLICE 2
-    0x55, // LOAD_SUBSCR
-    0xbc, // LOAD_FAST 12
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x55, // LOAD_SUBSCR
-    0x2a,0x02, // BUILD_TUPLE 2
-    0xf8, // BINARY_OP 33 __mod__
-    0x10,0x82,0x3c, // LOAD_CONST_STRING ', '
-    0x14,0x82,0x3d, // LOAD_METHOD 'join'
-    0x32,0x02, // MAKE_FUNCTION 2
-    0xbc, // LOAD_FAST 12
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0x55, // LOAD_SUBSCR
-    0x14,0x4b, // LOAD_METHOD 'items'
-    0x36,0x00, // CALL_METHOD 0
-    0x5e, // GET_ITER
-    0x34,0x01, // CALL_FUNCTION 1
-    0x36,0x01, // CALL_METHOD 1
-    0xf2, // BINARY_OP 27 __add__
-    0xce, // STORE_FAST 14
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x57, // LOAD_METHOD 'texto'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x46, // LOAD_METHOD 'texto'
     0xbe, // LOAD_FAST 14
     0x51, // LOAD_CONST_NONE
-    0xac, // LOAD_CONST_SMALL_INT 44
+    0xab, // LOAD_CONST_SMALL_INT 43
     0x2e,0x02, // BUILD_SLICE 2
     0x55, // LOAD_SUBSCR
     0xa6, // LOAD_CONST_SMALL_INT 38
@@ -57962,25 +61335,23 @@ static const byte fun_data_mc2d_Juego_abrir_inventario[1247] = {
     0x58, // DUP_TOP_TWO
     0x5a, // ROT_TWO
     0xd7, // BINARY_OP 0 __lt__
-    0x43,0xdf,0x7e, // POP_JUMP_IF_TRUE -161
+    0x43,0x8a,0x7e, // POP_JUMP_IF_TRUE -246
     0x59, // POP_TOP
     0x59, // POP_TOP
     0xb3, // LOAD_FAST 3
-    0x12,0x83,0x2a, // LOAD_GLOBAL 'NHUECOS'
+    0x12,0x83,0x57, // LOAD_GLOBAL 'NHUECOS'
     0xd7, // BINARY_OP 0 __lt__
-    0x44,0x50, // POP_JUMP_IF_FALSE 16
-    0x12,0x83,0x02, // LOAD_GLOBAL 'NOMBRE'
-    0x14,0x4c, // LOAD_METHOD 'get'
-    0x12,0x83,0x2b, // LOAD_GLOBAL 'inv_id'
+    0x44,0x4b, // POP_JUMP_IF_FALSE 11
+    0x12,0x2b, // LOAD_GLOBAL 'nombre'
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
     0xb3, // LOAD_FAST 3
     0x55, // LOAD_SUBSCR
-    0x10,0x0a, // LOAD_CONST_STRING ''
-    0x36,0x02, // CALL_METHOD 2
+    0x34,0x01, // CALL_FUNCTION 1
     0x42,0x42, // JUMP 2
-    0x10,0x0a, // LOAD_CONST_STRING ''
-    0xcf, // STORE_FAST 15
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x56, // LOAD_METHOD 'rect'
+    0x10,0x17, // LOAD_CONST_STRING ''
+    0x26,0x13, // STORE_FAST_N 19
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x45, // LOAD_METHOD 'rect'
     0x92, // LOAD_CONST_SMALL_INT 18
     0x22,0x81,0x4a, // LOAD_CONST_SMALL_INT 202
     0x22,0x82,0x1c, // LOAD_CONST_SMALL_INT 284
@@ -57988,77 +61359,77 @@ static const byte fun_data_mc2d_Juego_abrir_inventario[1247] = {
     0x22,0x86,0x9b,0x8d,0x46, // LOAD_CONST_SMALL_INT 13027014
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x57, // LOAD_METHOD 'texto'
-    0xbf, // LOAD_FAST 15
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x46, // LOAD_METHOD 'texto'
+    0x24,0x13, // LOAD_FAST_N 19
     0x45,0x03, // JUMP_IF_TRUE_OR_POP 3
-    0x23,0x81,0x08, // LOAD_CONST_OBJ 136
+    0x23,0x81,0x19, // LOAD_CONST_OBJ 153
     0x92, // LOAD_CONST_SMALL_INT 18
     0x22,0x81,0x4a, // LOAD_CONST_SMALL_INT 202
     0x22,0x82,0x81,0x80,0x40, // LOAD_CONST_SMALL_INT 4210752
     0x36,0x04, // CALL_METHOD 4
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x58, // LOAD_METHOD 'mostrar'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x47, // LOAD_METHOD 'mostrar'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0x50, // LOAD_CONST_FALSE
-    0x26,0x10, // STORE_FAST_N 16
-    0x12,0x82,0x56, // LOAD_GLOBAL 'K'
-    0x14,0x81,0x1c, // LOAD_METHOD 'eventos'
+    0x26,0x14, // STORE_FAST_N 20
+    0x12,0x82,0x68, // LOAD_GLOBAL 'K'
+    0x14,0x81,0x0f, // LOAD_METHOD 'eventos'
     0x36,0x00, // CALL_METHOD 0
     0x5f, // GET_ITER_STACK
-    0x4b,0x9f,0x03, // FOR_ITER 415
+    0x4b,0xdb,0x03, // FOR_ITER 475
     0x30,0x02, // UNPACK_SEQUENCE 2
-    0x26,0x11, // STORE_FAST_N 17
-    0x26,0x12, // STORE_FAST_N 18
-    0x24,0x11, // LOAD_FAST_N 17
-    0x23,0x81,0x09, // LOAD_CONST_OBJ 137
+    0x26,0x15, // STORE_FAST_N 21
+    0x26,0x16, // STORE_FAST_N 22
+    0x24,0x15, // LOAD_FAST_N 21
+    0x23,0x81,0x1a, // LOAD_CONST_OBJ 154
     0xdd, // BINARY_OP 6 <in>
     0x44,0x46, // POP_JUMP_IF_FALSE 6
     0x52, // LOAD_CONST_TRUE
-    0x26,0x10, // STORE_FAST_N 16
-    0x42,0x88,0x83, // JUMP 392
-    0x24,0x11, // LOAD_FAST_N 17
+    0x26,0x14, // STORE_FAST_N 20
+    0x42,0xc4,0x83, // JUMP 452
+    0x24,0x15, // LOAD_FAST_N 21
     0x10,0x82,0x1b, // LOAD_CONST_STRING 'RIGHT'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x52, // POP_JUMP_IF_FALSE 18
     0xb3, // LOAD_FAST 3
-    0x12,0x83,0x2a, // LOAD_GLOBAL 'NHUECOS'
+    0x12,0x83,0x57, // LOAD_GLOBAL 'NHUECOS'
     0xd7, // BINARY_OP 0 __lt__
     0x44,0x4b, // POP_JUMP_IF_FALSE 11
     0xb3, // LOAD_FAST 3
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x2a, // LOAD_GLOBAL 'NHUECOS'
+    0x12,0x83,0x57, // LOAD_GLOBAL 'NHUECOS'
     0xf8, // BINARY_OP 33 __mod__
     0xc3, // STORE_FAST 3
-    0x42,0xee,0x82, // JUMP 366
-    0x24,0x11, // LOAD_FAST_N 17
+    0x42,0xaa,0x83, // JUMP 426
+    0x24,0x15, // LOAD_FAST_N 21
     0x10,0x82,0x19, // LOAD_CONST_STRING 'LEFT'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x52, // POP_JUMP_IF_FALSE 18
     0xb3, // LOAD_FAST 3
-    0x12,0x83,0x2a, // LOAD_GLOBAL 'NHUECOS'
+    0x12,0x83,0x57, // LOAD_GLOBAL 'NHUECOS'
     0xd7, // BINARY_OP 0 __lt__
     0x44,0x4b, // POP_JUMP_IF_FALSE 11
     0xb3, // LOAD_FAST 3
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf3, // BINARY_OP 28 __sub__
-    0x12,0x83,0x2a, // LOAD_GLOBAL 'NHUECOS'
+    0x12,0x83,0x57, // LOAD_GLOBAL 'NHUECOS'
     0xf8, // BINARY_OP 33 __mod__
     0xc3, // STORE_FAST 3
-    0x42,0xd4,0x82, // JUMP 340
-    0x24,0x11, // LOAD_FAST_N 17
+    0x42,0x90,0x83, // JUMP 400
+    0x24,0x15, // LOAD_FAST_N 21
     0x10,0x82,0x1d, // LOAD_CONST_STRING 'UP'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x70, // POP_JUMP_IF_FALSE 48
     0xb3, // LOAD_FAST 3
-    0x12,0x83,0x2a, // LOAD_GLOBAL 'NHUECOS'
+    0x12,0x83,0x57, // LOAD_GLOBAL 'NHUECOS'
     0xdb, // BINARY_OP 4 __ge__
     0x44,0x50, // POP_JUMP_IF_FALSE 16
     0xb3, // LOAD_FAST 3
-    0x12,0x83,0x2a, // LOAD_GLOBAL 'NHUECOS'
+    0x12,0x83,0x57, // LOAD_GLOBAL 'NHUECOS'
     0xd8, // BINARY_OP 1 __gt__
     0x44,0x45, // POP_JUMP_IF_FALSE 5
     0xb3, // LOAD_FAST 3
@@ -58086,17 +61457,17 @@ static const byte fun_data_mc2d_Juego_abrir_inventario[1247] = {
     0xe5, // BINARY_OP 14 __iadd__
     0xc3, // STORE_FAST 3
     0x42,0x40, // JUMP 0
-    0x42,0x9c,0x82, // JUMP 284
-    0x24,0x11, // LOAD_FAST_N 17
-    0x10,0x81,0x1d, // LOAD_CONST_STRING 'DOWN'
+    0x42,0xd8,0x82, // JUMP 344
+    0x24,0x15, // LOAD_FAST_N 21
+    0x10,0x81,0x10, // LOAD_CONST_STRING 'DOWN'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0xc6,0x80, // POP_JUMP_IF_FALSE 70
     0xb3, // LOAD_FAST 3
-    0x12,0x83,0x2a, // LOAD_GLOBAL 'NHUECOS'
+    0x12,0x83,0x57, // LOAD_GLOBAL 'NHUECOS'
     0xdb, // BINARY_OP 4 __ge__
     0x44,0x52, // POP_JUMP_IF_FALSE 18
-    0x12,0x83,0x37, // LOAD_GLOBAL 'min'
-    0x12,0x83,0x2a, // LOAD_GLOBAL 'NHUECOS'
+    0x12,0x83,0x6b, // LOAD_GLOBAL 'min'
+    0x12,0x83,0x57, // LOAD_GLOBAL 'NHUECOS'
     0xb5, // LOAD_FAST 5
     0xf2, // BINARY_OP 27 __add__
     0x81, // LOAD_CONST_SMALL_INT 1
@@ -58135,215 +61506,180 @@ static const byte fun_data_mc2d_Juego_abrir_inventario[1247] = {
     0x42,0x4a, // JUMP 10
     0xb5, // LOAD_FAST 5
     0x44,0x45, // POP_JUMP_IF_FALSE 5
-    0x12,0x83,0x2a, // LOAD_GLOBAL 'NHUECOS'
+    0x12,0x83,0x57, // LOAD_GLOBAL 'NHUECOS'
     0x42,0x41, // JUMP 1
     0xb3, // LOAD_FAST 3
     0xc3, // STORE_FAST 3
-    0x42,0xcd,0x81, // JUMP 205
-    0x24,0x11, // LOAD_FAST_N 17
-    0x10,0x81,0x1e, // LOAD_CONST_STRING 'EXE'
+    0x42,0x89,0x82, // JUMP 265
+    0x24,0x15, // LOAD_FAST_N 21
+    0x10,0x81,0x11, // LOAD_CONST_STRING 'EXE'
     0xd9, // BINARY_OP 2 __eq__
-    0x44,0x95,0x81, // POP_JUMP_IF_FALSE 149
+    0x44,0xe2,0x81, // POP_JUMP_IF_FALSE 226
     0xb3, // LOAD_FAST 3
-    0x12,0x83,0x2a, // LOAD_GLOBAL 'NHUECOS'
+    0x12,0x83,0x57, // LOAD_GLOBAL 'NHUECOS'
     0xdb, // BINARY_OP 4 __ge__
-    0x44,0xd6,0x80, // POP_JUMP_IF_FALSE 86
+    0x44,0x7b, // POP_JUMP_IF_FALSE 59
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x46, // LOAD_METHOD 'hacer'
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
-    0x12,0x83,0x2a, // LOAD_GLOBAL 'NHUECOS'
+    0x12,0x83,0x57, // LOAD_GLOBAL 'NHUECOS'
     0xf3, // BINARY_OP 28 __sub__
     0x55, // LOAD_SUBSCR
-    0xcc, // STORE_FAST 12
-    0x12,0x83,0x64, // LOAD_GLOBAL 'all'
-    0x32,0x03, // MAKE_FUNCTION 3
-    0xbc, // LOAD_FAST 12
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0x55, // LOAD_SUBSCR
-    0x14,0x4b, // LOAD_METHOD 'items'
-    0x36,0x00, // CALL_METHOD 0
-    0x5e, // GET_ITER
-    0x34,0x01, // CALL_FUNCTION 1
-    0x34,0x01, // CALL_FUNCTION 1
-    0x44,0x79, // POP_JUMP_IF_FALSE 57
-    0xbc, // LOAD_FAST 12
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0x55, // LOAD_SUBSCR
-    0x14,0x4b, // LOAD_METHOD 'items'
-    0x36,0x00, // CALL_METHOD 0
-    0x5f, // GET_ITER_STACK
-    0x4b,0x11, // FOR_ITER 17
-    0x30,0x02, // UNPACK_SEQUENCE 2
-    0x26,0x13, // STORE_FAST_N 19
-    0x26,0x14, // STORE_FAST_N 20
-    0x12,0x65, // LOAD_GLOBAL 'quitar'
-    0x24,0x13, // LOAD_FAST_N 19
-    0x24,0x14, // LOAD_FAST_N 20
-    0x34,0x02, // CALL_FUNCTION 2
+    0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
-    0x42,0x2d, // JUMP -19
-    0x12,0x63, // LOAD_GLOBAL 'dar'
-    0xbc, // LOAD_FAST 12
+    0xb1, // LOAD_FAST 1
+    0x10,0x81,0x5d, // LOAD_CONST_STRING 'horno'
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0x63, // POP_JUMP_IF_FALSE 35
+    0xb0, // LOAD_FAST 0
+    0x14,0x82,0x43, // LOAD_METHOD 'opciones'
+    0xb1, // LOAD_FAST 1
+    0x36,0x01, // CALL_METHOD 1
+    0xc2, // STORE_FAST 2
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
+    0xb2, // LOAD_FAST 2
+    0x34,0x01, // CALL_FUNCTION 1
+    0xc5, // STORE_FAST 5
+    0xb5, // LOAD_FAST 5
+    0x44,0x4f, // POP_JUMP_IF_FALSE 15
+    0x12,0x83,0x6b, // LOAD_GLOBAL 'min'
+    0xb3, // LOAD_FAST 3
+    0x12,0x83,0x57, // LOAD_GLOBAL 'NHUECOS'
+    0xb5, // LOAD_FAST 5
+    0xf2, // BINARY_OP 27 __add__
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x02, // CALL_FUNCTION 2
+    0x42,0x41, // JUMP 1
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x55, // LOAD_SUBSCR
-    0xbc, // LOAD_FAST 12
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x55, // LOAD_SUBSCR
-    0x34,0x02, // CALL_FUNCTION 2
-    0x59, // POP_TOP
-    0x12,0x44, // LOAD_GLOBAL 'sonar'
-    0x10,0x82,0x3e, // LOAD_CONST_STRING 'wood%d'
-    0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x54, // LOAD_METHOD 'randint'
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x84, // LOAD_CONST_SMALL_INT 4
-    0x36,0x02, // CALL_METHOD 2
-    0xf8, // BINARY_OP 33 __mod__
-    0x23,0x77, // LOAD_CONST_OBJ 119
-    0x34,0x02, // CALL_FUNCTION 2
-    0x59, // POP_TOP
-    0x42,0x75, // JUMP 53
+    0xc3, // STORE_FAST 3
+    0x42,0x9e,0x81, // JUMP 158
     0xb4, // LOAD_FAST 4
     0x51, // LOAD_CONST_NONE
     0xde, // BINARY_OP 7 <is>
-    0x44,0x44, // POP_JUMP_IF_FALSE 4
+    0x44,0x45, // POP_JUMP_IF_FALSE 5
     0xb3, // LOAD_FAST 3
     0xc4, // STORE_FAST 4
-    0x42,0x6c, // JUMP 44
-    0x12,0x83,0x2b, // LOAD_GLOBAL 'inv_id'
-    0xb3, // LOAD_FAST 3
-    0x55, // LOAD_SUBSCR
-    0x12,0x83,0x2b, // LOAD_GLOBAL 'inv_id'
+    0x42,0x94,0x81, // JUMP 148
     0xb4, // LOAD_FAST 4
-    0x55, // LOAD_SUBSCR
+    0xb3, // LOAD_FAST 3
     0x5a, // ROT_TWO
-    0x12,0x83,0x2b, // LOAD_GLOBAL 'inv_id'
-    0xb4, // LOAD_FAST 4
-    0x56, // STORE_SUBSCR
-    0x12,0x83,0x2b, // LOAD_GLOBAL 'inv_id'
-    0xb3, // LOAD_FAST 3
-    0x56, // STORE_SUBSCR
-    0x12,0x83,0x2c, // LOAD_GLOBAL 'inv_n'
-    0xb3, // LOAD_FAST 3
+    0x26,0x17, // STORE_FAST_N 23
+    0x26,0x18, // STORE_FAST_N 24
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0x24,0x17, // LOAD_FAST_N 23
     0x55, // LOAD_SUBSCR
-    0x12,0x83,0x2c, // LOAD_GLOBAL 'inv_n'
-    0xb4, // LOAD_FAST 4
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0x24,0x18, // LOAD_FAST_N 24
     0x55, // LOAD_SUBSCR
-    0x5a, // ROT_TWO
-    0x12,0x83,0x2c, // LOAD_GLOBAL 'inv_n'
-    0xb4, // LOAD_FAST 4
-    0x56, // STORE_SUBSCR
-    0x12,0x83,0x2c, // LOAD_GLOBAL 'inv_n'
-    0xb3, // LOAD_FAST 3
-    0x56, // STORE_SUBSCR
-    0x51, // LOAD_CONST_NONE
-    0xc4, // STORE_FAST 4
-    0x42,0x6f, // JUMP 47
-    0x24,0x11, // LOAD_FAST_N 17
-    0x23,0x81,0x0a, // LOAD_CONST_OBJ 138
-    0xdd, // BINARY_OP 6 <in>
-    0x44,0x67, // POP_JUMP_IF_FALSE 39
-    0xb3, // LOAD_FAST 3
-    0x12,0x83,0x2a, // LOAD_GLOBAL 'NHUECOS'
-    0xd7, // BINARY_OP 0 __lt__
-    0x44,0x60, // POP_JUMP_IF_FALSE 32
-    0x12,0x83,0x2b, // LOAD_GLOBAL 'inv_id'
-    0xb3, // LOAD_FAST 3
+    0xd9, // BINARY_OP 2 __eq__
+    0x44,0xc9,0x80, // POP_JUMP_IF_FALSE 73
+    0x24,0x17, // LOAD_FAST_N 23
+    0x24,0x18, // LOAD_FAST_N 24
+    0xdc, // BINARY_OP 5 __ne__
+    0x44,0xc1,0x80, // POP_JUMP_IF_FALSE 65
+    0x12,0x2d, // LOAD_GLOBAL 'es_herramienta'
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0x24,0x17, // LOAD_FAST_N 23
     0x55, // LOAD_SUBSCR
-    0x44,0x59, // POP_JUMP_IF_FALSE 25
-    0x12,0x83,0x2c, // LOAD_GLOBAL 'inv_n'
-    0xb3, // LOAD_FAST 3
+    0x34,0x01, // CALL_FUNCTION 1
+    0x43,0x75, // POP_JUMP_IF_TRUE 53
+    0x12,0x83,0x6b, // LOAD_GLOBAL 'min'
+    0x12,0x83,0x59, // LOAD_GLOBAL 'inv_n'
+    0x24,0x17, // LOAD_FAST_N 23
+    0x55, // LOAD_SUBSCR
+    0x12,0x2e, // LOAD_GLOBAL 'max_pila'
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0x24,0x18, // LOAD_FAST_N 24
+    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x83,0x59, // LOAD_GLOBAL 'inv_n'
+    0x24,0x18, // LOAD_FAST_N 24
+    0x55, // LOAD_SUBSCR
+    0xf3, // BINARY_OP 28 __sub__
+    0x34,0x02, // CALL_FUNCTION 2
+    0x26,0x19, // STORE_FAST_N 25
+    0x12,0x83,0x59, // LOAD_GLOBAL 'inv_n'
+    0x24,0x18, // LOAD_FAST_N 24
     0x58, // DUP_TOP_TWO
     0x55, // LOAD_SUBSCR
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0xe6, // BINARY_OP 15 __isub__
+    0x24,0x19, // LOAD_FAST_N 25
+    0xe5, // BINARY_OP 14 __iadd__
     0x5b, // ROT_THREE
     0x56, // STORE_SUBSCR
-    0x12,0x83,0x2c, // LOAD_GLOBAL 'inv_n'
+    0x12,0x56, // LOAD_GLOBAL 'quitar_hueco'
+    0x24,0x17, // LOAD_FAST_N 23
+    0x24,0x19, // LOAD_FAST_N 25
+    0x34,0x02, // CALL_FUNCTION 2
+    0x59, // POP_TOP
+    0x42,0x72, // JUMP 50
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0x24,0x18, // LOAD_FAST_N 24
+    0x55, // LOAD_SUBSCR
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0x24,0x17, // LOAD_FAST_N 23
+    0x55, // LOAD_SUBSCR
+    0x5a, // ROT_TWO
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0x24,0x17, // LOAD_FAST_N 23
+    0x56, // STORE_SUBSCR
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0x24,0x18, // LOAD_FAST_N 24
+    0x56, // STORE_SUBSCR
+    0x12,0x83,0x59, // LOAD_GLOBAL 'inv_n'
+    0x24,0x18, // LOAD_FAST_N 24
+    0x55, // LOAD_SUBSCR
+    0x12,0x83,0x59, // LOAD_GLOBAL 'inv_n'
+    0x24,0x17, // LOAD_FAST_N 23
+    0x55, // LOAD_SUBSCR
+    0x5a, // ROT_TWO
+    0x12,0x83,0x59, // LOAD_GLOBAL 'inv_n'
+    0x24,0x17, // LOAD_FAST_N 23
+    0x56, // STORE_SUBSCR
+    0x12,0x83,0x59, // LOAD_GLOBAL 'inv_n'
+    0x24,0x18, // LOAD_FAST_N 24
+    0x56, // STORE_SUBSCR
+    0x51, // LOAD_CONST_NONE
+    0xc4, // STORE_FAST 4
+    0x42,0x5e, // JUMP 30
+    0x24,0x15, // LOAD_FAST_N 21
+    0x23,0x81,0x1b, // LOAD_CONST_OBJ 155
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x56, // POP_JUMP_IF_FALSE 22
+    0xb3, // LOAD_FAST 3
+    0x12,0x83,0x57, // LOAD_GLOBAL 'NHUECOS'
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x4f, // POP_JUMP_IF_FALSE 15
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
     0xb3, // LOAD_FAST 3
     0x55, // LOAD_SUBSCR
-    0x43,0x46, // POP_JUMP_IF_TRUE 6
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0x12,0x83,0x2b, // LOAD_GLOBAL 'inv_id'
+    0x44,0x48, // POP_JUMP_IF_FALSE 8
+    0x12,0x56, // LOAD_GLOBAL 'quitar_hueco'
     0xb3, // LOAD_FAST 3
-    0x56, // STORE_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
+    0x59, // POP_TOP
     0x42,0x40, // JUMP 0
-    0x42,0xde,0x7c, // JUMP -418
-    0x24,0x10, // LOAD_FAST_N 16
+    0x42,0xa2,0x7c, // JUMP -478
+    0x24,0x14, // LOAD_FAST_N 20
     0x44,0x42, // POP_JUMP_IF_FALSE 2
     0x42,0x43, // JUMP 3
-    0x42,0x88,0x78, // JUMP -1016
+    0x42,0xd7,0x76, // JUMP -1193
     0x52, // LOAD_CONST_TRUE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x66, // STORE_ATTR 'completo'
+    0x18,0x81,0x64, // STORE_ATTR 'completo'
     0x51, // LOAD_CONST_NONE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x69, // STORE_ATTR 'hud'
+    0x18,0x81,0x67, // STORE_ATTR 'hud'
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
-// child of mc2d_Juego_abrir_inventario
-// frozen bytecode for file mc2d.py, scope mc2d_Juego_abrir_inventario__lt_listcomp_gt_
-static const byte fun_data_mc2d_Juego_abrir_inventario__lt_listcomp_gt_[31] = {
-    0x4a,0x10, // prelude
-    0x82,0x4f,0x83,0x66,0x83,0x66, // names: <listcomp>, *, *
-    0xb0,0xe6, // code info
-    0x2b,0x00, // BUILD_LIST 0
-    0xb1, // LOAD_FAST 1
-    0x5f, // GET_ITER_STACK
-    0x4b,0x0e, // FOR_ITER 14
-    0xc2, // STORE_FAST 2
-    0xb2, // LOAD_FAST 2
-    0x83, // LOAD_CONST_SMALL_INT 3
-    0x55, // LOAD_SUBSCR
-    0x25,0x00, // LOAD_DEREF 0
-    0xdd, // BINARY_OP 6 <in>
-    0x44,0x35, // POP_JUMP_IF_FALSE -11
-    0xb2, // LOAD_FAST 2
-    0x2f,0x14, // STORE_COMP 20
-    0x42,0x30, // JUMP -16
-    0x63, // RETURN_VALUE
-};
-#if MICROPY_PERSISTENT_CODE_SAVE
-static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_abrir_inventario__lt_listcomp_gt_ = {
-    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
-    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
-    .kind = MP_CODE_BYTECODE,
-    .is_generator = 0,
-    .fun_data = fun_data_mc2d_Juego_abrir_inventario__lt_listcomp_gt_,
-    .children = NULL,
-    #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 31,
-    .n_children = 0,
-    #if MICROPY_EMIT_MACHINE_CODE
-    .prelude_offset = 0,
-    #endif
-    #if MICROPY_PY_SYS_SETTRACE
-    .line_of_definition = 0,
-    .prelude = {
-        .n_state = 10,
-        .n_exc_stack = 0,
-        .scope_flags = 0,
-        .n_pos_args = 2,
-        .n_kwonly_args = 0,
-        .n_def_pos_args = 0,
-        .qstr_block_name_idx = 335,
-        .line_info = fun_data_mc2d_Juego_abrir_inventario__lt_listcomp_gt_ + 8,
-        .line_info_top = fun_data_mc2d_Juego_abrir_inventario__lt_listcomp_gt_ + 10,
-        .opcodes = fun_data_mc2d_Juego_abrir_inventario__lt_listcomp_gt_ + 10,
-    },
-    #endif
-    #endif
-};
-#else
-#define proto_fun_mc2d_Juego_abrir_inventario__lt_listcomp_gt_ fun_data_mc2d_Juego_abrir_inventario__lt_listcomp_gt_[0]
-#endif
-
 // child of mc2d_Juego_abrir_inventario
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_abrir_inventario__lt_genexpr_gt_
 static const byte fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_[32] = {
     0xc1,0x40,0x0c, // prelude
-    0x82,0x52,0x83,0x66, // names: <genexpr>, *
-    0xc0,0x04, // code info
+    0x81,0x4a,0x84,0x04, // names: <genexpr>, *
+    0xd0,0x9d, // code info
     0x53, // LOAD_NULL
     0xb0, // LOAD_FAST 0
     0x53, // LOAD_NULL
@@ -58352,7 +61688,7 @@ static const byte fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_[32] = {
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xc1, // STORE_FAST 1
     0xc2, // STORE_FAST 2
-    0x12,0x64, // LOAD_GLOBAL 'cuantos'
+    0x12,0x54, // LOAD_GLOBAL 'cuantos_raiz'
     0xb1, // LOAD_FAST 1
     0x34,0x01, // CALL_FUNCTION 1
     0xb2, // LOAD_FAST 2
@@ -58386,7 +61722,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_abrir_inventario__lt_g
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 338,
+        .qstr_block_name_idx = 202,
         .line_info = fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_ + 7,
         .line_info_top = fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_ + 9,
         .opcodes = fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_ + 9,
@@ -58402,8 +61738,8 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_abrir_inventario__lt_g
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_abrir_inventario__lt_genexpr_gt_2
 static const byte fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_2[42] = {
     0xd9,0x40,0x0c, // prelude
-    0x82,0x52,0x83,0x66, // names: <genexpr>, *
-    0xc0,0x08, // code info
+    0x81,0x4a,0x84,0x04, // names: <genexpr>, *
+    0xd0,0xa0, // code info
     0x53, // LOAD_NULL
     0xb0, // LOAD_FAST 0
     0x53, // LOAD_NULL
@@ -58412,13 +61748,13 @@ static const byte fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_2[42] = {
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xc1, // STORE_FAST 1
     0xc2, // STORE_FAST 2
-    0x10,0x82,0x54, // LOAD_CONST_STRING '%d %s'
+    0x10,0x82,0x66, // LOAD_CONST_STRING '%d %s'
     0xb2, // LOAD_FAST 2
-    0x12,0x83,0x02, // LOAD_GLOBAL 'NOMBRE'
+    0x12,0x2b, // LOAD_GLOBAL 'nombre'
     0xb1, // LOAD_FAST 1
-    0x55, // LOAD_SUBSCR
+    0x34,0x01, // CALL_FUNCTION 1
     0x51, // LOAD_CONST_NONE
-    0x89, // LOAD_CONST_SMALL_INT 9
+    0x88, // LOAD_CONST_SMALL_INT 8
     0x2e,0x02, // BUILD_SLICE 2
     0x55, // LOAD_SUBSCR
     0x2a,0x02, // BUILD_TUPLE 2
@@ -58452,7 +61788,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_abrir_inventario__lt_g
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 338,
+        .qstr_block_name_idx = 202,
         .line_info = fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_2 + 7,
         .line_info_top = fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_2 + 9,
         .opcodes = fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_2 + 9,
@@ -58464,71 +61800,9 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_abrir_inventario__lt_g
 #define proto_fun_mc2d_Juego_abrir_inventario__lt_genexpr_gt_2 fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_2[0]
 #endif
 
-// child of mc2d_Juego_abrir_inventario
-// frozen bytecode for file mc2d.py, scope mc2d_Juego_abrir_inventario__lt_genexpr_gt_3
-static const byte fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_3[32] = {
-    0xc1,0x40,0x0c, // prelude
-    0x82,0x52,0x83,0x66, // names: <genexpr>, *
-    0xc0,0x29, // code info
-    0x53, // LOAD_NULL
-    0xb0, // LOAD_FAST 0
-    0x53, // LOAD_NULL
-    0x53, // LOAD_NULL
-    0x4b,0x0f, // FOR_ITER 15
-    0x30,0x02, // UNPACK_SEQUENCE 2
-    0xc1, // STORE_FAST 1
-    0xc2, // STORE_FAST 2
-    0x12,0x64, // LOAD_GLOBAL 'cuantos'
-    0xb1, // LOAD_FAST 1
-    0x34,0x01, // CALL_FUNCTION 1
-    0xb2, // LOAD_FAST 2
-    0xdb, // BINARY_OP 4 __ge__
-    0x67, // YIELD_VALUE
-    0x59, // POP_TOP
-    0x42,0x2f, // JUMP -17
-    0x51, // LOAD_CONST_NONE
-    0x63, // RETURN_VALUE
-};
-#if MICROPY_PERSISTENT_CODE_SAVE
-static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_abrir_inventario__lt_genexpr_gt_3 = {
-    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
-    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
-    .kind = MP_CODE_BYTECODE,
-    .is_generator = 1,
-    .fun_data = fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_3,
-    .children = NULL,
-    #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 32,
-    .n_children = 0,
-    #if MICROPY_EMIT_MACHINE_CODE
-    .prelude_offset = 0,
-    #endif
-    #if MICROPY_PY_SYS_SETTRACE
-    .line_of_definition = 0,
-    .prelude = {
-        .n_state = 9,
-        .n_exc_stack = 0,
-        .scope_flags = 1,
-        .n_pos_args = 1,
-        .n_kwonly_args = 0,
-        .n_def_pos_args = 0,
-        .qstr_block_name_idx = 338,
-        .line_info = fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_3 + 7,
-        .line_info_top = fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_3 + 9,
-        .opcodes = fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_3 + 9,
-    },
-    #endif
-    #endif
-};
-#else
-#define proto_fun_mc2d_Juego_abrir_inventario__lt_genexpr_gt_3 fun_data_mc2d_Juego_abrir_inventario__lt_genexpr_gt_3[0]
-#endif
-
 static const mp_raw_code_t *const children_mc2d_Juego_abrir_inventario[] = {
-    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_abrir_inventario__lt_listcomp_gt_,
     (const mp_raw_code_t *)&proto_fun_mc2d_Juego_abrir_inventario__lt_genexpr_gt_,
     (const mp_raw_code_t *)&proto_fun_mc2d_Juego_abrir_inventario__lt_genexpr_gt_2,
-    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_abrir_inventario__lt_genexpr_gt_3,
 };
 
 static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_abrir_inventario = {
@@ -58539,24 +61813,24 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_abrir_inventario = {
     .fun_data = fun_data_mc2d_Juego_abrir_inventario,
     .children = (void *)&children_mc2d_Juego_abrir_inventario,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 1247,
-    .n_children = 4,
+    .fun_data_len = 1373,
+    .n_children = 2,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
     #endif
     #if MICROPY_PY_SYS_SETTRACE
     .line_of_definition = 0,
     .prelude = {
-        .n_state = 33,
+        .n_state = 37,
         .n_exc_stack = 0,
         .scope_flags = 0,
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 1,
-        .qstr_block_name_idx = 265,
+        .qstr_block_name_idx = 263,
         .line_info = fun_data_mc2d_Juego_abrir_inventario + 10,
-        .line_info_top = fun_data_mc2d_Juego_abrir_inventario + 103,
-        .opcodes = fun_data_mc2d_Juego_abrir_inventario + 104,
+        .line_info_top = fun_data_mc2d_Juego_abrir_inventario + 110,
+        .opcodes = fun_data_mc2d_Juego_abrir_inventario + 110,
     },
     #endif
     #endif
@@ -58566,31 +61840,31 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_abrir_inventario = {
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_pausa
 static const byte fun_data_mc2d_Juego_pausa[325] = {
     0x89,0x10,0x44, // prelude
-    0x82,0x3f,0x83,0x4e, // names: pausa, self
-    0xc0,0x3f,0x2f,0x22,0x2c,0x20,0x27,0x29,0x36,0x37,0x35,0x2d,0x39,0x28,0x2f,0x26,0x37,0x27,0x29,0x27,0x25,0x25,0x25,0x22,0x26,0x26,0x25,0x2d,0x22,0x25, // code info
-    0x23,0x81,0x0b, // LOAD_CONST_OBJ 139
-    0x10,0x82,0x40, // LOAD_CONST_STRING 'Guardar'
-    0x23,0x81,0x0c, // LOAD_CONST_OBJ 140
-    0x23,0x81,0x0d, // LOAD_CONST_OBJ 141
+    0x82,0x53,0x84,0x05, // names: pausa, self
+    0xd0,0xdc,0x2f,0x22,0x2c,0x20,0x27,0x29,0x36,0x37,0x35,0x2d,0x39,0x28,0x2f,0x26,0x37,0x27,0x29,0x27,0x25,0x25,0x25,0x22,0x26,0x26,0x25,0x2d,0x22,0x25, // code info
+    0x23,0x81,0x1c, // LOAD_CONST_OBJ 156
+    0x10,0x82,0x54, // LOAD_CONST_STRING 'Guardar'
+    0x23,0x81,0x1d, // LOAD_CONST_OBJ 157
+    0x23,0x81,0x1e, // LOAD_CONST_OBJ 158
     0x2b,0x04, // BUILD_LIST 4
     0xc1, // STORE_FAST 1
     0x80, // LOAD_CONST_SMALL_INT 0
     0xc2, // STORE_FAST 2
-    0x12,0x82,0x56, // LOAD_GLOBAL 'K'
-    0x14,0x81,0x11, // LOAD_METHOD 'ms'
+    0x12,0x82,0x68, // LOAD_GLOBAL 'K'
+    0x14,0x81,0x03, // LOAD_METHOD 'ms'
     0x36,0x00, // CALL_METHOD 0
     0xb0, // LOAD_FAST 0
-    0x18,0x82,0x39, // STORE_ATTR 'fondo_t'
+    0x18,0x82,0x49, // STORE_ATTR 'fondo_t'
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x3a, // LOAD_METHOD 'fondo_paso'
+    0x14,0x82,0x4a, // LOAD_METHOD 'fondo_paso'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x81,0x76, // LOAD_METHOD 'recorte'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x74, // LOAD_METHOD 'recorte'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x56, // LOAD_METHOD 'rect'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x45, // LOAD_METHOD 'rect'
     0x22,0x3c, // LOAD_CONST_SMALL_INT 60
     0xa8, // LOAD_CONST_SMALL_INT 40
     0x22,0x81,0x48, // LOAD_CONST_SMALL_INT 200
@@ -58598,8 +61872,8 @@ static const byte fun_data_mc2d_Juego_pausa[325] = {
     0x22,0x81,0x80,0xc0,0x20, // LOAD_CONST_SMALL_INT 2105376
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x81,0x18, // LOAD_METHOD 'marco'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x0a, // LOAD_METHOD 'marco'
     0x22,0x3c, // LOAD_CONST_SMALL_INT 60
     0xa8, // LOAD_CONST_SMALL_INT 40
     0x22,0x81,0x48, // LOAD_CONST_SMALL_INT 200
@@ -58607,15 +61881,15 @@ static const byte fun_data_mc2d_Juego_pausa[325] = {
     0x22,0x87,0xff,0xff,0x7f, // LOAD_CONST_SMALL_INT 16777215
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x57, // LOAD_METHOD 'texto'
-    0x23,0x81,0x0e, // LOAD_CONST_OBJ 142
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x46, // LOAD_METHOD 'texto'
+    0x23,0x81,0x1f, // LOAD_CONST_OBJ 159
     0x22,0x80,0x70, // LOAD_CONST_SMALL_INT 112
     0x22,0x32, // LOAD_CONST_SMALL_INT 50
     0x22,0x87,0xff,0xff,0x7f, // LOAD_CONST_SMALL_INT 16777215
     0x36,0x04, // CALL_METHOD 4
     0x59, // POP_TOP
-    0x12,0x83,0x0f, // LOAD_GLOBAL 'enumerate'
+    0x12,0x83,0x63, // LOAD_GLOBAL 'enumerate'
     0xb1, // LOAD_FAST 1
     0x34,0x01, // CALL_FUNCTION 1
     0x5f, // GET_ITER_STACK
@@ -58623,7 +61897,7 @@ static const byte fun_data_mc2d_Juego_pausa[325] = {
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xc3, // STORE_FAST 3
     0xc4, // STORE_FAST 4
-    0x12,0x81,0x17, // LOAD_GLOBAL 'boton'
+    0x12,0x81,0x09, // LOAD_GLOBAL 'boton'
     0xb4, // LOAD_FAST 4
     0x22,0x80,0x50, // LOAD_CONST_SMALL_INT 80
     0x22,0x80,0x46, // LOAD_CONST_SMALL_INT 70
@@ -58638,12 +61912,12 @@ static const byte fun_data_mc2d_Juego_pausa[325] = {
     0x34,0x05, // CALL_FUNCTION 5
     0x59, // POP_TOP
     0x42,0x21, // JUMP -31
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x58, // LOAD_METHOD 'mostrar'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x47, // LOAD_METHOD 'mostrar'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
-    0x12,0x82,0x56, // LOAD_GLOBAL 'K'
-    0x14,0x81,0x1c, // LOAD_METHOD 'eventos'
+    0x12,0x82,0x68, // LOAD_GLOBAL 'K'
+    0x14,0x81,0x0f, // LOAD_METHOD 'eventos'
     0x36,0x00, // CALL_METHOD 0
     0x5f, // GET_ITER_STACK
     0x4b,0x73, // FOR_ITER 115
@@ -58651,43 +61925,43 @@ static const byte fun_data_mc2d_Juego_pausa[325] = {
     0xc5, // STORE_FAST 5
     0xc6, // STORE_FAST 6
     0xb5, // LOAD_FAST 5
-    0x23,0x3f, // LOAD_CONST_OBJ 63
+    0x23,0x3d, // LOAD_CONST_OBJ 61
     0xdd, // BINARY_OP 6 <in>
     0x44,0x57, // POP_JUMP_IF_FALSE 23
     0xb2, // LOAD_FAST 2
     0xb5, // LOAD_FAST 5
-    0x10,0x81,0x1d, // LOAD_CONST_STRING 'DOWN'
+    0x10,0x81,0x10, // LOAD_CONST_STRING 'DOWN'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x43, // POP_JUMP_IF_FALSE 3
     0x81, // LOAD_CONST_SMALL_INT 1
     0x42,0x41, // JUMP 1
     0x7f, // LOAD_CONST_SMALL_INT -1
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x3b, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
     0xb1, // LOAD_FAST 1
     0x34,0x01, // CALL_FUNCTION 1
     0xf8, // BINARY_OP 33 __mod__
     0xc2, // STORE_FAST 2
     0x42,0x50, // JUMP 16
     0xb5, // LOAD_FAST 5
-    0x10,0x81,0x1f, // LOAD_CONST_STRING 'DEL'
+    0x10,0x81,0x12, // LOAD_CONST_STRING 'DEL'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x49, // POP_JUMP_IF_FALSE 9
-    0x23,0x81,0x0f, // LOAD_CONST_OBJ 143
+    0x23,0x81,0x20, // LOAD_CONST_OBJ 160
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xc2, // STORE_FAST 2
     0xc5, // STORE_FAST 5
     0x42,0x40, // JUMP 0
     0xb5, // LOAD_FAST 5
-    0x10,0x81,0x1e, // LOAD_CONST_STRING 'EXE'
+    0x10,0x81,0x11, // LOAD_CONST_STRING 'EXE'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x78, // POP_JUMP_IF_FALSE 56
     0x52, // LOAD_CONST_TRUE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x66, // STORE_ATTR 'completo'
+    0x18,0x81,0x64, // STORE_ATTR 'completo'
     0x51, // LOAD_CONST_NONE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x69, // STORE_ATTR 'hud'
+    0x18,0x81,0x67, // STORE_ATTR 'hud'
     0xb2, // LOAD_FAST 2
     0x80, // LOAD_CONST_SMALL_INT 0
     0xd9, // BINARY_OP 2 __eq__
@@ -58698,7 +61972,7 @@ static const byte fun_data_mc2d_Juego_pausa[325] = {
     0x23,0x4f, // LOAD_CONST_OBJ 79
     0xdd, // BINARY_OP 6 <in>
     0x44,0x5a, // POP_JUMP_IF_FALSE 26
-    0x12,0x71, // LOAD_GLOBAL 'guardar'
+    0x12,0x63, // LOAD_GLOBAL 'guardar'
     0xb0, // LOAD_FAST 0
     0x34,0x01, // CALL_FUNCTION 1
     0x59, // POP_TOP
@@ -58706,17 +61980,17 @@ static const byte fun_data_mc2d_Juego_pausa[325] = {
     0x81, // LOAD_CONST_SMALL_INT 1
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x4f, // POP_JUMP_IF_FALSE 15
-    0x23,0x81,0x10, // LOAD_CONST_OBJ 144
+    0x23,0x81,0x21, // LOAD_CONST_OBJ 161
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x6a, // STORE_ATTR 'aviso'
+    0x18,0x81,0x68, // STORE_ATTR 'aviso'
     0xb0, // LOAD_FAST 0
-    0x18,0x82,0x32, // STORE_ATTR 'aviso_t'
+    0x18,0x82,0x3c, // STORE_ATTR 'aviso_t'
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
     0x52, // LOAD_CONST_TRUE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x4c, // STORE_ATTR 'salir'
+    0x18,0x81,0x3d, // STORE_ATTR 'salir'
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
     0x42,0x8b,0x7f, // JUMP -117
@@ -58747,7 +62021,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_pausa = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 319,
+        .qstr_block_name_idx = 339,
         .line_info = fun_data_mc2d_Juego_pausa + 7,
         .line_info_top = fun_data_mc2d_Juego_pausa + 37,
         .opcodes = fun_data_mc2d_Juego_pausa + 37,
@@ -58761,234 +62035,233 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_pausa = {
 
 // child of mc2d_Juego
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_teclas
-static const byte fun_data_mc2d_Juego_teclas[463] = {
-    0x61,0x58, // prelude
-    0x07,0x83,0x4e, // names: teclas, self
-    0xc0,0x5f,0x30,0x2c,0x2c,0x27,0x2b,0x27,0x2e,0x27,0x29,0x27,0x26,0x2b,0x23,0x27,0x35,0x27,0x36,0x27,0x36,0x27,0x35,0x27,0x2a,0x27,0x2a,0x27,0x2f,0x27,0x2f,0x27,0x2a,0x27,0x29,0x23,0x28,0x27,0x29,0x2a,0x2d, // code info
-    0x12,0x82,0x56, // LOAD_GLOBAL 'K'
-    0x14,0x81,0x1c, // LOAD_METHOD 'eventos'
+static const byte fun_data_mc2d_Juego_teclas[461] = {
+    0x59,0x56, // prelude
+    0x0a,0x84,0x05, // names: teclas, self
+    0xd0,0xfc,0x30,0x2b,0x2c,0x27,0x2b,0x27,0x2e,0x27,0x29,0x27,0x26,0x2a,0x23,0x27,0x35,0x27,0x36,0x27,0x36,0x27,0x35,0x27,0x2a,0x27,0x2a,0x27,0x2f,0x27,0x2f,0x27,0x2a,0x27,0x2a,0x2b,0x27,0x29,0x2a,0x2d, // code info
+    0x12,0x82,0x68, // LOAD_GLOBAL 'K'
+    0x14,0x81,0x0f, // LOAD_METHOD 'eventos'
     0x36,0x00, // CALL_METHOD 0
     0x5f, // GET_ITER_STACK
-    0x4b,0x93,0x03, // FOR_ITER 403
+    0x4b,0x92,0x03, // FOR_ITER 402
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xc1, // STORE_FAST 1
     0xc2, // STORE_FAST 2
     0xb1, // LOAD_FAST 1
-    0x14,0x81,0x14, // LOAD_METHOD 'startswith'
-    0x10,0x82,0x41, // LOAD_CONST_STRING 'CH:'
+    0x14,0x75, // LOAD_METHOD 'startswith'
+    0x10,0x82,0x55, // LOAD_CONST_STRING 'CH:'
     0x36,0x01, // CALL_METHOD 1
-    0x44,0xde,0x80, // POP_JUMP_IF_FALSE 94
+    0x44,0xdd,0x80, // POP_JUMP_IF_FALSE 93
     0xb1, // LOAD_FAST 1
     0x83, // LOAD_CONST_SMALL_INT 3
     0x51, // LOAD_CONST_NONE
     0x2e,0x02, // BUILD_SLICE 2
     0x55, // LOAD_SUBSCR
-    0x14,0x82,0x42, // LOAD_METHOD 'lower'
+    0x14,0x82,0x56, // LOAD_METHOD 'lower'
     0x36,0x00, // CALL_METHOD 0
     0xc3, // STORE_FAST 3
     0xb3, // LOAD_FAST 3
-    0x10,0x82,0x43, // LOAD_CONST_STRING 'wasd '
+    0x10,0x82,0x57, // LOAD_CONST_STRING 'wasd '
     0xdd, // BINARY_OP 6 <in>
     0x44,0x4b, // POP_JUMP_IF_FALSE 11
-    0x23,0x81,0x11, // LOAD_CONST_OBJ 145
+    0x23,0x81,0x22, // LOAD_CONST_OBJ 162
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x6c, // LOAD_ATTR 'tap'
+    0x13,0x81,0x6a, // LOAD_ATTR 'tap'
     0xb3, // LOAD_FAST 3
     0x56, // STORE_SUBSCR
     0x42,0x72, // JUMP 50
     0xb3, // LOAD_FAST 3
-    0x10,0x82,0x44, // LOAD_CONST_STRING '123456789'
+    0x10,0x82,0x58, // LOAD_CONST_STRING '123456789'
     0xdd, // BINARY_OP 6 <in>
     0x44,0x4e, // POP_JUMP_IF_FALSE 14
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb3, // LOAD_FAST 3
     0x34,0x01, // CALL_FUNCTION 1
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf3, // BINARY_OP 28 __sub__
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x5a, // STORE_ATTR 'sel'
+    0x18,0x81,0x56, // STORE_ATTR 'sel'
     0x42,0x5d, // JUMP 29
     0xb3, // LOAD_FAST 3
-    0x10,0x82,0x36, // LOAD_CONST_STRING 'e'
+    0x10,0x82,0x40, // LOAD_CONST_STRING 'e'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x49, // POP_JUMP_IF_FALSE 9
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x09, // LOAD_METHOD 'abrir_inventario'
+    0x14,0x82,0x07, // LOAD_METHOD 'abrir_inventario'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0x42,0x4d, // JUMP 13
     0xb3, // LOAD_FAST 3
-    0x10,0x82,0x45, // LOAD_CONST_STRING 'q'
+    0x10,0x82,0x59, // LOAD_CONST_STRING 'q'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x46, // POP_JUMP_IF_FALSE 6
-    0x10,0x82,0x46, // LOAD_CONST_STRING '9'
+    0x10,0x82,0x5a, // LOAD_CONST_STRING '9'
     0xc1, // STORE_FAST 1
     0x42,0x40, // JUMP 0
     0xb1, // LOAD_FAST 1
-    0x14,0x81,0x14, // LOAD_METHOD 'startswith'
-    0x10,0x82,0x46, // LOAD_CONST_STRING '9'
+    0x14,0x75, // LOAD_METHOD 'startswith'
+    0x10,0x82,0x5a, // LOAD_CONST_STRING '9'
     0x36,0x01, // CALL_METHOD 1
     0x43,0x43, // POP_JUMP_IF_TRUE 3
-    0x42,0x8f,0x7f, // JUMP -113
+    0x42,0x91,0x7f, // JUMP -111
     0xb1, // LOAD_FAST 1
-    0x10,0x82,0x47, // LOAD_CONST_STRING '8'
+    0x10,0x82,0x5b, // LOAD_CONST_STRING '8'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x55, // POP_JUMP_IF_FALSE 21
-    0x12,0x83,0x37, // LOAD_GLOBAL 'min'
-    0x12,0x83,0x27, // LOAD_GLOBAL 'ALCANCE'
+    0x12,0x83,0x6b, // LOAD_GLOBAL 'min'
+    0x12,0x83,0x54, // LOAD_GLOBAL 'ALCANCE'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x59, // LOAD_ATTR 'cdy'
+    0x13,0x81,0x55, // LOAD_ATTR 'cdy'
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
     0x34,0x02, // CALL_FUNCTION 2
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x59, // STORE_ATTR 'cdy'
-    0x42,0x86,0x82, // JUMP 262
+    0x18,0x81,0x55, // STORE_ATTR 'cdy'
+    0x42,0x87,0x82, // JUMP 263
     0xb1, // LOAD_FAST 1
-    0x10,0x82,0x48, // LOAD_CONST_STRING '2'
+    0x10,0x82,0x5c, // LOAD_CONST_STRING '2'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x56, // POP_JUMP_IF_FALSE 22
-    0x12,0x83,0x38, // LOAD_GLOBAL 'max'
-    0x12,0x83,0x27, // LOAD_GLOBAL 'ALCANCE'
+    0x12,0x83,0x6c, // LOAD_GLOBAL 'max'
+    0x12,0x83,0x54, // LOAD_GLOBAL 'ALCANCE'
     0xd1, // UNARY_OP 1 __neg__
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x59, // LOAD_ATTR 'cdy'
+    0x13,0x81,0x55, // LOAD_ATTR 'cdy'
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf3, // BINARY_OP 28 __sub__
     0x34,0x02, // CALL_FUNCTION 2
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x59, // STORE_ATTR 'cdy'
-    0x42,0xe9,0x81, // JUMP 233
+    0x18,0x81,0x55, // STORE_ATTR 'cdy'
+    0x42,0xea,0x81, // JUMP 234
     0xb1, // LOAD_FAST 1
-    0x10,0x82,0x49, // LOAD_CONST_STRING '4'
+    0x10,0x82,0x5d, // LOAD_CONST_STRING '4'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x56, // POP_JUMP_IF_FALSE 22
-    0x12,0x83,0x38, // LOAD_GLOBAL 'max'
-    0x12,0x83,0x27, // LOAD_GLOBAL 'ALCANCE'
+    0x12,0x83,0x6c, // LOAD_GLOBAL 'max'
+    0x12,0x83,0x54, // LOAD_GLOBAL 'ALCANCE'
     0xd1, // UNARY_OP 1 __neg__
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x58, // LOAD_ATTR 'cdx'
+    0x13,0x81,0x54, // LOAD_ATTR 'cdx'
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf3, // BINARY_OP 28 __sub__
     0x34,0x02, // CALL_FUNCTION 2
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x58, // STORE_ATTR 'cdx'
-    0x42,0xcc,0x81, // JUMP 204
+    0x18,0x81,0x54, // STORE_ATTR 'cdx'
+    0x42,0xcd,0x81, // JUMP 205
     0xb1, // LOAD_FAST 1
-    0x10,0x82,0x4a, // LOAD_CONST_STRING '6'
+    0x10,0x82,0x5e, // LOAD_CONST_STRING '6'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x55, // POP_JUMP_IF_FALSE 21
-    0x12,0x83,0x37, // LOAD_GLOBAL 'min'
-    0x12,0x83,0x27, // LOAD_GLOBAL 'ALCANCE'
+    0x12,0x83,0x6b, // LOAD_GLOBAL 'min'
+    0x12,0x83,0x54, // LOAD_GLOBAL 'ALCANCE'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x58, // LOAD_ATTR 'cdx'
+    0x13,0x81,0x54, // LOAD_ATTR 'cdx'
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
     0x34,0x02, // CALL_FUNCTION 2
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x58, // STORE_ATTR 'cdx'
-    0x42,0xb0,0x81, // JUMP 176
+    0x18,0x81,0x54, // STORE_ATTR 'cdx'
+    0x42,0xb1,0x81, // JUMP 177
     0xb1, // LOAD_FAST 1
-    0x10,0x82,0x4b, // LOAD_CONST_STRING '5'
+    0x10,0x82,0x5f, // LOAD_CONST_STRING '5'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x4a, // POP_JUMP_IF_FALSE 10
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x0c, // LOAD_METHOD 'golpear'
+    0x14,0x82,0x0e, // LOAD_METHOD 'golpear'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
-    0x42,0x9f,0x81, // JUMP 159
+    0x42,0xa0,0x81, // JUMP 160
     0xb1, // LOAD_FAST 1
-    0x10,0x81,0x1e, // LOAD_CONST_STRING 'EXE'
+    0x10,0x81,0x11, // LOAD_CONST_STRING 'EXE'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x4a, // POP_JUMP_IF_FALSE 10
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x08, // LOAD_METHOD 'usar'
+    0x14,0x82,0x06, // LOAD_METHOD 'usar'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
-    0x42,0x8e,0x81, // JUMP 142
+    0x42,0x8f,0x81, // JUMP 143
     0xb1, // LOAD_FAST 1
-    0x23,0x81,0x12, // LOAD_CONST_OBJ 146
+    0x23,0x81,0x23, // LOAD_CONST_OBJ 163
     0xdd, // BINARY_OP 6 <in>
     0x44,0x4f, // POP_JUMP_IF_FALSE 15
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x5a, // LOAD_ATTR 'sel'
+    0x13,0x81,0x56, // LOAD_ATTR 'sel'
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf3, // BINARY_OP 28 __sub__
     0x89, // LOAD_CONST_SMALL_INT 9
     0xf8, // BINARY_OP 33 __mod__
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x5a, // STORE_ATTR 'sel'
-    0x42,0xf8,0x80, // JUMP 120
+    0x18,0x81,0x56, // STORE_ATTR 'sel'
+    0x42,0xf9,0x80, // JUMP 121
     0xb1, // LOAD_FAST 1
-    0x23,0x81,0x13, // LOAD_CONST_OBJ 147
+    0x23,0x81,0x24, // LOAD_CONST_OBJ 164
     0xdd, // BINARY_OP 6 <in>
     0x44,0x4f, // POP_JUMP_IF_FALSE 15
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x5a, // LOAD_ATTR 'sel'
+    0x13,0x81,0x56, // LOAD_ATTR 'sel'
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
     0x89, // LOAD_CONST_SMALL_INT 9
     0xf8, // BINARY_OP 33 __mod__
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x5a, // STORE_ATTR 'sel'
-    0x42,0xe2,0x80, // JUMP 98
+    0x18,0x81,0x56, // STORE_ATTR 'sel'
+    0x42,0xe3,0x80, // JUMP 99
     0xb1, // LOAD_FAST 1
-    0x10,0x82,0x4c, // LOAD_CONST_STRING '7'
+    0x10,0x82,0x60, // LOAD_CONST_STRING '7'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x4a, // POP_JUMP_IF_FALSE 10
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x09, // LOAD_METHOD 'abrir_inventario'
+    0x14,0x82,0x07, // LOAD_METHOD 'abrir_inventario'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
-    0x42,0xd1,0x80, // JUMP 81
+    0x42,0xd2,0x80, // JUMP 82
     0xb1, // LOAD_FAST 1
-    0x10,0x82,0x46, // LOAD_CONST_STRING '9'
+    0x10,0x82,0x5a, // LOAD_CONST_STRING '9'
     0xd9, // BINARY_OP 2 __eq__
-    0x44,0x54, // POP_JUMP_IF_FALSE 20
-    0x12,0x83,0x2b, // LOAD_GLOBAL 'inv_id'
+    0x44,0x55, // POP_JUMP_IF_FALSE 21
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x5a, // LOAD_ATTR 'sel'
+    0x13,0x81,0x56, // LOAD_ATTR 'sel'
     0x55, // LOAD_SUBSCR
-    0xc4, // STORE_FAST 4
-    0xb4, // LOAD_FAST 4
-    0x44,0x46, // POP_JUMP_IF_FALSE 6
-    0x12,0x65, // LOAD_GLOBAL 'quitar'
-    0xb4, // LOAD_FAST 4
+    0x44,0x49, // POP_JUMP_IF_FALSE 9
+    0x12,0x56, // LOAD_GLOBAL 'quitar_hueco'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x56, // LOAD_ATTR 'sel'
     0x34,0x01, // CALL_FUNCTION 1
     0x59, // POP_TOP
     0x42,0x76, // JUMP 54
     0xb1, // LOAD_FAST 1
-    0x10,0x81,0x1f, // LOAD_CONST_STRING 'DEL'
+    0x10,0x81,0x12, // LOAD_CONST_STRING 'DEL'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x49, // POP_JUMP_IF_FALSE 9
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x3f, // LOAD_METHOD 'pausa'
+    0x14,0x82,0x53, // LOAD_METHOD 'pausa'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0x42,0x66, // JUMP 38
     0xb1, // LOAD_FAST 1
-    0x10,0x82,0x4d, // LOAD_CONST_STRING 'SQRT'
+    0x10,0x82,0x61, // LOAD_CONST_STRING 'SQRT'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x5f, // POP_JUMP_IF_FALSE 31
     0xb2, // LOAD_FAST 2
     0x44,0x5c, // POP_JUMP_IF_FALSE 28
     0xb0, // LOAD_FAST 0
     0x57, // DUP_TOP
-    0x13,0x79, // LOAD_ATTR 'tiempo'
-    0x12,0x83,0x1c, // LOAD_GLOBAL 'DIA_S'
+    0x13,0x6a, // LOAD_ATTR 'tiempo'
+    0x12,0x83,0x4c, // LOAD_GLOBAL 'DIA_S'
     0x8a, // LOAD_CONST_SMALL_INT 10
     0xf7, // BINARY_OP 32 __truediv__
     0xe5, // BINARY_OP 14 __iadd__
     0x5a, // ROT_TWO
-    0x18,0x79, // STORE_ATTR 'tiempo'
-    0x23,0x81,0x14, // LOAD_CONST_OBJ 148
+    0x18,0x6a, // STORE_ATTR 'tiempo'
+    0x23,0x81,0x25, // LOAD_CONST_OBJ 165
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x6a, // STORE_ATTR 'aviso'
+    0x18,0x81,0x68, // STORE_ATTR 'aviso'
     0xb0, // LOAD_FAST 0
-    0x18,0x82,0x32, // STORE_ATTR 'aviso_t'
+    0x18,0x82,0x3c, // STORE_ATTR 'aviso_t'
     0x42,0x40, // JUMP 0
-    0x42,0xea,0x7c, // JUMP -406
+    0x42,0xeb,0x7c, // JUMP -405
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -59001,7 +62274,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_teclas = {
     .fun_data = fun_data_mc2d_Juego_teclas,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 463,
+    .fun_data_len = 461,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -59009,16 +62282,16 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_teclas = {
     #if MICROPY_PY_SYS_SETTRACE
     .line_of_definition = 0,
     .prelude = {
-        .n_state = 13,
+        .n_state = 12,
         .n_exc_stack = 0,
         .scope_flags = 0,
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 7,
+        .qstr_block_name_idx = 10,
         .line_info = fun_data_mc2d_Juego_teclas + 5,
-        .line_info_top = fun_data_mc2d_Juego_teclas + 46,
-        .opcodes = fun_data_mc2d_Juego_teclas + 46,
+        .line_info_top = fun_data_mc2d_Juego_teclas + 45,
+        .opcodes = fun_data_mc2d_Juego_teclas + 45,
     },
     #endif
     #endif
@@ -59029,23 +62302,23 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_teclas = {
 
 // child of mc2d_Juego
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_paso
-static const byte fun_data_mc2d_Juego_paso[541] = {
-    0x62,0x58, // prelude
-    0x81,0x49,0x83,0x4e,0x83,0x5a, // names: paso, self, dt
-    0xc0,0x89,0x26,0x2d,0x2d,0x2d,0x2a,0x28,0x37,0x28,0x28,0x28,0x27,0x31,0x31,0x49,0x1f,0x21,0x28,0x25,0x2e,0x3e,0x32,0x29,0x1f,0x26,0x28,0x2e,0x2b,0x28,0x45,0x2c,0x1f,0x22,0x37,0x3a,0x3e,0x25, // code info
+static const byte fun_data_mc2d_Juego_paso[491] = {
+    0x62,0x56, // prelude
+    0x81,0x3a,0x84,0x05,0x84,0x12, // names: paso, self, dt
+    0xe0,0x25,0x26,0x2d,0x2d,0x2d,0x2a,0x28,0x37,0x28,0x28,0x28,0x27,0x31,0x31,0x69,0x28,0x2e,0x2b,0x2b,0x28,0x2b,0x2e,0x2b,0x2e,0x2a,0x2e,0x2b,0x28,0x45,0x2c,0x1f,0x22,0x37,0x3a,0x3e,0x25, // code info
     0xb0, // LOAD_FAST 0
-    0x14,0x07, // LOAD_METHOD 'teclas'
+    0x14,0x0a, // LOAD_METHOD 'teclas'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
-    0x12,0x83,0x4d, // LOAD_GLOBAL 'list'
+    0x12,0x83,0x78, // LOAD_GLOBAL 'list'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x6c, // LOAD_ATTR 'tap'
+    0x13,0x81,0x6a, // LOAD_ATTR 'tap'
     0x34,0x01, // CALL_FUNCTION 1
     0x5f, // GET_ITER_STACK
     0x4b,0x0e, // FOR_ITER 14
     0xc2, // STORE_FAST 2
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x6c, // LOAD_ATTR 'tap'
+    0x13,0x81,0x6a, // LOAD_ATTR 'tap'
     0xb2, // LOAD_FAST 2
     0x58, // DUP_TOP_TWO
     0x55, // LOAD_SUBSCR
@@ -59054,39 +62327,39 @@ static const byte fun_data_mc2d_Juego_paso[541] = {
     0x5b, // ROT_THREE
     0x56, // STORE_SUBSCR
     0x42,0x30, // JUMP -16
-    0x12,0x82,0x56, // LOAD_GLOBAL 'K'
+    0x12,0x82,0x68, // LOAD_GLOBAL 'K'
     0x14,0x82,0x18, // LOAD_METHOD 'pulsada'
-    0x10,0x82,0x4b, // LOAD_CONST_STRING '5'
+    0x10,0x82,0x5f, // LOAD_CONST_STRING '5'
     0x36,0x01, // CALL_METHOD 1
     0x44,0x4a, // POP_JUMP_IF_FALSE 10
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x07, // LOAD_METHOD 'picar'
+    0x14,0x82,0x05, // LOAD_METHOD 'picar'
     0xb1, // LOAD_FAST 1
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0x42,0x67, // JUMP 39
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x5b, // LOAD_ATTR 'pico'
+    0x13,0x81,0x57, // LOAD_ATTR 'pico'
     0x82, // LOAD_CONST_SMALL_INT 2
     0x55, // LOAD_SUBSCR
     0x44,0x5f, // POP_JUMP_IF_FALSE 31
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x67, // LOAD_ATTR 'sucios'
-    0x14,0x3b, // LOAD_METHOD 'append'
+    0x13,0x81,0x65, // LOAD_ATTR 'sucios'
+    0x14,0x59, // LOAD_METHOD 'append'
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x5b, // LOAD_ATTR 'pico'
+    0x13,0x81,0x57, // LOAD_ATTR 'pico'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x5b, // LOAD_ATTR 'pico'
+    0x13,0x81,0x57, // LOAD_ATTR 'pico'
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
     0x2a,0x02, // BUILD_TUPLE 2
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
-    0x23,0x68, // LOAD_CONST_OBJ 104
+    0x23,0x70, // LOAD_CONST_OBJ 112
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x5b, // STORE_ATTR 'pico'
+    0x18,0x81,0x57, // STORE_ATTR 'pico'
     0x42,0x40, // JUMP 0
     0xb0, // LOAD_FAST 0
     0x14,0x82,0x17, // LOAD_METHOD 'fisica'
@@ -59094,148 +62367,116 @@ static const byte fun_data_mc2d_Juego_paso[541] = {
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x29, // LOAD_METHOD 'mobs_paso'
+    0x14,0x82,0x2e, // LOAD_METHOD 'mobs_paso'
     0xb1, // LOAD_FAST 1
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x44, // LOAD_METHOD 'red_paso'
+    0x14,0x81,0x35, // LOAD_METHOD 'red_paso'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
-    0x12,0x83,0x38, // LOAD_GLOBAL 'max'
-    0x23,0x65, // LOAD_CONST_OBJ 101
+    0x12,0x83,0x6c, // LOAD_GLOBAL 'max'
+    0x23,0x6c, // LOAD_CONST_OBJ 108
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x5e, // LOAD_ATTR 'golpe_t'
+    0x13,0x81,0x5a, // LOAD_ATTR 'golpe_t'
     0xb1, // LOAD_FAST 1
     0xf3, // BINARY_OP 28 __sub__
     0x34,0x02, // CALL_FUNCTION 2
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x5e, // STORE_ATTR 'golpe_t'
-    0x12,0x83,0x38, // LOAD_GLOBAL 'max'
-    0x23,0x65, // LOAD_CONST_OBJ 101
+    0x18,0x81,0x5a, // STORE_ATTR 'golpe_t'
+    0x12,0x83,0x6c, // LOAD_GLOBAL 'max'
+    0x23,0x6c, // LOAD_CONST_OBJ 108
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x5f, // LOAD_ATTR 'dano_t'
+    0x13,0x81,0x5b, // LOAD_ATTR 'dano_t'
     0xb1, // LOAD_FAST 1
     0xf3, // BINARY_OP 28 __sub__
     0x34,0x02, // CALL_FUNCTION 2
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x5f, // STORE_ATTR 'dano_t'
+    0x18,0x81,0x5b, // STORE_ATTR 'dano_t'
     0xb0, // LOAD_FAST 0
     0x57, // DUP_TOP
-    0x13,0x79, // LOAD_ATTR 'tiempo'
+    0x13,0x6a, // LOAD_ATTR 'tiempo'
     0xb1, // LOAD_FAST 1
     0xe5, // BINARY_OP 14 __iadd__
     0x5a, // ROT_TWO
-    0x18,0x79, // STORE_ATTR 'tiempo'
+    0x18,0x6a, // STORE_ATTR 'tiempo'
     0xb0, // LOAD_FAST 0
-    0x57, // DUP_TOP
-    0x13,0x81,0x56, // LOAD_ATTR 'hambre_t'
-    0xb1, // LOAD_FAST 1
-    0x12,0x83,0x3f, // LOAD_GLOBAL 'abs'
-    0xb0, // LOAD_FAST 0
-    0x13,0x81,0x52, // LOAD_ATTR 'vx'
-    0x34,0x01, // CALL_FUNCTION 1
-    0x23,0x28, // LOAD_CONST_OBJ 40
-    0xd8, // BINARY_OP 1 __gt__
-    0x44,0x44, // POP_JUMP_IF_FALSE 4
-    0x23,0x31, // LOAD_CONST_OBJ 49
-    0x42,0x42, // JUMP 2
-    0x23,0x2d, // LOAD_CONST_OBJ 45
-    0xf4, // BINARY_OP 29 __mul__
-    0xe5, // BINARY_OP 14 __iadd__
-    0x5a, // ROT_TWO
-    0x18,0x81,0x56, // STORE_ATTR 'hambre_t'
-    0xb0, // LOAD_FAST 0
-    0x13,0x81,0x56, // LOAD_ATTR 'hambre_t'
-    0xa8, // LOAD_CONST_SMALL_INT 40
-    0xd8, // BINARY_OP 1 __gt__
-    0x44,0x53, // POP_JUMP_IF_FALSE 19
+    0x13,0x81,0x51, // LOAD_ATTR 'sat'
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x59, // POP_JUMP_IF_FALSE 25
+    0x12,0x83,0x6c, // LOAD_GLOBAL 'max'
     0x80, // LOAD_CONST_SMALL_INT 0
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x56, // STORE_ATTR 'hambre_t'
-    0x12,0x83,0x38, // LOAD_GLOBAL 'max'
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0xb0, // LOAD_FAST 0
-    0x13,0x78, // LOAD_ATTR 'hambre'
+    0x13,0x69, // LOAD_ATTR 'hambre'
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf3, // BINARY_OP 28 __sub__
     0x34,0x02, // CALL_FUNCTION 2
     0xb0, // LOAD_FAST 0
-    0x18,0x78, // STORE_ATTR 'hambre'
+    0x18,0x69, // STORE_ATTR 'hambre'
     0xb0, // LOAD_FAST 0
-    0x13,0x78, // LOAD_ATTR 'hambre'
-    0x92, // LOAD_CONST_SMALL_INT 18
+    0x57, // DUP_TOP
+    0x13,0x81,0x51, // LOAD_ATTR 'sat'
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0xe5, // BINARY_OP 14 __iadd__
+    0x5a, // ROT_TWO
+    0x18,0x81,0x51, // STORE_ATTR 'sat'
+    0xb0, // LOAD_FAST 0
+    0x57, // DUP_TOP
+    0x13,0x81,0x52, // LOAD_ATTR 'ticks'
+    0xb1, // LOAD_FAST 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x5a, // ROT_TWO
+    0x18,0x81,0x52, // STORE_ATTR 'ticks'
+    0xb0, // LOAD_FAST 0
+    0x13,0x81,0x52, // LOAD_ATTR 'ticks'
+    0x84, // LOAD_CONST_SMALL_INT 4
     0xdb, // BINARY_OP 4 __ge__
-    0x44,0x72, // POP_JUMP_IF_FALSE 50
+    0x44,0x7c, // POP_JUMP_IF_FALSE 60
     0xb0, // LOAD_FAST 0
-    0x13,0x77, // LOAD_ATTR 'vida'
+    0x57, // DUP_TOP
+    0x13,0x81,0x52, // LOAD_ATTR 'ticks'
+    0x84, // LOAD_CONST_SMALL_INT 4
+    0xe6, // BINARY_OP 15 __isub__
+    0x5a, // ROT_TWO
+    0x18,0x81,0x52, // STORE_ATTR 'ticks'
+    0xb0, // LOAD_FAST 0
+    0x13,0x69, // LOAD_ATTR 'hambre'
+    0x91, // LOAD_CONST_SMALL_INT 17
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x52, // POP_JUMP_IF_FALSE 18
+    0xb0, // LOAD_FAST 0
+    0x13,0x68, // LOAD_ATTR 'vida'
     0x94, // LOAD_CONST_SMALL_INT 20
     0xd7, // BINARY_OP 0 __lt__
-    0x44,0x6b, // POP_JUMP_IF_FALSE 43
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
-    0xb0, // LOAD_FAST 0
-    0x13,0x79, // LOAD_ATTR 'tiempo'
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0xf4, // BINARY_OP 29 __mul__
-    0x34,0x01, // CALL_FUNCTION 1
-    0x88, // LOAD_CONST_SMALL_INT 8
-    0xf8, // BINARY_OP 33 __mod__
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0xd9, // BINARY_OP 2 __eq__
-    0x44,0x5b, // POP_JUMP_IF_FALSE 27
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
-    0xb0, // LOAD_FAST 0
-    0x13,0x79, // LOAD_ATTR 'tiempo'
-    0xb1, // LOAD_FAST 1
-    0xf3, // BINARY_OP 28 __sub__
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0xf4, // BINARY_OP 29 __mul__
-    0x34,0x01, // CALL_FUNCTION 1
-    0x88, // LOAD_CONST_SMALL_INT 8
-    0xf8, // BINARY_OP 33 __mod__
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0xdc, // BINARY_OP 5 __ne__
-    0x44,0x49, // POP_JUMP_IF_FALSE 9
+    0x44,0x4b, // POP_JUMP_IF_FALSE 11
     0xb0, // LOAD_FAST 0
     0x57, // DUP_TOP
-    0x13,0x77, // LOAD_ATTR 'vida'
+    0x13,0x68, // LOAD_ATTR 'vida'
     0x81, // LOAD_CONST_SMALL_INT 1
     0xe5, // BINARY_OP 14 __iadd__
     0x5a, // ROT_TWO
-    0x18,0x77, // STORE_ATTR 'vida'
+    0x18,0x68, // STORE_ATTR 'vida'
+    0x42,0x58, // JUMP 24
     0xb0, // LOAD_FAST 0
-    0x13,0x78, // LOAD_ATTR 'hambre'
+    0x13,0x69, // LOAD_ATTR 'hambre'
     0x80, // LOAD_CONST_SMALL_INT 0
     0xd9, // BINARY_OP 2 __eq__
-    0x44,0x66, // POP_JUMP_IF_FALSE 38
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x44,0x51, // POP_JUMP_IF_FALSE 17
     0xb0, // LOAD_FAST 0
-    0x13,0x79, // LOAD_ATTR 'tiempo'
-    0x34,0x01, // CALL_FUNCTION 1
-    0x84, // LOAD_CONST_SMALL_INT 4
-    0xf8, // BINARY_OP 33 __mod__
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0xd9, // BINARY_OP 2 __eq__
-    0x44,0x58, // POP_JUMP_IF_FALSE 24
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x13,0x68, // LOAD_ATTR 'vida'
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xd8, // BINARY_OP 1 __gt__
+    0x44,0x4a, // POP_JUMP_IF_FALSE 10
     0xb0, // LOAD_FAST 0
-    0x13,0x79, // LOAD_ATTR 'tiempo'
-    0xb1, // LOAD_FAST 1
-    0xf3, // BINARY_OP 28 __sub__
-    0x34,0x01, // CALL_FUNCTION 1
-    0x84, // LOAD_CONST_SMALL_INT 4
-    0xf8, // BINARY_OP 33 __mod__
-    0x80, // LOAD_CONST_SMALL_INT 0
-    0xdc, // BINARY_OP 5 __ne__
-    0x44,0x48, // POP_JUMP_IF_FALSE 8
-    0xb0, // LOAD_FAST 0
-    0x14,0x82,0x20, // LOAD_METHOD 'herir'
+    0x14,0x82,0x1f, // LOAD_METHOD 'herir'
     0x81, // LOAD_CONST_SMALL_INT 1
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
-    0x12,0x83,0x65, // LOAD_GLOBAL 'getattr'
+    0x42,0x40, // JUMP 0
+    0x12,0x84,0x21, // LOAD_GLOBAL 'getattr'
     0xb0, // LOAD_FAST 0
-    0x10,0x82,0x32, // LOAD_CONST_STRING 'aviso_t'
+    0x10,0x82,0x3c, // LOAD_CONST_STRING 'aviso_t'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x34,0x03, // CALL_FUNCTION 3
     0x80, // LOAD_CONST_SMALL_INT 0
@@ -59243,69 +62484,69 @@ static const byte fun_data_mc2d_Juego_paso[541] = {
     0x44,0x58, // POP_JUMP_IF_FALSE 24
     0xb0, // LOAD_FAST 0
     0x57, // DUP_TOP
-    0x13,0x82,0x32, // LOAD_ATTR 'aviso_t'
+    0x13,0x82,0x3c, // LOAD_ATTR 'aviso_t'
     0xb1, // LOAD_FAST 1
     0xe6, // BINARY_OP 15 __isub__
     0x5a, // ROT_TWO
-    0x18,0x82,0x32, // STORE_ATTR 'aviso_t'
+    0x18,0x82,0x3c, // STORE_ATTR 'aviso_t'
     0xb0, // LOAD_FAST 0
-    0x13,0x82,0x32, // LOAD_ATTR 'aviso_t'
+    0x13,0x82,0x3c, // LOAD_ATTR 'aviso_t'
     0x80, // LOAD_CONST_SMALL_INT 0
     0xda, // BINARY_OP 3 __le__
     0x44,0x45, // POP_JUMP_IF_FALSE 5
     0x51, // LOAD_CONST_NONE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x6a, // STORE_ATTR 'aviso'
+    0x18,0x81,0x68, // STORE_ATTR 'aviso'
     0xb0, // LOAD_FAST 0
-    0x13,0x79, // LOAD_ATTR 'tiempo'
-    0x12,0x83,0x1c, // LOAD_GLOBAL 'DIA_S'
+    0x13,0x6a, // LOAD_ATTR 'tiempo'
+    0x12,0x83,0x4c, // LOAD_GLOBAL 'DIA_S'
     0xf8, // BINARY_OP 33 __mod__
-    0x12,0x83,0x1c, // LOAD_GLOBAL 'DIA_S'
+    0x12,0x83,0x4c, // LOAD_GLOBAL 'DIA_S'
     0xf7, // BINARY_OP 32 __truediv__
     0xc3, // STORE_FAST 3
-    0x23,0x36, // LOAD_CONST_OBJ 54
+    0x23,0x2e, // LOAD_CONST_OBJ 46
     0xb3, // LOAD_FAST 3
     0x57, // DUP_TOP
     0x5b, // ROT_THREE
     0xd7, // BINARY_OP 0 __lt__
     0x46,0x06, // JUMP_IF_FALSE_OR_POP 6
-    0x23,0x81,0x15, // LOAD_CONST_OBJ 149
+    0x23,0x81,0x26, // LOAD_CONST_OBJ 166
     0xd7, // BINARY_OP 0 __lt__
     0x42,0x42, // JUMP 2
     0x5a, // ROT_TWO
     0x59, // POP_TOP
     0x44,0x44, // POP_JUMP_IF_FALSE 4
-    0x23,0x2d, // LOAD_CONST_OBJ 45
+    0x23,0x25, // LOAD_CONST_OBJ 37
     0x42,0x61, // JUMP 33
     0xb3, // LOAD_FAST 3
-    0x23,0x81,0x16, // LOAD_CONST_OBJ 150
+    0x23,0x81,0x27, // LOAD_CONST_OBJ 167
     0xd7, // BINARY_OP 0 __lt__
     0x44,0x44, // POP_JUMP_IF_FALSE 4
-    0x23,0x65, // LOAD_CONST_OBJ 101
+    0x23,0x6c, // LOAD_CONST_OBJ 108
     0x42,0x56, // JUMP 22
     0xb3, // LOAD_FAST 3
-    0x23,0x36, // LOAD_CONST_OBJ 54
+    0x23,0x2e, // LOAD_CONST_OBJ 46
     0xd7, // BINARY_OP 0 __lt__
     0x44,0x4a, // POP_JUMP_IF_FALSE 10
     0xb3, // LOAD_FAST 3
-    0x23,0x81,0x16, // LOAD_CONST_OBJ 150
+    0x23,0x81,0x27, // LOAD_CONST_OBJ 167
     0xf3, // BINARY_OP 28 __sub__
-    0x23,0x28, // LOAD_CONST_OBJ 40
+    0x23,0x20, // LOAD_CONST_OBJ 32
     0xf7, // BINARY_OP 32 __truediv__
     0x42,0x46, // JUMP 6
     0x81, // LOAD_CONST_SMALL_INT 1
     0xb3, // LOAD_FAST 3
     0xf3, // BINARY_OP 28 __sub__
-    0x23,0x78, // LOAD_CONST_OBJ 120
+    0x23,0x7b, // LOAD_CONST_OBJ 123
     0xf7, // BINARY_OP 32 __truediv__
     0xc4, // STORE_FAST 4
-    0x12,0x70, // LOAD_GLOBAL 'mezcla'
-    0x12,0x83,0x18, // LOAD_GLOBAL 'CIELO_DIA'
-    0x12,0x83,0x19, // LOAD_GLOBAL 'CIELO_NOCHE'
-    0x12,0x83,0x37, // LOAD_GLOBAL 'min'
-    0x23,0x2d, // LOAD_CONST_OBJ 45
-    0x12,0x83,0x38, // LOAD_GLOBAL 'max'
-    0x23,0x65, // LOAD_CONST_OBJ 101
+    0x12,0x62, // LOAD_GLOBAL 'mezcla'
+    0x12,0x83,0x48, // LOAD_GLOBAL 'CIELO_DIA'
+    0x12,0x83,0x49, // LOAD_GLOBAL 'CIELO_NOCHE'
+    0x12,0x83,0x6b, // LOAD_GLOBAL 'min'
+    0x23,0x25, // LOAD_CONST_OBJ 37
+    0x12,0x83,0x6c, // LOAD_GLOBAL 'max'
+    0x23,0x6c, // LOAD_CONST_OBJ 108
     0xb4, // LOAD_FAST 4
     0x34,0x02, // CALL_FUNCTION 2
     0x34,0x02, // CALL_FUNCTION 2
@@ -59313,29 +62554,29 @@ static const byte fun_data_mc2d_Juego_paso[541] = {
     0xc2, // STORE_FAST 2
     0xb2, // LOAD_FAST 2
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x6b, // LOAD_ATTR 'cielo'
+    0x13,0x81,0x69, // LOAD_ATTR 'cielo'
     0xdc, // BINARY_OP 5 __ne__
     0x44,0x60, // POP_JUMP_IF_FALSE 32
-    0x12,0x83,0x3f, // LOAD_GLOBAL 'abs'
+    0x12,0x83,0x75, // LOAD_GLOBAL 'abs'
     0xb4, // LOAD_FAST 4
     0x88, // LOAD_CONST_SMALL_INT 8
     0xf4, // BINARY_OP 29 __mul__
-    0x12,0x83,0x62, // LOAD_GLOBAL 'round'
+    0x12,0x84,0x1b, // LOAD_GLOBAL 'round'
     0xb4, // LOAD_FAST 4
     0x88, // LOAD_CONST_SMALL_INT 8
     0xf4, // BINARY_OP 29 __mul__
     0x34,0x01, // CALL_FUNCTION 1
     0xf3, // BINARY_OP 28 __sub__
     0x34,0x01, // CALL_FUNCTION 1
-    0x23,0x78, // LOAD_CONST_OBJ 120
+    0x23,0x7b, // LOAD_CONST_OBJ 123
     0xd7, // BINARY_OP 0 __lt__
     0x44,0x4a, // POP_JUMP_IF_FALSE 10
     0xb2, // LOAD_FAST 2
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x6b, // STORE_ATTR 'cielo'
+    0x18,0x81,0x69, // STORE_ATTR 'cielo'
     0x52, // LOAD_CONST_TRUE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x66, // STORE_ATTR 'completo'
+    0x18,0x81,0x64, // STORE_ATTR 'completo'
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -59348,7 +62589,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_paso = {
     .fun_data = fun_data_mc2d_Juego_paso,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 541,
+    .fun_data_len = 491,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -59362,10 +62603,10 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_paso = {
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 201,
+        .qstr_block_name_idx = 186,
         .line_info = fun_data_mc2d_Juego_paso + 8,
-        .line_info_top = fun_data_mc2d_Juego_paso + 46,
-        .opcodes = fun_data_mc2d_Juego_paso + 46,
+        .line_info_top = fun_data_mc2d_Juego_paso + 45,
+        .opcodes = fun_data_mc2d_Juego_paso + 45,
     },
     #endif
     #endif
@@ -59378,24 +62619,24 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_paso = {
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_fondo_paso
 static const byte fun_data_mc2d_Juego_fondo_paso[95] = {
     0x41,0x1e, // prelude
-    0x82,0x3a,0x83,0x4e, // names: fondo_paso, self
-    0xc0,0xaf,0x20,0x26,0x22,0x29,0x39,0x25,0x29,0x28,0x27, // code info
+    0x82,0x4a,0x84,0x05, // names: fondo_paso, self
+    0xe0,0x4d,0x20,0x26,0x22,0x29,0x39,0x25,0x29,0x28,0x27, // code info
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x39, // LOAD_ATTR 'online'
+    0x13,0x81,0x2a, // LOAD_ATTR 'online'
     0x43,0x42, // POP_JUMP_IF_TRUE 2
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
-    0x12,0x82,0x56, // LOAD_GLOBAL 'K'
-    0x14,0x81,0x11, // LOAD_METHOD 'ms'
+    0x12,0x82,0x68, // LOAD_GLOBAL 'K'
+    0x14,0x81,0x03, // LOAD_METHOD 'ms'
     0x36,0x00, // CALL_METHOD 0
     0xc1, // STORE_FAST 1
-    0x12,0x83,0x37, // LOAD_GLOBAL 'min'
-    0x23,0x28, // LOAD_CONST_OBJ 40
-    0x12,0x83,0x38, // LOAD_GLOBAL 'max'
-    0x23,0x65, // LOAD_CONST_OBJ 101
+    0x12,0x83,0x6b, // LOAD_GLOBAL 'min'
+    0x23,0x20, // LOAD_CONST_OBJ 32
+    0x12,0x83,0x6c, // LOAD_GLOBAL 'max'
+    0x23,0x6c, // LOAD_CONST_OBJ 108
     0xb1, // LOAD_FAST 1
     0xb0, // LOAD_FAST 0
-    0x13,0x82,0x39, // LOAD_ATTR 'fondo_t'
+    0x13,0x82,0x49, // LOAD_ATTR 'fondo_t'
     0xf3, // BINARY_OP 28 __sub__
     0x22,0x87,0x68, // LOAD_CONST_SMALL_INT 1000
     0xf7, // BINARY_OP 32 __truediv__
@@ -59404,26 +62645,26 @@ static const byte fun_data_mc2d_Juego_fondo_paso[95] = {
     0xc2, // STORE_FAST 2
     0xb1, // LOAD_FAST 1
     0xb0, // LOAD_FAST 0
-    0x18,0x82,0x39, // STORE_ATTR 'fondo_t'
+    0x18,0x82,0x49, // STORE_ATTR 'fondo_t'
     0xb0, // LOAD_FAST 0
     0x57, // DUP_TOP
-    0x13,0x79, // LOAD_ATTR 'tiempo'
+    0x13,0x6a, // LOAD_ATTR 'tiempo'
     0xb2, // LOAD_FAST 2
     0xe5, // BINARY_OP 14 __iadd__
     0x5a, // ROT_TWO
-    0x18,0x79, // STORE_ATTR 'tiempo'
+    0x18,0x6a, // STORE_ATTR 'tiempo'
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x29, // LOAD_METHOD 'mobs_paso'
+    0x14,0x82,0x2e, // LOAD_METHOD 'mobs_paso'
     0xb2, // LOAD_FAST 2
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x44, // LOAD_METHOD 'red_paso'
+    0x14,0x81,0x35, // LOAD_METHOD 'red_paso'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0x52, // LOAD_CONST_TRUE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x66, // STORE_ATTR 'completo'
+    0x18,0x81,0x64, // STORE_ATTR 'completo'
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -59450,7 +62691,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_fondo_paso = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 314,
+        .qstr_block_name_idx = 330,
         .line_info = fun_data_mc2d_Juego_fondo_paso + 6,
         .line_info_top = fun_data_mc2d_Juego_fondo_paso + 17,
         .opcodes = fun_data_mc2d_Juego_fondo_paso + 17,
@@ -59464,28 +62705,28 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_fondo_paso = {
 
 // child of mc2d_Juego
 // frozen bytecode for file mc2d.py, scope mc2d_Juego_morir
-static const byte fun_data_mc2d_Juego_morir[235] = {
+static const byte fun_data_mc2d_Juego_morir[241] = {
     0x69,0x30, // prelude
-    0x81,0x4a,0x83,0x4e, // names: morir, self
-    0xc0,0xbb,0x29,0x3a,0x38,0x36,0x28,0x25,0x2c,0x20,0x27,0x2f,0x27,0x25,0x2a,0x28,0x35,0x27,0x25,0x25, // code info
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x81,0x76, // LOAD_METHOD 'recorte'
+    0x81,0x3b,0x84,0x05, // names: morir, self
+    0xe0,0x59,0x29,0x3a,0x38,0x36,0x28,0x25,0x2c,0x20,0x27,0x2f,0x28,0x25,0x2f,0x28,0x35,0x27,0x25,0x25, // code info
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x74, // LOAD_METHOD 'recorte'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x56, // LOAD_METHOD 'rect'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x45, // LOAD_METHOD 'rect'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x13,0x3c, // LOAD_ATTR 'ANCHO'
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x13,0x81,0x1a, // LOAD_ATTR 'ALTO'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x13,0x10, // LOAD_ATTR 'ANCHO'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x13,0x81,0x0c, // LOAD_ATTR 'ALTO'
     0x22,0x83,0x80,0xa0,0x10, // LOAD_CONST_SMALL_INT 6295568
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x57, // LOAD_METHOD 'texto'
-    0x10,0x82,0x4e, // LOAD_CONST_STRING 'Has muerto'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x46, // LOAD_METHOD 'texto'
+    0x10,0x82,0x62, // LOAD_CONST_STRING 'Has muerto'
     0x22,0x80,0x64, // LOAD_CONST_SMALL_INT 100
     0x22,0x80,0x46, // LOAD_CONST_SMALL_INT 70
     0x22,0x87,0xff,0xff,0x7f, // LOAD_CONST_SMALL_INT 16777215
@@ -59493,62 +62734,64 @@ static const byte fun_data_mc2d_Juego_morir[235] = {
     0x82, // LOAD_CONST_SMALL_INT 2
     0x36,0x06, // CALL_METHOD 6
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x57, // LOAD_METHOD 'texto'
-    0x23,0x81,0x17, // LOAD_CONST_OBJ 151
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x46, // LOAD_METHOD 'texto'
+    0x23,0x81,0x28, // LOAD_CONST_OBJ 168
     0x22,0x80,0x6e, // LOAD_CONST_SMALL_INT 110
     0x22,0x80,0x78, // LOAD_CONST_SMALL_INT 120
     0x22,0x87,0xff,0x81,0x40, // LOAD_CONST_SMALL_INT 16761024
     0x36,0x04, // CALL_METHOD 4
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x58, // LOAD_METHOD 'mostrar'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x47, // LOAD_METHOD 'mostrar'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0x52, // LOAD_CONST_TRUE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x62, // STORE_ATTR 'muerto'
-    0x12,0x82,0x56, // LOAD_GLOBAL 'K'
-    0x14,0x81,0x11, // LOAD_METHOD 'ms'
+    0x18,0x81,0x60, // STORE_ATTR 'muerto'
+    0x12,0x82,0x68, // LOAD_GLOBAL 'K'
+    0x14,0x81,0x03, // LOAD_METHOD 'ms'
     0x36,0x00, // CALL_METHOD 0
     0xb0, // LOAD_FAST 0
-    0x18,0x82,0x39, // STORE_ATTR 'fondo_t'
+    0x18,0x82,0x49, // STORE_ATTR 'fondo_t'
     0xb0, // LOAD_FAST 0
-    0x14,0x82,0x3a, // LOAD_METHOD 'fondo_paso'
+    0x14,0x82,0x4a, // LOAD_METHOD 'fondo_paso'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
-    0x12,0x82,0x56, // LOAD_GLOBAL 'K'
-    0x14,0x81,0x1c, // LOAD_METHOD 'eventos'
+    0x12,0x82,0x68, // LOAD_GLOBAL 'K'
+    0x14,0x81,0x0f, // LOAD_METHOD 'eventos'
     0x36,0x00, // CALL_METHOD 0
     0x5f, // GET_ITER_STACK
-    0x4b,0x48, // FOR_ITER 72
+    0x4b,0x4e, // FOR_ITER 78
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xc1, // STORE_FAST 1
     0xc2, // STORE_FAST 2
     0xb1, // LOAD_FAST 1
-    0x10,0x81,0x1e, // LOAD_CONST_STRING 'EXE'
+    0x10,0x81,0x11, // LOAD_CONST_STRING 'EXE'
     0xd9, // BINARY_OP 2 __eq__
-    0x44,0x7a, // POP_JUMP_IF_FALSE 58
+    0x44,0xbf,0x80, // POP_JUMP_IF_FALSE 63
     0x50, // LOAD_CONST_FALSE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x62, // STORE_ATTR 'muerto'
-    0x23,0x66, // LOAD_CONST_OBJ 102
-    0x30,0x02, // UNPACK_SEQUENCE 2
+    0x18,0x81,0x60, // STORE_ATTR 'muerto'
+    0x23,0x81,0x29, // LOAD_CONST_OBJ 169
+    0x30,0x03, // UNPACK_SEQUENCE 3
     0xb0, // LOAD_FAST 0
-    0x18,0x77, // STORE_ATTR 'vida'
+    0x18,0x68, // STORE_ATTR 'vida'
     0xb0, // LOAD_FAST 0
-    0x18,0x78, // STORE_ATTR 'hambre'
-    0x12,0x83,0x2a, // LOAD_GLOBAL 'NHUECOS'
+    0x18,0x69, // STORE_ATTR 'hambre'
+    0xb0, // LOAD_FAST 0
+    0x18,0x81,0x51, // STORE_ATTR 'sat'
+    0x12,0x83,0x57, // LOAD_GLOBAL 'NHUECOS'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x42,0x50, // JUMP 16
     0x57, // DUP_TOP
     0xc3, // STORE_FAST 3
     0x80, // LOAD_CONST_SMALL_INT 0
     0x57, // DUP_TOP
-    0x12,0x83,0x2b, // LOAD_GLOBAL 'inv_id'
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
     0xb3, // LOAD_FAST 3
     0x56, // STORE_SUBSCR
-    0x12,0x83,0x2c, // LOAD_GLOBAL 'inv_n'
+    0x12,0x83,0x59, // LOAD_GLOBAL 'inv_n'
     0xb3, // LOAD_FAST 3
     0x56, // STORE_SUBSCR
     0x81, // LOAD_CONST_SMALL_INT 1
@@ -59560,20 +62803,20 @@ static const byte fun_data_mc2d_Juego_morir[235] = {
     0x59, // POP_TOP
     0x59, // POP_TOP
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x29, // LOAD_METHOD 'aparecer'
+    0x14,0x81,0x1c, // LOAD_METHOD 'aparecer'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0x51, // LOAD_CONST_NONE
     0xb0, // LOAD_FAST 0
-    0x18,0x81,0x69, // STORE_ATTR 'hud'
+    0x18,0x81,0x67, // STORE_ATTR 'hud'
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
-    0x42,0xb6,0x7f, // JUMP -74
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x58, // LOAD_METHOD 'mostrar'
+    0x42,0xb0,0x7f, // JUMP -80
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x47, // LOAD_METHOD 'mostrar'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
-    0x42,0x9b,0x7f, // JUMP -101
+    0x42,0x95,0x7f, // JUMP -107
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -59586,7 +62829,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_morir = {
     .fun_data = fun_data_mc2d_Juego_morir,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 235,
+    .fun_data_len = 241,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -59600,7 +62843,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego_morir = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 202,
+        .qstr_block_name_idx = 187,
         .line_info = fun_data_mc2d_Juego_morir + 6,
         .line_info_top = fun_data_mc2d_Juego_morir + 26,
         .opcodes = fun_data_mc2d_Juego_morir + 26,
@@ -59625,14 +62868,18 @@ static const mp_raw_code_t *const children_mc2d_Juego[] = {
     (const mp_raw_code_t *)&proto_fun_mc2d_Juego_dibujar_hud,
     (const mp_raw_code_t *)&proto_fun_mc2d_Juego_caja_jugador,
     (const mp_raw_code_t *)&proto_fun_mc2d_Juego_a_bloques,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_dibujar_steve,
     (const mp_raw_code_t *)&proto_fun_mc2d_Juego_pintar,
     (const mp_raw_code_t *)&proto_fun_mc2d_Juego_poner,
     (const mp_raw_code_t *)&proto_fun_mc2d_Juego_asentar,
     (const mp_raw_code_t *)&proto_fun_mc2d_Juego_toca_jugador,
-    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_herramienta,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_gastar_herramienta,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_tiempo_picar,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_suelta,
     (const mp_raw_code_t *)&proto_fun_mc2d_Juego_picar,
     (const mp_raw_code_t *)&proto_fun_mc2d_Juego_usar,
     (const mp_raw_code_t *)&proto_fun_mc2d_Juego_mob_en,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_dano_arma,
     (const mp_raw_code_t *)&proto_fun_mc2d_Juego_golpear,
     (const mp_raw_code_t *)&proto_fun_mc2d_Juego_libre_col,
     (const mp_raw_code_t *)&proto_fun_mc2d_Juego_mover_x,
@@ -59645,10 +62892,16 @@ static const mp_raw_code_t *const children_mc2d_Juego[] = {
     (const mp_raw_code_t *)&proto_fun_mc2d_Juego_herir_a,
     (const mp_raw_code_t *)&proto_fun_mc2d_Juego_oye,
     (const mp_raw_code_t *)&proto_fun_mc2d_Juego_ruido_mob,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_nuevo_mob,
     (const mp_raw_code_t *)&proto_fun_mc2d_Juego_mobs_paso,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_flechas_paso,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_explotar,
     (const mp_raw_code_t *)&proto_fun_mc2d_Juego_dano_mob,
     (const mp_raw_code_t *)&proto_fun_mc2d_Juego_red_paso,
     (const mp_raw_code_t *)&proto_fun_mc2d_Juego_cerca,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_opciones,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_combustible,
+    (const mp_raw_code_t *)&proto_fun_mc2d_Juego_hacer,
     (const mp_raw_code_t *)&proto_fun_mc2d_Juego_abrir_inventario,
     (const mp_raw_code_t *)&proto_fun_mc2d_Juego_pausa,
     (const mp_raw_code_t *)&proto_fun_mc2d_Juego_teclas,
@@ -59665,8 +62918,8 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego = {
     .fun_data = fun_data_mc2d_Juego,
     .children = (void *)&children_mc2d_Juego,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 327,
-    .n_children = 42,
+    .fun_data_len = 400,
+    .n_children = 52,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
     #endif
@@ -59679,10 +62932,10 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego = {
         .n_pos_args = 0,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 61,
+        .qstr_block_name_idx = 21,
         .line_info = fun_data_mc2d_Juego + 4,
-        .line_info_top = fun_data_mc2d_Juego + 84,
-        .opcodes = fun_data_mc2d_Juego + 84,
+        .line_info_top = fun_data_mc2d_Juego + 104,
+        .opcodes = fun_data_mc2d_Juego + 104,
     },
     #endif
     #endif
@@ -59692,9 +62945,9 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_Juego = {
 // frozen bytecode for file mc2d.py, scope mc2d_acercar
 static const byte fun_data_mc2d_acercar[33] = {
     0x22,0x10, // prelude
-    0x6c,0x82,0x1a,0x83,0x2f, // names: acercar, a, b
-    0xc0,0xd1,0x20, // code info
-    0x12,0x83,0x3f, // LOAD_GLOBAL 'abs'
+    0x61,0x82,0x1a,0x83,0x64, // names: acercar, a, b
+    0xe0,0x6f,0x20, // code info
+    0x12,0x83,0x75, // LOAD_GLOBAL 'abs'
     0xb1, // LOAD_FAST 1
     0xb0, // LOAD_FAST 0
     0xf3, // BINARY_OP 28 __sub__
@@ -59708,7 +62961,7 @@ static const byte fun_data_mc2d_acercar[33] = {
     0xb1, // LOAD_FAST 1
     0xb0, // LOAD_FAST 0
     0xf3, // BINARY_OP 28 __sub__
-    0x23,0x3b, // LOAD_CONST_OBJ 59
+    0x23,0x37, // LOAD_CONST_OBJ 55
     0xf4, // BINARY_OP 29 __mul__
     0xf2, // BINARY_OP 27 __add__
     0x63, // RETURN_VALUE
@@ -59736,7 +62989,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_acercar = {
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 108,
+        .qstr_block_name_idx = 97,
         .line_info = fun_data_mc2d_acercar + 7,
         .line_info_top = fun_data_mc2d_acercar + 10,
         .opcodes = fun_data_mc2d_acercar + 10,
@@ -59749,74 +63002,12 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_acercar = {
 #endif
 
 // child of mc2d__lt_module_gt_
-// frozen bytecode for file mc2d.py, scope mc2d_medio
-static const byte fun_data_mc2d_medio[35] = {
-    0x22,0x0e, // prelude
-    0x6d,0x83,0x40,0x83,0x41, // names: medio, valor, i
-    0xc0,0xd6, // code info
-    0xb0, // LOAD_FAST 0
-    0xb1, // LOAD_FAST 1
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0xf2, // BINARY_OP 27 __add__
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0xf4, // BINARY_OP 29 __mul__
-    0xdb, // BINARY_OP 4 __ge__
-    0x44,0x43, // POP_JUMP_IF_FALSE 3
-    0x10,0x0a, // LOAD_CONST_STRING ''
-    0x63, // RETURN_VALUE
-    0xb0, // LOAD_FAST 0
-    0xb1, // LOAD_FAST 1
-    0x82, // LOAD_CONST_SMALL_INT 2
-    0xf4, // BINARY_OP 29 __mul__
-    0xd8, // BINARY_OP 1 __gt__
-    0x44,0x44, // POP_JUMP_IF_FALSE 4
-    0x10,0x6e, // LOAD_CONST_STRING '_medio'
-    0x42,0x42, // JUMP 2
-    0x10,0x6f, // LOAD_CONST_STRING '_vacio'
-    0x63, // RETURN_VALUE
-};
-#if MICROPY_PERSISTENT_CODE_SAVE
-static const mp_raw_code_truncated_t proto_fun_mc2d_medio = {
-    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
-    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
-    .kind = MP_CODE_BYTECODE,
-    .is_generator = 0,
-    .fun_data = fun_data_mc2d_medio,
-    .children = NULL,
-    #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 35,
-    .n_children = 0,
-    #if MICROPY_EMIT_MACHINE_CODE
-    .prelude_offset = 0,
-    #endif
-    #if MICROPY_PY_SYS_SETTRACE
-    .line_of_definition = 0,
-    .prelude = {
-        .n_state = 5,
-        .n_exc_stack = 0,
-        .scope_flags = 0,
-        .n_pos_args = 2,
-        .n_kwonly_args = 0,
-        .n_def_pos_args = 0,
-        .qstr_block_name_idx = 109,
-        .line_info = fun_data_mc2d_medio + 7,
-        .line_info_top = fun_data_mc2d_medio + 9,
-        .opcodes = fun_data_mc2d_medio + 9,
-    },
-    #endif
-    #endif
-};
-#else
-#define proto_fun_mc2d_medio fun_data_mc2d_medio[0]
-#endif
-
-// child of mc2d__lt_module_gt_
 // frozen bytecode for file mc2d.py, scope mc2d_mezcla
 static const byte fun_data_mc2d_mezcla[101] = {
     0x4b,0x18, // prelude
-    0x70,0x82,0x1a,0x83,0x2f,0x83,0x42, // names: mezcla, a, b, f
-    0xc0,0xda,0x3b,0x3b,0x37, // code info
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x62,0x82,0x1a,0x83,0x64,0x83,0x76, // names: mezcla, a, b, f
+    0xe0,0x74,0x3b,0x3b,0x37, // code info
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
     0x90, // LOAD_CONST_SMALL_INT 16
     0xf1, // BINARY_OP 26 __rshift__
@@ -59836,7 +63027,7 @@ static const byte fun_data_mc2d_mezcla[101] = {
     0xf2, // BINARY_OP 27 __add__
     0x34,0x01, // CALL_FUNCTION 1
     0xc3, // STORE_FAST 3
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
     0x88, // LOAD_CONST_SMALL_INT 8
     0xf1, // BINARY_OP 26 __rshift__
@@ -59856,7 +63047,7 @@ static const byte fun_data_mc2d_mezcla[101] = {
     0xf2, // BINARY_OP 27 __add__
     0x34,0x01, // CALL_FUNCTION 1
     0xc4, // STORE_FAST 4
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb0, // LOAD_FAST 0
     0x22,0x81,0x7f, // LOAD_CONST_SMALL_INT 255
     0xef, // BINARY_OP 24 __and__
@@ -59906,7 +63097,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_mezcla = {
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 112,
+        .qstr_block_name_idx = 98,
         .line_info = fun_data_mc2d_mezcla + 9,
         .line_info_top = fun_data_mc2d_mezcla + 14,
         .opcodes = fun_data_mc2d_mezcla + 14,
@@ -59920,101 +63111,106 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_mezcla = {
 
 // child of mc2d__lt_module_gt_
 // frozen bytecode for file mc2d.py, scope mc2d_guardar
-static const byte fun_data_mc2d_guardar[186] = {
+static const byte fun_data_mc2d_guardar[195] = {
     0x4d,0x20, // prelude
-    0x71,0x83,0x43, // names: guardar, j
-    0xc0,0xe5,0x22,0x54,0x23,0x1f,0x25,0x35,0x30,0x35,0x28,0x33,0x28, // code info
+    0x63,0x83,0x77, // names: guardar, j
+    0xe0,0x7f,0x22,0x54,0x23,0x1f,0x25,0x35,0x3b,0x35,0x28,0x31,0x28, // code info
     0x48,0x0c, // SETUP_EXCEPT 12
     0x12,0x05, // LOAD_GLOBAL 'os'
-    0x14,0x72, // LOAD_METHOD 'mkdir'
-    0x12,0x83,0x2e, // LOAD_GLOBAL 'CARPETA'
+    0x14,0x64, // LOAD_METHOD 'mkdir'
+    0x12,0x83,0x5b, // LOAD_GLOBAL 'CARPETA'
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0x4a,0x0b, // POP_EXCEPT_JUMP 11
     0x57, // DUP_TOP
-    0x12,0x83,0x32, // LOAD_GLOBAL 'OSError'
+    0x12,0x83,0x60, // LOAD_GLOBAL 'OSError'
     0xdf, // BINARY_OP 8 <exception match>
     0x44,0x43, // POP_JUMP_IF_FALSE 3
     0x59, // POP_TOP
     0x4a,0x01, // POP_EXCEPT_JUMP 1
     0x5d, // END_FINALLY
-    0x2c,0x09, // BUILD_MAP 9
-    0x81, // LOAD_CONST_SMALL_INT 1
-    0x10,0x73, // LOAD_CONST_STRING 'v'
+    0x2c,0x0a, // BUILD_MAP 10
+    0x82, // LOAD_CONST_SMALL_INT 2
+    0x10,0x65, // LOAD_CONST_STRING 'v'
     0x62, // STORE_MAP
     0xb0, // LOAD_FAST 0
-    0x13,0x74, // LOAD_ATTR 'nombre'
-    0x10,0x74, // LOAD_CONST_STRING 'nombre'
+    0x13,0x2b, // LOAD_ATTR 'nombre'
+    0x10,0x2b, // LOAD_CONST_STRING 'nombre'
     0x62, // STORE_MAP
     0xb0, // LOAD_FAST 0
-    0x13,0x75, // LOAD_ATTR 'x'
-    0x10,0x75, // LOAD_CONST_STRING 'x'
+    0x13,0x66, // LOAD_ATTR 'x'
+    0x10,0x66, // LOAD_CONST_STRING 'x'
     0x62, // STORE_MAP
     0xb0, // LOAD_FAST 0
-    0x13,0x76, // LOAD_ATTR 'y'
-    0x10,0x76, // LOAD_CONST_STRING 'y'
+    0x13,0x67, // LOAD_ATTR 'y'
+    0x10,0x67, // LOAD_CONST_STRING 'y'
     0x62, // STORE_MAP
     0xb0, // LOAD_FAST 0
-    0x13,0x77, // LOAD_ATTR 'vida'
-    0x10,0x77, // LOAD_CONST_STRING 'vida'
+    0x13,0x68, // LOAD_ATTR 'vida'
+    0x10,0x68, // LOAD_CONST_STRING 'vida'
     0x62, // STORE_MAP
     0xb0, // LOAD_FAST 0
-    0x13,0x78, // LOAD_ATTR 'hambre'
-    0x10,0x78, // LOAD_CONST_STRING 'hambre'
+    0x13,0x69, // LOAD_ATTR 'hambre'
+    0x10,0x69, // LOAD_CONST_STRING 'hambre'
     0x62, // STORE_MAP
     0xb0, // LOAD_FAST 0
-    0x13,0x79, // LOAD_ATTR 'tiempo'
-    0x10,0x7a, // LOAD_CONST_STRING 't'
+    0x13,0x6a, // LOAD_ATTR 'tiempo'
+    0x10,0x6b, // LOAD_CONST_STRING 't'
     0x62, // STORE_MAP
     0x32,0x00, // MAKE_FUNCTION 0
-    0x12,0x82,0x58, // LOAD_GLOBAL 'range'
-    0x12,0x83,0x2a, // LOAD_GLOBAL 'NHUECOS'
+    0x12,0x82,0x6d, // LOAD_GLOBAL 'range'
+    0x12,0x83,0x57, // LOAD_GLOBAL 'NHUECOS'
     0x34,0x01, // CALL_FUNCTION 1
     0x34,0x01, // CALL_FUNCTION 1
-    0x10,0x7b, // LOAD_CONST_STRING 'inv'
+    0x10,0x6c, // LOAD_CONST_STRING 'inv'
     0x62, // STORE_MAP
     0x32,0x01, // MAKE_FUNCTION 1
-    0x12,0x82,0x58, // LOAD_GLOBAL 'range'
-    0x12,0x83,0x2a, // LOAD_GLOBAL 'NHUECOS'
+    0x12,0x82,0x6d, // LOAD_GLOBAL 'range'
+    0x12,0x83,0x57, // LOAD_GLOBAL 'NHUECOS'
     0x34,0x01, // CALL_FUNCTION 1
     0x34,0x01, // CALL_FUNCTION 1
-    0x10,0x7c, // LOAD_CONST_STRING 'pos'
+    0x10,0x6d, // LOAD_CONST_STRING 'pos'
+    0x62, // STORE_MAP
+    0x12,0x83,0x78, // LOAD_GLOBAL 'list'
+    0x12,0x83,0x02, // LOAD_GLOBAL 'L2PM'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x10,0x6e, // LOAD_CONST_STRING 'ids'
     0x62, // STORE_MAP
     0xc1, // STORE_FAST 1
-    0x12,0x83,0x31, // LOAD_GLOBAL 'open'
-    0x10,0x7d, // LOAD_CONST_STRING '%s/%s.mc2d'
-    0x12,0x83,0x2e, // LOAD_GLOBAL 'CARPETA'
+    0x12,0x83,0x5f, // LOAD_GLOBAL 'open'
+    0x10,0x6f, // LOAD_CONST_STRING '%s/%s.mc2d'
+    0x12,0x83,0x5b, // LOAD_GLOBAL 'CARPETA'
     0xb0, // LOAD_FAST 0
-    0x13,0x74, // LOAD_ATTR 'nombre'
+    0x13,0x2b, // LOAD_ATTR 'nombre'
     0x2a,0x02, // BUILD_TUPLE 2
     0xf8, // BINARY_OP 33 __mod__
-    0x10,0x7e, // LOAD_CONST_STRING 'wb'
+    0x10,0x70, // LOAD_CONST_STRING 'wb'
     0x34,0x02, // CALL_FUNCTION 2
-    0x47,0x2e, // SETUP_WITH 46
+    0x47,0x2c, // SETUP_WITH 44
     0xc2, // STORE_FAST 2
     0xb2, // LOAD_FAST 2
-    0x14,0x7f, // LOAD_METHOD 'write'
-    0x23,0x3c, // LOAD_CONST_OBJ 60
+    0x14,0x71, // LOAD_METHOD 'write'
+    0x23,0x38, // LOAD_CONST_OBJ 56
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0xb2, // LOAD_FAST 2
-    0x14,0x7f, // LOAD_METHOD 'write'
+    0x14,0x71, // LOAD_METHOD 'write'
     0x12,0x04, // LOAD_GLOBAL 'json'
-    0x14,0x81,0x00, // LOAD_METHOD 'dumps'
+    0x14,0x72, // LOAD_METHOD 'dumps'
     0xb1, // LOAD_FAST 1
     0x36,0x01, // CALL_METHOD 1
-    0x14,0x81,0x01, // LOAD_METHOD 'encode'
+    0x14,0x73, // LOAD_METHOD 'encode'
     0x36,0x00, // CALL_METHOD 0
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0xb2, // LOAD_FAST 2
-    0x14,0x7f, // LOAD_METHOD 'write'
-    0x23,0x3d, // LOAD_CONST_OBJ 61
+    0x14,0x71, // LOAD_METHOD 'write'
+    0x23,0x39, // LOAD_CONST_OBJ 57
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0xb2, // LOAD_FAST 2
-    0x14,0x7f, // LOAD_METHOD 'write'
-    0x12,0x81,0x0e, // LOAD_GLOBAL 'mundo'
+    0x14,0x71, // LOAD_METHOD 'write'
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0x51, // LOAD_CONST_NONE
@@ -60027,21 +63223,21 @@ static const byte fun_data_mc2d_guardar[186] = {
 // frozen bytecode for file mc2d.py, scope mc2d_guardar__lt_listcomp_gt_
 static const byte fun_data_mc2d_guardar__lt_listcomp_gt_[39] = {
     0x49,0x0c, // prelude
-    0x82,0x4f,0x83,0x66, // names: <listcomp>, *
-    0xc0,0xea, // code info
+    0x82,0x63,0x84,0x04, // names: <listcomp>, *
+    0xe0,0x84, // code info
     0x2b,0x00, // BUILD_LIST 0
     0xb0, // LOAD_FAST 0
     0x5f, // GET_ITER_STACK
     0x4b,0x18, // FOR_ITER 24
     0xc1, // STORE_FAST 1
-    0x12,0x83,0x2b, // LOAD_GLOBAL 'inv_id'
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
     0xb1, // LOAD_FAST 1
     0x55, // LOAD_SUBSCR
     0x44,0x36, // POP_JUMP_IF_FALSE -10
-    0x12,0x83,0x2b, // LOAD_GLOBAL 'inv_id'
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
     0xb1, // LOAD_FAST 1
     0x55, // LOAD_SUBSCR
-    0x12,0x83,0x2c, // LOAD_GLOBAL 'inv_n'
+    0x12,0x83,0x59, // LOAD_GLOBAL 'inv_n'
     0xb1, // LOAD_FAST 1
     0x55, // LOAD_SUBSCR
     0x2b,0x02, // BUILD_LIST 2
@@ -60072,7 +63268,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_guardar__lt_listcomp_gt_ = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 335,
+        .qstr_block_name_idx = 355,
         .line_info = fun_data_mc2d_guardar__lt_listcomp_gt_ + 6,
         .line_info_top = fun_data_mc2d_guardar__lt_listcomp_gt_ + 8,
         .opcodes = fun_data_mc2d_guardar__lt_listcomp_gt_ + 8,
@@ -60088,14 +63284,14 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_guardar__lt_listcomp_gt_ = {
 // frozen bytecode for file mc2d.py, scope mc2d_guardar__lt_listcomp_gt_2
 static const byte fun_data_mc2d_guardar__lt_listcomp_gt_2[28] = {
     0x41,0x0c, // prelude
-    0x82,0x4f,0x83,0x66, // names: <listcomp>, *
-    0xc0,0xeb, // code info
+    0x82,0x63,0x84,0x04, // names: <listcomp>, *
+    0xe0,0x85, // code info
     0x2b,0x00, // BUILD_LIST 0
     0xb0, // LOAD_FAST 0
     0x5f, // GET_ITER_STACK
     0x4b,0x0d, // FOR_ITER 13
     0xc1, // STORE_FAST 1
-    0x12,0x83,0x2b, // LOAD_GLOBAL 'inv_id'
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
     0xb1, // LOAD_FAST 1
     0x55, // LOAD_SUBSCR
     0x44,0x36, // POP_JUMP_IF_FALSE -10
@@ -60127,7 +63323,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_guardar__lt_listcomp_gt_2 = 
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 335,
+        .qstr_block_name_idx = 355,
         .line_info = fun_data_mc2d_guardar__lt_listcomp_gt_2 + 6,
         .line_info_top = fun_data_mc2d_guardar__lt_listcomp_gt_2 + 8,
         .opcodes = fun_data_mc2d_guardar__lt_listcomp_gt_2 + 8,
@@ -60152,7 +63348,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_guardar = {
     .fun_data = fun_data_mc2d_guardar,
     .children = (void *)&children_mc2d_guardar,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 186,
+    .fun_data_len = 195,
     .n_children = 2,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -60166,7 +63362,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_guardar = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 113,
+        .qstr_block_name_idx = 99,
         .line_info = fun_data_mc2d_guardar + 5,
         .line_info_top = fun_data_mc2d_guardar + 18,
         .opcodes = fun_data_mc2d_guardar + 18,
@@ -60177,42 +63373,51 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_guardar = {
 
 // child of mc2d__lt_module_gt_
 // frozen bytecode for file mc2d.py, scope mc2d_cargar
-static const byte fun_data_mc2d_cargar[275] = {
-    0x9d,0x10,0x2c, // prelude
-    0x81,0x02,0x74, // names: cargar, nombre
-    0xc0,0xf4,0x34,0x29,0x29,0x2c,0x34,0x3a,0x28,0x2f,0x28,0x35,0x1f,0x22,0x2f,0x26,0x1f,0x28,0x27, // code info
-    0x12,0x83,0x31, // LOAD_GLOBAL 'open'
-    0x10,0x7d, // LOAD_CONST_STRING '%s/%s.mc2d'
-    0x12,0x83,0x2e, // LOAD_GLOBAL 'CARPETA'
+static const byte fun_data_mc2d_cargar[379] = {
+    0xad,0x10,0x3c, // prelude
+    0x74,0x83,0x79, // names: cargar, nombre_m
+    0xe0,0x8e,0x33,0x29,0x29,0x28,0x28,0x2b,0x33,0x39,0x28,0x30,0x2c,0x2b,0x1f,0x27,0x28,0x2f,0x28,0x35,0x1f,0x22,0x2f,0x26,0x1f,0x28,0x26, // code info
+    0x12,0x83,0x5f, // LOAD_GLOBAL 'open'
+    0x10,0x6f, // LOAD_CONST_STRING '%s/%s.mc2d'
+    0x12,0x83,0x5b, // LOAD_GLOBAL 'CARPETA'
     0xb0, // LOAD_FAST 0
     0x2a,0x02, // BUILD_TUPLE 2
     0xf8, // BINARY_OP 33 __mod__
-    0x10,0x81,0x03, // LOAD_CONST_STRING 'rb'
+    0x10,0x1f, // LOAD_CONST_STRING 'rb'
     0x34,0x02, // CALL_FUNCTION 2
     0x47,0x08, // SETUP_WITH 8
     0xc1, // STORE_FAST 1
     0xb1, // LOAD_FAST 1
-    0x14,0x48, // LOAD_METHOD 'read'
+    0x14,0x1c, // LOAD_METHOD 'read'
     0x36,0x00, // CALL_METHOD 0
     0xc2, // STORE_FAST 2
     0x51, // LOAD_CONST_NONE
     0x5c, // WITH_CLEANUP
     0x5d, // END_FINALLY
     0xb2, // LOAD_FAST 2
-    0x14,0x81,0x04, // LOAD_METHOD 'find'
-    0x23,0x3d, // LOAD_CONST_OBJ 61
+    0x14,0x75, // LOAD_METHOD 'startswith'
+    0x23,0x3a, // LOAD_CONST_OBJ 58
+    0x36,0x01, // CALL_METHOD 1
+    0x43,0x48, // POP_JUMP_IF_TRUE 8
+    0x12,0x83,0x7a, // LOAD_GLOBAL 'ValueError'
+    0x23,0x3b, // LOAD_CONST_OBJ 59
+    0x34,0x01, // CALL_FUNCTION 1
+    0x65, // RAISE_OBJ
+    0xb2, // LOAD_FAST 2
+    0x14,0x76, // LOAD_METHOD 'find'
+    0x23,0x39, // LOAD_CONST_OBJ 57
     0x36,0x01, // CALL_METHOD 1
     0xc3, // STORE_FAST 3
     0xb2, // LOAD_FAST 2
-    0x14,0x81,0x04, // LOAD_METHOD 'find'
-    0x23,0x3d, // LOAD_CONST_OBJ 61
+    0x14,0x76, // LOAD_METHOD 'find'
+    0x23,0x39, // LOAD_CONST_OBJ 57
     0xb3, // LOAD_FAST 3
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
     0x36,0x02, // CALL_METHOD 2
     0xc4, // STORE_FAST 4
     0x12,0x04, // LOAD_GLOBAL 'json'
-    0x14,0x47, // LOAD_METHOD 'loads'
+    0x14,0x22, // LOAD_METHOD 'loads'
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
     0x81, // LOAD_CONST_SMALL_INT 1
@@ -60220,7 +63425,7 @@ static const byte fun_data_mc2d_cargar[275] = {
     0xb4, // LOAD_FAST 4
     0x2e,0x02, // BUILD_SLICE 2
     0x55, // LOAD_SUBSCR
-    0x14,0x81,0x05, // LOAD_METHOD 'decode'
+    0x14,0x77, // LOAD_METHOD 'decode'
     0x36,0x00, // CALL_METHOD 0
     0x36,0x01, // CALL_METHOD 1
     0xc5, // STORE_FAST 5
@@ -60231,24 +63436,77 @@ static const byte fun_data_mc2d_cargar[275] = {
     0xb4, // LOAD_FAST 4
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
-    0x12,0x83,0x12, // LOAD_GLOBAL 'H'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
+    0x12,0x0f, // LOAD_GLOBAL 'H'
     0xf4, // BINARY_OP 29 __mul__
     0xf2, // BINARY_OP 27 __add__
     0x2e,0x02, // BUILD_SLICE 2
     0x55, // LOAD_SUBSCR
-    0x12,0x81,0x0e, // LOAD_GLOBAL 'mundo'
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
     0x51, // LOAD_CONST_NONE
     0x51, // LOAD_CONST_NONE
     0x2e,0x02, // BUILD_SLICE 2
     0x56, // STORE_SUBSCR
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0xb5, // LOAD_FAST 5
+    0x14,0x19, // LOAD_METHOD 'get'
+    0x10,0x6e, // LOAD_CONST_STRING 'ids'
+    0x36,0x01, // CALL_METHOD 1
+    0xc6, // STORE_FAST 6
+    0xb6, // LOAD_FAST 6
+    0x44,0xc9,0x80, // POP_JUMP_IF_FALSE 73
+    0xb6, // LOAD_FAST 6
+    0x12,0x83,0x78, // LOAD_GLOBAL 'list'
+    0x12,0x83,0x02, // LOAD_GLOBAL 'L2PM'
+    0x34,0x01, // CALL_FUNCTION 1
+    0xdc, // BINARY_OP 5 __ne__
+    0x44,0x7d, // POP_JUMP_IF_FALSE 61
+    0x12,0x83,0x03, // LOAD_GLOBAL 'bytearray'
+    0x32,0x00, // MAKE_FUNCTION 0
+    0xb6, // LOAD_FAST 6
+    0x5e, // GET_ITER
+    0x34,0x01, // CALL_FUNCTION 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0xc7, // STORE_FAST 7
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
+    0x12,0x0f, // LOAD_GLOBAL 'H'
+    0xf4, // BINARY_OP 29 __mul__
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x42,0x61, // JUMP 33
+    0x57, // DUP_TOP
+    0xc8, // STORE_FAST 8
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
+    0xb8, // LOAD_FAST 8
+    0x55, // LOAD_SUBSCR
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
+    0xb7, // LOAD_FAST 7
+    0x34,0x01, // CALL_FUNCTION 1
+    0xd7, // BINARY_OP 0 __lt__
+    0x44,0x49, // POP_JUMP_IF_FALSE 9
+    0xb7, // LOAD_FAST 7
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
+    0xb8, // LOAD_FAST 8
+    0x55, // LOAD_SUBSCR
+    0x55, // LOAD_SUBSCR
+    0x42,0x41, // JUMP 1
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
+    0xb8, // LOAD_FAST 8
+    0x56, // STORE_SUBSCR
+    0x81, // LOAD_CONST_SMALL_INT 1
+    0xe5, // BINARY_OP 14 __iadd__
+    0x58, // DUP_TOP_TWO
+    0x5a, // ROT_TWO
+    0xd7, // BINARY_OP 0 __lt__
+    0x43,0x1a, // POP_JUMP_IF_TRUE -38
+    0x59, // POP_TOP
+    0x59, // POP_TOP
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x42,0x4a, // JUMP 10
     0x57, // DUP_TOP
-    0xc6, // STORE_FAST 6
-    0x12,0x42, // LOAD_GLOBAL 'calc_alto'
-    0xb6, // LOAD_FAST 6
+    0xc9, // STORE_FAST 9
+    0x12,0x35, // LOAD_GLOBAL 'calc_alto'
+    0xb9, // LOAD_FAST 9
     0x34,0x01, // CALL_FUNCTION 1
     0x59, // POP_TOP
     0x81, // LOAD_CONST_SMALL_INT 1
@@ -60259,18 +63517,18 @@ static const byte fun_data_mc2d_cargar[275] = {
     0x43,0x31, // POP_JUMP_IF_TRUE -15
     0x59, // POP_TOP
     0x59, // POP_TOP
-    0x12,0x83,0x2a, // LOAD_GLOBAL 'NHUECOS'
+    0x12,0x83,0x57, // LOAD_GLOBAL 'NHUECOS'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x42,0x50, // JUMP 16
     0x57, // DUP_TOP
-    0xc7, // STORE_FAST 7
+    0xc8, // STORE_FAST 8
     0x80, // LOAD_CONST_SMALL_INT 0
     0x57, // DUP_TOP
-    0x12,0x83,0x2b, // LOAD_GLOBAL 'inv_id'
-    0xb7, // LOAD_FAST 7
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0xb8, // LOAD_FAST 8
     0x56, // STORE_SUBSCR
-    0x12,0x83,0x2c, // LOAD_GLOBAL 'inv_n'
-    0xb7, // LOAD_FAST 7
+    0x12,0x83,0x59, // LOAD_GLOBAL 'inv_n'
+    0xb8, // LOAD_FAST 8
     0x56, // STORE_SUBSCR
     0x81, // LOAD_CONST_SMALL_INT 1
     0xe5, // BINARY_OP 14 __iadd__
@@ -60280,83 +63538,104 @@ static const byte fun_data_mc2d_cargar[275] = {
     0x43,0x2b, // POP_JUMP_IF_TRUE -21
     0x59, // POP_TOP
     0x59, // POP_TOP
-    0x12,0x83,0x44, // LOAD_GLOBAL 'zip'
+    0x12,0x83,0x7b, // LOAD_GLOBAL 'zip'
     0xb5, // LOAD_FAST 5
-    0x14,0x4c, // LOAD_METHOD 'get'
-    0x10,0x7c, // LOAD_CONST_STRING 'pos'
+    0x14,0x19, // LOAD_METHOD 'get'
+    0x10,0x6d, // LOAD_CONST_STRING 'pos'
     0x2b,0x00, // BUILD_LIST 0
     0x36,0x02, // CALL_METHOD 2
     0xb5, // LOAD_FAST 5
-    0x14,0x4c, // LOAD_METHOD 'get'
-    0x10,0x7b, // LOAD_CONST_STRING 'inv'
+    0x14,0x19, // LOAD_METHOD 'get'
+    0x10,0x6c, // LOAD_CONST_STRING 'inv'
     0x2b,0x00, // BUILD_LIST 0
     0x36,0x02, // CALL_METHOD 2
     0x34,0x02, // CALL_FUNCTION 2
     0x5f, // GET_ITER_STACK
     0x4b,0x16, // FOR_ITER 22
     0x30,0x02, // UNPACK_SEQUENCE 2
-    0xc8, // STORE_FAST 8
-    0x30,0x02, // UNPACK_SEQUENCE 2
-    0xc9, // STORE_FAST 9
     0xca, // STORE_FAST 10
-    0xb9, // LOAD_FAST 9
-    0xba, // LOAD_FAST 10
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xcb, // STORE_FAST 11
+    0xcc, // STORE_FAST 12
+    0xbb, // LOAD_FAST 11
+    0xbc, // LOAD_FAST 12
     0x5a, // ROT_TWO
-    0x12,0x83,0x2b, // LOAD_GLOBAL 'inv_id'
-    0xb8, // LOAD_FAST 8
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
+    0xba, // LOAD_FAST 10
     0x56, // STORE_SUBSCR
-    0x12,0x83,0x2c, // LOAD_GLOBAL 'inv_n'
-    0xb8, // LOAD_FAST 8
+    0x12,0x83,0x59, // LOAD_GLOBAL 'inv_n'
+    0xba, // LOAD_FAST 10
     0x56, // STORE_SUBSCR
     0x42,0x28, // JUMP -24
-    0x12,0x3d, // LOAD_GLOBAL 'Juego'
+    0x12,0x15, // LOAD_GLOBAL 'Juego'
     0xb0, // LOAD_FAST 0
     0x34,0x01, // CALL_FUNCTION 1
-    0xcb, // STORE_FAST 11
+    0xcd, // STORE_FAST 13
     0xb5, // LOAD_FAST 5
-    0x10,0x75, // LOAD_CONST_STRING 'x'
+    0x10,0x66, // LOAD_CONST_STRING 'x'
     0x55, // LOAD_SUBSCR
     0xb5, // LOAD_FAST 5
-    0x10,0x76, // LOAD_CONST_STRING 'y'
+    0x10,0x67, // LOAD_CONST_STRING 'y'
     0x55, // LOAD_SUBSCR
     0xb5, // LOAD_FAST 5
-    0x10,0x77, // LOAD_CONST_STRING 'vida'
+    0x10,0x68, // LOAD_CONST_STRING 'vida'
     0x55, // LOAD_SUBSCR
     0xb5, // LOAD_FAST 5
-    0x10,0x78, // LOAD_CONST_STRING 'hambre'
+    0x10,0x69, // LOAD_CONST_STRING 'hambre'
     0x55, // LOAD_SUBSCR
     0xb5, // LOAD_FAST 5
-    0x10,0x7a, // LOAD_CONST_STRING 't'
+    0x10,0x6b, // LOAD_CONST_STRING 't'
     0x55, // LOAD_SUBSCR
     0x2a,0x05, // BUILD_TUPLE 5
     0x30,0x05, // UNPACK_SEQUENCE 5
-    0xbb, // LOAD_FAST 11
-    0x18,0x75, // STORE_ATTR 'x'
-    0xbb, // LOAD_FAST 11
-    0x18,0x76, // STORE_ATTR 'y'
-    0xbb, // LOAD_FAST 11
-    0x18,0x77, // STORE_ATTR 'vida'
-    0xbb, // LOAD_FAST 11
-    0x18,0x78, // STORE_ATTR 'hambre'
-    0xbb, // LOAD_FAST 11
-    0x18,0x79, // STORE_ATTR 'tiempo'
-    0xbb, // LOAD_FAST 11
-    0x14,0x81,0x06, // LOAD_METHOD 'centrar'
+    0xbd, // LOAD_FAST 13
+    0x18,0x66, // STORE_ATTR 'x'
+    0xbd, // LOAD_FAST 13
+    0x18,0x67, // STORE_ATTR 'y'
+    0xbd, // LOAD_FAST 13
+    0x18,0x68, // STORE_ATTR 'vida'
+    0xbd, // LOAD_FAST 13
+    0x18,0x69, // STORE_ATTR 'hambre'
+    0xbd, // LOAD_FAST 13
+    0x18,0x6a, // STORE_ATTR 'tiempo'
+    0xbd, // LOAD_FAST 13
+    0x14,0x78, // LOAD_METHOD 'centrar'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
-    0xbb, // LOAD_FAST 11
+    0xbd, // LOAD_FAST 13
+    0x63, // RETURN_VALUE
+};
+// child of mc2d_cargar
+// frozen bytecode for file mc2d.py, scope mc2d_cargar__lt_genexpr_gt_
+static const byte fun_data_mc2d_cargar__lt_genexpr_gt_[27] = {
+    0xb9,0x40,0x0c, // prelude
+    0x81,0x4a,0x84,0x04, // names: <genexpr>, *
+    0xe0,0x98, // code info
+    0x53, // LOAD_NULL
+    0xb0, // LOAD_FAST 0
+    0x53, // LOAD_NULL
+    0x53, // LOAD_NULL
+    0x4b,0x0a, // FOR_ITER 10
+    0xc1, // STORE_FAST 1
+    0x12,0x12, // LOAD_GLOBAL 'B'
+    0xb1, // LOAD_FAST 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0x67, // YIELD_VALUE
+    0x59, // POP_TOP
+    0x42,0x34, // JUMP -12
+    0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
 #if MICROPY_PERSISTENT_CODE_SAVE
-static const mp_raw_code_truncated_t proto_fun_mc2d_cargar = {
+static const mp_raw_code_truncated_t proto_fun_mc2d_cargar__lt_genexpr_gt_ = {
     .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
     .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
     .kind = MP_CODE_BYTECODE,
-    .is_generator = 0,
-    .fun_data = fun_data_mc2d_cargar,
+    .is_generator = 1,
+    .fun_data = fun_data_mc2d_cargar__lt_genexpr_gt_,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 275,
+    .fun_data_len = 27,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -60364,40 +63643,75 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_cargar = {
     #if MICROPY_PY_SYS_SETTRACE
     .line_of_definition = 0,
     .prelude = {
-        .n_state = 20,
-        .n_exc_stack = 1,
-        .scope_flags = 0,
+        .n_state = 8,
+        .n_exc_stack = 0,
+        .scope_flags = 1,
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 130,
-        .line_info = fun_data_mc2d_cargar + 6,
-        .line_info_top = fun_data_mc2d_cargar + 25,
-        .opcodes = fun_data_mc2d_cargar + 25,
+        .qstr_block_name_idx = 202,
+        .line_info = fun_data_mc2d_cargar__lt_genexpr_gt_ + 7,
+        .line_info_top = fun_data_mc2d_cargar__lt_genexpr_gt_ + 9,
+        .opcodes = fun_data_mc2d_cargar__lt_genexpr_gt_ + 9,
     },
     #endif
     #endif
 };
 #else
-#define proto_fun_mc2d_cargar fun_data_mc2d_cargar[0]
+#define proto_fun_mc2d_cargar__lt_genexpr_gt_ fun_data_mc2d_cargar__lt_genexpr_gt_[0]
 #endif
+
+static const mp_raw_code_t *const children_mc2d_cargar[] = {
+    (const mp_raw_code_t *)&proto_fun_mc2d_cargar__lt_genexpr_gt_,
+};
+
+static const mp_raw_code_truncated_t proto_fun_mc2d_cargar = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_cargar,
+    .children = (void *)&children_mc2d_cargar,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 379,
+    .n_children = 1,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 22,
+        .n_exc_stack = 1,
+        .scope_flags = 0,
+        .n_pos_args = 1,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 116,
+        .line_info = fun_data_mc2d_cargar + 6,
+        .line_info_top = fun_data_mc2d_cargar + 33,
+        .opcodes = fun_data_mc2d_cargar + 33,
+    },
+    #endif
+    #endif
+};
 
 // child of mc2d__lt_module_gt_
 // frozen bytecode for file mc2d.py, scope mc2d_lista_mundos
-static const byte fun_data_mc2d_lista_mundos[38] = {
-    0x2c,0x0c, // prelude
-    0x81,0x07, // names: lista_mundos
-    0xd0,0x07,0x22,0x56, // code info
+static const byte fun_data_mc2d_lista_mundos[37] = {
+    0x2c,0x0a, // prelude
+    0x79, // names: lista_mundos
+    0xe0,0xa8,0x22,0x56, // code info
     0x48,0x0e, // SETUP_EXCEPT 14
     0x32,0x00, // MAKE_FUNCTION 0
     0x12,0x05, // LOAD_GLOBAL 'os'
-    0x14,0x45, // LOAD_METHOD 'listdir'
-    0x12,0x83,0x2e, // LOAD_GLOBAL 'CARPETA'
+    0x14,0x38, // LOAD_METHOD 'listdir'
+    0x12,0x83,0x5b, // LOAD_GLOBAL 'CARPETA'
     0x36,0x01, // CALL_METHOD 1
     0x34,0x01, // CALL_FUNCTION 1
     0x63, // RETURN_VALUE
     0x57, // DUP_TOP
-    0x12,0x83,0x32, // LOAD_GLOBAL 'OSError'
+    0x12,0x83,0x60, // LOAD_GLOBAL 'OSError'
     0xdf, // BINARY_OP 8 <exception match>
     0x44,0x44, // POP_JUMP_IF_FALSE 4
     0x59, // POP_TOP
@@ -60411,16 +63725,16 @@ static const byte fun_data_mc2d_lista_mundos[38] = {
 // frozen bytecode for file mc2d.py, scope mc2d_lista_mundos__lt_listcomp_gt_
 static const byte fun_data_mc2d_lista_mundos__lt_listcomp_gt_[37] = {
     0x49,0x0c, // prelude
-    0x82,0x4f,0x83,0x66, // names: <listcomp>, *
-    0xd0,0x08, // code info
+    0x82,0x63,0x84,0x04, // names: <listcomp>, *
+    0xe0,0xa9, // code info
     0x2b,0x00, // BUILD_LIST 0
     0xb0, // LOAD_FAST 0
     0x5f, // GET_ITER_STACK
     0x4b,0x16, // FOR_ITER 22
     0xc1, // STORE_FAST 1
     0xb1, // LOAD_FAST 1
-    0x14,0x82,0x50, // LOAD_METHOD 'endswith'
-    0x10,0x82,0x51, // LOAD_CONST_STRING '.mc2d'
+    0x14,0x82,0x64, // LOAD_METHOD 'endswith'
+    0x10,0x82,0x65, // LOAD_CONST_STRING '.mc2d'
     0x36,0x01, // CALL_METHOD 1
     0x44,0x32, // POP_JUMP_IF_FALSE -14
     0xb1, // LOAD_FAST 1
@@ -60455,7 +63769,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_lista_mundos__lt_listcomp_gt
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 335,
+        .qstr_block_name_idx = 355,
         .line_info = fun_data_mc2d_lista_mundos__lt_listcomp_gt_ + 6,
         .line_info_top = fun_data_mc2d_lista_mundos__lt_listcomp_gt_ + 8,
         .opcodes = fun_data_mc2d_lista_mundos__lt_listcomp_gt_ + 8,
@@ -60479,7 +63793,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_lista_mundos = {
     .fun_data = fun_data_mc2d_lista_mundos,
     .children = (void *)&children_mc2d_lista_mundos,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 38,
+    .fun_data_len = 37,
     .n_children = 1,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -60493,10 +63807,10 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_lista_mundos = {
         .n_pos_args = 0,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 135,
-        .line_info = fun_data_mc2d_lista_mundos + 4,
-        .line_info_top = fun_data_mc2d_lista_mundos + 8,
-        .opcodes = fun_data_mc2d_lista_mundos + 8,
+        .qstr_block_name_idx = 121,
+        .line_info = fun_data_mc2d_lista_mundos + 3,
+        .line_info_top = fun_data_mc2d_lista_mundos + 7,
+        .opcodes = fun_data_mc2d_lista_mundos + 7,
     },
     #endif
     #endif
@@ -60504,16 +63818,16 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_lista_mundos = {
 
 // child of mc2d__lt_module_gt_
 // frozen bytecode for file mc2d.py, scope mc2d_comprimir
-static const byte fun_data_mc2d_comprimir[102] = {
-    0x30,0x1e, // prelude
-    0x81,0x08, // names: comprimir
-    0xd0,0x0f,0x23,0x22,0x23,0x26,0x22,0x22,0x1f,0x24,0x27,0x27,0x30, // code info
+static const byte fun_data_mc2d_comprimir[98] = {
+    0x30,0x1c, // prelude
+    0x7a, // names: comprimir
+    0xe0,0xb0,0x23,0x22,0x22,0x26,0x22,0x22,0x1f,0x23,0x27,0x27,0x2f, // code info
     0x2b,0x00, // BUILD_LIST 0
     0xc0, // STORE_FAST 0
     0x80, // LOAD_CONST_SMALL_INT 0
     0xc1, // STORE_FAST 1
-    0x42,0xbf,0x80, // JUMP 63
-    0x12,0x81,0x0e, // LOAD_GLOBAL 'mundo'
+    0x42,0x7e, // JUMP 62
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
     0xb1, // LOAD_FAST 1
     0x55, // LOAD_SUBSCR
     0xc2, // STORE_FAST 2
@@ -60527,12 +63841,12 @@ static const byte fun_data_mc2d_comprimir[102] = {
     0xb1, // LOAD_FAST 1
     0xb3, // LOAD_FAST 3
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
-    0x12,0x83,0x12, // LOAD_GLOBAL 'H'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
+    0x12,0x0f, // LOAD_GLOBAL 'H'
     0xf4, // BINARY_OP 29 __mul__
     0xd7, // BINARY_OP 0 __lt__
     0x44,0x52, // POP_JUMP_IF_FALSE 18
-    0x12,0x81,0x0e, // LOAD_GLOBAL 'mundo'
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
     0xb1, // LOAD_FAST 1
     0xb3, // LOAD_FAST 3
     0xf2, // BINARY_OP 27 __add__
@@ -60543,14 +63857,14 @@ static const byte fun_data_mc2d_comprimir[102] = {
     0xb3, // LOAD_FAST 3
     0x22,0x81,0x7f, // LOAD_CONST_SMALL_INT 255
     0xd7, // BINARY_OP 0 __lt__
-    0x43,0x1d, // POP_JUMP_IF_TRUE -35
+    0x43,0x1e, // POP_JUMP_IF_TRUE -34
     0xb0, // LOAD_FAST 0
-    0x14,0x3b, // LOAD_METHOD 'append'
+    0x14,0x59, // LOAD_METHOD 'append'
     0xb2, // LOAD_FAST 2
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0xb0, // LOAD_FAST 0
-    0x14,0x3b, // LOAD_METHOD 'append'
+    0x14,0x59, // LOAD_METHOD 'append'
     0xb3, // LOAD_FAST 3
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
@@ -60559,11 +63873,11 @@ static const byte fun_data_mc2d_comprimir[102] = {
     0xe5, // BINARY_OP 14 __iadd__
     0xc1, // STORE_FAST 1
     0xb1, // LOAD_FAST 1
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
-    0x12,0x83,0x12, // LOAD_GLOBAL 'H'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
+    0x12,0x0f, // LOAD_GLOBAL 'H'
     0xf4, // BINARY_OP 29 __mul__
     0xd7, // BINARY_OP 0 __lt__
-    0x43,0xb5,0x7f, // POP_JUMP_IF_TRUE -75
+    0x43,0xb7,0x7f, // POP_JUMP_IF_TRUE -73
     0xb0, // LOAD_FAST 0
     0x63, // RETURN_VALUE
 };
@@ -60576,7 +63890,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_comprimir = {
     .fun_data = fun_data_mc2d_comprimir,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 102,
+    .fun_data_len = 98,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -60590,10 +63904,10 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_comprimir = {
         .n_pos_args = 0,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 136,
-        .line_info = fun_data_mc2d_comprimir + 4,
-        .line_info_top = fun_data_mc2d_comprimir + 17,
-        .opcodes = fun_data_mc2d_comprimir + 17,
+        .qstr_block_name_idx = 122,
+        .line_info = fun_data_mc2d_comprimir + 3,
+        .line_info_top = fun_data_mc2d_comprimir + 16,
+        .opcodes = fun_data_mc2d_comprimir + 16,
     },
     #endif
     #endif
@@ -60604,17 +63918,17 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_comprimir = {
 
 // child of mc2d__lt_module_gt_
 // frozen bytecode for file mc2d.py, scope mc2d_descomprimir
-static const byte fun_data_mc2d_descomprimir[85] = {
-    0x61,0x18, // prelude
-    0x81,0x09,0x83,0x45, // names: descomprimir, lst
-    0xd0,0x1d,0x22,0x2b,0x2b,0x26,0x2b,0x26, // code info
+static const byte fun_data_mc2d_descomprimir[83] = {
+    0x61,0x16, // prelude
+    0x7b,0x83,0x7c, // names: descomprimir, lst
+    0xe0,0xbe,0x22,0x2b,0x2b,0x26,0x2a,0x26, // code info
     0x80, // LOAD_CONST_SMALL_INT 0
     0xc1, // STORE_FAST 1
-    0x12,0x83,0x3b, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
     0xb0, // LOAD_FAST 0
     0x34,0x01, // CALL_FUNCTION 1
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x42,0x73, // JUMP 51
+    0x42,0x72, // JUMP 50
     0x57, // DUP_TOP
     0xc2, // STORE_FAST 2
     0xb0, // LOAD_FAST 0
@@ -60630,17 +63944,17 @@ static const byte fun_data_mc2d_descomprimir[85] = {
     0xc4, // STORE_FAST 4
     0xb4, // LOAD_FAST 4
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x42,0x59, // JUMP 25
+    0x42,0x58, // JUMP 24
     0x57, // DUP_TOP
     0xc5, // STORE_FAST 5
     0xb1, // LOAD_FAST 1
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
-    0x12,0x83,0x12, // LOAD_GLOBAL 'H'
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
+    0x12,0x0f, // LOAD_GLOBAL 'H'
     0xf4, // BINARY_OP 29 __mul__
     0xd7, // BINARY_OP 0 __lt__
     0x44,0x46, // POP_JUMP_IF_FALSE 6
     0xb3, // LOAD_FAST 3
-    0x12,0x81,0x0e, // LOAD_GLOBAL 'mundo'
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
     0xb1, // LOAD_FAST 1
     0x56, // STORE_SUBSCR
     0xb1, // LOAD_FAST 1
@@ -60652,7 +63966,7 @@ static const byte fun_data_mc2d_descomprimir[85] = {
     0x58, // DUP_TOP_TWO
     0x5a, // ROT_TWO
     0xd7, // BINARY_OP 0 __lt__
-    0x43,0x22, // POP_JUMP_IF_TRUE -30
+    0x43,0x23, // POP_JUMP_IF_TRUE -29
     0x59, // POP_TOP
     0x59, // POP_TOP
     0x82, // LOAD_CONST_SMALL_INT 2
@@ -60660,7 +63974,7 @@ static const byte fun_data_mc2d_descomprimir[85] = {
     0x58, // DUP_TOP_TWO
     0x5a, // ROT_TWO
     0xd7, // BINARY_OP 0 __lt__
-    0x43,0x08, // POP_JUMP_IF_TRUE -56
+    0x43,0x09, // POP_JUMP_IF_TRUE -55
     0x59, // POP_TOP
     0x59, // POP_TOP
     0x51, // LOAD_CONST_NONE
@@ -60675,7 +63989,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_descomprimir = {
     .fun_data = fun_data_mc2d_descomprimir,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 85,
+    .fun_data_len = 83,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -60689,10 +64003,10 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_descomprimir = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 137,
-        .line_info = fun_data_mc2d_descomprimir + 6,
-        .line_info_top = fun_data_mc2d_descomprimir + 14,
-        .opcodes = fun_data_mc2d_descomprimir + 14,
+        .qstr_block_name_idx = 123,
+        .line_info = fun_data_mc2d_descomprimir + 5,
+        .line_info_top = fun_data_mc2d_descomprimir + 13,
+        .opcodes = fun_data_mc2d_descomprimir + 13,
     },
     #endif
     #endif
@@ -60703,20 +64017,20 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_descomprimir = {
 
 // child of mc2d__lt_module_gt_
 // frozen bytecode for file mc2d.py, scope mc2d_publicar
-static const byte fun_data_mc2d_publicar[128] = {
-    0x69,0x1c, // prelude
-    0x81,0x0a,0x83,0x43, // names: publicar, j
-    0xd0,0x27,0x28,0x26,0x24,0x2d,0x26,0x39,0x27,0x31, // code info
-    0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x81,0x0b, // LOAD_METHOD 'vaciar'
+static const byte fun_data_mc2d_publicar[133] = {
+    0x69,0x1a, // prelude
+    0x7c,0x83,0x77, // names: publicar, j
+    0xe0,0xc8,0x27,0x25,0x24,0x2d,0x26,0x37,0x27,0x31, // code info
+    0x12,0x0c, // LOAD_GLOBAL 'red'
+    0x14,0x7d, // LOAD_METHOD 'vaciar'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
-    0x12,0x81,0x08, // LOAD_GLOBAL 'comprimir'
+    0x12,0x7a, // LOAD_GLOBAL 'comprimir'
     0x34,0x00, // CALL_FUNCTION 0
     0xc1, // STORE_FAST 1
     0x22,0x89,0x30, // LOAD_CONST_SMALL_INT 1200
     0xc2, // STORE_FAST 2
-    0x12,0x83,0x3b, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
     0xb1, // LOAD_FAST 1
     0x34,0x01, // CALL_FUNCTION 1
     0xb2, // LOAD_FAST 2
@@ -60728,12 +64042,12 @@ static const byte fun_data_mc2d_publicar[128] = {
     0xc3, // STORE_FAST 3
     0xb3, // LOAD_FAST 3
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x42,0x6c, // JUMP 44
+    0x42,0x6a, // JUMP 42
     0x57, // DUP_TOP
     0xc4, // STORE_FAST 4
-    0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x81,0x0c, // LOAD_METHOD 'var'
-    0x10,0x81,0x0d, // LOAD_CONST_STRING 'm:%d'
+    0x12,0x0c, // LOAD_GLOBAL 'red'
+    0x14,0x7e, // LOAD_METHOD 'var'
+    0x10,0x7f, // LOAD_CONST_STRING 'm:%d'
     0xb4, // LOAD_FAST 4
     0xf8, // BINARY_OP 33 __mod__
     0xb1, // LOAD_FAST 1
@@ -60755,8 +64069,8 @@ static const byte fun_data_mc2d_publicar[128] = {
     0x80, // LOAD_CONST_SMALL_INT 0
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x48, // POP_JUMP_IF_FALSE 8
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x58, // LOAD_METHOD 'mostrar'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x47, // LOAD_METHOD 'mostrar'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0x81, // LOAD_CONST_SMALL_INT 1
@@ -60764,19 +64078,24 @@ static const byte fun_data_mc2d_publicar[128] = {
     0x58, // DUP_TOP_TWO
     0x5a, // ROT_TWO
     0xd7, // BINARY_OP 0 __lt__
-    0x43,0x0f, // POP_JUMP_IF_TRUE -49
+    0x43,0x11, // POP_JUMP_IF_TRUE -47
     0x59, // POP_TOP
     0x59, // POP_TOP
-    0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x81,0x0c, // LOAD_METHOD 'var'
-    0x10,0x81,0x0e, // LOAD_CONST_STRING 'mundo'
-    0x2c,0x02, // BUILD_MAP 2
+    0x12,0x0c, // LOAD_GLOBAL 'red'
+    0x14,0x7e, // LOAD_METHOD 'var'
+    0x10,0x81,0x00, // LOAD_CONST_STRING 'mundo'
+    0x2c,0x03, // BUILD_MAP 3
     0xb3, // LOAD_FAST 3
-    0x10,0x81,0x0f, // LOAD_CONST_STRING 'n'
+    0x10,0x81,0x01, // LOAD_CONST_STRING 'n'
     0x62, // STORE_MAP
     0xb0, // LOAD_FAST 0
-    0x13,0x79, // LOAD_ATTR 'tiempo'
-    0x10,0x7a, // LOAD_CONST_STRING 't'
+    0x13,0x6a, // LOAD_ATTR 'tiempo'
+    0x10,0x6b, // LOAD_CONST_STRING 't'
+    0x62, // STORE_MAP
+    0x12,0x83,0x78, // LOAD_GLOBAL 'list'
+    0x12,0x83,0x02, // LOAD_GLOBAL 'L2PM'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x10,0x6e, // LOAD_CONST_STRING 'ids'
     0x62, // STORE_MAP
     0x36,0x02, // CALL_METHOD 2
     0x59, // POP_TOP
@@ -60792,7 +64111,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_publicar = {
     .fun_data = fun_data_mc2d_publicar,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 128,
+    .fun_data_len = 133,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -60806,10 +64125,10 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_publicar = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 138,
-        .line_info = fun_data_mc2d_publicar + 6,
-        .line_info_top = fun_data_mc2d_publicar + 16,
-        .opcodes = fun_data_mc2d_publicar + 16,
+        .qstr_block_name_idx = 124,
+        .line_info = fun_data_mc2d_publicar + 5,
+        .line_info_top = fun_data_mc2d_publicar + 15,
+        .opcodes = fun_data_mc2d_publicar + 15,
     },
     #endif
     #endif
@@ -60820,42 +64139,56 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_publicar = {
 
 // child of mc2d__lt_module_gt_
 // frozen bytecode for file mc2d.py, scope mc2d_recibir_mundo
-static const byte fun_data_mc2d_recibir_mundo[240] = {
-    0x80,0x10,0x2e, // prelude
-    0x81,0x10, // names: recibir_mundo
-    0xd0,0x33,0x2e,0x23,0x28,0x29,0x24,0x23,0x2a,0x3e,0x27,0x2c,0x2b,0x2c,0x35,0x2d,0x28,0x2f,0x22,0x29,0x35, // code info
-    0x12,0x82,0x56, // LOAD_GLOBAL 'K'
-    0x14,0x81,0x11, // LOAD_METHOD 'ms'
+static const byte fun_data_mc2d_recibir_mundo[265] = {
+    0x80,0x10,0x32, // prelude
+    0x81,0x02, // names: recibir_mundo
+    0xe0,0xd4,0x2e,0x23,0x28,0x29,0x24,0x32,0x29,0x23,0x2a,0x3d,0x26,0x2c,0x2a,0x2c,0x34,0x2d,0x28,0x2f,0x22,0x29,0x35, // code info
+    0x12,0x82,0x68, // LOAD_GLOBAL 'K'
+    0x14,0x81,0x03, // LOAD_METHOD 'ms'
     0x36,0x00, // CALL_METHOD 0
     0x22,0x80,0xf5,0x18, // LOAD_CONST_SMALL_INT 15000
     0xf2, // BINARY_OP 27 __add__
     0xc0, // STORE_FAST 0
-    0x42,0xb6,0x81, // JUMP 182
-    0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x81,0x12, // LOAD_METHOD 'vars'
+    0x42,0xcd,0x81, // JUMP 205
+    0x12,0x0c, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x04, // LOAD_METHOD 'vars'
     0x36,0x00, // CALL_METHOD 0
     0xc1, // STORE_FAST 1
     0xb1, // LOAD_FAST 1
-    0x14,0x4c, // LOAD_METHOD 'get'
-    0x10,0x81,0x0e, // LOAD_CONST_STRING 'mundo'
+    0x14,0x19, // LOAD_METHOD 'get'
+    0x10,0x81,0x00, // LOAD_CONST_STRING 'mundo'
     0x36,0x01, // CALL_METHOD 1
     0xc2, // STORE_FAST 2
     0xb2, // LOAD_FAST 2
-    0x44,0x90,0x81, // POP_JUMP_IF_FALSE 144
+    0x44,0xa7,0x81, // POP_JUMP_IF_FALSE 167
+    0xb2, // LOAD_FAST 2
+    0x14,0x19, // LOAD_METHOD 'get'
+    0x10,0x6e, // LOAD_CONST_STRING 'ids'
+    0x36,0x01, // CALL_METHOD 1
+    0x12,0x83,0x78, // LOAD_GLOBAL 'list'
+    0x12,0x83,0x02, // LOAD_GLOBAL 'L2PM'
+    0x34,0x01, // CALL_FUNCTION 1
+    0xdc, // BINARY_OP 5 __ne__
+    0x44,0x49, // POP_JUMP_IF_FALSE 9
+    0x2c,0x01, // BUILD_MAP 1
+    0x10,0x6e, // LOAD_CONST_STRING 'ids'
+    0x10,0x81,0x05, // LOAD_CONST_STRING 'error'
+    0x62, // STORE_MAP
+    0x63, // RETURN_VALUE
     0x2b,0x00, // BUILD_LIST 0
     0xc3, // STORE_FAST 3
     0xb2, // LOAD_FAST 2
-    0x10,0x81,0x0f, // LOAD_CONST_STRING 'n'
+    0x10,0x81,0x01, // LOAD_CONST_STRING 'n'
     0x55, // LOAD_SUBSCR
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x42,0x59, // JUMP 25
+    0x42,0x58, // JUMP 24
     0x57, // DUP_TOP
     0xc4, // STORE_FAST 4
     0xb3, // LOAD_FAST 3
-    0x14,0x81,0x13, // LOAD_METHOD 'extend'
+    0x14,0x81,0x06, // LOAD_METHOD 'extend'
     0xb1, // LOAD_FAST 1
-    0x14,0x4c, // LOAD_METHOD 'get'
-    0x10,0x81,0x0d, // LOAD_CONST_STRING 'm:%d'
+    0x14,0x19, // LOAD_METHOD 'get'
+    0x10,0x7f, // LOAD_CONST_STRING 'm:%d'
     0xb4, // LOAD_FAST 4
     0xf8, // BINARY_OP 33 __mod__
     0x36,0x01, // CALL_METHOD 1
@@ -60868,27 +64201,27 @@ static const byte fun_data_mc2d_recibir_mundo[240] = {
     0x58, // DUP_TOP_TWO
     0x5a, // ROT_TWO
     0xd7, // BINARY_OP 0 __lt__
-    0x43,0x22, // POP_JUMP_IF_TRUE -30
+    0x43,0x23, // POP_JUMP_IF_TRUE -29
     0x59, // POP_TOP
     0x59, // POP_TOP
-    0x12,0x81,0x09, // LOAD_GLOBAL 'descomprimir'
+    0x12,0x7b, // LOAD_GLOBAL 'descomprimir'
     0xb3, // LOAD_FAST 3
     0x34,0x01, // CALL_FUNCTION 1
     0x59, // POP_TOP
     0xb1, // LOAD_FAST 1
-    0x14,0x4b, // LOAD_METHOD 'items'
+    0x14,0x26, // LOAD_METHOD 'items'
     0x36,0x00, // CALL_METHOD 0
     0x5f, // GET_ITER_STACK
-    0x4b,0x3d, // FOR_ITER 61
+    0x4b,0x3b, // FOR_ITER 59
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xc5, // STORE_FAST 5
     0xc6, // STORE_FAST 6
     0xb5, // LOAD_FAST 5
-    0x14,0x81,0x14, // LOAD_METHOD 'startswith'
-    0x10,0x81,0x15, // LOAD_CONST_STRING 'b:'
+    0x14,0x75, // LOAD_METHOD 'startswith'
+    0x10,0x81,0x07, // LOAD_CONST_STRING 'b:'
     0x36,0x01, // CALL_METHOD 1
-    0x44,0x6c, // POP_JUMP_IF_FALSE 44
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x44,0x6b, // POP_JUMP_IF_FALSE 43
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb5, // LOAD_FAST 5
     0x82, // LOAD_CONST_SMALL_INT 2
     0x51, // LOAD_CONST_NONE
@@ -60901,28 +64234,28 @@ static const byte fun_data_mc2d_recibir_mundo[240] = {
     0x57, // DUP_TOP
     0x5b, // ROT_THREE
     0xda, // BINARY_OP 3 __le__
-    0x46,0x0a, // JUMP_IF_FALSE_OR_POP 10
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
-    0x12,0x83,0x12, // LOAD_GLOBAL 'H'
+    0x46,0x09, // JUMP_IF_FALSE_OR_POP 9
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
+    0x12,0x0f, // LOAD_GLOBAL 'H'
     0xf4, // BINARY_OP 29 __mul__
     0xd7, // BINARY_OP 0 __lt__
     0x42,0x42, // JUMP 2
     0x5a, // ROT_TWO
     0x59, // POP_TOP
     0x44,0x4b, // POP_JUMP_IF_FALSE 11
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xb6, // LOAD_FAST 6
     0x34,0x01, // CALL_FUNCTION 1
-    0x12,0x81,0x0e, // LOAD_GLOBAL 'mundo'
+    0x12,0x81,0x00, // LOAD_GLOBAL 'mundo'
     0xb7, // LOAD_FAST 7
     0x56, // STORE_SUBSCR
-    0x42,0x01, // JUMP -63
-    0x12,0x83,0x11, // LOAD_GLOBAL 'W'
+    0x42,0x03, // JUMP -61
+    0x12,0x83,0x42, // LOAD_GLOBAL 'W'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x42,0x4a, // JUMP 10
     0x57, // DUP_TOP
     0xc8, // STORE_FAST 8
-    0x12,0x42, // LOAD_GLOBAL 'calc_alto'
+    0x12,0x35, // LOAD_GLOBAL 'calc_alto'
     0xb8, // LOAD_FAST 8
     0x34,0x01, // CALL_FUNCTION 1
     0x59, // POP_TOP
@@ -60936,21 +64269,21 @@ static const byte fun_data_mc2d_recibir_mundo[240] = {
     0x59, // POP_TOP
     0xb2, // LOAD_FAST 2
     0x63, // RETURN_VALUE
-    0x12,0x55, // LOAD_GLOBAL 'progreso'
-    0x23,0x3e, // LOAD_CONST_OBJ 62
-    0x23,0x23, // LOAD_CONST_OBJ 35
+    0x12,0x44, // LOAD_GLOBAL 'progreso'
+    0x23,0x3c, // LOAD_CONST_OBJ 60
+    0x23,0x14, // LOAD_CONST_OBJ 20
     0x34,0x02, // CALL_FUNCTION 2
     0x59, // POP_TOP
-    0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x81,0x16, // LOAD_METHOD 'recibir'
+    0x12,0x0c, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x08, // LOAD_METHOD 'recibir'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
-    0x12,0x82,0x56, // LOAD_GLOBAL 'K'
-    0x14,0x81,0x11, // LOAD_METHOD 'ms'
+    0x12,0x82,0x68, // LOAD_GLOBAL 'K'
+    0x14,0x81,0x03, // LOAD_METHOD 'ms'
     0x36,0x00, // CALL_METHOD 0
     0xb0, // LOAD_FAST 0
     0xd7, // BINARY_OP 0 __lt__
-    0x43,0xbd,0x7e, // POP_JUMP_IF_TRUE -195
+    0x43,0xa6,0x7e, // POP_JUMP_IF_TRUE -218
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -60963,7 +64296,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_recibir_mundo = {
     .fun_data = fun_data_mc2d_recibir_mundo,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 240,
+    .fun_data_len = 265,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -60977,10 +64310,10 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_recibir_mundo = {
         .n_pos_args = 0,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 144,
+        .qstr_block_name_idx = 130,
         .line_info = fun_data_mc2d_recibir_mundo + 5,
-        .line_info_top = fun_data_mc2d_recibir_mundo + 26,
-        .opcodes = fun_data_mc2d_recibir_mundo + 26,
+        .line_info_top = fun_data_mc2d_recibir_mundo + 28,
+        .opcodes = fun_data_mc2d_recibir_mundo + 28,
     },
     #endif
     #endif
@@ -60993,10 +64326,10 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_recibir_mundo = {
 // frozen bytecode for file mc2d.py, scope mc2d_boton
 static const byte fun_data_mc2d_boton[227] = {
     0xea,0x05,0x2e, // prelude
-    0x81,0x17,0x7a,0x75,0x76,0x82,0x1e,0x83,0x46,0x81,0x25, // names: boton, t, x, y, w, foco, ok
-    0xd0,0x4b,0x2d,0x1f,0x22,0x37,0x37,0x23,0x32,0x3a,0x1f,0x22, // code info
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x56, // LOAD_METHOD 'rect'
+    0x81,0x09,0x6b,0x66,0x67,0x81,0x42,0x83,0x7d,0x81,0x18, // names: boton, t, x, y, w, foco, ok
+    0xe0,0xee,0x2d,0x1f,0x22,0x37,0x37,0x23,0x32,0x3a,0x1f,0x22, // code info
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x45, // LOAD_METHOD 'rect'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
@@ -61004,8 +64337,8 @@ static const byte fun_data_mc2d_boton[227] = {
     0x80, // LOAD_CONST_SMALL_INT 0
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x56, // LOAD_METHOD 'rect'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x45, // LOAD_METHOD 'rect'
     0xb1, // LOAD_FAST 1
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
@@ -61023,8 +64356,8 @@ static const byte fun_data_mc2d_boton[227] = {
     0x22,0x81,0xb0,0xd8,0x2c, // LOAD_CONST_SMALL_INT 2894892
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x56, // LOAD_METHOD 'rect'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x45, // LOAD_METHOD 'rect'
     0xb1, // LOAD_FAST 1
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
@@ -61038,8 +64371,8 @@ static const byte fun_data_mc2d_boton[227] = {
     0x22,0x85,0xa6,0xd3,0x29, // LOAD_CONST_SMALL_INT 11119017
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x56, // LOAD_METHOD 'rect'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x45, // LOAD_METHOD 'rect'
     0xb1, // LOAD_FAST 1
     0x81, // LOAD_CONST_SMALL_INT 1
     0xf2, // BINARY_OP 27 __add__
@@ -61055,8 +64388,8 @@ static const byte fun_data_mc2d_boton[227] = {
     0x59, // POP_TOP
     0xb4, // LOAD_FAST 4
     0x44,0x52, // POP_JUMP_IF_FALSE 18
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x81,0x18, // LOAD_METHOD 'marco'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x0a, // LOAD_METHOD 'marco'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0xb3, // LOAD_FAST 3
@@ -61074,15 +64407,15 @@ static const byte fun_data_mc2d_boton[227] = {
     0x42,0x45, // JUMP 5
     0x22,0x85,0x82,0xc1,0x20, // LOAD_CONST_SMALL_INT 10526880
     0xc6, // STORE_FAST 6
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x57, // LOAD_METHOD 'texto'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x46, // LOAD_METHOD 'texto'
     0xb0, // LOAD_FAST 0
     0xb1, // LOAD_FAST 1
     0xb3, // LOAD_FAST 3
     0x82, // LOAD_CONST_SMALL_INT 2
     0xf6, // BINARY_OP 31 __floordiv__
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x3b, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
     0xb0, // LOAD_FAST 0
     0x34,0x01, // CALL_FUNCTION 1
     0x83, // LOAD_CONST_SMALL_INT 3
@@ -61096,15 +64429,15 @@ static const byte fun_data_mc2d_boton[227] = {
     0x22,0x81,0xa8,0xd4,0x2a, // LOAD_CONST_SMALL_INT 2763306
     0x36,0x04, // CALL_METHOD 4
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x57, // LOAD_METHOD 'texto'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x46, // LOAD_METHOD 'texto'
     0xb0, // LOAD_FAST 0
     0xb1, // LOAD_FAST 1
     0xb3, // LOAD_FAST 3
     0x82, // LOAD_CONST_SMALL_INT 2
     0xf6, // BINARY_OP 31 __floordiv__
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x3b, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
     0xb0, // LOAD_FAST 0
     0x34,0x01, // CALL_FUNCTION 1
     0x83, // LOAD_CONST_SMALL_INT 3
@@ -61142,7 +64475,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_boton = {
         .n_pos_args = 6,
         .n_kwonly_args = 0,
         .n_def_pos_args = 1,
-        .qstr_block_name_idx = 151,
+        .qstr_block_name_idx = 137,
         .line_info = fun_data_mc2d_boton + 14,
         .line_info_top = fun_data_mc2d_boton + 26,
         .opcodes = fun_data_mc2d_boton + 26,
@@ -61156,28 +64489,34 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_boton = {
 
 // child of mc2d__lt_module_gt_
 // frozen bytecode for file mc2d.py, scope mc2d_fondo_tierra
-static const byte fun_data_mc2d_fondo_tierra[69] = {
-    0x60,0x0e, // prelude
-    0x81,0x19, // names: fondo_tierra
-    0xd0,0x57,0x27,0x2b,0x2a, // code info
-    0x12,0x66, // LOAD_GLOBAL 'spr'
-    0x10,0x0c, // LOAD_CONST_STRING 'tierra'
+static const byte fun_data_mc2d_fondo_tierra[103] = {
+    0x60,0x14, // prelude
+    0x81,0x0b, // names: fondo_tierra
+    0xe0,0xfa,0x26,0x30,0x2b,0x2a,0x1f,0x41, // code info
+    0x12,0x83,0x01, // LOAD_GLOBAL 'NB'
+    0x44,0xc5,0x80, // POP_JUMP_IF_FALSE 69
+    0x12,0x5d, // LOAD_GLOBAL 'tex'
+    0x12,0x18, // LOAD_GLOBAL 'ficha'
+    0x12,0x83,0x13, // LOAD_GLOBAL 'TIERRA_PM'
+    0x34,0x01, // CALL_FUNCTION 1
+    0x12,0x82,0x7b, // LOAD_GLOBAL 'F_TILE'
+    0x55, // LOAD_SUBSCR
     0x34,0x01, // CALL_FUNCTION 1
     0xc0, // STORE_FAST 0
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x13,0x81,0x1a, // LOAD_ATTR 'ALTO'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x13,0x81,0x0c, // LOAD_ATTR 'ALTO'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x42,0x63, // JUMP 35
     0x57, // DUP_TOP
     0xc1, // STORE_FAST 1
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x13,0x3c, // LOAD_ATTR 'ANCHO'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x13,0x10, // LOAD_ATTR 'ANCHO'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x42,0x50, // JUMP 16
     0x57, // DUP_TOP
     0xc2, // STORE_FAST 2
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x6a, // LOAD_METHOD 'dibujar'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x5f, // LOAD_METHOD 'dibujar'
     0xb0, // LOAD_FAST 0
     0xb2, // LOAD_FAST 2
     0xb1, // LOAD_FAST 1
@@ -61200,6 +64539,12 @@ static const byte fun_data_mc2d_fondo_tierra[69] = {
     0x43,0x18, // POP_JUMP_IF_TRUE -40
     0x59, // POP_TOP
     0x59, // POP_TOP
+    0x42,0x4e, // JUMP 14
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x0d, // LOAD_METHOD 'limpiar'
+    0x22,0x81,0xe8,0xd4,0x1e, // LOAD_CONST_SMALL_INT 3811870
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -61212,7 +64557,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_fondo_tierra = {
     .fun_data = fun_data_mc2d_fondo_tierra,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 69,
+    .fun_data_len = 103,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -61226,10 +64571,10 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_fondo_tierra = {
         .n_pos_args = 0,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 153,
+        .qstr_block_name_idx = 139,
         .line_info = fun_data_mc2d_fondo_tierra + 4,
-        .line_info_top = fun_data_mc2d_fondo_tierra + 9,
-        .opcodes = fun_data_mc2d_fondo_tierra + 9,
+        .line_info_top = fun_data_mc2d_fondo_tierra + 12,
+        .opcodes = fun_data_mc2d_fondo_tierra + 12,
     },
     #endif
     #endif
@@ -61242,21 +64587,21 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_fondo_tierra = {
 // frozen bytecode for file mc2d.py, scope mc2d_menu
 static const byte fun_data_mc2d_menu[291] = {
     0x83,0x11,0x40, // prelude
-    0x81,0x1b,0x83,0x47,0x83,0x48,0x83,0x49, // names: menu, titulo, ops, sub
-    0xd0,0x5e,0x20,0x22,0x26,0x20,0x1f,0x24,0x1f,0x22,0x23,0x3f,0x2a,0x33,0x1f,0x23,0x28,0x2f,0x26,0x35,0x28,0x27,0x22,0x27, // code info
+    0x81,0x0e,0x83,0x7e,0x83,0x7f,0x84,0x00, // names: menu, titulo, ops, sub
+    0xf0,0x04,0x20,0x22,0x26,0x20,0x1f,0x24,0x1f,0x22,0x23,0x3f,0x2a,0x33,0x1f,0x23,0x28,0x2f,0x26,0x35,0x28,0x27,0x22,0x27, // code info
     0x80, // LOAD_CONST_SMALL_INT 0
     0xc3, // STORE_FAST 3
-    0x12,0x81,0x19, // LOAD_GLOBAL 'fondo_tierra'
+    0x12,0x81,0x0b, // LOAD_GLOBAL 'fondo_tierra'
     0x34,0x00, // CALL_FUNCTION 0
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x57, // LOAD_METHOD 'texto'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x46, // LOAD_METHOD 'texto'
     0xb0, // LOAD_FAST 0
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x13,0x3c, // LOAD_ATTR 'ANCHO'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x13,0x10, // LOAD_ATTR 'ANCHO'
     0x82, // LOAD_CONST_SMALL_INT 2
     0xf6, // BINARY_OP 31 __floordiv__
-    0x12,0x83,0x3b, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
     0xb0, // LOAD_FAST 0
     0x34,0x01, // CALL_FUNCTION 1
     0x86, // LOAD_CONST_SMALL_INT 6
@@ -61270,14 +64615,14 @@ static const byte fun_data_mc2d_menu[291] = {
     0x82, // LOAD_CONST_SMALL_INT 2
     0x36,0x06, // CALL_METHOD 6
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x57, // LOAD_METHOD 'texto'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x46, // LOAD_METHOD 'texto'
     0xb0, // LOAD_FAST 0
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x13,0x3c, // LOAD_ATTR 'ANCHO'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x13,0x10, // LOAD_ATTR 'ANCHO'
     0x82, // LOAD_CONST_SMALL_INT 2
     0xf6, // BINARY_OP 31 __floordiv__
-    0x12,0x83,0x3b, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
     0xb0, // LOAD_FAST 0
     0x34,0x01, // CALL_FUNCTION 1
     0x86, // LOAD_CONST_SMALL_INT 6
@@ -61291,14 +64636,14 @@ static const byte fun_data_mc2d_menu[291] = {
     0x59, // POP_TOP
     0xb2, // LOAD_FAST 2
     0x44,0x5f, // POP_JUMP_IF_FALSE 31
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x57, // LOAD_METHOD 'texto'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x46, // LOAD_METHOD 'texto'
     0xb2, // LOAD_FAST 2
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x13,0x3c, // LOAD_ATTR 'ANCHO'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x13,0x10, // LOAD_ATTR 'ANCHO'
     0x82, // LOAD_CONST_SMALL_INT 2
     0xf6, // BINARY_OP 31 __floordiv__
-    0x12,0x83,0x3b, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
     0xb2, // LOAD_FAST 2
     0x34,0x01, // CALL_FUNCTION 1
     0x83, // LOAD_CONST_SMALL_INT 3
@@ -61308,15 +64653,15 @@ static const byte fun_data_mc2d_menu[291] = {
     0x22,0x87,0xff,0xfe,0x60, // LOAD_CONST_SMALL_INT 16777056
     0x36,0x04, // CALL_METHOD 4
     0x59, // POP_TOP
-    0x12,0x83,0x38, // LOAD_GLOBAL 'max'
+    0x12,0x83,0x6c, // LOAD_GLOBAL 'max'
     0x80, // LOAD_CONST_SMALL_INT 0
     0xb3, // LOAD_FAST 3
     0x85, // LOAD_CONST_SMALL_INT 5
     0xf3, // BINARY_OP 28 __sub__
     0x34,0x02, // CALL_FUNCTION 2
     0xc4, // STORE_FAST 4
-    0x12,0x83,0x37, // LOAD_GLOBAL 'min'
-    0x12,0x83,0x3b, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x6b, // LOAD_GLOBAL 'min'
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
     0xb1, // LOAD_FAST 1
     0x34,0x01, // CALL_FUNCTION 1
     0xb4, // LOAD_FAST 4
@@ -61327,7 +64672,7 @@ static const byte fun_data_mc2d_menu[291] = {
     0x42,0x5d, // JUMP 29
     0x57, // DUP_TOP
     0xc5, // STORE_FAST 5
-    0x12,0x81,0x17, // LOAD_GLOBAL 'boton'
+    0x12,0x81,0x09, // LOAD_GLOBAL 'boton'
     0xb1, // LOAD_FAST 1
     0xb5, // LOAD_FAST 5
     0x55, // LOAD_SUBSCR
@@ -61353,12 +64698,12 @@ static const byte fun_data_mc2d_menu[291] = {
     0x43,0x1e, // POP_JUMP_IF_TRUE -34
     0x59, // POP_TOP
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x58, // LOAD_METHOD 'mostrar'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x47, // LOAD_METHOD 'mostrar'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
-    0x12,0x82,0x56, // LOAD_GLOBAL 'K'
-    0x14,0x81,0x1c, // LOAD_METHOD 'eventos'
+    0x12,0x82,0x68, // LOAD_GLOBAL 'K'
+    0x14,0x81,0x0f, // LOAD_METHOD 'eventos'
     0x36,0x00, // CALL_METHOD 0
     0x5f, // GET_ITER_STACK
     0x4b,0x3b, // FOR_ITER 59
@@ -61366,35 +64711,35 @@ static const byte fun_data_mc2d_menu[291] = {
     0xc6, // STORE_FAST 6
     0xc7, // STORE_FAST 7
     0xb6, // LOAD_FAST 6
-    0x23,0x3f, // LOAD_CONST_OBJ 63
+    0x23,0x3d, // LOAD_CONST_OBJ 61
     0xdd, // BINARY_OP 6 <in>
     0x44,0x5d, // POP_JUMP_IF_FALSE 29
     0xb3, // LOAD_FAST 3
     0xb6, // LOAD_FAST 6
-    0x10,0x81,0x1d, // LOAD_CONST_STRING 'DOWN'
+    0x10,0x81,0x10, // LOAD_CONST_STRING 'DOWN'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x43, // POP_JUMP_IF_FALSE 3
     0x81, // LOAD_CONST_SMALL_INT 1
     0x42,0x41, // JUMP 1
     0x7f, // LOAD_CONST_SMALL_INT -1
     0xf2, // BINARY_OP 27 __add__
-    0x12,0x83,0x3b, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
     0xb1, // LOAD_FAST 1
     0x34,0x01, // CALL_FUNCTION 1
     0xf8, // BINARY_OP 33 __mod__
     0xc3, // STORE_FAST 3
-    0x12,0x81,0x19, // LOAD_GLOBAL 'fondo_tierra'
+    0x12,0x81,0x0b, // LOAD_GLOBAL 'fondo_tierra'
     0x34,0x00, // CALL_FUNCTION 0
     0x59, // POP_TOP
     0x42,0x52, // JUMP 18
     0xb6, // LOAD_FAST 6
-    0x10,0x81,0x1e, // LOAD_CONST_STRING 'EXE'
+    0x10,0x81,0x11, // LOAD_CONST_STRING 'EXE'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x42, // POP_JUMP_IF_FALSE 2
     0xb3, // LOAD_FAST 3
     0x63, // RETURN_VALUE
     0xb6, // LOAD_FAST 6
-    0x10,0x81,0x1f, // LOAD_CONST_STRING 'DEL'
+    0x10,0x81,0x12, // LOAD_CONST_STRING 'DEL'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x42, // POP_JUMP_IF_FALSE 2
     0x7f, // LOAD_CONST_SMALL_INT -1
@@ -61427,7 +64772,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_menu = {
         .n_pos_args = 3,
         .n_kwonly_args = 0,
         .n_def_pos_args = 1,
-        .qstr_block_name_idx = 155,
+        .qstr_block_name_idx = 142,
         .line_info = fun_data_mc2d_menu + 11,
         .line_info_top = fun_data_mc2d_menu + 35,
         .opcodes = fun_data_mc2d_menu + 35,
@@ -61443,12 +64788,12 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_menu = {
 // frozen bytecode for file mc2d.py, scope mc2d_mensaje
 static const byte fun_data_mc2d_mensaje[63] = {
     0x69,0x12, // prelude
-    0x81,0x20,0x83,0x4a, // names: mensaje, lineas
-    0xd0,0x75,0x26,0x2d,0x37, // code info
-    0x12,0x81,0x19, // LOAD_GLOBAL 'fondo_tierra'
+    0x81,0x13,0x84,0x01, // names: mensaje, lineas
+    0xf0,0x1b,0x26,0x2d,0x37, // code info
+    0x12,0x81,0x0b, // LOAD_GLOBAL 'fondo_tierra'
     0x34,0x00, // CALL_FUNCTION 0
     0x59, // POP_TOP
-    0x12,0x83,0x0f, // LOAD_GLOBAL 'enumerate'
+    0x12,0x83,0x63, // LOAD_GLOBAL 'enumerate'
     0xb0, // LOAD_FAST 0
     0x34,0x01, // CALL_FUNCTION 1
     0x5f, // GET_ITER_STACK
@@ -61456,8 +64801,8 @@ static const byte fun_data_mc2d_mensaje[63] = {
     0x30,0x02, // UNPACK_SEQUENCE 2
     0xc1, // STORE_FAST 1
     0xc2, // STORE_FAST 2
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x57, // LOAD_METHOD 'texto'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x46, // LOAD_METHOD 'texto'
     0xb2, // LOAD_FAST 2
     0x94, // LOAD_CONST_SMALL_INT 20
     0x22,0x3c, // LOAD_CONST_SMALL_INT 60
@@ -61469,8 +64814,8 @@ static const byte fun_data_mc2d_mensaje[63] = {
     0x36,0x04, // CALL_METHOD 4
     0x59, // POP_TOP
     0x42,0x23, // JUMP -29
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x58, // LOAD_METHOD 'mostrar'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x47, // LOAD_METHOD 'mostrar'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0x51, // LOAD_CONST_NONE
@@ -61499,7 +64844,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_mensaje = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 160,
+        .qstr_block_name_idx = 147,
         .line_info = fun_data_mc2d_mensaje + 6,
         .line_info_top = fun_data_mc2d_mensaje + 11,
         .opcodes = fun_data_mc2d_mensaje + 11,
@@ -61515,19 +64860,19 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_mensaje = {
 // frozen bytecode for file mc2d.py, scope mc2d_preguntar
 static const byte fun_data_mc2d_preguntar[204] = {
     0xf6,0x01,0x30, // prelude
-    0x81,0x21,0x83,0x47,0x83,0x4b, // names: preguntar, titulo, inicial
-    0xd0,0x7c,0x22,0x58,0x23,0x28,0x20,0x26,0x31,0x31,0x36,0x33,0x28,0x2f,0x29,0x27,0x24,0x27, // code info
+    0x81,0x14,0x83,0x7e,0x84,0x02, // names: preguntar, titulo, inicial
+    0xf0,0x22,0x22,0x58,0x23,0x28,0x20,0x26,0x31,0x31,0x36,0x33,0x28,0x2f,0x29,0x27,0x24,0x27, // code info
     0x48,0x10, // SETUP_EXCEPT 16
     0x80, // LOAD_CONST_SMALL_INT 0
-    0x10,0x81,0x22, // LOAD_CONST_STRING 'T9'
+    0x10,0x81,0x15, // LOAD_CONST_STRING 'T9'
     0x2a,0x01, // BUILD_TUPLE 1
-    0x1b,0x81,0x23, // IMPORT_NAME 't9'
-    0x1c,0x81,0x22, // IMPORT_FROM 'T9'
+    0x1b,0x81,0x16, // IMPORT_NAME 't9'
+    0x1c,0x81,0x15, // IMPORT_FROM 'T9'
     0xc2, // STORE_FAST 2
     0x59, // POP_TOP
     0x4a,0x0b, // POP_EXCEPT_JUMP 11
     0x57, // DUP_TOP
-    0x12,0x82,0x57, // LOAD_GLOBAL 'ImportError'
+    0x12,0x82,0x69, // LOAD_GLOBAL 'ImportError'
     0xdf, // BINARY_OP 8 <exception match>
     0x44,0x43, // POP_JUMP_IF_FALSE 3
     0x59, // POP_TOP
@@ -61536,23 +64881,23 @@ static const byte fun_data_mc2d_preguntar[204] = {
     0x5d, // END_FINALLY
     0xb2, // LOAD_FAST 2
     0xb1, // LOAD_FAST 1
-    0x10,0x57, // LOAD_CONST_STRING 'texto'
+    0x10,0x46, // LOAD_CONST_STRING 'texto'
     0x94, // LOAD_CONST_SMALL_INT 20
     0x34,0x03, // CALL_FUNCTION 3
     0xc3, // STORE_FAST 3
-    0x12,0x81,0x19, // LOAD_GLOBAL 'fondo_tierra'
+    0x12,0x81,0x0b, // LOAD_GLOBAL 'fondo_tierra'
     0x34,0x00, // CALL_FUNCTION 0
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x57, // LOAD_METHOD 'texto'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x46, // LOAD_METHOD 'texto'
     0xb0, // LOAD_FAST 0
     0x94, // LOAD_CONST_SMALL_INT 20
     0x22,0x3c, // LOAD_CONST_SMALL_INT 60
     0x22,0x87,0xff,0xff,0x7f, // LOAD_CONST_SMALL_INT 16777215
     0x36,0x04, // CALL_METHOD 4
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x56, // LOAD_METHOD 'rect'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x45, // LOAD_METHOD 'rect'
     0x94, // LOAD_CONST_SMALL_INT 20
     0x22,0x80,0x50, // LOAD_CONST_SMALL_INT 80
     0x22,0x82,0x18, // LOAD_CONST_SMALL_INT 280
@@ -61560,30 +64905,30 @@ static const byte fun_data_mc2d_preguntar[204] = {
     0x80, // LOAD_CONST_SMALL_INT 0
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x57, // LOAD_METHOD 'texto'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x46, // LOAD_METHOD 'texto'
     0xb3, // LOAD_FAST 3
-    0x14,0x58, // LOAD_METHOD 'mostrar'
+    0x14,0x47, // LOAD_METHOD 'mostrar'
     0x36,0x00, // CALL_METHOD 0
     0x98, // LOAD_CONST_SMALL_INT 24
     0x22,0x80,0x56, // LOAD_CONST_SMALL_INT 86
     0x22,0x87,0xff,0xff,0x7f, // LOAD_CONST_SMALL_INT 16777215
     0x36,0x04, // CALL_METHOD 4
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x57, // LOAD_METHOD 'texto'
-    0x23,0x40, // LOAD_CONST_OBJ 64
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x46, // LOAD_METHOD 'texto'
+    0x23,0x3e, // LOAD_CONST_OBJ 62
     0x94, // LOAD_CONST_SMALL_INT 20
     0x22,0x80,0x6e, // LOAD_CONST_SMALL_INT 110
     0x22,0x85,0x82,0xc1,0x20, // LOAD_CONST_SMALL_INT 10526880
     0x36,0x04, // CALL_METHOD 4
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x58, // LOAD_METHOD 'mostrar'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x47, // LOAD_METHOD 'mostrar'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
-    0x12,0x82,0x56, // LOAD_GLOBAL 'K'
-    0x14,0x81,0x1c, // LOAD_METHOD 'eventos'
+    0x12,0x82,0x68, // LOAD_GLOBAL 'K'
+    0x14,0x81,0x0f, // LOAD_METHOD 'eventos'
     0x36,0x00, // CALL_METHOD 0
     0x5f, // GET_ITER_STACK
     0x4b,0x23, // FOR_ITER 35
@@ -61591,20 +64936,20 @@ static const byte fun_data_mc2d_preguntar[204] = {
     0xc4, // STORE_FAST 4
     0xc5, // STORE_FAST 5
     0xb3, // LOAD_FAST 3
-    0x14,0x81,0x24, // LOAD_METHOD 'tecla'
+    0x14,0x81,0x17, // LOAD_METHOD 'tecla'
     0xb4, // LOAD_FAST 4
     0xb5, // LOAD_FAST 5
     0x36,0x02, // CALL_METHOD 2
     0xc6, // STORE_FAST 6
     0xb6, // LOAD_FAST 6
-    0x10,0x81,0x25, // LOAD_CONST_STRING 'ok'
+    0x10,0x81,0x18, // LOAD_CONST_STRING 'ok'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x44, // POP_JUMP_IF_FALSE 4
     0xb3, // LOAD_FAST 3
-    0x13,0x57, // LOAD_ATTR 'texto'
+    0x13,0x46, // LOAD_ATTR 'texto'
     0x63, // RETURN_VALUE
     0xb6, // LOAD_FAST 6
-    0x10,0x81,0x26, // LOAD_CONST_STRING 'cancelar'
+    0x10,0x81,0x19, // LOAD_CONST_STRING 'cancelar'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x42, // POP_JUMP_IF_FALSE 2
     0x51, // LOAD_CONST_NONE
@@ -61637,7 +64982,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_preguntar = {
         .n_pos_args = 2,
         .n_kwonly_args = 0,
         .n_def_pos_args = 1,
-        .qstr_block_name_idx = 161,
+        .qstr_block_name_idx = 148,
         .line_info = fun_data_mc2d_preguntar + 9,
         .line_info_top = fun_data_mc2d_preguntar + 27,
         .opcodes = fun_data_mc2d_preguntar + 27,
@@ -61651,28 +64996,28 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_preguntar = {
 
 // child of mc2d__lt_module_gt_
 // frozen bytecode for file mc2d.py, scope mc2d_nuevo_mundo
-static const byte fun_data_mc2d_nuevo_mundo[69] = {
-    0x41,0x14, // prelude
-    0x81,0x27,0x74, // names: nuevo_mundo, nombre
-    0xd0,0x91,0x2d,0x28,0x35,0x26,0x27, // code info
-    0x12,0x59, // LOAD_GLOBAL 'generar'
+static const byte fun_data_mc2d_nuevo_mundo[70] = {
+    0x41,0x16, // prelude
+    0x81,0x1a,0x83,0x79, // names: nuevo_mundo, nombre_m
+    0xf0,0x37,0x2d,0x28,0x35,0x26,0x27, // code info
+    0x12,0x48, // LOAD_GLOBAL 'generar'
     0x12,0x03, // LOAD_GLOBAL 'random'
-    0x14,0x81,0x28, // LOAD_METHOD 'getrandbits'
+    0x14,0x81,0x1b, // LOAD_METHOD 'getrandbits'
     0x9e, // LOAD_CONST_SMALL_INT 30
     0x36,0x01, // CALL_METHOD 1
     0x34,0x01, // CALL_FUNCTION 1
     0x59, // POP_TOP
-    0x12,0x83,0x2a, // LOAD_GLOBAL 'NHUECOS'
+    0x12,0x83,0x57, // LOAD_GLOBAL 'NHUECOS'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x42,0x50, // JUMP 16
     0x57, // DUP_TOP
     0xc1, // STORE_FAST 1
     0x80, // LOAD_CONST_SMALL_INT 0
     0x57, // DUP_TOP
-    0x12,0x83,0x2b, // LOAD_GLOBAL 'inv_id'
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
     0xb1, // LOAD_FAST 1
     0x56, // STORE_SUBSCR
-    0x12,0x83,0x2c, // LOAD_GLOBAL 'inv_n'
+    0x12,0x83,0x59, // LOAD_GLOBAL 'inv_n'
     0xb1, // LOAD_FAST 1
     0x56, // STORE_SUBSCR
     0x81, // LOAD_CONST_SMALL_INT 1
@@ -61683,12 +65028,12 @@ static const byte fun_data_mc2d_nuevo_mundo[69] = {
     0x43,0x2b, // POP_JUMP_IF_TRUE -21
     0x59, // POP_TOP
     0x59, // POP_TOP
-    0x12,0x3d, // LOAD_GLOBAL 'Juego'
+    0x12,0x15, // LOAD_GLOBAL 'Juego'
     0xb0, // LOAD_FAST 0
     0x34,0x01, // CALL_FUNCTION 1
     0xc2, // STORE_FAST 2
     0xb2, // LOAD_FAST 2
-    0x14,0x81,0x29, // LOAD_METHOD 'aparecer'
+    0x14,0x81,0x1c, // LOAD_METHOD 'aparecer'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0xb2, // LOAD_FAST 2
@@ -61703,7 +65048,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_nuevo_mundo = {
     .fun_data = fun_data_mc2d_nuevo_mundo,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 69,
+    .fun_data_len = 70,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -61717,10 +65062,10 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_nuevo_mundo = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 167,
-        .line_info = fun_data_mc2d_nuevo_mundo + 5,
-        .line_info_top = fun_data_mc2d_nuevo_mundo + 12,
-        .opcodes = fun_data_mc2d_nuevo_mundo + 12,
+        .qstr_block_name_idx = 154,
+        .line_info = fun_data_mc2d_nuevo_mundo + 6,
+        .line_info_top = fun_data_mc2d_nuevo_mundo + 13,
+        .opcodes = fun_data_mc2d_nuevo_mundo + 13,
     },
     #endif
     #endif
@@ -61731,25 +65076,25 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_nuevo_mundo = {
 
 // child of mc2d__lt_module_gt_
 // frozen bytecode for file mc2d.py, scope mc2d_un_jugador
-static const byte fun_data_mc2d_un_jugador[231] = {
-    0x5c,0x30, // prelude
-    0x81,0x2a, // names: un_jugador
-    0xd0,0x9a,0x20,0x26,0x2d,0x2c,0x31,0x22,0x25,0x22,0x22,0x2d,0x2d,0x23,0x59,0x34,0x25,0x2e,0x29,0x25,0x22,0x5d, // code info
-    0x12,0x81,0x07, // LOAD_GLOBAL 'lista_mundos'
+static const byte fun_data_mc2d_un_jugador[264] = {
+    0x64,0x36, // prelude
+    0x81,0x1d, // names: un_jugador
+    0xf0,0x40,0x20,0x25,0x2d,0x2c,0x31,0x22,0x25,0x22,0x22,0x2d,0x2d,0x23,0x58,0x34,0x25,0x2e,0x22,0x29,0x2c,0x32,0x25,0x22,0x5d, // code info
+    0x12,0x79, // LOAD_GLOBAL 'lista_mundos'
     0x34,0x00, // CALL_FUNCTION 0
     0xc0, // STORE_FAST 0
-    0x23,0x41, // LOAD_CONST_OBJ 65
+    0x23,0x3f, // LOAD_CONST_OBJ 63
     0x2b,0x01, // BUILD_LIST 1
     0xb0, // LOAD_FAST 0
     0xf2, // BINARY_OP 27 __add__
-    0x10,0x81,0x2b, // LOAD_CONST_STRING 'Atras'
+    0x10,0x81,0x1e, // LOAD_CONST_STRING 'Atras'
     0x2b,0x01, // BUILD_LIST 1
     0xf2, // BINARY_OP 27 __add__
     0xc1, // STORE_FAST 1
-    0x12,0x81,0x1b, // LOAD_GLOBAL 'menu'
-    0x10,0x81,0x2c, // LOAD_CONST_STRING 'Un jugador'
+    0x12,0x81,0x0e, // LOAD_GLOBAL 'menu'
+    0x10,0x81,0x1f, // LOAD_CONST_STRING 'Un jugador'
     0xb1, // LOAD_FAST 1
-    0x23,0x42, // LOAD_CONST_OBJ 66
+    0x23,0x40, // LOAD_CONST_OBJ 64
     0x34,0x03, // CALL_FUNCTION 3
     0xc2, // STORE_FAST 2
     0xb2, // LOAD_FAST 2
@@ -61757,7 +65102,7 @@ static const byte fun_data_mc2d_un_jugador[231] = {
     0xd7, // BINARY_OP 0 __lt__
     0x43,0x4c, // POP_JUMP_IF_TRUE 12
     0xb2, // LOAD_FAST 2
-    0x12,0x83,0x3b, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
     0xb1, // LOAD_FAST 1
     0x34,0x01, // CALL_FUNCTION 1
     0x81, // LOAD_CONST_SMALL_INT 1
@@ -61769,7 +65114,7 @@ static const byte fun_data_mc2d_un_jugador[231] = {
     0xb2, // LOAD_FAST 2
     0x80, // LOAD_CONST_SMALL_INT 0
     0xd9, // BINARY_OP 2 __eq__
-    0x44,0x7a, // POP_JUMP_IF_FALSE 58
+    0x44,0x79, // POP_JUMP_IF_FALSE 57
     0x81, // LOAD_CONST_SMALL_INT 1
     0xc3, // STORE_FAST 3
     0x42,0x44, // JUMP 4
@@ -61777,50 +65122,50 @@ static const byte fun_data_mc2d_un_jugador[231] = {
     0x81, // LOAD_CONST_SMALL_INT 1
     0xe5, // BINARY_OP 14 __iadd__
     0xc3, // STORE_FAST 3
-    0x10,0x81,0x2d, // LOAD_CONST_STRING 'Mundo %d'
+    0x10,0x81,0x20, // LOAD_CONST_STRING 'Mundo %d'
     0xb3, // LOAD_FAST 3
     0xf8, // BINARY_OP 33 __mod__
     0xb0, // LOAD_FAST 0
     0xdd, // BINARY_OP 6 <in>
     0x43,0x33, // POP_JUMP_IF_TRUE -13
-    0x12,0x81,0x21, // LOAD_GLOBAL 'preguntar'
-    0x23,0x43, // LOAD_CONST_OBJ 67
-    0x10,0x81,0x2d, // LOAD_CONST_STRING 'Mundo %d'
+    0x12,0x81,0x14, // LOAD_GLOBAL 'preguntar'
+    0x23,0x41, // LOAD_CONST_OBJ 65
+    0x10,0x81,0x20, // LOAD_CONST_STRING 'Mundo %d'
     0xb3, // LOAD_FAST 3
     0xf8, // BINARY_OP 33 __mod__
     0x34,0x02, // CALL_FUNCTION 2
     0xc4, // STORE_FAST 4
     0xb4, // LOAD_FAST 4
-    0x44,0x56, // POP_JUMP_IF_FALSE 22
-    0x12,0x81,0x27, // LOAD_GLOBAL 'nuevo_mundo'
+    0x44,0x55, // POP_JUMP_IF_FALSE 21
+    0x12,0x81,0x1a, // LOAD_GLOBAL 'nuevo_mundo'
     0xb4, // LOAD_FAST 4
-    0x14,0x81,0x2e, // LOAD_METHOD 'strip'
+    0x14,0x2c, // LOAD_METHOD 'strip'
     0x36,0x00, // CALL_METHOD 0
     0x51, // LOAD_CONST_NONE
     0x90, // LOAD_CONST_SMALL_INT 16
     0x2e,0x02, // BUILD_SLICE 2
     0x55, // LOAD_SUBSCR
     0x45,0x03, // JUMP_IF_TRUE_OR_POP 3
-    0x10,0x81,0x2f, // LOAD_CONST_STRING 'Mundo'
+    0x10,0x81,0x21, // LOAD_CONST_STRING 'Mundo'
     0x34,0x01, // CALL_FUNCTION 1
     0x63, // RETURN_VALUE
-    0x42,0xd7,0x80, // JUMP 87
-    0x12,0x81,0x1b, // LOAD_GLOBAL 'menu'
+    0x42,0xf7,0x80, // JUMP 119
+    0x12,0x81,0x0e, // LOAD_GLOBAL 'menu'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0x55, // LOAD_SUBSCR
-    0x10,0x81,0x30, // LOAD_CONST_STRING 'Jugar'
-    0x10,0x81,0x31, // LOAD_CONST_STRING 'Borrar'
-    0x10,0x81,0x2b, // LOAD_CONST_STRING 'Atras'
+    0x10,0x81,0x22, // LOAD_CONST_STRING 'Jugar'
+    0x10,0x81,0x23, // LOAD_CONST_STRING 'Borrar'
+    0x10,0x81,0x1e, // LOAD_CONST_STRING 'Atras'
     0x2b,0x03, // BUILD_LIST 3
     0x34,0x02, // CALL_FUNCTION 2
     0xc5, // STORE_FAST 5
     0xb5, // LOAD_FAST 5
     0x80, // LOAD_CONST_SMALL_INT 0
     0xd9, // BINARY_OP 2 __eq__
-    0x44,0x57, // POP_JUMP_IF_FALSE 23
-    0x12,0x81,0x20, // LOAD_GLOBAL 'mensaje'
-    0x23,0x44, // LOAD_CONST_OBJ 68
+    0x44,0x77, // POP_JUMP_IF_FALSE 55
+    0x12,0x81,0x13, // LOAD_GLOBAL 'mensaje'
+    0x23,0x42, // LOAD_CONST_OBJ 66
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0x55, // LOAD_SUBSCR
@@ -61828,21 +65173,38 @@ static const byte fun_data_mc2d_un_jugador[231] = {
     0x2b,0x01, // BUILD_LIST 1
     0x34,0x01, // CALL_FUNCTION 1
     0x59, // POP_TOP
-    0x12,0x81,0x02, // LOAD_GLOBAL 'cargar'
+    0x48,0x08, // SETUP_EXCEPT 8
+    0x12,0x74, // LOAD_GLOBAL 'cargar'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0x55, // LOAD_SUBSCR
     0x34,0x01, // CALL_FUNCTION 1
     0x63, // RETURN_VALUE
+    0x57, // DUP_TOP
+    0x12,0x83,0x7a, // LOAD_GLOBAL 'ValueError'
+    0x12,0x83,0x60, // LOAD_GLOBAL 'OSError'
+    0x2a,0x02, // BUILD_TUPLE 2
+    0xdf, // BINARY_OP 8 <exception match>
+    0x44,0x52, // POP_JUMP_IF_FALSE 18
+    0x59, // POP_TOP
+    0x12,0x81,0x0e, // LOAD_GLOBAL 'menu'
+    0x23,0x43, // LOAD_CONST_OBJ 67
+    0x10,0x81,0x1e, // LOAD_CONST_STRING 'Atras'
+    0x2b,0x01, // BUILD_LIST 1
+    0x23,0x44, // LOAD_CONST_OBJ 68
+    0x34,0x03, // CALL_FUNCTION 3
+    0x59, // POP_TOP
+    0x4a,0x01, // POP_EXCEPT_JUMP 1
+    0x5d, // END_FINALLY
     0xb5, // LOAD_FAST 5
     0x81, // LOAD_CONST_SMALL_INT 1
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x62, // POP_JUMP_IF_FALSE 34
     0x48,0x15, // SETUP_EXCEPT 21
     0x12,0x05, // LOAD_GLOBAL 'os'
-    0x14,0x81,0x32, // LOAD_METHOD 'remove'
-    0x10,0x7d, // LOAD_CONST_STRING '%s/%s.mc2d'
-    0x12,0x83,0x2e, // LOAD_GLOBAL 'CARPETA'
+    0x14,0x81,0x24, // LOAD_METHOD 'remove'
+    0x10,0x6f, // LOAD_CONST_STRING '%s/%s.mc2d'
+    0x12,0x83,0x5b, // LOAD_GLOBAL 'CARPETA'
     0xb1, // LOAD_FAST 1
     0xb2, // LOAD_FAST 2
     0x55, // LOAD_SUBSCR
@@ -61852,13 +65214,13 @@ static const byte fun_data_mc2d_un_jugador[231] = {
     0x59, // POP_TOP
     0x4a,0x0b, // POP_EXCEPT_JUMP 11
     0x57, // DUP_TOP
-    0x12,0x83,0x32, // LOAD_GLOBAL 'OSError'
+    0x12,0x83,0x60, // LOAD_GLOBAL 'OSError'
     0xdf, // BINARY_OP 8 <exception match>
     0x44,0x43, // POP_JUMP_IF_FALSE 3
     0x59, // POP_TOP
     0x4a,0x01, // POP_EXCEPT_JUMP 1
     0x5d, // END_FINALLY
-    0x42,0xb5,0x7e, // JUMP -203
+    0x42,0x97,0x7e, // JUMP -233
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
 };
@@ -61871,7 +65233,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_un_jugador = {
     .fun_data = fun_data_mc2d_un_jugador,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 231,
+    .fun_data_len = 264,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -61879,16 +65241,16 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_un_jugador = {
     #if MICROPY_PY_SYS_SETTRACE
     .line_of_definition = 0,
     .prelude = {
-        .n_state = 12,
+        .n_state = 13,
         .n_exc_stack = 1,
         .scope_flags = 0,
         .n_pos_args = 0,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 170,
+        .qstr_block_name_idx = 157,
         .line_info = fun_data_mc2d_un_jugador + 4,
-        .line_info_top = fun_data_mc2d_un_jugador + 26,
-        .opcodes = fun_data_mc2d_un_jugador + 26,
+        .line_info_top = fun_data_mc2d_un_jugador + 29,
+        .opcodes = fun_data_mc2d_un_jugador + 29,
     },
     #endif
     #endif
@@ -61899,121 +65261,121 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_un_jugador = {
 
 // child of mc2d__lt_module_gt_
 // frozen bytecode for file mc2d.py, scope mc2d_multijugador
-static const byte fun_data_mc2d_multijugador[744] = {
-    0xf0,0x10,0x8e,0x02, // prelude
-    0x81,0x33, // names: multijugador
-    0xd0,0xb4,0x26,0x2e,0x2e,0x22,0x33,0x26,0x26,0x23,0x22,0x2a,0x2f,0x29,0x3b,0x2d,0x22,0x27,0x25,0x22,0x27,0x22,0x26,0x2a,0x28,0x23,0x2c,0x25,0x2e,0x2e,0x1f,0x24,0x23,0x2f,0x22,0x34,0x2f,0x22,0x4b,0x2a,0x23,0x22,0x33,0x38,0x2e,0x33,0x29,0x3e,0x22,0x26,0x23,0x2d,0x28,0x22,0x28,0x35,0x28,0x2c,0x27,0x2d,0x22,0x27,0x1f,0x24,0x30,0x23,0x30,0x27,0x22, // code info
-    0x12,0x09, // LOAD_GLOBAL 'red'
+static const byte fun_data_mc2d_multijugador[758] = {
+    0xf0,0x10,0x90,0x02, // prelude
+    0x81,0x25, // names: multijugador
+    0xf0,0x5d,0x26,0x2e,0x2e,0x22,0x33,0x26,0x26,0x23,0x22,0x2a,0x2f,0x29,0x3b,0x2d,0x22,0x26,0x25,0x22,0x27,0x22,0x26,0x2a,0x28,0x23,0x2c,0x25,0x2e,0x2e,0x1f,0x24,0x23,0x2f,0x22,0x34,0x2f,0x22,0x4b,0x2a,0x23,0x22,0x32,0x38,0x2e,0x33,0x29,0x3e,0x22,0x26,0x2a,0x31,0x25,0x28,0x22,0x28,0x35,0x28,0x2c,0x27,0x2d,0x22,0x27,0x1f,0x24,0x30,0x23,0x30,0x26,0x22, // code info
+    0x12,0x0c, // LOAD_GLOBAL 'red'
     0x51, // LOAD_CONST_NONE
     0xde, // BINARY_OP 7 <is>
     0x44,0x5e, // POP_JUMP_IF_FALSE 30
-    0x12,0x81,0x20, // LOAD_GLOBAL 'mensaje'
+    0x12,0x81,0x13, // LOAD_GLOBAL 'mensaje'
     0x23,0x45, // LOAD_CONST_OBJ 69
-    0x10,0x0a, // LOAD_CONST_STRING ''
+    0x10,0x17, // LOAD_CONST_STRING ''
     0x23,0x46, // LOAD_CONST_OBJ 70
     0x2b,0x03, // BUILD_LIST 3
     0x34,0x01, // CALL_FUNCTION 1
     0x59, // POP_TOP
-    0x12,0x81,0x1b, // LOAD_GLOBAL 'menu'
-    0x10,0x81,0x34, // LOAD_CONST_STRING 'Sin red'
-    0x10,0x81,0x2b, // LOAD_CONST_STRING 'Atras'
+    0x12,0x81,0x0e, // LOAD_GLOBAL 'menu'
+    0x10,0x81,0x26, // LOAD_CONST_STRING 'Sin red'
+    0x10,0x81,0x1e, // LOAD_CONST_STRING 'Atras'
     0x2b,0x01, // BUILD_LIST 1
     0x34,0x02, // CALL_FUNCTION 2
     0x59, // POP_TOP
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
-    0x12,0x81,0x1b, // LOAD_GLOBAL 'menu'
+    0x12,0x81,0x0e, // LOAD_GLOBAL 'menu'
     0x23,0x47, // LOAD_CONST_OBJ 71
     0x23,0x48, // LOAD_CONST_OBJ 72
     0x23,0x49, // LOAD_CONST_OBJ 73
     0x23,0x4a, // LOAD_CONST_OBJ 74
-    0x10,0x81,0x2b, // LOAD_CONST_STRING 'Atras'
+    0x10,0x81,0x1e, // LOAD_CONST_STRING 'Atras'
     0x2b,0x04, // BUILD_LIST 4
     0x34,0x02, // CALL_FUNCTION 2
     0xc0, // STORE_FAST 0
     0xb0, // LOAD_FAST 0
     0x80, // LOAD_CONST_SMALL_INT 0
     0xd9, // BINARY_OP 2 __eq__
-    0x44,0xe5,0x80, // POP_JUMP_IF_FALSE 101
-    0x12,0x81,0x2a, // LOAD_GLOBAL 'un_jugador'
+    0x44,0xe4,0x80, // POP_JUMP_IF_FALSE 100
+    0x12,0x81,0x1d, // LOAD_GLOBAL 'un_jugador'
     0x34,0x00, // CALL_FUNCTION 0
     0xc1, // STORE_FAST 1
     0xb1, // LOAD_FAST 1
     0x43,0x42, // POP_JUMP_IF_TRUE 2
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
-    0x12,0x81,0x20, // LOAD_GLOBAL 'mensaje'
+    0x12,0x81,0x13, // LOAD_GLOBAL 'mensaje'
     0x23,0x4b, // LOAD_CONST_OBJ 75
     0x2b,0x01, // BUILD_LIST 1
     0x34,0x01, // CALL_FUNCTION 1
     0x59, // POP_TOP
-    0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x81,0x35, // LOAD_METHOD 'conectar'
-    0x12,0x83,0x1d, // LOAD_GLOBAL 'SALA'
+    0x12,0x0c, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x27, // LOAD_METHOD 'conectar'
+    0x12,0x83,0x4d, // LOAD_GLOBAL 'SALA'
     0x51, // LOAD_CONST_NONE
     0x51, // LOAD_CONST_NONE
     0x51, // LOAD_CONST_NONE
     0x52, // LOAD_CONST_TRUE
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x81,0x36, // LOAD_METHOD 'esperar'
+    0x12,0x0c, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x28, // LOAD_METHOD 'esperar'
     0x36,0x00, // CALL_METHOD 0
     0x43,0x6a, // POP_JUMP_IF_TRUE 42
-    0x12,0x81,0x20, // LOAD_GLOBAL 'mensaje'
+    0x12,0x81,0x13, // LOAD_GLOBAL 'mensaje'
     0x23,0x4c, // LOAD_CONST_OBJ 76
-    0x12,0x83,0x3a, // LOAD_GLOBAL 'str'
-    0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x81,0x37, // LOAD_METHOD 'error'
+    0x12,0x83,0x71, // LOAD_GLOBAL 'str'
+    0x12,0x0c, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x05, // LOAD_METHOD 'error'
     0x36,0x00, // CALL_METHOD 0
     0x34,0x01, // CALL_FUNCTION 1
     0xf2, // BINARY_OP 27 __add__
-    0x10,0x0a, // LOAD_CONST_STRING ''
+    0x10,0x17, // LOAD_CONST_STRING ''
     0x23,0x4d, // LOAD_CONST_OBJ 77
     0x2b,0x03, // BUILD_LIST 3
     0x34,0x01, // CALL_FUNCTION 1
     0x59, // POP_TOP
-    0x12,0x81,0x1b, // LOAD_GLOBAL 'menu'
-    0x10,0x81,0x38, // LOAD_CONST_STRING 'Error'
+    0x12,0x81,0x0e, // LOAD_GLOBAL 'menu'
+    0x10,0x81,0x29, // LOAD_CONST_STRING 'Error'
     0x23,0x4e, // LOAD_CONST_OBJ 78
     0x2b,0x01, // BUILD_LIST 1
     0x34,0x02, // CALL_FUNCTION 2
     0x59, // POP_TOP
     0xb1, // LOAD_FAST 1
     0x63, // RETURN_VALUE
-    0x12,0x81,0x0a, // LOAD_GLOBAL 'publicar'
+    0x12,0x7c, // LOAD_GLOBAL 'publicar'
     0xb1, // LOAD_FAST 1
     0x34,0x01, // CALL_FUNCTION 1
     0x59, // POP_TOP
     0x52, // LOAD_CONST_TRUE
     0xb1, // LOAD_FAST 1
-    0x18,0x81,0x39, // STORE_ATTR 'online'
+    0x18,0x81,0x2a, // STORE_ATTR 'online'
     0xb1, // LOAD_FAST 1
     0x63, // RETURN_VALUE
     0xb0, // LOAD_FAST 0
     0x23,0x4f, // LOAD_CONST_OBJ 79
     0xdd, // BINARY_OP 6 <in>
-    0x44,0xf2,0x83, // POP_JUMP_IF_FALSE 498
+    0x44,0x80,0x84, // POP_JUMP_IF_FALSE 512
     0x51, // LOAD_CONST_NONE
     0xc2, // STORE_FAST 2
     0xb0, // LOAD_FAST 0
     0x81, // LOAD_CONST_SMALL_INT 1
     0xd9, // BINARY_OP 2 __eq__
     0x44,0xa9,0x81, // POP_JUMP_IF_FALSE 169
-    0x12,0x81,0x20, // LOAD_GLOBAL 'mensaje'
+    0x12,0x81,0x13, // LOAD_GLOBAL 'mensaje'
     0x23,0x50, // LOAD_CONST_OBJ 80
     0x2b,0x01, // BUILD_LIST 1
     0x34,0x01, // CALL_FUNCTION 1
     0x59, // POP_TOP
-    0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x81,0x3a, // LOAD_METHOD 'buscar'
+    0x12,0x0c, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x2b, // LOAD_METHOD 'buscar'
     0x36,0x00, // CALL_METHOD 0
     0xc3, // STORE_FAST 3
     0x2b,0x00, // BUILD_LIST 0
     0xc4, // STORE_FAST 4
-    0x12,0x83,0x4c, // LOAD_GLOBAL 'isinstance'
+    0x12,0x84,0x03, // LOAD_GLOBAL 'isinstance'
     0xb3, // LOAD_FAST 3
-    0x12,0x83,0x4d, // LOAD_GLOBAL 'list'
+    0x12,0x83,0x78, // LOAD_GLOBAL 'list'
     0x34,0x02, // CALL_FUNCTION 2
     0x44,0xc4,0x80, // POP_JUMP_IF_FALSE 68
     0xb3, // LOAD_FAST 3
@@ -62021,34 +65383,34 @@ static const byte fun_data_mc2d_multijugador[744] = {
     0x4b,0x40, // FOR_ITER 64
     0xc5, // STORE_FAST 5
     0xb5, // LOAD_FAST 5
-    0x14,0x4c, // LOAD_METHOD 'get'
-    0x10,0x81,0x3b, // LOAD_CONST_STRING 'salas'
+    0x14,0x19, // LOAD_METHOD 'get'
+    0x10,0x81,0x2c, // LOAD_CONST_STRING 'salas'
     0x2b,0x00, // BUILD_LIST 0
     0x36,0x02, // CALL_METHOD 2
     0x5f, // GET_ITER_STACK
     0x4b,0x2f, // FOR_ITER 47
     0xc6, // STORE_FAST 6
     0xb6, // LOAD_FAST 6
-    0x14,0x4c, // LOAD_METHOD 'get'
-    0x10,0x81,0x3c, // LOAD_CONST_STRING 'sala'
+    0x14,0x19, // LOAD_METHOD 'get'
+    0x10,0x81,0x2d, // LOAD_CONST_STRING 'sala'
     0x36,0x01, // CALL_METHOD 1
-    0x12,0x83,0x1d, // LOAD_GLOBAL 'SALA'
+    0x12,0x83,0x4d, // LOAD_GLOBAL 'SALA'
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x5e, // POP_JUMP_IF_FALSE 30
     0xb4, // LOAD_FAST 4
-    0x14,0x3b, // LOAD_METHOD 'append'
+    0x14,0x59, // LOAD_METHOD 'append'
     0xb5, // LOAD_FAST 5
-    0x14,0x4c, // LOAD_METHOD 'get'
-    0x10,0x74, // LOAD_CONST_STRING 'nombre'
+    0x14,0x19, // LOAD_METHOD 'get'
+    0x10,0x2b, // LOAD_CONST_STRING 'nombre'
     0xb5, // LOAD_FAST 5
-    0x10,0x81,0x3d, // LOAD_CONST_STRING 'ip'
+    0x10,0x81,0x2e, // LOAD_CONST_STRING 'ip'
     0x55, // LOAD_SUBSCR
     0x36,0x02, // CALL_METHOD 2
     0xb5, // LOAD_FAST 5
-    0x10,0x81,0x3d, // LOAD_CONST_STRING 'ip'
+    0x10,0x81,0x2e, // LOAD_CONST_STRING 'ip'
     0x55, // LOAD_SUBSCR
     0xb5, // LOAD_FAST 5
-    0x10,0x81,0x3e, // LOAD_CONST_STRING 'puerto'
+    0x10,0x81,0x2f, // LOAD_CONST_STRING 'puerto'
     0x55, // LOAD_SUBSCR
     0x2a,0x03, // BUILD_TUPLE 3
     0x36,0x01, // CALL_METHOD 1
@@ -62057,21 +65419,21 @@ static const byte fun_data_mc2d_multijugador[744] = {
     0x42,0xbe,0x7f, // JUMP -66
     0xb4, // LOAD_FAST 4
     0x43,0x51, // POP_JUMP_IF_TRUE 17
-    0x12,0x81,0x1b, // LOAD_GLOBAL 'menu'
+    0x12,0x81,0x0e, // LOAD_GLOBAL 'menu'
     0x23,0x47, // LOAD_CONST_OBJ 71
-    0x10,0x81,0x2b, // LOAD_CONST_STRING 'Atras'
+    0x10,0x81,0x1e, // LOAD_CONST_STRING 'Atras'
     0x2b,0x01, // BUILD_LIST 1
     0x23,0x51, // LOAD_CONST_OBJ 81
     0x34,0x03, // CALL_FUNCTION 3
     0x59, // POP_TOP
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
-    0x12,0x81,0x1b, // LOAD_GLOBAL 'menu'
-    0x10,0x81,0x3f, // LOAD_CONST_STRING 'Partidas'
+    0x12,0x81,0x0e, // LOAD_GLOBAL 'menu'
+    0x10,0x81,0x30, // LOAD_CONST_STRING 'Partidas'
     0x32,0x00, // MAKE_FUNCTION 0
     0xb4, // LOAD_FAST 4
     0x34,0x01, // CALL_FUNCTION 1
-    0x10,0x81,0x2b, // LOAD_CONST_STRING 'Atras'
+    0x10,0x81,0x1e, // LOAD_CONST_STRING 'Atras'
     0x2b,0x01, // BUILD_LIST 1
     0xf2, // BINARY_OP 27 __add__
     0x34,0x02, // CALL_FUNCTION 2
@@ -62081,7 +65443,7 @@ static const byte fun_data_mc2d_multijugador[744] = {
     0xd7, // BINARY_OP 0 __lt__
     0x43,0x4a, // POP_JUMP_IF_TRUE 10
     0xb7, // LOAD_FAST 7
-    0x12,0x83,0x3b, // LOAD_GLOBAL 'len'
+    0x12,0x83,0x5d, // LOAD_GLOBAL 'len'
     0xb4, // LOAD_FAST 4
     0x34,0x01, // CALL_FUNCTION 1
     0xdb, // BINARY_OP 4 __ge__
@@ -62096,10 +65458,10 @@ static const byte fun_data_mc2d_multijugador[744] = {
     0x2e,0x02, // BUILD_SLICE 2
     0x55, // LOAD_SUBSCR
     0xc2, // STORE_FAST 2
-    0x42,0x7a, // JUMP 58
-    0x12,0x81,0x21, // LOAD_GLOBAL 'preguntar'
+    0x42,0x79, // JUMP 57
+    0x12,0x81,0x14, // LOAD_GLOBAL 'preguntar'
     0x23,0x52, // LOAD_CONST_OBJ 82
-    0x10,0x0a, // LOAD_CONST_STRING ''
+    0x10,0x17, // LOAD_CONST_STRING ''
     0x34,0x02, // CALL_FUNCTION 2
     0xc8, // STORE_FAST 8
     0xb8, // LOAD_FAST 8
@@ -62107,10 +65469,10 @@ static const byte fun_data_mc2d_multijugador[744] = {
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
     0xb8, // LOAD_FAST 8
-    0x14,0x81,0x2e, // LOAD_METHOD 'strip'
+    0x14,0x2c, // LOAD_METHOD 'strip'
     0x36,0x00, // CALL_METHOD 0
-    0x14,0x81,0x40, // LOAD_METHOD 'partition'
-    0x10,0x81,0x41, // LOAD_CONST_STRING ':'
+    0x14,0x81,0x31, // LOAD_METHOD 'partition'
+    0x10,0x81,0x32, // LOAD_CONST_STRING ':'
     0x36,0x01, // CALL_METHOD 1
     0x30,0x03, // UNPACK_SEQUENCE 3
     0xc9, // STORE_FAST 9
@@ -62118,17 +65480,17 @@ static const byte fun_data_mc2d_multijugador[744] = {
     0xcb, // STORE_FAST 11
     0xb9, // LOAD_FAST 9
     0xbb, // LOAD_FAST 11
-    0x14,0x81,0x42, // LOAD_METHOD 'isdigit'
+    0x14,0x81,0x33, // LOAD_METHOD 'isdigit'
     0x36,0x00, // CALL_METHOD 0
     0x44,0x48, // POP_JUMP_IF_FALSE 8
-    0x12,0x83,0x35, // LOAD_GLOBAL 'int'
+    0x12,0x83,0x69, // LOAD_GLOBAL 'int'
     0xbb, // LOAD_FAST 11
     0x34,0x01, // CALL_FUNCTION 1
     0x42,0x44, // JUMP 4
     0x22,0x80,0xc0,0x4b, // LOAD_CONST_SMALL_INT 8267
     0x2a,0x02, // BUILD_TUPLE 2
     0xc2, // STORE_FAST 2
-    0x12,0x81,0x20, // LOAD_GLOBAL 'mensaje'
+    0x12,0x81,0x13, // LOAD_GLOBAL 'mensaje'
     0x23,0x53, // LOAD_CONST_OBJ 83
     0xb2, // LOAD_FAST 2
     0x80, // LOAD_CONST_SMALL_INT 0
@@ -62137,9 +65499,9 @@ static const byte fun_data_mc2d_multijugador[744] = {
     0x2b,0x01, // BUILD_LIST 1
     0x34,0x01, // CALL_FUNCTION 1
     0x59, // POP_TOP
-    0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x81,0x35, // LOAD_METHOD 'conectar'
-    0x12,0x83,0x1d, // LOAD_GLOBAL 'SALA'
+    0x12,0x0c, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x27, // LOAD_METHOD 'conectar'
+    0x12,0x83,0x4d, // LOAD_GLOBAL 'SALA'
     0x51, // LOAD_CONST_NONE
     0xb2, // LOAD_FAST 2
     0x80, // LOAD_CONST_SMALL_INT 0
@@ -62150,17 +65512,17 @@ static const byte fun_data_mc2d_multijugador[744] = {
     0x50, // LOAD_CONST_FALSE
     0x36,0x05, // CALL_METHOD 5
     0x59, // POP_TOP
-    0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x81,0x36, // LOAD_METHOD 'esperar'
+    0x12,0x0c, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x28, // LOAD_METHOD 'esperar'
     0x36,0x00, // CALL_METHOD 0
     0x43,0x60, // POP_JUMP_IF_TRUE 32
-    0x12,0x81,0x1b, // LOAD_GLOBAL 'menu'
+    0x12,0x81,0x0e, // LOAD_GLOBAL 'menu'
     0x23,0x54, // LOAD_CONST_OBJ 84
-    0x10,0x81,0x2b, // LOAD_CONST_STRING 'Atras'
+    0x10,0x81,0x1e, // LOAD_CONST_STRING 'Atras'
     0x2b,0x01, // BUILD_LIST 1
-    0x12,0x83,0x3a, // LOAD_GLOBAL 'str'
-    0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x81,0x37, // LOAD_METHOD 'error'
+    0x12,0x83,0x71, // LOAD_GLOBAL 'str'
+    0x12,0x0c, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x05, // LOAD_METHOD 'error'
     0x36,0x00, // CALL_METHOD 0
     0x34,0x01, // CALL_FUNCTION 1
     0x51, // LOAD_CONST_NONE
@@ -62171,34 +65533,43 @@ static const byte fun_data_mc2d_multijugador[744] = {
     0x59, // POP_TOP
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
-    0x12,0x81,0x10, // LOAD_GLOBAL 'recibir_mundo'
+    0x12,0x81,0x02, // LOAD_GLOBAL 'recibir_mundo'
     0x34,0x00, // CALL_FUNCTION 0
     0xcc, // STORE_FAST 12
     0xbc, // LOAD_FAST 12
-    0x43,0x57, // POP_JUMP_IF_TRUE 23
-    0x12,0x81,0x1b, // LOAD_GLOBAL 'menu'
+    0x44,0x47, // POP_JUMP_IF_FALSE 7
+    0x10,0x81,0x05, // LOAD_CONST_STRING 'error'
+    0xbc, // LOAD_FAST 12
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x60, // POP_JUMP_IF_FALSE 32
+    0x12,0x81,0x0e, // LOAD_GLOBAL 'menu'
     0x23,0x55, // LOAD_CONST_OBJ 85
-    0x10,0x81,0x2b, // LOAD_CONST_STRING 'Atras'
+    0x10,0x81,0x1e, // LOAD_CONST_STRING 'Atras'
     0x2b,0x01, // BUILD_LIST 1
-    0x34,0x02, // CALL_FUNCTION 2
+    0xbc, // LOAD_FAST 12
+    0x43,0x44, // POP_JUMP_IF_TRUE 4
+    0x23,0x56, // LOAD_CONST_OBJ 86
+    0x42,0x42, // JUMP 2
+    0x23,0x57, // LOAD_CONST_OBJ 87
+    0x34,0x03, // CALL_FUNCTION 3
     0x59, // POP_TOP
-    0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x81,0x43, // LOAD_METHOD 'desconectar'
+    0x12,0x0c, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x34, // LOAD_METHOD 'desconectar'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0x51, // LOAD_CONST_NONE
     0x63, // RETURN_VALUE
-    0x12,0x83,0x2a, // LOAD_GLOBAL 'NHUECOS'
+    0x12,0x83,0x57, // LOAD_GLOBAL 'NHUECOS'
     0x80, // LOAD_CONST_SMALL_INT 0
     0x42,0x50, // JUMP 16
     0x57, // DUP_TOP
     0xcd, // STORE_FAST 13
     0x80, // LOAD_CONST_SMALL_INT 0
     0x57, // DUP_TOP
-    0x12,0x83,0x2b, // LOAD_GLOBAL 'inv_id'
+    0x12,0x83,0x58, // LOAD_GLOBAL 'inv_id'
     0xbd, // LOAD_FAST 13
     0x56, // STORE_SUBSCR
-    0x12,0x83,0x2c, // LOAD_GLOBAL 'inv_n'
+    0x12,0x83,0x59, // LOAD_GLOBAL 'inv_n'
     0xbd, // LOAD_FAST 13
     0x56, // STORE_SUBSCR
     0x81, // LOAD_CONST_SMALL_INT 1
@@ -62209,76 +65580,76 @@ static const byte fun_data_mc2d_multijugador[744] = {
     0x43,0x2b, // POP_JUMP_IF_TRUE -21
     0x59, // POP_TOP
     0x59, // POP_TOP
-    0x12,0x3d, // LOAD_GLOBAL 'Juego'
-    0x23,0x56, // LOAD_CONST_OBJ 86
+    0x12,0x15, // LOAD_GLOBAL 'Juego'
+    0x23,0x58, // LOAD_CONST_OBJ 88
     0x52, // LOAD_CONST_TRUE
     0x34,0x02, // CALL_FUNCTION 2
     0xc1, // STORE_FAST 1
     0xbc, // LOAD_FAST 12
-    0x14,0x4c, // LOAD_METHOD 'get'
-    0x10,0x7a, // LOAD_CONST_STRING 't'
-    0x23,0x57, // LOAD_CONST_OBJ 87
+    0x14,0x19, // LOAD_METHOD 'get'
+    0x10,0x6b, // LOAD_CONST_STRING 't'
+    0x23,0x59, // LOAD_CONST_OBJ 89
     0x36,0x02, // CALL_METHOD 2
     0xb1, // LOAD_FAST 1
-    0x18,0x79, // STORE_ATTR 'tiempo'
+    0x18,0x6a, // STORE_ATTR 'tiempo'
     0xb1, // LOAD_FAST 1
-    0x14,0x81,0x29, // LOAD_METHOD 'aparecer'
+    0x14,0x81,0x1c, // LOAD_METHOD 'aparecer'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
-    0x12,0x82,0x56, // LOAD_GLOBAL 'K'
-    0x14,0x81,0x11, // LOAD_METHOD 'ms'
+    0x12,0x82,0x68, // LOAD_GLOBAL 'K'
+    0x14,0x81,0x03, // LOAD_METHOD 'ms'
     0x36,0x00, // CALL_METHOD 0
     0x22,0x8f,0x50, // LOAD_CONST_SMALL_INT 2000
     0xf2, // BINARY_OP 27 __add__
     0xce, // STORE_FAST 14
     0x42,0x4f, // JUMP 15
     0xb1, // LOAD_FAST 1
-    0x14,0x81,0x44, // LOAD_METHOD 'red_paso'
+    0x14,0x81,0x35, // LOAD_METHOD 'red_paso'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x58, // LOAD_METHOD 'mostrar'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x47, // LOAD_METHOD 'mostrar'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
-    0x12,0x82,0x56, // LOAD_GLOBAL 'K'
-    0x14,0x81,0x11, // LOAD_METHOD 'ms'
+    0x12,0x82,0x68, // LOAD_GLOBAL 'K'
+    0x14,0x81,0x03, // LOAD_METHOD 'ms'
     0x36,0x00, // CALL_METHOD 0
     0xbe, // LOAD_FAST 14
     0xd7, // BINARY_OP 0 __lt__
     0x44,0x4f, // POP_JUMP_IF_FALSE 15
-    0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x81,0x45, // LOAD_METHOD 'anfitrion'
+    0x12,0x0c, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x36, // LOAD_METHOD 'anfitrion'
     0x36,0x00, // CALL_METHOD 0
     0xb1, // LOAD_FAST 1
-    0x13,0x81,0x46, // LOAD_ATTR 'otros'
+    0x13,0x81,0x37, // LOAD_ATTR 'otros'
     0xdd, // BINARY_OP 6 <in>
     0xd3, // UNARY_OP 3 <not>
     0x43,0x16, // POP_JUMP_IF_TRUE -42
     0xb1, // LOAD_FAST 1
-    0x13,0x81,0x46, // LOAD_ATTR 'otros'
-    0x14,0x4c, // LOAD_METHOD 'get'
-    0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x81,0x45, // LOAD_METHOD 'anfitrion'
+    0x13,0x81,0x37, // LOAD_ATTR 'otros'
+    0x14,0x19, // LOAD_METHOD 'get'
+    0x12,0x0c, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x36, // LOAD_METHOD 'anfitrion'
     0x36,0x00, // CALL_METHOD 0
     0x36,0x01, // CALL_METHOD 1
     0xcf, // STORE_FAST 15
     0xbf, // LOAD_FAST 15
-    0x44,0x57, // POP_JUMP_IF_FALSE 23
+    0x44,0x56, // POP_JUMP_IF_FALSE 22
     0xbf, // LOAD_FAST 15
     0x80, // LOAD_CONST_SMALL_INT 0
     0x55, // LOAD_SUBSCR
     0xbf, // LOAD_FAST 15
     0x81, // LOAD_CONST_SMALL_INT 1
     0x55, // LOAD_SUBSCR
-    0x23,0x28, // LOAD_CONST_OBJ 40
+    0x23,0x20, // LOAD_CONST_OBJ 32
     0xf2, // BINARY_OP 27 __add__
     0x5a, // ROT_TWO
     0xb1, // LOAD_FAST 1
-    0x18,0x75, // STORE_ATTR 'x'
+    0x18,0x66, // STORE_ATTR 'x'
     0xb1, // LOAD_FAST 1
-    0x18,0x76, // STORE_ATTR 'y'
+    0x18,0x67, // STORE_ATTR 'y'
     0xb1, // LOAD_FAST 1
-    0x14,0x81,0x06, // LOAD_METHOD 'centrar'
+    0x14,0x78, // LOAD_METHOD 'centrar'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0xb1, // LOAD_FAST 1
@@ -62290,8 +65661,8 @@ static const byte fun_data_mc2d_multijugador[744] = {
 // frozen bytecode for file mc2d.py, scope mc2d_multijugador__lt_listcomp_gt_
 static const byte fun_data_mc2d_multijugador__lt_listcomp_gt_[28] = {
     0x49,0x0c, // prelude
-    0x82,0x4f,0x83,0x66, // names: <listcomp>, *
-    0xd0,0xd4, // code info
+    0x82,0x63,0x84,0x04, // names: <listcomp>, *
+    0xf0,0x7d, // code info
     0x2b,0x00, // BUILD_LIST 0
     0xb0, // LOAD_FAST 0
     0x5f, // GET_ITER_STACK
@@ -62331,7 +65702,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_multijugador__lt_listcomp_gt
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 335,
+        .qstr_block_name_idx = 355,
         .line_info = fun_data_mc2d_multijugador__lt_listcomp_gt_ + 6,
         .line_info_top = fun_data_mc2d_multijugador__lt_listcomp_gt_ + 8,
         .opcodes = fun_data_mc2d_multijugador__lt_listcomp_gt_ + 8,
@@ -62355,7 +65726,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_multijugador = {
     .fun_data = fun_data_mc2d_multijugador,
     .children = (void *)&children_mc2d_multijugador,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 744,
+    .fun_data_len = 758,
     .n_children = 1,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -62369,10 +65740,10 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_multijugador = {
         .n_pos_args = 0,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 179,
+        .qstr_block_name_idx = 165,
         .line_info = fun_data_mc2d_multijugador + 6,
-        .line_info_top = fun_data_mc2d_multijugador + 75,
-        .opcodes = fun_data_mc2d_multijugador + 75,
+        .line_info_top = fun_data_mc2d_multijugador + 76,
+        .opcodes = fun_data_mc2d_multijugador + 76,
     },
     #endif
     #endif
@@ -62382,26 +65753,26 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_multijugador = {
 // frozen bytecode for file mc2d.py, scope mc2d_jugar
 static const byte fun_data_mc2d_jugar[135] = {
     0x49,0x24, // prelude
-    0x81,0x47,0x83,0x43, // names: jugar, j
-    0xd0,0xfa,0x2a,0x29,0x23,0x29,0x36,0x22,0x28,0x27,0x27,0x27,0x2f,0x26, // code info
-    0x12,0x44, // LOAD_GLOBAL 'sonar'
-    0x10,0x81,0x48, // LOAD_CONST_STRING 'click'
-    0x23,0x58, // LOAD_CONST_OBJ 88
+    0x81,0x38,0x83,0x77, // names: jugar, j
+    0xf0,0xa4,0x2a,0x29,0x23,0x29,0x36,0x22,0x28,0x27,0x27,0x27,0x2f,0x26, // code info
+    0x12,0x37, // LOAD_GLOBAL 'sonar'
+    0x10,0x81,0x39, // LOAD_CONST_STRING 'click'
+    0x23,0x5a, // LOAD_CONST_OBJ 90
     0x34,0x02, // CALL_FUNCTION 2
     0x59, // POP_TOP
-    0x12,0x82,0x56, // LOAD_GLOBAL 'K'
-    0x14,0x81,0x11, // LOAD_METHOD 'ms'
+    0x12,0x82,0x68, // LOAD_GLOBAL 'K'
+    0x14,0x81,0x03, // LOAD_METHOD 'ms'
     0x36,0x00, // CALL_METHOD 0
     0xc1, // STORE_FAST 1
     0x42,0xc6,0x80, // JUMP 70
-    0x12,0x82,0x56, // LOAD_GLOBAL 'K'
-    0x14,0x81,0x11, // LOAD_METHOD 'ms'
+    0x12,0x82,0x68, // LOAD_GLOBAL 'K'
+    0x14,0x81,0x03, // LOAD_METHOD 'ms'
     0x36,0x00, // CALL_METHOD 0
     0xc2, // STORE_FAST 2
-    0x12,0x83,0x37, // LOAD_GLOBAL 'min'
-    0x23,0x28, // LOAD_CONST_OBJ 40
-    0x12,0x83,0x38, // LOAD_GLOBAL 'max'
-    0x23,0x59, // LOAD_CONST_OBJ 89
+    0x12,0x83,0x6b, // LOAD_GLOBAL 'min'
+    0x23,0x20, // LOAD_CONST_OBJ 32
+    0x12,0x83,0x6c, // LOAD_GLOBAL 'max'
+    0x23,0x5b, // LOAD_CONST_OBJ 91
     0xb2, // LOAD_FAST 2
     0xb1, // LOAD_FAST 1
     0xf3, // BINARY_OP 28 __sub__
@@ -62413,35 +65784,35 @@ static const byte fun_data_mc2d_jugar[135] = {
     0xb2, // LOAD_FAST 2
     0xc1, // STORE_FAST 1
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x49, // LOAD_METHOD 'paso'
+    0x14,0x81,0x3a, // LOAD_METHOD 'paso'
     0xb3, // LOAD_FAST 3
     0x36,0x01, // CALL_METHOD 1
     0x59, // POP_TOP
     0xb0, // LOAD_FAST 0
-    0x13,0x77, // LOAD_ATTR 'vida'
+    0x13,0x68, // LOAD_ATTR 'vida'
     0x80, // LOAD_CONST_SMALL_INT 0
     0xda, // BINARY_OP 3 __le__
     0x44,0x47, // POP_JUMP_IF_FALSE 7
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x4a, // LOAD_METHOD 'morir'
+    0x14,0x81,0x3b, // LOAD_METHOD 'morir'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0xb0, // LOAD_FAST 0
-    0x14,0x81,0x4b, // LOAD_METHOD 'pintar'
+    0x14,0x81,0x3c, // LOAD_METHOD 'pintar'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
-    0x12,0x82,0x55, // LOAD_GLOBAL 'P'
-    0x14,0x58, // LOAD_METHOD 'mostrar'
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x47, // LOAD_METHOD 'mostrar'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x4c, // LOAD_ATTR 'salir'
+    0x13,0x81,0x3d, // LOAD_ATTR 'salir'
     0x44,0xb3,0x7f, // POP_JUMP_IF_FALSE -77
     0xb0, // LOAD_FAST 0
-    0x13,0x81,0x39, // LOAD_ATTR 'online'
+    0x13,0x81,0x2a, // LOAD_ATTR 'online'
     0x44,0x48, // POP_JUMP_IF_FALSE 8
-    0x12,0x09, // LOAD_GLOBAL 'red'
-    0x14,0x81,0x43, // LOAD_METHOD 'desconectar'
+    0x12,0x0c, // LOAD_GLOBAL 'red'
+    0x14,0x81,0x34, // LOAD_METHOD 'desconectar'
     0x36,0x00, // CALL_METHOD 0
     0x59, // POP_TOP
     0x51, // LOAD_CONST_NONE
@@ -62470,7 +65841,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_jugar = {
         .n_pos_args = 1,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 199,
+        .qstr_block_name_idx = 184,
         .line_info = fun_data_mc2d_jugar + 6,
         .line_info_top = fun_data_mc2d_jugar + 20,
         .opcodes = fun_data_mc2d_jugar + 20,
@@ -62483,68 +65854,236 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_jugar = {
 #endif
 
 // child of mc2d__lt_module_gt_
+// frozen bytecode for file mc2d.py, scope mc2d_preparar_mobs
+static const byte fun_data_mc2d_preparar_mobs[112] = {
+    0x50,0x14, // prelude
+    0x81,0x3e, // names: preparar_mobs
+    0xf0,0xb4,0x20,0x2e,0x27,0x30,0x37,0x56, // code info
+    0x12,0x83,0x0e, // LOAD_GLOBAL 'MOBS'
+    0x14,0x26, // LOAD_METHOD 'items'
+    0x36,0x00, // CALL_METHOD 0
+    0x5f, // GET_ITER_STACK
+    0x4b,0x58, // FOR_ITER 88
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc0, // STORE_FAST 0
+    0xc1, // STORE_FAST 1
+    0xb1, // LOAD_FAST 1
+    0x10,0x81,0x3f, // LOAD_CONST_STRING 'marcos'
+    0x55, // LOAD_SUBSCR
+    0x44,0x7d, // POP_JUMP_IF_FALSE 61
+    0x12,0x5b, // LOAD_GLOBAL 'spr'
+    0x10,0x81,0x40, // LOAD_CONST_STRING 'mob/%d.png'
+    0xb1, // LOAD_FAST 1
+    0x10,0x81,0x3f, // LOAD_CONST_STRING 'marcos'
+    0x55, // LOAD_SUBSCR
+    0x80, // LOAD_CONST_SMALL_INT 0
+    0x55, // LOAD_SUBSCR
+    0xf8, // BINARY_OP 33 __mod__
+    0x34,0x01, // CALL_FUNCTION 1
+    0xc2, // STORE_FAST 2
+    0x12,0x83,0x6c, // LOAD_GLOBAL 'max'
+    0x23,0x14, // LOAD_CONST_OBJ 20
+    0xb2, // LOAD_FAST 2
+    0x13,0x81,0x41, // LOAD_ATTR 'ancho'
+    0x12,0x83,0x44, // LOAD_GLOBAL 'T'
+    0xf7, // BINARY_OP 32 __truediv__
+    0x23,0x2a, // LOAD_CONST_OBJ 42
+    0xf4, // BINARY_OP 29 __mul__
+    0x34,0x02, // CALL_FUNCTION 2
+    0xb1, // LOAD_FAST 1
+    0x10,0x81,0x42, // LOAD_CONST_STRING 'w'
+    0x56, // STORE_SUBSCR
+    0x12,0x83,0x6c, // LOAD_GLOBAL 'max'
+    0x23,0x14, // LOAD_CONST_OBJ 20
+    0xb2, // LOAD_FAST 2
+    0x13,0x81,0x43, // LOAD_ATTR 'alto'
+    0x12,0x83,0x44, // LOAD_GLOBAL 'T'
+    0xf7, // BINARY_OP 32 __truediv__
+    0x34,0x02, // CALL_FUNCTION 2
+    0xb1, // LOAD_FAST 1
+    0x10,0x81,0x44, // LOAD_CONST_STRING 'h'
+    0x56, // STORE_SUBSCR
+    0x42,0x4d, // JUMP 13
+    0x23,0x25, // LOAD_CONST_OBJ 37
+    0x57, // DUP_TOP
+    0xb1, // LOAD_FAST 1
+    0x10,0x81,0x42, // LOAD_CONST_STRING 'w'
+    0x56, // STORE_SUBSCR
+    0xb1, // LOAD_FAST 1
+    0x10,0x81,0x44, // LOAD_CONST_STRING 'h'
+    0x56, // STORE_SUBSCR
+    0x42,0xa6,0x7f, // JUMP -90
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+};
+#if MICROPY_PERSISTENT_CODE_SAVE
+static const mp_raw_code_truncated_t proto_fun_mc2d_preparar_mobs = {
+    .proto_fun_indicator[0] = MP_PROTO_FUN_INDICATOR_RAW_CODE_0,
+    .proto_fun_indicator[1] = MP_PROTO_FUN_INDICATOR_RAW_CODE_1,
+    .kind = MP_CODE_BYTECODE,
+    .is_generator = 0,
+    .fun_data = fun_data_mc2d_preparar_mobs,
+    .children = NULL,
+    #if MICROPY_PERSISTENT_CODE_SAVE
+    .fun_data_len = 112,
+    .n_children = 0,
+    #if MICROPY_EMIT_MACHINE_CODE
+    .prelude_offset = 0,
+    #endif
+    #if MICROPY_PY_SYS_SETTRACE
+    .line_of_definition = 0,
+    .prelude = {
+        .n_state = 11,
+        .n_exc_stack = 0,
+        .scope_flags = 0,
+        .n_pos_args = 0,
+        .n_kwonly_args = 0,
+        .n_def_pos_args = 0,
+        .qstr_block_name_idx = 190,
+        .line_info = fun_data_mc2d_preparar_mobs + 4,
+        .line_info_top = fun_data_mc2d_preparar_mobs + 12,
+        .opcodes = fun_data_mc2d_preparar_mobs + 12,
+    },
+    #endif
+    #endif
+};
+#else
+#define proto_fun_mc2d_preparar_mobs fun_data_mc2d_preparar_mobs[0]
+#endif
+
+// child of mc2d__lt_module_gt_
 // frozen bytecode for file mc2d.py, scope mc2d_main
-static const byte fun_data_mc2d_main[142] = {
-    0x60,0x28, // prelude
-    0x81,0x4d, // names: main
-    0xe0,0x0a,0x25,0x20,0x32,0x25,0x26,0x23,0x25,0x2a,0x24,0x24,0x24,0x27,0x2e,0x22,0x32,0x23, // code info
-    0x12,0x43, // LOAD_GLOBAL 'buscar_sonidos'
+static const byte fun_data_mc2d_main[288] = {
+    0x90,0x10,0x46, // prelude
+    0x81,0x45, // names: main
+    0xf0,0xbf,0x25,0x24,0x2e,0x29,0x24,0x2a,0x2d,0x36,0x28,0x20,0x2f,0x26,0x24,0x2a,0x26,0x25,0x20,0x32,0x25,0x26,0x23,0x25,0x2a,0x24,0x24,0x24,0x27,0x2e,0x22,0x32,0x23, // code info
+    0x12,0x1e, // LOAD_GLOBAL 'cargar_datos'
     0x34,0x00, // CALL_FUNCTION 0
-    0x59, // POP_TOP
-    0x12,0x81,0x1b, // LOAD_GLOBAL 'menu'
-    0x23,0x5a, // LOAD_CONST_OBJ 90
-    0x10,0x81,0x2c, // LOAD_CONST_STRING 'Un jugador'
-    0x23,0x47, // LOAD_CONST_OBJ 71
-    0x10,0x81,0x4e, // LOAD_CONST_STRING 'Controles'
-    0x10,0x81,0x4f, // LOAD_CONST_STRING 'Salir'
-    0x2b,0x04, // BUILD_LIST 4
-    0x23,0x5b, // LOAD_CONST_OBJ 91
-    0x34,0x03, // CALL_FUNCTION 3
     0xc0, // STORE_FAST 0
     0xb0, // LOAD_FAST 0
+    0x44,0xf3,0x80, // POP_JUMP_IF_FALSE 115
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x81,0x0d, // LOAD_METHOD 'limpiar'
+    0x22,0x81,0xe8,0xd4,0x1e, // LOAD_CONST_SMALL_INT 3811870
+    0x36,0x01, // CALL_METHOD 1
+    0x59, // POP_TOP
+    0xb0, // LOAD_FAST 0
+    0x10,0x17, // LOAD_CONST_STRING ''
     0x23,0x5c, // LOAD_CONST_OBJ 92
+    0x23,0x5d, // LOAD_CONST_OBJ 93
+    0x10,0x17, // LOAD_CONST_STRING ''
+    0x23,0x5e, // LOAD_CONST_OBJ 94
+    0x10,0x17, // LOAD_CONST_STRING ''
+    0x23,0x5f, // LOAD_CONST_OBJ 95
+    0x10,0x17, // LOAD_CONST_STRING ''
+    0x10,0x81,0x46, // LOAD_CONST_STRING 'DEL: salir'
+    0x2b,0x0a, // BUILD_LIST 10
+    0xc1, // STORE_FAST 1
+    0x12,0x83,0x63, // LOAD_GLOBAL 'enumerate'
+    0xb1, // LOAD_FAST 1
+    0x34,0x01, // CALL_FUNCTION 1
+    0x5f, // GET_ITER_STACK
+    0x4b,0x1a, // FOR_ITER 26
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc2, // STORE_FAST 2
+    0xc3, // STORE_FAST 3
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x46, // LOAD_METHOD 'texto'
+    0xb3, // LOAD_FAST 3
+    0x8e, // LOAD_CONST_SMALL_INT 14
+    0x9e, // LOAD_CONST_SMALL_INT 30
+    0xb2, // LOAD_FAST 2
+    0x8e, // LOAD_CONST_SMALL_INT 14
+    0xf4, // BINARY_OP 29 __mul__
+    0xf2, // BINARY_OP 27 __add__
+    0x22,0x87,0xff,0xff,0x7f, // LOAD_CONST_SMALL_INT 16777215
+    0x36,0x04, // CALL_METHOD 4
+    0x59, // POP_TOP
+    0x42,0x24, // JUMP -28
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x47, // LOAD_METHOD 'mostrar'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x12,0x82,0x68, // LOAD_GLOBAL 'K'
+    0x14,0x81,0x0f, // LOAD_METHOD 'eventos'
+    0x36,0x00, // CALL_METHOD 0
+    0x5f, // GET_ITER_STACK
+    0x4b,0x0e, // FOR_ITER 14
+    0x30,0x02, // UNPACK_SEQUENCE 2
+    0xc4, // STORE_FAST 4
+    0xc5, // STORE_FAST 5
+    0xb4, // LOAD_FAST 4
+    0x23,0x60, // LOAD_CONST_OBJ 96
+    0xdd, // BINARY_OP 6 <in>
+    0x44,0x42, // POP_JUMP_IF_FALSE 2
+    0x51, // LOAD_CONST_NONE
+    0x63, // RETURN_VALUE
+    0x42,0x30, // JUMP -16
+    0x12,0x82,0x67, // LOAD_GLOBAL 'P'
+    0x14,0x47, // LOAD_METHOD 'mostrar'
+    0x36,0x00, // CALL_METHOD 0
+    0x59, // POP_TOP
+    0x42,0x1d, // JUMP -35
+    0x12,0x81,0x3e, // LOAD_GLOBAL 'preparar_mobs'
+    0x34,0x00, // CALL_FUNCTION 0
+    0x59, // POP_TOP
+    0x12,0x36, // LOAD_GLOBAL 'buscar_sonidos'
+    0x34,0x00, // CALL_FUNCTION 0
+    0x59, // POP_TOP
+    0x12,0x81,0x0e, // LOAD_GLOBAL 'menu'
+    0x23,0x61, // LOAD_CONST_OBJ 97
+    0x10,0x81,0x1f, // LOAD_CONST_STRING 'Un jugador'
+    0x23,0x47, // LOAD_CONST_OBJ 71
+    0x10,0x81,0x47, // LOAD_CONST_STRING 'Controles'
+    0x10,0x81,0x48, // LOAD_CONST_STRING 'Salir'
+    0x2b,0x04, // BUILD_LIST 4
+    0x23,0x62, // LOAD_CONST_OBJ 98
+    0x34,0x03, // CALL_FUNCTION 3
+    0xc6, // STORE_FAST 6
+    0xb6, // LOAD_FAST 6
+    0x23,0x63, // LOAD_CONST_OBJ 99
     0xdd, // BINARY_OP 6 <in>
     0x44,0x43, // POP_JUMP_IF_FALSE 3
     0x42,0xd1,0x80, // JUMP 81
-    0xb0, // LOAD_FAST 0
+    0xb6, // LOAD_FAST 6
     0x82, // LOAD_CONST_SMALL_INT 2
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x6d, // POP_JUMP_IF_FALSE 45
-    0x12,0x81,0x20, // LOAD_GLOBAL 'mensaje'
-    0x10,0x81,0x50, // LOAD_CONST_STRING 'Controles:'
-    0x10,0x0a, // LOAD_CONST_STRING ''
-    0x23,0x5d, // LOAD_CONST_OBJ 93
-    0x23,0x5e, // LOAD_CONST_OBJ 94
-    0x23,0x5f, // LOAD_CONST_OBJ 95
-    0x23,0x60, // LOAD_CONST_OBJ 96
-    0x23,0x61, // LOAD_CONST_OBJ 97
-    0x23,0x62, // LOAD_CONST_OBJ 98
-    0x23,0x63, // LOAD_CONST_OBJ 99
+    0x12,0x81,0x13, // LOAD_GLOBAL 'mensaje'
+    0x10,0x81,0x49, // LOAD_CONST_STRING 'Controles:'
+    0x10,0x17, // LOAD_CONST_STRING ''
     0x23,0x64, // LOAD_CONST_OBJ 100
+    0x23,0x65, // LOAD_CONST_OBJ 101
+    0x23,0x66, // LOAD_CONST_OBJ 102
+    0x23,0x67, // LOAD_CONST_OBJ 103
+    0x23,0x68, // LOAD_CONST_OBJ 104
+    0x23,0x69, // LOAD_CONST_OBJ 105
+    0x23,0x6a, // LOAD_CONST_OBJ 106
+    0x23,0x6b, // LOAD_CONST_OBJ 107
     0x2b,0x0a, // BUILD_LIST 10
     0x34,0x01, // CALL_FUNCTION 1
     0x59, // POP_TOP
-    0x12,0x81,0x1b, // LOAD_GLOBAL 'menu'
-    0x10,0x81,0x4e, // LOAD_CONST_STRING 'Controles'
-    0x10,0x81,0x2b, // LOAD_CONST_STRING 'Atras'
+    0x12,0x81,0x0e, // LOAD_GLOBAL 'menu'
+    0x10,0x81,0x47, // LOAD_CONST_STRING 'Controles'
+    0x10,0x81,0x1e, // LOAD_CONST_STRING 'Atras'
     0x2b,0x01, // BUILD_LIST 1
     0x34,0x02, // CALL_FUNCTION 2
     0x59, // POP_TOP
     0x42,0x5c, // JUMP 28
-    0xb0, // LOAD_FAST 0
+    0xb6, // LOAD_FAST 6
     0x80, // LOAD_CONST_SMALL_INT 0
     0xd9, // BINARY_OP 2 __eq__
     0x44,0x47, // POP_JUMP_IF_FALSE 7
-    0x12,0x81,0x2a, // LOAD_GLOBAL 'un_jugador'
+    0x12,0x81,0x1d, // LOAD_GLOBAL 'un_jugador'
     0x34,0x00, // CALL_FUNCTION 0
     0x42,0x45, // JUMP 5
-    0x12,0x81,0x33, // LOAD_GLOBAL 'multijugador'
+    0x12,0x81,0x25, // LOAD_GLOBAL 'multijugador'
     0x34,0x00, // CALL_FUNCTION 0
-    0xc1, // STORE_FAST 1
-    0xb1, // LOAD_FAST 1
+    0xc7, // STORE_FAST 7
+    0xb7, // LOAD_FAST 7
     0x44,0x47, // POP_JUMP_IF_FALSE 7
-    0x12,0x81,0x47, // LOAD_GLOBAL 'jugar'
-    0xb1, // LOAD_FAST 1
+    0x12,0x81,0x38, // LOAD_GLOBAL 'jugar'
+    0xb7, // LOAD_FAST 7
     0x34,0x01, // CALL_FUNCTION 1
     0x59, // POP_TOP
     0x42,0x8f,0x7f, // JUMP -113
@@ -62560,7 +66099,7 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_main = {
     .fun_data = fun_data_mc2d_main,
     .children = NULL,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 142,
+    .fun_data_len = 288,
     .n_children = 0,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
@@ -62568,16 +66107,16 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_main = {
     #if MICROPY_PY_SYS_SETTRACE
     .line_of_definition = 0,
     .prelude = {
-        .n_state = 13,
+        .n_state = 19,
         .n_exc_stack = 0,
         .scope_flags = 0,
         .n_pos_args = 0,
         .n_kwonly_args = 0,
         .n_def_pos_args = 0,
-        .qstr_block_name_idx = 205,
-        .line_info = fun_data_mc2d_main + 4,
-        .line_info_top = fun_data_mc2d_main + 22,
-        .opcodes = fun_data_mc2d_main + 22,
+        .qstr_block_name_idx = 197,
+        .line_info = fun_data_mc2d_main + 5,
+        .line_info_top = fun_data_mc2d_main + 38,
+        .opcodes = fun_data_mc2d_main + 38,
     },
     #endif
     #endif
@@ -62587,9 +66126,18 @@ static const mp_raw_code_truncated_t proto_fun_mc2d_main = {
 #endif
 
 static const mp_raw_code_t *const children_mc2d__lt_module_gt_[] = {
+    (const mp_raw_code_t *)&proto_fun_mc2d_ficha,
+    (const mp_raw_code_t *)&proto_fun_mc2d_B,
+    (const mp_raw_code_t *)&proto_fun_mc2d_cargar_datos,
+    (const mp_raw_code_t *)&proto_fun_mc2d_nombre,
+    (const mp_raw_code_t *)&proto_fun_mc2d_es_herramienta,
+    (const mp_raw_code_t *)&proto_fun_mc2d_max_pila,
+    (const mp_raw_code_t *)&proto_fun_mc2d_raiz,
     (const mp_raw_code_t *)&proto_fun_mc2d_g,
     (const mp_raw_code_t *)&proto_fun_mc2d_sp,
     (const mp_raw_code_t *)&proto_fun_mc2d_solido,
+    (const mp_raw_code_t *)&proto_fun_mc2d_es_agua,
+    (const mp_raw_code_t *)&proto_fun_mc2d_es_lava,
     (const mp_raw_code_t *)&proto_fun_mc2d_calc_alto,
     (const mp_raw_code_t *)&proto_fun_mc2d_buscar_sonidos,
     (const mp_raw_code_t *)&proto_fun_mc2d_sonar,
@@ -62597,15 +66145,17 @@ static const mp_raw_code_t *const children_mc2d__lt_module_gt_[] = {
     (const mp_raw_code_t *)&proto_fun_mc2d_progreso,
     (const mp_raw_code_t *)&proto_fun_mc2d_generar,
     (const mp_raw_code_t *)&proto_fun_mc2d_arbol,
-    (const mp_raw_code_t *)&proto_fun_mc2d_max_pila,
     (const mp_raw_code_t *)&proto_fun_mc2d_dar,
-    (const mp_raw_code_t *)&proto_fun_mc2d_cuantos,
-    (const mp_raw_code_t *)&proto_fun_mc2d_quitar,
+    (const mp_raw_code_t *)&proto_fun_mc2d_cuantos_raiz,
+    (const mp_raw_code_t *)&proto_fun_mc2d_quitar_raiz,
+    (const mp_raw_code_t *)&proto_fun_mc2d_quitar_hueco,
+    (const mp_raw_code_t *)&proto_fun_mc2d_receta,
+    (const mp_raw_code_t *)&proto_fun_mc2d_n_recetas,
     (const mp_raw_code_t *)&proto_fun_mc2d_spr,
+    (const mp_raw_code_t *)&proto_fun_mc2d_tex,
     (const mp_raw_code_t *)&proto_fun_mc2d_icono,
     (const mp_raw_code_t *)&proto_fun_mc2d_Juego,
     (const mp_raw_code_t *)&proto_fun_mc2d_acercar,
-    (const mp_raw_code_t *)&proto_fun_mc2d_medio,
     (const mp_raw_code_t *)&proto_fun_mc2d_mezcla,
     (const mp_raw_code_t *)&proto_fun_mc2d_guardar,
     (const mp_raw_code_t *)&proto_fun_mc2d_cargar,
@@ -62623,6 +66173,7 @@ static const mp_raw_code_t *const children_mc2d__lt_module_gt_[] = {
     (const mp_raw_code_t *)&proto_fun_mc2d_un_jugador,
     (const mp_raw_code_t *)&proto_fun_mc2d_multijugador,
     (const mp_raw_code_t *)&proto_fun_mc2d_jugar,
+    (const mp_raw_code_t *)&proto_fun_mc2d_preparar_mobs,
     (const mp_raw_code_t *)&proto_fun_mc2d_main,
 };
 
@@ -62634,15 +66185,15 @@ static const mp_raw_code_truncated_t proto_fun_mc2d__lt_module_gt_ = {
     .fun_data = fun_data_mc2d__lt_module_gt_,
     .children = (void *)&children_mc2d__lt_module_gt_,
     #if MICROPY_PERSISTENT_CODE_SAVE
-    .fun_data_len = 2157,
-    .n_children = 37,
+    .fun_data_len = 1119,
+    .n_children = 49,
     #if MICROPY_EMIT_MACHINE_CODE
     .prelude_offset = 0,
     #endif
     #if MICROPY_PY_SYS_SETTRACE
     .line_of_definition = 0,
     .prelude = {
-        .n_state = 26,
+        .n_state = 17,
         .n_exc_stack = 1,
         .scope_flags = 0,
         .n_pos_args = 0,
@@ -62650,97 +66201,80 @@ static const mp_raw_code_truncated_t proto_fun_mc2d__lt_module_gt_ = {
         .n_def_pos_args = 0,
         .qstr_block_name_idx = 1,
         .line_info = fun_data_mc2d__lt_module_gt_ + 5,
-        .line_info_top = fun_data_mc2d__lt_module_gt_ + 186,
-        .opcodes = fun_data_mc2d__lt_module_gt_ + 186,
+        .line_info_top = fun_data_mc2d__lt_module_gt_ + 169,
+        .opcodes = fun_data_mc2d__lt_module_gt_ + 169,
     },
     #endif
     #endif
 };
 
-static const qstr_short_t const_qstr_table_data_mc2d[487] = {
+static const qstr_short_t const_qstr_table_data_mc2d[546] = {
     MP_QSTR_mc2d_dot_py,
     MP_QSTR__lt_module_gt_,
     MP_QSTR_math,
     MP_QSTR_random,
     MP_QSTR_json,
     MP_QSTR_os,
+    MP_QSTR_struct,
+    MP_QSTR_gc,
+    MP_QSTR_array,
     MP_QSTR_pantalla,
     MP_QSTR_teclas,
     MP_QSTR_scicalc,
     MP_QSTR_red,
-    MP_QSTR_,
-    MP_QSTR_hierba,
-    MP_QSTR_tierra,
-    MP_QSTR_piedra,
-    MP_QSTR_roca,
-    MP_QSTR_tronco,
-    MP_QSTR_hojas,
-    MP_QSTR_tablones,
-    MP_QSTR_arena,
-    MP_QSTR_grava,
-    MP_QSTR_oro_mena,
-    MP_QSTR_lecho,
-    MP_QSTR_agua,
-    MP_QSTR_mesa,
-    MP_QSTR_horno,
-    MP_QSTR_cristal,
-    MP_QSTR_ladrillos,
-    MP_QSTR_nieve,
-    MP_QSTR_cactus,
-    MP_QSTR_flor_roja,
-    MP_QSTR_antorcha,
-    MP_QSTR_palo,
-    MP_QSTR_carbon,
-    MP_QSTR_diamante,
-    MP_QSTR_manzana,
-    MP_QSTR_carne,
-    MP_QSTR_Hierba,
-    MP_QSTR_Tierra,
-    MP_QSTR_Piedra,
-    MP_QSTR_Roca,
-    MP_QSTR_Tronco,
-    MP_QSTR_Hojas,
-    MP_QSTR_Tablones,
-    MP_QSTR_Arena,
-    MP_QSTR_Grava,
-    MP_QSTR_Horno,
-    MP_QSTR_Cristal,
-    MP_QSTR_Ladrillos,
-    MP_QSTR_Nieve,
-    MP_QSTR_Cactus,
-    MP_QSTR_Amapola,
-    MP_QSTR_Antorcha,
-    MP_QSTR_Palo,
-    MP_QSTR_Carbon,
-    MP_QSTR_Diamante,
-    MP_QSTR_Manzana,
-    MP_QSTR__percent_s__percent_s,
-    MP_QSTR__percent_s_space_de_space__percent_s,
-    MP_QSTR_upper,
-    MP_QSTR_append,
+    MP_QSTR_pm_slash_,
+    MP_QSTR_calcsize,
+    MP_QSTR_H,
     MP_QSTR_ANCHO,
+    MP_QSTR_O,
+    MP_QSTR_B,
+    MP_QSTR_S,
+    MP_QSTR_J,
     MP_QSTR_Juego,
     MP_QSTR_mundos,
+    MP_QSTR_,
+    MP_QSTR_ficha,
+    MP_QSTR_get,
+    MP_QSTR_seek,
+    MP_QSTR_unpack,
+    MP_QSTR_read,
+    MP_QSTR_clear,
+    MP_QSTR_cargar_datos,
+    MP_QSTR_rb,
+    MP_QSTR_stat,
+    MP_QSTR_datos_dot_json,
+    MP_QSTR_loads,
+    MP_QSTR__lt_H,
+    MP_QSTR_en_mundo,
+    MP_QSTR_comida,
+    MP_QSTR_items,
+    MP_QSTR_mobs,
+    MP_QSTR_biomas,
+    MP_QSTR_steve,
+    MP_QSTR_collect,
+    MP_QSTR_nombre,
+    MP_QSTR_strip,
+    MP_QSTR_es_herramienta,
+    MP_QSTR_max_pila,
+    MP_QSTR_raiz,
     MP_QSTR_g,
     MP_QSTR_sp,
     MP_QSTR_solido,
+    MP_QSTR_es_agua,
+    MP_QSTR_es_lava,
     MP_QSTR_calc_alto,
     MP_QSTR_buscar_sonidos,
     MP_QSTR_sonar,
     MP_QSTR_listdir,
     MP_QSTR__slash_scratch,
-    MP_QSTR_loads,
-    MP_QSTR_read,
     MP_QSTR_grass1,
     MP_QSTR_grass1_dot_wav,
-    MP_QSTR_items,
-    MP_QSTR_get,
     MP_QSTR_sonar_bloque,
-    MP_QSTR_grass,
     MP_QSTR_sand,
     MP_QSTR_gravel,
     MP_QSTR_wood,
     MP_QSTR_stone,
+    MP_QSTR_grass,
     MP_QSTR__percent_s_percent_d,
     MP_QSTR_randint,
     MP_QSTR_progreso,
@@ -62749,32 +66283,34 @@ static const qstr_short_t const_qstr_table_data_mc2d[487] = {
     MP_QSTR_mostrar,
     MP_QSTR_generar,
     MP_QSTR_seed,
-    MP_QSTR_choice,
+    MP_QSTR_randrange,
     MP_QSTR_uniform,
     MP_QSTR_sin,
+    MP_QSTR_D,
     MP_QSTR_cos,
-    MP_QSTR_randrange,
+    MP_QSTR_choice,
+    MP_QSTR_C,
     MP_QSTR_Listo,
     MP_QSTR_arbol,
-    MP_QSTR_max_pila,
     MP_QSTR_dar,
-    MP_QSTR_cuantos,
-    MP_QSTR_quitar,
+    MP_QSTR_cuantos_raiz,
+    MP_QSTR_quitar_raiz,
+    MP_QSTR_quitar_hueco,
+    MP_QSTR_receta,
+    MP_QSTR__lt_HH9H,
+    MP_QSTR_append,
+    MP_QSTR_n_recetas,
     MP_QSTR_spr,
     MP_QSTR_sprite,
-    MP_QSTR_tex_slash__percent_s_dot_png,
+    MP_QSTR_tex,
     MP_QSTR_icono,
     MP_QSTR_dibujar,
     MP_QSTR_hurt,
     MP_QSTR_acercar,
-    MP_QSTR_medio,
-    MP_QSTR__medio,
-    MP_QSTR__vacio,
     MP_QSTR_mezcla,
     MP_QSTR_guardar,
     MP_QSTR_mkdir,
     MP_QSTR_v,
-    MP_QSTR_nombre,
     MP_QSTR_x,
     MP_QSTR_y,
     MP_QSTR_vida,
@@ -62783,13 +66319,14 @@ static const qstr_short_t const_qstr_table_data_mc2d[487] = {
     MP_QSTR_t,
     MP_QSTR_inv,
     MP_QSTR_pos,
+    MP_QSTR_ids,
     MP_QSTR__percent_s_slash__percent_s_dot_mc2d,
     MP_QSTR_wb,
     MP_QSTR_write,
     MP_QSTR_dumps,
     MP_QSTR_encode,
     MP_QSTR_cargar,
-    MP_QSTR_rb,
+    MP_QSTR_startswith,
     MP_QSTR_find,
     MP_QSTR_decode,
     MP_QSTR_centrar,
@@ -62805,14 +66342,15 @@ static const qstr_short_t const_qstr_table_data_mc2d[487] = {
     MP_QSTR_recibir_mundo,
     MP_QSTR_ms,
     MP_QSTR_vars,
+    MP_QSTR_error,
     MP_QSTR_extend,
-    MP_QSTR_startswith,
     MP_QSTR_b_colon_,
     MP_QSTR_recibir,
     MP_QSTR_boton,
     MP_QSTR_marco,
     MP_QSTR_fondo_tierra,
     MP_QSTR_ALTO,
+    MP_QSTR_limpiar,
     MP_QSTR_menu,
     MP_QSTR_eventos,
     MP_QSTR_DOWN,
@@ -62832,7 +66370,6 @@ static const qstr_short_t const_qstr_table_data_mc2d[487] = {
     MP_QSTR_Atras,
     MP_QSTR_Un_space_jugador,
     MP_QSTR_Mundo_space__percent_d,
-    MP_QSTR_strip,
     MP_QSTR_Mundo,
     MP_QSTR_Jugar,
     MP_QSTR_Borrar,
@@ -62841,7 +66378,6 @@ static const qstr_short_t const_qstr_table_data_mc2d[487] = {
     MP_QSTR_Sin_space_red,
     MP_QSTR_conectar,
     MP_QSTR_esperar,
-    MP_QSTR_error,
     MP_QSTR_Error,
     MP_QSTR_online,
     MP_QSTR_buscar,
@@ -62863,16 +66399,27 @@ static const qstr_short_t const_qstr_table_data_mc2d[487] = {
     MP_QSTR_morir,
     MP_QSTR_pintar,
     MP_QSTR_salir,
+    MP_QSTR_preparar_mobs,
+    MP_QSTR_marcos,
+    MP_QSTR_mob_slash__percent_d_dot_png,
+    MP_QSTR_ancho,
+    MP_QSTR_w,
+    MP_QSTR_alto,
+    MP_QSTR_h,
     MP_QSTR_main,
+    MP_QSTR_DEL_colon__space_salir,
     MP_QSTR_Controles,
     MP_QSTR_Salir,
     MP_QSTR_Controles_colon_,
+    MP_QSTR__lt_genexpr_gt_,
+    MP_QSTR__lt_dictcomp_gt_,
     MP_QSTR___init__,
     MP_QSTR_vx,
     MP_QSTR_vy,
     MP_QSTR_suelo,
     MP_QSTR_cara,
-    MP_QSTR_hambre_t,
+    MP_QSTR_sat,
+    MP_QSTR_ticks,
     MP_QSTR_caida_y,
     MP_QSTR_cdx,
     MP_QSTR_cdy,
@@ -62882,7 +66429,9 @@ static const qstr_short_t const_qstr_table_data_mc2d[487] = {
     MP_QSTR_paso_t,
     MP_QSTR_golpe_t,
     MP_QSTR_dano_t,
-    MP_QSTR_mobs,
+    MP_QSTR_lava_t,
+    MP_QSTR_horno,
+    MP_QSTR_flechas,
     MP_QSTR_mob_id,
     MP_QSTR_muerto,
     MP_QSTR_era_cliente,
@@ -62905,33 +66454,35 @@ static const qstr_short_t const_qstr_table_data_mc2d[487] = {
     MP_QSTR_objetivo,
     MP_QSTR_dibujar_hud,
     MP_QSTR_recorte,
-    MP_QSTR_corazon,
-    MP_QSTR_comida,
+    MP_QSTR_vida_percent_d_dot_png,
     MP_QSTR__percent_d_space_jug,
     MP_QSTR_jugadores,
     MP_QSTR_caja_jugador,
     MP_QSTR_a_bloques,
-    MP_QSTR_cerdo,
-    MP_QSTR_zombi,
+    MP_QSTR_dibujar_steve,
+    MP_QSTR_base_x,
     MP_QSTR_values,
-    MP_QSTR_jugador,
-    MP_QSTR_grieta_percent_d,
     MP_QSTR_poner,
     MP_QSTR_b_colon__percent_d,
     MP_QSTR_asentar,
     MP_QSTR_toca_jugador,
-    MP_QSTR_herramienta,
+    MP_QSTR_gastar_herramienta,
+    MP_QSTR_break,
+    MP_QSTR_tiempo_picar,
+    MP_QSTR_suelta,
     MP_QSTR_picar,
     MP_QSTR_usar,
     MP_QSTR_abrir_inventario,
+    MP_QSTR_mesa,
     MP_QSTR_eat_percent_d,
-    MP_QSTR_mob_en,
-    MP_QSTR_golpear,
     MP_QSTR_manda_mobs,
+    MP_QSTR_nuevo_mob,
+    MP_QSTR_mob_en,
+    MP_QSTR_dano_arma,
+    MP_QSTR_golpear,
     MP_QSTR_dano_mob,
     MP_QSTR_enviar,
     MP_QSTR_golpe,
-    MP_QSTR_pig_percent_d,
     MP_QSTR_dano,
     MP_QSTR_libre_col,
     MP_QSTR_mover_x,
@@ -62944,7 +66495,6 @@ static const qstr_short_t const_qstr_table_data_mc2d[487] = {
     MP_QSTR_RIGHT,
     MP_QSTR_d,
     MP_QSTR_UP,
-    MP_QSTR_w,
     MP_QSTR__space_,
     MP_QSTR_herir,
     MP_QSTR_fallbig1,
@@ -62954,9 +66504,20 @@ static const qstr_short_t const_qstr_table_data_mc2d[487] = {
     MP_QSTR_herir_a,
     MP_QSTR_oye,
     MP_QSTR_ruido_mob,
-    MP_QSTR_zombie_percent_d,
+    MP_QSTR_pig,
+    MP_QSTR_sheep,
+    MP_QSTR_cow,
+    MP_QSTR_chicken,
+    MP_QSTR_zombie,
+    MP_QSTR_spider,
+    MP_QSTR_skeleton,
     MP_QSTR_mobs_paso,
-    MP_QSTR_pigdeath,
+    MP_QSTR_flechas_paso,
+    MP_QSTR_explotar,
+    MP_QSTR_explode_percent_d,
+    MP_QSTR_sqrt,
+    MP_QSTR_zombiehurt,
+    MP_QSTR_botin,
     MP_QSTR_p,
     MP_QSTR_m,
     MP_QSTR_de,
@@ -62971,12 +66532,22 @@ static const qstr_short_t const_qstr_table_data_mc2d[487] = {
     MP_QSTR_e,
     MP_QSTR_conectado,
     MP_QSTR_cerca,
+    MP_QSTR_opciones,
+    MP_QSTR_add,
+    MP_QSTR_combustible,
+    MP_QSTR_hacer,
+    MP_QSTR_fire,
+    MP_QSTR_wood_percent_d,
     MP_QSTR_fondo_t,
     MP_QSTR_fondo_paso,
     MP_QSTR_Inventario,
+    MP_QSTR_Horno,
+    MP_QSTR_fuego_colon__space__percent_ds,
+    MP_QSTR__percent_s_space__space__lt__hyphen__space__space__percent_s,
+    MP_QSTR__percent_s_percent_s_space__lt__hyphen__space_,
+    MP_QSTR__space_x_percent_d,
     MP_QSTR__comma__space_,
     MP_QSTR_join,
-    MP_QSTR_wood_percent_d,
     MP_QSTR_pausa,
     MP_QSTR_Guardar,
     MP_QSTR_CH_colon_,
@@ -62996,71 +66567,99 @@ static const qstr_short_t const_qstr_table_data_mc2d[487] = {
     MP_QSTR__lt_listcomp_gt_,
     MP_QSTR_endswith,
     MP_QSTR__dot_mc2d,
-    MP_QSTR__lt_genexpr_gt_,
-    MP_QSTR__lt_dictcomp_gt_,
     MP_QSTR__percent_d_space__percent_s,
     MP_QSTR_P,
     MP_QSTR_K,
     MP_QSTR_ImportError,
+    MP_QSTR_PMD,
+    MP_QSTR_FICHA,
+    MP_QSTR_FT,
     MP_QSTR_range,
-    MP_QSTR_AIRE,
-    MP_QSTR_HIERBA,
-    MP_QSTR_TIERRA,
-    MP_QSTR_PIEDRA,
-    MP_QSTR_ROCA,
-    MP_QSTR_TRONCO,
-    MP_QSTR_HOJAS,
-    MP_QSTR_TABLONES,
-    MP_QSTR_ARENA,
-    MP_QSTR_GRAVA,
-    MP_QSTR_CARBON_M,
-    MP_QSTR_HIERRO_M,
-    MP_QSTR_ORO_M,
-    MP_QSTR_DIAMANTE_M,
-    MP_QSTR_LECHO,
-    MP_QSTR_AGUA,
-    MP_QSTR_MESA,
-    MP_QSTR_HORNO,
-    MP_QSTR_CRISTAL,
-    MP_QSTR_LADRILLOS,
-    MP_QSTR_NIEVE,
-    MP_QSTR_CACTUS,
-    MP_QSTR_FLOR_R,
-    MP_QSTR_FLOR_A,
-    MP_QSTR_HIERBA_A,
-    MP_QSTR_ANTORCHA,
-    MP_QSTR_PALO,
-    MP_QSTR_CARBON,
-    MP_QSTR_LING_HIERRO,
-    MP_QSTR_LING_ORO,
-    MP_QSTR_DIAMANTE,
-    MP_QSTR_MANZANA,
-    MP_QSTR_CARNE,
-    MP_QSTR_CARNE_ASADA,
-    MP_QSTR_CARNE_POD,
-    MP_QSTR_HERR,
-    MP_QSTR_PICO,
-    MP_QSTR_HACHA,
-    MP_QSTR_PALA,
-    MP_QSTR_ESPADA,
-    MP_QSTR_TEX,
-    MP_QSTR_NOMBRE,
-    MP_QSTR_MATS,
-    MP_QSTR_TIPOS,
-    MP_QSTR__t,
-    MP_QSTR__m,
-    MP_QSTR_NO_SOLIDO,
+    MP_QSTR_F_SOL,
+    MP_QSTR_F_DUR,
+    MP_QSTR_F_HERR,
+    MP_QSTR_F_NIV,
+    MP_QSTR_F_LIQ,
+    MP_QSTR_F_CAE,
+    MP_QSTR_F_LUZ,
+    MP_QSTR_F_GRUPO,
+    MP_QSTR_F_SUELTA,
+    MP_QSTR_F_FUNDE,
+    MP_QSTR_F_QUEMA,
+    MP_QSTR_F_DANO,
+    MP_QSTR_F_CREAT,
+    MP_QSTR_F_TILE,
+    MP_QSTR_F_INV,
+    MP_QSTR_F_DURAB,
+    MP_QSTR_F_RAIZ,
+    MP_QSTR_CERO,
+    MP_QSTR__bl,
+    MP_QSTR_NB,
+    MP_QSTR_L2PM,
+    MP_QSTR_bytearray,
+    MP_QSTR_PM2L,
+    MP_QSTR_SOL,
     MP_QSTR_TRANSP,
-    MP_QSTR_CAEN,
-    MP_QSTR_DUREZA,
-    MP_QSTR_SUELTA,
+    MP_QSTR_NOSUELO,
+    MP_QSTR_LIQ,
+    MP_QSTR_CAE,
+    MP_QSTR_TEXL,
+    MP_QSTR_NREC,
+    MP_QSTR__fichas,
     MP_QSTR_COMIDA,
-    MP_QSTR_DANO,
-    MP_QSTR_RECETAS,
-    MP_QSTR_enumerate,
-    MP_QSTR__mat,
+    MP_QSTR_MOBS,
+    MP_QSTR_BIOMAS,
+    MP_QSTR_STEVE,
+    MP_QSTR_AIRE_PM,
+    MP_QSTR_HIERBA_PM,
+    MP_QSTR_TIERRA_PM,
+    MP_QSTR_PIEDRA_PM,
+    MP_QSTR_GRAVA_PM,
+    MP_QSTR_LECHO_PM,
+    MP_QSTR_ARENA_PM,
+    MP_QSTR_TRONCO_PM,
+    MP_QSTR_HOJAS_PM,
+    MP_QSTR_CACTUS_PM,
+    MP_QSTR_COFRE_PM,
+    MP_QSTR_CARBON_M,
+    MP_QSTR_DIAMANTE_M,
+    MP_QSTR_ORO_M,
+    MP_QSTR_HIERRO_M,
+    MP_QSTR_ROCA_PM,
+    MP_QSTR_ESCALERA_PM,
+    MP_QSTR_ANTORCHA_PM,
+    MP_QSTR_AGUA_PM,
+    MP_QSTR_LAVA_PM,
+    MP_QSTR_MESA_PM,
+    MP_QSTR_HORNO_PM,
+    MP_QSTR_HORNO_ON_PM,
+    MP_QSTR_CUBO,
+    MP_QSTR_CUBO_AGUA,
+    MP_QSTR_CUBO_LAVA,
+    MP_QSTR_REDSTONE_M,
+    MP_QSTR_ESMERALDA_M,
+    MP_QSTR_ARCILLA_PM,
+    MP_QSTR_AREN_PIEDRA,
+    MP_QSTR_NIEVE_HIERBA,
+    MP_QSTR_NIEVE_CAPA,
+    MP_QSTR_HIELO,
+    MP_QSTR_ROSA,
+    MP_QSTR_FLOR,
+    MP_QSTR_HIERBA_ALTA,
+    MP_QSTR_SETA_R,
+    MP_QSTR_SETA_M,
+    MP_QSTR_CALABAZA,
+    MP_QSTR_CANA,
+    MP_QSTR_RETONO,
+    MP_QSTR_ABEDUL,
+    MP_QSTR_ABETO,
+    MP_QSTR_JUNGLA,
+    MP_QSTR_HOJAS_ABEDUL,
+    MP_QSTR_HOJAS_ABETO,
+    MP_QSTR_HOJAS_JUNGLA,
+    MP_QSTR_FLECHA,
+    MP_QSTR__nombres,
     MP_QSTR_W,
-    MP_QSTR_H,
     MP_QSTR_MAR,
     MP_QSTR_T,
     MP_QSTR_VIEW_H,
@@ -63072,44 +66671,51 @@ static const qstr_short_t const_qstr_table_data_mc2d[487] = {
     MP_QSTR_OSCURO,
     MP_QSTR_DIA_S,
     MP_QSTR_SALA,
-    MP_QSTR_bytearray,
-    MP_QSTR_alto,
     MP_QSTR_PW,
     MP_QSTR_PH,
     MP_QSTR_GRAV,
     MP_QSTR_MAX_CAIDA,
     MP_QSTR_ANDAR,
     MP_QSTR_SALTO,
-    MP_QSTR_DT,
     MP_QSTR_ALCANCE,
-    MP_QSTR_NO_SUELO,
     MP_QSTR_SND,
+    MP_QSTR_ARBOLES,
     MP_QSTR_NHUECOS,
     MP_QSTR_inv_id,
     MP_QSTR_inv_n,
     MP_QSTR_SPR,
     MP_QSTR_CARPETA,
-    MP_QSTR_b,
-    MP_QSTR_hasattr,
+    MP_QSTR_i,
+    MP_QSTR_len,
+    MP_QSTR_pm,
     MP_QSTR_open,
     MP_QSTR_OSError,
+    MP_QSTR_bytes,
+    MP_QSTR_it,
+    MP_QSTR_enumerate,
+    MP_QSTR_b,
+    MP_QSTR_hasattr,
+    MP_QSTR_nombre_s,
     MP_QSTR_vol,
     MP_QSTR_frac,
     MP_QSTR_int,
     MP_QSTR_semilla,
     MP_QSTR_min,
     MP_QSTR_max,
-    MP_QSTR_it,
+    MP_QSTR_tipo,
+    MP_QSTR_r,
+    MP_QSTR_k,
+    MP_QSTR_ruta,
     MP_QSTR_str,
-    MP_QSTR_len,
     MP_QSTR___name__,
     MP_QSTR___module__,
     MP_QSTR___qualname__,
     MP_QSTR_abs,
-    MP_QSTR_valor,
-    MP_QSTR_i,
     MP_QSTR_f,
     MP_QSTR_j,
+    MP_QSTR_list,
+    MP_QSTR_nombre_m,
+    MP_QSTR_ValueError,
     MP_QSTR_zip,
     MP_QSTR_lst,
     MP_QSTR_foco,
@@ -63119,7 +66725,7 @@ static const qstr_short_t const_qstr_table_data_mc2d[487] = {
     MP_QSTR_lineas,
     MP_QSTR_inicial,
     MP_QSTR_isinstance,
-    MP_QSTR_list,
+    MP_QSTR__star_,
     MP_QSTR_self,
     MP_QSTR_wx,
     MP_QSTR_wy,
@@ -63129,310 +66735,404 @@ static const qstr_short_t const_qstr_table_data_mc2d[487] = {
     MP_QSTR_y0,
     MP_QSTR_x1,
     MP_QSTR_y1,
-    MP_QSTR_bytes,
+    MP_QSTR_tuple,
+    MP_QSTR_andar,
     MP_QSTR_red_tambien,
     MP_QSTR_TypeError,
     MP_QSTR_dt,
+    MP_QSTR_float,
     MP_QSTR_dx,
     MP_QSTR_dy,
     MP_QSTR_sonido,
     MP_QSTR_pid,
     MP_QSTR_sum,
-    MP_QSTR_float,
+    MP_QSTR_jug,
     MP_QSTR_quien,
     MP_QSTR_round,
     MP_QSTR_sitio,
+    MP_QSTR_set,
+    MP_QSTR_menos,
+    MP_QSTR_op,
     MP_QSTR_all,
     MP_QSTR_getattr,
-    MP_QSTR__star_,
 };
 
 // constants
-static const mp_rom_obj_tuple_t const_obj_mc2d_0 = {{&mp_type_tuple}, 4, {
+static const mp_rom_obj_tuple_t const_obj_mc2d_1 = {{&mp_type_tuple}, 1, {
     MP_ROM_INT(0),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_2 = {{&mp_type_tuple}, 7, {
     MP_ROM_INT(1),
     MP_ROM_INT(2),
     MP_ROM_INT(3),
-}};
-static const mp_rom_obj_tuple_t const_obj_mc2d_21 = {{&mp_type_tuple}, 4, {
-    MP_ROM_QSTR(MP_QSTR_madera),
-    MP_ROM_QSTR(MP_QSTR_piedra),
-    MP_ROM_QSTR(MP_QSTR_hierro),
-    MP_ROM_QSTR(MP_QSTR_diamante),
-}};
-static const mp_rom_obj_tuple_t const_obj_mc2d_22 = {{&mp_type_tuple}, 4, {
-    MP_ROM_QSTR(MP_QSTR_pico),
-    MP_ROM_QSTR(MP_QSTR_hacha),
-    MP_ROM_QSTR(MP_QSTR_pala),
-    MP_ROM_QSTR(MP_QSTR_espada),
-}};
-static const mp_rom_obj_tuple_t const_obj_mc2d_23 = {{&mp_type_tuple}, 3, {
-    MP_ROM_INT(300),
-    MP_ROM_INT(-1),
-    MP_ROM_INT(-1),
-}};
-static const mp_rom_obj_tuple_t const_obj_mc2d_24 = {{&mp_type_tuple}, 3, {
-    MP_ROM_INT(400),
-    MP_ROM_INT(-1),
-    MP_ROM_INT(-1),
-}};
-static const mp_rom_obj_tuple_t const_obj_mc2d_25 = {{&mp_type_tuple}, 3, {
-    MP_ROM_INT(600),
-    MP_ROM_INT(-1),
-    MP_ROM_INT(-1),
-}};
-static const mp_rom_obj_tuple_t const_obj_mc2d_26 = {{&mp_type_tuple}, 3, {
-    MP_ROM_INT(50),
-    MP_ROM_INT(-1),
-    MP_ROM_INT(-1),
-}};
-static const mp_rom_obj_tuple_t const_obj_mc2d_27 = {{&mp_type_tuple}, 4, {
     MP_ROM_INT(4),
     MP_ROM_INT(5),
     MP_ROM_INT(6),
     MP_ROM_INT(7),
 }};
-static const mp_rom_obj_tuple_t const_obj_mc2d_28 = {{&mp_type_tuple}, 2, {
+static const mp_rom_obj_tuple_t const_obj_mc2d_3 = {{&mp_type_tuple}, 4, {
+    MP_ROM_INT(8),
+    MP_ROM_INT(9),
+    MP_ROM_INT(11),
+    MP_ROM_INT(12),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_4 = {{&mp_type_tuple}, 5, {
+    MP_ROM_INT(13),
+    MP_ROM_INT(14),
+    MP_ROM_INT(15),
+    MP_ROM_INT(16),
+    MP_ROM_INT(41),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_5 = {{&mp_type_tuple}, 4, {
+    MP_ROM_INT(19),
+    MP_ROM_INT(20),
+    MP_ROM_INT(38),
+    MP_ROM_INT(81),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_6 = {{&mp_type_tuple}, 3, {
+    MP_ROM_INT(47),
+    MP_ROM_INT(48),
+    MP_ROM_INT(49),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_7 = {{&mp_type_tuple}, 3, {
+    MP_ROM_INT(92),
+    MP_ROM_INT(95),
+    MP_ROM_INT(82),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_8 = {{&mp_type_tuple}, 4, {
+    MP_ROM_INT(217),
+    MP_ROM_INT(271),
+    MP_ROM_INT(53),
+    MP_ROM_INT(58),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_9 = {{&mp_type_tuple}, 6, {
+    MP_ROM_INT(284),
+    MP_ROM_INT(283),
+    MP_ROM_INT(287),
+    MP_ROM_INT(43),
+    MP_ROM_INT(44),
+    MP_ROM_INT(133),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_10 = {{&mp_type_tuple}, 5, {
+    MP_ROM_INT(45),
+    MP_ROM_INT(46),
+    MP_ROM_INT(54),
+    MP_ROM_INT(61),
+    MP_ROM_INT(55),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_11 = {{&mp_type_tuple}, 3, {
+    MP_ROM_INT(179),
+    MP_ROM_INT(178),
+    MP_ROM_INT(180),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_12 = {{&mp_type_tuple}, 3, {
+    MP_ROM_INT(181),
+    MP_ROM_INT(184),
+    MP_ROM_INT(187),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_13 = {{&mp_type_tuple}, 2, {
     MP_ROM_INT(200),
     MP_ROM_INT(64),
 }};
-static const mp_obj_int_t const_obj_mc2d_29_0 = {{&mp_type_int}, {.neg=0, .fixed_dig=1, .alloc=2, .len=2, .dig=(uint16_t*)(const uint16_t[]){0xa8f0,0x78}}};
-static const mp_obj_int_t const_obj_mc2d_29_1 = {{&mp_type_int}, {.neg=0, .fixed_dig=1, .alloc=2, .len=2, .dig=(uint16_t*)(const uint16_t[]){0x1830,0x10}}};
-static const mp_obj_int_t const_obj_mc2d_29_2 = {{&mp_type_int}, {.neg=0, .fixed_dig=1, .alloc=2, .len=2, .dig=(uint16_t*)(const uint16_t[]){0x3530,0x3a}}};
-static const mp_obj_int_t const_obj_mc2d_29_3 = {{&mp_type_int}, {.neg=0, .fixed_dig=1, .alloc=2, .len=2, .dig=(uint16_t*)(const uint16_t[]){0xc0c,0xc}}};
-static const mp_rom_obj_tuple_t const_obj_mc2d_29 = {{&mp_type_tuple}, 4, {
-    MP_ROM_PTR(&const_obj_mc2d_29_0),
-    MP_ROM_PTR(&const_obj_mc2d_29_1),
-    MP_ROM_PTR(&const_obj_mc2d_29_2),
-    MP_ROM_PTR(&const_obj_mc2d_29_3),
+static const mp_obj_int_t const_obj_mc2d_14_0 = {{&mp_type_int}, {.neg=0, .fixed_dig=1, .alloc=2, .len=2, .dig=(uint16_t*)(const uint16_t[]){0xa8f0,0x78}}};
+static const mp_obj_int_t const_obj_mc2d_14_1 = {{&mp_type_int}, {.neg=0, .fixed_dig=1, .alloc=2, .len=2, .dig=(uint16_t*)(const uint16_t[]){0x1830,0x10}}};
+static const mp_obj_int_t const_obj_mc2d_14_2 = {{&mp_type_int}, {.neg=0, .fixed_dig=1, .alloc=2, .len=2, .dig=(uint16_t*)(const uint16_t[]){0x3530,0x3a}}};
+static const mp_obj_int_t const_obj_mc2d_14_3 = {{&mp_type_int}, {.neg=0, .fixed_dig=1, .alloc=2, .len=2, .dig=(uint16_t*)(const uint16_t[]){0xc0c,0xc}}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_14 = {{&mp_type_tuple}, 4, {
+    MP_ROM_PTR(&const_obj_mc2d_14_0),
+    MP_ROM_PTR(&const_obj_mc2d_14_1),
+    MP_ROM_PTR(&const_obj_mc2d_14_2),
+    MP_ROM_PTR(&const_obj_mc2d_14_3),
 }};
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_31_0 = {{&mp_type_float}, (mp_float_t)0.6};
-#define const_obj_mc2d_31_0_macro MP_ROM_PTR(&const_obj_mc2d_31_0)
+static const mp_obj_float_t const_obj_mc2d_16_0 = {{&mp_type_float}, (mp_float_t)0.6};
+#define const_obj_mc2d_16_0_macro MP_ROM_PTR(&const_obj_mc2d_16_0)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_31_0_macro ((mp_rom_obj_t)(0xbf99999a))
+#define const_obj_mc2d_16_0_macro ((mp_rom_obj_t)(0xbf99999a))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_31_0_macro ((mp_rom_obj_t)(0xbfe7333333333333))
+#define const_obj_mc2d_16_0_macro ((mp_rom_obj_t)(0xbfe7333333333333))
 #endif
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_31_1 = {{&mp_type_float}, (mp_float_t)1.8};
-#define const_obj_mc2d_31_1_macro MP_ROM_PTR(&const_obj_mc2d_31_1)
+static const mp_obj_float_t const_obj_mc2d_16_1 = {{&mp_type_float}, (mp_float_t)1.8};
+#define const_obj_mc2d_16_1_macro MP_ROM_PTR(&const_obj_mc2d_16_1)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_31_1_macro ((mp_rom_obj_t)(0xc0666666))
+#define const_obj_mc2d_16_1_macro ((mp_rom_obj_t)(0xc0666666))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_31_1_macro ((mp_rom_obj_t)(0xc000cccccccccccd))
+#define const_obj_mc2d_16_1_macro ((mp_rom_obj_t)(0xc000cccccccccccd))
 #endif
-static const mp_rom_obj_tuple_t const_obj_mc2d_31 = {{&mp_type_tuple}, 2, {
-    const_obj_mc2d_31_0_macro,
-    const_obj_mc2d_31_1_macro,
+static const mp_rom_obj_tuple_t const_obj_mc2d_16 = {{&mp_type_tuple}, 2, {
+    const_obj_mc2d_16_0_macro,
+    const_obj_mc2d_16_1_macro,
 }};
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_32_0 = {{&mp_type_float}, (mp_float_t)32};
-#define const_obj_mc2d_32_0_macro MP_ROM_PTR(&const_obj_mc2d_32_0)
+static const mp_obj_float_t const_obj_mc2d_17_0 = {{&mp_type_float}, (mp_float_t)32};
+#define const_obj_mc2d_17_0_macro MP_ROM_PTR(&const_obj_mc2d_17_0)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_32_0_macro ((mp_rom_obj_t)(0xc2800002))
+#define const_obj_mc2d_17_0_macro ((mp_rom_obj_t)(0xc2800002))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_32_0_macro ((mp_rom_obj_t)(0xc044000000000000))
+#define const_obj_mc2d_17_0_macro ((mp_rom_obj_t)(0xc044000000000000))
 #endif
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_32_1 = {{&mp_type_float}, (mp_float_t)24};
-#define const_obj_mc2d_32_1_macro MP_ROM_PTR(&const_obj_mc2d_32_1)
+static const mp_obj_float_t const_obj_mc2d_17_1 = {{&mp_type_float}, (mp_float_t)24};
+#define const_obj_mc2d_17_1_macro MP_ROM_PTR(&const_obj_mc2d_17_1)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_32_1_macro ((mp_rom_obj_t)(0xc2400002))
+#define const_obj_mc2d_17_1_macro ((mp_rom_obj_t)(0xc2400002))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_32_1_macro ((mp_rom_obj_t)(0xc03c000000000000))
+#define const_obj_mc2d_17_1_macro ((mp_rom_obj_t)(0xc03c000000000000))
 #endif
-static const mp_rom_obj_tuple_t const_obj_mc2d_32 = {{&mp_type_tuple}, 2, {
-    const_obj_mc2d_32_0_macro,
-    const_obj_mc2d_32_1_macro,
+static const mp_rom_obj_tuple_t const_obj_mc2d_17 = {{&mp_type_tuple}, 2, {
+    const_obj_mc2d_17_0_macro,
+    const_obj_mc2d_17_1_macro,
 }};
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_33_0 = {{&mp_type_float}, (mp_float_t)4.3};
-#define const_obj_mc2d_33_0_macro MP_ROM_PTR(&const_obj_mc2d_33_0)
+static const mp_obj_float_t const_obj_mc2d_18_0 = {{&mp_type_float}, (mp_float_t)4.3};
+#define const_obj_mc2d_18_0_macro MP_ROM_PTR(&const_obj_mc2d_18_0)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_33_0_macro ((mp_rom_obj_t)(0xc109999a))
+#define const_obj_mc2d_18_0_macro ((mp_rom_obj_t)(0xc109999a))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_33_0_macro ((mp_rom_obj_t)(0xc015333333333333))
+#define const_obj_mc2d_18_0_macro ((mp_rom_obj_t)(0xc015333333333333))
 #endif
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_33_1 = {{&mp_type_float}, (mp_float_t)9};
-#define const_obj_mc2d_33_1_macro MP_ROM_PTR(&const_obj_mc2d_33_1)
+static const mp_obj_float_t const_obj_mc2d_18_1 = {{&mp_type_float}, (mp_float_t)9};
+#define const_obj_mc2d_18_1_macro MP_ROM_PTR(&const_obj_mc2d_18_1)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_33_1_macro ((mp_rom_obj_t)(0xc1900002))
+#define const_obj_mc2d_18_1_macro ((mp_rom_obj_t)(0xc1900002))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_33_1_macro ((mp_rom_obj_t)(0xc026000000000000))
+#define const_obj_mc2d_18_1_macro ((mp_rom_obj_t)(0xc026000000000000))
 #endif
-static const mp_rom_obj_tuple_t const_obj_mc2d_33 = {{&mp_type_tuple}, 2, {
-    const_obj_mc2d_33_0_macro,
-    const_obj_mc2d_33_1_macro,
+static const mp_rom_obj_tuple_t const_obj_mc2d_18 = {{&mp_type_tuple}, 2, {
+    const_obj_mc2d_18_0_macro,
+    const_obj_mc2d_18_1_macro,
 }};
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_34 = {{&mp_type_float}, (mp_float_t)0.7};
-#define const_obj_mc2d_34_macro MP_ROM_PTR(&const_obj_mc2d_34)
+static const mp_obj_float_t const_obj_mc2d_19 = {{&mp_type_float}, (mp_float_t)0.7};
+#define const_obj_mc2d_19_macro MP_ROM_PTR(&const_obj_mc2d_19)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_34_macro ((mp_rom_obj_t)(0xbfb33332))
+#define const_obj_mc2d_19_macro ((mp_rom_obj_t)(0xbfb33332))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_34_macro ((mp_rom_obj_t)(0xbfea666666666666))
+#define const_obj_mc2d_19_macro ((mp_rom_obj_t)(0xbfea666666666666))
 #endif
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_35 = {{&mp_type_float}, (mp_float_t)0.5};
+static const mp_obj_float_t const_obj_mc2d_20 = {{&mp_type_float}, (mp_float_t)0.5};
+#define const_obj_mc2d_20_macro MP_ROM_PTR(&const_obj_mc2d_20)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_20_macro ((mp_rom_obj_t)(0xbf800002))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_20_macro ((mp_rom_obj_t)(0xbfe4000000000000))
+#endif
+static const mp_obj_str_t const_obj_mc2d_24 = {{&mp_type_bytes}, 747, 4, (const byte*)"\x50\x4d\x42\x31"};
+static const mp_rom_obj_tuple_t const_obj_mc2d_26 = {{&mp_type_tuple}, 2, {
+    MP_ROM_INT(6),
+    MP_ROM_INT(10),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_28 = {{&mp_type_tuple}, 2, {
+    MP_ROM_INT(1),
+    MP_ROM_INT(8),
+}};
+static const mp_obj_str_t const_obj_mc2d_29 = {{&mp_type_str}, 37228, 27, (const byte*)"\x2f\x73\x63\x72\x61\x74\x63\x68\x2f\x25\x73\x2f\x73\x6e\x64\x2f\x69\x6e\x64\x69\x63\x65\x2e\x6a\x73\x6f\x6e"};
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_32 = {{&mp_type_float}, (mp_float_t)0.1};
+#define const_obj_mc2d_32_macro MP_ROM_PTR(&const_obj_mc2d_32)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_32_macro ((mp_rom_obj_t)(0xbe4cccce))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_32_macro ((mp_rom_obj_t)(0xbfbd99999999999a))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_33 = {{&mp_type_float}, (mp_float_t)32};
+#define const_obj_mc2d_33_macro MP_ROM_PTR(&const_obj_mc2d_33)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_33_macro ((mp_rom_obj_t)(0xc2800002))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_33_macro ((mp_rom_obj_t)(0xc044000000000000))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_35 = {{&mp_type_float}, (mp_float_t)0.35};
 #define const_obj_mc2d_35_macro MP_ROM_PTR(&const_obj_mc2d_35)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_35_macro ((mp_rom_obj_t)(0xbf800002))
+#define const_obj_mc2d_35_macro ((mp_rom_obj_t)(0xbf333332))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_35_macro ((mp_rom_obj_t)(0xbfe4000000000000))
+#define const_obj_mc2d_35_macro ((mp_rom_obj_t)(0xbfda666666666666))
 #endif
-static const mp_obj_str_t const_obj_mc2d_36 = {{&mp_type_str}, 37228, 27, (const byte*)"\x2f\x73\x63\x72\x61\x74\x63\x68\x2f\x25\x73\x2f\x73\x6e\x64\x2f\x69\x6e\x64\x69\x63\x65\x2e\x6a\x73\x6f\x6e"};
-static const mp_rom_obj_tuple_t const_obj_mc2d_38 = {{&mp_type_tuple}, 5, {
-    MP_ROM_INT(0),
-    MP_ROM_INT(0),
-    MP_ROM_INT(0),
-    MP_ROM_INT(1),
-    MP_ROM_INT(2),
-}};
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_40 = {{&mp_type_float}, (mp_float_t)0.1};
+static const mp_obj_float_t const_obj_mc2d_36 = {{&mp_type_float}, (mp_float_t)6.28};
+#define const_obj_mc2d_36_macro MP_ROM_PTR(&const_obj_mc2d_36)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_36_macro ((mp_rom_obj_t)(0xc148f5c2))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_36_macro ((mp_rom_obj_t)(0xc01d1eb851eb851f))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_37 = {{&mp_type_float}, (mp_float_t)1};
+#define const_obj_mc2d_37_macro MP_ROM_PTR(&const_obj_mc2d_37)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_37_macro ((mp_rom_obj_t)(0xc0000002))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_37_macro ((mp_rom_obj_t)(0xbff4000000000000))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_38 = {{&mp_type_float}, (mp_float_t)1.8};
+#define const_obj_mc2d_38_macro MP_ROM_PTR(&const_obj_mc2d_38)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_38_macro ((mp_rom_obj_t)(0xc0666666))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_38_macro ((mp_rom_obj_t)(0xc000cccccccccccd))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_39 = {{&mp_type_float}, (mp_float_t)1.4};
+#define const_obj_mc2d_39_macro MP_ROM_PTR(&const_obj_mc2d_39)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_39_macro ((mp_rom_obj_t)(0xc0333332))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_39_macro ((mp_rom_obj_t)(0xbffa666666666666))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_40 = {{&mp_type_float}, (mp_float_t)0.6};
 #define const_obj_mc2d_40_macro MP_ROM_PTR(&const_obj_mc2d_40)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_40_macro ((mp_rom_obj_t)(0xbe4cccce))
+#define const_obj_mc2d_40_macro ((mp_rom_obj_t)(0xbf99999a))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_40_macro ((mp_rom_obj_t)(0xbfbd99999999999a))
+#define const_obj_mc2d_40_macro ((mp_rom_obj_t)(0xbfe7333333333333))
 #endif
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_41 = {{&mp_type_float}, (mp_float_t)34};
+static const mp_obj_float_t const_obj_mc2d_41 = {{&mp_type_float}, (mp_float_t)1.5};
 #define const_obj_mc2d_41_macro MP_ROM_PTR(&const_obj_mc2d_41)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_41_macro ((mp_rom_obj_t)(0xc2880002))
+#define const_obj_mc2d_41_macro ((mp_rom_obj_t)(0xc0400002))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_41_macro ((mp_rom_obj_t)(0xc045000000000000))
+#define const_obj_mc2d_41_macro ((mp_rom_obj_t)(0xbffc000000000000))
 #endif
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_43 = {{&mp_type_float}, (mp_float_t)0.35};
-#define const_obj_mc2d_43_macro MP_ROM_PTR(&const_obj_mc2d_43)
+static const mp_obj_float_t const_obj_mc2d_42 = {{&mp_type_float}, (mp_float_t)0.8};
+#define const_obj_mc2d_42_macro MP_ROM_PTR(&const_obj_mc2d_42)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_43_macro ((mp_rom_obj_t)(0xbf333332))
+#define const_obj_mc2d_42_macro ((mp_rom_obj_t)(0xbfccccce))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_43_macro ((mp_rom_obj_t)(0xbfda666666666666))
+#define const_obj_mc2d_42_macro ((mp_rom_obj_t)(0xbfed99999999999a))
 #endif
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_44 = {{&mp_type_float}, (mp_float_t)6.28};
+static const mp_obj_float_t const_obj_mc2d_44 = {{&mp_type_float}, (mp_float_t)0.55};
 #define const_obj_mc2d_44_macro MP_ROM_PTR(&const_obj_mc2d_44)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_44_macro ((mp_rom_obj_t)(0xc148f5c2))
+#define const_obj_mc2d_44_macro ((mp_rom_obj_t)(0xbf8cccce))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_44_macro ((mp_rom_obj_t)(0xc01d1eb851eb851f))
+#define const_obj_mc2d_44_macro ((mp_rom_obj_t)(0xbfe599999999999a))
 #endif
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_45 = {{&mp_type_float}, (mp_float_t)1};
-#define const_obj_mc2d_45_macro MP_ROM_PTR(&const_obj_mc2d_45)
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_45_macro ((mp_rom_obj_t)(0xc0000002))
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_45_macro ((mp_rom_obj_t)(0xbff4000000000000))
-#endif
-#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_46 = {{&mp_type_float}, (mp_float_t)1.8};
+static const mp_obj_float_t const_obj_mc2d_46 = {{&mp_type_float}, (mp_float_t)0.75};
 #define const_obj_mc2d_46_macro MP_ROM_PTR(&const_obj_mc2d_46)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_46_macro ((mp_rom_obj_t)(0xc0666666))
+#define const_obj_mc2d_46_macro ((mp_rom_obj_t)(0xbfc00002))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_46_macro ((mp_rom_obj_t)(0xc000cccccccccccd))
+#define const_obj_mc2d_46_macro ((mp_rom_obj_t)(0xbfec000000000000))
 #endif
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_47 = {{&mp_type_float}, (mp_float_t)1.4};
+static const mp_obj_float_t const_obj_mc2d_47 = {{&mp_type_float}, (mp_float_t)0.07000000000000001};
 #define const_obj_mc2d_47_macro MP_ROM_PTR(&const_obj_mc2d_47)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_47_macro ((mp_rom_obj_t)(0xc0333332))
+#define const_obj_mc2d_47_macro ((mp_rom_obj_t)(0xbe0f5c2a))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_47_macro ((mp_rom_obj_t)(0xbffa666666666666))
+#define const_obj_mc2d_47_macro ((mp_rom_obj_t)(0xbfb5eb851eb851ec))
 #endif
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_48 = {{&mp_type_float}, (mp_float_t)0.6};
+static const mp_obj_float_t const_obj_mc2d_48 = {{&mp_type_float}, (mp_float_t)0.15};
 #define const_obj_mc2d_48_macro MP_ROM_PTR(&const_obj_mc2d_48)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_48_macro ((mp_rom_obj_t)(0xbf99999a))
+#define const_obj_mc2d_48_macro ((mp_rom_obj_t)(0xbe99999a))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_48_macro ((mp_rom_obj_t)(0xbfe7333333333333))
+#define const_obj_mc2d_48_macro ((mp_rom_obj_t)(0xbfc7333333333333))
 #endif
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_49 = {{&mp_type_float}, (mp_float_t)1.5};
+static const mp_obj_float_t const_obj_mc2d_49 = {{&mp_type_float}, (mp_float_t)0.2};
 #define const_obj_mc2d_49_macro MP_ROM_PTR(&const_obj_mc2d_49)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_49_macro ((mp_rom_obj_t)(0xc0400002))
+#define const_obj_mc2d_49_macro ((mp_rom_obj_t)(0xbeccccce))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_49_macro ((mp_rom_obj_t)(0xbffc000000000000))
+#define const_obj_mc2d_49_macro ((mp_rom_obj_t)(0xbfcd99999999999a))
 #endif
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_50 = {{&mp_type_float}, (mp_float_t)0.8};
+static const mp_obj_float_t const_obj_mc2d_50 = {{&mp_type_float}, (mp_float_t)0.205};
 #define const_obj_mc2d_50_macro MP_ROM_PTR(&const_obj_mc2d_50)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_50_macro ((mp_rom_obj_t)(0xbfccccce))
+#define const_obj_mc2d_50_macro ((mp_rom_obj_t)(0xbed1eb86))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_50_macro ((mp_rom_obj_t)(0xbfed99999999999a))
+#define const_obj_mc2d_50_macro ((mp_rom_obj_t)(0xbfce3d70a3d70a3d))
 #endif
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_52 = {{&mp_type_float}, (mp_float_t)0.55};
-#define const_obj_mc2d_52_macro MP_ROM_PTR(&const_obj_mc2d_52)
+static const mp_obj_float_t const_obj_mc2d_51 = {{&mp_type_float}, (mp_float_t)0.9};
+#define const_obj_mc2d_51_macro MP_ROM_PTR(&const_obj_mc2d_51)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_52_macro ((mp_rom_obj_t)(0xbf8cccce))
+#define const_obj_mc2d_51_macro ((mp_rom_obj_t)(0xbfe66666))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_52_macro ((mp_rom_obj_t)(0xbfe599999999999a))
+#define const_obj_mc2d_51_macro ((mp_rom_obj_t)(0xbff0cccccccccccd))
 #endif
+static const mp_rom_obj_tuple_t const_obj_mc2d_52_0 = {{&mp_type_tuple}, 2, {
+    MP_ROM_INT(-3),
+    MP_ROM_INT(2),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_52_1 = {{&mp_type_tuple}, 2, {
+    MP_ROM_INT(-2),
+    MP_ROM_INT(2),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_52_2 = {{&mp_type_tuple}, 2, {
+    MP_ROM_INT(-1),
+    MP_ROM_INT(1),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_52_3 = {{&mp_type_tuple}, 2, {
+    MP_ROM_INT(0),
+    MP_ROM_INT(1),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_52_4 = {{&mp_type_tuple}, 2, {
+    MP_ROM_INT(1),
+    MP_ROM_INT(0),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_52 = {{&mp_type_tuple}, 5, {
+    MP_ROM_PTR(&const_obj_mc2d_52_0),
+    MP_ROM_PTR(&const_obj_mc2d_52_1),
+    MP_ROM_PTR(&const_obj_mc2d_52_2),
+    MP_ROM_PTR(&const_obj_mc2d_52_3),
+    MP_ROM_PTR(&const_obj_mc2d_52_4),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_53_0 = {{&mp_type_tuple}, 2, {
+    MP_ROM_INT(-2),
+    MP_ROM_INT(2),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_53_1 = {{&mp_type_tuple}, 2, {
+    MP_ROM_INT(-1),
+    MP_ROM_INT(2),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_53_2 = {{&mp_type_tuple}, 2, {
+    MP_ROM_INT(0),
+    MP_ROM_INT(1),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_53_3 = {{&mp_type_tuple}, 2, {
+    MP_ROM_INT(1),
+    MP_ROM_INT(1),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_53 = {{&mp_type_tuple}, 4, {
+    MP_ROM_PTR(&const_obj_mc2d_53_0),
+    MP_ROM_PTR(&const_obj_mc2d_53_1),
+    MP_ROM_PTR(&const_obj_mc2d_53_2),
+    MP_ROM_PTR(&const_obj_mc2d_53_3),
+}};
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_54 = {{&mp_type_float}, (mp_float_t)0.75};
-#define const_obj_mc2d_54_macro MP_ROM_PTR(&const_obj_mc2d_54)
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_54_macro ((mp_rom_obj_t)(0xbfc00002))
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_54_macro ((mp_rom_obj_t)(0xbfec000000000000))
-#endif
-#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_55 = {{&mp_type_float}, (mp_float_t)0.13};
+static const mp_obj_float_t const_obj_mc2d_55 = {{&mp_type_float}, (mp_float_t)0.45};
 #define const_obj_mc2d_55_macro MP_ROM_PTR(&const_obj_mc2d_55)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_55_macro ((mp_rom_obj_t)(0xbe851eba))
+#define const_obj_mc2d_55_macro ((mp_rom_obj_t)(0xbf666666))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_55_macro ((mp_rom_obj_t)(0xbfc4a3d70a3d70a4))
+#define const_obj_mc2d_55_macro ((mp_rom_obj_t)(0xbfe0cccccccccccd))
 #endif
-#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_56 = {{&mp_type_float}, (mp_float_t)0.07000000000000001};
-#define const_obj_mc2d_56_macro MP_ROM_PTR(&const_obj_mc2d_56)
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_56_macro ((mp_rom_obj_t)(0xbe0f5c2a))
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_56_macro ((mp_rom_obj_t)(0xbfb5eb851eb851ec))
-#endif
-#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_57 = {{&mp_type_float}, (mp_float_t)0.15};
-#define const_obj_mc2d_57_macro MP_ROM_PTR(&const_obj_mc2d_57)
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_57_macro ((mp_rom_obj_t)(0xbe99999a))
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_57_macro ((mp_rom_obj_t)(0xbfc7333333333333))
-#endif
-#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_58 = {{&mp_type_float}, (mp_float_t)0.2};
-#define const_obj_mc2d_58_macro MP_ROM_PTR(&const_obj_mc2d_58)
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_58_macro ((mp_rom_obj_t)(0xbeccccce))
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_58_macro ((mp_rom_obj_t)(0xbfcd99999999999a))
-#endif
-#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_59 = {{&mp_type_float}, (mp_float_t)0.45};
-#define const_obj_mc2d_59_macro MP_ROM_PTR(&const_obj_mc2d_59)
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_59_macro ((mp_rom_obj_t)(0xbf666666))
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_59_macro ((mp_rom_obj_t)(0xbfe0cccccccccccd))
-#endif
-static const mp_obj_str_t const_obj_mc2d_60 = {{&mp_type_bytes}, 1030, 6, (const byte*)"\x4d\x43\x32\x44\x31\x0a"};
-static const mp_obj_str_t const_obj_mc2d_61 = {{&mp_type_bytes}, 46511, 1, (const byte*)"\x0a"};
-static const mp_rom_obj_tuple_t const_obj_mc2d_63 = {{&mp_type_tuple}, 2, {
+static const mp_obj_str_t const_obj_mc2d_56 = {{&mp_type_bytes}, 1125, 6, (const byte*)"\x4d\x43\x32\x44\x32\x0a"};
+static const mp_obj_str_t const_obj_mc2d_57 = {{&mp_type_bytes}, 46511, 1, (const byte*)"\x0a"};
+static const mp_obj_str_t const_obj_mc2d_58 = {{&mp_type_bytes}, 45711, 5, (const byte*)"\x4d\x43\x32\x44\x32"};
+static const mp_obj_str_t const_obj_mc2d_59 = {{&mp_type_str}, 33174, 28, (const byte*)"\x6d\x75\x6e\x64\x6f\x20\x64\x65\x20\x6c\x61\x20\x76\x65\x72\x73\x69\x6f\x6e\x20\x61\x6e\x74\x65\x72\x69\x6f\x72"};
+static const mp_rom_obj_tuple_t const_obj_mc2d_61 = {{&mp_type_tuple}, 2, {
     MP_ROM_QSTR(MP_QSTR_UP),
     MP_ROM_QSTR(MP_QSTR_DOWN),
 }};
-static const mp_obj_str_t const_obj_mc2d_64 = {{&mp_type_str}, 50347, 51, (const byte*)"\x32\x61\x62\x63\x2e\x2e\x39\x77\x78\x79\x7a\x2c\x20\x74\x65\x63\x6c\x61\x64\x6f\x20\x64\x65\x6c\x20\x50\x43\x20\xc2\xb7\x20\x45\x58\x45\x20\x6f\x6b\x20\xc2\xb7\x20\x44\x45\x4c\x20\x62\x6f\x72\x72\x61\x72"};
+static const mp_obj_str_t const_obj_mc2d_62 = {{&mp_type_str}, 50347, 51, (const byte*)"\x32\x61\x62\x63\x2e\x2e\x39\x77\x78\x79\x7a\x2c\x20\x74\x65\x63\x6c\x61\x64\x6f\x20\x64\x65\x6c\x20\x50\x43\x20\xc2\xb7\x20\x45\x58\x45\x20\x6f\x6b\x20\xc2\xb7\x20\x44\x45\x4c\x20\x62\x6f\x72\x72\x61\x72"};
+static const mp_obj_str_t const_obj_mc2d_68 = {{&mp_type_str}, 60637, 25, (const byte*)"\x45\x73\x20\x64\x65\x20\x6c\x61\x20\x76\x65\x72\x73\x69\x6f\x6e\x20\x61\x6e\x74\x65\x72\x69\x6f\x72"};
 static const mp_obj_str_t const_obj_mc2d_69 = {{&mp_type_str}, 38916, 38, (const byte*)"\x45\x73\x74\x61\x20\x63\x61\x6c\x63\x75\x6c\x61\x64\x6f\x72\x61\x20\x6e\x6f\x20\x74\x69\x65\x6e\x65\x20\x72\x65\x64\x20\x74\x6f\x64\x61\x76\x69\x61\x2e"};
 static const mp_rom_obj_tuple_t const_obj_mc2d_79 = {{&mp_type_tuple}, 2, {
     MP_ROM_INT(1),
@@ -63440,400 +67140,493 @@ static const mp_rom_obj_tuple_t const_obj_mc2d_79 = {{&mp_type_tuple}, 2, {
 }};
 static const mp_obj_str_t const_obj_mc2d_80 = {{&mp_type_str}, 59321, 30, (const byte*)"\x42\x75\x73\x63\x61\x6e\x64\x6f\x20\x70\x61\x72\x74\x69\x64\x61\x73\x20\x65\x6e\x20\x74\x75\x20\x72\x65\x64\x2e\x2e\x2e"};
 static const mp_obj_str_t const_obj_mc2d_82 = {{&mp_type_str}, 20878, 29, (const byte*)"\x49\x50\x20\x64\x65\x6c\x20\x61\x6e\x66\x69\x74\x72\x69\x6f\x6e\x20\x28\x69\x70\x3a\x70\x75\x65\x72\x74\x6f\x29\x3a"};
-static const mp_obj_str_t const_obj_mc2d_85 = {{&mp_type_str}, 44286, 30, (const byte*)"\x45\x6c\x20\x61\x6e\x66\x69\x74\x72\x69\x6f\x6e\x20\x6e\x6f\x20\x6d\x61\x6e\x64\x6f\x20\x65\x6c\x20\x6d\x75\x6e\x64\x6f"};
+static const mp_obj_str_t const_obj_mc2d_86 = {{&mp_type_str}, 44286, 30, (const byte*)"\x45\x6c\x20\x61\x6e\x66\x69\x74\x72\x69\x6f\x6e\x20\x6e\x6f\x20\x6d\x61\x6e\x64\x6f\x20\x65\x6c\x20\x6d\x75\x6e\x64\x6f"};
+static const mp_obj_str_t const_obj_mc2d_87 = {{&mp_type_str}, 53401, 51, (const byte*)"\x43\x6f\x6e\x76\x65\x72\x74\x69\x64\x20\x50\x61\x70\x65\x72\x20\x4d\x69\x6e\x65\x63\x72\x61\x66\x74\x20\x63\x6f\x6e\x20\x65\x6c\x20\x6d\x69\x73\x6d\x6f\x20\x70\x6d\x5f\x61\x5f\x6d\x63\x32\x64\x2e\x70\x79"};
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_87 = {{&mp_type_float}, (mp_float_t)60};
-#define const_obj_mc2d_87_macro MP_ROM_PTR(&const_obj_mc2d_87)
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_87_macro ((mp_rom_obj_t)(0xc2f00002))
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_87_macro ((mp_rom_obj_t)(0xc052000000000000))
-#endif
-#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_88 = {{&mp_type_float}, (mp_float_t)0.3};
-#define const_obj_mc2d_88_macro MP_ROM_PTR(&const_obj_mc2d_88)
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_88_macro ((mp_rom_obj_t)(0xbf19999a))
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_88_macro ((mp_rom_obj_t)(0xbfd7333333333333))
-#endif
-#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_89 = {{&mp_type_float}, (mp_float_t)0.001};
+static const mp_obj_float_t const_obj_mc2d_89 = {{&mp_type_float}, (mp_float_t)60};
 #define const_obj_mc2d_89_macro MP_ROM_PTR(&const_obj_mc2d_89)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_89_macro ((mp_rom_obj_t)(0xbb03126e))
+#define const_obj_mc2d_89_macro ((mp_rom_obj_t)(0xc2f00002))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_89_macro ((mp_rom_obj_t)(0xbf54624dd2f1a9fc))
+#define const_obj_mc2d_89_macro ((mp_rom_obj_t)(0xc052000000000000))
 #endif
-static const mp_rom_obj_tuple_t const_obj_mc2d_92 = {{&mp_type_tuple}, 2, {
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_90 = {{&mp_type_float}, (mp_float_t)0.3};
+#define const_obj_mc2d_90_macro MP_ROM_PTR(&const_obj_mc2d_90)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_90_macro ((mp_rom_obj_t)(0xbf19999a))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_90_macro ((mp_rom_obj_t)(0xbfd7333333333333))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_91 = {{&mp_type_float}, (mp_float_t)0.001};
+#define const_obj_mc2d_91_macro MP_ROM_PTR(&const_obj_mc2d_91)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_91_macro ((mp_rom_obj_t)(0xbb03126e))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_91_macro ((mp_rom_obj_t)(0xbf54624dd2f1a9fc))
+#endif
+static const mp_obj_str_t const_obj_mc2d_92 = {{&mp_type_str}, 22198, 42, (const byte*)"\x4d\x69\x6e\x65\x63\x72\x61\x66\x74\x20\x32\x44\x20\x75\x73\x61\x20\x6c\x61\x73\x20\x69\x6d\x61\x67\x65\x6e\x65\x73\x20\x79\x20\x6c\x61\x73\x20\x74\x61\x62\x6c\x61\x73"};
+static const mp_obj_str_t const_obj_mc2d_93 = {{&mp_type_str}, 54714, 29, (const byte*)"\x64\x65\x20\x50\x61\x70\x65\x72\x20\x4d\x69\x6e\x65\x63\x72\x61\x66\x74\x2e\x20\x45\x6e\x20\x65\x6c\x20\x50\x43\x3a"};
+static const mp_obj_str_t const_obj_mc2d_94 = {{&mp_type_str}, 61913, 44, (const byte*)"\x70\x79\x74\x68\x6f\x6e\x20\x70\x63\x2f\x70\x6d\x5f\x61\x5f\x6d\x63\x32\x64\x2e\x70\x79\x20\x22\x50\x61\x70\x65\x72\x20\x4d\x69\x6e\x65\x63\x72\x61\x66\x74\x2e\x73\x62\x33\x22"};
+static const mp_obj_str_t const_obj_mc2d_95 = {{&mp_type_str}, 15994, 38, (const byte*)"\x79\x20\x63\x6f\x70\x69\x61\x20\x6a\x75\x65\x67\x6f\x73\x2f\x6d\x69\x6e\x65\x63\x72\x61\x66\x74\x32\x64\x2f\x70\x6d\x20\x61\x20\x6c\x61\x20\x53\x44\x2e"};
+static const mp_rom_obj_tuple_t const_obj_mc2d_96 = {{&mp_type_tuple}, 3, {
+    MP_ROM_QSTR(MP_QSTR_DEL),
+    MP_ROM_QSTR(MP_QSTR_AC),
+    MP_ROM_QSTR(MP_QSTR_EXE),
+}};
+static const mp_obj_str_t const_obj_mc2d_98 = {{&mp_type_str}, 30193, 32, (const byte*)"\x50\x61\x70\x65\x72\x20\x4d\x69\x6e\x65\x63\x72\x61\x66\x74\x20\x70\x61\x72\x61\x20\x63\x61\x6c\x63\x75\x6c\x61\x64\x6f\x72\x61"};
+static const mp_rom_obj_tuple_t const_obj_mc2d_99 = {{&mp_type_tuple}, 2, {
     MP_ROM_INT(3),
     MP_ROM_INT(-1),
 }};
-static const mp_obj_str_t const_obj_mc2d_93 = {{&mp_type_str}, 47535, 31, (const byte*)"\x3c\x2d\x20\x2d\x3e\x20\x20\x61\x6e\x64\x61\x72\x20\x20\x20\x20\x20\x5e\x20\x73\x61\x6c\x74\x61\x72\x2f\x6e\x61\x64\x61\x72"};
-static const mp_obj_str_t const_obj_mc2d_95 = {{&mp_type_str}, 37375, 29, (const byte*)"\x35\x20\x20\x70\x69\x63\x61\x72\x20\x2f\x20\x67\x6f\x6c\x70\x65\x61\x72\x20\x28\x6d\x61\x6e\x74\x65\x6e\x65\x72\x29"};
-static const mp_obj_str_t const_obj_mc2d_96 = {{&mp_type_str}, 31513, 34, (const byte*)"\x45\x58\x45\x20\x20\x70\x6f\x6e\x65\x72\x2c\x20\x63\x6f\x6d\x65\x72\x2c\x20\x75\x73\x61\x72\x20\x6d\x65\x73\x61\x2f\x68\x6f\x72\x6e\x6f"};
-static const mp_obj_str_t const_obj_mc2d_98 = {{&mp_type_str}, 41051, 35, (const byte*)"\x37\x20\x20\x69\x6e\x76\x65\x6e\x74\x61\x72\x69\x6f\x20\x79\x20\x66\x61\x62\x72\x69\x63\x61\x72\x20\x20\x20\x39\x20\x20\x74\x69\x72\x61\x72"};
-static const mp_obj_str_t const_obj_mc2d_100 = {{&mp_type_str}, 60119, 36, (const byte*)"\x50\x43\x3a\x20\x57\x41\x53\x44\x2c\x20\x45\x20\x69\x6e\x76\x65\x6e\x74\x61\x72\x69\x6f\x2c\x20\x51\x20\x74\x69\x72\x61\x72\x2c\x20\x31\x2d\x39"};
+static const mp_obj_str_t const_obj_mc2d_100 = {{&mp_type_str}, 34143, 37, (const byte*)"\x3c\x2d\x20\x2d\x3e\x20\x20\x61\x6e\x64\x61\x72\x20\x20\x20\x20\x20\x5e\x20\x73\x61\x6c\x74\x61\x72\x2f\x6e\x61\x64\x61\x72\x2f\x73\x75\x62\x69\x72"};
+static const mp_obj_str_t const_obj_mc2d_102 = {{&mp_type_str}, 37375, 29, (const byte*)"\x35\x20\x20\x70\x69\x63\x61\x72\x20\x2f\x20\x67\x6f\x6c\x70\x65\x61\x72\x20\x28\x6d\x61\x6e\x74\x65\x6e\x65\x72\x29"};
+static const mp_obj_str_t const_obj_mc2d_103 = {{&mp_type_str}, 65192, 38, (const byte*)"\x45\x58\x45\x20\x20\x70\x6f\x6e\x65\x72\x2c\x20\x63\x6f\x6d\x65\x72\x2c\x20\x6d\x65\x73\x61\x20\x2f\x20\x68\x6f\x72\x6e\x6f\x2c\x20\x63\x75\x62\x6f\x73"};
+static const mp_obj_str_t const_obj_mc2d_105 = {{&mp_type_str}, 41051, 35, (const byte*)"\x37\x20\x20\x69\x6e\x76\x65\x6e\x74\x61\x72\x69\x6f\x20\x79\x20\x66\x61\x62\x72\x69\x63\x61\x72\x20\x20\x20\x39\x20\x20\x74\x69\x72\x61\x72"};
+static const mp_obj_str_t const_obj_mc2d_107 = {{&mp_type_str}, 60119, 36, (const byte*)"\x50\x43\x3a\x20\x57\x41\x53\x44\x2c\x20\x45\x20\x69\x6e\x76\x65\x6e\x74\x61\x72\x69\x6f\x2c\x20\x51\x20\x74\x69\x72\x61\x72\x2c\x20\x31\x2d\x39"};
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_101 = {{&mp_type_float}, (mp_float_t)0};
-#define const_obj_mc2d_101_macro MP_ROM_PTR(&const_obj_mc2d_101)
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_101_macro ((mp_rom_obj_t)(0x80800002))
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_101_macro ((mp_rom_obj_t)(0x8004000000000000))
-#endif
-static const mp_rom_obj_tuple_t const_obj_mc2d_102 = {{&mp_type_tuple}, 2, {
-    MP_ROM_INT(20),
-    MP_ROM_INT(20),
-}};
-static const mp_rom_obj_tuple_t const_obj_mc2d_103 = {{&mp_type_tuple}, 2, {
-    MP_ROM_INT(1),
-    MP_ROM_INT(-1),
-}};
-#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_104_2 = {{&mp_type_float}, (mp_float_t)0};
-#define const_obj_mc2d_104_2_macro MP_ROM_PTR(&const_obj_mc2d_104_2)
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_104_2_macro ((mp_rom_obj_t)(0x80800002))
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_104_2_macro ((mp_rom_obj_t)(0x8004000000000000))
-#endif
-static const mp_rom_obj_tuple_t const_obj_mc2d_104 = {{&mp_type_tuple}, 3, {
-    MP_ROM_INT(-1),
-    MP_ROM_INT(-1),
-    const_obj_mc2d_104_2_macro,
-}};
-static const mp_rom_obj_tuple_t const_obj_mc2d_105_0 = {{&mp_type_tuple}, 2, {
-    MP_ROM_INT(1),
-    MP_ROM_INT(0),
-}};
-static const mp_rom_obj_tuple_t const_obj_mc2d_105_1 = {{&mp_type_tuple}, 2, {
-    MP_ROM_INT(-1),
-    MP_ROM_INT(0),
-}};
-static const mp_rom_obj_tuple_t const_obj_mc2d_105_2 = {{&mp_type_tuple}, 2, {
-    MP_ROM_INT(0),
-    MP_ROM_INT(1),
-}};
-static const mp_rom_obj_tuple_t const_obj_mc2d_105_3 = {{&mp_type_tuple}, 2, {
-    MP_ROM_INT(0),
-    MP_ROM_INT(-1),
-}};
-static const mp_rom_obj_tuple_t const_obj_mc2d_105 = {{&mp_type_tuple}, 4, {
-    MP_ROM_PTR(&const_obj_mc2d_105_0),
-    MP_ROM_PTR(&const_obj_mc2d_105_1),
-    MP_ROM_PTR(&const_obj_mc2d_105_2),
-    MP_ROM_PTR(&const_obj_mc2d_105_3),
-}};
-#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_106 = {{&mp_type_float}, (mp_float_t)0.01};
-#define const_obj_mc2d_106_macro MP_ROM_PTR(&const_obj_mc2d_106)
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_106_macro ((mp_rom_obj_t)(0xbca3d70a))
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_106_macro ((mp_rom_obj_t)(0xbf887ae147ae147b))
-#endif
-#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_107 = {{&mp_type_float}, (mp_float_t)0.25};
-#define const_obj_mc2d_107_macro MP_ROM_PTR(&const_obj_mc2d_107)
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_107_macro ((mp_rom_obj_t)(0xbf000002))
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_107_macro ((mp_rom_obj_t)(0xbfd4000000000000))
-#endif
-#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_108 = {{&mp_type_float}, (mp_float_t)0.85};
+static const mp_obj_float_t const_obj_mc2d_108 = {{&mp_type_float}, (mp_float_t)0};
 #define const_obj_mc2d_108_macro MP_ROM_PTR(&const_obj_mc2d_108)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_108_macro ((mp_rom_obj_t)(0xbfd9999a))
+#define const_obj_mc2d_108_macro ((mp_rom_obj_t)(0x80800002))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_108_macro ((mp_rom_obj_t)(0xbfef333333333333))
+#define const_obj_mc2d_108_macro ((mp_rom_obj_t)(0x8004000000000000))
 #endif
-static const mp_rom_obj_tuple_t const_obj_mc2d_110 = {{&mp_type_tuple}, 3, {
+static const mp_rom_obj_tuple_t const_obj_mc2d_109 = {{&mp_type_tuple}, 2, {
+    MP_ROM_INT(20),
+    MP_ROM_INT(20),
+}};
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_110 = {{&mp_type_float}, (mp_float_t)5};
+#define const_obj_mc2d_110_macro MP_ROM_PTR(&const_obj_mc2d_110)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_110_macro ((mp_rom_obj_t)(0xc1200002))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_110_macro ((mp_rom_obj_t)(0xc018000000000000))
+#endif
+static const mp_rom_obj_tuple_t const_obj_mc2d_111 = {{&mp_type_tuple}, 2, {
+    MP_ROM_INT(1),
     MP_ROM_INT(-1),
+}};
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_112_2 = {{&mp_type_float}, (mp_float_t)0};
+#define const_obj_mc2d_112_2_macro MP_ROM_PTR(&const_obj_mc2d_112_2)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_112_2_macro ((mp_rom_obj_t)(0x80800002))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_112_2_macro ((mp_rom_obj_t)(0x8004000000000000))
+#endif
+static const mp_rom_obj_tuple_t const_obj_mc2d_112 = {{&mp_type_tuple}, 3, {
+    MP_ROM_INT(-1),
+    MP_ROM_INT(-1),
+    const_obj_mc2d_112_2_macro,
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_113_0 = {{&mp_type_tuple}, 2, {
+    MP_ROM_INT(1),
+    MP_ROM_INT(0),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_113_1 = {{&mp_type_tuple}, 2, {
+    MP_ROM_INT(-1),
+    MP_ROM_INT(0),
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_113_2 = {{&mp_type_tuple}, 2, {
     MP_ROM_INT(0),
     MP_ROM_INT(1),
 }};
-static const mp_rom_obj_tuple_t const_obj_mc2d_111 = {{&mp_type_tuple}, 2, {
-    MP_ROM_INT(-1),
+static const mp_rom_obj_tuple_t const_obj_mc2d_113_3 = {{&mp_type_tuple}, 2, {
+    MP_ROM_INT(0),
     MP_ROM_INT(-1),
 }};
+static const mp_rom_obj_tuple_t const_obj_mc2d_113 = {{&mp_type_tuple}, 4, {
+    MP_ROM_PTR(&const_obj_mc2d_113_0),
+    MP_ROM_PTR(&const_obj_mc2d_113_1),
+    MP_ROM_PTR(&const_obj_mc2d_113_2),
+    MP_ROM_PTR(&const_obj_mc2d_113_3),
+}};
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_112 = {{&mp_type_float}, (mp_float_t)0.08};
-#define const_obj_mc2d_112_macro MP_ROM_PTR(&const_obj_mc2d_112)
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_112_macro ((mp_rom_obj_t)(0xbe23d70a))
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_112_macro ((mp_rom_obj_t)(0xbfb87ae147ae147b))
-#endif
-#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_114 = {{&mp_type_float}, (mp_float_t)1e-06};
+static const mp_obj_float_t const_obj_mc2d_114 = {{&mp_type_float}, (mp_float_t)0.01};
 #define const_obj_mc2d_114_macro MP_ROM_PTR(&const_obj_mc2d_114)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_114_macro ((mp_rom_obj_t)(0xb60637be))
+#define const_obj_mc2d_114_macro ((mp_rom_obj_t)(0xbca3d70a))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_114_macro ((mp_rom_obj_t)(0xbeb4c6f7a0b5ed8d))
+#define const_obj_mc2d_114_macro ((mp_rom_obj_t)(0xbf887ae147ae147b))
 #endif
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_115 = {{&mp_type_float}, (mp_float_t)3};
-#define const_obj_mc2d_115_macro MP_ROM_PTR(&const_obj_mc2d_115)
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_115_macro ((mp_rom_obj_t)(0xc0c00002))
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_115_macro ((mp_rom_obj_t)(0xc00c000000000000))
-#endif
-#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_116 = {{&mp_type_float}, (mp_float_t)3.5};
-#define const_obj_mc2d_116_macro MP_ROM_PTR(&const_obj_mc2d_116)
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_116_macro ((mp_rom_obj_t)(0xc0e00002))
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_116_macro ((mp_rom_obj_t)(0xc010000000000000))
-#endif
-#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_117 = {{&mp_type_float}, (mp_float_t)0.38};
+static const mp_obj_float_t const_obj_mc2d_117 = {{&mp_type_float}, (mp_float_t)0.25};
 #define const_obj_mc2d_117_macro MP_ROM_PTR(&const_obj_mc2d_117)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_117_macro ((mp_rom_obj_t)(0xbf428f5e))
+#define const_obj_mc2d_117_macro ((mp_rom_obj_t)(0xbf000002))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_117_macro ((mp_rom_obj_t)(0xbfdc51eb851eb852))
+#define const_obj_mc2d_117_macro ((mp_rom_obj_t)(0xbfd4000000000000))
 #endif
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_118 = {{&mp_type_float}, (mp_float_t)6};
+static const mp_obj_float_t const_obj_mc2d_118 = {{&mp_type_float}, (mp_float_t)0.85};
 #define const_obj_mc2d_118_macro MP_ROM_PTR(&const_obj_mc2d_118)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_118_macro ((mp_rom_obj_t)(0xc1400002))
+#define const_obj_mc2d_118_macro ((mp_rom_obj_t)(0xbfd9999a))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_118_macro ((mp_rom_obj_t)(0xc01c000000000000))
+#define const_obj_mc2d_118_macro ((mp_rom_obj_t)(0xbfef333333333333))
 #endif
+static const mp_rom_obj_tuple_t const_obj_mc2d_120 = {{&mp_type_tuple}, 3, {
+    MP_ROM_INT(-1),
+    MP_ROM_INT(0),
+    MP_ROM_INT(1),
+}};
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_119 = {{&mp_type_float}, (mp_float_t)0.4};
-#define const_obj_mc2d_119_macro MP_ROM_PTR(&const_obj_mc2d_119)
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_119_macro ((mp_rom_obj_t)(0xbf4cccce))
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_119_macro ((mp_rom_obj_t)(0xbfdd99999999999a))
-#endif
-#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_120 = {{&mp_type_float}, (mp_float_t)0.05};
-#define const_obj_mc2d_120_macro MP_ROM_PTR(&const_obj_mc2d_120)
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_120_macro ((mp_rom_obj_t)(0xbdccccce))
-#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_120_macro ((mp_rom_obj_t)(0xbfad99999999999a))
-#endif
-#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_121 = {{&mp_type_float}, (mp_float_t)0.12};
+static const mp_obj_float_t const_obj_mc2d_121 = {{&mp_type_float}, (mp_float_t)3.33};
 #define const_obj_mc2d_121_macro MP_ROM_PTR(&const_obj_mc2d_121)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_121_macro ((mp_rom_obj_t)(0xbe75c28e))
+#define const_obj_mc2d_121_macro ((mp_rom_obj_t)(0xc0d51eba))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_121_macro ((mp_rom_obj_t)(0xbfc2b851eb851eb8))
+#define const_obj_mc2d_121_macro ((mp_rom_obj_t)(0xc00ea3d70a3d70a4))
 #endif
-static const mp_rom_obj_tuple_t const_obj_mc2d_122 = {{&mp_type_tuple}, 2, {
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_122 = {{&mp_type_float}, (mp_float_t)0.111};
+#define const_obj_mc2d_122_macro MP_ROM_PTR(&const_obj_mc2d_122)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_122_macro ((mp_rom_obj_t)(0xbe6353fa))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_122_macro ((mp_rom_obj_t)(0xbfc06a7ef9db22d1))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_123 = {{&mp_type_float}, (mp_float_t)0.05};
+#define const_obj_mc2d_123_macro MP_ROM_PTR(&const_obj_mc2d_123)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_123_macro ((mp_rom_obj_t)(0xbdccccce))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_123_macro ((mp_rom_obj_t)(0xbfad99999999999a))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_124 = {{&mp_type_float}, (mp_float_t)1e-06};
+#define const_obj_mc2d_124_macro MP_ROM_PTR(&const_obj_mc2d_124)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_124_macro ((mp_rom_obj_t)(0xb60637be))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_124_macro ((mp_rom_obj_t)(0xbeb4c6f7a0b5ed8d))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_125 = {{&mp_type_float}, (mp_float_t)3};
+#define const_obj_mc2d_125_macro MP_ROM_PTR(&const_obj_mc2d_125)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_125_macro ((mp_rom_obj_t)(0xc0c00002))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_125_macro ((mp_rom_obj_t)(0xc00c000000000000))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_126 = {{&mp_type_float}, (mp_float_t)3.5};
+#define const_obj_mc2d_126_macro MP_ROM_PTR(&const_obj_mc2d_126)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_126_macro ((mp_rom_obj_t)(0xc0e00002))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_126_macro ((mp_rom_obj_t)(0xc010000000000000))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_127 = {{&mp_type_float}, (mp_float_t)0.045};
+#define const_obj_mc2d_127_macro MP_ROM_PTR(&const_obj_mc2d_127)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_127_macro ((mp_rom_obj_t)(0xbdb851ee))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_127_macro ((mp_rom_obj_t)(0xbfab0a3d70a3d70a))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_128 = {{&mp_type_float}, (mp_float_t)0.38};
+#define const_obj_mc2d_128_macro MP_ROM_PTR(&const_obj_mc2d_128)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_128_macro ((mp_rom_obj_t)(0xbf428f5e))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_128_macro ((mp_rom_obj_t)(0xbfdc51eb851eb852))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_129 = {{&mp_type_float}, (mp_float_t)6};
+#define const_obj_mc2d_129_macro MP_ROM_PTR(&const_obj_mc2d_129)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_129_macro ((mp_rom_obj_t)(0xc1400002))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_129_macro ((mp_rom_obj_t)(0xc01c000000000000))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_130 = {{&mp_type_float}, (mp_float_t)0.4};
+#define const_obj_mc2d_130_macro MP_ROM_PTR(&const_obj_mc2d_130)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_130_macro ((mp_rom_obj_t)(0xbf4cccce))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_130_macro ((mp_rom_obj_t)(0xbfdd99999999999a))
+#endif
+static const mp_rom_obj_tuple_t const_obj_mc2d_131 = {{&mp_type_tuple}, 2, {
     MP_ROM_INT(-1),
     MP_ROM_INT(1),
 }};
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_123_1 = {{&mp_type_float}, (mp_float_t)1000000000};
-#define const_obj_mc2d_123_1_macro MP_ROM_PTR(&const_obj_mc2d_123_1)
+static const mp_obj_float_t const_obj_mc2d_132 = {{&mp_type_float}, (mp_float_t)0.44};
+#define const_obj_mc2d_132_macro MP_ROM_PTR(&const_obj_mc2d_132)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_123_1_macro ((mp_rom_obj_t)(0xceee6b2a))
+#define const_obj_mc2d_132_macro ((mp_rom_obj_t)(0xbf6147ae))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_123_1_macro ((mp_rom_obj_t)(0xc1d1cd6500000000))
+#define const_obj_mc2d_132_macro ((mp_rom_obj_t)(0xbfe028f5c28f5c29))
 #endif
-static const mp_rom_obj_tuple_t const_obj_mc2d_123 = {{&mp_type_tuple}, 2, {
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_133 = {{&mp_type_float}, (mp_float_t)0.64};
+#define const_obj_mc2d_133_macro MP_ROM_PTR(&const_obj_mc2d_133)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_133_macro ((mp_rom_obj_t)(0xbfa3d70a))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_133_macro ((mp_rom_obj_t)(0xbfe87ae147ae147b))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_134 = {{&mp_type_float}, (mp_float_t)0.7800000000000001};
+#define const_obj_mc2d_134_macro MP_ROM_PTR(&const_obj_mc2d_134)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_134_macro ((mp_rom_obj_t)(0xbfc7ae16))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_134_macro ((mp_rom_obj_t)(0xbfecf5c28f5c28f7))
+#endif
+static const mp_rom_obj_tuple_t const_obj_mc2d_135 = {{&mp_type_tuple}, 4, {
+    MP_ROM_INT(1),
+    MP_ROM_INT(2),
+    MP_ROM_INT(3),
+    MP_ROM_INT(4),
+}};
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_136_1 = {{&mp_type_float}, (mp_float_t)1000000000};
+#define const_obj_mc2d_136_1_macro MP_ROM_PTR(&const_obj_mc2d_136_1)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_136_1_macro ((mp_rom_obj_t)(0xceee6b2a))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_136_1_macro ((mp_rom_obj_t)(0xc1d1cd6500000000))
+#endif
+static const mp_rom_obj_tuple_t const_obj_mc2d_136 = {{&mp_type_tuple}, 2, {
     MP_ROM_NONE,
-    const_obj_mc2d_123_1_macro,
+    const_obj_mc2d_136_1_macro,
+}};
+static const mp_rom_obj_tuple_t const_obj_mc2d_137 = {{&mp_type_tuple}, 2, {
+    MP_ROM_INT(100),
+    MP_ROM_INT(103),
 }};
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_124 = {{&mp_type_float}, (mp_float_t)2.2};
-#define const_obj_mc2d_124_macro MP_ROM_PTR(&const_obj_mc2d_124)
+static const mp_obj_float_t const_obj_mc2d_138 = {{&mp_type_float}, (mp_float_t)2};
+#define const_obj_mc2d_138_macro MP_ROM_PTR(&const_obj_mc2d_138)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_124_macro ((mp_rom_obj_t)(0xc08cccce))
+#define const_obj_mc2d_138_macro ((mp_rom_obj_t)(0xc0800002))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_124_macro ((mp_rom_obj_t)(0xc00599999999999a))
+#define const_obj_mc2d_138_macro ((mp_rom_obj_t)(0xc004000000000000))
 #endif
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_125 = {{&mp_type_float}, (mp_float_t)1.2};
-#define const_obj_mc2d_125_macro MP_ROM_PTR(&const_obj_mc2d_125)
+static const mp_obj_float_t const_obj_mc2d_139 = {{&mp_type_float}, (mp_float_t)9};
+#define const_obj_mc2d_139_macro MP_ROM_PTR(&const_obj_mc2d_139)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_125_macro ((mp_rom_obj_t)(0xc019999a))
+#define const_obj_mc2d_139_macro ((mp_rom_obj_t)(0xc1900002))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_125_macro ((mp_rom_obj_t)(0xbff7333333333333))
+#define const_obj_mc2d_139_macro ((mp_rom_obj_t)(0xc026000000000000))
 #endif
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_126 = {{&mp_type_float}, (mp_float_t)4};
-#define const_obj_mc2d_126_macro MP_ROM_PTR(&const_obj_mc2d_126)
+static const mp_obj_float_t const_obj_mc2d_140 = {{&mp_type_float}, (mp_float_t)1.2};
+#define const_obj_mc2d_140_macro MP_ROM_PTR(&const_obj_mc2d_140)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_126_macro ((mp_rom_obj_t)(0xc1000002))
+#define const_obj_mc2d_140_macro ((mp_rom_obj_t)(0xc019999a))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_126_macro ((mp_rom_obj_t)(0xc014000000000000))
+#define const_obj_mc2d_140_macro ((mp_rom_obj_t)(0xbff7333333333333))
 #endif
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_127 = {{&mp_type_float}, (mp_float_t)5};
-#define const_obj_mc2d_127_macro MP_ROM_PTR(&const_obj_mc2d_127)
+static const mp_obj_float_t const_obj_mc2d_141 = {{&mp_type_float}, (mp_float_t)2.6};
+#define const_obj_mc2d_141_macro MP_ROM_PTR(&const_obj_mc2d_141)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_127_macro ((mp_rom_obj_t)(0xc1200002))
+#define const_obj_mc2d_141_macro ((mp_rom_obj_t)(0xc0a66666))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_127_macro ((mp_rom_obj_t)(0xc018000000000000))
+#define const_obj_mc2d_141_macro ((mp_rom_obj_t)(0xc008cccccccccccd))
 #endif
-static const mp_rom_obj_tuple_t const_obj_mc2d_130 = {{&mp_type_tuple}, 2, {
-    MP_ROM_QSTR(MP_QSTR_),
-    MP_ROM_QSTR(MP_QSTR_mesa),
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_142 = {{&mp_type_float}, (mp_float_t)2.2};
+#define const_obj_mc2d_142_macro MP_ROM_PTR(&const_obj_mc2d_142)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_142_macro ((mp_rom_obj_t)(0xc08cccce))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_142_macro ((mp_rom_obj_t)(0xc00599999999999a))
+#endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_143 = {{&mp_type_float}, (mp_float_t)4};
+#define const_obj_mc2d_143_macro MP_ROM_PTR(&const_obj_mc2d_143)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_143_macro ((mp_rom_obj_t)(0xc1000002))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_143_macro ((mp_rom_obj_t)(0xc014000000000000))
+#endif
+static const mp_rom_obj_tuple_t const_obj_mc2d_146 = {{&mp_type_tuple}, 2, {
+    MP_ROM_INT(-1),
+    MP_ROM_INT(0),
 }};
-static const mp_rom_obj_tuple_t const_obj_mc2d_131 = {{&mp_type_tuple}, 3, {
-    MP_ROM_QSTR(MP_QSTR_),
-    MP_ROM_QSTR(MP_QSTR_mesa),
-    MP_ROM_QSTR(MP_QSTR_horno),
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_147_1 = {{&mp_type_float}, (mp_float_t)2};
+#define const_obj_mc2d_147_1_macro MP_ROM_PTR(&const_obj_mc2d_147_1)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_147_1_macro ((mp_rom_obj_t)(0xc0800002))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_147_1_macro ((mp_rom_obj_t)(0xc004000000000000))
+#endif
+static const mp_rom_obj_tuple_t const_obj_mc2d_147 = {{&mp_type_tuple}, 2, {
+    MP_ROM_QSTR(MP_QSTR_Sin_space_combustible),
+    const_obj_mc2d_147_1_macro,
 }};
-static const mp_rom_obj_tuple_t const_obj_mc2d_132 = {{&mp_type_tuple}, 2, {
+static const mp_rom_obj_tuple_t const_obj_mc2d_148 = {{&mp_type_tuple}, 2, {
     MP_ROM_INT(0),
     MP_ROM_NONE,
 }};
-static const mp_obj_str_t const_obj_mc2d_136 = {{&mp_type_str}, 9414, 46, (const byte*)"\x45\x58\x45\x3a\x20\x63\x6f\x67\x65\x72\x2f\x73\x6f\x6c\x74\x61\x72\x20\xc2\xb7\x20\x39\x3a\x20\x74\x69\x72\x61\x72\x20\xc2\xb7\x20\x37\x2f\x44\x45\x4c\x3a\x20\x63\x65\x72\x72\x61\x72"};
-static const mp_rom_obj_tuple_t const_obj_mc2d_137 = {{&mp_type_tuple}, 4, {
+static const mp_obj_str_t const_obj_mc2d_153 = {{&mp_type_str}, 9414, 46, (const byte*)"\x45\x58\x45\x3a\x20\x63\x6f\x67\x65\x72\x2f\x73\x6f\x6c\x74\x61\x72\x20\xc2\xb7\x20\x39\x3a\x20\x74\x69\x72\x61\x72\x20\xc2\xb7\x20\x37\x2f\x44\x45\x4c\x3a\x20\x63\x65\x72\x72\x61\x72"};
+static const mp_rom_obj_tuple_t const_obj_mc2d_154 = {{&mp_type_tuple}, 4, {
     MP_ROM_QSTR(MP_QSTR_7),
     MP_ROM_QSTR(MP_QSTR_DEL),
     MP_ROM_QSTR(MP_QSTR_CH_colon_e),
     MP_ROM_QSTR(MP_QSTR_CH_colon_E),
 }};
-static const mp_rom_obj_tuple_t const_obj_mc2d_138 = {{&mp_type_tuple}, 2, {
+static const mp_rom_obj_tuple_t const_obj_mc2d_155 = {{&mp_type_tuple}, 2, {
     MP_ROM_QSTR(MP_QSTR_9),
     MP_ROM_QSTR(MP_QSTR_CH_colon_q),
 }};
-static const mp_rom_obj_tuple_t const_obj_mc2d_143 = {{&mp_type_tuple}, 2, {
+static const mp_rom_obj_tuple_t const_obj_mc2d_160 = {{&mp_type_tuple}, 2, {
     MP_ROM_INT(0),
     MP_ROM_QSTR(MP_QSTR_EXE),
 }};
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_144_1 = {{&mp_type_float}, (mp_float_t)2};
-#define const_obj_mc2d_144_1_macro MP_ROM_PTR(&const_obj_mc2d_144_1)
+static const mp_obj_float_t const_obj_mc2d_161_1 = {{&mp_type_float}, (mp_float_t)2};
+#define const_obj_mc2d_161_1_macro MP_ROM_PTR(&const_obj_mc2d_161_1)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_144_1_macro ((mp_rom_obj_t)(0xc0800002))
+#define const_obj_mc2d_161_1_macro ((mp_rom_obj_t)(0xc0800002))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_144_1_macro ((mp_rom_obj_t)(0xc004000000000000))
+#define const_obj_mc2d_161_1_macro ((mp_rom_obj_t)(0xc004000000000000))
 #endif
-static const mp_rom_obj_tuple_t const_obj_mc2d_144 = {{&mp_type_tuple}, 2, {
+static const mp_rom_obj_tuple_t const_obj_mc2d_161 = {{&mp_type_tuple}, 2, {
     MP_ROM_QSTR(MP_QSTR_Guardado),
-    const_obj_mc2d_144_1_macro,
+    const_obj_mc2d_161_1_macro,
 }};
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_145 = {{&mp_type_float}, (mp_float_t)0.18};
-#define const_obj_mc2d_145_macro MP_ROM_PTR(&const_obj_mc2d_145)
+static const mp_obj_float_t const_obj_mc2d_162 = {{&mp_type_float}, (mp_float_t)0.18};
+#define const_obj_mc2d_162_macro MP_ROM_PTR(&const_obj_mc2d_162)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_145_macro ((mp_rom_obj_t)(0xbeb851ee))
+#define const_obj_mc2d_162_macro ((mp_rom_obj_t)(0xbeb851ee))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_145_macro ((mp_rom_obj_t)(0xbfcb0a3d70a3d70a))
+#define const_obj_mc2d_162_macro ((mp_rom_obj_t)(0xbfcb0a3d70a3d70a))
 #endif
-static const mp_rom_obj_tuple_t const_obj_mc2d_146 = {{&mp_type_tuple}, 2, {
+static const mp_rom_obj_tuple_t const_obj_mc2d_163 = {{&mp_type_tuple}, 2, {
     MP_ROM_QSTR(MP_QSTR_1),
     MP_ROM_QSTR(MP_QSTR_LP),
 }};
-static const mp_rom_obj_tuple_t const_obj_mc2d_147 = {{&mp_type_tuple}, 2, {
+static const mp_rom_obj_tuple_t const_obj_mc2d_164 = {{&mp_type_tuple}, 2, {
     MP_ROM_QSTR(MP_QSTR_3),
     MP_ROM_QSTR(MP_QSTR_RP),
 }};
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_148_1 = {{&mp_type_float}, (mp_float_t)1.5};
-#define const_obj_mc2d_148_1_macro MP_ROM_PTR(&const_obj_mc2d_148_1)
+static const mp_obj_float_t const_obj_mc2d_165_1 = {{&mp_type_float}, (mp_float_t)1.5};
+#define const_obj_mc2d_165_1_macro MP_ROM_PTR(&const_obj_mc2d_165_1)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_148_1_macro ((mp_rom_obj_t)(0xc0400002))
+#define const_obj_mc2d_165_1_macro ((mp_rom_obj_t)(0xc0400002))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_148_1_macro ((mp_rom_obj_t)(0xbffc000000000000))
+#define const_obj_mc2d_165_1_macro ((mp_rom_obj_t)(0xbffc000000000000))
 #endif
-static const mp_rom_obj_tuple_t const_obj_mc2d_148 = {{&mp_type_tuple}, 2, {
+static const mp_rom_obj_tuple_t const_obj_mc2d_165 = {{&mp_type_tuple}, 2, {
     MP_ROM_QSTR(MP_QSTR__plus_1_space_hora),
-    const_obj_mc2d_148_1_macro,
+    const_obj_mc2d_165_1_macro,
 }};
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_149 = {{&mp_type_float}, (mp_float_t)0.95};
-#define const_obj_mc2d_149_macro MP_ROM_PTR(&const_obj_mc2d_149)
+static const mp_obj_float_t const_obj_mc2d_166 = {{&mp_type_float}, (mp_float_t)0.95};
+#define const_obj_mc2d_166_macro MP_ROM_PTR(&const_obj_mc2d_166)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_149_macro ((mp_rom_obj_t)(0xbff33332))
+#define const_obj_mc2d_166_macro ((mp_rom_obj_t)(0xbff33332))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_149_macro ((mp_rom_obj_t)(0xbff2666666666666))
+#define const_obj_mc2d_166_macro ((mp_rom_obj_t)(0xbff2666666666666))
 #endif
 #if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
-static const mp_obj_float_t const_obj_mc2d_150 = {{&mp_type_float}, (mp_float_t)0.65};
-#define const_obj_mc2d_150_macro MP_ROM_PTR(&const_obj_mc2d_150)
+static const mp_obj_float_t const_obj_mc2d_167 = {{&mp_type_float}, (mp_float_t)0.65};
+#define const_obj_mc2d_167_macro MP_ROM_PTR(&const_obj_mc2d_167)
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
-#define const_obj_mc2d_150_macro ((mp_rom_obj_t)(0xbfa66666))
+#define const_obj_mc2d_167_macro ((mp_rom_obj_t)(0xbfa66666))
 #elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
-#define const_obj_mc2d_150_macro ((mp_rom_obj_t)(0xbfe8cccccccccccd))
+#define const_obj_mc2d_167_macro ((mp_rom_obj_t)(0xbfe8cccccccccccd))
 #endif
+#if MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_A || MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_B
+static const mp_obj_float_t const_obj_mc2d_169_2 = {{&mp_type_float}, (mp_float_t)5};
+#define const_obj_mc2d_169_2_macro MP_ROM_PTR(&const_obj_mc2d_169_2)
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_C
+#define const_obj_mc2d_169_2_macro ((mp_rom_obj_t)(0xc1200002))
+#elif MICROPY_OBJ_REPR == MICROPY_OBJ_REPR_D
+#define const_obj_mc2d_169_2_macro ((mp_rom_obj_t)(0xc018000000000000))
+#endif
+static const mp_rom_obj_tuple_t const_obj_mc2d_169 = {{&mp_type_tuple}, 3, {
+    MP_ROM_INT(20),
+    MP_ROM_INT(20),
+    const_obj_mc2d_169_2_macro,
+}};
 
 // constant table
-static const mp_rom_obj_t const_obj_table_data_mc2d[152] = {
-    MP_ROM_PTR(&const_obj_mc2d_0),
-    MP_ROM_QSTR(MP_QSTR_carbon_mena),
-    MP_ROM_QSTR(MP_QSTR_hierro_mena),
-    MP_ROM_QSTR(MP_QSTR_diamante_mena),
-    MP_ROM_QSTR(MP_QSTR_flor_amarilla),
-    MP_ROM_QSTR(MP_QSTR_hierba_alta),
-    MP_ROM_QSTR(MP_QSTR_lingote_hierro),
-    MP_ROM_QSTR(MP_QSTR_lingote_oro),
-    MP_ROM_QSTR(MP_QSTR_carne_asada),
-    MP_ROM_QSTR(MP_QSTR_carne_podrida),
-    MP_ROM_QSTR(MP_QSTR_Mena_space_de_space_carbon),
-    MP_ROM_QSTR(MP_QSTR_Mena_space_de_space_hierro),
-    MP_ROM_QSTR(MP_QSTR_Mena_space_de_space_oro),
-    MP_ROM_QSTR(MP_QSTR_Mena_space_de_space_diamante),
-    MP_ROM_QSTR(MP_QSTR_Mesa_space_de_space_trabajo),
-    MP_ROM_QSTR(MP_QSTR_Diente_space_de_space_leon),
-    MP_ROM_QSTR(MP_QSTR_Lingote_space_de_space_hierro),
-    MP_ROM_QSTR(MP_QSTR_Lingote_space_de_space_oro),
-    MP_ROM_QSTR(MP_QSTR_Chuleta_space_cruda),
-    MP_ROM_QSTR(MP_QSTR_Chuleta_space_asada),
-    MP_ROM_QSTR(MP_QSTR_Carne_space_podrida),
-    MP_ROM_PTR(&const_obj_mc2d_21),
-    MP_ROM_PTR(&const_obj_mc2d_22),
-    MP_ROM_PTR(&const_obj_mc2d_23),
+static const mp_rom_obj_t const_obj_table_data_mc2d[170] = {
+    MP_ROM_QSTR(MP_QSTR__lt_BHBBBBbbhHHbbHHHH),
+    MP_ROM_PTR(&const_obj_mc2d_1),
+    MP_ROM_PTR(&const_obj_mc2d_2),
+    MP_ROM_PTR(&const_obj_mc2d_3),
+    MP_ROM_PTR(&const_obj_mc2d_4),
+    MP_ROM_PTR(&const_obj_mc2d_5),
+    MP_ROM_PTR(&const_obj_mc2d_6),
+    MP_ROM_PTR(&const_obj_mc2d_7),
+    MP_ROM_PTR(&const_obj_mc2d_8),
+    MP_ROM_PTR(&const_obj_mc2d_9),
+    MP_ROM_PTR(&const_obj_mc2d_10),
+    MP_ROM_PTR(&const_obj_mc2d_11),
+    MP_ROM_PTR(&const_obj_mc2d_12),
+    MP_ROM_PTR(&const_obj_mc2d_13),
+    MP_ROM_PTR(&const_obj_mc2d_14),
+    MP_ROM_QSTR(MP_QSTR_minecraft2d_hyphen_pm),
+    MP_ROM_PTR(&const_obj_mc2d_16),
+    MP_ROM_PTR(&const_obj_mc2d_17),
+    MP_ROM_PTR(&const_obj_mc2d_18),
+    const_obj_mc2d_19_macro,
+    const_obj_mc2d_20_macro,
+    MP_ROM_QSTR(MP_QSTR_bloques_dot_bin),
+    MP_ROM_QSTR(MP_QSTR_recetas_dot_bin),
+    MP_ROM_QSTR(MP_QSTR_Falta_space_Paper_space_Minecraft),
     MP_ROM_PTR(&const_obj_mc2d_24),
-    MP_ROM_PTR(&const_obj_mc2d_25),
+    MP_ROM_QSTR(MP_QSTR_pm_slash_bloques_dot_bin_space_no_space_valido),
     MP_ROM_PTR(&const_obj_mc2d_26),
-    MP_ROM_PTR(&const_obj_mc2d_27),
+    MP_ROM_QSTR(MP_QSTR_nombres_dot_txt),
     MP_ROM_PTR(&const_obj_mc2d_28),
     MP_ROM_PTR(&const_obj_mc2d_29),
-    MP_ROM_QSTR(MP_QSTR_minecraft2d),
-    MP_ROM_PTR(&const_obj_mc2d_31),
-    MP_ROM_PTR(&const_obj_mc2d_32),
-    MP_ROM_PTR(&const_obj_mc2d_33),
-    const_obj_mc2d_34_macro,
-    const_obj_mc2d_35_macro,
-    MP_ROM_PTR(&const_obj_mc2d_36),
     MP_ROM_QSTR(MP_QSTR__slash_scratch_slash__percent_s_slash__percent_s),
-    MP_ROM_PTR(&const_obj_mc2d_38),
     MP_ROM_QSTR(MP_QSTR_Generando_space_el_space_terreno_dot__dot__dot_),
+    const_obj_mc2d_32_macro,
+    const_obj_mc2d_33_macro,
+    MP_ROM_QSTR(MP_QSTR_Cavando_space_cuevas_dot__dot__dot_),
+    const_obj_mc2d_35_macro,
+    const_obj_mc2d_36_macro,
+    const_obj_mc2d_37_macro,
+    const_obj_mc2d_38_macro,
+    const_obj_mc2d_39_macro,
     const_obj_mc2d_40_macro,
     const_obj_mc2d_41_macro,
-    MP_ROM_QSTR(MP_QSTR_Cavando_space_cuevas_dot__dot__dot_),
-    const_obj_mc2d_43_macro,
+    const_obj_mc2d_42_macro,
+    MP_ROM_QSTR(MP_QSTR_Escondiendo_space_menas_dot__dot__dot_),
     const_obj_mc2d_44_macro,
-    const_obj_mc2d_45_macro,
+    MP_ROM_QSTR(MP_QSTR_Plantando_space_arboles_dot__dot__dot_),
     const_obj_mc2d_46_macro,
     const_obj_mc2d_47_macro,
     const_obj_mc2d_48_macro,
     const_obj_mc2d_49_macro,
     const_obj_mc2d_50_macro,
-    MP_ROM_QSTR(MP_QSTR_Escondiendo_space_menas_dot__dot__dot_),
-    const_obj_mc2d_52_macro,
-    MP_ROM_QSTR(MP_QSTR_Plantando_space_arboles_dot__dot__dot_),
-    const_obj_mc2d_54_macro,
+    const_obj_mc2d_51_macro,
+    MP_ROM_PTR(&const_obj_mc2d_52),
+    MP_ROM_PTR(&const_obj_mc2d_53),
+    MP_ROM_QSTR(MP_QSTR_tex_slash_t_percent_d_dot_png),
     const_obj_mc2d_55_macro,
-    const_obj_mc2d_56_macro,
-    const_obj_mc2d_57_macro,
-    const_obj_mc2d_58_macro,
-    const_obj_mc2d_59_macro,
-    MP_ROM_PTR(&const_obj_mc2d_60),
-    MP_ROM_PTR(&const_obj_mc2d_61),
+    MP_ROM_PTR(&const_obj_mc2d_56),
+    MP_ROM_PTR(&const_obj_mc2d_57),
+    MP_ROM_PTR(&const_obj_mc2d_58),
+    MP_ROM_PTR(&const_obj_mc2d_59),
     MP_ROM_QSTR(MP_QSTR_Descargando_space_el_space_mundo_dot__dot__dot_),
-    MP_ROM_PTR(&const_obj_mc2d_63),
-    MP_ROM_PTR(&const_obj_mc2d_64),
+    MP_ROM_PTR(&const_obj_mc2d_61),
+    MP_ROM_PTR(&const_obj_mc2d_62),
     MP_ROM_QSTR(MP_QSTR_Crear_space_mundo_space_nuevo),
     MP_ROM_QSTR(MP_QSTR_Elige_space_un_space_mundo),
     MP_ROM_QSTR(MP_QSTR_Nombre_space_del_space_mundo_colon_),
     MP_ROM_QSTR(MP_QSTR_Cargando_space__percent_s_dot__dot__dot_),
+    MP_ROM_QSTR(MP_QSTR_No_space_se_space_puede_space_abrir),
+    MP_ROM_PTR(&const_obj_mc2d_68),
     MP_ROM_PTR(&const_obj_mc2d_69),
     MP_ROM_QSTR(MP_QSTR_DEL_colon__space_volver),
     MP_ROM_QSTR(MP_QSTR_Multijugador),
@@ -63850,73 +67643,91 @@ static const mp_rom_obj_t const_obj_table_data_mc2d[152] = {
     MP_ROM_PTR(&const_obj_mc2d_82),
     MP_ROM_QSTR(MP_QSTR_Conectando_space_con_space__percent_s_dot__dot__dot_),
     MP_ROM_QSTR(MP_QSTR_No_space_se_space_pudo_space_conectar),
-    MP_ROM_PTR(&const_obj_mc2d_85),
+    MP_ROM_QSTR(MP_QSTR_No_space_se_space_pudo_space_unir),
+    MP_ROM_PTR(&const_obj_mc2d_86),
+    MP_ROM_PTR(&const_obj_mc2d_87),
     MP_ROM_QSTR(MP_QSTR_Partida_space_online),
-    const_obj_mc2d_87_macro,
-    const_obj_mc2d_88_macro,
     const_obj_mc2d_89_macro,
-    MP_ROM_QSTR(MP_QSTR_MINECRAFT_space_2D),
-    MP_ROM_QSTR(MP_QSTR_Edicion_space_calculadora),
+    const_obj_mc2d_90_macro,
+    const_obj_mc2d_91_macro,
     MP_ROM_PTR(&const_obj_mc2d_92),
     MP_ROM_PTR(&const_obj_mc2d_93),
-    MP_ROM_QSTR(MP_QSTR_8_space_4_space_6_space_2_space__space_mover_space_el_space_cursor),
+    MP_ROM_PTR(&const_obj_mc2d_94),
     MP_ROM_PTR(&const_obj_mc2d_95),
     MP_ROM_PTR(&const_obj_mc2d_96),
-    MP_ROM_QSTR(MP_QSTR_1_space_3_space__space_cambiar_space_de_space_objeto),
+    MP_ROM_QSTR(MP_QSTR_MINECRAFT_space_2D),
     MP_ROM_PTR(&const_obj_mc2d_98),
-    MP_ROM_QSTR(MP_QSTR_DEL_space__space_menu_space__paren_open_guardar_paren_close_),
+    MP_ROM_PTR(&const_obj_mc2d_99),
     MP_ROM_PTR(&const_obj_mc2d_100),
-    const_obj_mc2d_101_macro,
+    MP_ROM_QSTR(MP_QSTR_8_space_4_space_6_space_2_space__space_mover_space_el_space_cursor),
     MP_ROM_PTR(&const_obj_mc2d_102),
     MP_ROM_PTR(&const_obj_mc2d_103),
-    MP_ROM_PTR(&const_obj_mc2d_104),
+    MP_ROM_QSTR(MP_QSTR_1_space_3_space__space_cambiar_space_de_space_objeto),
     MP_ROM_PTR(&const_obj_mc2d_105),
-    const_obj_mc2d_106_macro,
-    const_obj_mc2d_107_macro,
+    MP_ROM_QSTR(MP_QSTR_DEL_space__space_menu_space__paren_open_guardar_paren_close_),
+    MP_ROM_PTR(&const_obj_mc2d_107),
     const_obj_mc2d_108_macro,
-    MP_ROM_QSTR(MP_QSTR_jugador_andar),
-    MP_ROM_PTR(&const_obj_mc2d_110),
+    MP_ROM_PTR(&const_obj_mc2d_109),
+    const_obj_mc2d_110_macro,
     MP_ROM_PTR(&const_obj_mc2d_111),
-    const_obj_mc2d_112_macro,
-    MP_ROM_QSTR(MP_QSTR_zombiehurt_percent_d),
+    MP_ROM_PTR(&const_obj_mc2d_112),
+    MP_ROM_PTR(&const_obj_mc2d_113),
     const_obj_mc2d_114_macro,
-    const_obj_mc2d_115_macro,
-    const_obj_mc2d_116_macro,
+    MP_ROM_QSTR(MP_QSTR_hambre_percent_d_dot_png),
+    MP_ROM_QSTR(MP_QSTR_steve_percent_d_dot_png),
     const_obj_mc2d_117_macro,
     const_obj_mc2d_118_macro,
-    const_obj_mc2d_119_macro,
-    const_obj_mc2d_120_macro,
+    MP_ROM_QSTR(MP_QSTR_tex_slash_grieta_percent_d_dot_png),
+    MP_ROM_PTR(&const_obj_mc2d_120),
     const_obj_mc2d_121_macro,
-    MP_ROM_PTR(&const_obj_mc2d_122),
-    MP_ROM_PTR(&const_obj_mc2d_123),
+    const_obj_mc2d_122_macro,
+    const_obj_mc2d_123_macro,
     const_obj_mc2d_124_macro,
     const_obj_mc2d_125_macro,
     const_obj_mc2d_126_macro,
     const_obj_mc2d_127_macro,
-    MP_ROM_QSTR(MP_QSTR_zombiedeath),
-    MP_ROM_QSTR(MP_QSTR_Sin_space_conexion),
-    MP_ROM_PTR(&const_obj_mc2d_130),
+    const_obj_mc2d_128_macro,
+    const_obj_mc2d_129_macro,
+    const_obj_mc2d_130_macro,
     MP_ROM_PTR(&const_obj_mc2d_131),
-    MP_ROM_PTR(&const_obj_mc2d_132),
-    MP_ROM_QSTR(MP_QSTR_Fabricar_space__paren_open_a_space_mano_paren_close_),
-    MP_ROM_QSTR(MP_QSTR_Recetas_space__paren_open_EXE_space_fabrica_paren_close__colon_),
-    MP_ROM_QSTR(MP_QSTR__percent_s_space_x_percent_d_space__space__lt__hyphen__space__space_),
+    const_obj_mc2d_132_macro,
+    const_obj_mc2d_133_macro,
+    const_obj_mc2d_134_macro,
+    MP_ROM_PTR(&const_obj_mc2d_135),
     MP_ROM_PTR(&const_obj_mc2d_136),
     MP_ROM_PTR(&const_obj_mc2d_137),
-    MP_ROM_PTR(&const_obj_mc2d_138),
+    const_obj_mc2d_138_macro,
+    const_obj_mc2d_139_macro,
+    const_obj_mc2d_140_macro,
+    const_obj_mc2d_141_macro,
+    const_obj_mc2d_142_macro,
+    const_obj_mc2d_143_macro,
+    MP_ROM_QSTR(MP_QSTR_skeletonhurt),
+    MP_ROM_QSTR(MP_QSTR_Sin_space_conexion),
+    MP_ROM_PTR(&const_obj_mc2d_146),
+    MP_ROM_PTR(&const_obj_mc2d_147),
+    MP_ROM_PTR(&const_obj_mc2d_148),
+    MP_ROM_QSTR(MP_QSTR_Fabricar_space__paren_open_2x2_paren_close_),
+    MP_ROM_QSTR(MP_QSTR_Mesa_space_de_space_trabajo),
+    MP_ROM_QSTR(MP_QSTR_Fundir_space__paren_open_EXE_paren_close__colon_),
+    MP_ROM_QSTR(MP_QSTR_Recetas_space__paren_open_EXE_space_fabrica_paren_close__colon_),
+    MP_ROM_PTR(&const_obj_mc2d_153),
+    MP_ROM_PTR(&const_obj_mc2d_154),
+    MP_ROM_PTR(&const_obj_mc2d_155),
     MP_ROM_QSTR(MP_QSTR_Volver_space_al_space_juego),
     MP_ROM_QSTR(MP_QSTR_Guardar_space_y_space_salir),
     MP_ROM_QSTR(MP_QSTR_Salir_space_sin_space_guardar),
     MP_ROM_QSTR(MP_QSTR_Menu_space_del_space_juego),
-    MP_ROM_PTR(&const_obj_mc2d_143),
-    MP_ROM_PTR(&const_obj_mc2d_144),
-    const_obj_mc2d_145_macro,
-    MP_ROM_PTR(&const_obj_mc2d_146),
-    MP_ROM_PTR(&const_obj_mc2d_147),
-    MP_ROM_PTR(&const_obj_mc2d_148),
-    const_obj_mc2d_149_macro,
-    const_obj_mc2d_150_macro,
+    MP_ROM_PTR(&const_obj_mc2d_160),
+    MP_ROM_PTR(&const_obj_mc2d_161),
+    const_obj_mc2d_162_macro,
+    MP_ROM_PTR(&const_obj_mc2d_163),
+    MP_ROM_PTR(&const_obj_mc2d_164),
+    MP_ROM_PTR(&const_obj_mc2d_165),
+    const_obj_mc2d_166_macro,
+    const_obj_mc2d_167_macro,
     MP_ROM_QSTR(MP_QSTR_EXE_colon__space_reaparecer),
+    MP_ROM_PTR(&const_obj_mc2d_169),
 };
 
 static const mp_frozen_module_t frozen_module_mc2d = {
@@ -63960,15 +67771,15 @@ MICROPY_FROZEN_LIST_ITEM("mc2d", "mc2d.py")
 
 /*
 byte sizes:
-qstr content: 1326 unique, 15889 bytes
-bc content: 65402
-const str content: 1727
+qstr content: 1348 unique, 16185 bytes
+bc content: 69726
+const str content: 2035
 const int content: 44
-const obj content: 1924
+const obj content: 2204
 const table qstr content: 0 entries, 0 bytes
-const table ptr content: 428 entries, 1712 bytes
-raw code content: 500 * 4 = 8000
+const table ptr content: 446 entries, 1784 bytes
+raw code content: 525 * 4 = 8400
 mp_frozen_mpy_names_content: 59
 mp_frozen_mpy_content_size: 20
-total: 94777
+total: 100457
 */

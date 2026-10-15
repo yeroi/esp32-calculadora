@@ -1,37 +1,43 @@
-MINECRAFT 2D - edición calculadora
-==================================
-Un Minecraft de lado hecho en MicroPython para que funcione EN el ESP32
-(sin PSRAM): el código va congelado en el firmware (/lib/mc2d.py) y el mundo
-es un bloque de 200 x 64 (12,5 KB). Usa ~45 KB de los ~70 KB de Python.
+MINECRAFT 2D - Paper Minecraft para la calculadora
+==================================================
+Paper Minecraft (griffpatch) entero no cabe en el ESP32 sin PSRAM. Esta es su
+versión ligera en MicroPython: el código va congelado en el firmware
+(/lib/mc2d.py) y NO inventa nada: usa las imágenes y las tablas del propio
+Paper Minecraft (bloques, objetos, recetas, comida, criaturas, biomas, Steve,
+corazones...). Usa ~56 KB de los ~70 KB de Python.
+
+PRIMERO: sacar los datos de tu Paper Minecraft (en el PC)
+  python pc/pm_a_mc2d.py "Paper Minecraft v11.7.sb3"
+  Crea juegos/minecraft2d/pm/ (cópialo a la SD de la calculadora).
+  No va en el repositorio: es contenido de Paper Minecraft y de Mojang.
 
 Abre:  Python > juegos > minecraft2d > minecraft2d.py
 
 CONTROLES
-  <- ->      andar                 ^         saltar / nadar
+  <- ->      andar                 ^         saltar / nadar / subir escaleras
   8 4 6 2    mover el cursor       5         picar / golpear (mantener)
-  EXE        poner bloque, comer, usar la mesa de trabajo o el horno
+  EXE        poner bloque, comer, mesa de trabajo, horno, cubos, huevos
   1 3 ( )    objeto anterior / siguiente
   7          inventario y fabricar 9         tirar uno
-  DEL        menú (guardar)        AC        salir
+  DEL        menú (guardar)
   Teclado del PC: WASD, E inventario, Q tirar, 1-9 elegir hueco.
 
-CÓMO EMPEZAR (como en Minecraft)
-  1. Pica un tronco (5 mantenido) -> Tablones x4 -> Palos x4 -> Mesa de trabajo.
-  2. Pon la mesa (EXE) y úsala (EXE sobre ella): pico de madera.
-  3. Con el pico, piedra -> roca -> herramientas de piedra y horno (8 de roca).
-  4. Horno: mena de hierro + carbón = lingote; arena + carbón = cristal;
-     chuleta cruda + carbón = asada (los cerdos dan chuletas).
-  5. De noche salen zombis: espada, refugio o cama... (no hay camas aún).
+COMO EN PAPER MINECRAFT
+  - Picar: el tiempo depende de la dureza, la herramienta y su nivel (a mano la
+    piedra tarda 7,5 s y no da nada; con pico de madera, 0,75 s y da roca).
+  - Las herramientas se gastan (durabilidad) y la espada hace su daño.
+  - Fabricar: las 83 recetas del juego (las de 2x2 a mano; el resto, junto a una
+    mesa de trabajo). La roca vale como piedra, como en el juego.
+  - Horno: funde (mena de hierro -> lingote, arena -> cristal, carne -> asada...)
+    con combustible (carbón 80 s, madera 15 s...); cada objeto, 10 s de fuego.
+  - Comida y saturación de _FOOD_DATA (la carne podrida puede sentar mal).
+  - De día: cerdos, ovejas, vacas y gallinas (siguen a quien lleva su comida).
+    De noche: zombis, esqueletos (disparan), arañas y creepers (explotan).
+    Cada uno suelta su botín (chuleta, lana, cuero, plumas, pólvora, hilo...).
 
 MULTIJUGADOR
   Multijugador > Hostear un mundo: abres tu mundo a la red.
   Multijugador > Unirse: aparecen las partidas de tu red; o por IP.
-  El mundo se manda al entrar y cada bloque cambiado se sincroniza.
+  Los dos tenéis que haber convertido Paper Minecraft igual.
 
-SONIDO
-  Si tienes Paper Minecraft convertido (con el conversor nuevo), Minecraft 2D
-  usa sus sonidos (pasos, picar, cerdos, zombis, daño). En el ESP32 aún no hay
-  altavoz.
-
-Texturas propias generadas con pc/mc2d_texturas.py (no son las de Mojang).
 Truco para probar la noche: SHIFT + raíz adelanta una hora del día.
