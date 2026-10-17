@@ -205,8 +205,11 @@ python pc/pm_a_mc2d.py "Paper Minecraft v11.7.sb3"     # crea juegos/minecraft2d
 - Las **83 recetas** de `_Recipes` (2×2 a mano, 3×3 en la mesa, ingredientes por objeto raíz) y el **horno** (fundir con combustible: carbón 80 s, madera 15 s...).
 - Comida y saturación de `_FOOD_DATA`; criaturas de `_MOB_DATA` (cerdo, oveja, vaca, gallina, zombi, esqueleto que dispara, araña, creeper que explota) con su botín.
 - Biomas de `BIOME_DATA` (llanura, colinas, desierto, islas, bosque, taiga, nieve), cuevas con lava, menas (también redstone y esmeralda).
-- Día y noche, guardar y cargar mundos, multijugador con `scicalc.red` (mobs del anfitrión, PvP...).
-- En el ESP32 usa ~56 KB de los ~70 KB (medido con MicroPython del PC limitado a 70 KB): las tablas se leen del archivo cuando hacen falta.
+- **Dimensiones: el Nether** como en Paper Minecraft: marco de obsidiana de 4×5 encendido con el mechero, 110 ticks dentro del portal y viajas; netherrack, arena de almas, grava, mar de lava, piedra luminosa y **porqueros zombis** (se enfadan todos si pegas a uno). Al otro lado se busca un portal a 32 columnas o se crea uno. Solo una dimensión está en memoria; la otra espera en la SD.
+- **Armadura** con los puntos de `Calculate Defense Points` (daño × (1 − 0,04 × puntos), cada golpe la gasta) y su barra; huecos de casco, peto y pantalones en el inventario.
+- **Cofres** (27 huecos), **camas** (dormir de noche y reaparecer), **puertas** de madera y hierro, **cultivos** (azada, semillas, trigo que crece, harina de hueso), **retoños** que crecen, **TNT y fuego** con el mechero, **lobos** que se doman con un hueso y te defienden, **enderman**.
+- Día y noche, guardar y cargar mundos, multijugador con `scicalc.red` (mobs del anfitrión, PvP, cofres y Nether compartidos...).
+- En el ESP32 queda unos 29 KB libres al empezar y ~15 KB jugando (medido con MicroPython del PC limitado a 70 KB): las tablas se leen del archivo cuando hacen falta.
 
 Controles: ◄ ► andar · ▲ saltar · 8 4 6 2 cursor · 5 picar (mantener) · EXE poner/usar · 1 3 objeto · 7 inventario · DEL menú. Ver `LEEME.txt`.
 

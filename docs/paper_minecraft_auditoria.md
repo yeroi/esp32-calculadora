@@ -72,7 +72,9 @@ En **Minecraft 2D** (nuestro juego de MicroPython) ya hay:
 - golpes de todos los jugadores a los mobs;
 - PvP;
 - hora sincronizada;
-- partida que sigue con los menús abiertos.
+- partida que sigue con los menús abiertos;
+- el Nether (portal de Paper Minecraft, generado igual en todos con la misma semilla, bloques `n:casilla`); cada uno solo ve a los jugadores y mobs de su dimensión;
+- cofres compartidos (`c:dim:casilla`), dormir (lo aplica el anfitrión), domar lobos (lo decide el anfitrión).
 
 ## 3. Plan por fases
 

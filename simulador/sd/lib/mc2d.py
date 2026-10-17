@@ -18,14 +18,27 @@
 #      dibujos de verdad y su botín ('Death Harvest')
 #    - Steve, corazones, comida y grietas: los dibujos del juego
 #    - biomas: BIOME_DATA (llanura, colinas, desierto, islas, bosque, taiga, nieve)
+#    - dimensiones: el Nether de Paper Minecraft (semilla + 1000000, netherrack,
+#      arena de almas, grava, mar de lava, piedra luminosa, porqueros zombis). Se
+#      entra por un marco de obsidiana de 4x5 encendido con el mechero ('Do Switch'
+#      / 'CreatePortal'): 110 ticks dentro del portal y viajas; al otro lado se
+#      busca un portal a 32 columnas o se crea uno ('TeleportToPortal')
+#    - armadura: 'Calculate Defense Points' (daño x (1 - 0,04 x puntos), cada golpe
+#      gasta 1 de cada pieza) con su barra
+#    - cofres, camas (dormir y reaparecer), puertas, cultivos (azada, semillas,
+#      trigo que crece, harina de hueso), retoños que crecen, TNT y fuego,
+#      lobos que se doman con un hueso (perros), enderman
 #  El mundo es un bytearray de 200 x 64 (un número por casilla: la tabla
 #  "en_mundo" lo traduce al id de Paper Minecraft) y solo se redibuja lo que
-#  cambia. Multijugador con scicalc.red (el anfitrión simula los mobs).
+#  cambia. Solo hay una dimensión en memoria: la otra espera en la SD (como el
+#  'save chunk' / 'load chunk' de Paper Minecraft). Multijugador con scicalc.red
+#  (el anfitrión simula los mobs).
 #
 #  Controles (calculadora / teclado del PC):
 #    ◄ ►  andar          ▲  saltar / nadar / subir escaleras
 #    8 4 6 2  mover el cursor     5  picar / golpear (mantén)
-#    EXE  poner bloque, comer, usar mesa, horno o cofre
+#    EXE  poner bloque, comer, usar mesa, horno, cofre, cama, puerta, mechero,
+#         azada, semillas, hueso...
 #    1 3 o ( )  objeto anterior / siguiente      teclas 1-9 del PC: hueco
 #    7 (o E)  inventario y fabricar      9 (o Q)  tirar uno
 #    DEL  pausa (guardar)
@@ -40,6 +53,10 @@ import os
 import struct
 import gc
 from array import array
+try:
+    import binascii
+except ImportError:
+    import ubinascii as binascii
 from scicalc import pantalla as P, teclas as K
 try:
     from scicalc import red
@@ -66,6 +83,7 @@ SOL = TRANSP = NOSUELO = LIQ = CAE = bytearray(0)
 TEXL = array("H")           # textura de cada número del mundo
 NREC = 0                    # recetas en recetas.bin
 _fichas = {}
+HAY_ARMADURA = False
 COMIDA = {}
 MOBS = {}                   # tipo -> datos de la criatura
 BIOMAS = []
@@ -84,6 +102,24 @@ SETA_R, SETA_M, CALABAZA, CANA, RETONO = 45, 46, 54, 61, 55
 ABEDUL, ABETO, JUNGLA = 179, 178, 180
 HOJAS_ABEDUL, HOJAS_ABETO, HOJAS_JUNGLA = 181, 184, 187
 FLECHA = 131
+OBSIDIANA, OBS_PORTAL, PORTAL = 52, 267, 266
+GLOW, NETHERRACK, ALMAS = 255, 256, 257
+MECHERO, TNT_PM, TNT_ON, FUEGO = 110, 18, 116, 224
+CAMA, CAMA_A, CAMA_B = 124, 50, 51
+SEMILLAS, TRIGO1, TRIGO_OK, LABRADA = 142, 134, 141, 144
+HUESO, POLVO_HUESO = 194, 195
+RETONOS = {55: "O", 175: "S", 176: "B", 177: "J"}
+# puertas: objeto -> (abajo cerrada, arriba cerrada, abajo abierta, arriba abierta)
+PUERTAS = {118: (121, 120, 57, 56), 219: (223, 222, 221, 220)}
+ABRIR = {}                  # casilla de puerta -> la misma abierta/cerrada
+DE_PUERTA = {}              # casilla de puerta -> (objeto, ¿es la de abajo?)
+for _it, _p in PUERTAS.items():
+    for _k in range(4):
+        ABRIR[_p[_k]] = _p[_k ^ 2]
+        DE_PUERTA[_p[_k]] = (_it, _k % 2 == 0)
+# criaturas que se enfadan si les pegas (lobo, porquero zombi)
+ENFADA = {5: 104, 105: 106}
+NOMBRE_DIM = ("Mundo", "Nether")
 
 
 def ficha(i):
@@ -107,7 +143,7 @@ def B(pm):
 def cargar_datos():
     """Lee pm/. Devuelve un texto de error si no está (hay que convertir el .sb3)."""
     global _bl, NB, L2PM, PM2L, SOL, TRANSP, NOSUELO, LIQ, CAE, TEXL, NREC
-    global COMIDA, MOBS, BIOMAS, STEVE
+    global COMIDA, MOBS, BIOMAS, STEVE, HAY_ARMADURA
     try:
         _bl = open(PMD + "bloques.bin", "rb")
         cab = _bl.read(8)
@@ -129,17 +165,33 @@ def cargar_datos():
         pm = L2PM[L]
         PM2L[pm] = L
         f = ficha(pm)
-        SOL[L] = 1 if f[F_SOL] else 0
+        SOL[L] = f[F_SOL]                         # 1 macizo, 2 'P': se pisa y se atraviesa
         TRANSP[L] = 1 if (not f[F_SOL] or f[F_LUZ] < 3) else 0
         NOSUELO[L] = 1 if (not f[F_SOL] or f[F_GRUPO] in (6, 10)) else 0
         LIQ[L] = f[F_LIQ]
         CAE[L] = 1 if f[F_CAE] == 89 else 0          # 'Y'
         TEXL[L] = f[F_TILE]
     TRANSP[0] = NOSUELO[0] = 1
-    COMIDA = {int(k): v for k, v in d["comida"].items()}
-    MOBS = {int(k): v for k, v in d["mobs"].items()}
-    BIOMAS = d["biomas"]
+    # (en el ESP32 cada objeto cuenta: todo a tuplas de enteros pequeños)
+    # comida: (hambre, saturación x10, veneno en %, lo que queda)
+    COMIDA = {int(k): (int(v[0]), int(v[1] * 10), int(v[2] * 100), int(v[3]))
+              for k, v in d["comida"].items()}
+    # criatura: [marcos, vida, comida que le gusta, botín, ancho, alto] (en bloques)
+    MOBS = {}
+    for k, v in d["mobs"].items():
+        fr = v["marcos"]
+        tam = v.get("tam") or (0, 0)
+        MOBS[int(k)] = [range(fr[0], fr[-1] + 1) if fr else range(0), v["vida"], v["comida"],
+                        tuple(tuple(b) for b in v["botin"]),
+                        max(0.5, tam[0] / T * 0.8), max(0.5, tam[1] / T)]
+    # bioma: (tipo, variación x10, altura x10, árboles, frecuencia x10)
+    BIOMAS = [(b[1], int(b[2] * 10), int(b[3] * 10), b[5], int(b[6] * 10)) for b in d["biomas"]]
     STEVE = d["steve"]
+    try:
+        os.stat(PMD + "armadura1.png")
+        HAY_ARMADURA = True
+    except OSError:
+        HAY_ARMADURA = False                       # (pm/ convertido con una versión vieja)
     _fichas.clear()
     d = None
     gc.collect()
@@ -193,6 +245,7 @@ T = 16                                  # píxeles por bloque
 VIEW_H = 184                            # zona del mundo; debajo, vida y barra de objetos
 VW, VH = P.ANCHO // T + 1, VIEW_H // T + 1
 CIELO_DIA, CIELO_NOCHE, FONDO_CUEVA, OSCURO = 0x78A8F0, 0x101830, 0x3A3530, 0x0C0C0C
+FONDO_NETHER = 0x3A0C0C
 DIA_S = 600                             # un día dura 10 minutos (7 de día y 3 de noche)
 SALA = "minecraft2d-pm"
 mundo = bytearray(W * H)
@@ -216,7 +269,9 @@ def sp(x, y, b):
 
 
 def solido(b):
-    return SOL[b]
+    """Macizo ('Y'): no se atraviesa. Los 'P' (cofres, marco del portal) solo se
+    pisan, como en 'isBlock_S' de Paper Minecraft."""
+    return SOL[b] == 1
 
 
 def es_agua(b):
@@ -303,10 +358,10 @@ def generar(semilla):
     progreso("Generando el terreno...", 0.1)
     for x in range(W):
         bi = BIOMAS[bioma[x]]
-        tipo = bi[1]
-        h = 32.0 + bi[3] * 0.5
+        tipo = bi[0]
+        h = 32.0 + bi[2] * 0.05
         for per, amp, fase in ondas:
-            h += math.sin(x / per + fase) * amp * bi[2]
+            h += math.sin(x / per + fase) * amp * bi[1] / 10
         h = int(max(18, min(H - 10, h)))
         capa = random.randint(3, 4)
         arriba = (arena if tipo == "D" or h <= MAR + 1 else
@@ -365,7 +420,7 @@ def generar(semilla):
         y = alto[x]
         top = mundo[x + y * W]
         bi = BIOMAS[bioma[x]]
-        arboles, frec = bi[5], bi[6]
+        arboles, frec = bi[3], bi[4] / 10
         if top in (hierba, B(NIEVE_HIERBA)) and random.random() < frec / 60:
             t = random.choice(arboles) if arboles else "O"
             if t != "C":
@@ -420,10 +475,103 @@ def arbol(x, y, tipo):
                 mundo[xx + yy * W] = hojas
 
 
+# ---- El Nether ----------------------------------------------------------------------------
+LAVA_N = 14                                   # el mar de lava del Nether llega hasta aquí
+
+
+class Azar:
+    """Números al azar que salen iguales en el PC y en el ESP32 (solo enteros): así
+    cada jugador de una partida genera el mismo Nether con la misma semilla."""
+    def __init__(self, s):
+        self.s = (s & 0x7FFFFFFF) or 1
+
+    def ent(self, a, b):
+        self.s = (self.s * 1103515245 + 12345) & 0x7FFFFFFF
+        return a + (self.s >> 8) % (b - a + 1)
+
+
+def mancha(cx, cy, r, b, sobre):
+    """Un círculo de radio r del bloque b sobre los bloques de 'sobre'."""
+    for dy in range(-r, r + 1):
+        for dx in range(-r, r + 1):
+            x, y = cx + dx, cy + dy
+            if dx * dx + dy * dy <= r * r + 1 and 0 <= x < W and 1 <= y < H - 1:
+                if mundo[x + y * W] in sobre:
+                    mundo[x + y * W] = b
+
+
+def generar_nether(semilla):
+    """El Nether de 'Init Prep' / 'Init Ground Curves' con el bioma 1000: todo
+    netherrack, un hueco entre suelo y techo, cavernas, grava y arena de almas,
+    lava en lo hondo y piedra luminosa colgando. Semilla + 1000000, como allí."""
+    r = Azar(semilla + 1000000)
+    nr, lecho = B(NETHERRACK), B(LECHO_PM)
+    for i in range(W * H):
+        mundo[i] = nr
+    progreso("Generando el Nether...", 0.2)
+    suelo, hueco = 22, 14
+    for x in range(W):
+        if r.ent(0, 2) == 0:
+            suelo = max(8, min(34, suelo + r.ent(-2, 2)))
+        if r.ent(0, 2) == 0:
+            hueco = max(5, min(22, hueco + r.ent(-2, 2)))
+        for y in range(suelo + 1, min(H - 3, suelo + hueco + 1)):
+            mundo[x + y * W] = 0
+        mundo[x] = mundo[x + (H - 1) * W] = lecho
+        if r.ent(0, 1):
+            mundo[x + W] = lecho
+        if r.ent(0, 1):
+            mundo[x + (H - 2) * W] = lecho
+    progreso("Cavernas del Nether...", 0.45)
+    for _ in range(W // 12):
+        cx, cy, rad = r.ent(0, W - 1), r.ent(6, H - 8), r.ent(2, 4)
+        for _ in range(r.ent(6, 20)):
+            mancha(cx, cy, rad, 0, (nr,))
+            cx = max(0, min(W - 1, cx + r.ent(-2, 2)))
+            cy = max(4, min(H - 6, cy + r.ent(-1, 1)))
+    for pm, n, tam in ((GRAVA_PM, W // 10, 2), (ALMAS, W // 6, 3)):     # 'Init Seams'
+        b = B(pm)
+        for _ in range(n):
+            mancha(r.ent(0, W - 1), r.ent(4, H - 6), r.ent(1, tam), b, (nr,))
+    progreso("Lava...", 0.7)
+    lava = B(LAVA_PM)
+    for y in range(1, LAVA_N + 1):                # 'Add Water or Lava' con el 81
+        for x in range(W):
+            if mundo[x + y * W] == 0:
+                mundo[x + y * W] = lava
+    glow = B(GLOW)
+    for _ in range(W // 7):                       # piedra luminosa en el techo
+        x = r.ent(1, W - 2)
+        y = H - 3
+        while y > LAVA_N + 3 and mundo[x + y * W]:
+            y -= 1
+        if y <= LAVA_N + 3:
+            continue
+        for k in range(r.ent(1, 3)):
+            for dx in (-1, 0, 1):
+                if (dx == 0 or r.ent(0, 1)) and mundo[x + dx + (y - k) * W] == 0:
+                    mundo[x + dx + (y - k) * W] = glow
+    for x in range(W):
+        calc_alto(x)
+    progreso("Listo", 1.0)
+
+
 # ---- Inventario (ids de Paper Minecraft; en las herramientas, n = durabilidad) ----------
 NHUECOS = 27
 inv_id = [0] * NHUECOS
 inv_n = [0] * NHUECOS
+arm_id = [0] * 3                                    # casco, peto, pantalones
+arm_n = [0] * 3                                     # (su durabilidad)
+
+
+def pieza(it):
+    """Qué pieza de armadura es (0 casco, 1 peto, 2 pantalones) o -1."""
+    return (it - 150) // 4 if 150 <= it <= 161 and ficha(it)[F_DANO] < 0 else -1
+
+
+def puntos_defensa():
+    """'Calculate Defense Points': la columna de daño de cada pieza puesta."""
+    return sum(-ficha(arm_id[k])[F_DANO] for k in range(3) if arm_id[k])
 
 
 def dar(it, n=1):
@@ -455,6 +603,29 @@ def dar(it, n=1):
             if not n:
                 return 0
     return n
+
+
+def meter(it, n):
+    """Como dar(), pero en las herramientas n es su durabilidad (cofres)."""
+    if not es_herramienta(it):
+        return dar(it, n)
+    for i in range(NHUECOS):
+        if not inv_id[i]:
+            inv_id[i], inv_n[i] = it, n
+            return 0
+    return 1
+
+
+def hget(i):
+    """Hueco del inventario (i >= 0) o de la armadura (-1, -2, -3)."""
+    return (arm_id[-1 - i], arm_n[-1 - i]) if i < 0 else (inv_id[i], inv_n[i])
+
+
+def hput(i, it, n):
+    if i < 0:
+        arm_id[-1 - i], arm_n[-1 - i] = it, n
+    else:
+        inv_id[i], inv_n[i] = it, n
 
 
 def cuantos_raiz(r):
@@ -513,9 +684,14 @@ SPR = {}
 def spr(ruta):
     s = SPR.get(ruta)
     if s is None:
-        if len(SPR) > 120:                       # (en el ESP32 cada sprite ocupa memoria)
+        if len(SPR) > 64:                        # (en el ESP32 cada sprite ocupa memoria)
             SPR.clear()
-        s = SPR[ruta] = P.sprite(PMD + ruta)
+        try:
+            s = SPR[ruta] = P.sprite(PMD + ruta)
+        except MemoryError:                      # memoria a trozos: se vacía y otra vez
+            SPR.clear()
+            gc.collect()
+            s = SPR[ruta] = P.sprite(PMD + ruta)
     return s
 
 
@@ -576,9 +752,25 @@ class Juego:
         self.cielo = CIELO_DIA
         self.tap = {}                             # teclas tocadas en el PC (WASD): hasta cuándo
         self.salir = False
+        self.archivo = nombre_m                   # nombre en la SD (la otra dimensión va aparte)
+        self.semilla = 0
+        self.dim = 0                              # 0 el mundo, 1 el Nether
+        self.portal_t = 0.0                       # tiempo dentro del portal (-1: recién llegado)
+        self.cofres = {}                          # "dim:casilla" -> [id, n, id, n...]
+        self.cama = None                          # dónde reaparecer
+        self.tnt = []                             # [x, y, segundos] de TNT encendida
+        self.fuegos = []                          # [x, y, segundos] de fuego que se apaga
+        self.tick_t = 0.0
+        self.duenos = {}                          # id de perro -> id de su dueño (None: yo)
+        self.fuego_t = 0.0
 
     # ---- aparecer --------------------------------------------------------------
     def aparecer(self):
+        if self.cama and L2PM[g(*self.cama)] in (CAMA_A, CAMA_B):     # en tu cama
+            self.x, self.y = self.cama[0] + 0.2, float(self.cama[1])
+            self.vx = self.vy = 0.0
+            self.centrar()
+            return
         x = W // 2                                # en tierra firme, no en el mar ni en un árbol
         for d in range(W // 2):
             for c in (W // 2 + d, W // 2 - d):
@@ -603,13 +795,18 @@ class Juego:
         return int((wx - self.cam_x) * T), int((self.cam_top - wy) * T)
 
     def fondo(self, tx, ty):
+        if self.dim:
+            return FONDO_NETHER
         if ty > alto[tx] if 0 <= tx < W else True:
             return self.cielo
         return FONDO_CUEVA
 
     def encerrado(self, tx, ty):
-        # bloque sólido sin aire alrededor y bajo la superficie: oscuro (como en las cuevas)
-        if ty >= (alto[tx] if 0 <= tx < W else 0) - 5:
+        # bloque sólido sin aire alrededor y bajo la superficie: oscuro (como en las
+        # cuevas). En el Nether no: allí la lava y la piedra luminosa lo alumbran todo
+        if self.dim or not 2 <= tx < W - 2:
+            return False
+        if ty >= min(alto[tx - 2], alto[tx - 1], alto[tx], alto[tx + 1], alto[tx + 2]) - 5:
             return False                          # cerca de la superficie se ve todo
         for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
             if TRANSP[g(tx + dx, ty + dy)]:
@@ -639,7 +836,8 @@ class Juego:
         return int(self.x + PW / 2) + self.cdx, int(self.y + 0.01) + self.cdy
 
     def dibujar_hud(self):
-        estado = (self.vida, self.hambre, self.sel, tuple(inv_id[:9]), tuple(inv_n[:9]), self.aviso)
+        dp = puntos_defensa()
+        estado = (self.vida, self.hambre, self.sel, tuple(inv_id[:9]), tuple(inv_n[:9]), self.aviso, dp)
         if estado == self.hud:
             return
         self.hud = estado
@@ -648,6 +846,10 @@ class Juego:
         # corazones y comida: los dibujos de Paper Minecraft
         P.dibujar(spr("vida%d.png" % max(0, min(20, self.vida))), 70, VIEW_H + 2)
         P.dibujar(spr("hambre%d.png" % max(0, min(20, self.hambre))), 170, VIEW_H + 2)
+        if dp and HAY_ARMADURA:                   # la barra de armadura de Paper Minecraft
+            P.dibujar(spr("armadura%d.png" % min(20, dp)), 70, VIEW_H + 37)
+        if self.dim:
+            P.texto("Nether", 278, VIEW_H + 38, 0xE06040)
         x0 = 70
         for i in range(9):
             x = x0 + i * 20
@@ -704,12 +906,12 @@ class Juego:
         # criaturas (sus dibujos de Paper Minecraft)
         for m in self.mobs:
             d = MOBS.get(m[0])
-            if not d or not d["marcos"]:
+            if not d or not d[0]:
                 continue
-            ax, ay = self.pant(m[1] + d["w"] / 2, m[2])
+            ax, ay = self.pant(m[1] + d[4] / 2, m[2])
             if ax < -40 or ax > P.ANCHO + 40:
                 continue
-            fr = d["marcos"]                      # de pie + ciclo de andar
+            fr = d[0]                             # de pie + ciclo de andar
             k = 1 + int(self.tiempo * 8 + m[8]) % (len(fr) - 1) if len(fr) > 1 else 0
             s = spr("mob/%d.png" % fr[k])
             P.dibujar(s, ax - s.ancho // 2, ay - s.alto, 1, m[6] < 0)
@@ -721,7 +923,7 @@ class Juego:
         # otros jugadores
         for o in self.otros.values():
             x0, y0, x1, y1 = self.caja_jugador(o[0], o[1])
-            if x1 < 0 or x0 > P.ANCHO or o[6]:
+            if x1 < 0 or x0 > P.ANCHO or o[6] or o[9] != self.dim:
                 continue
             self.pintado.append(self.dibujar_steve(o[0], o[1], o[2], self.tiempo, o[3], o[4]))
             w = len(o[5]) * 6
@@ -748,14 +950,19 @@ class Juego:
         antes = g(x, y)
         sp(x, y, b)
         calc_alto(x)
-        for dx in (-1, 0, 1):                       # los vecinos pueden pasar a verse
-            for dy in (-1, 0, 1):
-                self.sucios.append((x + dx, y + dy))
+        if self.completo or len(self.sucios) > 150:  # (muchos cambios: se repinta todo)
+            self.completo = True
+            self.sucios = []
+        else:
+            for dx in (-1, 0, 1):                   # los vecinos pueden pasar a verse
+                for dy in (-1, 0, 1):
+                    self.sucios.append((x + dx, y + dy))
         if red_tambien and self.online:
+            n = ("n:%d" if self.dim else "b:%d") % (x + y * W)     # el Nether va aparte
             try:                                    # si otro lo cambió antes, me corrigen
-                red.var("b:%d" % (x + y * W), b, antes)
+                red.var(n, b, antes)
             except TypeError:
-                red.var("b:%d" % (x + y * W), b)
+                red.var(n, b)
 
     def asentar(self, x, y):
         """Arena y grava caen (columna 'Can Fall' = Y)."""
@@ -835,9 +1042,9 @@ class Juego:
             self.sucios.append((tx, ty))
         if prog >= 1.0:
             self.poner(tx, ty, 0)
-            for it, n in self.suelta(b):
+            for it, n in self.romper(tx, ty, L2PM[b]) or self.suelta(b):
                 if n:
-                    dar(it, n)
+                    meter(it, n)
             self.gastar_herramienta()
             sonar_bloque(b, 0.7)
             self.asentar(tx, ty + 1)
@@ -846,6 +1053,38 @@ class Juego:
                 self.poner(tx, ty + 1, 0)
             prog = 0.0
         self.pico = (tx, ty, prog)
+
+    def romper(self, tx, ty, pm):
+        """Lo que pasa al romper bloques de dos casillas (puertas, camas), cofres y
+        el marco del portal. Devuelve lo que cae si no es lo normal."""
+        if pm in DE_PUERTA:                        # la otra mitad se va con ella
+            it, abajo = DE_PUERTA[pm]
+            oy = ty + 1 if abajo else ty - 1
+            if L2PM[g(tx, oy)] in DE_PUERTA:
+                self.poner(tx, oy, 0)
+            return [(it, 1)]
+        if pm in (CAMA_A, CAMA_B):
+            ox = tx + 1 if pm == CAMA_A else tx - 1
+            if L2PM[g(ox, ty)] in (CAMA_A, CAMA_B):
+                self.poner(ox, ty, 0)
+            return [(CAMA, 1)]
+        if pm == COFRE_PM:                         # lo de dentro, al inventario
+            c = self.cofres.pop("%d:%d" % (self.dim, tx + ty * W), None)
+            if self.online:
+                red.var("c:%d:%d" % (self.dim, tx + ty * W), [])
+            out = [(COFRE_PM, 1)]
+            if c:
+                out += [(c[i], c[i + 1]) for i in range(0, len(c), 2) if c[i]]
+            return out
+        if pm == OBS_PORTAL:                       # sin marco no hay portal
+            for dy in range(-4, 5):
+                for dx in range(-3, 4):
+                    q = L2PM[g(tx + dx, ty + dy)]
+                    if q == PORTAL:
+                        self.poner(tx + dx, ty + dy, 0)
+                    elif q == OBS_PORTAL:
+                        self.poner(tx + dx, ty + dy, B(OBSIDIANA))
+        return None
 
     def usar(self):
         tx, ty = self.objetivo()
@@ -857,20 +1096,76 @@ class Juego:
         if pm in (HORNO_PM, HORNO_ON_PM):
             self.abrir_inventario("horno")
             return
+        if pm == COFRE_PM:
+            self.abrir_cofre(tx + ty * W)
+            return
+        if pm in (CAMA_A, CAMA_B):
+            self.dormir(tx, ty)
+            return
+        if pm in ABRIR:                            # abrir / cerrar la puerta
+            self.puerta(tx, ty, pm)
+            return
         it = inv_id[self.sel]
         if not it:
+            return
+        m = self.mob_en(tx, ty)
+        if it == HUESO and m and m[0] == 5:        # domar un lobo con un hueso
+            quitar_hueco(self.sel)
+            if self.manda_mobs():
+                self.domar(m, None)
+            else:
+                red.enviar({"domar": m[8]})
             return
         if it in COMIDA:                           # _FOOD_DATA: hambre, saturación, veneno
             if self.hambre < 20:
                 c = COMIDA[it]
                 self.hambre = min(20, self.hambre + int(c[0]))
-                self.sat = min(self.hambre, self.sat + c[1])
-                if random.random() < c[2]:
+                self.sat = min(self.hambre, self.sat + c[1] / 10)
+                if random.random() * 100 < c[2]:
                     self.hambre = max(0, self.hambre - 4)  # intoxicación
                 quitar_hueco(self.sel)
                 if c[3]:
                     dar(c[3])                       # lo que queda (el cubo de la leche)
                 sonar("eat%d" % random.randint(1, 3))
+            return
+        k = pieza(it)
+        if k >= 0:                                 # ponerse la armadura
+            inv_id[self.sel], arm_id[k] = arm_id[k], inv_id[self.sel]
+            inv_n[self.sel], arm_n[k] = arm_n[k], inv_n[self.sel]
+            self.aviso, self.aviso_t = "Armadura %d" % puntos_defensa(), 1.5
+            return
+        if it == MECHERO:
+            self.mechero(tx, ty, b, pm)
+            return
+        if it in PUERTAS:
+            self.poner_doble(tx, ty, it)
+            return
+        if it == CAMA:
+            self.poner_doble(tx, ty, it)
+            return
+        f = ficha(it)
+        if f[F_GRUPO] == 1 and f[F_HERR] == 72:   # azada ('H'): tierra de cultivo
+            if pm in (HIERBA_PM, TIERRA_PM, NIEVE_HIERBA) and not solido(g(tx, ty + 1)):
+                if g(tx, ty + 1):
+                    self.poner(tx, ty + 1, 0)       # (la hierba alta se va)
+                self.poner(tx, ty, B(LABRADA))
+                self.gastar_herramienta()
+                sonar_bloque(b, 0.6)
+            return
+        if it == SEMILLAS:                         # sembrar trigo en la tierra labrada
+            if pm == LABRADA:
+                ty += 1
+            if not g(tx, ty) and L2PM[g(tx, ty - 1)] == LABRADA:
+                quitar_hueco(self.sel)
+                self.poner(tx, ty, B(TRIGO1))
+                sonar("grass1", 0.5)
+            return
+        if it == POLVO_HUESO:                      # harina de hueso: crece ya
+            if TRIGO1 <= pm < TRIGO_OK:
+                self.poner(tx, ty, B(TRIGO_OK))
+                quitar_hueco(self.sel)
+            elif pm in RETONOS and self.crecer(tx, ty):
+                quitar_hueco(self.sel)
             return
         if it == CUBO and es_agua(b):              # cubos
             self.poner(tx, ty, 0)
@@ -878,11 +1173,13 @@ class Juego:
             dar(CUBO_AGUA)
             return
         if it in (CUBO_AGUA, CUBO_LAVA) and not solido(b):
-            self.poner(tx, ty, B(AGUA_PM if it == CUBO_AGUA else LAVA_PM))
             quitar_hueco(self.sel)
             dar(CUBO)
+            if it == CUBO_AGUA and self.dim:      # en el Nether el agua se evapora
+                self.aviso, self.aviso_t = "El agua se evapora", 2.0
+                return
+            self.poner(tx, ty, B(AGUA_PM if it == CUBO_AGUA else LAVA_PM))
             return
-        f = ficha(it)
         if f[F_GRUPO] == 12 and f[F_SUELTA] in MOBS and self.manda_mobs():   # huevo
             self.mob_id += 1
             self.mobs.append(self.nuevo_mob(f[F_SUELTA], tx + 0.1, float(ty), 1))
@@ -891,10 +1188,12 @@ class Juego:
         nb = B(it)
         if not nb:
             return
-        if b and solido(b):
+        if b and SOL[b]:
             return                                # (sí sobre agua, flores, hierba alta...)
         if solido(nb) and (self.toca_jugador(tx, ty) or self.mob_en(tx, ty)):
             return
+        if it in RETONOS and L2PM[g(tx, ty - 1)] not in (HIERBA_PM, TIERRA_PM, NIEVE_HIERBA):
+            return                                # los retoños, en tierra
         apoyo = False                             # como en Minecraft: junto a otro bloque
         for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
             v = g(tx + dx, ty + dy)
@@ -908,11 +1207,154 @@ class Juego:
         self.asentar(tx, ty)
         self.golpe_t = 0.2
 
+    # ---- puertas, camas, mechero, TNT, cultivos ------------------------------------------
+    def poner_doble(self, tx, ty, it):
+        """Puerta (dos de alto, se pone cerrada) o cama (dos de ancho)."""
+        if it == CAMA:
+            x2 = tx + (1 if self.cara > 0 else -1)
+            x1, x2 = min(tx, x2), max(tx, x2)
+            sitios = ((x1, ty, CAMA_A), (x2, ty, CAMA_B))
+        else:
+            abajo, arriba = PUERTAS[it][0], PUERTAS[it][1]
+            if self.toca_jugador(tx, ty) or self.toca_jugador(tx, ty + 1):
+                abajo, arriba = PUERTAS[it][2], PUERTAS[it][3]    # contigo dentro: abierta
+            sitios = ((tx, ty, abajo), (tx, ty + 1, arriba))
+        for x, y, _ in sitios:
+            if (g(x, y) and SOL[g(x, y)]) or (L2PM[g(x, y)] in (PORTAL, COFRE_PM)) or \
+                    (y == ty and not solido(g(x, y - 1))) or self.mob_en(x, y):
+                return
+        quitar_hueco(self.sel)
+        for x, y, q in sitios:
+            self.poner(x, y, B(q))
+        sonar("wood1", 0.6)
+
+    def puerta(self, tx, ty, pm):
+        _, abajo = DE_PUERTA[pm]
+        y0 = ty if abajo else ty - 1
+        for y in (y0, y0 + 1):
+            q = L2PM[g(tx, y)]
+            if q in ABRIR:
+                self.poner(tx, y, B(ABRIR[q]))
+        sonar("wood%d" % random.randint(1, 4), 0.6)
+
+    def dormir(self, tx, ty):
+        self.cama = (tx, ty)                       # aquí reaparecerás
+        if self.dim:
+            self.aviso, self.aviso_t = "Aqui no se puede dormir", 2.0
+            return
+        if not self.es_noche():
+            self.aviso, self.aviso_t = "Cama: reapareces aqui", 2.0
+            return
+        for m in self.mobs:
+            if hostil(m) and abs(m[1] - tx) < 8 and abs(m[2] - ty) < 5:
+                self.aviso, self.aviso_t = "Hay monstruos cerca", 2.0
+                return
+        if self.manda_mobs():
+            self.amanecer()
+        else:
+            red.enviar({"dormir": 1})             # la hora la lleva el anfitrión
+            self.aviso, self.aviso_t = "Durmiendo...", 2.0
+
+    def amanecer(self):
+        self.tiempo = (self.tiempo // DIA_S + 1) * DIA_S + 5
+        self.aviso, self.aviso_t = "Buenos dias", 2.0
+        self.completo = True
+
+    def mechero(self, tx, ty, b, pm):
+        """Mechero: TNT, portal ('Do Switch' busca el marco de obsidiana) o fuego."""
+        if pm == TNT_PM:
+            self.encender(tx, ty, 4.0)
+        elif self.encender_portal(tx, ty) or self.encender_portal(tx, ty + 1):
+            self.aviso, self.aviso_t = "Portal al %s" % NOMBRE_DIM[1 - self.dim], 2.0
+        elif not b and solido(g(tx, ty - 1)):
+            self.poner(tx, ty, B(FUEGO))
+            if L2PM[g(tx, ty - 1)] != NETHERRACK:   # sobre netherrack arde para siempre
+                self.fuegos.append([tx, ty, random.uniform(4.0, 9.0)])
+        else:
+            return
+        self.gastar_herramienta()
+
+    def encender(self, tx, ty, seg):
+        self.poner(tx, ty, B(TNT_ON))
+        self.tnt.append([tx, ty, seg])
+
+    def encender_portal(self, ix, iy):
+        """Marco de obsidiana de 4 x 5 con un hueco de 2 x 3 (como 'CreatePortal'):
+        el marco pasa a ser 'Obsidiana (portal)' y el hueco, portal."""
+        obs = lambda x, y: L2PM[g(x, y)] == OBSIDIANA
+        for ox in (ix - 1, ix):
+            for oy in (iy - 2, iy - 1, iy):
+                ok = all(g(ox + dx, oy + dy) == 0 or L2PM[g(ox + dx, oy + dy)] == FUEGO
+                         for dx in (0, 1) for dy in (0, 1, 2))
+                ok = ok and all(obs(ox + dx, oy - 1) and obs(ox + dx, oy + 3) for dx in (0, 1))
+                ok = ok and all(obs(ox - 1, oy + dy) and obs(ox + 2, oy + dy) for dy in (0, 1, 2))
+                if ok:
+                    for dx in range(-1, 3):
+                        for dy in range(-1, 4):
+                            x, y = ox + dx, oy + dy
+                            if 0 <= dx <= 1 and 0 <= dy <= 2:
+                                self.poner(x, y, B(PORTAL))
+                            elif obs(x, y):
+                                self.poner(x, y, B(OBS_PORTAL))
+                    return True
+        return False
+
+    def crecer(self, tx, ty):
+        """Un retoño se hace árbol si tiene sitio (y se manda por la red)."""
+        tipo = RETONOS.get(L2PM[g(tx, ty)])
+        if not tipo or L2PM[g(tx, ty - 1)] not in (HIERBA_PM, TIERRA_PM, NIEVE_HIERBA):
+            return False
+        for y in range(ty + 1, ty + 7):
+            if g(tx, y):
+                return False
+        x0, x1, y0, y1 = max(0, tx - 3), min(W - 1, tx + 3), ty, min(H - 1, ty + 10)
+        antes = [mundo[x + y * W] for y in range(y0, y1 + 1) for x in range(x0, x1 + 1)]
+        mundo[tx + ty * W] = 0
+        arbol(tx, ty, tipo)
+        k = 0
+        for y in range(y0, y1 + 1):
+            for x in range(x0, x1 + 1):
+                nuevo = mundo[x + y * W]
+                if nuevo != antes[k]:
+                    mundo[x + y * W] = antes[k]
+                    self.poner(x, y, nuevo)
+                k += 1
+        return True
+
+    def efectos_paso(self, dt):
+        """TNT con su mecha, fuego que se apaga y 'ticks al azar' (el trigo y los
+        retoños crecen poco a poco cerca de ti, como en Minecraft)."""
+        for t in list(self.tnt):
+            t[2] -= dt
+            if t[2] <= 0:
+                self.tnt.remove(t)
+                if L2PM[g(t[0], t[1])] == TNT_ON:
+                    self.poner(t[0], t[1], 0)
+                    self.explotar(t[0] + 0.5, t[1] + 0.5, 4)
+        for f in list(self.fuegos):
+            f[2] -= dt
+            if f[2] <= 0:
+                self.fuegos.remove(f)
+                if L2PM[g(f[0], f[1])] == FUEGO:
+                    self.poner(f[0], f[1], 0)
+        self.tick_t -= dt
+        if self.tick_t > 0:
+            return
+        self.tick_t = 0.5
+        cx, cy = int(self.x), int(self.y)
+        for _ in range(20):
+            x, y = cx + random.randint(-16, 16), cy + random.randint(-10, 10)
+            q = L2PM[g(x, y)]
+            if TRIGO1 <= q < TRIGO_OK and random.random() < 0.5:
+                self.poner(x, y, B(q + 1))
+            elif q in RETONOS and random.random() < 0.15:
+                self.crecer(x, y)
+
     def mob_en(self, tx, ty):
         for m in self.mobs:
-            d = MOBS.get(m[0], {})
-            if m[1] - 0.2 <= tx + 0.5 <= m[1] + d.get("w", 1) + 0.2 and \
-                    m[2] - 0.2 <= ty + 0.5 <= m[2] + d.get("h", 1) + 0.2:
+            d = MOBS.get(m[0])
+            w, h = (d[4], d[5]) if d else (1, 1)
+            if m[1] - 0.2 <= tx + 0.5 <= m[1] + w + 0.2 and m[2] - 0.2 <= ty + 0.5 <= m[2] + h + 0.2:
                 return m
         return None
 
@@ -935,7 +1377,8 @@ class Juego:
             return True
         # otro jugador (PvP, como en Minecraft)
         for pid, o in self.otros.items():
-            if not o[6] and int(o[0] + PW / 2) in (tx, tx - self.cara) and int(o[1]) <= ty <= int(o[1] + 1.8):
+            if not o[6] and o[9] == self.dim and int(o[0] + PW / 2) in (tx, tx - self.cara) and \
+                    int(o[1]) <= ty <= int(o[1] + 1.8):
                 red.enviar({"dano": [pid, dano, self.cara]})
                 self.golpe_t = 0.25
                 sonar("hurt", 0.5)
@@ -976,7 +1419,9 @@ class Juego:
         if dy < 0:
             ty = math.floor(e[1])
             for tx in range(x0, x1 + 1):
-                if solido(g(tx, ty)):
+                b = g(tx, ty)
+                # las plataformas ('P') solo paran si se viene de encima
+                if solido(b) or (SOL[b] and e[1] - dy >= ty + 1 - 1e-6):
                     e[1], e[3] = ty + 1.0, True
                     return True
         elif dy > 0:
@@ -1039,11 +1484,20 @@ class Juego:
             if self.paso_t <= 0:
                 self.paso_t = 0.38
                 sonar_bloque(g(int(self.x + PW / 2), int(self.y - 0.5)), 0.25)
-        if es_lava(dentro):                        # 'In Lava'
+        if es_lava(dentro) or L2PM[dentro] == FUEGO:   # 'In Lava' (y el fuego quema 1)
             self.lava_t -= dt
             if self.lava_t <= 0:
                 self.lava_t = 0.5
-                self.herir(4, "hurt")
+                self.herir(4 if LIQ[dentro] else 1, "hurt")
+        # el portal: 110 ticks dentro y viajas (al llegar, hay que salir y volver a entrar)
+        if L2PM[dentro] == PORTAL or L2PM[g(int(self.x + PW / 2), int(self.y + 1.3))] == PORTAL:
+            if self.portal_t >= 0:
+                self.portal_t += dt
+                self.aviso, self.aviso_t = "Viajando...", 0.3
+                if self.portal_t > 3.7:
+                    self.viajar()
+        else:
+            self.portal_t = 0.0
         if self.x < 0:
             self.x = 0.0
         if self.x > W - PW:
@@ -1051,9 +1505,19 @@ class Juego:
         if self.y < -5:
             self.herir(20, "hurt")
 
-    def herir(self, n, sonido="hurt"):
+    def herir(self, n, sonido="hurt", armadura=False):
         if n <= 0 or self.dano_t > 0:             # invulnerable 0,5 s tras un golpe
             return False
+        if armadura:                              # golpes, flechas y explosiones
+            dp = puntos_defensa()
+            if dp:                                # _DefenseMul = 1 - 0,04 x puntos
+                n = math.ceil(n * (1 - dp * 0.04))
+                for k in range(3):                # y cada pieza pierde 1 ('_DamageArmor')
+                    if arm_id[k]:
+                        arm_n[k] -= 1
+                        if arm_n[k] <= 0:
+                            arm_id[k] = arm_n[k] = 0
+                            sonar("break", 0.7)
         self.vida = max(0, self.vida - n)
         self.dano_t = 0.5
         sonar(sonido, 0.8)
@@ -1071,13 +1535,13 @@ class Juego:
         """[(id o None si soy yo, x, y)] de todos los jugadores de la partida."""
         out = [] if self.muerto else [(None, self.x, self.y)]
         for pid, o in self.otros.items():
-            if not o[6]:
+            if not o[6] and o[9] == self.dim:     # (los que están en otra dimensión, no)
                 out.append((pid, o[0], o[1]))
         return out
 
     def herir_a(self, pid, n, cara):
         if pid is None:
-            if self.herir(n):
+            if self.herir(n, "hurt", True):
                 self.vx = 6.0 * cara
         else:                                     # otro jugador: se lo digo a él
             red.enviar({"dano": [pid, n, cara]})
@@ -1094,7 +1558,7 @@ class Juego:
 
     def nuevo_mob(self, tipo, x, y, cara):
         d = MOBS[tipo]
-        return [tipo, x, y, 0.0, 0.0, d["vida"], cara, 0.0, self.mob_id, 0.0]
+        return [tipo, x, y, 0.0, 0.0, d[1], cara, 0.0, self.mob_id, 0.0]
 
     def mobs_paso(self, dt):
         for o in self.otros.values():             # los demás, moviéndose suave
@@ -1113,29 +1577,10 @@ class Juego:
         if not jug:
             return
         self.flechas_paso(dt, jug)
-        # aparecer alrededor de algún jugador, fuera de su pantalla (como Paper
-        # Minecraft: de día animales sobre hierba; de noche, 44 % zombi, 20 %
-        # esqueleto, 14 % araña, 13 % creeper)
-        malos = sum(1 for m in self.mobs if m[0] >= 100)
-        if len(self.mobs) < 6 + 2 * len(self.otros) and random.random() < dt * 0.25:
-            _, jx, jy = random.choice(jug)
-            lado = random.choice((-1, 1))
-            x = int(jx) + lado * random.randint(12, 18)
-            if 0 <= x < W:
-                y = alto[x] + 1
-                top = L2PM[g(x, alto[x])]
-                self.mob_id += 1
-                if self.es_noche():
-                    if malos < 3 + len(self.otros):
-                        r = random.random()
-                        t = 100 if r < 0.44 else 103 if r < 0.64 else 102 if r < 0.78 else 101
-                        if t in MOBS:
-                            self.mobs.append(self.nuevo_mob(t, x + 0.2, float(y), -lado))
-                elif top == HIERBA_PM:
-                    t = random.choice((1, 2, 3, 4))
-                    if t in MOBS:
-                        self.mobs.append(self.nuevo_mob(t, x + 0.2, float(y), 1))
+        self.aparecer_mobs(dt, jug)
         for m in list(self.mobs):
+            if m not in self.mobs:                # (lo mató un perro en esta vuelta)
+                continue
             d = MOBS.get(m[0])
             if not d:
                 self.mobs.remove(m)
@@ -1146,11 +1591,11 @@ class Juego:
                 dd = abs(pj[1] - m[1]) + abs(pj[2] - m[2]) * 0.5
                 if dd < dist:
                     cerca, dist = pj, dd
-            if dist > (60 if m[0] < 100 else 45):  # los animales no se van (como en Minecraft)
+            if m[0] != 6 and dist > (60 if m[0] < 100 else 45):   # los animales no se van
                 self.mobs.remove(m)
                 continue
             col = min(W - 1, max(0, int(m[1])))
-            if m[0] in (100, 103) and not self.es_noche() and m[2] >= alto[col]:
+            if m[0] in (100, 103) and not self.dim and not self.es_noche() and m[2] >= alto[col]:
                 m[5] -= dt                        # se queman al sol
                 if m[5] <= 0:
                     self.mobs.remove(m)
@@ -1158,36 +1603,39 @@ class Juego:
             m[7] -= dt
             pid, px, py = cerca
             vx = 0.0
-            if m[0] >= 100 and dist < 16:         # malos: hacia el jugador más cercano
+            if hostil(m) and dist < 16:           # malos: hacia el jugador más cercano
                 dx = px - m[1]
                 m[6] = 1 if dx > 0 else -1
                 if m[0] == 103:                   # esqueleto: guarda distancia y dispara
                     vx = 2.0 * m[6] if abs(dx) > 7 else (-2.0 * m[6] if abs(dx) < 5 else 0.0)
                     if m[7] <= 0 and abs(dx) < 10 and abs(py - m[2]) < 4:
                         m[7] = 2.0
-                        self.flechas.append([m[1] + d["w"] / 2, m[2] + 1.4, 9.0 * m[6], 3.0 + (py - m[2])])
+                        self.flechas.append([m[1] + d[4] / 2, m[2] + 1.4, 9.0 * m[6], 3.0 + (py - m[2])])
                 elif m[0] == 101:                 # creeper: mecha de 1,5 s y explota
                     vx = 2.0 * m[6] if abs(dx) > 1.2 else 0.0
                     if abs(dx) < 1.5 and abs(py - m[2]) < 1.8:
                         m[9] += dt
                         if m[9] > 1.5:
-                            self.explotar(m[1] + 0.3, m[2] + 0.8, 3)
                             self.mobs.remove(m)
+                            self.explotar(m[1] + 0.3, m[2] + 0.8, 3)
                             continue
                     else:
                         m[9] = 0.0
-                else:                             # zombi, araña, enderman: cuerpo a cuerpo
-                    vx = (2.6 if m[0] == 102 else 2.2) * m[6] if abs(dx) > 0.5 else 0.0
+                else:                             # zombi, araña, lobo, porquero, enderman
+                    vx = (2.6 if m[0] in (102, 104) else 3.0 if m[0] == 107 else 2.2) * m[6] \
+                        if abs(dx) > 0.5 else 0.0
                     if abs(dx) < 0.9 and abs(py - m[2]) < 1.5 and m[7] <= 0:
                         self.herir_a(pid, 3, m[6])        # -3 cada 1,5 s ('Attack?')
                         m[7] = 1.5
+            elif m[0] == 6:                       # perro: sigue a su dueño y le defiende
+                vx = self.perro(m, jug)
             else:                                 # animales: pasean (y siguen su comida)
                 h = None
                 if pid is None:
                     h = inv_id[self.sel]
                 elif pid in self.otros:
                     h = self.otros[pid][4]
-                if d["comida"] and h == d["comida"] and dist < 6:
+                if d[2] and h == d[2] and dist < 6:
                     m[6] = 1 if px > m[1] else -1
                     vx = 1.4 * m[6] if abs(px - m[1]) > 1.2 else 0.0
                 else:
@@ -1200,7 +1648,7 @@ class Juego:
                 vx = m[3]
                 m[3] *= 0.85
             suelo = abs(m[4]) < 0.01              # (se mira antes de la gravedad)
-            e = [m[1], m[2], vx, suelo, d["w"], d["h"]]
+            e = [m[1], m[2], vx, suelo, d[4], d[5]]
             m[4] = max(-MAX_CAIDA, m[4] - GRAV * dt)
             self.mover_x(e, vx * dt)              # en el suelo sube escalones solo
             if e[2] == 0.0 and vx and suelo:
@@ -1211,6 +1659,82 @@ class Juego:
             m[1], m[2] = e[0], e[1]
             if m[6] == 0:
                 m[6] = 1
+            if m[2] < -3:                         # (cayó al vacío)
+                self.mobs.remove(m)
+
+    def suelo_cerca(self, x, y0):
+        """Una casilla con suelo debajo y dos de aire, cerca de la altura y0."""
+        for dy in range(10):
+            for y in (y0 + dy, y0 - dy):
+                if 1 <= y < H - 2 and SOL[g(x, y - 1)] and not g(x, y) and not g(x, y + 1):
+                    return y
+        return None
+
+    def aparecer_mobs(self, dt, jug):
+        """Como Paper Minecraft: alrededor de algún jugador, fuera de su pantalla. De
+        día animales sobre la hierba (a veces un lobo); de noche 44 % zombi, 20 %
+        esqueleto, 14 % araña, 13 % creeper y el resto enderman; en el Nether,
+        porqueros zombis."""
+        malos = sum(1 for m in self.mobs if m[0] >= 100)
+        if len(self.mobs) >= 4 + 2 * len(jug) or random.random() > dt * 0.25:
+            return
+        _, jx, jy = random.choice(jug)
+        lado = random.choice((-1, 1))
+        x = int(jx) + lado * random.randint(12, 18)
+        if not 0 <= x < W:
+            return
+        t = 0
+        if self.dim:
+            y = self.suelo_cerca(x, int(jy))
+            if y is None or malos >= 4 + len(jug) or LIQ[g(x, y - 1)]:
+                return
+            t = 105
+        else:
+            y = alto[x] + 1
+            top = L2PM[g(x, alto[x])]
+            if self.es_noche():
+                if malos < 2 + len(jug):
+                    r = random.random()
+                    t = 100 if r < 0.44 else 103 if r < 0.64 else 102 if r < 0.78 else \
+                        101 if r < 0.91 else 107
+            elif top in (HIERBA_PM, NIEVE_HIERBA):
+                t = 5 if random.random() < 0.08 else random.choice((1, 2, 3, 4))
+        if t in MOBS:
+            self.mob_id += 1
+            self.mobs.append(self.nuevo_mob(t, x + 0.2, float(y), -lado))
+
+    def perro(self, m, jug):
+        """El lobo domado: ataca a los monstruos cercanos y sigue a su dueño."""
+        dueno = self.duenos.get(m[8])
+        for m2 in self.mobs:
+            if hostil(m2) and m2[0] != 104 and abs(m2[1] - m[1]) < 6 and abs(m2[2] - m[2]) < 3:
+                dx = m2[1] - m[1]
+                m[6] = 1 if dx > 0 else -1
+                if abs(dx) < 1.0 and m[7] <= 0:
+                    m[7] = 1.0
+                    self.dano_mob(m2, 4, m[6], dueno)
+                return 3.0 * m[6] if abs(dx) > 0.8 else 0.0
+        for pj in jug:
+            if pj[0] == dueno:
+                dx = pj[1] - m[1]
+                if abs(dx) > 14 or abs(pj[2] - m[2]) > 8:
+                    m[1], m[2], m[4] = pj[1], pj[2] + 0.1, 0.0     # se teletransporta
+                    return 0.0
+                if abs(dx) > 2.5:
+                    m[6] = 1 if dx > 0 else -1
+                    return 3.2 * m[6]
+                return 0.0
+        return 0.0
+
+    def domar(self, m, quien):
+        """Hueso a un lobo: 1 de cada 3 veces se hace tu perro."""
+        if m[0] == 5 and random.random() < 0.34:
+            m[0] = 6
+            self.duenos[m[8]] = quien
+            if quien is None:
+                self.aviso, self.aviso_t = "Lobo domado!", 2.0
+            else:
+                red.enviar({"domado": quien})
 
     def flechas_paso(self, dt, jug):
         for f in list(self.flechas):
@@ -1229,18 +1753,27 @@ class Juego:
     def explotar(self, x, y, r):
         """'Explode Circle_pr': rompe los bloques del círculo y daña según la
         distancia (r - distancia) * 16."""
-        lecho = B(LECHO_PM)
         for dy in range(-r, r + 1):
             for dx in range(-r, r + 1):
                 if dx * dx + dy * dy <= r * r:
                     bx, by = int(x) + dx, int(y) + dy
-                    if g(bx, by) and g(bx, by) != lecho:
+                    q = L2PM[g(bx, by)]
+                    if q == TNT_PM:               # otra TNT: se enciende con mecha corta
+                        self.encender(bx, by, random.uniform(0.5, 1.5))
+                    elif q and q != PORTAL and ficha(q)[F_DUR] < 5000:    # (no la obsidiana)
+                        if q == COFRE_PM:
+                            self.romper(bx, by, q)
                         self.poner(bx, by, 0)
         sonar("explode%d" % random.randint(1, 4), 0.9)
         for pid, px, py in self.jugadores():
             dist = max(1.0, math.sqrt((px - x) ** 2 + (py - y) ** 2))
             if dist < r:
                 self.herir_a(pid, int((r - dist) * 16), 1 if px > x else -1)
+        if self.manda_mobs():
+            for m in list(self.mobs):
+                dist = max(1.0, math.sqrt((m[1] - x) ** 2 + (m[2] - y) ** 2))
+                if dist < r and m in self.mobs:
+                    self.dano_mob(m, int((r - dist) * 16), 1 if m[1] > x else -1)
         for x2 in range(W):
             calc_alto(x2)
 
@@ -1249,7 +1782,17 @@ class Juego:
         m[5] -= dano
         m[3] = 5.0 * cara
         m[4] = 5.0
-        if m[0] < 100:                            # los animales huyen
+        if m[0] in ENFADA:                        # lobo y porqueros se enfadan (y los
+            for m2 in self.mobs:                  # porqueros de alrededor también)
+                if m2 is m or (m2[0] == m[0] == 105 and abs(m2[1] - m[1]) < 12):
+                    m2[0] = ENFADA[m2[0]]
+        elif m[0] == 107:                         # el enderman se enfada y se teletransporta
+            m[9] = 1.0
+            x = min(W - 2, max(1, int(m[1]) + random.choice((-1, 1)) * random.randint(4, 8)))
+            y = self.suelo_cerca(x, int(m[2]))
+            if y is not None:
+                m[1], m[2], m[3] = x + 0.1, float(y), 0.0
+        elif m[0] < 100 and m[0] != 6:            # los animales huyen
             m[6], m[7] = cara, 3.0
         oigo = self.oye(m)
         nom = {1: "pig", 100: "zombiehurt", 102: "spider", 103: "skeletonhurt"}.get(m[0])
@@ -1257,7 +1800,7 @@ class Juego:
             sonar("%s%d" % (nom, random.randint(1, 2)), 0.6)
         if m[5] <= 0:
             self.mobs.remove(m)
-            for it, a, b in MOBS[m[0]]["botin"]:  # 'Death Harvest'
+            for it, a, b in MOBS[m[0]][3]:        # 'Death Harvest'
                 n = random.randint(a, b)
                 if n:
                     if quien is None:
@@ -1272,13 +1815,14 @@ class Juego:
         self.cuadro += 1
         if self.cuadro % 3 == 0:
             d = {"p": [round(self.x, 2), round(self.y, 2), self.cara,
-                       1 if abs(self.vx) > 0.5 else 0, inv_id[self.sel], 1 if self.muerto else 0]}
+                       1 if abs(self.vx) > 0.5 else 0, inv_id[self.sel], 1 if self.muerto else 0,
+                       self.dim]}
             if d != self.enviado:
                 red.enviar(d)
                 self.enviado = d
             if self.manda_mobs() and self.otros:   # el anfitrión cuenta dónde están los mobs
                 red.enviar({"m": [[m[8], m[0], round(m[1], 2), round(m[2], 2), m[6]]
-                                  for m in self.mobs], "t": round(self.tiempo, 1)})
+                                  for m in self.mobs], "t": round(self.tiempo, 1), "dm": self.dim})
         yo = red.mi_id()
         for m in red.recibir():
             t = m.get("t")
@@ -1289,13 +1833,14 @@ class Juego:
                 o = self.otros.get(m["id"])
                 x, y = (o[0], o[1]) if o else (p[0], p[1])   # se dibuja yendo hacia p
                 self.otros[m["id"]] = [x, y, p[2], p[3], p[4], nombre_j,
-                                       p[5] if len(p) > 5 else 0, p[0], p[1]]
+                                       p[5] if len(p) > 5 else 0, p[0], p[1],
+                                       p[6] if len(p) > 6 else 0]
             elif t == "de" and "m" in d and not self.manda_mobs():
                 # mobs del anfitrión: [id, tipo, x, y, cara]. En [3], [4] va adónde
                 # van: se dibujan acercándose poco a poco (como Minecraft)
                 antes = {m2[8]: m2 for m2 in self.mobs}
                 nuevos = []
-                for e in d["m"]:
+                for e in (d["m"] if d.get("dm", 0) == self.dim else ()):   # (los de mi dimensión)
                     v = antes.get(e[0])
                     x, y = (v[1], v[2]) if v else (e[2], e[3])
                     nuevos.append([e[1], x, y, e[2], e[3], 10, e[4], 0.0, e[0], 0.0])
@@ -1309,14 +1854,25 @@ class Juego:
                         self.dano_mob(mob, dano, cara, m["id"])
                         break
             elif t == "de" and "dano" in d and d["dano"][0] == yo and not self.muerto:
-                if self.herir(d["dano"][1]):
+                if self.herir(d["dano"][1], "hurt", True):
                     self.vx = 6.0 * d["dano"][2]
             elif t == "de" and "dar" in d and d["dar"][0] == yo:
                 dar(d["dar"][1], d["dar"][2])
-            elif t == "var" and str(m.get("n", "")).startswith("b:"):
-                i = int(m["n"][2:])
-                if 0 <= i < W * H and m["id"] != red.mi_id():
-                    self.poner(i % W, i // W, int(m["v"]), False)
+            elif t == "de" and "domar" in d and self.manda_mobs():
+                for mob in self.mobs:
+                    if mob[8] == d["domar"]:
+                        self.domar(mob, m["id"])
+            elif t == "de" and "domado" in d and d["domado"] == yo:
+                self.aviso, self.aviso_t = "Lobo domado!", 2.0
+            elif t == "de" and "dormir" in d and self.manda_mobs() and self.es_noche():
+                self.amanecer()
+            elif t == "var" and str(m.get("n", ""))[:2] in ("b:", "n:"):
+                if (m["n"][0] == "n") == (self.dim == 1):     # solo los de mi dimensión
+                    i = int(m["n"][2:])
+                    if 0 <= i < W * H and m["id"] != red.mi_id():
+                        self.poner(i % W, i // W, int(m["v"]), False)
+            elif t == "var" and str(m.get("n", "")).startswith("c:"):
+                self.cofres[m["n"][2:]] = list(m["v"] or [])
             elif t == "entra":
                 self.enviado = None
                 self.aviso = "%s entra" % m.get("nombre", "?")
@@ -1402,6 +1958,7 @@ class Juego:
         if sitio is None:
             sitio = "mesa" if self.cerca(MESA_PM) else ""
         ops = self.opciones(sitio)
+        # sel: 0..26 huecos, -1..-3 armadura (casco, peto, pantalones), >= 27 recetas
         sel, coger = 0, None
         n_op = len(ops)
         self.fondo_t = K.ms()
@@ -1421,6 +1978,15 @@ class Juego:
                 icono(inv_id[i], x + 1, y + 2, inv_n[i])
                 if sel == i:
                     P.marco(x - 1, y - 1, 21, 23, 0xFFFFFF)
+            for k in range(3):                    # armadura, a la derecha
+                x, y = 216, 26 + k * 22 + (10 if k == 2 else 0)
+                P.rect(x, y, 19, 21, 0x8B8B8B)
+                P.rect(x + 1, y + 1, 17, 19, 0x5A5A7A if coger != -1 - k else 0xA0A050)
+                icono(arm_id[k], x + 1, y + 2, arm_n[k])
+                if sel == -1 - k:
+                    P.marco(x - 1, y - 1, 21, 23, 0xFFFFFF)
+            P.texto("Armadura", 240, 30, 0x404040)
+            P.texto("%d" % puntos_defensa(), 240, 42, 0x404080)
             y0 = 112
             P.texto("Fundir (EXE):" if sitio == "horno" else "Recetas (EXE fabrica):", 18, y0 - 10, 0x404040)
             if sitio == "horno":
@@ -1442,7 +2008,7 @@ class Juego:
                 P.rect(18, y, 284, 16, 0xFFFFFF if sel == NHUECOS + j else 0xB0B0B0)
                 icono(prod, 20, y)
                 P.texto(txt[:43], 38, y + 4, 0x206020 if ok else 0x802020)
-            nom = nombre(inv_id[sel]) if sel < NHUECOS else ""
+            nom = nombre(hget(sel)[0]) if sel < NHUECOS else ""
             P.rect(18, 202, 284, 9, 0xC6C6C6)
             P.texto(nom or "EXE: coger/soltar · 9: tirar · 7/DEL: cerrar", 18, 202, 0x404040)
             P.mostrar()
@@ -1450,10 +2016,24 @@ class Juego:
             for k, sh in K.eventos():
                 if k in ("7", "DEL", "CH:e", "CH:E"):
                     fin = True
+                elif sel < 0:                     # en la armadura
+                    if k == "UP":
+                        sel = min(-1, sel + 1)
+                    elif k == "DOWN":
+                        sel = max(-3, sel - 1)
+                    elif k == "LEFT":
+                        sel = (17, 26, 8)[-1 - sel]
+                    elif k == "EXE":
+                        coger = self.mover_hueco(coger, sel)
+                    elif k in ("9", "CH:q") and arm_id[-1 - sel]:
+                        arm_id[-1 - sel] = arm_n[-1 - sel] = 0
                 elif k == "RIGHT" and sel < NHUECOS:
-                    sel = (sel + 1) % NHUECOS
+                    if sel % 9 == 8:              # de la última columna, a la armadura
+                        sel = -1 if 9 <= sel < 18 else (-2 if sel >= 18 else -3)
+                    else:
+                        sel += 1
                 elif k == "LEFT" and sel < NHUECOS:
-                    sel = (sel - 1) % NHUECOS
+                    sel = sel - 1 if sel % 9 else sel + 8
                 elif k == "UP":
                     if sel >= NHUECOS:
                         sel = sel - 1 if sel > NHUECOS else 0
@@ -1477,22 +2057,127 @@ class Juego:
                             ops = self.opciones(sitio)
                             n_op = len(ops)
                             sel = min(sel, NHUECOS + n_op - 1) if n_op else 0
-                    elif coger is None:
-                        coger = sel
                     else:
-                        a, b = coger, sel                 # juntar pilas iguales o cambiar
-                        if inv_id[a] == inv_id[b] and a != b and not es_herramienta(inv_id[a]):
-                            k2 = min(inv_n[a], max_pila(inv_id[b]) - inv_n[b])
-                            inv_n[b] += k2
-                            quitar_hueco(a, k2)
-                        else:
-                            inv_id[a], inv_id[b] = inv_id[b], inv_id[a]
-                            inv_n[a], inv_n[b] = inv_n[b], inv_n[a]
-                        coger = None
+                        coger = self.mover_hueco(coger, sel)
                 elif k in ("9", "CH:q") and sel < NHUECOS and inv_id[sel]:
                     quitar_hueco(sel)
             if fin:
                 break
+        self.completo = True
+        self.hud = None
+
+    def mover_hueco(self, coger, sel):
+        """EXE en un hueco: la 1ª vez lo coge; la 2ª junta las pilas o cambia los
+        objetos (en la armadura solo entra su pieza)."""
+        if coger is None:
+            return sel
+        a, b = coger, sel
+        ia, na = hget(a)
+        ib, nb = hget(b)
+        if a == b:
+            return None
+        if a >= 0 and b >= 0 and ia == ib and ia and not es_herramienta(ia):
+            k2 = min(na, max_pila(ib) - nb)
+            inv_n[b] += k2
+            quitar_hueco(a, k2)
+            return None
+        if (b < 0 and ia and pieza(ia) != -1 - b) or (a < 0 and ib and pieza(ib) != -1 - a):
+            return None                           # (eso no se pone ahí)
+        hput(a, ib, nb)
+        hput(b, ia, na)
+        return None
+
+    def abrir_cofre(self, idx):
+        """Cofre de 27 huecos arriba y el inventario abajo (se guarda con el mundo y,
+        jugando en red, en la variable c:dim:casilla)."""
+        clave = "%d:%d" % (self.dim, idx)
+        if self.online:
+            v = red.vars().get("c:" + clave)
+            if v is not None:
+                self.cofres[clave] = list(v)
+        c = self.cofres.get(clave) or []
+        c = (list(c) + [0] * (2 * NHUECOS))[:2 * NHUECOS]
+        fila, col, coger = 0, 0, None
+
+        def hueco(f, k):                          # ("c", i) del cofre o ("i", i) inventario
+            if f < 3:
+                return ("c", f * 9 + k)
+            return ("i", (9, 18, 0)[f - 3] + k)
+
+        def leer(h):
+            if h[0] == "c":
+                return c[2 * h[1]], c[2 * h[1] + 1]
+            return inv_id[h[1]], inv_n[h[1]]
+
+        def escribir(h, it, n):
+            if h[0] == "c":
+                c[2 * h[1]], c[2 * h[1] + 1] = it, n
+            else:
+                inv_id[h[1]], inv_n[h[1]] = it, n
+
+        self.fondo_t = K.ms()
+        while True:
+            self.fondo_paso()
+            P.recorte()
+            P.rect(10, 6, 300, 206, 0xC6C6C6)
+            P.marco(10, 6, 300, 206, 0x000000)
+            P.texto("Cofre", 18, 12, 0x404040)
+            P.texto("Inventario", 18, 96, 0x404040)
+            for f in range(6):
+                for k in range(9):
+                    h = hueco(f, k)
+                    x, y = 18 + k * 20, 24 + f * 22 + (16 if f >= 3 else 0) + (6 if f == 5 else 0)
+                    P.rect(x, y, 19, 21, 0x8B8B8B)
+                    P.rect(x + 1, y + 1, 17, 19, 0xA0A050 if coger == h else 0x6E6E6E)
+                    it, n = leer(h)
+                    icono(it, x + 1, y + 2, n)
+                    if (f, k) == (fila, col):
+                        P.marco(x - 1, y - 1, 21, 23, 0xFFFFFF)
+            it, _ = leer(hueco(fila, col))
+            P.rect(18, 202, 284, 9, 0xC6C6C6)
+            P.texto(nombre(it) or "EXE: coger/soltar · 9: tirar · 7/DEL: cerrar", 18, 202, 0x404040)
+            P.mostrar()
+            fin = False
+            for k, sh in K.eventos():
+                if k in ("7", "DEL", "CH:e", "CH:E"):
+                    fin = True
+                elif k == "LEFT":
+                    col = (col - 1) % 9
+                elif k == "RIGHT":
+                    col = (col + 1) % 9
+                elif k == "UP":
+                    fila = (fila - 1) % 6
+                elif k == "DOWN":
+                    fila = (fila + 1) % 6
+                elif k == "EXE":
+                    h = hueco(fila, col)
+                    if coger is None:
+                        coger = h
+                    else:
+                        ia, na = leer(coger)
+                        ib, nb = leer(h)
+                        if coger != h and ia == ib and ia and not es_herramienta(ia):
+                            k2 = min(na, max_pila(ib) - nb)
+                            escribir(h, ib, nb + k2)
+                            escribir(coger, ia if na - k2 else 0, na - k2)
+                        else:
+                            escribir(coger, ib, nb)
+                            escribir(h, ia, na)
+                        coger = None
+                elif k in ("9", "CH:q"):
+                    h = hueco(fila, col)
+                    it, n = leer(h)
+                    if it:
+                        escribir(h, it if n > 1 and not es_herramienta(it) else 0,
+                                 n - 1 if n > 1 and not es_herramienta(it) else 0)
+            if fin:
+                break
+        if any(c):
+            self.cofres[clave] = c
+        else:
+            self.cofres.pop(clave, None)
+        if self.online:
+            red.var("c:" + clave, c if any(c) else [])
         self.completo = True
         self.hud = None
 
@@ -1580,6 +2265,7 @@ class Juego:
             self.sucios.append((self.pico[0], self.pico[1]))
             self.pico = (-1, -1, 0.0)
         self.fisica(dt)
+        self.efectos_paso(dt)
         self.mobs_paso(dt)
         self.red_paso()
         self.golpe_t = max(0.0, self.golpe_t - dt)
@@ -1601,7 +2287,9 @@ class Juego:
             self.aviso_t -= dt
             if self.aviso_t <= 0:
                 self.aviso = None
-        # el cielo cambia con la hora
+        # el cielo cambia con la hora (en el Nether no hay cielo)
+        if self.dim:
+            return
         f = (self.tiempo % DIA_S) / DIA_S
         noche = 1.0 if 0.75 < f < 0.95 else (0.0 if f < 0.65 else
                                               ((f - 0.65) / 0.1 if f < 0.75 else (1 - f) / 0.05))
@@ -1622,6 +2310,108 @@ class Juego:
         self.red_paso()
         self.completo = True                      # al volver se repinta todo
 
+    # ---- dimensiones ('save chunk' / 'load chunk' de Paper Minecraft) ----------------
+    def cambiar_dim(self, nueva):
+        """La dimensión de ahora se queda en la SD y se carga (o se genera) la otra."""
+        SPR.clear()
+        gc.collect()
+        mensaje(["Entrando en el %s..." % NOMBRE_DIM[nueva]])
+        try:
+            os.mkdir(CARPETA)
+        except OSError:
+            pass
+        with open(ruta_dim(self.archivo, self.dim), "wb") as f:
+            f.write(mundo)
+        self.dim = nueva
+        gc.collect()
+        try:
+            with open(ruta_dim(self.archivo, nueva), "rb") as f:
+                f.readinto(mundo)
+        except OSError:
+            if nueva:
+                generar_nether(self.semilla)
+            else:
+                generar(self.semilla)             # (no debería pasar: el mundo se guardó al irte)
+        if self.online:                           # lo que cambiaron los demás mientras
+            pre = "n:" if nueva else "b:"
+            for n, v in red.vars().items():
+                if n.startswith(pre):
+                    i = int(n[2:])
+                    if 0 <= i < W * H:
+                        mundo[i] = int(v)
+        for x in range(W):
+            calc_alto(x)
+        self.mobs, self.flechas, self.tnt, self.fuegos = [], [], [], []
+        self.pico = (-1, -1, 0.0)
+        self.enviado = None
+        self.completo = True
+        self.hud = None
+        gc.collect()
+
+    def viajar(self):
+        self.cambiar_dim(1 - self.dim)
+        self.ir_al_portal()
+        self.portal_t = -1.0
+
+    def ir_al_portal(self):
+        """'TeleportToPortal': un portal a 32 columnas o menos; si no hay, se crea."""
+        x0, y0 = int(self.x), int(self.y)
+        mejor = None
+        for d in range(33):
+            for c in ((x0 + d, x0 - d) if d else (x0,)):
+                if 0 <= c < W:
+                    for y in range(1, H - 1):
+                        if L2PM[mundo[c + y * W]] == PORTAL and L2PM[mundo[c + (y - 1) * W]] != PORTAL:
+                            if mejor is None or abs(y - y0) < abs(mejor[1] - y0):
+                                mejor = (c, y)
+            if mejor:
+                break
+        if mejor is None:
+            mejor = self.crear_portal(x0, y0)
+        self.x, self.y = mejor[0] + 0.2, float(mejor[1])
+        self.vx = self.vy = 0.0
+        self.caida_y = None
+        self.centrar()
+
+    def crear_portal(self, x0, y0):
+        """Busca cerca un sitio con suelo y 4 x 4 de aire (sin lava) para el portal;
+        si no lo hay, lo excava en la roca con una sala alrededor."""
+        def libre(x, y):
+            for dx in range(4):
+                if not solido(g(x + dx, y - 1)) and dx in (1, 2):
+                    return False
+                for dy in range(4):
+                    q = g(x + dx, y + dy)
+                    if SOL[q] or LIQ[q]:
+                        return False
+            return True
+        mejor, dist = None, 999
+        ymin = LAVA_N + 2 if self.dim else 3
+        for dx in range(-16, 17):
+            x = x0 - 1 + dx
+            if not 2 <= x < W - 6:
+                continue
+            for y in range(max(ymin, y0 - 12), min(H - 7, y0 + 13)):
+                d = abs(dx) + abs(y - y0)
+                if d < dist and libre(x, y):
+                    mejor, dist = (x, y), d
+        if mejor:
+            x, y = mejor
+        else:
+            x, y = max(2, min(W - 6, x0 - 1)), max(ymin, min(H - 8, y0))
+        obs, por = B(OBS_PORTAL), B(PORTAL)
+        for dx in range(-2, 6):
+            for dy in range(-1, 5):
+                if dx in (-2, -1, 4, 5):          # a los lados: suelo y sitio para salir
+                    if dy == -1:
+                        if not solido(g(x + dx, y + dy)):
+                            self.poner(x + dx, y + dy, B(OBSIDIANA))
+                    elif dy < 4 and g(x + dx, y + dy):
+                        self.poner(x + dx, y + dy, 0)
+                elif dy < 4:
+                    self.poner(x + dx, y + dy, obs if dx in (0, 3) or dy in (-1, 3) else por)
+        return (x + 1, y)
+
     def morir(self):
         P.recorte()
         P.rect(0, 0, P.ANCHO, P.ALTO, 0x601010)
@@ -1638,10 +2428,20 @@ class Juego:
                     self.vida, self.hambre, self.sat = 20, 20, 5.0
                     for i in range(NHUECOS):          # como en Minecraft: lo pierdes todo
                         inv_id[i] = inv_n[i] = 0
+                    for k in range(3):
+                        arm_id[k] = arm_n[k] = 0
+                    if self.dim:                      # se reaparece en el mundo normal
+                        self.cambiar_dim(0)
                     self.aparecer()
                     self.hud = None
                     return
             P.mostrar()
+
+
+def hostil(m):
+    """¿Ataca? Monstruos, lobo y porquero enfadados, enderman si le pegaste."""
+    t = m[0]
+    return t in (100, 101, 102, 103, 104, 106) or (t == 107 and m[9] > 0)
 
 
 def acercar(a, b):
@@ -1660,14 +2460,39 @@ def mezcla(a, b, f):
 CARPETA = "mundos"
 
 
+def ruta_dim(nombre_m, d):
+    """La dimensión en la que NO estás espera aquí (los bytes del mundo, tal cual)."""
+    return "%s/%s.d%d" % (CARPETA, nombre_m, d)
+
+
+def borrar_dims(nombre_m):
+    for d in (0, 1):
+        try:
+            os.stat(ruta_dim(nombre_m, d))       # (solo si está: borrar pide permiso)
+            os.remove(ruta_dim(nombre_m, d))
+        except OSError:
+            pass
+
+
+def ids_hex():
+    """La tabla número del mundo -> id de Paper Minecraft, en texto (ocupa poco)."""
+    return binascii.hexlify(bytes(L2PM)).decode()
+
+
 def guardar(j):
+    SPR.clear()                                   # (deja sitio: se vuelven a cargar solos)
+    gc.collect()
     try:
         os.mkdir(CARPETA)
     except OSError:
         pass
     cab = {"v": 2, "nombre": j.nombre, "x": j.x, "y": j.y, "vida": j.vida, "hambre": j.hambre,
            "t": j.tiempo, "inv": [[inv_id[i], inv_n[i]] for i in range(NHUECOS) if inv_id[i]],
-           "pos": [i for i in range(NHUECOS) if inv_id[i]], "ids": list(L2PM)}
+           "pos": [i for i in range(NHUECOS) if inv_id[i]], "ids": ids_hex(),
+           "dim": j.dim, "semilla": j.semilla, "arm": [[arm_id[k], arm_n[k]] for k in range(3)],
+           "cofres": j.cofres, "cama": j.cama,
+           "perros": [[round(m[1], 1), round(m[2], 1)] for m in j.mobs
+                      if m[0] == 6 and j.duenos.get(m[8]) is None]}
     with open("%s/%s.mc2d" % (CARPETA, j.nombre), "wb") as f:
         f.write(b"MC2D2\n")
         f.write(json.dumps(cab).encode())
@@ -1676,16 +2501,17 @@ def guardar(j):
 
 
 def cargar(nombre_m):
+    SPR.clear()
+    gc.collect()
     with open("%s/%s.mc2d" % (CARPETA, nombre_m), "rb") as f:
-        datos = f.read()
-    if not datos.startswith(b"MC2D2"):
-        raise ValueError("mundo de la version anterior")
-    a = datos.find(b"\n")
-    b = datos.find(b"\n", a + 1)
-    cab = json.loads(datos[a + 1:b].decode())
-    mundo[:] = datos[b + 1:b + 1 + W * H]
+        if not f.readline().startswith(b"MC2D2"):
+            raise ValueError("mundo de la version anterior")
+        cab = json.loads(f.readline().decode())
+        f.readinto(mundo)                         # (sin copiar el mundo: no hay memoria)
     ids = cab.get("ids")
-    if ids and ids != list(L2PM):                 # otra conversión: se traduce
+    if isinstance(ids, str):
+        ids = None if ids == ids_hex() else array("H", binascii.unhexlify(ids))
+    if ids and list(ids) != list(L2PM):           # otra conversión: se traduce
         tabla = bytearray(B(pm) for pm in ids)
         for i in range(W * H):
             mundo[i] = tabla[mundo[i]] if mundo[i] < len(tabla) else 0
@@ -1695,8 +2521,18 @@ def cargar(nombre_m):
         inv_id[i] = inv_n[i] = 0
     for p, (it, n) in zip(cab.get("pos", []), cab.get("inv", [])):
         inv_id[p], inv_n[p] = it, n
+    for k, (it, n) in enumerate(cab.get("arm", [])[:3]):
+        arm_id[k], arm_n[k] = it, n
     j = Juego(nombre_m)
     j.x, j.y, j.vida, j.hambre, j.tiempo = cab["x"], cab["y"], cab["vida"], cab["hambre"], cab["t"]
+    j.dim = cab.get("dim", 0)
+    j.semilla = cab.get("semilla") or random.getrandbits(30)
+    j.cofres = cab.get("cofres", {})
+    j.cama = tuple(cab["cama"]) if cab.get("cama") else None
+    if 6 in MOBS:
+        for x, y in cab.get("perros", []):
+            j.mob_id += 1
+            j.mobs.append(j.nuevo_mob(6, x, y, 1))
     j.centrar()
     return j
 
@@ -1742,7 +2578,12 @@ def publicar(j):
         red.var("m:%d" % k, datos[k * trozo:(k + 1) * trozo])
         if k % 4 == 0:
             P.mostrar()
-    red.var("mundo", {"n": n, "t": j.tiempo, "ids": list(L2PM)})
+    for clave, c in j.cofres.items():
+        red.var("c:" + clave, c)
+    red.var("mundo", {"n": n, "t": j.tiempo, "ids": list(L2PM), "semilla": j.semilla})
+
+
+COFRES_RED = {}
 
 
 def recibir_mundo():
@@ -1758,6 +2599,8 @@ def recibir_mundo():
                 datos.extend(vs.get("m:%d" % k) or [])
             descomprimir(datos)
             for n, v in vs.items():
+                if n.startswith("c:"):
+                    COFRES_RED[n[2:]] = list(v or [])
                 if n.startswith("b:"):
                     i = int(n[2:])
                     if 0 <= i < W * H:
@@ -1845,10 +2688,15 @@ def preguntar(titulo, inicial=""):
 
 
 def nuevo_mundo(nombre_m):
-    generar(random.getrandbits(30))
+    semilla = random.getrandbits(30)
+    generar(semilla)
+    borrar_dims(nombre_m)                         # (restos de otro mundo con ese nombre)
     for i in range(NHUECOS):
         inv_id[i] = inv_n[i] = 0
+    for k in range(3):
+        arm_id[k] = arm_n[k] = 0
     j = Juego(nombre_m)
+    j.semilla = semilla
     j.aparecer()
     return j
 
@@ -1880,6 +2728,7 @@ def un_jugador():
                     os.remove("%s/%s.mc2d" % (CARPETA, ops[r]))
                 except OSError:
                     pass
+                borrar_dims(ops[r])
 
 
 def multijugador():
@@ -1892,6 +2741,9 @@ def multijugador():
         j = un_jugador()
         if not j:
             return None
+        if j.dim:                                 # se abre la partida en el mundo normal
+            j.cambiar_dim(0)
+            j.aparecer()
         mensaje(["Abriendo la partida..."])
         red.conectar(SALA, None, None, None, True)
         if not red.esperar():
@@ -1938,7 +2790,14 @@ def multijugador():
             return None
         for i in range(NHUECOS):
             inv_id[i] = inv_n[i] = 0
+        for k in range(3):
+            arm_id[k] = arm_n[k] = 0
         j = Juego("Partida online", True)
+        j.archivo = "_red"
+        borrar_dims("_red")
+        j.semilla = info.get("semilla", 1)
+        j.cofres = dict(COFRES_RED)
+        COFRES_RED.clear()
         j.tiempo = info.get("t", 60.0)
         j.aparecer()
         fin = K.ms() + 2000                       # aparecer junto al anfitrión
@@ -1946,7 +2805,7 @@ def multijugador():
             j.red_paso()
             P.mostrar()
         o = j.otros.get(red.anfitrion())
-        if o:
+        if o and o[9] == 0:
             j.x, j.y = o[0], o[1] + 0.1
             j.centrar()
         return j
@@ -1972,12 +2831,11 @@ def jugar(j):
 def preparar_mobs():
     """Tamaño de cada criatura (en bloques) según su dibujo de Paper Minecraft."""
     for t, d in MOBS.items():
-        if d["marcos"]:
-            s = spr("mob/%d.png" % d["marcos"][0])
-            d["w"] = max(0.5, s.ancho / T * 0.8)
-            d["h"] = max(0.5, s.alto / T)
-        else:
-            d["w"] = d["h"] = 1.0
+        if d[0] and d[4] == 0.5 and d[5] == 0.5:  # (pm/ viejo, sin "tam": se mira el dibujo)
+            s = P.sprite(PMD + "mob/%d.png" % d[0][0])
+            d[4] = max(0.5, s.ancho / T * 0.8)
+            d[5] = max(0.5, s.alto / T)
+            s = None
 
 
 def main():
@@ -2005,7 +2863,8 @@ def main():
         if r == 2:
             mensaje(["Controles:", "", "<- ->  andar     ^ saltar/nadar/subir",
                      "8 4 6 2  mover el cursor", "5  picar / golpear (mantener)",
-                     "EXE  poner, comer, mesa / horno, cubos", "1 3  cambiar de objeto",
+                     "EXE  poner, comer, mesa, horno, cofre, cama,", "     puerta, mechero (portal, TNT), azada...",
+                     "1 3  cambiar de objeto",
                      "7  inventario y fabricar   9  tirar", "DEL  menu (guardar)",
                      "PC: WASD, E inventario, Q tirar, 1-9"])
             menu("Controles", ["Atras"])

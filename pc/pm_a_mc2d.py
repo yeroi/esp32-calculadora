@@ -14,7 +14,7 @@
 #    tex/grieta1..9    las grietas al picar (objeto Cursor)
 #    mob/<n>.png       disfraz n del objeto Mob al tamaño de cada criatura
 #    steve<k>.png      Steve montado con sus partes en las poses del juego
-#    vida<n>, hambre<n>  las barras de corazones y comida
+#    vida<n>, hambre<n>, armadura<n>  las barras de corazones, comida y armadura
 #    bloques.bin       _BLOCK_DATA (una ficha de tamaño fijo por bloque)
 #    nombres.txt       nombres de los bloques y objetos
 #    recetas.bin       _Recipes (resultado, cantidad -o durabilidad- y la rejilla 3x3)
@@ -33,7 +33,7 @@ from PIL import Image
 
 HERE = Path(__file__).resolve().parent
 SALIDA = HERE.parent / "simulador" / "sd" / "juegos" / "minecraft2d" / "pm"
-VERSION = 1
+VERSION = 2
 
 # Ficha de cada bloque en bloques.bin (ver mc2d.py, que la lee igual)
 FICHA = struct.Struct("<BHBBBBbbhHHbbHHHH")
@@ -49,8 +49,13 @@ BOTIN = {1: [(113, 1, 3)], 2: [(122, 1, 3)], 3: [(163, 0, 2), (171, 1, 3)],
          102: [(170, 0, 2)], 103: [(194, 0, 2), (131, 0, 2)], 105: [(84, 0, 1), (119, 0, 1)],
          106: [(84, 0, 1), (119, 0, 1)]}
 
-# Las que aparecen solas en Minecraft 2D (de día animales, de noche monstruos)
-CRIATURAS = (1, 2, 3, 4, 100, 101, 102, 103)
+# Las que salen en Minecraft 2D: animales y lobo (de día), perro (lobo domado),
+# monstruos (de noche), lobo enfadado, porquero zombi (Nether; 106 = enfadado)
+# y enderman
+CRIATURAS = (1, 2, 3, 4, 5, 6, 100, 101, 102, 103, 104, 105, 106, 107)
+
+# Bloques que van en el mundo aunque su grupo diga que no (el portal del Nether)
+SIEMPRE = (266,)
 
 # Poses de Steve: las de verdad, sacadas del juego andando (scratch_red.py, el
 # "espejo"): (objeto, disfraz, dx, dy, tamaño) y la dirección según el paso.
@@ -68,8 +73,8 @@ def lista(listas, nombre):
 
 def filas(datos, ancho):
     """Las tablas de Paper Minecraft: una cabecera y filas de 'ancho' elementos
-    (el último vacío, de separador)."""
-    return [datos[i:i + ancho] for i in range(ancho, len(datos) - ancho + 1, ancho)]
+    (el último vacío, de separador; a la última fila le puede faltar)."""
+    return [datos[i:i + ancho] for i in range(ancho, len(datos) - ancho + 2, ancho)]
 
 
 def num(v, defecto=0):
@@ -206,7 +211,7 @@ def convertir(sb3):
     # Bloques que pueden estar en el mundo (el mundo es un byte por casilla): todo
     # menos herramientas, comida, materiales, huevos y armadura
     en_mundo = [i for i, f in sorted(bloques.items())
-                if int(num(f[9])) not in (0, 1, -1, 12, 13, 14, 15, 16)]
+                if int(num(f[9])) not in (0, 1, -1, 12, 13, 14, 15, 16) or i in SIEMPRE]
     if 1 in en_mundo:
         en_mundo.remove(1)
     en_mundo = [1] + en_mundo                       # 0 = aire
@@ -246,7 +251,8 @@ def convertir(sb3):
             im.save(SALIDA / "mob" / ("%d.png" % n))
             marcos.append(n)
         mobs[tipo] = {"marcos": marcos, "vida": int(num(f[8], 10)),          # (lo justo: en el
-                      "comida": int(num(f[9])), "botin": BOTIN.get(tipo, [])}  # ESP32 cada byte cuenta)
+                      "comida": int(num(f[9])), "botin": BOTIN.get(tipo, []),  # ESP32 cada byte cuenta)
+                      "tam": list(Image.open(SALIDA / "mob" / ("%d.png" % marcos[0])).size) if marcos else [16, 16]}
 
     # ---- Steve ---------------------------------------------------------------------------
     imgs, base_x = montar_steve(zf, objetos)
@@ -254,7 +260,7 @@ def convertir(sb3):
         im.save(SALIDA / ("steve%d.png" % k))
 
     # ---- corazones y comida (los de Paper Minecraft) -------------------------------------
-    for obj, nombre in (("Health", "vida"), ("Hunger", "hambre")):
+    for obj, nombre in (("Health", "vida"), ("Hunger", "hambre"), ("Armor", "armadura")):
         for c in objetos[obj]["costumes"]:
             dig = "".join(ch for ch in c["name"] if ch.isdigit())
             if dig:
