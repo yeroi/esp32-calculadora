@@ -18,6 +18,7 @@
 #    bloques.bin       _BLOCK_DATA (una ficha de tamaño fijo por bloque)
 #    nombres.txt       nombres de los bloques y objetos
 #    recetas.bin       _Recipes (resultado, cantidad -o durabilidad- y la rejilla 3x3)
+#    casas.bin         las construcciones de las aldeas (lista 'Assets')
 #    datos.json        _FOOD_DATA, _MOB_DATA, BIOME_DATA, botín y lo demás
 #  En el ESP32 todo esto ocupa poco en memoria: las tablas son bytes que se leen
 #  ficha a ficha (struct), no listas de Python.
@@ -50,9 +51,9 @@ BOTIN = {1: [(113, 1, 3)], 2: [(122, 1, 3)], 3: [(163, 0, 2), (171, 1, 3)],
          106: [(84, 0, 1), (119, 0, 1)]}
 
 # Las que salen en Minecraft 2D: animales y lobo (de día), perro (lobo domado),
-# monstruos (de noche), lobo enfadado, porquero zombi (Nether; 106 = enfadado)
+# aldeano, monstruos (de noche), lobo enfadado, porquero zombi (Nether; 106 = enfadado)
 # y enderman
-CRIATURAS = (1, 2, 3, 4, 5, 6, 100, 101, 102, 103, 104, 105, 106, 107)
+CRIATURAS = (1, 2, 3, 4, 5, 6, 7, 100, 101, 102, 103, 104, 105, 106, 107)
 
 # Bloques que van en el mundo aunque su grupo diga que no (el portal del Nether)
 SIEMPRE = (266,)
@@ -168,6 +169,69 @@ def montar_steve(zf, objetos):
     imgs = [im.crop(caja) for im in imgs]
     base_x = round(-x0 - caja[0])                   # dónde cae la base del jugador
     return imgs, base_x
+
+
+def leer_asset(s):
+    """Una construcción de la lista 'Assets' (procedimiento 'Insert Asset'): el
+    formato de las partidas guardadas de Paper Minecraft ('Read Number': un dígito
+    con cuántas cifras vienen detrás; '0' vale 1). Devuelve (casillas {índice:
+    id}, ancho del mundo con el que se guardó, índice del ancla)."""
+    i = [0]
+
+    def rn():
+        rc = s[i[0]]
+        i[0] += 1
+        if rc == "0":
+            return 1
+        n = int(s[i[0]:i[0] + int(rc)])
+        i[0] += int(rc)
+        return n
+    rn()                                            # formato
+    casillas, lsx, ancla = {}, 200, 0
+    while i[0] < len(s):
+        tipo, largo = rn(), rn()
+        fin = i[0] + largo
+        if tipo == 100:                             # cabecera: el ancla en la 4ª cifra
+            ancla = [rn() for _ in range(4)][3] - 1
+        elif tipo == 2:                             # '_insertLevelAsAsset'
+            rn(); rn(); rn()
+            lsx, _ = rn(), rn()
+            idx = 0
+            while i[0] < fin:
+                t, n = rn(), rn()
+                if t == 0:                          # 0 = saltar n casillas
+                    idx += n
+                else:
+                    for _ in range(n):
+                        casillas[idx] = t
+                        idx += 1
+        i[0] = fin
+    return casillas, lsx, ancla
+
+
+def casas_bin(listas):
+    """casas.bin: casa, casa con trigo, herrería y pozo de las aldeas. Por cada una:
+    ancho, alto, ancla x, ancla y (bytes) y la rejilla de abajo arriba (u16; 0 =
+    no tocar)."""
+    try:
+        assets = lista(listas, "Assets")
+    except SystemExit:
+        return b"PMC1\0"
+    out = []
+    for k in range(1, len(assets), 2):
+        c, lsx, ancla = leer_asset(str(assets[k]))
+        if not c:
+            continue
+        xs = [i % lsx for i in c]
+        ys = [i // lsx for i in c]
+        x0, y0 = min(xs), min(ys)
+        w, h = max(xs) - x0 + 1, max(ys) - y0 + 1
+        rej = [0] * (w * h)
+        for i, t in c.items():
+            rej[(i % lsx - x0) + (i // lsx - y0) * w] = t
+        out.append(struct.pack("<BBBB", w, h, ancla % lsx - x0, ancla // lsx - y0) +
+                   struct.pack("<%dH" % (w * h), *rej))
+    return b"PMC1" + bytes([len(out)]) + b"".join(out)
 
 
 def convertir(sb3):
@@ -286,6 +350,7 @@ def convertir(sb3):
             continue
         recetas.append(struct.pack("<HH9H", int(f[1]), cant, *rej))
     (SALIDA / "recetas.bin").write_bytes(b"PMR1" + b"".join(recetas))
+    (SALIDA / "casas.bin").write_bytes(casas_bin(listas))
 
     comida = {}
     for f in filas(lista(listas, "_FOOD_DATA"), 7):

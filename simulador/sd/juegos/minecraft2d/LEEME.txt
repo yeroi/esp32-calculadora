@@ -60,6 +60,17 @@ MAS COSAS
   - Lobos: dales un hueso (1 de cada 3 veces se hacen tu perro, te siguen y
     atacan a los monstruos). Enderman: de noche; si le pegas, se teletransporta.
 
+ALDEAS, MAZMORRAS, ARCO Y CREATIVO
+  - En las llanuras salen aldeas: las casas, la herrería y el pozo son los de
+    Paper Minecraft (lista Assets), con aldeanos que se pasean.
+  - Bajo tierra hay mazmorras de piedra musgosa con un cofre (corona de oro,
+    espada de oro y manzana).
+  - Arco: con flechas, mantén EXE para tensarlo y suelta para disparar hacia el
+    cursor. Cuanto más tenso, más lejos y más daño (hasta 9).
+  - Creativo (se elige al crear el mundo): no te hacen daño ni tienes hambre,
+    rompes todo al momento, lo que pones no se gasta, vuelas (^ en el aire para
+    subir, la flecha abajo o S para bajar) y con 7 eliges cualquier objeto.
+
 MULTIJUGADOR
   Multijugador > Hostear un mundo: abres tu mundo a la red.
   Multijugador > Unirse: aparecen las partidas de tu red; o por IP.
