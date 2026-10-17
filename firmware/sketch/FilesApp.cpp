@@ -2,6 +2,7 @@
 //  FilesApp.cpp
 // =============================================================================
 #include "FilesApp.h"
+#include "PcTaskApp.h"
 
 FilesApp::FilesApp(AppManager& m)
     : App(m), browser_(m.gfx(), m.storage(), false), viewer_(m.gfx(), m.storage()) {}
@@ -52,6 +53,18 @@ void FilesApp::onKey(const KeyEvent& ev) {
   }
   if (browser_.key(ev) == FolderBrowser::Result::OpenFile) {
     String p = browser_.selectedPath();
+    if (isMediaFile(p)) {                  // vídeo / audio
+#if SCICALC_REMOTE
+      if (remoteLink.connected()) {        // lo reproduce el PC (ffmpeg)
+        pcTaskApp.prepare(PcTaskApp::Media, p, this);
+        mgr().launch(&pcTaskApp);
+        return;
+      }
+#endif
+      dialogs().info("Vídeo y audio", {"El ESP32 solo no puede decodificar", "mp4/mp3/m4a: hace falta el modo",
+                                       "PC (lo reproduce el PC). Con un", "altavoz I2S se podrán oír WAV."});
+      return;
+    }
     if (viewer_.open(p)) {
       setTitle(Path::name(p).c_str());
       requestRedraw();

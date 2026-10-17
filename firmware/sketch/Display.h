@@ -2,8 +2,12 @@
 //  Display.h  —  Capa gráfica (HAL de pantalla)
 // -----------------------------------------------------------------------------
 //  Las apps NUNCA usan la librería de la pantalla directamente: solo esta
-//  clase. Hoy por dentro va Adafruit_ILI9341 (la que soporta Wokwi); en el
-//  hardware real se cambiará por TFT_eSPI + DMA sin tocar las apps.
+//  clase. Tiene dos "motores", elegidos con SCICALC_REMOTE en config.h:
+//    * TFT  (0): Adafruit_ILI9341 (la que soporta Wokwi); en el hardware real
+//                se cambiará por TFT_eSPI + DMA sin tocar las apps.
+//    * PC   (1): cada primitiva se manda como una orden por USB al programa
+//                pc/scicalc_pantalla.py, que la dibuja. El texto viaja como
+//                códigos de glifo: cada glifo (5x8) se envía una sola vez.
 //
 //  Sin PSRAM no cabe un framebuffer de 320x240x2 = 150 KB, así que TODO se
 //  dibuja directamente en la pantalla y cada app redibuja solo lo que cambia.
@@ -15,8 +19,11 @@
 #pragma once
 #include <Arduino.h>
 #include <Adafruit_GFX.h>
-#include <Adafruit_ILI9341.h>
 #include "Theme.h"
+#include "config.h"
+#if !SCICALC_REMOTE
+#include <Adafruit_ILI9341.h>
+#endif
 
 enum class Align : uint8_t { Left, Center, Right };
 
@@ -31,6 +38,10 @@ class Display {
 
   Display();
   bool begin();
+
+  // true (una vez) si hay que repintar TODA la pantalla: el programa del PC
+  // se acaba de (re)conectar y no sabe lo que había. Lo consulta el AppManager.
+  bool takeFullRedraw();
 
   // ---- Primitivas -----------------------------------------------------------
   void clear(uint16_t color = Theme::BG);
@@ -72,11 +83,28 @@ class Display {
   // Decodifica un carácter UTF-8 y avanza el puntero (devuelve code point)
   static uint16_t decodeUtf8(const char*& p);
 
+  // Columnas del glifo 5x8 de un carácter (bit 0 = fila de arriba). Para
+  // quien dibuja texto por su cuenta (p. ej. texto sin fondo de los juegos).
+  static void glyphColumns(uint16_t cp, uint8_t cols[5]);
+
  private:
   void drawGlyph(int16_t x, int16_t y, uint16_t cp, uint8_t size,
                  uint16_t fg, uint16_t bg, bool bold);
   static uint8_t toCp437(uint16_t cp);
   static const uint8_t* customGlyph(uint16_t cp);
 
+#if SCICALC_REMOTE
+  // ---- Motor PC -------------------------------------------------------------
+  uint16_t glyphId(uint16_t cp);                 // asegura que el PC lo tiene
+  void sendShape(uint8_t type, const int16_t* v, uint8_t nv, uint16_t c);
+  void sendPixelRows(int16_t x, int16_t y, int16_t w, int16_t h, const uint16_t* px,
+                     int16_t stride);
+  uint32_t session_ = 0;                         // sesión del PC de la caché de glifos
+  uint32_t redrawSession_ = 0;                   // sesión ya repintada
+  uint32_t glyphSent_[(256 + 8 + 31) / 32] = {}; // bit = glifo ya enviado
+  GFXcanvas1 glyphCanvas_{6, 8};                 // para sacar los glifos de la fuente
+  uint8_t* scratch_ = nullptr;                   // búfer de trama (PIXELS)
+#else
   Adafruit_ILI9341 tft_;
+#endif
 };

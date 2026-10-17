@@ -23,6 +23,7 @@ void DiagApp::draw() {
   gfx().text(INFO_X, INFO_Y + LINE, buf, 1, psram ? Theme::TEXT : Theme::WARN, Theme::BG);
 
   if (sd().mounted()) {
+    sd().freeBytes();                 // en modo PC también trae la capacidad
     snprintf(buf, sizeof buf, "MicroSD: %s · %lu MB", sd().cardTypeName(),
              (unsigned long)(sd().cardSizeBytes() >> 20));
     gfx().text(INFO_X, INFO_Y + 2 * LINE, buf, 1, Theme::OK, Theme::BG);

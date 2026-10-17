@@ -57,7 +57,7 @@ void MenuApp::onKey(const KeyEvent& ev) {
     default:
       break;
   }
-  char d = keyDigit(ev.key);
+  char d = ev.ch ? (char)ev.ch : keyDigit(ev.key);   // también los números del teclado del PC
   if (d >= '1' && d < '1' + count_) {
     sel_ = d - '1';
     mgr().launch(items_[sel_].target);

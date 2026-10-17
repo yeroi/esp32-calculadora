@@ -38,6 +38,7 @@ struct KeyEvent {
   Key  key    = Key::None;
   bool shift  = false;   // lo rellena el AppManager (SHIFT es de un solo uso)
   bool repeat = false;   // true si es autorrepetición por mantener pulsado
+  uint32_t ch = 0;       // modo PC: letra escrita con el teclado del PC (key = None)
 };
 
 // Nombre corto ASCII (para el monitor serie)

@@ -5,6 +5,167 @@
 #include <SPI.h>
 #include "config.h"
 
+#if SCICALC_REMOTE
+#include "RemoteLink.h"
+
+// =============================================================================
+//  Motor PC: cada primitiva es una trama para pc/scicalc_pantalla.py
+// =============================================================================
+namespace {
+inline void put16(uint8_t*& p, int32_t v) { *p++ = v & 0xFF; *p++ = (v >> 8) & 0xFF; }
+constexpr int16_t CUSTOM_BASE = 256;     // ids de los glifos propios: 256..
+}
+
+Display::Display() { glyphCanvas_.cp437(true); }
+
+bool Display::begin() {
+  scratch_ = static_cast<uint8_t*>(malloc(Proto::MAX_PAYLOAD));
+  return scratch_ != nullptr;
+}
+
+bool Display::takeFullRedraw() {
+  uint32_t s = remoteLink.session();
+  if (s == redrawSession_) return false;
+  redrawSession_ = s;
+  return true;
+}
+
+void Display::sendShape(uint8_t type, const int16_t* v, uint8_t nv, uint16_t c) {
+  uint8_t b[16];
+  uint8_t* p = b;
+  for (uint8_t i = 0; i < nv; ++i) put16(p, v[i]);
+  put16(p, c);
+  remoteLink.send(type, b, p - b);
+}
+
+void Display::clear(uint16_t c) { fillRect(0, 0, W, H, c); }
+void Display::clearBody(uint16_t c) { fillRect(0, BODY_Y, W, BODY_H, c); }
+void Display::fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t c) {
+  if (w <= 0 || h <= 0) return;
+  const int16_t v[] = {x, y, w, h};
+  sendShape(Proto::FILL, v, 4, c);
+}
+void Display::drawRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t c) {
+  if (w <= 0 || h <= 0) return;
+  const int16_t v[] = {x, y, w, h};
+  sendShape(Proto::RECT, v, 4, c);
+}
+void Display::fillRoundRect(int16_t x, int16_t y, int16_t w, int16_t h, int16_t r, uint16_t c) {
+  if (w <= 0 || h <= 0) return;
+  const int16_t v[] = {x, y, w, h, r};
+  sendShape(Proto::FILL_RR, v, 5, c);
+}
+void Display::drawRoundRect(int16_t x, int16_t y, int16_t w, int16_t h, int16_t r, uint16_t c) {
+  if (w <= 0 || h <= 0) return;
+  const int16_t v[] = {x, y, w, h, r};
+  sendShape(Proto::RECT_RR, v, 5, c);
+}
+void Display::fillTriangle(int16_t x0, int16_t y0, int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint16_t c) {
+  const int16_t v[] = {x0, y0, x1, y1, x2, y2};
+  sendShape(Proto::TRI, v, 6, c);
+}
+void Display::hLine(int16_t x, int16_t y, int16_t w, uint16_t c) { fillRect(x, y, w, 1, c); }
+void Display::vLine(int16_t x, int16_t y, int16_t h, uint16_t c) { fillRect(x, y, 1, h, c); }
+
+void Display::pushPixels(int16_t x, int16_t y, int16_t w, int16_t h, const uint16_t* px) {
+  if (w <= 0 || h <= 0 || x >= W || y >= H || x + w <= 0 || y + h <= 0) return;
+  int16_t x0 = max<int16_t>(x, 0), x1 = min<int16_t>(x + w, W);
+  int16_t y0 = max<int16_t>(y, 0), y1 = min<int16_t>(y + h, H);
+  sendPixelRows(x0, y0, x1 - x0, y1 - y0, px + (y0 - y) * w + (x0 - x), w);
+}
+
+// Trocea el bloque en tramas de <= 4 KB. Cada trozo va comprimido por
+// tramos (RLE) si así ocupa menos: los fondos e iconos lisos vuelan; las
+// fotos van en crudo (~90 KB/s a 921600 baudios).
+void Display::sendPixelRows(int16_t x, int16_t y, int16_t w, int16_t h, const uint16_t* px,
+                            int16_t stride) {
+  if (!scratch_) return;
+  const size_t room = Proto::MAX_PAYLOAD - 8;
+  int16_t rowsPer = room / (w * 2);
+  if (rowsPer < 1) rowsPer = 1;
+  for (int16_t r0 = 0; r0 < h; r0 += rowsPer) {
+    int16_t rows = min<int16_t>(rowsPer, h - r0);
+    size_t raw = (size_t)w * rows * 2;
+    uint8_t* p = scratch_;
+    put16(p, x); put16(p, y + r0); put16(p, w); put16(p, rows);
+
+    // 1) Intento RLE: {n, color}; se abandona si ya no compensa
+    uint8_t* q = p;
+    bool rle = true;
+    uint16_t cur = 0;
+    uint16_t run = 0;
+    for (int16_t r = 0; r < rows && rle; ++r) {
+      const uint16_t* line = px + (size_t)(r0 + r) * stride;
+      for (int16_t i = 0; i < w; ++i) {
+        uint16_t c = line[i];
+        if (run && c == cur && run < 255) { ++run; continue; }
+        if (run) {
+          if ((size_t)(q - p) + 3 > raw - 3) { rle = false; break; }
+          *q++ = run; put16(q, cur);
+        }
+        cur = c; run = 1;
+      }
+    }
+    if (rle && run) {
+      if ((size_t)(q - p) + 3 >= raw) rle = false;
+      else { *q++ = run; put16(q, cur); }
+    }
+    if (rle) {
+      remoteLink.send(Proto::PIXELS_RLE, scratch_, q - scratch_);
+      continue;
+    }
+    // 2) En crudo
+    q = p;
+    for (int16_t r = 0; r < rows; ++r) {
+      const uint16_t* line = px + (size_t)(r0 + r) * stride;
+      for (int16_t i = 0; i < w; ++i) put16(q, line[i]);
+    }
+    remoteLink.send(Proto::PIXELS, scratch_, q - scratch_);
+  }
+}
+
+// Devuelve el id del glifo y, si el PC aún no lo tiene, se lo manda
+uint16_t Display::glyphId(uint16_t cp) {
+  uint32_t s = remoteLink.session();
+  if (s != session_) {                     // PC nuevo: no tiene ningún glifo
+    session_ = s;
+    memset(glyphSent_, 0, sizeof glyphSent_);
+  }
+  uint8_t cols[5];
+  uint16_t id;
+  const uint8_t* g = customGlyph(cp);
+  if (g) {
+    static const uint16_t CUSTOM_CP[] = {0x00D7, 0x2212, 0x02B8, 0x2026, 0x2713};
+    id = CUSTOM_BASE;
+    for (uint16_t i = 0; i < sizeof CUSTOM_CP / sizeof CUSTOM_CP[0]; ++i)
+      if (CUSTOM_CP[i] == cp) id = CUSTOM_BASE + i;
+  } else {
+    id = toCp437(cp);
+  }
+  if (glyphSent_[id >> 5] & (1UL << (id & 31))) return id;
+
+  if (g) {
+    memcpy(cols, g, 5);
+  } else {
+    // Se dibuja el carácter de la fuente de Adafruit en un lienzo de 6x8 y se
+    // leen sus columnas: el PC usa exactamente la misma fuente.
+    glyphCanvas_.fillScreen(0);
+    glyphCanvas_.drawChar(0, 0, (unsigned char)id, 1, 0, 1);
+    for (uint8_t c = 0; c < 5; ++c) {
+      uint8_t bits = 0;
+      for (uint8_t r = 0; r < 8; ++r)
+        if (glyphCanvas_.getPixel(c, r)) bits |= 1 << r;
+      cols[c] = bits;
+    }
+  }
+  uint8_t b[7] = {(uint8_t)(id & 0xFF), (uint8_t)(id >> 8), cols[0], cols[1], cols[2], cols[3], cols[4]};
+  remoteLink.send(Proto::GLYPH, b, sizeof b);
+  glyphSent_[id >> 5] |= 1UL << (id & 31);
+  return id;
+}
+
+#else  // ---------------- Motor TFT (ILI9341) ----------------------------
+
 Display::Display() : tft_(PIN_TFT_CS, PIN_TFT_DC, PIN_TFT_RST) {}
 
 bool Display::begin() {
@@ -30,6 +191,8 @@ void Display::fillTriangle(int16_t x0, int16_t y0, int16_t x1, int16_t y1, int16
 void Display::hLine(int16_t x, int16_t y, int16_t w, uint16_t c) { tft_.drawFastHLine(x, y, w, c); }
 void Display::vLine(int16_t x, int16_t y, int16_t h, uint16_t c) { tft_.drawFastVLine(x, y, h, c); }
 
+bool Display::takeFullRedraw() { return false; }
+
 void Display::pushPixels(int16_t x, int16_t y, int16_t w, int16_t h, const uint16_t* px) {
   // Recorte: solo se admiten bloques que caben en horizontal tras recortar
   // filas; para el recorte horizontal se dibuja fila a fila.
@@ -49,6 +212,8 @@ void Display::pushPixels(int16_t x, int16_t y, int16_t w, int16_t h, const uint1
   tft_.endWrite();
 }
 
+#endif  // SCICALC_REMOTE
+
 // ---- UTF-8 -> CP437 --------------------------------------------------------
 uint16_t Display::decodeUtf8(const char*& p) {
   uint8_t c = static_cast<uint8_t>(*p++);
@@ -66,6 +231,27 @@ uint16_t Display::decodeUtf8(const char*& p) {
     for (int i = 0; i < 3 && *p; ++i) ++p;
   }
   return '?';
+}
+
+void Display::glyphColumns(uint16_t cp, uint8_t cols[5]) {
+  const uint8_t* g = customGlyph(cp);
+  if (g) {
+    memcpy(cols, g, 5);
+    return;
+  }
+  static GFXcanvas1* cv = nullptr;               // 6x8 bits: 6 bytes
+  if (!cv) {
+    cv = new GFXcanvas1(6, 8);
+    cv->cp437(true);
+  }
+  cv->fillScreen(0);
+  cv->drawChar(0, 0, toCp437(cp), 1, 0, 1);
+  for (uint8_t c = 0; c < 5; ++c) {
+    uint8_t bits = 0;
+    for (uint8_t r = 0; r < 8; ++r)
+      if (cv->getPixel(c, r)) bits |= 1 << r;
+    cols[c] = bits;
+  }
 }
 
 uint8_t Display::toCp437(uint16_t cp) {
@@ -163,6 +349,42 @@ int16_t Display::textWidth(const char* s, uint8_t size) {
   return static_cast<int16_t>(utf8Length(s)) * charW(size);
 }
 
+#if SCICALC_REMOTE
+void Display::text(int16_t x, int16_t y, const char* s, uint8_t size,
+                   uint16_t fg, uint16_t bg, Align align, int16_t boxW,
+                   bool bold, int16_t maxW) {
+  if (!s) return;
+  size_t len = utf8Length(s);
+  if (maxW > 0) {
+    size_t fit = maxW / charW(size);
+    if (len > fit) len = fit;
+  }
+  const int16_t w = static_cast<int16_t>(len) * charW(size);
+  if (boxW > 0) {
+    if (align == Align::Center) x += (boxW - w) / 2;
+    else if (align == Align::Right) x += boxW - w;
+  }
+  // Una trama TEXT por cada 100 caracteres como mucho
+  constexpr size_t CHUNK = 100;
+  uint16_t ids[CHUNK];
+  size_t i = 0;
+  while (i < len && *s) {
+    size_t n = 0;
+    while (n < CHUNK && i < len && *s) { ids[n++] = glyphId(decodeUtf8(s)); ++i; }
+    uint8_t b[11 + 2 * CHUNK];
+    uint8_t* p = b;
+    put16(p, x); put16(p, y);
+    *p++ = size;
+    put16(p, fg); put16(p, bg);
+    *p++ = bold ? 1 : 0;
+    *p++ = (uint8_t)n;
+    for (size_t k = 0; k < n; ++k) put16(p, ids[k]);
+    remoteLink.send(Proto::TEXT, b, p - b);
+    x += (int16_t)n * charW(size);
+  }
+}
+
+#else
 void Display::drawGlyph(int16_t x, int16_t y, uint16_t cp, uint8_t size,
                         uint16_t fg, uint16_t bg, bool bold) {
   const uint8_t* g = customGlyph(cp);
@@ -205,6 +427,8 @@ void Display::text(int16_t x, int16_t y, const char* s, uint8_t size,
     x += charW(size);
   }
 }
+
+#endif
 
 void Display::footer(const char* utf8) {
   fillRect(0, FOOTER_Y - 2, W, H - FOOTER_Y + 2, Theme::BG);

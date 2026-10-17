@@ -12,3 +12,17 @@ Ejecutar: Python > juegos > clonaria > clonaria.py
   AC         salir
 
 En el simulador también: flechas del PC, Retroceso = DEL, Enter = EXE.
+
+MULTIJUGADOR
+Al empezar: 1 = un jugador, 2 = multijugador. Necesita Wi-Fi (Ajustes >
+Wi-Fi) y elegir en Ajustes > Multijugador:
+  - Servidor dedicado: en un PC ejecuta  python pc/scicalc_servidor.py
+    y pon su IP en /red.json ("servidor").
+  - Anfitrión: esta calculadora hace de servidor; los demás ponen su IP.
+Todos comparten el mismo mundo y ven los bloques que cambian los demás.
+
+EN EL ESP32
+clonaria.mpy es clonaria.py ya compilado: el ESP32 lo usa porque compilar
+23 KB de código no cabe en su RAM. Si cambias clonaria.py, vuelve a crearlo:
+  python pc/compilar_mpy.py simulador/sd/juegos/clonaria/clonaria.py
+En el ESP32 aún no hay multijugador: se juega solo.

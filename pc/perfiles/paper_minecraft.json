@@ -1,0 +1,311 @@
+{
+  "_comentario": "Perfil de controles para Paper Minecraft (griffpatch). Se aplica a los .sb3 cuyo nombre empiece por 'coincide'.",
+  "coincide": "paper_minecraft",
+  "teclas": {
+    "e": [
+      "9"
+    ],
+    "f": [
+      "7"
+    ],
+    "1": [
+      "S:1"
+    ],
+    "2": [
+      "S:2"
+    ],
+    "3": [
+      "S:3"
+    ],
+    "4": [
+      "S:4"
+    ],
+    "5": [
+      "S:5"
+    ],
+    "6": [
+      "S:6"
+    ],
+    "7": [
+      "S:7"
+    ],
+    "8": [
+      "S:8"
+    ],
+    "9": [
+      "S:9"
+    ],
+    "q": [
+      "DEL"
+    ],
+    "p": [
+      "LP"
+    ],
+    "o": [
+      "RP"
+    ]
+  },
+  "menu": [
+    "p"
+  ],
+  "guardar": "o",
+  "tras_guardar": "o",
+  "correr": {
+    "tecla": "",
+    "doble_toque": true
+  },
+  "multijugador": {
+    "_comentario": "Mundo compartido: listas que se envían al unirse (solo _Level y _Light: copiar más listas rompe el juego del invitado) y variables ('mundo_vars'), lista sincronizada bloque a bloque, posición del jugador (variables del escenario, en casillas), cámara y tamaño de casilla, objetos que forman al jugador (con sus clones) y 'espejo': la grieta al picar (Cursor digN), el bloque en la mano (el objeto Tiles original, junto al jugador), los objetos tirados (clones de Tiles con CloneAsID < 0 y tamaño 40; los iconos del inventario son de 65) y los mobs del anfitrión. 'invitado': el que se une borra sus mobs y no genera más (los simula el anfitrión).",
+    "mundo": [
+      "_Level",
+      "_Light"
+    ],
+    "bloques": "_Level",
+    "x": "_x",
+    "y": "_y",
+    "camara": [
+      "_ScrX",
+      "_ScrY"
+    ],
+    "casilla": 40,
+    "partes": [
+      "Steve Legs2",
+      "Steve",
+      "Steve Arm",
+      "Steves Head"
+    ],
+    "nueva_partida": [
+      {
+        "si": "Stage Sprite:Spl1b-New Game",
+        "clic": [
+          -114,
+          25
+        ]
+      },
+      {
+        "si": "Menu1:Done",
+        "clic": [
+          0,
+          -135
+        ]
+      }
+    ],
+    "espejo": [
+      {
+        "objeto": "Cursor",
+        "prefijo": "dig"
+      },
+      {
+        "objeto": "Tiles",
+        "original": true,
+        "cerca": 80
+      },
+      {
+        "objeto": "Tiles",
+        "clon": true,
+        "var": "CloneAsID",
+        "menor": 0,
+        "tam_max": 50,
+        "cerca": 400
+      }
+    ],
+    "icono": [
+      "Tiles",
+      "grass",
+      "soil"
+    ],
+    "boton_titulo": {
+      "si": "Stage Sprite:Spl1b-New Game",
+      "x": 43,
+      "y": 30,
+      "w": 112,
+      "h": 28
+    },
+    "mundo_vars": [
+      "_Time",
+      "_TimeReal"
+    ],
+    "invitado": {
+      "borrar_clones": [
+        "Mob"
+      ],
+      "vaciar": [
+        "_MobSpawn"
+      ],
+      "poner": {
+        "_MaxMobs": 0,
+        "_MaxMobsBad": 0,
+        "_RedInvitado": 1
+      }
+    },
+    "cargar_partida": [
+      {
+        "si": "Stage Sprite:Spl1b-Load Game",
+        "clic": [
+          -114,
+          -15
+        ]
+      }
+    ],
+    "unirse_con_partida": true,
+    "_comentario_unirse": "unirse_con_partida: el que se une NO crea un mundo: el anfitrión guarda su partida con el propio 'Save Game' del juego y el invitado la abre con 'Load Game' (botón de cargar_partida); el juego arranca por 'start after loaded', sin generar nada. _RedInvitado (ver parches) apaga sus mobs.",
+    "mobs": {
+      "objeto": "Mob",
+      "lista": "_Mob",
+      "datos": "_MOB_DATA",
+      "paso": "_MobMul",
+      "mdmul": "_MDMUL",
+      "mob100": "_Mob100"
+    },
+    "_comentario_mobs": "mobs: el anfitrión manda sus mobs leyendo la lista _Mob del juego (el juego solo crea el objeto de los que caben en su pantalla); el invitado los dibuja y los copia en su _Mob (sin simularlos) para que su código de pegar los encuentre: el golpe se le manda al anfitrión. Con los parches de Mob, cada mob mira al jugador más cercano (_ObjX/_ObjY) y el daño que hace va a ese jugador.",
+    "chunk": "_CHUNK_SEED",
+    "sin_enviar": [
+      "load chunk",
+      "save chunk",
+      "spawn chunk from seed",
+      "init",
+      "load game",
+      "load example"
+    ],
+    "_comentario_chunk": "El mundo es infinito por chunks de 200 casillas (_CHUNK_SEED): los bloques van como b:chunk:i. sin_enviar: guiones que reescriben _Level al cargar o generar un chunk (no son cambios del jugador).",
+    "cofres": {
+      "lista": "_Inside",
+      "abierto": "_InsideIdx",
+      "inv": "_Inv",
+      "inv_base": 80
+    },
+    "sincronizar": [
+      [
+        "snow",
+        "Weather Type"
+      ],
+      [
+        "snow",
+        "weather time"
+      ],
+      [
+        "",
+        "_Time"
+      ]
+    ],
+    "_comentario_cofres": "cofres: _Inside son registros [casilla, huecos, nombre, (id, n)...]; se manda el registro entero al cambiar (c:chunk:casilla), así dos jugadores ven el mismo cofre y no se duplican objetos. sincronizar: el clima y la hora los manda el anfitrión.",
+    "botin": "_Harvest",
+    "vida": "_Health_s"
+  },
+  "parches": [
+    {
+      "lista": "_BLOCK_DATA",
+      "indice": 5969,
+      "era": "S1",
+      "valor": "S",
+      "motivo": "la hierba con nieve suelta tierra también sin pala (como en Minecraft)"
+    },
+    {
+      "objeto": "Mob",
+      "guion": [
+        "event_whenbroadcastreceived",
+        "animate"
+      ],
+      "parar_si": "_RedInvitado",
+      "motivo": "multijugador: el invitado no simula mobs (sin mobs invisibles ni sus sonidos); los lleva el anfitrión"
+    },
+    {
+      "objeto": "snow",
+      "buscar": {
+        "op": "operator_equals",
+        "OPERAND1": [
+          "v",
+          "weather time"
+        ],
+        "OPERAND2": [
+          "l",
+          "1"
+        ]
+      },
+      "poner": {
+        "OPERAND1": [
+          "v",
+          "Weather Type"
+        ]
+      },
+      "motivo": "clima: el juego comparaba 'weather time = 1' (nunca) en vez de 'Weather Type = 1': ya llueve y nieva a veces"
+    },
+    {
+      "objeto": "Mob",
+      "renombrar_var": {
+        "_x": "_ObjX",
+        "_y": "_ObjY"
+      },
+      "motivo": "multijugador: la IA de los mobs mira a _ObjX/_ObjY (el jugador más cercano) en vez de solo al Steve local"
+    },
+    {
+      "objeto": "Mob",
+      "al_principio_de": "Process Mob",
+      "bloque": [
+        "scicalc_objetivo",
+        {
+          "MODO": "cerca"
+        }
+      ],
+      "motivo": "multijugador: cada mob elige al jugador más cercano antes de moverse o atacar"
+    },
+    {
+      "objeto": "Mob",
+      "al_principio_de": "Initial Spawn %n",
+      "bloque": [
+        "scicalc_objetivo",
+        {
+          "MODO": "azar"
+        }
+      ],
+      "motivo": "multijugador: los mobs aparecen alrededor de cualquier jugador, no solo del anfitrión"
+    },
+    {
+      "objeto": "Mob",
+      "cambiar_op": "data_changevariableby",
+      "a": "scicalc_cambiar_jugador",
+      "si_var": [
+        "_Health_s",
+        "_DamageArmor",
+        "_KnockBack"
+      ],
+      "motivo": "multijugador: el daño, el desgaste de armadura y el empujón de un mob van al jugador al que ataca"
+    },
+    {
+      "objeto": "Mob",
+      "al_principio_de": "Drop Item %n %n %n",
+      "bloque": [
+        "scicalc_soltar",
+        {}
+      ],
+      "motivo": "multijugador: el botín de un mob que mata otro jugador le aparece a él"
+    },
+    {
+      "objeto": "Tiles",
+      "al_principio_de": "Do Arrow In Flight",
+      "bloque": [
+        "scicalc_flecha",
+        {}
+      ],
+      "motivo": "multijugador: las flechas (esqueletos) también dan a los otros jugadores"
+    },
+    {
+      "objeto": "Processor",
+      "al_principio_de": "Explode Circle_pr %n %n %n %s",
+      "bloque": [
+        "scicalc_explosion",
+        {}
+      ],
+      "motivo": "multijugador: las explosiones (creeper, TNT) también dañan a los otros jugadores"
+    },
+    {
+      "objeto": "Tiles",
+      "al_principio_de": "Do Suck %n %n",
+      "bloque": [
+        "scicalc_recoger",
+        {}
+      ],
+      "motivo": "multijugador: los objetos del suelo los coge el primer jugador que los toca, no solo quien los tiró"
+    }
+  ]
+}

@@ -5,7 +5,10 @@
 #include <SD.h>
 #include <SPI.h>
 #include <algorithm>
+#include <errno.h>
 #include "config.h"
+#include "RemoteFS.h"
+#include "RemoteLink.h"
 
 // ---- Rutas --------------------------------------------------------------------
 namespace Path {
@@ -73,6 +76,16 @@ String humanSize(uint64_t b) {
 
 // ---- Tarjeta ----------------------------------------------------------------
 bool Storage::begin() {
+#if SCICALC_REMOTE_SD
+  fs_ = &pcFS;
+  mounted_ = pcFS.begin("/pc");
+  cardType_ = 0xFE;                        // "PC"
+  return mounted();
+#else
+  fs_ = &SD;
+#if SCICALC_REMOTE
+  SPI.begin(PIN_SPI_SCK, PIN_SPI_MISO, PIN_SPI_MOSI);   // sin TFT nadie lo abrió
+#endif
   // El bus SPI ya lo inicializa Display::begin(); aquí solo añadimos el CS.
   pinMode(PIN_SD_CS, OUTPUT);
   digitalWrite(PIN_SD_CS, HIGH);
@@ -83,10 +96,20 @@ bool Storage::begin() {
     if (cardType_ == CARD_NONE) mounted_ = false;
   }
   return mounted_;
+#endif
+}
+
+bool Storage::mounted() const {
+#if SCICALC_REMOTE_SD
+  return mounted_ && remoteLink.connected();
+#else
+  return mounted_;
+#endif
 }
 
 const char* Storage::cardTypeName() const {
   switch (cardType_) {
+    case 0xFE:      return "PC";
     case CARD_MMC:  return "MMC";
     case CARD_SD:   return "SDSC";
     case CARD_SDHC: return "SDHC";
@@ -95,8 +118,16 @@ const char* Storage::cardTypeName() const {
 }
 
 uint64_t Storage::freeBytes() {
-  if (!mounted_) return 0;
+  if (!mounted()) return 0;
+#if SCICALC_REMOTE_SD
+  if (free_ < 0) {
+    uint64_t total, freeB;
+    if (pcFS.info(total, freeB)) { cardSize_ = total; free_ = (int64_t)freeB; }
+    else return 0;
+  }
+#else
   if (free_ < 0) free_ = (int64_t)(SD.totalBytes() - SD.usedBytes());
+#endif
   return (uint64_t)free_;
 }
 
@@ -110,8 +141,8 @@ bool Storage::listDir(const String& dir, std::vector<DirEntry>& out, bool onlyPy
                       bool* truncated) {
   out.clear();
   if (truncated) *truncated = false;
-  if (!mounted_ || !Path::isSafe(dir)) return false;
-  fs::File root = SD.open(dir);
+  if (!mounted() || !Path::isSafe(dir)) return false;
+  fs::File root = fs_->open(dir);
   if (!root || !root.isDirectory()) return false;
 
   for (fs::File f = root.openNextFile(); f; f = root.openNextFile()) {
@@ -131,12 +162,12 @@ bool Storage::listDir(const String& dir, std::vector<DirEntry>& out, bool onlyPy
 }
 
 bool Storage::exists(const String& path) {
-  return mounted_ && Path::isSafe(path) && SD.exists(path);
+  return mounted() && Path::isSafe(path) && fs_->exists(path);
 }
 
 bool Storage::isDir(const String& path) {
   if (!exists(path)) return false;
-  fs::File f = SD.open(path);
+  fs::File f = fs_->open(path);
   bool d = f && f.isDirectory();
   f.close();
   return d;
@@ -150,8 +181,8 @@ uint32_t Storage::fileSize(const String& path) {
 }
 
 fs::File Storage::openRead(const String& path) {
-  if (!mounted_ || !Path::isSafe(path)) return fs::File();
-  return SD.open(path, FILE_READ);                  // SOLO lectura
+  if (!mounted() || !Path::isSafe(path)) return fs::File();
+  return fs_->open(path, FILE_READ);                  // SOLO lectura
 }
 
 size_t Storage::readAt(const String& path, uint32_t offset, uint8_t* buf, size_t len) {
@@ -177,4 +208,77 @@ bool Storage::readText(const String& path, String& out, size_t maxBytes) {
   }
   f.close();
   return true;
+}
+
+int Storage::stat(const String& path, uint32_t& size) {
+  size = 0;
+  if (!mounted() || !Path::isSafe(path)) return 0;
+  if (path == "/") return 2;
+  fs::File f = fs_->open(path);
+  if (!f) return 0;
+  int t = f.isDirectory() ? 2 : 1;
+  if (t == 1) size = (uint32_t)f.size();
+  f.close();
+  return t;
+}
+
+// ---- Escritura (solo para el sandbox, tras el permiso) ---------------------------
+int Storage::writeAt(const String& path, uint32_t off, const uint8_t* data, size_t len, bool trunc) {
+  if (!mounted()) return -EIO;
+  if (!Path::isSafe(path) || path == "/") return -EACCES;
+  free_ = -1;
+#if SCICALC_REMOTE_SD
+  return pcFS.writeAt(path.c_str(), off, data, len, trunc);
+#else
+  uint32_t size;
+  int t = stat(path, size);
+  if (t == 2) return -EISDIR;
+  fs::File f = fs_->open(path, (trunc || t == 0) ? "w" : "r+");
+  if (!f) return -EIO;
+  if (off && !f.seek(off)) { f.close(); return -EIO; }
+  size_t n = len ? f.write(data, len) : 0;
+  f.close();
+  return n == len ? (int)n : -EIO;
+#endif
+}
+
+int Storage::removeFile(const String& path) {
+  if (!mounted()) return -EIO;
+  if (!Path::isSafe(path) || path == "/") return -EACCES;
+  free_ = -1;
+#if SCICALC_REMOTE_SD
+  return pcFS.remove(path.c_str());
+#else
+  return fs_->remove(path) ? 0 : -EIO;
+#endif
+}
+
+int Storage::renamePath(const String& from, const String& to) {
+  if (!mounted()) return -EIO;
+  if (!Path::isSafe(from) || !Path::isSafe(to) || from == "/" || to == "/") return -EACCES;
+#if SCICALC_REMOTE_SD
+  return pcFS.rename(from.c_str(), to.c_str());
+#else
+  return fs_->rename(from, to) ? 0 : -EIO;
+#endif
+}
+
+int Storage::makeDir(const String& path) {
+  if (!mounted()) return -EIO;
+  if (!Path::isSafe(path) || path == "/") return -EACCES;
+#if SCICALC_REMOTE_SD
+  return pcFS.mkdir(path.c_str());
+#else
+  return fs_->mkdir(path) ? 0 : -EIO;
+#endif
+}
+
+int Storage::removeDir(const String& path) {
+  if (!mounted()) return -EIO;
+  if (!Path::isSafe(path) || path == "/") return -EACCES;
+#if SCICALC_REMOTE_SD
+  return pcFS.rmdir(path.c_str());
+#else
+  return fs_->rmdir(path) ? 0 : -EIO;
+#endif
 }
